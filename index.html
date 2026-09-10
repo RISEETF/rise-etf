@@ -3,27 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RISE ETF Intelligence Base - 1,000+ 전종목 엑셀 연동 대시보드</title>
+  <title>RISE ETF Intelligence Base & Investor Portal</title>
 
-  <!-- Open Graph / Meta for Social & Investor Sharing -->
+  <!-- Open Graph / Meta -->
   <meta name="description" content="KB자산운용 RISE ETF 마스터 인텔리전스 포털 및 데일리 매크로 시황 대시보드">
   <meta property="og:title" content="RISE ETF Intelligence Base & Market Portal">
   <meta property="og:description" content="전체 ETF 마스터 DB 연계 실시간 시황 모니터링, 퇴직연금 100% 안전자산 분석 및 데일리 전략 브리프">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="RISE ETF Intelligence">
 
-  <!-- Tailwind CSS -->
+  <!-- Scripts -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- 엑셀(.xlsx) 파싱용 라이브러리 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "맑은 고딕", helvetica, sans-serif; }
     .kpi-card { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(8px); border: 1px solid rgba(51, 65, 85, 0.6); }
     .kpi-card:hover { border-color: rgba(245, 158, 11, 0.5); }
     .gold-gradient { background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); }
-    .dropzone-active { border-color: #F59E0B !important; background: rgba(245, 158, 11, 0.1) !important; }
+    .tab-active { border-bottom: 2px solid #F59E0B; color: #F59E0B; font-weight: 700; }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased">
@@ -36,23 +35,30 @@
         <div>
           <div class="flex items-center space-x-2">
             <span class="font-extrabold text-lg text-white tracking-tight">RISE ETF</span>
-            <span class="text-[11px] bg-amber-500/15 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded-full font-bold">1,000+ 전종목 마스터 포털</span>
+            <span class="text-[11px] bg-amber-500/15 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded-full font-bold">1,000+ Intelligence Portal</span>
           </div>
-          <p class="text-[11px] text-slate-400">사내 엑셀/CSV 연동 & 일별 매크로 시황 인텔리전스</p>
+          <p class="text-[11px] text-slate-400">구글 시트 실시간 연동 & 데일리 매크로 세일즈 포털</p>
         </div>
       </div>
       
-      <!-- TOP CONTROLS -->
+      <!-- TOP ACTION CONTROLS -->
       <div class="flex items-center space-x-3">
-        <label class="flex items-center space-x-1.5 text-xs bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-3 py-1.5 rounded-lg shadow-lg cursor-pointer transition">
-          <i data-lucide="upload-cloud" class="w-4 h-4"></i>
-          <span>사내 엑셀/CSV 불러오기</span>
+        <!-- 구글 시트 실시간 동기화 버튼 -->
+        <button onclick="syncGoogleSheet()" id="syncBtn" class="flex items-center space-x-1.5 text-xs bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-3 py-1.5 rounded-lg shadow transition">
+          <i data-lucide="refresh-cw" class="w-3.5 h-3.5" id="syncIcon"></i>
+          <span>구글시트 실시간 동기화</span>
+        </button>
+
+        <!-- 사내 엑셀 업로드 버튼 -->
+        <label class="hidden sm:flex items-center space-x-1.5 text-xs bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-3 py-1.5 rounded-lg shadow cursor-pointer transition">
+          <i data-lucide="upload-cloud" class="w-3.5 h-3.5"></i>
+          <span>사내 엑셀 불러오기</span>
           <input type="file" id="fileInput" accept=".xlsx, .xls, .csv, .tsv, .txt" onchange="handleFileSelect(event)" class="hidden">
         </label>
 
-        <div class="flex items-center space-x-2 bg-slate-800/90 border border-amber-500/40 px-3 py-1.5 rounded-xl shadow">
-          <i data-lucide="calendar" class="w-4 h-4 text-amber-400"></i>
-          <span class="text-xs text-slate-300 hidden sm:inline font-semibold">시황:</span>
+        <!-- 기준일 선택기 -->
+        <div class="flex items-center space-x-1.5 bg-slate-800/90 border border-amber-500/40 px-2.5 py-1.5 rounded-xl shadow">
+          <i data-lucide="calendar" class="w-3.5 h-3.5 text-amber-400"></i>
           <select id="dateSelect" onchange="onDateChange()" class="bg-slate-900 text-amber-300 font-bold text-xs rounded-lg px-2 py-0.5 border border-slate-700 focus:outline-none focus:border-amber-500 cursor-pointer">
             <option value="2026-09-10" selected>2026.09.10 (유가 $100 돌파)</option>
             <option value="2026-09-09">2026.09.09 (반도체 방어)</option>
@@ -64,7 +70,25 @@
     </div>
   </header>
 
-  <!-- MAIN WRAPPER -->
+  <!-- MAIN NAVIGATION TABS -->
+  <div class="border-b border-slate-800 bg-slate-900/60 sticky top-16 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-8 text-xs font-semibold">
+      <button onclick="switchMainTab('tab-explorer')" id="btn-tab-explorer" class="py-3 px-1 tab-active flex items-center space-x-2">
+        <i data-lucide="table" class="w-4 h-4"></i>
+        <span>ETF 마스터 탐색기 (<span id="tabCount">110</span>)</span>
+      </button>
+      <button onclick="switchMainTab('tab-report')" id="btn-tab-report" class="py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-2">
+        <i data-lucide="book-open" class="w-4 h-4"></i>
+        <span>데일리 매크로 리포트 전문</span>
+      </button>
+      <button onclick="switchMainTab('tab-charts')" id="btn-tab-charts" class="py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-2">
+        <i data-lucide="pie-chart" class="w-4 h-4"></i>
+        <span>수익률 & 점유율 시각화</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT AREA -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full space-y-6">
 
     <!-- 1. DYNAMIC MACRO SENSING STRIP -->
@@ -95,132 +119,237 @@
       </div>
     </section>
 
-    <!-- 2. FILE DRAG & DROP ZONE -->
-    <div id="dropZone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)" class="border-2 border-dashed border-slate-700 bg-slate-900/40 hover:bg-slate-900/70 rounded-2xl p-4 text-center transition cursor-pointer" onclick="document.getElementById('fileInput').click()">
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 text-xs">
-        <div class="w-8 h-8 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center flex-shrink-0">
-          <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
-        </div>
-        <div class="text-left">
-          <div class="text-white font-bold flex items-center gap-2">
-            <span>사내 엑셀(인포맥스/Check/KRX) 파일 드래그 & 드롭</span>
-            <span id="loadStatusBadge" class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-bold border border-emerald-500/30 hidden">동기화 완료</span>
+    <!-- TAB 1: ETF MASTER EXPLORER -->
+    <div id="tab-explorer" class="space-y-6">
+
+      <!-- BRIEFING HERO -->
+      <section class="bg-gradient-to-r from-slate-900 via-slate-900/90 to-amber-950/20 border border-amber-500/40 rounded-2xl p-5 shadow-2xl">
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+          <div class="space-y-1.5 flex-1">
+            <div class="flex items-center space-x-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-amber-500 text-slate-950 uppercase tracking-wide">
+                <span id="briefDateBadge">2026.09.10</span> 전략 브리프
+              </span>
+              <span class="text-xs text-slate-400">출처: DB 아카이브</span>
+            </div>
+            <h2 class="text-base sm:text-lg font-bold text-white" id="briefHeadline">로딩 중...</h2>
+            <p class="text-xs text-slate-300 leading-relaxed max-w-4xl" id="briefTrigger">로딩 중...</p>
+            <div class="text-xs text-amber-300/90 font-medium pt-1 border-t border-slate-800/80 mt-2 flex items-center">
+              <i data-lucide="check-circle-2" class="w-3.5 h-3.5 mr-1.5 text-amber-400 flex-shrink-0"></i>
+              <span id="briefSolution">로딩 중...</span>
+            </div>
           </div>
-          <p class="text-slate-400 text-[11px]">
-            다운로드한 엑셀(.xlsx) 또는 CSV 파일을 여기에 끌어다 놓으시면 <strong class="text-amber-300">1,000여 개 전 종목</strong>이 브라우저 로컬에서 즉시 펼쳐집니다.
-          </p>
+
+          <div class="flex items-center bg-slate-950 p-1.5 rounded-xl border border-slate-800 self-stretch lg:self-auto justify-center flex-shrink-0">
+            <button onclick="switchView('all')" id="btnAll" class="px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 bg-amber-500 text-slate-950 shadow-md">
+              <i data-lucide="list" class="w-3.5 h-3.5"></i>
+              <span>☰ 전체 종목 보기 (<span id="allCount">110</span>)</span>
+            </button>
+            <button onclick="switchView('focus')" id="btnFocus" class="px-3.5 py-2 rounded-lg text-xs font-semibold transition flex items-center space-x-1.5 text-slate-400 hover:text-white">
+              <i data-lucide="flame" class="w-3.5 h-3.5"></i>
+              <span>★ 주요 포커스만 (<span id="focusCount">-</span>)</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- FILTER & SEARCH BAR -->
+      <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 bg-slate-900/60 p-3.5 rounded-xl border border-slate-800">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs font-semibold text-slate-400 mr-1 flex items-center">
+            <i data-lucide="filter" class="w-3.5 h-3.5 mr-1 text-amber-400"></i>운용사:
+          </span>
+          <button onclick="filterIssuer('ALL')" class="issuer-btn text-xs px-2.5 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold transition">전체</button>
+          <button onclick="filterIssuer('KB자산운용')" class="issuer-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">KB RISE (<span id="riseCount">64</span>)</button>
+          <button onclick="filterIssuer('삼성자산운용')" class="issuer-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">KODEX</button>
+          <button onclick="filterIssuer('미래에셋자산운용')" class="issuer-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">TIGER</button>
+          <button onclick="filterIssuer('한국투자신탁운용')" class="issuer-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">ACE</button>
+          <button onclick="filterIssuer('신한자산운용')" class="issuer-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">SOL</button>
+        </div>
+
+        <div class="flex items-center space-x-3">
+          <label class="flex items-center space-x-2 text-xs text-slate-300 cursor-pointer bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 select-none">
+            <input type="checkbox" id="chkOnlyFocus" onchange="toggleFocusCheckbox()" class="rounded bg-slate-900 border-slate-700 text-amber-500">
+            <span>포커스만</span>
+          </label>
+          <label class="flex items-center space-x-2 text-xs text-slate-300 cursor-pointer bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 select-none">
+            <input type="checkbox" id="chkPension" onchange="render()" class="rounded bg-slate-900 border-slate-700 text-amber-500">
+            <span>퇴직연금 100%만</span>
+          </label>
+          <div class="relative w-full sm:w-56">
+            <input type="text" id="keyword" onkeyup="render()" placeholder="종목명/코드 검색..." class="w-full bg-slate-950 border border-slate-700 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
+            <i data-lucide="search" class="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-2.5"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- MASTER ETF TABLE -->
+      <div class="bg-slate-900/80 rounded-2xl border border-slate-800 overflow-hidden shadow-2xl">
+        <div class="overflow-x-auto max-h-[650px] overflow-y-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-950 text-slate-400 uppercase font-semibold border-b border-slate-800 sticky top-0 z-20">
+              <tr>
+                <th class="py-3 px-4 w-12 text-center">포커스</th>
+                <th class="py-3 px-4">종목코드</th>
+                <th class="py-3 px-4">종목명 / 핵심 전략 (클릭 시 팩트시트)</th>
+                <th class="py-3 px-4">운용사</th>
+                <th class="py-3 px-4">테마분류</th>
+                <th class="py-3 px-4 text-right">현재가</th>
+                <th class="py-3 px-4 text-right">등락률</th>
+                <th class="py-3 px-4 text-right">3개월수익</th>
+                <th class="py-3 px-4 text-center">퇴직연금</th>
+                <th class="py-3 px-4 text-right">일거래대금</th>
+                <th class="py-3 px-4 text-right">시가총액</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody" class="divide-y divide-slate-800/80"></tbody>
+          </table>
+        </div>
+
+        <div class="p-3.5 bg-slate-950 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-2">
+          <div id="statText" class="font-bold text-amber-300">조회 중...</div>
+          <div class="flex items-center space-x-4 text-[11px]">
+            <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-amber-400 mr-1.5"></span>KB자산운용 (RISE)</span>
+            <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-400 mr-1.5"></span>퇴직연금 100% 안전자산</span>
+            <span class="text-amber-400 font-semibold">💡 종목명을 클릭하면 '세일즈 팩트시트 모달'이 열립니다.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TAB 2: DAILY MACRO REPORT READER -->
+    <div id="tab-report" class="hidden space-y-6">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl max-w-5xl mx-auto space-y-6">
+        <div class="border-b border-slate-800 pb-4">
+          <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+            <span class="bg-amber-500/20 text-amber-300 px-2.5 py-1 rounded-full font-bold border border-amber-500/30" id="reportDateBadge">2026.09.10</span>
+            <span>RISE ETF Macro Strategy & Asset Allocation</span>
+          </div>
+          <h1 class="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug" id="reportHeadline">로딩 중...</h1>
+        </div>
+
+        <!-- Executive Summary -->
+        <div class="bg-slate-950/80 border border-amber-500/30 rounded-xl p-5 space-y-2">
+          <div class="text-xs font-bold text-amber-400 uppercase flex items-center">
+            <i data-lucide="sparkles" class="w-4 h-4 mr-1.5"></i>Executive Summary
+          </div>
+          <p class="text-xs text-slate-200 leading-relaxed" id="reportSummary">로딩 중...</p>
+        </div>
+
+        <!-- 4 Key Market Drivers -->
+        <div class="space-y-3">
+          <h3 class="text-sm font-bold text-white flex items-center">
+            <i data-lucide="activity" class="w-4 h-4 mr-2 text-amber-400"></i>24시간 핵심 마켓 드라이버
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="reportDrivers"></div>
+        </div>
+
+        <!-- Portfolio Solutions -->
+        <div class="space-y-3 border-t border-slate-800 pt-5">
+          <h3 class="text-sm font-bold text-white flex items-center">
+            <i data-lucide="shield-check" class="w-4 h-4 mr-2 text-emerald-400"></i>RISE ETF 포트폴리오 솔루션 제언
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="reportSolutions"></div>
         </div>
       </div>
     </div>
 
-    <!-- 3. STRATEGY BRIEFING HERO -->
-    <section class="bg-gradient-to-r from-slate-900 via-slate-900/90 to-amber-950/20 border border-amber-500/40 rounded-2xl p-5 shadow-2xl">
-      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
-        <div class="space-y-1.5 flex-1">
-          <div class="flex items-center space-x-2">
-            <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-amber-500 text-slate-950 uppercase tracking-wide">
-              <span id="briefDateBadge">2026.09.10</span> 전략 브리프
-            </span>
-            <span class="text-xs text-slate-400" id="briefSource">출처: DB 아카이브</span>
-          </div>
-          <h2 class="text-base sm:text-lg font-bold text-white" id="briefHeadline">로딩 중...</h2>
-          <p class="text-xs text-slate-300 leading-relaxed max-w-4xl" id="briefTrigger">로딩 중...</p>
-          <div class="text-xs text-amber-300/90 font-medium pt-1 border-t border-slate-800/80 mt-2 flex items-center">
-            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 mr-1.5 text-amber-400 flex-shrink-0"></i>
-            <span id="briefSolution">로딩 중...</span>
+    <!-- TAB 3: CHARTS & VISUALIZATION -->
+    <div id="tab-charts" class="hidden space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 shadow-xl">
+          <h3 class="text-sm font-bold text-white mb-4 flex items-center">
+            <i data-lucide="trending-up" class="w-4 h-4 text-amber-400 mr-2"></i>주요 전략 ETF 3개월 수익률 비교 (%)
+          </h3>
+          <div class="h-72">
+            <canvas id="perfChart"></canvas>
           </div>
         </div>
 
-        <div class="flex items-center bg-slate-950 p-1.5 rounded-xl border border-slate-800 self-stretch lg:self-auto justify-center flex-shrink-0">
-          <button onclick="switchView('all')" id="btnAll" class="px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 bg-amber-500 text-slate-950 shadow-md">
-            <i data-lucide="list" class="w-3.5 h-3.5"></i>
-            <span>☰ 전체 종목 보기 (<span id="allCount">110</span>)</span>
-          </button>
-          <button onclick="switchView('focus')" id="btnFocus" class="px-3.5 py-2 rounded-lg text-xs font-semibold transition flex items-center space-x-1.5 text-slate-400 hover:text-white">
-            <i data-lucide="flame" class="w-3.5 h-3.5"></i>
-            <span>★ 주요 포커스만 (<span id="focusCount">-</span>)</span>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- 4. 필터 & 검색 제어 바 -->
-    <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 bg-slate-900/60 p-3.5 rounded-xl border border-slate-800">
-      <div class="flex flex-wrap items-center gap-2">
-        <span class="text-xs font-semibold text-slate-400 mr-1 flex items-center">
-          <i data-lucide="filter" class="w-3.5 h-3.5 mr-1 text-amber-400"></i>운용사:
-        </span>
-        <button onclick="filterIssuer('ALL')" class="issuer-btn text-xs px-2.5 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold transition">전체</button>
-        <button onclick="filterIssuer('KB자산운용')" class="issuer-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">KB RISE (<span id="riseCount">64</span>)</button>
-        <button onclick="filterIssuer('삼성자산운용')" class="issuer-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">KODEX</button>
-        <button onclick="filterIssuer('미래에셋자산운용')" class="issuer-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">TIGER</button>
-        <button onclick="filterIssuer('한국투자신탁운용')" class="issuer-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">ACE</button>
-        <button onclick="filterIssuer('신한자산운용')" class="issuer-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">SOL</button>
-      </div>
-
-      <div class="flex items-center space-x-3">
-        <label class="flex items-center space-x-2 text-xs text-slate-300 cursor-pointer bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 select-none">
-          <input type="checkbox" id="chkOnlyFocus" onchange="toggleFocusCheckbox()" class="rounded bg-slate-900 border-slate-700 text-amber-500">
-          <span>포커스만</span>
-        </label>
-        <label class="flex items-center space-x-2 text-xs text-slate-300 cursor-pointer bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 select-none">
-          <input type="checkbox" id="chkPension" onchange="render()" class="rounded bg-slate-900 border-slate-700 text-amber-500">
-          <span>퇴직연금 100%만</span>
-        </label>
-        <div class="relative w-full sm:w-56">
-          <input type="text" id="keyword" onkeyup="render()" placeholder="종목명/코드 검색..." class="w-full bg-slate-950 border border-slate-700 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
-          <i data-lucide="search" class="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-2.5"></i>
-        </div>
-      </div>
-    </div>
-
-    <!-- 5. MASTER ETF TABLE -->
-    <div class="bg-slate-900/80 rounded-2xl border border-slate-800 overflow-hidden shadow-2xl">
-      <div class="overflow-x-auto max-h-[700px] overflow-y-auto">
-        <table class="w-full text-left text-xs">
-          <thead class="bg-slate-950 text-slate-400 uppercase font-semibold border-b border-slate-800 sticky top-0 z-20">
-            <tr>
-              <th class="py-3 px-4 w-12 text-center">포커스</th>
-              <th class="py-3 px-4">종목코드</th>
-              <th class="py-3 px-4">종목명 / 핵심 전략</th>
-              <th class="py-3 px-4">운용사</th>
-              <th class="py-3 px-4">테마분류</th>
-              <th class="py-3 px-4 text-right">현재가</th>
-              <th class="py-3 px-4 text-right">등락률</th>
-              <th class="py-3 px-4 text-right">3개월수익</th>
-              <th class="py-3 px-4 text-center">퇴직연금</th>
-              <th class="py-3 px-4 text-right">일거래대금</th>
-              <th class="py-3 px-4 text-right">시가총액</th>
-            </tr>
-          </thead>
-          <tbody id="tableBody" class="divide-y divide-slate-800/80"></tbody>
-        </table>
-      </div>
-
-      <div class="p-3.5 bg-slate-950 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-2">
-        <div id="statText" class="font-bold text-amber-300">조회 중...</div>
-        <div class="flex items-center space-x-4 text-[11px]">
-          <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-amber-400 mr-1.5"></span>KB자산운용 (RISE)</span>
-          <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-400 mr-1.5"></span>퇴직연금 100% 안전자산</span>
-          <span class="text-amber-400 font-semibold">💡 기본으로 전체 종목이 표시되며, 사내 엑셀 드롭 시 1,000+개로 무한 확장됩니다.</span>
+        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 shadow-xl">
+          <h3 class="text-sm font-bold text-white mb-4 flex items-center">
+            <i data-lucide="pie-chart" class="w-4 h-4 text-amber-400 mr-2"></i>운용사별 일거래대금 점유율
+          </h3>
+          <div class="h-72 flex items-center justify-center">
+            <canvas id="volumeChart"></canvas>
+          </div>
         </div>
       </div>
     </div>
 
   </main>
 
+  <!-- ETF DETAIL MODAL / FACTSHEET -->
+  <div id="etfModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-amber-500/40 rounded-2xl max-w-2xl w-full p-6 space-y-5 shadow-2xl relative">
+      <button onclick="closeModal()" class="absolute right-4 top-4 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="border-b border-slate-800 pb-4">
+        <div class="flex items-center space-x-2 text-xs mb-1">
+          <span class="font-mono text-slate-400" id="modalCode">-</span>
+          <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold text-[10px]" id="modalIssuer">-</span>
+          <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-[10px]" id="modalCategory">-</span>
+        </div>
+        <h3 class="text-lg font-bold text-white" id="modalName">-</h3>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="grid grid-cols-4 gap-2 text-center text-xs">
+        <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+          <div class="text-slate-400 text-[10px]">현재가</div>
+          <div class="text-sm font-bold text-white mt-0.5" id="modalPrice">-</div>
+        </div>
+        <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+          <div class="text-slate-400 text-[10px]">등락률</div>
+          <div class="text-sm font-bold mt-0.5" id="modalChange">-</div>
+        </div>
+        <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+          <div class="text-slate-400 text-[10px]">3개월 수익률</div>
+          <div class="text-sm font-bold text-emerald-400 mt-0.5" id="modalRet3m">-</div>
+        </div>
+        <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+          <div class="text-slate-400 text-[10px]">퇴직연금 한도</div>
+          <div class="text-xs font-bold text-amber-300 mt-1" id="modalPension">-</div>
+        </div>
+      </div>
+
+      <!-- Why RISE & Sales Points -->
+      <div class="space-y-2 bg-slate-950/60 p-4 rounded-xl border border-slate-800 text-xs">
+        <div class="font-bold text-amber-400 flex items-center">
+          <i data-lucide="target" class="w-4 h-4 mr-1.5"></i>전략적 핵심 셀링 포인트 (Why RISE)
+        </div>
+        <p class="text-slate-200 leading-relaxed" id="modalReason">-</p>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center justify-between pt-2">
+        <button onclick="copySalesText()" class="flex items-center space-x-1.5 text-xs bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2 rounded-xl shadow transition">
+          <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+          <span>고객 안내용 텍스트 복사</span>
+        </button>
+        <button onclick="closeModal()" class="text-xs text-slate-400 hover:text-white px-4 py-2">
+          닫기
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
   <footer class="border-t border-slate-800/80 py-6 text-center text-xs text-slate-500 bg-slate-950">
-    <p>© 2026 RISE ETF Consulting & Product Marketing Group. 1,000+ 전종목 엑셀 연동 버전.</p>
+    <p>© 2026 RISE ETF Consulting & Product Marketing Group. Live Cloud Sync Enabled.</p>
   </footer>
 
+  <!-- CORE LOGIC SCRIPT -->
   <script>
-    const historicalDB = {
+    const reportsDB = {
       "2026-09-10": {
         "date": "2026-09-10",
-        "headline": "브렌트유 $100 공식 돌파와 미 10년물 4.84% 상승, 인플레 헤지 및 채권혼합 바벨 전략 긴급 점검",
-        "trigger": "중동 전황 격화로 브렌트유 $101.60(+3.76%) 돌파 및 미 10년물 금리 4.84% 상승, 오늘 밤 미 8월 PPI 발표 앞두고 9월 FOMC 고금리 장기화 우려.",
-        "source": "Reuters, FRED (DGS10), AP News",
-        "solution": "퇴직연금 100% 한도 채우는 '삼전SK하닉50채권혼합'과 가격 전가력 갖춘 '미국AI전력인프라' 바벨 포트폴리오 집중 제언.",
+        "title": "브렌트유 $100 공식 돌파와 미 10년물 4.84% 상승, 인플레 헤지 및 채권혼합 바벨 전략 긴급 점검",
+        "summary": "중동 전황 격화로 브렌트유가 배럴당 $101.60을 돌파하고 미 10년물 금리가 4.84%로 급등했습니다. 오늘 밤 미 8월 PPI 발표를 앞두고 고금리 장기화 우려 속에서, 퇴직연금 100% 안전자산 한도를 채우는 '삼전SK하닉50채권혼합'과 가격 전가력을 갖춘 '미국AI전력인프라'를 결합하는 바벨 포트폴리오가 시장 대비 독보적 방어력을 제공합니다.",
         "macro": {
           "kospi": "7,051.64 (+1.40%)",
           "sp500": "7,635.27 (-0.50%)",
@@ -229,6 +358,30 @@
           "usdkrw": "1,368.50원 (NDF 1,372원)",
           "dxy": "104.75 (+0.30p)"
         },
+        "drivers": [
+          {"title": "01. 에너지 & 인플레 쇼크", "desc": "중동 전황 격화로 브렌트유 배럴당 $101.60 마감. 공급발 인플레 비상으로 9월 FOMC 고금리 장기화 공포 재점화."},
+          {"title": "02. 글로벌 채권 시장 급변", "desc": "미 10년물 4.84%, 2년물 4.45%로 상승하며 장단기 스프레드 +39bp로 확대. 텀 프리미엄 재부각 및 커브 베어 스티프닝 전개."},
+          {"title": "03. 뉴욕 증시 센티먼트", "desc": "다우(-0.8%), 나스닥(-0.6%), 필라델피아반도체(-0.85%) 동반 하락. 고유가 지속 시 전 업종 기업 마진 축소 경계."},
+          {"title": "04. 국내 외환 & 증시", "desc": "KOSPI 7,051선 안착 후 유가 $100 충격과 NDF 1,372원 환율 압력으로 장 초반 변동성 확대 대비 필요."}
+        ],
+        "solutions": [
+          {
+            "name": "RISE 삼성전자SK하이닉스50채권혼합 (477170)",
+            "type": "Core Barbell Solution (퇴직연금 100% 적격)",
+            "points": [
+              "시장 방어: 유가 $100 및 금리 4.8% 국면에서 단기 국채 50%의 방어력과 반도체 투톱 상방 레버리지 동시 향유",
+              "규제 우회: DC/IRP 계좌에서 위험자산 70% 제한을 합법적으로 극복하여 실질 주식 비중 극대화"
+            ]
+          },
+          {
+            "name": "RISE 미국AI전력인프라 (487420)",
+            "type": "Thematic Growth Solution (가격 전가력 보유)",
+            "points": [
+              "가격 전가력: 고유가 및 전력난 장기화 시 전기요금 판가 인상이 용이한 독점 유틸리티 및 전력망 기업 포진",
+              "구조적 수요: 빅테크 AI 데이터센터 전력 소비 폭증으로 매크로 하강기에도 실적 가시성 보장"
+            ]
+          }
+        ],
         "focusCodes": ["477170", "487420", "465580", "148020"],
         "focusReasons": {
           "477170": "🔥 [전략 1순위] 유가 $100 돌파 국면 국채 방어력 & 퇴직연금 100% 안전자산 편입",
@@ -239,10 +392,8 @@
       },
       "2026-09-09": {
         "date": "2026-09-09",
-        "headline": "유가 $100 위협과 미 국채금리 4.9% 재진입, 반도체 펀더멘털의 방어력에 주목하라",
-        "trigger": "중동 해상 수송로 긴장 장기화로 브렌트유 장중 $99.50 터치, 미 8월 CPI/PPI 앞두고 고금리 장기화 우려 재점화.",
-        "source": "The Washington Post, FRED, NY Fed",
-        "solution": "단기 유동성 가뭄에 대비한 CD금리형 및 반도체 투톱 비중 50%를 담은 채권혼합형 안전자산 방어 전략.",
+        "title": "유가 $100 위협과 미 국채금리 4.9% 재진입, 반도체 펀더멘털의 방어력에 주목하라",
+        "summary": "미 8월 CPI/PPI 발표를 앞두고 고금리 장기화 우려가 선반영되며 금리와 환율이 반등했습니다. 단기 유동성 가뭄에 대비한 CD금리형 및 반도체 투톱 비중 50%를 담은 채권혼합형 안전자산 방어 전략을 권고합니다.",
         "macro": {
           "kospi": "7,051.64 (+1.40%)",
           "sp500": "7,673.52 (+0.25%)",
@@ -251,6 +402,17 @@
           "usdkrw": "1,368.50원",
           "dxy": "104.45 (+0.15p)"
         },
+        "drivers": [
+          {"title": "01. 물가 지표 경계감", "desc": "미 8월 인플레이션 지표 발표를 앞두고 시장 경계 심리 고조."},
+          {"title": "02. 단기 자금 선호", "desc": "위험자산 관망세 확산으로 MMF 및 무위험 지표금리 파킹 수요 급증."}
+        ],
+        "solutions": [
+          {
+            "name": "RISE CD금리액티브(합성) (453340)",
+            "type": "Cash Management Solution",
+            "points": ["무위험 고금리 파킹: 단기 변동성 회피 및 복리 효과 누적"]
+          }
+        ],
         "focusCodes": ["477170", "453340", "465580"],
         "focusReasons": {
           "477170": "🔥 반도체 펀더멘털 + 국채 50% 혼합으로 금리 발작기 변동성 방어",
@@ -260,10 +422,8 @@
       },
       "2024-08-05": {
         "date": "2024-08-05",
-        "headline": "엔 캐리 트레이드 청산 쇼크 (블랙 먼데이), 과매도 우량주 분할 매수 타이밍",
-        "trigger": "일본은행(BOJ) 기습 금리인상과 미 실업률 상승 겹치며 닛케이 -12.4%, KOSPI -8.8% 서킷브레이커 발동.",
-        "source": "Bank of Japan, KRX, Bloomberg",
-        "solution": "단기 시스템 리스크 없는 일시적 청산 패닉. 과매도된 국내 대표지수 및 우량 반도체 분할 매수 제언.",
+        "title": "엔 캐리 트레이드 청산 쇼크 (블랙 먼데이), 과매도 우량주 분할 매수 타이밍",
+        "summary": "일본은행(BOJ) 기습 금리인상과 미 실업률 상승이 겹치며 닛케이 -12.4%, KOSPI -8.8% 서킷브레이커가 발동했습니다. 시스템 리스크가 없는 유동성 패닉 구간으로, 과매도된 대표 지수 저가 매수 기회입니다.",
         "macro": {
           "kospi": "2,441.55 (-8.77%)",
           "sp500": "5,186.33 (-3.00%)",
@@ -272,6 +432,17 @@
           "usdkrw": "1,374.00원",
           "dxy": "102.80 (-0.45p)"
         },
+        "drivers": [
+          {"title": "01. 엔 캐리 자금 청산", "desc": "글로벌 헤지펀드 레버리지 포지션 강제 청산으로 아시아 증시 동반 급락."},
+          {"title": "02. 연준 빅컷 기대", "desc": "급격한 패닉 진정을 위한 9월 FOMC 50bp 금리 인하 기대감 확산."}
+        ],
+        "solutions": [
+          {
+            "name": "RISE 200 (148020)",
+            "type": "Index Bargain Hunting",
+            "points": ["역사적 밸류에이션 바닥 구간에서 최저보수로 코스피 반등 향유"]
+          }
+        ],
         "focusCodes": ["148020", "477170", "453340"],
         "focusReasons": {
           "148020": "📉 역사적 과매도 구간 대표 지수 저가 매수 기회",
@@ -281,10 +452,8 @@
       },
       "2022-02-24": {
         "date": "2022-02-24",
-        "headline": "러시아-우크라이나 전면 침공 발발, 안보·원자력·에너지 인프라 헷지 전략",
-        "trigger": "러시아군 우크라이나 침공. 유럽 에너지 공급망 차단 및 대러 제재로 WTI/브렌트유 배럴당 $130 돌파.",
-        "source": "Reuters, UN, NATO",
-        "solution": "글로벌 공급발 인플레이션 충격 국면. 에너지 안보(원자력) 및 방위산업, 원자재 가격 전가형 ETF 편입.",
+        "title": "러시아-우크라이나 전면 침공 발발, 안보·원자력·에너지 인프라 헷지 전략",
+        "summary": "러시아군 우크라이나 침공으로 WTI/브렌트유가 배럴당 $130을 돌파했습니다. 글로벌 에너지 공급망 재편과 방위산업 르네상스 국면에서 안보 자산 중심의 포트폴리오 재편이 요구됩니다.",
         "macro": {
           "kospi": "2,648.80 (-2.05%)",
           "sp500": "4,288.70 (+1.50%)",
@@ -293,6 +462,17 @@
           "usdkrw": "1,202.40원",
           "dxy": "97.10 (+0.90p)"
         },
+        "drivers": [
+          {"title": "01. 유럽 에너지 대란", "desc": "러시아산 천연가스/원유 차단으로 에너지 안보 및 원자력 필수 불가결."},
+          {"title": "02. 전 세계 국방비 증액", "desc": "NATO 및 각국 군비 확장으로 K-방산 수주 모멘텀 본격 개막."}
+        ],
+        "solutions": [
+          {
+            "name": "RISE 글로벌원자력 (396500)",
+            "type": "Energy Security Solution",
+            "points": ["유럽 및 글로벌 원전 르네상스 수혜 SMR 및 원자로 밸류체인 독점"]
+          }
+        ],
         "focusCodes": ["396500", "487420", "477170"],
         "focusReasons": {
           "396500": "☢️ 유럽 에너지 안보 위기 속 글로벌 원전 르네상스 메가 트렌드",
@@ -302,7 +482,7 @@
       }
     };
 
-    // 110개 전 종목 데이터셋 (초기 기본 탑재)
+    // 110개 전 종목 데이터셋
     let masterList = [
       {"code": "477170", "name": "RISE 삼성전자SK하이닉스50채권혼합", "issuer": "KB자산운용", "category": "국내 채권혼합", "price": "10,250", "change": "+0.35%", "nav": "10,245", "ret3m": "+4.80%", "pension100": true, "vol": "1,250", "aum": "1,540", "isRise": true, "isFocus": true, "reason": "유가 $100 돌파 국면 국채 방어 & 퇴직연금 100% 안전자산 편입"},
       {"code": "465580", "name": "RISE 미국AI밸류체인TOP3Plus", "issuer": "KB자산운용", "category": "해외 주식(AI)", "price": "12,840", "change": "-0.45%", "nav": "12,830", "ret3m": "+15.20%", "pension100": false, "vol": "3,450", "aum": "2,890", "isRise": true, "isFocus": true, "reason": "빅테크 차익실현 속 AI 반도체·하드웨어 핵심 밸류체인 독점 수혜"},
@@ -419,172 +599,216 @@
     let currentDate = "2026-09-10";
     let currentMode = "all";
     let currentIssuer = "ALL";
-    let isFileLoaded = false;
+    let currentModalItem = null;
+    let chartsInit = false;
 
-    function handleDragOver(e) {
-      e.preventDefault();
-      document.getElementById('dropZone').classList.add('dropzone-active');
-    }
-    function handleDragLeave(e) {
-      e.preventDefault();
-      document.getElementById('dropZone').classList.remove('dropzone-active');
-    }
-    function handleDrop(e) {
-      e.preventDefault();
-      document.getElementById('dropZone').classList.remove('dropzone-active');
-      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-        processUploadedFile(e.dataTransfer.files[0]);
-      }
-    }
-    function handleFileSelect(e) {
-      if (e.target.files && e.target.files.length > 0) {
-        processUploadedFile(e.target.files[0]);
-      }
-    }
+    // 구글 시트 실시간 연동 (CSV URL)
+    const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/11j4T3KI7JAHSqGnT0FpJVPj6hW8PoaLUbFdCauadDyg/export?format=csv";
 
-    function processUploadedFile(file) {
-      const fileName = file.name.toLowerCase();
-      const reader = new FileReader();
+    async function syncGoogleSheet() {
+      const btn = document.getElementById("syncBtn");
+      const icon = document.getElementById("syncIcon");
+      btn.disabled = true;
+      icon.classList.add("animate-spin");
 
-      if (fileName.endsWith('.xlsx') || fileName.endsWith('.xls')) {
-        if (typeof XLSX !== 'undefined') {
-          reader.onload = function(e) {
-            const data = new Uint8Array(e.target.result);
-            const workbook = XLSX.read(data, { type: 'array' });
-            const firstSheetName = workbook.SheetNames[0];
-            const worksheet = workbook.Sheets[firstSheetName];
-            const jsonRows = XLSX.utils.sheet_to_json(worksheet);
-            parseAndLoadRows(jsonRows, file.name);
-          };
-          reader.readAsArrayBuffer(file);
-        } else {
-          alert('엑셀(.xlsx) 파서가 지원되지 않는 경우, CSV로 저장 후 열어주세요.');
-        }
-      } else {
-        reader.onload = function(e) {
-          parseCsvText(e.target.result, file.name);
-        };
-        reader.readAsText(file, 'euc-kr');
+      try {
+        const response = await fetch(GOOGLE_SHEET_CSV_URL);
+        if (!response.ok) throw new Error("구글 시트 응답 실패");
+        const text = await response.text();
+        parseCsvAndSync(text);
+        alert("✅ 구글 스프레드시트 최신 데이터가 성공적으로 실시간 동기화되었습니다!");
+      } catch (err) {
+        console.warn("Direct CSV fetch:", err);
+        alert("알림: 사내망 보안 또는 구글 시트 공유 권한에 따라 직접 가져오기가 제한되었습니다. 기존 내장 데이터와 엑셀 드롭다운 기능은 정상 동작합니다.");
+      } finally {
+        btn.disabled = false;
+        icon.classList.remove("animate-spin");
       }
     }
 
-    function parseCsvText(text, filename) {
-      const lines = text.split(/\\r?\\n/).filter(line => line.trim() !== '');
+    function parseCsvAndSync(csvText) {
+      const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== '');
       if (lines.length < 2) return;
 
-      const delimiter = lines[0].includes('\\t') ? '\\t' : ',';
-      const headers = lines[0].split(delimiter).map(h => h.trim().replace(/^[\"']|[\"']$/g, ''));
-      const rows = [];
+      const headers = lines[0].split(',').map(h => h.trim());
+      const newItems = [];
 
       for (let i = 1; i < lines.length; i++) {
-        const cols = lines[i].split(delimiter).map(c => c.trim().replace(/^[\"']|[\"']$/g, ''));
-        if (cols.length >= 2) {
-          const rowObj = {};
-          headers.forEach((h, idx) => {
-            rowObj[h] = cols[idx] || '';
+        const cols = lines[i].split(',').map(c => c.trim());
+        if (cols.length >= 10) {
+          newItems.push({
+            code: cols[0],
+            name: cols[1],
+            issuer: cols[2],
+            category: cols[3],
+            price: cols[4],
+            change: cols[5],
+            nav: cols[6],
+            ret3m: cols[7],
+            pension100: cols[8].includes("가능"),
+            vol: cols[9],
+            aum: cols[10] || "0",
+            isRise: cols[2].includes("KB자산운용"),
+            isFocus: cols[11] === "Y",
+            reason: cols[12] || ""
           });
-          rows.push(rowObj);
         }
       }
-      parseAndLoadRows(rows, filename);
+
+      if (newItems.length > 0) {
+        masterList = newItems;
+        render();
+      }
     }
 
-    function parseAndLoadRows(rows, filename) {
-      if (!rows || rows.length === 0) return;
+    function switchMainTab(tabId) {
+      document.getElementById("tab-explorer").classList.add("hidden");
+      document.getElementById("tab-report").classList.add("hidden");
+      document.getElementById("tab-charts").classList.add("hidden");
 
-      const newEtfList = [];
-      rows.forEach(r => {
-        const code = r['종목코드'] || r['단축코드'] || r['코드'] || r['Code'] || r['티커'] || r['ticker'] || '';
-        const name = r['종목명'] || r['ETF명'] || r['종목한글명'] || r['Name'] || '';
-        if (!name) return;
+      document.getElementById("btn-tab-explorer").className = "py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-2";
+      document.getElementById("btn-tab-report").className = "py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-2";
+      document.getElementById("btn-tab-charts").className = "py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-2";
 
-        let issuer = r['운용사'] || r['운용사명'] || '';
-        let isRise = false;
-        if (name.startsWith('RISE') || name.startsWith('KBSTAR')) {
-          issuer = 'KB자산운용';
-          isRise = true;
-        } else if (name.startsWith('KODEX')) {
-          issuer = '삼성자산운용';
-        } else if (name.startsWith('TIGER')) {
-          issuer = '미래에셋자산운용';
-        } else if (name.startsWith('ACE') || name.startsWith('KINDEX')) {
-          issuer = '한국투자신탁운용';
-        } else if (name.startsWith('SOL')) {
-          issuer = '신한자산운용';
-        } else if (name.startsWith('PLUS') || name.startsWith('ARIRANG')) {
-          issuer = '한화자산운용';
-        } else if (name.startsWith('HEROES')) {
-          issuer = '키움투자자산운용';
-        } else if (name.startsWith('TIMEFOLIO')) {
-          issuer = '타임폴리오자산운용';
-        } else if (!issuer) {
-          issuer = '기타운용사';
-        }
+      document.getElementById(tabId).classList.remove("hidden");
+      document.getElementById("btn-" + tabId).className = "py-3 px-1 tab-active flex items-center space-x-2";
 
-        const price = r['현재가'] || r['종가'] || r['Price'] || r['Close'] || '-';
-        const change = r['등락률'] || r['대비율'] || r['Change'] || '0.00%';
-        const vol = r['거래대금'] || r['거래대금(백만)'] || r['일거래대금'] || r['Volume'] || '0';
-        const aum = r['시가총액'] || r['시가총액(억)'] || r['순자산'] || r['AUM'] || '0';
-        const ret3m = r['3개월수익률'] || r['3개월'] || r['3M'] || '-';
-
-        const isPension100 = name.includes('채권혼합') || name.includes('채권') || name.includes('국채') || name.includes('단기자금') || name.includes('KOFR') || name.includes('CD금리') || name.includes('머니마켓');
-        
-        let category = '기타';
-        if (name.includes('채권혼합')) category = '채권혼합';
-        else if (name.includes('AI') || name.includes('반도체')) category = 'AI/반도체';
-        else if (name.includes('전력') || name.includes('원자력') || name.includes('원전')) category = 'AI/전력망';
-        else if (name.includes('200') || name.includes('코스닥') || name.includes('S&P') || name.includes('나스닥') || name.includes('레버리지') || name.includes('인버스')) category = '시장지수';
-        else if (name.includes('배당') || name.includes('채권') || name.includes('국채') || name.includes('리츠')) category = '배당/채권';
-        else if (name.includes('방산') || name.includes('조선') || name.includes('2차전지') || name.includes('바이오')) category = '테마주';
-
-        newEtfList.push({
-          code: String(code).trim(),
-          name: String(name).trim(),
-          issuer: issuer,
-          category: category,
-          price: typeof price === 'number' ? price.toLocaleString() : String(price),
-          change: String(change).startsWith('+') || String(change).startsWith('-') ? String(change) : (parseFloat(change) > 0 ? '+' + change : change),
-          ret3m: String(ret3m),
-          pension100: isPension100,
-          vol: typeof vol === 'number' ? vol.toLocaleString() : String(vol),
-          aum: typeof aum === 'number' ? aum.toLocaleString() : String(aum),
-          isRise: isRise
-        });
-      });
-
-      if (newEtfList.length > 0) {
-        masterList = newEtfList;
-        isFileLoaded = true;
-        const badge = document.getElementById('loadStatusBadge');
-        badge.innerText = `총 ${masterList.length}개 전종목 로드 완료 (${filename})`;
-        badge.classList.remove('hidden');
-        render();
-        alert(`성공: 사내 파일(${filename})에서 총 ${masterList.length}개 ETF 데이터를 정상 로딩했습니다.`);
+      if (tabId === "tab-charts" && !chartsInit) {
+        initCharts();
+        chartsInit = true;
       }
     }
 
     function onDateChange() {
       currentDate = document.getElementById("dateSelect").value;
-      updateBriefingAndMacro();
+      updateBriefing();
       render();
     }
 
-    function updateBriefingAndMacro() {
-      const data = historicalDB[currentDate];
-      if (!data) return;
+    function updateBriefing() {
+      const d = reportsDB[currentDate];
+      if (!d) return;
 
-      document.getElementById("macroKospi").innerText = data.macro.kospi;
-      document.getElementById("macroSp500").innerText = data.macro.sp500;
-      document.getElementById("macro10Y").innerText = data.macro.treasury10y;
-      document.getElementById("macroBrent").innerText = data.macro.brent;
-      document.getElementById("macroUsdKrw").innerText = data.macro.usdkrw;
-      document.getElementById("macroDxy").innerText = data.macro.dxy;
+      document.getElementById("macroKospi").innerText = d.macro.kospi;
+      document.getElementById("macroSp500").innerText = d.macro.sp500;
+      document.getElementById("macro10Y").innerText = d.macro.treasury10y;
+      document.getElementById("macroBrent").innerText = d.macro.brent;
+      document.getElementById("macroUsdKrw").innerText = d.macro.usdkrw;
+      document.getElementById("macroDxy").innerText = d.macro.dxy;
 
-      document.getElementById("briefDateBadge").innerText = data.date;
-      document.getElementById("briefSource").innerText = "출처: " + data.source;
-      document.getElementById("briefHeadline").innerText = data.headline;
-      document.getElementById("briefTrigger").innerText = data.trigger;
-      document.getElementById("briefSolution").innerText = data.solution;
+      document.getElementById("briefDateBadge").innerText = d.date;
+      document.getElementById("briefHeadline").innerText = d.title;
+      document.getElementById("briefTrigger").innerText = d.summary;
+      document.getElementById("briefSolution").innerText = d.solutions[0] ? d.solutions[0].name + " 중심 제언" : "-";
+
+      document.getElementById("reportDateBadge").innerText = d.date;
+      document.getElementById("reportHeadline").innerText = d.title;
+      document.getElementById("reportSummary").innerText = d.summary;
+
+      const driversEl = document.getElementById("reportDrivers");
+      driversEl.innerHTML = "";
+      d.drivers.forEach(dr => {
+        driversEl.innerHTML += `
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+            <div class="font-bold text-amber-300 mb-1">${dr.title}</div>
+            <p class="text-xs text-slate-300 leading-relaxed">${dr.desc}</p>
+          </div>
+        `;
+      });
+
+      const solutionsEl = document.getElementById("reportSolutions");
+      solutionsEl.innerHTML = "";
+      d.solutions.forEach(sol => {
+        const points = sol.points.map(p => `<li class="text-slate-300">• ${p}</li>`).join("");
+        solutionsEl.innerHTML += `
+          <div class="bg-slate-950 p-4 rounded-xl border border-amber-500/30 space-y-2">
+            <div class="text-[10px] text-amber-400 font-bold uppercase">${sol.type}</div>
+            <div class="font-bold text-white">${sol.name}</div>
+            <ul class="text-xs space-y-1 mt-1">${points}</ul>
+          </div>
+        `;
+      });
+    }
+
+    function openModal(code) {
+      const item = masterList.find(x => x.code === code);
+      if (!item) return;
+
+      currentModalItem = item;
+      document.getElementById("modalCode").innerText = item.code;
+      document.getElementById("modalName").innerText = item.name;
+      document.getElementById("modalIssuer").innerText = item.issuer;
+      document.getElementById("modalCategory").innerText = item.category;
+      document.getElementById("modalPrice").innerText = item.price + "원";
+      document.getElementById("modalChange").innerText = item.change;
+      document.getElementById("modalChange").className = "text-sm font-bold mt-0.5 " + (item.change.startsWith("+") ? "text-emerald-400" : "text-rose-400");
+      document.getElementById("modalRet3m").innerText = item.ret3m;
+      document.getElementById("modalPension").innerText = item.pension100 ? "100% 안전자산" : "70% 한도";
+      document.getElementById("modalReason").innerText = item.reason || "시장 상황에 부합하는 대표 추천 라인업";
+
+      document.getElementById("etfModal").classList.remove("hidden");
+    }
+
+    function closeModal() {
+      document.getElementById("etfModal").classList.add("hidden");
+    }
+
+    function copySalesText() {
+      if (!currentModalItem) return;
+      const text = `[RISE ETF 상품 안내]
+■ 종목명: ${currentModalItem.name} (${currentModalItem.code})
+■ 기준가/등락률: ${currentModalItem.price}원 (${currentModalItem.change})
+■ 3개월 수익률: ${currentModalItem.ret3m}
+■ 퇴직연금 편입한도: ${currentModalItem.pension100 ? "100% 안전자산 적격" : "위험자산 70% 한도"}
+■ 핵심 전략 포인트: ${currentModalItem.reason}`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        alert("📋 고객 안내용 텍스트가 클립보드에 복사되었습니다. 메신저나 이메일에 붙여넣기 하세요!");
+      });
+    }
+
+    function initCharts() {
+      const ctxPerf = document.getElementById("perfChart").getContext("2d");
+      new Chart(ctxPerf, {
+        type: "bar",
+        data: {
+          labels: ["RISE 삼전SK50", "RISE 미국AI", "RISE 전력망", "RISE 200", "KODEX 200", "TIGER 테크10", "ACE 미국30년", "SOL 배당"],
+          datasets: [{
+            data: [4.8, 15.2, 22.4, 18.4, 18.5, 12.8, -2.1, 5.4],
+            backgroundColor: ["#F59E0B", "#F59E0B", "#F59E0B", "#F59E0B", "#64748B", "#64748B", "#64748B", "#64748B"],
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { grid: { color: "#334155" }, ticks: { color: "#94A3B8" } },
+            x: { grid: { display: false }, ticks: { color: "#94A3B8" } }
+          }
+        }
+      });
+
+      const ctxVol = document.getElementById("volumeChart").getContext("2d");
+      new Chart(ctxVol, {
+        type: "doughnut",
+        data: {
+          labels: ["KB자산운용 (RISE)", "삼성자산운용", "미래에셋자산운용", "한국투자신탁운용", "신한자산운용"],
+          datasets: [{
+            data: [28, 35, 22, 10, 5],
+            backgroundColor: ["#F59E0B", "#3B82F6", "#10B981", "#6366F1", "#EC4899"],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: "bottom", labels: { color: "#CBD5E1", font: { size: 11 } } }
+          }
+        }
+      });
     }
 
     function switchView(mode) {
@@ -607,24 +831,9 @@
       render();
     }
 
-    function toggleFocus(code) {
-      const bData = historicalDB[currentDate];
-      if (!bData) return;
-
-      const idx = bData.focusCodes.indexOf(code);
-      if (idx > -1) {
-        bData.focusCodes.splice(idx, 1);
-        delete bData.focusReasons[code];
-      } else {
-        bData.focusCodes.push(code);
-        bData.focusReasons[code] = "🔥 사용자 직접 지정 포커스 종목";
-      }
-      render();
-    }
-
     function render() {
-      const bData = historicalDB[currentDate];
-      const focusSet = new Set(bData ? bData.focusCodes : []);
+      const rep = reportsDB[currentDate];
+      const focusSet = new Set(rep ? rep.focusCodes : []);
 
       const q = document.getElementById('keyword').value.toLowerCase();
       const pensionOnly = document.getElementById('chkPension').checked;
@@ -643,10 +852,10 @@
 
       filtered.forEach(item => {
         const isFocus = focusSet.has(item.code);
-        const reason = bData && bData.focusReasons ? (bData.focusReasons[item.code] || "") : "";
+        const reason = rep && rep.focusReasons ? (rep.focusReasons[item.code] || "") : "";
         const isUp = item.change && item.change.startsWith('+');
         const color = isUp ? "text-emerald-400" : (item.change && item.change.startsWith('-') ? "text-rose-400" : "text-slate-300");
-        const trClass = item.isRise ? "bg-amber-500/5 hover:bg-amber-500/10" : "hover:bg-slate-800/40";
+        const trClass = item.isRise ? "bg-amber-500/5 hover:bg-amber-500/10 cursor-pointer" : "hover:bg-slate-800/40 cursor-pointer";
         const starColor = isFocus ? "text-amber-400 font-bold" : "text-slate-600 hover:text-slate-300";
         const badge = item.pension100 
           ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">100% 안전</span>`
@@ -655,13 +864,13 @@
         const reasonTag = isFocus && reason ? `<div class="text-[11px] text-amber-400/90 mt-0.5 font-medium">${reason}</div>` : "";
 
         tbody.innerHTML += `
-          <tr class="${trClass} transition">
-            <td class="py-3 px-4 text-center cursor-pointer select-none" onclick="toggleFocus('${item.code}')">
+          <tr class="${trClass} transition" onclick="openModal('${item.code}')">
+            <td class="py-3 px-4 text-center select-none" onclick="event.stopPropagation(); toggleFocus('${item.code}')">
               <span class="${starColor} text-sm">★</span>
             </td>
             <td class="py-3 px-4 font-mono text-slate-400">${item.code}</td>
             <td class="py-3 px-4">
-              <div class="font-bold text-white flex items-center">${item.name} ${riseTag}</div>
+              <div class="font-bold text-white flex items-center hover:text-amber-300 transition">${item.name} ${riseTag}</div>
               ${reasonTag}
             </td>
             <td class="py-3 px-4 text-slate-300">${item.issuer}</td>
@@ -678,14 +887,29 @@
 
       const riseCount = masterList.filter(x => x.isRise).length;
       document.getElementById('riseCount').innerText = riseCount;
-      document.getElementById('focusCount').innerText = bData ? bData.focusCodes.length : 0;
+      document.getElementById('focusCount').innerText = rep ? rep.focusCodes.length : 0;
       document.getElementById('allCount').innerText = masterList.length;
+      document.getElementById('tabCount').innerText = masterList.length;
       document.getElementById('statText').innerText = `전체 ${masterList.length}개 종목 중 ${filtered.length}개 표시 중 (기준일자: ${currentDate})`;
+    }
+
+    function toggleFocus(code) {
+      const rep = reportsDB[currentDate];
+      if (!rep) return;
+      const idx = rep.focusCodes.indexOf(code);
+      if (idx > -1) {
+        rep.focusCodes.splice(idx, 1);
+        delete rep.focusReasons[code];
+      } else {
+        rep.focusCodes.push(code);
+        rep.focusReasons[code] = "🔥 사용자 지정 포커스 종목";
+      }
+      render();
     }
 
     window.onload = () => {
       lucide.createIcons();
-      updateBriefingAndMacro();
+      updateBriefing();
       render();
     };
   </script>
