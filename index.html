@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RISE ETF Intelligence Base - 1,000+ 전종목 엑셀 연동 대시보드</title>
+
+  <!-- Open Graph / Meta for Social & Investor Sharing -->
+  <meta name="description" content="KB자산운용 RISE ETF 마스터 인텔리전스 포털 및 데일리 매크로 시황 대시보드">
+  <meta property="og:title" content="RISE ETF Intelligence Base & Market Portal">
+  <meta property="og:description" content="전체 ETF 마스터 DB 연계 실시간 시황 모니터링, 퇴직연금 100% 안전자산 분석 및 데일리 전략 브리프">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="RISE ETF Intelligence">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- 엑셀(.xlsx) 파싱용 라이브러리 -->
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "맑은 고딕", helvetica, sans-serif; }
+    .kpi-card { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(8px); border: 1px solid rgba(51, 65, 85, 0.6); }
+    .kpi-card:hover { border-color: rgba(245, 158, 11, 0.5); }
+    .gold-gradient { background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); }
+    .dropzone-active { border-color: #F59E0B !important; background: rgba(245, 158, 11, 0.1) !important; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased">
+
+  <!-- TOP APP BAR -->
+  <header class="border-b border-slate-800/80 bg-slate-900/95 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3.5">
+        <div class="w-10 h-10 rounded-xl gold-gradient flex items-center justify-center font-black text-slate-950 text-xl shadow-lg shadow-amber-500/20">R</div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="font-extrabold text-lg text-white tracking-tight">RISE ETF</span>
+            <span class="text-[11px] bg-amber-500/15 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded-full font-bold">1,000+ 전종목 마스터 포털</span>
+          </div>
+          <p class="text-[11px] text-slate-400">사내 엑셀/CSV 연동 & 일별 매크로 시황 인텔리전스</p>
+        </div>
+      </div>
+      
+      <!-- TOP CONTROLS -->
+      <div class="flex items-center space-x-3">
+        <label class="flex items-center space-x-1.5 text-xs bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-3 py-1.5 rounded-lg shadow-lg cursor-pointer transition">
+          <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+          <span>사내 엑셀/CSV 불러오기</span>
+          <input type="file" id="fileInput" accept=".xlsx, .xls, .csv, .tsv, .txt" onchange="handleFileSelect(event)" class="hidden">
+        </label>
+
+        <div class="flex items-center space-x-2 bg-slate-800/90 border border-amber-500/40 px-3 py-1.5 rounded-xl shadow">
+          <i data-lucide="calendar" class="w-4 h-4 text-amber-400"></i>
+          <span class="text-xs text-slate-300 hidden sm:inline font-semibold">시황:</span>
+          <select id="dateSelect" onchange="onDateChange()" class="bg-slate-900 text-amber-300 font-bold text-xs rounded-lg px-2 py-0.5 border border-slate-700 focus:outline-none focus:border-amber-500 cursor-pointer">
+            <option value="2026-09-10" selected>2026.09.10 (유가 $100 돌파)</option>
+            <option value="2026-09-09">2026.09.09 (반도체 방어)</option>
+            <option value="2024-08-05">2024.08.05 (블랙먼데이)</option>
+            <option value="2022-02-24">2022.02.24 (우크라이나 침공)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN WRAPPER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full space-y-6">
+
+    <!-- 1. DYNAMIC MACRO SENSING STRIP -->
+    <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 text-xs">
+      <div class="kpi-card p-2.5 rounded-xl">
+        <div class="text-slate-400 text-[11px]">KOSPI</div>
+        <div class="text-sm font-bold text-white mt-0.5" id="macroKospi">-</div>
+      </div>
+      <div class="kpi-card p-2.5 rounded-xl">
+        <div class="text-slate-400 text-[11px]">S&P 500</div>
+        <div class="text-sm font-bold text-white mt-0.5" id="macroSp500">-</div>
+      </div>
+      <div class="kpi-card p-2.5 rounded-xl">
+        <div class="text-slate-400 text-[11px]">미 국채 10Y</div>
+        <div class="text-sm font-bold text-amber-300 mt-0.5" id="macro10Y">-</div>
+      </div>
+      <div class="kpi-card p-2.5 rounded-xl border-amber-500/40 bg-amber-500/5">
+        <div class="text-amber-400 text-[11px] font-bold">브렌트유 / 원유</div>
+        <div class="text-sm font-bold text-white mt-0.5" id="macroBrent">-</div>
+      </div>
+      <div class="kpi-card p-2.5 rounded-xl">
+        <div class="text-slate-400 text-[11px]">원/달러 환율</div>
+        <div class="text-sm font-bold text-white mt-0.5" id="macroUsdKrw">-</div>
+      </div>
+      <div class="kpi-card p-2.5 rounded-xl">
+        <div class="text-slate-400 text-[11px]">달러 인덱스 (DXY)</div>
+        <div class="text-sm font-bold text-white mt-0.5" id="macroDxy">-</div>
+      </div>
+    </section>
+
+    <!-- 2. FILE DRAG & DROP ZONE -->
+    <div id="dropZone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)" class="border-2 border-dashed border-slate-700 bg-slate-900/40 hover:bg-slate-900/70 rounded-2xl p-4 text-center transition cursor-pointer" onclick="document.getElementById('fileInput').click()">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 text-xs">
+        <div class="w-8 h-8 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center flex-shrink-0">
+          <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
+        </div>
+        <div class="text-left">
+          <div class="text-white font-bold flex items-center gap-2">
+            <span>사내 엑셀(인포맥스/Check/KRX) 파일 드래그 & 드롭</span>
+            <span id="loadStatusBadge" class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-bold border border-emerald-500/30 hidden">동기화 완료</span>
+          </div>
+          <p class="text-slate-400 text-[11px]">
+            다운로드한 엑셀(.xlsx) 또는 CSV 파일을 여기에 끌어다 놓으시면 <strong class="text-amber-300">1,000여 개 전 종목</strong>이 브라우저 로컬에서 즉시 펼쳐집니다.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. STRATEGY BRIEFING HERO -->
+    <section class="bg-gradient-to-r from-slate-900 via-slate-900/90 to-amber-950/20 border border-amber-500/40 rounded-2xl p-5 shadow-2xl">
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+        <div class="space-y-1.5 flex-1">
+          <div class="flex items-center space-x-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-amber-500 text-slate-950 uppercase tracking-wide">
+              <span id="briefDateBadge">2026.09.10</span> 전략 브리프
+            </span>
+            <span class="text-xs text-slate-400" id="briefSource">출처: DB 아카이브</span>
+          </div>
+          <h2 class="text-base sm:text-lg font-bold text-white" id="briefHeadline">로딩 중...</h2>
+          <p class="text-xs text-slate-300 leading-relaxed max-w-4xl" id="briefTrigger">로딩 중...</p>
+          <div class="text-xs text-amber-300/90 font-medium pt-1 border-t border-slate-800/80 mt-2 flex items-center">
+            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 mr-1.5 text-amber-400 flex-shrink-0"></i>
+            <span id="briefSolution">로딩 중...</span>
+          </div>
+        </div>
+
+        <div class="flex items-center bg-slate-950 p-1.5 rounded-xl border border-slate-800 self-stretch lg:self-auto justify-center flex-shrink-0">
+          <button onclick="switchView('all')" id="btnAll" class="px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 bg-amber-500 text-slate-950 shadow-md">
+            <i data-lucide="list" class="w-3.5 h-3.5"></i>
+            <span>☰ 전체 종목 보기 (<span id="allCount">110</span>)</span>
+          </button>
+          <button onclick="switchView('focus')" id="btnFocus" class="px-3.5 py-2 rounded-lg text-xs font-semibold transition flex items-center space-x-1.5 text-slate-400 hover:text-white">
+            <i data-lucide="flame" class="w-3.5 h-3.5"></i>
+            <span>★ 주요 포커스만 (<span id="focusCount">-</span>)</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 필터 & 검색 제어 바 -->
+    <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 bg-slate-900/60 p-3.5 rounded-xl border border-slate-800">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-xs font-semibold text-slate-400 mr-1 flex items-center">
+          <i data-lucide="filter" class="w-3.5 h-3.5 mr-1 text-amber-400"></i>운용사:
+        </span>
+        <button onclick="filterIssuer('ALL')" class="issuer-btn text-xs px-2.5 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold transition">전체</button>
+        <button onclick="filterIssuer('KB자산운용')" class="issuer-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">KB RISE (<span id="riseCount">64</span>)</button>
+        <button onclick="filterIssuer('삼성자산운용')" class="issuer-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">KODEX</button>
+        <button onclick="filterIssuer('미래에셋자산운용')" class="issuer-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">TIGER</button>
+        <button onclick="filterIssuer('한국투자신탁운용')" class="issuer-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">ACE</button>
+        <button onclick="filterIssuer('신한자산운용')" class="issuer-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">SOL</button>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <label class="flex items-center space-x-2 text-xs text-slate-300 cursor-pointer bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 select-none">
+          <input type="checkbox" id="chkOnlyFocus" onchange="toggleFocusCheckbox()" class="rounded bg-slate-900 border-slate-700 text-amber-500">
+          <span>포커스만</span>
+        </label>
+        <label class="flex items-center space-x-2 text-xs text-slate-300 cursor-pointer bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 select-none">
+          <input type="checkbox" id="chkPension" onchange="render()" class="rounded bg-slate-900 border-slate-700 text-amber-500">
+          <span>퇴직연금 100%만</span>
+        </label>
+        <div class="relative w-full sm:w-56">
+          <input type="text" id="keyword" onkeyup="render()" placeholder="종목명/코드 검색..." class="w-full bg-slate-950 border border-slate-700 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
+          <i data-lucide="search" class="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-2.5"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. MASTER ETF TABLE -->
+    <div class="bg-slate-900/80 rounded-2xl border border-slate-800 overflow-hidden shadow-2xl">
+      <div class="overflow-x-auto max-h-[700px] overflow-y-auto">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-slate-950 text-slate-400 uppercase font-semibold border-b border-slate-800 sticky top-0 z-20">
+            <tr>
+              <th class="py-3 px-4 w-12 text-center">포커스</th>
+              <th class="py-3 px-4">종목코드</th>
+              <th class="py-3 px-4">종목명 / 핵심 전략</th>
+              <th class="py-3 px-4">운용사</th>
+              <th class="py-3 px-4">테마분류</th>
+              <th class="py-3 px-4 text-right">현재가</th>
+              <th class="py-3 px-4 text-right">등락률</th>
+              <th class="py-3 px-4 text-right">3개월수익</th>
+              <th class="py-3 px-4 text-center">퇴직연금</th>
+              <th class="py-3 px-4 text-right">일거래대금</th>
+              <th class="py-3 px-4 text-right">시가총액</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody" class="divide-y divide-slate-800/80"></tbody>
+        </table>
+      </div>
+
+      <div class="p-3.5 bg-slate-950 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-2">
+        <div id="statText" class="font-bold text-amber-300">조회 중...</div>
+        <div class="flex items-center space-x-4 text-[11px]">
+          <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-amber-400 mr-1.5"></span>KB자산운용 (RISE)</span>
+          <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-400 mr-1.5"></span>퇴직연금 100% 안전자산</span>
+          <span class="text-amber-400 font-semibold">💡 기본으로 전체 종목이 표시되며, 사내 엑셀 드롭 시 1,000+개로 무한 확장됩니다.</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="border-t border-slate-800/80 py-6 text-center text-xs text-slate-500 bg-slate-950">
+    <p>© 2026 RISE ETF Consulting & Product Marketing Group. 1,000+ 전종목 엑셀 연동 버전.</p>
+  </footer>
+
+  <script>
+    const historicalDB = {
+      "2026-09-10": {
+        "date": "2026-09-10",
+        "headline": "브렌트유 $100 공식 돌파와 미 10년물 4.84% 상승, 인플레 헤지 및 채권혼합 바벨 전략 긴급 점검",
+        "trigger": "중동 전황 격화로 브렌트유 $101.60(+3.76%) 돌파 및 미 10년물 금리 4.84% 상승, 오늘 밤 미 8월 PPI 발표 앞두고 9월 FOMC 고금리 장기화 우려.",
+        "source": "Reuters, FRED (DGS10), AP News",
+        "solution": "퇴직연금 100% 한도 채우는 '삼전SK하닉50채권혼합'과 가격 전가력 갖춘 '미국AI전력인프라' 바벨 포트폴리오 집중 제언.",
+        "macro": {
+          "kospi": "7,051.64 (+1.40%)",
+          "sp500": "7,635.27 (-0.50%)",
+          "treasury10y": "4.84% (+4.0 bps)",
+          "brent": "$101.60 (+3.76%)",
+          "usdkrw": "1,368.50원 (NDF 1,372원)",
+          "dxy": "104.75 (+0.30p)"
+        },
+        "focusCodes": ["477170", "487420", "465580", "148020"],
+        "focusReasons": {
+          "477170": "🔥 [전략 1순위] 유가 $100 돌파 국면 국채 방어력 & 퇴직연금 100% 안전자산 편입",
+          "487420": "⚡ [인플레 헤지] 고유가/전력난 시 전기요금 판가 전가력 보유 독점 유틸리티 전력망",
+          "465580": "⚡ 빅테크 차익실현 속 AI 반도체/하드웨어 독점 밸류체인 수혜",
+          "148020": "📈 코스피 5,000 시대 최저보수(0.012%) 기관 포트폴리오 대표 코어"
+        }
+      },
+      "2026-09-09": {
+        "date": "2026-09-09",
+        "headline": "유가 $100 위협과 미 국채금리 4.9% 재진입, 반도체 펀더멘털의 방어력에 주목하라",
+        "trigger": "중동 해상 수송로 긴장 장기화로 브렌트유 장중 $99.50 터치, 미 8월 CPI/PPI 앞두고 고금리 장기화 우려 재점화.",
+        "source": "The Washington Post, FRED, NY Fed",
+        "solution": "단기 유동성 가뭄에 대비한 CD금리형 및 반도체 투톱 비중 50%를 담은 채권혼합형 안전자산 방어 전략.",
+        "macro": {
+          "kospi": "7,051.64 (+1.40%)",
+          "sp500": "7,673.52 (+0.25%)",
+          "treasury10y": "4.80% (+2.5 bps)",
+          "brent": "$99.50 (+1.80%)",
+          "usdkrw": "1,368.50원",
+          "dxy": "104.45 (+0.15p)"
+        },
+        "focusCodes": ["477170", "453340", "465580"],
+        "focusReasons": {
+          "477170": "🔥 반도체 펀더멘털 + 국채 50% 혼합으로 금리 발작기 변동성 방어",
+          "453340": "💰 단기 유동성 파킹 및 확정금리형 무위험 안전자산 선호",
+          "465580": "⚡ 글로벌 엔비디아·TSMC 밸류체인 견조한 펀더멘털 수혜"
+        }
+      },
+      "2024-08-05": {
+        "date": "2024-08-05",
+        "headline": "엔 캐리 트레이드 청산 쇼크 (블랙 먼데이), 과매도 우량주 분할 매수 타이밍",
+        "trigger": "일본은행(BOJ) 기습 금리인상과 미 실업률 상승 겹치며 닛케이 -12.4%, KOSPI -8.8% 서킷브레이커 발동.",
+        "source": "Bank of Japan, KRX, Bloomberg",
+        "solution": "단기 시스템 리스크 없는 일시적 청산 패닉. 과매도된 국내 대표지수 및 우량 반도체 분할 매수 제언.",
+        "macro": {
+          "kospi": "2,441.55 (-8.77%)",
+          "sp500": "5,186.33 (-3.00%)",
+          "treasury10y": "3.78% (-12.0 bps)",
+          "brent": "$76.30 (-1.50%)",
+          "usdkrw": "1,374.00원",
+          "dxy": "102.80 (-0.45p)"
+        },
+        "focusCodes": ["148020", "477170", "453340"],
+        "focusReasons": {
+          "148020": "📉 역사적 과매도 구간 대표 지수 저가 매수 기회",
+          "477170": "🛡️ 주식 급락 속 국채 50% 편입으로 충격 완충 및 반등 레버리지",
+          "453340": "💰 시장 패닉 시 원금보존형 초단기 파킹 솔루션"
+        }
+      },
+      "2022-02-24": {
+        "date": "2022-02-24",
+        "headline": "러시아-우크라이나 전면 침공 발발, 안보·원자력·에너지 인프라 헷지 전략",
+        "trigger": "러시아군 우크라이나 침공. 유럽 에너지 공급망 차단 및 대러 제재로 WTI/브렌트유 배럴당 $130 돌파.",
+        "source": "Reuters, UN, NATO",
+        "solution": "글로벌 공급발 인플레이션 충격 국면. 에너지 안보(원자력) 및 방위산업, 원자재 가격 전가형 ETF 편입.",
+        "macro": {
+          "kospi": "2,648.80 (-2.05%)",
+          "sp500": "4,288.70 (+1.50%)",
+          "treasury10y": "1.97% (-2.0 bps)",
+          "brent": "$105.00 (+8.50%)",
+          "usdkrw": "1,202.40원",
+          "dxy": "97.10 (+0.90p)"
+        },
+        "focusCodes": ["396500", "487420", "477170"],
+        "focusReasons": {
+          "396500": "☢️ 유럽 에너지 안보 위기 속 글로벌 원전 르네상스 메가 트렌드",
+          "487420": "⚡ 전력난 및 에너지 위기 수혜 독점 전력망 인프라",
+          "477170": "🛡️ 지정학적 블랙스완 국면 국채 자산배분 방어 효과"
+        }
+      }
+    };
+
+    // 110개 전 종목 데이터셋 (초기 기본 탑재)
+    let masterList = [
+      {"code": "477170", "name": "RISE 삼성전자SK하이닉스50채권혼합", "issuer": "KB자산운용", "category": "국내 채권혼합", "price": "10,250", "change": "+0.35%", "nav": "10,245", "ret3m": "+4.80%", "pension100": true, "vol": "1,250", "aum": "1,540", "isRise": true, "isFocus": true, "reason": "유가 $100 돌파 국면 국채 방어 & 퇴직연금 100% 안전자산 편입"},
+      {"code": "465580", "name": "RISE 미국AI밸류체인TOP3Plus", "issuer": "KB자산운용", "category": "해외 주식(AI)", "price": "12,840", "change": "-0.45%", "nav": "12,830", "ret3m": "+15.20%", "pension100": false, "vol": "3,450", "aum": "2,890", "isRise": true, "isFocus": true, "reason": "빅테크 차익실현 속 AI 반도체·하드웨어 핵심 밸류체인 독점 수혜"},
+      {"code": "487420", "name": "RISE 미국AI전력인프라", "issuer": "KB자산운용", "category": "해외 주식(전력)", "price": "11,620", "change": "+1.85%", "nav": "11,605", "ret3m": "+22.40%", "pension100": false, "vol": "4,120", "aum": "1,980", "isRise": true, "isFocus": true, "reason": "전력난 및 에너지 위기 수혜 독점 전력망/변압기 인프라"},
+      {"code": "148020", "name": "RISE 200", "issuer": "KB자산운용", "category": "국내 시장지수", "price": "48,200", "change": "+1.38%", "nav": "48,180", "ret3m": "+18.40%", "pension100": false, "vol": "8,950", "aum": "12,450", "isRise": true, "isFocus": true, "reason": "코스피 5000 시대 최저보수(0.012%) 기관 포트폴리오 대표 코어"},
+      {"code": "0192L0", "name": "RISE SK하이닉스단일종목레버리지", "issuer": "KB자산운용", "category": "국내 주식(레버리지)", "price": "24,500", "change": "+3.40%", "nav": "24,480", "ret3m": "+61.78%", "pension100": false, "vol": "15,400", "aum": "1,200", "isRise": true, "isFocus": false, "reason": "SK하이닉스 일간 2배 단일종목 레버리지"},
+      {"code": "0191L0", "name": "RISE 삼성전자단일종목레버리지", "issuer": "KB자산운용", "category": "국내 주식(레버리지)", "price": "14,200", "change": "+1.80%", "nav": "14,180", "ret3m": "+28.40%", "pension100": false, "vol": "18,200", "aum": "1,450", "isRise": true, "isFocus": false, "reason": "삼성전자 일간 2배 단일종목 레버리지"},
+      {"code": "453340", "name": "RISE CD금리액티브(합성)", "issuer": "KB자산운용", "category": "국내 단기금리", "price": "104,250", "change": "+0.01%", "nav": "104,248", "ret3m": "+0.92%", "pension100": true, "vol": "52,400", "aum": "32,800", "isRise": true, "isFocus": false, "reason": "단기 유동성 파킹 및 무위험 안전자산"},
+      {"code": "472150", "name": "RISE 머니마켓액티브", "issuer": "KB자산운용", "category": "국내 초단기채", "price": "51,200", "change": "+0.01%", "nav": "51,198", "ret3m": "+0.88%", "pension100": true, "vol": "38,500", "aum": "18,200", "isRise": true, "isFocus": false, "reason": "MMF 초단기 파킹형 안전자산 순자산 1.5조 돌파"},
+      {"code": "396500", "name": "RISE 글로벌원자력", "issuer": "KB자산운용", "category": "해외 주식(원전)", "price": "14,500", "change": "+2.15%", "nav": "14,480", "ret3m": "+28.60%", "pension100": false, "vol": "2,890", "aum": "1,420", "isRise": true, "isFocus": false, "reason": "SMR 및 글로벌 원전 르네상스 수혜"},
+      {"code": "481060", "name": "RISE 버크셔해서웨이", "issuer": "KB자산운용", "category": "해외 주식(가치주)", "price": "11,850", "change": "+0.42%", "nav": "11,840", "ret3m": "+8.90%", "pension100": false, "vol": "1,850", "aum": "1,120", "isRise": true, "isFocus": false, "reason": "워런 버핏 가치투자의 정수 현금흐름 방어주"},
+      {"code": "0190C0", "name": "RISE 버크셔포트폴리오TOP10", "issuer": "KB자산운용", "category": "해외 주식(가치주)", "price": "12,400", "change": "+0.55%", "nav": "12,390", "ret3m": "+11.20%", "pension100": false, "vol": "2,100", "aum": "1,350", "isRise": true, "isFocus": false, "reason": "버크셔 보유 상위 10대 핵심 기업 압축 포트폴리오"},
+      {"code": "458760", "name": "RISE 미국배당다우존스", "issuer": "KB자산운용", "category": "해외 주식(배당)", "price": "11,180", "change": "+0.20%", "nav": "11,175", "ret3m": "+5.20%", "pension100": false, "vol": "4,200", "aum": "3,800", "isRise": true, "isFocus": false, "reason": "한국형 슈드 월배당 인컴 캐시카우"},
+      {"code": "490600", "name": "RISE 미국배당100데일리고정커버드콜", "issuer": "KB자산운용", "category": "해외 주식(커버드콜)", "price": "10,450", "change": "+0.15%", "nav": "10,440", "ret3m": "+4.10%", "pension100": false, "vol": "5,600", "aum": "2,400", "isRise": true, "isFocus": false, "reason": "데일리 고정 커버드콜 프리미엄 월분배"},
+      {"code": "290080", "name": "RISE 200고배당커버드콜ATM", "issuer": "KB자산운용", "category": "국내 주식(커버드콜)", "price": "7,433", "change": "+0.25%", "nav": "7,430", "ret3m": "+21.54%", "pension100": false, "vol": "3,100", "aum": "1,650", "isRise": true, "isFocus": false, "reason": "코스피 200 고배당 ATM 옵션 프리미엄 분배"},
+      {"code": "0223A0", "name": "RISE 코스닥커버드콜액티브", "issuer": "KB자산운용", "category": "국내 주식(커버드콜)", "price": "9,950", "change": "+0.40%", "nav": "9,940", "ret3m": "+7.80%", "pension100": false, "vol": "2,800", "aum": "1,400", "isRise": true, "isFocus": false, "reason": "코스닥 혁신 성장주 기반 커버드콜 월분배"},
+      {"code": "379800", "name": "RISE K-방산", "issuer": "KB자산운용", "category": "국내 주식(방산)", "price": "18,450", "change": "+1.90%", "nav": "18,430", "ret3m": "+31.20%", "pension100": false, "vol": "3,100", "aum": "2,150", "isRise": true, "isFocus": false, "reason": "지정학적 리스크 지속 글로벌 수출 수주 랠리"},
+      {"code": "469060", "name": "RISE 코스닥150", "issuer": "KB자산운용", "category": "국내 시장지수", "price": "15,820", "change": "+2.40%", "nav": "15,810", "ret3m": "+24.50%", "pension100": false, "vol": "6,400", "aum": "4,300", "isRise": true, "isFocus": false, "reason": "정부 코스닥 3000 비전 정책 수혜 대표지수"},
+      {"code": "441680", "name": "RISE 2차전지TOP10", "issuer": "KB자산운용", "category": "국내 주식(2차전지)", "price": "8,450", "change": "-0.80%", "nav": "8,440", "ret3m": "-4.20%", "pension100": false, "vol": "2,450", "aum": "1,850", "isRise": true, "isFocus": false, "reason": "2차전지 셀/소재 상위 10종목 압축"},
+      {"code": "364960", "name": "RISE 미국S&P500", "issuer": "KB자산운용", "category": "해외 시장지수", "price": "18,920", "change": "-0.40%", "nav": "18,910", "ret3m": "+11.40%", "pension100": false, "vol": "15,400", "aum": "16,800", "isRise": true, "isFocus": false, "reason": "미국 대표 500대 기업 코어 분산"},
+      {"code": "364970", "name": "RISE 미국나스닥100", "issuer": "KB자산운용", "category": "해외 시장지수", "price": "22,450", "change": "-0.65%", "nav": "22,430", "ret3m": "+13.80%", "pension100": false, "vol": "18,200", "aum": "19,400", "isRise": true, "isFocus": false, "reason": "미국 혁신 기술주 대표 나스닥 100"},
+      {"code": "461380", "name": "RISE 국고채30년액티브", "issuer": "KB자산운용", "category": "국내 채권(장기채)", "price": "43,800", "change": "-0.15%", "nav": "43,790", "ret3m": "+1.40%", "pension100": true, "vol": "12,100", "aum": "9,800", "isRise": true, "isFocus": false, "reason": "국내 30년 초장기채 듀레이션 자본차익"},
+      {"code": "473320", "name": "RISE 글로벌휴머노이드로봇액티브", "issuer": "KB자산운용", "category": "해외 주식(로봇)", "price": "13,200", "change": "+1.75%", "nav": "13,180", "ret3m": "+26.80%", "pension100": false, "vol": "2,950", "aum": "1,250", "isRise": true, "isFocus": false, "reason": "AI 피지컬 로보틱스 글로벌 선도기업"},
+      {"code": "0151P0", "name": "RISE 코리아전략산업액티브", "issuer": "KB자산운용", "category": "국내 주식(액티브)", "price": "11,500", "change": "+1.20%", "nav": "11,480", "ret3m": "+18.20%", "pension100": false, "vol": "3,200", "aum": "1,800", "isRise": true, "isFocus": false, "reason": "국가 전략 육성 6대 첨단 산업 집중"},
+      {"code": "461490", "name": "RISE 글로벌자산배분액티브", "issuer": "KB자산운용", "category": "글로벌 멀티에셋", "price": "14,520", "change": "-0.60%", "nav": "14,510", "ret3m": "-5.07%", "pension100": true, "vol": "1,400", "aum": "950", "isRise": true, "isFocus": false, "reason": "연금 맞춤형 글로벌 주식/채권 EMP 자산배분"},
+      {"code": "475720", "name": "RISE 미국달러SOFR금리액티브(합성)", "issuer": "KB자산운용", "category": "해외 단기금리", "price": "107,500", "change": "+0.02%", "nav": "107,490", "ret3m": "+1.15%", "pension100": true, "vol": "28,000", "aum": "16,500", "isRise": true, "isFocus": false, "reason": "미국 무위험 지표금리 SOFR 연동 달러 파킹"},
+      {"code": "4489", "name": "RISE 코스피", "issuer": "KB자산운용", "category": "국내 시장지수", "price": "32,400", "change": "+1.35%", "nav": "32,380", "ret3m": "+17.80%", "pension100": false, "vol": "4,500", "aum": "8,900", "isRise": true, "isFocus": false, "reason": "유가증권시장 2500개 전 종목 분산"},
+      {"code": "0094L0", "name": "RISE 차이나테크TOP10위클리타겟커버드콜", "issuer": "KB자산운용", "category": "해외 주식(커버드콜)", "price": "9,450", "change": "+1.10%", "nav": "9,440", "ret3m": "+6.20%", "pension100": false, "vol": "2,100", "aum": "1,100", "isRise": true, "isFocus": false, "reason": "중국 빅테크 위클리 타겟 프리미엄 월분배"},
+      {"code": "426020", "name": "RISE 200위클리커버드콜", "issuer": "KB자산운용", "category": "국내 주식(커버드콜)", "price": "12,835", "change": "+1.10%", "nav": "12,820", "ret3m": "+14.50%", "pension100": false, "vol": "4,800", "aum": "2,900", "isRise": true, "isFocus": false, "reason": "국내 최초 위클리 옵션 커버드콜"},
+      {"code": "447780", "name": "RISE 단기통안채", "issuer": "KB자산운용", "category": "국내 단기채", "price": "102,400", "change": "+0.01%", "nav": "102,398", "ret3m": "+0.85%", "pension100": true, "vol": "18,500", "aum": "14,200", "isRise": true, "isFocus": false, "reason": "한국은행 통화안정증권 초단기 무위험"},
+      {"code": "302190", "name": "RISE 200선물레버리지", "issuer": "KB자산운용", "category": "국내 파생", "price": "16,800", "change": "+2.75%", "nav": "16,780", "ret3m": "+38.40%", "pension100": false, "vol": "84,000", "aum": "12,000", "isRise": true, "isFocus": false, "reason": "코스피 200 선물 2배 레버리지"},
+      {"code": "253250", "name": "RISE 200선물인버스2X", "issuer": "KB자산운용", "category": "국내 파생", "price": "1,950", "change": "-2.85%", "nav": "1,948", "ret3m": "-31.20%", "pension100": false, "vol": "72,000", "aum": "8,500", "isRise": true, "isFocus": false, "reason": "코스피 200 곱버스 하락 헷지"},
+      {"code": "453350", "name": "RISE 미국단기투자등급회사채액티브", "issuer": "KB자산운용", "category": "해외 채권", "price": "105,400", "change": "+0.05%", "nav": "105,380", "ret3m": "+2.40%", "pension100": true, "vol": "4,100", "aum": "3,200", "isRise": true, "isFocus": false, "reason": "미국 우량 A등급 이상 단기 회사채"},
+      {"code": "441690", "name": "RISE 2차전지TOP10인버스", "issuer": "KB자산운용", "category": "국내 주식(인버스)", "price": "6,450", "change": "+0.80%", "nav": "6,445", "ret3m": "+3.80%", "pension100": false, "vol": "1,900", "aum": "1,100", "isRise": true, "isFocus": false, "reason": "2차전지 테마 하락 방어"},
+      {"code": "433450", "name": "RISE 미국반도체NYSE", "issuer": "KB자산운용", "category": "해외 주식(반도체)", "price": "17,800", "change": "-0.50%", "nav": "17,780", "ret3m": "+15.80%", "pension100": false, "vol": "6,800", "aum": "4,500", "isRise": true, "isFocus": false, "reason": "미국 상장 글로벌 반도체 30선"},
+      {"code": "448300", "name": "RISE 차이나반도체", "issuer": "KB자산운용", "category": "해외 주식(반도체)", "price": "8,950", "change": "+0.80%", "nav": "8,940", "ret3m": "+4.10%", "pension100": false, "vol": "1,400", "aum": "980", "isRise": true, "isFocus": false, "reason": "중국 본토 반도체 국산화 수혜주"},
+      {"code": "458770", "name": "RISE 미국배당다우존스(H)", "issuer": "KB자산운용", "category": "해외 주식(환헤지)", "price": "10,850", "change": "+0.20%", "nav": "10,840", "ret3m": "+5.10%", "pension100": false, "vol": "2,400", "aum": "1,900", "isRise": true, "isFocus": false, "reason": "환율 변동성 제거형 미국 배당다우존스"},
+      {"code": "461410", "name": "RISE 코리아밸류업", "issuer": "KB자산운용", "category": "국내 주식(밸류업)", "price": "12,400", "change": "+0.90%", "nav": "12,380", "ret3m": "+14.80%", "pension100": false, "vol": "7,800", "aum": "5,600", "isRise": true, "isFocus": false, "reason": "정부 밸류업 지수 편입 대표 우량주"},
+      {"code": "472200", "name": "RISE 미국AI테크TOP10액티브", "issuer": "KB자산운용", "category": "해외 주식(AI)", "price": "14,800", "change": "-0.30%", "nav": "14,780", "ret3m": "+16.20%", "pension100": false, "vol": "5,200", "aum": "3,100", "isRise": true, "isFocus": false, "reason": "빅테크 알파 추구 액티브 운용"},
+      {"code": "481070", "name": "RISE 바이오액티브", "issuer": "KB자산운용", "category": "국내 주식(바이오)", "price": "11,400", "change": "+1.40%", "nav": "11,380", "ret3m": "+22.50%", "pension100": false, "vol": "3,400", "aum": "2,100", "isRise": true, "isFocus": false, "reason": "글로벌 라이선스 아웃 바이오텍 집중"},
+      {"code": "487430", "name": "RISE 원자력소부장액티브", "issuer": "KB자산운용", "category": "국내 주식(원자력)", "price": "12,800", "change": "+2.30%", "nav": "12,780", "ret3m": "+34.10%", "pension100": false, "vol": "4,500", "aum": "2,800", "isRise": true, "isFocus": false, "reason": "체코 원전 수주 및 SMR 파이프라인 수혜"},
+      {"code": "441700", "name": "RISE 미국채10년액티브", "issuer": "KB자산운용", "category": "해외 채권", "price": "9,850", "change": "-0.20%", "nav": "9,845", "ret3m": "+1.10%", "pension100": true, "vol": "5,400", "aum": "4,200", "isRise": true, "isFocus": false, "reason": "미 국채 10년물 벤치마크 추종"},
+      {"code": "441710", "name": "RISE 미국채30년액티브", "issuer": "KB자산운용", "category": "해외 채권", "price": "8,950", "change": "-0.40%", "nav": "8,940", "ret3m": "-1.80%", "pension100": true, "vol": "8,900", "aum": "6,700", "isRise": true, "isFocus": false, "reason": "미 30년 초장기 국채 금리 인하 베팅"},
+      {"code": "453360", "name": "RISE 미국달러단기채권액티브", "issuer": "KB자산운용", "category": "해외 채권", "price": "112,500", "change": "+0.10%", "nav": "112,480", "ret3m": "+3.40%", "pension100": true, "vol": "9,800", "aum": "8,100", "isRise": true, "isFocus": false, "reason": "달러 환차익 + 단기 금리 이중 수익"},
+      {"code": "465590", "name": "RISE 코스닥150선물인버스", "issuer": "KB자산운용", "category": "국내 파생", "price": "4,120", "change": "-2.40%", "nav": "4,118", "ret3m": "-23.80%", "pension100": false, "vol": "18,500", "aum": "2,400", "isRise": true, "isFocus": false, "reason": "코스닥 150 선물 역방향 하락 방어"},
+      {"code": "472210", "name": "RISE 국고채10년", "issuer": "KB자산운용", "category": "국내 채권", "price": "114,200", "change": "-0.08%", "nav": "114,180", "ret3m": "+1.20%", "pension100": true, "vol": "4,500", "aum": "5,200", "isRise": true, "isFocus": false, "reason": "국내 중장기 지표 국고채 10년"},
+      {"code": "473350", "name": "RISE ESG가치주액티브", "issuer": "KB자산운용", "category": "국내 주식(ESG)", "price": "10,800", "change": "+0.45%", "nav": "10,790", "ret3m": "+9.40%", "pension100": false, "vol": "1,200", "aum": "850", "isRise": true, "isFocus": false, "reason": "지배구조 우수 저PBR 밸류에이션"},
+      {"code": "481080", "name": "RISE 미국빅테크TOP10", "issuer": "KB자산운용", "category": "해외 주식(빅테크)", "price": "16,500", "change": "-0.40%", "nav": "16,480", "ret3m": "+13.40%", "pension100": false, "vol": "7,800", "aum": "5,900", "isRise": true, "isFocus": false, "reason": "글로벌 10대 테크 메가캡 분산"},
+      {"code": "487440", "name": "RISE 전력설비TOP5Plus", "issuer": "KB자산운용", "category": "국내 주식(전력)", "price": "15,600", "change": "+2.10%", "nav": "15,580", "ret3m": "+39.80%", "pension100": false, "vol": "6,400", "aum": "3,900", "isRise": true, "isFocus": false, "reason": "변압기 및 초고압 전력망 5대 대장주"},
+      {"code": "490610", "name": "RISE 조선TOP5Plus", "issuer": "KB자산운용", "category": "국내 주식(조선)", "price": "14,800", "change": "+3.20%", "nav": "14,780", "ret3m": "+44.10%", "pension100": false, "vol": "5,900", "aum": "3,400", "isRise": true, "isFocus": false, "reason": "조선 3사 및 해양 플랜트 엔진 밸류체인"},
+      {"code": "441720", "name": "RISE 자동차TOP10", "issuer": "KB자산운용", "category": "국내 주식(자동차)", "price": "11,200", "change": "+0.35%", "nav": "11,190", "ret3m": "+6.80%", "pension100": false, "vol": "2,900", "aum": "2,100", "isRise": true, "isFocus": false, "reason": "현대차/기아 및 부품 소부장 압축"},
+      {"code": "438320", "name": "RISE 미국배당다우존스존슨앤드존슨", "issuer": "KB자산운용", "category": "해외 주식(배당)", "price": "10,920", "change": "+0.15%", "nav": "10,915", "ret3m": "+4.80%", "pension100": false, "vol": "2,100", "aum": "1,450", "isRise": true, "isFocus": false, "reason": "헬스케어 배당 집중"},
+      {"code": "441730", "name": "RISE 2차전지액티브", "issuer": "KB자산운용", "category": "국내 주식(2차전지)", "price": "9,200", "change": "-0.60%", "nav": "9,190", "ret3m": "-2.80%", "pension100": false, "vol": "1,850", "aum": "1,300", "isRise": true, "isFocus": false, "reason": "2차전지 액티브 알파"},
+      {"code": "453370", "name": "RISE AI&로봇", "issuer": "KB자산운용", "category": "국내 주식(로봇)", "price": "13,400", "change": "+1.60%", "nav": "13,380", "ret3m": "+25.40%", "pension100": false, "vol": "3,400", "aum": "1,950", "isRise": true, "isFocus": false, "reason": "국내 AI 및 협동로봇 생태계"},
+      {"code": "458780", "name": "RISE 미국반도체TOP10", "issuer": "KB자산운용", "category": "해외 주식(반도체)", "price": "19,200", "change": "-0.40%", "nav": "19,180", "ret3m": "+18.90%", "pension100": false, "vol": "8,900", "aum": "5,200", "isRise": true, "isFocus": false, "reason": "미국 10대 반도체 대장주"},
+      {"code": "461420", "name": "RISE 중소형주액티브", "issuer": "KB자산운용", "category": "국내 주식(중소형)", "price": "11,100", "change": "+1.80%", "nav": "11,080", "ret3m": "+21.20%", "pension100": false, "vol": "2,400", "aum": "1,150", "isRise": true, "isFocus": false, "reason": "코스닥 히든챔피언 발굴"},
+      {"code": "465600", "name": "RISE K-뉴딜디지털", "issuer": "KB자산운용", "category": "국내 주식(IT)", "price": "12,500", "change": "+0.70%", "nav": "12,480", "ret3m": "+14.10%", "pension100": false, "vol": "1,900", "aum": "1,200", "isRise": true, "isFocus": false, "reason": "소프트웨어 및 클라우드"},
+      {"code": "472220", "name": "RISE 미국양자컴퓨팅액티브", "issuer": "KB자산운용", "category": "해외 주식(신기술)", "price": "10,850", "change": "+2.80%", "nav": "10,830", "ret3m": "+38.40%", "pension100": false, "vol": "4,500", "aum": "1,850", "isRise": true, "isFocus": false, "reason": "차세대 양자컴퓨팅 선도"},
+      {"code": "473360", "name": "RISE 탄소배출권선물(H)", "issuer": "KB자산운용", "category": "해외 원자재", "price": "8,450", "change": "+0.30%", "nav": "8,440", "ret3m": "+3.20%", "pension100": false, "vol": "980", "aum": "850", "isRise": true, "isFocus": false, "reason": "유럽 탄소배출권 선물"},
+      {"code": "481090", "name": "RISE 골드선물(H)", "issuer": "KB자산운용", "category": "해외 원자재", "price": "15,600", "change": "+0.85%", "nav": "15,580", "ret3m": "+16.80%", "pension100": false, "vol": "5,600", "aum": "4,100", "isRise": true, "isFocus": false, "reason": "지정학적 안전자산 금(Gold)"},
+      {"code": "487450", "name": "RISE 인도Nifty50", "issuer": "KB자산운용", "category": "해외 시장지수", "price": "13,800", "change": "+0.45%", "nav": "13,780", "ret3m": "+14.50%", "pension100": false, "vol": "7,800", "aum": "4,800", "isRise": true, "isFocus": false, "reason": "인도 고성장 대표 50대 기업"},
+      {"code": "490620", "name": "RISE 글로벌비만치료제TOP5", "issuer": "KB자산운용", "category": "해외 주식(바이오)", "price": "14,900", "change": "+1.25%", "nav": "14,880", "ret3m": "+28.40%", "pension100": false, "vol": "6,200", "aum": "3,100", "isRise": true, "isFocus": false, "reason": "GLP-1 글로벌 빅파마 집중"},
+      {"code": "441740", "name": "RISE 미국채30년엔화노출(합성H)", "issuer": "KB자산운용", "category": "해외 채권", "price": "9,850", "change": "+0.40%", "nav": "9,840", "ret3m": "+6.80%", "pension100": true, "vol": "8,400", "aum": "6,200", "isRise": true, "isFocus": false, "reason": "엔화 반등 및 미국 장기채 이중 베팅"},
+      {"code": "441750", "name": "RISE 단기채권액티브", "issuer": "KB자산운용", "category": "국내 단기채", "price": "103,200", "change": "+0.01%", "nav": "103,198", "ret3m": "+0.86%", "pension100": true, "vol": "24,500", "aum": "19,800", "isRise": true, "isFocus": false, "reason": "국내 우량 단기채권 포트폴리오"},
+      {"code": "441760", "name": "RISE 종합채권(AA-이상)액티브", "issuer": "KB자산운용", "category": "국내 채권", "price": "104,500", "change": "-0.05%", "nav": "104,480", "ret3m": "+1.10%", "pension100": true, "vol": "15,600", "aum": "24,500", "isRise": true, "isFocus": false, "reason": "국내 크레딧 및 국공채 종합"},
+      {"code": "069500", "name": "KODEX 200", "issuer": "삼성자산운용", "category": "국내 시장지수", "price": "48,350", "change": "+1.40%", "nav": "48,330", "ret3m": "+18.50%", "pension100": false, "vol": "45,200", "aum": "58,900", "isRise": false, "isFocus": false, "reason": "국내 시장 대표 벤치마크"},
+      {"code": "122630", "name": "KODEX 레버리지", "issuer": "삼성자산운용", "category": "국내 시장지수", "price": "25,400", "change": "+2.85%", "nav": "25,380", "ret3m": "+39.20%", "pension100": false, "vol": "185,000", "aum": "24,800", "isRise": false, "isFocus": false, "reason": "코스피 200 일간 2배 추종"},
+      {"code": "114800", "name": "KODEX 인버스", "issuer": "삼성자산운용", "category": "국내 시장지수", "price": "3,450", "change": "-1.45%", "nav": "3,448", "ret3m": "-16.80%", "pension100": false, "vol": "98,000", "aum": "12,100", "isRise": false, "isFocus": false, "reason": "코스피 200 역방향 헷지"},
+      {"code": "252670", "name": "KODEX 200선물인버스2X", "issuer": "삼성자산운용", "category": "국내 시장지수", "price": "1,820", "change": "-2.90%", "nav": "1,818", "ret3m": "-31.50%", "pension100": false, "vol": "210,000", "aum": "18,400", "isRise": false, "isFocus": false, "reason": "곱버스 하락 베팅"},
+      {"code": "466950", "name": "KODEX 미국AI전력핵심인프라", "issuer": "삼성자산운용", "category": "해외 주식(전력)", "price": "12,150", "change": "+1.65%", "nav": "12,130", "ret3m": "+19.80%", "pension100": false, "vol": "6,700", "aum": "3,400", "isRise": false, "isFocus": false, "reason": "미국 전력망 경쟁 벤치마크"},
+      {"code": "462330", "name": "KODEX 테슬라커버드콜채권혼합액티브", "issuer": "삼성자산운용", "category": "국내 채권혼합", "price": "9,850", "change": "-0.20%", "nav": "9,845", "ret3m": "+3.10%", "pension100": true, "vol": "4,200", "aum": "2,150", "isRise": false, "isFocus": false, "reason": "테슬라 옵션 프리미엄 및 국채 혼합"},
+      {"code": "449170", "name": "KODEX KOFR금리액티브(합성)", "issuer": "삼성자산운용", "category": "국내 단기금리", "price": "106,800", "change": "+0.01%", "nav": "106,798", "ret3m": "+0.91%", "pension100": true, "vol": "64,000", "aum": "48,500", "isRise": false, "isFocus": false, "reason": "한국 무위험 지표금리 파킹"},
+      {"code": "394670", "name": "KODEX 한국부동산리츠인프라", "issuer": "삼성자산운용", "category": "국내 대체투자", "price": "5,120", "change": "+0.15%", "nav": "5,115", "ret3m": "+4.10%", "pension100": false, "vol": "3,800", "aum": "2,400", "isRise": false, "isFocus": false, "reason": "국내 우량 상장 리츠 및 인프라"},
+      {"code": "442430", "name": "KODEX 미국반도체MV", "issuer": "삼성자산운용", "category": "해외 주식(반도체)", "price": "18,400", "change": "-0.30%", "nav": "18,380", "ret3m": "+16.50%", "pension100": false, "vol": "11,200", "aum": "7,800", "isRise": false, "isFocus": false, "reason": "글로벌 반도체 25개사 분산"},
+      {"code": "472140", "name": "KODEX 미국AI테크TOP10+15%프리미엄", "issuer": "삼성자산운용", "category": "해외 주식(커버드콜)", "price": "10,950", "change": "+0.10%", "nav": "10,940", "ret3m": "+6.40%", "pension100": false, "vol": "8,900", "aum": "4,900", "isRise": false, "isFocus": false, "reason": "빅테크 콜옵션 매도 타깃 프리미엄"},
+      {"code": "233740", "name": "KODEX 코스닥150레버리지", "issuer": "삼성자산운용", "category": "국내 시장지수", "price": "14,800", "change": "+4.80%", "nav": "14,780", "ret3m": "+48.20%", "pension100": false, "vol": "145,000", "aum": "16,200", "isRise": false, "isFocus": false, "reason": "코스닥 2배 레버리지"},
+      {"code": "244580", "name": "KODEX 바이오", "issuer": "삼성자산운용", "category": "국내 주식(바이오)", "price": "11,250", "change": "+1.10%", "nav": "11,240", "ret3m": "+19.40%", "pension100": false, "vol": "7,400", "aum": "5,100", "isRise": false, "isFocus": false, "reason": "코스닥 및 코스피 핵심 바이오"},
+      {"code": "102110", "name": "TIGER 200", "issuer": "미래에셋자산운용", "category": "국내 시장지수", "price": "48,300", "change": "+1.39%", "nav": "48,290", "ret3m": "+18.45%", "pension100": false, "vol": "31,200", "aum": "34,200", "isRise": false, "isFocus": false, "reason": "미래에셋 대표 코스피 200"},
+      {"code": "381180", "name": "TIGER 미국테크TOP10 INDXX", "issuer": "미래에셋자산운용", "category": "해외 주식(빅테크)", "price": "21,450", "change": "-0.32%", "nav": "21,430", "ret3m": "+12.80%", "pension100": false, "vol": "18,400", "aum": "24,500", "isRise": false, "isFocus": false, "reason": "미국 시총 상위 10대 빅테크"},
+      {"code": "458730", "name": "TIGER 반도체TOP10", "issuer": "미래에셋자산운용", "category": "국내 주식(반도체)", "price": "16,800", "change": "+0.85%", "nav": "16,780", "ret3m": "+14.20%", "pension100": false, "vol": "12,300", "aum": "14,500", "isRise": false, "isFocus": false, "reason": "국내 반도체 대형주 10종목"},
+      {"code": "448330", "name": "TIGER 미국배당다우존스", "issuer": "미래에셋자산운용", "category": "해외 주식(배당)", "price": "11,210", "change": "+0.22%", "nav": "11,200", "ret3m": "+5.30%", "pension100": false, "vol": "14,500", "aum": "12,800", "isRise": false, "isFocus": false, "reason": "슈드(SCHD) 한국형 월배당"},
+      {"code": "453850", "name": "TIGER 미국30년국채프리미엄액티브(H)", "issuer": "미래에셋자산운용", "category": "해외 채권", "price": "10,150", "change": "+0.10%", "nav": "10,145", "ret3m": "-1.80%", "pension100": true, "vol": "9,800", "aum": "8,400", "isRise": false, "isFocus": false, "reason": "미 장기국채 커버드콜 월분배"},
+      {"code": "305540", "name": "TIGER 2차전지테마", "issuer": "미래에셋자산운용", "category": "국내 주식(2차전지)", "price": "19,850", "change": "-1.10%", "nav": "19,830", "ret3m": "-6.40%", "pension100": false, "vol": "11,200", "aum": "9,800", "isRise": false, "isFocus": false, "reason": "국내 2차전지 밸류체인 전반"},
+      {"code": "447770", "name": "TIGER CD금리투자KIS(합성)", "issuer": "미래에셋자산운용", "category": "국내 단기금리", "price": "55,200", "change": "+0.01%", "nav": "55,198", "ret3m": "+0.92%", "pension100": true, "vol": "48,000", "aum": "72,000", "isRise": false, "isFocus": false, "reason": "금리 파킹형 대표 상품"},
+      {"code": "381170", "name": "TIGER 미국필라델피아반도체나스닥", "issuer": "미래에셋자산운용", "category": "해외 주식(반도체)", "price": "23,800", "change": "-0.70%", "nav": "23,780", "ret3m": "+17.20%", "pension100": false, "vol": "22,400", "aum": "28,500", "isRise": false, "isFocus": false, "reason": "필라델피아 반도체 지수 추종"},
+      {"code": "472170", "name": "TIGER 글로벌AI액티브", "issuer": "미래에셋자산운용", "category": "해외 주식(AI)", "price": "13,950", "change": "+0.30%", "nav": "13,930", "ret3m": "+14.80%", "pension100": false, "vol": "5,600", "aum": "3,100", "isRise": false, "isFocus": false, "reason": "글로벌 AI 액티브 운용"},
+      {"code": "368590", "name": "TIGER Fn신재생에너지", "issuer": "미래에셋자산운용", "category": "국내 주식(친환경)", "price": "9,450", "change": "+0.60%", "nav": "9,440", "ret3m": "+8.20%", "pension100": false, "vol": "1,900", "aum": "1,350", "isRise": false, "isFocus": false, "reason": "풍력/태양광 신재생 생태계"},
+      {"code": "453850", "name": "ACE 미국30년국채액티브(H)", "issuer": "한국투자신탁운용", "category": "해외 채권", "price": "8,420", "change": "+0.12%", "nav": "8,415", "ret3m": "-2.10%", "pension100": true, "vol": "14,200", "aum": "18,900", "isRise": false, "isFocus": false, "reason": "미 30년 장기국채 월배당 대표"},
+      {"code": "446770", "name": "ACE 글로벌반도체TOP4 Plus SOLACTIVE", "issuer": "한국투자신탁운용", "category": "해외 주식(반도체)", "price": "18,900", "change": "-0.20%", "nav": "18,880", "ret3m": "+18.40%", "pension100": false, "vol": "8,900", "aum": "6,700", "isRise": false, "isFocus": false, "reason": "엔비디아/TSMC/ASML/삼성전자 4대장 집중"},
+      {"code": "472160", "name": "ACE 미국빅테크TOP7 Plus", "issuer": "한국투자신탁운용", "category": "해외 주식(빅테크)", "price": "15,400", "change": "-0.55%", "nav": "15,380", "ret3m": "+11.90%", "pension100": false, "vol": "7,400", "aum": "5,400", "isRise": false, "isFocus": false, "reason": "매그니피센트 7 집중 투자"},
+      {"code": "452230", "name": "ACE 미국배당다우존스", "issuer": "한국투자신탁운용", "category": "해외 주식(배당)", "price": "11,190", "change": "+0.18%", "nav": "11,185", "ret3m": "+5.10%", "pension100": false, "vol": "5,800", "aum": "4,600", "isRise": false, "isFocus": false, "reason": "한투운용 월배당 SCHD 라인업"},
+      {"code": "473340", "name": "ACE AI반도체포커스", "issuer": "한국투자신탁운용", "category": "국내 주식(반도체)", "price": "14,100", "change": "+0.70%", "nav": "14,080", "ret3m": "+16.80%", "pension100": false, "vol": "4,100", "aum": "2,800", "isRise": false, "isFocus": false, "reason": "한미반도체 등 AI 소부장 집중"},
+      {"code": "385560", "name": "ACE 친환경자동차밸류체인액티브", "issuer": "한국투자신탁운용", "category": "국내 주식(전기차)", "price": "9,820", "change": "-0.40%", "nav": "9,810", "ret3m": "+2.10%", "pension100": false, "vol": "1,450", "aum": "1,100", "isRise": false, "isFocus": false, "reason": "완성차 및 전장 밸류체인"},
+      {"code": "448290", "name": "SOL 미국배당다우존스", "issuer": "신한자산운용", "category": "해외 주식(배당)", "price": "11,200", "change": "+0.25%", "nav": "11,195", "ret3m": "+5.40%", "pension100": false, "vol": "7,800", "aum": "8,900", "isRise": false, "isFocus": false, "reason": "한국 최초 월배당 도입 슈드"},
+      {"code": "473330", "name": "SOL 미국배당미국채혼합50", "issuer": "신한자산운용", "category": "해외 채권혼합", "price": "10,350", "change": "+0.15%", "nav": "10,345", "ret3m": "+3.80%", "pension100": true, "vol": "3,400", "aum": "2,100", "isRise": false, "isFocus": false, "reason": "퇴직연금 안전자산 100% 슈드+미국채"},
+      {"code": "469070", "name": "SOL 조선TOP3플러스", "issuer": "신한자산운용", "category": "국내 주식(조선)", "price": "14,200", "change": "+3.10%", "nav": "14,180", "ret3m": "+42.50%", "pension100": false, "vol": "5,600", "aum": "3,200", "isRise": false, "isFocus": false, "reason": "조선 슈퍼사이클 및 LNG선 수혜"},
+      {"code": "472180", "name": "SOL 미국AI전력소부장", "issuer": "신한자산운용", "category": "해외 주식(전력)", "price": "11,800", "change": "+1.95%", "nav": "11,780", "ret3m": "+21.20%", "pension100": false, "vol": "3,900", "aum": "1,750", "isRise": false, "isFocus": false, "reason": "변압기/전력기기 소부장 특화"},
+      {"code": "461390", "name": "SOL 금융지주플러스고배당", "issuer": "신한자산운용", "category": "국내 주식(금융)", "price": "12,450", "change": "+0.80%", "nav": "12,430", "ret3m": "+15.80%", "pension100": false, "vol": "4,800", "aum": "2,900", "isRise": false, "isFocus": false, "reason": "밸류업 프로그램 및 금융지주 고배당"},
+      {"code": "461400", "name": "PLUS K방산", "issuer": "한화자산운용", "category": "국내 주식(방산)", "price": "21,500", "change": "+2.20%", "nav": "21,470", "ret3m": "+34.50%", "pension100": false, "vol": "4,200", "aum": "2,800", "isRise": false, "isFocus": false, "reason": "한화에어로스페이스 중심 방산 집중"},
+      {"code": "472190", "name": "PLUS 고배당주채권혼합", "issuer": "한화자산운용", "category": "국내 채권혼합", "price": "10,420", "change": "+0.30%", "nav": "10,415", "ret3m": "+4.20%", "pension100": true, "vol": "2,100", "aum": "1,450", "isRise": false, "isFocus": false, "reason": "고배당주와 국채 50% 혼합 안전자산"},
+      {"code": "448340", "name": "HEROES 단기채권ESG액티브", "issuer": "키움투자자산운용", "category": "국내 단기채", "price": "102,100", "change": "+0.01%", "nav": "102,098", "ret3m": "+0.89%", "pension100": true, "vol": "14,500", "aum": "8,200", "isRise": false, "isFocus": false, "reason": "키움 단기 채권 파킹"},
+      {"code": "446780", "name": "TIMEFOLIO 탄소중립액티브", "issuer": "타임폴리오자산운용", "category": "국내 주식(ESG)", "price": "9,650", "change": "+0.50%", "nav": "9,640", "ret3m": "+7.10%", "pension100": false, "vol": "1,200", "aum": "950", "isRise": false, "isFocus": false, "reason": "타임폴리오 액티브 알파 운용"},
+      {"code": "229200", "name": "KODEX 코스닥150", "issuer": "삼성자산운용", "category": "국내 시장지수", "price": "15,850", "change": "+2.45%", "nav": "15,830", "ret3m": "+24.60%", "pension100": false, "vol": "65,000", "aum": "38,500", "isRise": false, "isFocus": false, "reason": "코스닥 150 대표 벤치마크"},
+      {"code": "305720", "name": "KODEX 2차전지산업", "issuer": "삼성자산운용", "category": "국내 주식(2차전지)", "price": "17,800", "change": "-0.90%", "nav": "17,780", "ret3m": "-5.80%", "pension100": false, "vol": "18,500", "aum": "14,200", "isRise": false, "isFocus": false, "reason": "국내 2차전지 대표 ETF"},
+      {"code": "379780", "name": "KODEX 미국나스닥100TR", "issuer": "삼성자산운용", "category": "해외 시장지수", "price": "16,450", "change": "-0.60%", "nav": "16,430", "ret3m": "+13.90%", "pension100": false, "vol": "24,500", "aum": "21,000", "isRise": false, "isFocus": false, "reason": "배당 자동 재투자 나스닥 100"},
+      {"code": "379790", "name": "KODEX 미국S&P500TR", "issuer": "삼성자산운용", "category": "해외 시장지수", "price": "17,200", "change": "-0.35%", "nav": "17,190", "ret3m": "+11.60%", "pension100": false, "vol": "31,000", "aum": "28,500", "isRise": false, "isFocus": false, "reason": "배당 자동 재투자 S&P 500"},
+      {"code": "360750", "name": "TIGER 미국S&P500", "issuer": "미래에셋자산운용", "category": "해외 시장지수", "price": "18,950", "change": "-0.38%", "nav": "18,940", "ret3m": "+11.50%", "pension100": false, "vol": "45,000", "aum": "48,500", "isRise": false, "isFocus": false, "reason": "미래에셋 대표 미국 S&P500"},
+      {"code": "133690", "name": "TIGER 미국나스닥100", "issuer": "미래에셋자산운용", "category": "해외 시장지수", "price": "124,500", "change": "-0.62%", "nav": "124,450", "ret3m": "+13.85%", "pension100": false, "vol": "38,000", "aum": "39,500", "isRise": false, "isFocus": false, "reason": "미래에셋 대표 미국 나스닥 100"},
+      {"code": "364980", "name": "TIGER 글로벌리튬&2차전지SOLACTIVE(합성)", "issuer": "미래에셋자산운용", "category": "해외 주식(2차전지)", "price": "8,450", "change": "-1.20%", "nav": "8,440", "ret3m": "-8.40%", "pension100": false, "vol": "6,800", "aum": "5,400", "isRise": false, "isFocus": false, "reason": "글로벌 리튬 및 2차전지"},
+      {"code": "411060", "name": "ACE 미국배당다우존스채권혼합50", "issuer": "한국투자신탁운용", "category": "국내 채권혼합", "price": "10,420", "change": "+0.18%", "nav": "10,415", "ret3m": "+4.10%", "pension100": true, "vol": "4,100", "aum": "2,400", "isRise": false, "isFocus": false, "reason": "한투운용 슈드+국채 혼합 100% 안전자산"},
+      {"code": "452240", "name": "ACE 미국채30년액티브(합성H)", "issuer": "한국투자신탁운용", "category": "해외 채권", "price": "8,450", "change": "+0.10%", "nav": "8,445", "ret3m": "-2.00%", "pension100": true, "vol": "18,500", "aum": "14,200", "isRise": false, "isFocus": false, "reason": "환헤지형 미국 30년 국채"}
+    ];
+
+    let currentDate = "2026-09-10";
+    let currentMode = "all";
+    let currentIssuer = "ALL";
+    let isFileLoaded = false;
+
+    function handleDragOver(e) {
+      e.preventDefault();
+      document.getElementById('dropZone').classList.add('dropzone-active');
+    }
+    function handleDragLeave(e) {
+      e.preventDefault();
+      document.getElementById('dropZone').classList.remove('dropzone-active');
+    }
+    function handleDrop(e) {
+      e.preventDefault();
+      document.getElementById('dropZone').classList.remove('dropzone-active');
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        processUploadedFile(e.dataTransfer.files[0]);
+      }
+    }
+    function handleFileSelect(e) {
+      if (e.target.files && e.target.files.length > 0) {
+        processUploadedFile(e.target.files[0]);
+      }
+    }
+
+    function processUploadedFile(file) {
+      const fileName = file.name.toLowerCase();
+      const reader = new FileReader();
+
+      if (fileName.endsWith('.xlsx') || fileName.endsWith('.xls')) {
+        if (typeof XLSX !== 'undefined') {
+          reader.onload = function(e) {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+            const firstSheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[firstSheetName];
+            const jsonRows = XLSX.utils.sheet_to_json(worksheet);
+            parseAndLoadRows(jsonRows, file.name);
+          };
+          reader.readAsArrayBuffer(file);
+        } else {
+          alert('엑셀(.xlsx) 파서가 지원되지 않는 경우, CSV로 저장 후 열어주세요.');
+        }
+      } else {
+        reader.onload = function(e) {
+          parseCsvText(e.target.result, file.name);
+        };
+        reader.readAsText(file, 'euc-kr');
+      }
+    }
+
+    function parseCsvText(text, filename) {
+      const lines = text.split(/\\r?\\n/).filter(line => line.trim() !== '');
+      if (lines.length < 2) return;
+
+      const delimiter = lines[0].includes('\\t') ? '\\t' : ',';
+      const headers = lines[0].split(delimiter).map(h => h.trim().replace(/^[\"']|[\"']$/g, ''));
+      const rows = [];
+
+      for (let i = 1; i < lines.length; i++) {
+        const cols = lines[i].split(delimiter).map(c => c.trim().replace(/^[\"']|[\"']$/g, ''));
+        if (cols.length >= 2) {
+          const rowObj = {};
+          headers.forEach((h, idx) => {
+            rowObj[h] = cols[idx] || '';
+          });
+          rows.push(rowObj);
+        }
+      }
+      parseAndLoadRows(rows, filename);
+    }
+
+    function parseAndLoadRows(rows, filename) {
+      if (!rows || rows.length === 0) return;
+
+      const newEtfList = [];
+      rows.forEach(r => {
+        const code = r['종목코드'] || r['단축코드'] || r['코드'] || r['Code'] || r['티커'] || r['ticker'] || '';
+        const name = r['종목명'] || r['ETF명'] || r['종목한글명'] || r['Name'] || '';
+        if (!name) return;
+
+        let issuer = r['운용사'] || r['운용사명'] || '';
+        let isRise = false;
+        if (name.startsWith('RISE') || name.startsWith('KBSTAR')) {
+          issuer = 'KB자산운용';
+          isRise = true;
+        } else if (name.startsWith('KODEX')) {
+          issuer = '삼성자산운용';
+        } else if (name.startsWith('TIGER')) {
+          issuer = '미래에셋자산운용';
+        } else if (name.startsWith('ACE') || name.startsWith('KINDEX')) {
+          issuer = '한국투자신탁운용';
+        } else if (name.startsWith('SOL')) {
+          issuer = '신한자산운용';
+        } else if (name.startsWith('PLUS') || name.startsWith('ARIRANG')) {
+          issuer = '한화자산운용';
+        } else if (name.startsWith('HEROES')) {
+          issuer = '키움투자자산운용';
+        } else if (name.startsWith('TIMEFOLIO')) {
+          issuer = '타임폴리오자산운용';
+        } else if (!issuer) {
+          issuer = '기타운용사';
+        }
+
+        const price = r['현재가'] || r['종가'] || r['Price'] || r['Close'] || '-';
+        const change = r['등락률'] || r['대비율'] || r['Change'] || '0.00%';
+        const vol = r['거래대금'] || r['거래대금(백만)'] || r['일거래대금'] || r['Volume'] || '0';
+        const aum = r['시가총액'] || r['시가총액(억)'] || r['순자산'] || r['AUM'] || '0';
+        const ret3m = r['3개월수익률'] || r['3개월'] || r['3M'] || '-';
+
+        const isPension100 = name.includes('채권혼합') || name.includes('채권') || name.includes('국채') || name.includes('단기자금') || name.includes('KOFR') || name.includes('CD금리') || name.includes('머니마켓');
+        
+        let category = '기타';
+        if (name.includes('채권혼합')) category = '채권혼합';
+        else if (name.includes('AI') || name.includes('반도체')) category = 'AI/반도체';
+        else if (name.includes('전력') || name.includes('원자력') || name.includes('원전')) category = 'AI/전력망';
+        else if (name.includes('200') || name.includes('코스닥') || name.includes('S&P') || name.includes('나스닥') || name.includes('레버리지') || name.includes('인버스')) category = '시장지수';
+        else if (name.includes('배당') || name.includes('채권') || name.includes('국채') || name.includes('리츠')) category = '배당/채권';
+        else if (name.includes('방산') || name.includes('조선') || name.includes('2차전지') || name.includes('바이오')) category = '테마주';
+
+        newEtfList.push({
+          code: String(code).trim(),
+          name: String(name).trim(),
+          issuer: issuer,
+          category: category,
+          price: typeof price === 'number' ? price.toLocaleString() : String(price),
+          change: String(change).startsWith('+') || String(change).startsWith('-') ? String(change) : (parseFloat(change) > 0 ? '+' + change : change),
+          ret3m: String(ret3m),
+          pension100: isPension100,
+          vol: typeof vol === 'number' ? vol.toLocaleString() : String(vol),
+          aum: typeof aum === 'number' ? aum.toLocaleString() : String(aum),
+          isRise: isRise
+        });
+      });
+
+      if (newEtfList.length > 0) {
+        masterList = newEtfList;
+        isFileLoaded = true;
+        const badge = document.getElementById('loadStatusBadge');
+        badge.innerText = `총 ${masterList.length}개 전종목 로드 완료 (${filename})`;
+        badge.classList.remove('hidden');
+        render();
+        alert(`성공: 사내 파일(${filename})에서 총 ${masterList.length}개 ETF 데이터를 정상 로딩했습니다.`);
+      }
+    }
+
+    function onDateChange() {
+      currentDate = document.getElementById("dateSelect").value;
+      updateBriefingAndMacro();
+      render();
+    }
+
+    function updateBriefingAndMacro() {
+      const data = historicalDB[currentDate];
+      if (!data) return;
+
+      document.getElementById("macroKospi").innerText = data.macro.kospi;
+      document.getElementById("macroSp500").innerText = data.macro.sp500;
+      document.getElementById("macro10Y").innerText = data.macro.treasury10y;
+      document.getElementById("macroBrent").innerText = data.macro.brent;
+      document.getElementById("macroUsdKrw").innerText = data.macro.usdkrw;
+      document.getElementById("macroDxy").innerText = data.macro.dxy;
+
+      document.getElementById("briefDateBadge").innerText = data.date;
+      document.getElementById("briefSource").innerText = "출처: " + data.source;
+      document.getElementById("briefHeadline").innerText = data.headline;
+      document.getElementById("briefTrigger").innerText = data.trigger;
+      document.getElementById("briefSolution").innerText = data.solution;
+    }
+
+    function switchView(mode) {
+      currentMode = mode;
+      document.getElementById('chkOnlyFocus').checked = (mode === 'focus');
+      document.getElementById('btnAll').className = mode === 'all' ? "px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 bg-amber-500 text-slate-950 shadow-md" : "px-3.5 py-2 rounded-lg text-xs font-semibold transition flex items-center space-x-1.5 text-slate-400 hover:text-white";
+      document.getElementById('btnFocus').className = mode === 'focus' ? "px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 bg-amber-500 text-slate-950 shadow-md" : "px-3.5 py-2 rounded-lg text-xs font-semibold transition flex items-center space-x-1.5 text-slate-400 hover:text-white";
+      render();
+    }
+
+    function toggleFocusCheckbox() {
+      const isChecked = document.getElementById('chkOnlyFocus').checked;
+      switchView(isChecked ? 'focus' : 'all');
+    }
+
+    function filterIssuer(issuer) {
+      currentIssuer = issuer;
+      document.querySelectorAll('.issuer-btn').forEach(b => b.className = "issuer-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition");
+      event.target.className = "issuer-btn text-xs px-2.5 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold transition";
+      render();
+    }
+
+    function toggleFocus(code) {
+      const bData = historicalDB[currentDate];
+      if (!bData) return;
+
+      const idx = bData.focusCodes.indexOf(code);
+      if (idx > -1) {
+        bData.focusCodes.splice(idx, 1);
+        delete bData.focusReasons[code];
+      } else {
+        bData.focusCodes.push(code);
+        bData.focusReasons[code] = "🔥 사용자 직접 지정 포커스 종목";
+      }
+      render();
+    }
+
+    function render() {
+      const bData = historicalDB[currentDate];
+      const focusSet = new Set(bData ? bData.focusCodes : []);
+
+      const q = document.getElementById('keyword').value.toLowerCase();
+      const pensionOnly = document.getElementById('chkPension').checked;
+
+      const filtered = masterList.filter(item => {
+        const isFocus = focusSet.has(item.code);
+        if (currentMode === 'focus' && !isFocus) return false;
+        if (currentIssuer !== 'ALL' && item.issuer !== currentIssuer) return false;
+        if (pensionOnly && !item.pension100) return false;
+        if (q && !item.name.toLowerCase().includes(q) && !item.code.includes(q)) return false;
+        return true;
+      });
+
+      const tbody = document.getElementById('tableBody');
+      tbody.innerHTML = "";
+
+      filtered.forEach(item => {
+        const isFocus = focusSet.has(item.code);
+        const reason = bData && bData.focusReasons ? (bData.focusReasons[item.code] || "") : "";
+        const isUp = item.change && item.change.startsWith('+');
+        const color = isUp ? "text-emerald-400" : (item.change && item.change.startsWith('-') ? "text-rose-400" : "text-slate-300");
+        const trClass = item.isRise ? "bg-amber-500/5 hover:bg-amber-500/10" : "hover:bg-slate-800/40";
+        const starColor = isFocus ? "text-amber-400 font-bold" : "text-slate-600 hover:text-slate-300";
+        const badge = item.pension100 
+          ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">100% 안전</span>`
+          : `<span class="px-2 py-0.5 rounded text-[10px] text-slate-400">70% 한도</span>`;
+        const riseTag = item.isRise ? `<span class="ml-1.5 px-1.5 py-0.5 rounded text-[9px] bg-amber-500/20 text-amber-300 border border-amber-500/30 font-extrabold">RISE</span>` : "";
+        const reasonTag = isFocus && reason ? `<div class="text-[11px] text-amber-400/90 mt-0.5 font-medium">${reason}</div>` : "";
+
+        tbody.innerHTML += `
+          <tr class="${trClass} transition">
+            <td class="py-3 px-4 text-center cursor-pointer select-none" onclick="toggleFocus('${item.code}')">
+              <span class="${starColor} text-sm">★</span>
+            </td>
+            <td class="py-3 px-4 font-mono text-slate-400">${item.code}</td>
+            <td class="py-3 px-4">
+              <div class="font-bold text-white flex items-center">${item.name} ${riseTag}</div>
+              ${reasonTag}
+            </td>
+            <td class="py-3 px-4 text-slate-300">${item.issuer}</td>
+            <td class="py-3 px-4 text-slate-400">${item.category}</td>
+            <td class="py-3 px-4 text-right font-mono font-semibold text-slate-200">${item.price}원</td>
+            <td class="py-3 px-4 text-right font-mono font-semibold ${color}">${item.change}</td>
+            <td class="py-3 px-4 text-right font-mono text-emerald-400 font-semibold">${item.ret3m}</td>
+            <td class="py-3 px-4 text-center">${badge}</td>
+            <td class="py-3 px-4 text-right font-mono text-slate-300">${item.vol} 백만</td>
+            <td class="py-3 px-4 text-right font-mono text-slate-300">${item.aum} 억</td>
+          </tr>
+        `;
+      });
+
+      const riseCount = masterList.filter(x => x.isRise).length;
+      document.getElementById('riseCount').innerText = riseCount;
+      document.getElementById('focusCount').innerText = bData ? bData.focusCodes.length : 0;
+      document.getElementById('allCount').innerText = masterList.length;
+      document.getElementById('statText').innerText = `전체 ${masterList.length}개 종목 중 ${filtered.length}개 표시 중 (기준일자: ${currentDate})`;
+    }
+
+    window.onload = () => {
+      lucide.createIcons();
+      updateBriefingAndMacro();
+      render();
+    };
+  </script>
+</body>
+</html>
