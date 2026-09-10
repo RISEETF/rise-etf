@@ -10,22 +10,20 @@
   <meta property="og:title" content="RISE ETF Intelligence Base & Market Portal">
   <meta property="og:description" content="143개 RISE 전종목 마스터 DB 연계 실시간 시황 모니터링, 퇴직연금 100% 안전자산 분석 및 데일리 전략 브리프">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="RISE ETF Intelligence">
 
-  <!-- Scripts -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "맑은 고딕", helvetica, sans-serif; }
-    .kpi-card { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(8px); border: 1px solid rgba(51, 65, 85, 0.6); }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "맑은 고딕", helvetica, sans-serif; background-color: #020617; color: #f8fafc; }
+    .kpi-card { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(8px); border: 1px solid rgba(51, 65, 85, 0.6); }
+    .kpi-card:hover { border-color: rgba(245, 158, 11, 0.5); }
     .gold-gradient { background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); }
     .tab-active { border-bottom: 2px solid #F59E0B; color: #F59E0B; font-weight: 700; }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* 인쇄 및 PDF 저장 전용 스타일 */
+    /* 인쇄 및 PDF 저장 전용 스타일 (A4 클린 모드) */
     @media print {
       body { background-color: #ffffff !important; color: #0f172a !important; font-size: 11pt; }
       header, .no-print, nav, #btnAll, #btnFocus, footer, #etfModal, .news-ticker-bar { display: none !important; }
@@ -38,7 +36,7 @@
     }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased">
+<body class="min-h-screen flex flex-col antialiased">
 
   <!-- TOP APP BAR -->
   <header class="border-b border-slate-800/80 bg-slate-900/95 backdrop-blur sticky top-0 z-50 no-print">
@@ -57,7 +55,7 @@
       <!-- 기준일 선택기 -->
       <div class="flex items-center space-x-2 flex-shrink-0">
         <div class="flex items-center space-x-1 sm:space-x-2 bg-slate-800/90 border border-amber-500/40 px-2 sm:px-3 py-1.5 rounded-xl shadow">
-          <i data-lucide="calendar" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400"></i>
+          <span class="text-amber-400">📅</span>
           <span class="text-[11px] sm:text-xs text-slate-300 hidden md:inline font-semibold">시황 기준:</span>
           <select id="dateSelect" onchange="onDateChange()" class="bg-slate-900 text-amber-300 font-bold text-[11px] sm:text-xs rounded-lg px-1.5 sm:px-2 py-0.5 border border-slate-700 focus:outline-none focus:border-amber-500 cursor-pointer">
             <option value="2026-09-10" selected>26/09/10 종가 기준 (유가 $100 돌파)</option>
@@ -75,7 +73,7 @@
     <div class="max-w-7xl mx-auto flex items-center justify-between text-xs">
       <div class="flex items-center space-x-2.5 overflow-hidden">
         <span class="flex items-center space-x-1 bg-rose-500 text-white font-extrabold text-[10px] px-2 py-0.5 rounded-full flex-shrink-0 animate-pulse">
-          <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping mr-0.5"></span>속보
+          ⚡ 속보
         </span>
         <span class="text-slate-400 text-[11px] font-mono hidden sm:inline" id="tickerTime">14:30</span>
         <span class="text-slate-200 font-medium truncate cursor-pointer hover:text-amber-300 transition" onclick="switchMainTab('tab-news')" id="tickerHeadline">
@@ -83,8 +81,7 @@
         </span>
       </div>
       <button onclick="switchMainTab('tab-news')" class="text-amber-400 hover:text-amber-300 text-[11px] font-bold flex items-center flex-shrink-0 ml-2">
-        <span>속보 전체보기</span>
-        <i data-lucide="chevron-right" class="w-3.5 h-3.5 ml-0.5"></i>
+        <span>속보 전체보기 ▶</span>
       </button>
     </div>
   </div>
@@ -92,21 +89,21 @@
   <!-- MAIN NAVIGATION TABS (4대 탭 구조) -->
   <div class="border-b border-slate-800 bg-slate-900/60 sticky top-16 z-40 no-print overflow-x-auto no-scrollbar">
     <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex space-x-6 sm:space-x-8 text-xs font-semibold whitespace-nowrap min-w-max">
-      <button onclick="switchMainTab('tab-explorer')" id="btn-tab-explorer" class="py-3 px-1 tab-active flex items-center space-x-2">
-        <i data-lucide="table" class="w-4 h-4"></i>
+      <button onclick="switchMainTab('tab-explorer')" id="btn-tab-explorer" class="py-3 px-1 tab-active flex items-center space-x-1.5">
+        <span>📊</span>
         <span>RISE 전종목 탐색기 (<span id="tabCount">143</span>)</span>
       </button>
-      <button onclick="switchMainTab('tab-news')" id="btn-tab-news" class="py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-2">
-        <i data-lucide="zap" class="w-4 h-4 text-amber-400"></i>
+      <button onclick="switchMainTab('tab-news')" id="btn-tab-news" class="py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-1.5">
+        <span>⚡</span>
         <span>데일리 시장 뉴스 속보</span>
         <span class="bg-rose-500 text-white text-[9px] font-bold px-1.5 py-0.2 rounded-full" id="newsBadge">5</span>
       </button>
-      <button onclick="switchMainTab('tab-report')" id="btn-tab-report" class="py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-2">
-        <i data-lucide="book-open" class="w-4 h-4"></i>
+      <button onclick="switchMainTab('tab-report')" id="btn-tab-report" class="py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-1.5">
+        <span>📑</span>
         <span>데일리 매크로 리포트 전문</span>
       </button>
-      <button onclick="switchMainTab('tab-charts')" id="btn-tab-charts" class="py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-2">
-        <i data-lucide="pie-chart" class="w-4 h-4"></i>
+      <button onclick="switchMainTab('tab-charts')" id="btn-tab-charts" class="py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-1.5">
+        <span>📈</span>
         <span>수익률 & 점유율 시각화</span>
       </button>
     </div>
@@ -119,27 +116,27 @@
     <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-2.5 text-xs no-print">
       <div class="kpi-card p-2 sm:p-2.5 rounded-xl">
         <div class="text-slate-400 text-[10px] sm:text-[11px]">KOSPI</div>
-        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macroKospi">-</div>
+        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macroKospi">7,051.64 (+1.40%)</div>
       </div>
       <div class="kpi-card p-2 sm:p-2.5 rounded-xl">
         <div class="text-slate-400 text-[10px] sm:text-[11px]">S&P 500</div>
-        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macroSp500">-</div>
+        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macroSp500">7,635.27 (-0.50%)</div>
       </div>
       <div class="kpi-card p-2 sm:p-2.5 rounded-xl">
         <div class="text-slate-400 text-[10px] sm:text-[11px]">미 국채 10Y</div>
-        <div class="text-xs sm:text-sm font-bold text-amber-300 mt-0.5 truncate" id="macro10Y">-</div>
+        <div class="text-xs sm:text-sm font-bold text-amber-300 mt-0.5 truncate" id="macro10Y">4.84% (+4.0 bps)</div>
       </div>
       <div class="kpi-card p-2 sm:p-2.5 rounded-xl border-amber-500/40 bg-amber-500/5">
         <div class="text-amber-400 text-[10px] sm:text-[11px] font-bold">브렌트유 / 원유</div>
-        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macroBrent">-</div>
+        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macroBrent">$101.60 (+3.76%)</div>
       </div>
       <div class="kpi-card p-2 sm:p-2.5 rounded-xl">
         <div class="text-slate-400 text-[10px] sm:text-[11px]">원/달러 환율 (ECOS)</div>
-        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macroUsdKrw">-</div>
+        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macroUsdKrw">1,368.50원</div>
       </div>
       <div class="kpi-card p-2 sm:p-2.5 rounded-xl">
         <div class="text-slate-400 text-[10px] sm:text-[11px]">달러 인덱스 (DXY)</div>
-        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macroDxy">-</div>
+        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macroDxy">104.75 (+0.30p)</div>
       </div>
     </section>
 
@@ -156,22 +153,22 @@
               </span>
               <span class="text-[11px] text-slate-400 truncate" id="briefSource">출처: ECOS · KRX · DART</span>
             </div>
-            <h2 class="text-sm sm:text-base lg:text-lg font-bold text-white leading-snug" id="briefHeadline">로딩 중...</h2>
-            <p class="text-xs text-slate-300 leading-relaxed" id="briefTrigger">로딩 중...</p>
+            <h2 class="text-sm sm:text-base lg:text-lg font-bold text-white leading-snug" id="briefHeadline">브렌트유 $100 공식 돌파와 미 10년물 4.84% 상승, 인플레 헤지 및 채권혼합 바벨 전략 긴급 점검</h2>
+            <p class="text-xs text-slate-300 leading-relaxed" id="briefTrigger">중동 전황 격화로 브렌트유가 배럴당 $101.60을 돌파하고 미 10년물 금리가 4.84%로 급등했습니다. 오늘 밤 미 8월 PPI 발표를 앞두고 고금리 장기화 우려 속에서, 퇴직연금 100% 안전자산 한도를 채우는 '삼전SK하닉50채권혼합'과 가격 전가력을 갖춘 '미국AI전력인프라'를 결합하는 바벨 포트폴리오가 시장 대비 독보적 방어력을 제공합니다.</p>
             <div class="text-xs text-amber-300/90 font-medium pt-1 border-t border-slate-800/80 mt-2 flex items-center">
-              <i data-lucide="check-circle-2" class="w-3.5 h-3.5 mr-1.5 text-amber-400 flex-shrink-0"></i>
-              <span id="briefSolution" class="truncate">로딩 중...</span>
+              <span class="mr-1.5 text-amber-400">✔</span>
+              <span id="briefSolution" class="truncate">RISE 삼성전자SK하이닉스50채권혼합 (477170) 중심 제언</span>
             </div>
           </div>
 
           <div class="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800 self-stretch sm:self-auto justify-center flex-shrink-0">
             <button onclick="switchView('all')" id="btnAll" class="px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 bg-amber-500 text-slate-950 shadow-md">
-              <i data-lucide="list" class="w-3.5 h-3.5"></i>
+              <span>☰</span>
               <span>RISE 전종목 (<span id="allCount">143</span>)</span>
             </button>
             <button onclick="switchView('focus')" id="btnFocus" class="px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-semibold transition flex items-center space-x-1.5 text-slate-400 hover:text-white">
-              <i data-lucide="flame" class="w-3.5 h-3.5"></i>
-              <span>포커스만 (<span id="focusCount">-</span>)</span>
+              <span>★</span>
+              <span>포커스만 (<span id="focusCount">4</span>)</span>
             </button>
           </div>
         </div>
@@ -181,7 +178,7 @@
       <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 bg-slate-900/60 p-3 sm:p-3.5 rounded-xl border border-slate-800 no-print">
         <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 md:pb-0">
           <span class="text-xs font-semibold text-slate-400 mr-1 flex items-center flex-shrink-0">
-            <i data-lucide="layers" class="w-3.5 h-3.5 mr-1 text-amber-400"></i>테마:
+            <span>🏷️</span> 테마:
           </span>
           <button onclick="filterCat('ALL')" class="cat-btn text-xs px-2.5 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold transition flex-shrink-0">전체 (143)</button>
           <button onclick="filterCat('채권혼합')" class="cat-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition flex-shrink-0">채권혼합(안전자산)</button>
@@ -199,7 +196,7 @@
           </label>
           <div class="relative w-full sm:w-52">
             <input type="text" id="keyword" onkeyup="render()" placeholder="RISE 종목명/코드 검색..." class="w-full bg-slate-950 border border-slate-700 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
-            <i data-lucide="search" class="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-2.5"></i>
+            <span class="absolute left-2.5 top-2 text-slate-500">🔍</span>
           </div>
         </div>
       </div>
@@ -237,7 +234,7 @@
         </div>
 
         <div class="p-3 bg-slate-950 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-2">
-          <div id="statText" class="font-bold text-amber-300">조회 중...</div>
+          <div id="statText" class="font-bold text-amber-300">RISE 전종목 143개 표시 중 (26/09/10 종가 기준)</div>
           <div class="flex items-center space-x-3 text-[11px]">
             <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-amber-400 mr-1.5"></span>KB자산운용 RISE 단독 143종목</span>
             <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-400 mr-1.5"></span>퇴직연금 100% 안전자산</span>
@@ -258,7 +255,7 @@
               <span id="newsDateBadge">26/09/10 종가 기준 속보 아카이브</span>
             </div>
             <h2 class="text-xl font-bold text-white flex items-center">
-              <i data-lucide="zap" class="w-5 h-5 text-amber-400 mr-2"></i>데일리 시장 뉴스 속보 & 연관 RISE ETF
+              <span class="text-amber-400 mr-2">⚡</span>데일리 시장 뉴스 속보 & 연관 RISE ETF
             </h2>
           </div>
           <div class="text-xs text-slate-400">
@@ -286,11 +283,11 @@
     <div id="tab-report" class="hidden space-y-6">
       <div class="flex items-center justify-between bg-slate-900/60 p-3.5 rounded-xl border border-slate-800 no-print">
         <div class="text-xs text-slate-400 flex items-center gap-1.5">
-          <i data-lucide="printer" class="w-4 h-4 text-amber-400"></i>
+          <span>🖨️</span>
           <span>공식 리포트 출력 및 PDF 저장 기능</span>
         </div>
         <button onclick="window.print()" class="flex items-center space-x-1.5 text-xs bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2 rounded-xl shadow-lg transition">
-          <i data-lucide="file-down" class="w-4 h-4"></i>
+          <span>📄</span>
           <span>PDF로 저장 / 인쇄하기</span>
         </button>
       </div>
@@ -306,21 +303,21 @@
 
         <div class="bg-slate-950/80 border border-amber-500/30 rounded-xl p-4 sm:p-5 space-y-2">
           <div class="text-xs font-bold text-amber-400 uppercase flex items-center">
-            <i data-lucide="sparkles" class="w-4 h-4 mr-1.5 no-print"></i>Executive Summary
+            <span>✨</span> <span class="ml-1">Executive Summary</span>
           </div>
           <p class="text-xs sm:text-sm text-slate-200 leading-relaxed" id="reportSummary">로딩 중...</p>
         </div>
 
         <div class="space-y-3">
           <h3 class="text-xs sm:text-sm font-bold text-white flex items-center">
-            <i data-lucide="activity" class="w-4 h-4 mr-2 text-amber-400 no-print"></i>24시간 핵심 마켓 드라이버
+            <span>📈</span> <span class="ml-1.5">24시간 핵심 마켓 드라이버</span>
           </h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="reportDrivers"></div>
         </div>
 
         <div class="space-y-3 border-t border-slate-800 pt-5">
           <h3 class="text-xs sm:text-sm font-bold text-white flex items-center">
-            <i data-lucide="shield-check" class="w-4 h-4 mr-2 text-emerald-400 no-print"></i>RISE ETF 포트폴리오 솔루션 제언
+            <span>🛡️</span> <span class="ml-1.5">RISE ETF 포트폴리오 솔루션 제언</span>
           </h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="reportSolutions"></div>
         </div>
@@ -332,7 +329,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-xl">
           <h3 class="text-xs sm:text-sm font-bold text-white mb-4 flex items-center">
-            <i data-lucide="trending-up" class="w-4 h-4 text-amber-400 mr-2"></i>주요 RISE 전략 ETF 3개월 수익률 비교 (%)
+            <span>📊</span> <span class="ml-1.5">주요 RISE 전략 ETF 3개월 수익률 비교 (%)</span>
           </h3>
           <div class="h-64 sm:h-72">
             <canvas id="perfChart"></canvas>
@@ -341,7 +338,7 @@
 
         <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-xl">
           <h3 class="text-xs sm:text-sm font-bold text-white mb-4 flex items-center">
-            <i data-lucide="pie-chart" class="w-4 h-4 text-amber-400 mr-2"></i>RISE 테마별 순자산(AUM) 비중
+            <span>🥧</span> <span class="ml-1.5">RISE 테마별 순자산(AUM) 비중</span>
           </h3>
           <div class="h-64 sm:h-72 flex items-center justify-center">
             <canvas id="volumeChart"></canvas>
@@ -356,7 +353,7 @@
   <div id="etfModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4 no-print">
     <div class="bg-slate-900 border border-amber-500/40 rounded-2xl max-w-xl w-full p-4 sm:p-6 space-y-4 shadow-2xl relative max-h-[90vh] overflow-y-auto">
       <button onclick="closeModal()" class="absolute right-3.5 top-3.5 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition">
-        <i data-lucide="x" class="w-5 h-5"></i>
+        ✕
       </button>
 
       <div class="border-b border-slate-800 pb-3 pr-8">
@@ -390,14 +387,14 @@
 
       <div class="space-y-1.5 bg-slate-950/60 p-3.5 rounded-xl border border-slate-800 text-xs">
         <div class="font-bold text-amber-400 flex items-center">
-          <i data-lucide="target" class="w-4 h-4 mr-1.5"></i>전략적 핵심 셀링 포인트 (Why RISE)
+          <span>🎯</span> <span class="ml-1.5">전략적 핵심 셀링 포인트 (Why RISE)</span>
         </div>
         <p class="text-slate-200 leading-relaxed text-xs" id="modalReason">-</p>
       </div>
 
       <div class="flex items-center justify-between pt-1">
         <button onclick="copySalesText()" class="flex items-center space-x-1.5 text-xs bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-3.5 py-2 rounded-xl shadow transition">
-          <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+          <span>📋</span>
           <span>고객 안내용 텍스트 복사</span>
         </button>
         <button onclick="closeModal()" class="text-xs text-slate-400 hover:text-white px-3 py-2">
@@ -414,9 +411,9 @@
 
   <!-- SCRIPT -->
   <script>
-    const reportsDB = {json.dumps(historical_reports, ensure_ascii=False)};
-    const breakingNewsDB = {json.dumps(breaking_news_db, ensure_ascii=False)};
-    let masterList = {json.dumps(etf_list, ensure_ascii=False)};
+    const reportsDB = {json.dumps(reportsDB, ensure_ascii=False)};
+    const breakingNewsDB = {json.dumps(breakingNewsDB, ensure_ascii=False)};
+    const masterList = {json.dumps(etf_list, ensure_ascii=False)};
 
     let currentDate = "2026-09-10";
     let currentMode = "all";
@@ -425,34 +422,34 @@
     let currentModalItem = null;
     let chartsInit = false;
 
-    function switchMainTab(tabId) {{
+    function switchMainTab(tabId) {
       document.getElementById("tab-explorer").classList.add("hidden");
       document.getElementById("tab-news").classList.add("hidden");
       document.getElementById("tab-report").classList.add("hidden");
       document.getElementById("tab-charts").classList.add("hidden");
 
-      document.getElementById("btn-tab-explorer").className = "py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-2";
-      document.getElementById("btn-tab-news").className = "py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-2";
-      document.getElementById("btn-tab-report").className = "py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-2";
-      document.getElementById("btn-tab-charts").className = "py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-2";
+      document.getElementById("btn-tab-explorer").className = "py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-1.5";
+      document.getElementById("btn-tab-news").className = "py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-1.5";
+      document.getElementById("btn-tab-report").className = "py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-1.5";
+      document.getElementById("btn-tab-charts").className = "py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-1.5";
 
       document.getElementById(tabId).classList.remove("hidden");
-      document.getElementById("btn-" + tabId).className = "py-3 px-1 tab-active flex items-center space-x-2";
+      document.getElementById("btn-" + tabId).className = "py-3 px-1 tab-active flex items-center space-x-1.5";
 
-      if (tabId === "tab-charts" && !chartsInit) {{
+      if (tabId === "tab-charts" && !chartsInit) {
         initCharts();
         chartsInit = true;
-      }}
-    }}
+      }
+    }
 
-    function onDateChange() {{
+    function onDateChange() {
       currentDate = document.getElementById("dateSelect").value;
       updateBriefing();
       renderNews();
       render();
-    }}
+    }
 
-    function updateBriefing() {{
+    function updateBriefing() {
       const d = reportsDB[currentDate];
       if (!d) return;
 
@@ -463,10 +460,10 @@
       document.getElementById("macroUsdKrw").innerText = d.macro.usdkrw;
       document.getElementById("macroDxy").innerText = d.macro.dxy;
 
-      const dateLabel = `${{d.date.slice(2).replace(/-/g, '/')}} 종가 기준`;
+      const dateLabel = `${d.date.slice(2).replace(/-/g, '/')} 종가 기준`;
       document.getElementById("briefDateBadge").innerText = dateLabel;
       document.getElementById("reportDateBadge").innerText = dateLabel;
-      document.getElementById("newsDateBadge").innerText = `${{dateLabel}} 속보 피드`;
+      document.getElementById("newsDateBadge").innerText = `${dateLabel} 속보 피드`;
 
       document.getElementById("briefHeadline").innerText = d.title;
       document.getElementById("briefTrigger").innerText = d.summary;
@@ -477,92 +474,92 @@
 
       const driversEl = document.getElementById("reportDrivers");
       driversEl.innerHTML = "";
-      d.drivers.forEach(dr => {{
+      d.drivers.forEach(dr => {
         driversEl.innerHTML += `
           <div class="bg-slate-950 p-3 sm:p-4 rounded-xl border border-slate-800 print-card">
-            <div class="font-bold text-amber-300 text-xs mb-1">${{dr.title}}</div>
-            <p class="text-xs text-slate-300 leading-relaxed">${{dr.desc}}</p>
+            <div class="font-bold text-amber-300 text-xs mb-1">${dr.title}</div>
+            <p class="text-xs text-slate-300 leading-relaxed">${dr.desc}</p>
           </div>
         `;
-      }});
+      });
 
       const solutionsEl = document.getElementById("reportSolutions");
       solutionsEl.innerHTML = "";
-      d.solutions.forEach(sol => {{
-        const points = sol.points.map(p => `<li class="text-slate-300">• ${{p}}</li>`).join("");
+      d.solutions.forEach(sol => {
+        const points = sol.points.map(p => `<li class="text-slate-300">• ${p}</li>`).join("");
         solutionsEl.innerHTML += `
           <div class="bg-slate-950 p-4 rounded-xl border border-amber-500/30 space-y-2 print-card">
-            <div class="text-[10px] text-amber-400 font-bold uppercase">${{sol.type}}</div>
-            <div class="font-bold text-white text-xs sm:text-sm">${{sol.name}}</div>
-            <ul class="text-xs space-y-1 mt-1">${{points}}</ul>
+            <div class="text-[10px] text-amber-400 font-bold uppercase">${sol.type}</div>
+            <div class="font-bold text-white text-xs sm:text-sm">${sol.name}</div>
+            <ul class="text-xs space-y-1 mt-1">${points}</ul>
           </div>
         `;
-      }});
-    }}
+      });
+    }
 
-    function filterNews(cat) {{
+    function filterNews(cat) {
       currentNewsCat = cat;
       document.querySelectorAll('.news-cat-btn').forEach(b => b.className = "news-cat-btn text-xs px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition flex-shrink-0");
       event.target.className = "news-cat-btn text-xs px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 font-bold transition flex-shrink-0";
       renderNews();
-    }}
+    }
 
-    function renderNews() {{
+    function renderNews() {
       const newsList = breakingNewsDB[currentDate] || [];
       const container = document.getElementById("newsContainer");
+      if (!container) return;
       container.innerHTML = "";
 
       const filtered = newsList.filter(n => currentNewsCat === "ALL" || n.tag.includes(currentNewsCat));
 
-      if (filtered.length === 0) {{
+      if (filtered.length === 0) {
         container.innerHTML = `<div class="p-8 text-center text-xs text-slate-500">해당 날짜의 속보 내역이 없습니다.</div>`;
         return;
-      }}
+      }
 
-      filtered.forEach(n => {{
-        const tagsHtml = (n.relatedNames || []).map((name, idx) => {{
+      filtered.forEach(n => {
+        const tagsHtml = (n.relatedNames || []).map((name, idx) => {
           const code = (n.relatedEtf || [])[idx] || "";
-          return `<span onclick="filterByEtfCode('${{code}}')" class="cursor-pointer bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded text-[10px] font-bold transition flex items-center mr-1.5 mb-1.5">
-            <i data-lucide="tag" class="w-3 h-3 mr-1"></i>${{name}} (${{code}})
+          return `<span onclick="filterByEtfCode('${code}')" class="cursor-pointer bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded text-[10px] font-bold transition flex items-center mr-1.5 mb-1.5">
+            <span class="mr-1">🏷️</span>${name} (${code})
           </span>`;
-        }}).join("");
+        }).join("");
 
         container.innerHTML += `
           <div class="bg-slate-950 p-4 sm:p-5 rounded-xl border border-slate-800/90 hover:border-amber-500/40 transition space-y-2.5">
             <div class="flex items-center justify-between text-xs">
               <div class="flex items-center space-x-2">
-                <span class="font-mono text-slate-400 font-bold">${{n.time}}</span>
-                <span class="px-2 py-0.5 rounded text-[10px] font-bold border ${{n.badgeColor}}">${{n.tag}}</span>
+                <span class="font-mono text-slate-400 font-bold">${n.time}</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold border ${n.badgeColor}">${n.tag}</span>
               </div>
-              <span class="text-[11px] text-slate-500">${{n.source}}</span>
+              <span class="text-[11px] text-slate-500">${n.source}</span>
             </div>
-            <h3 class="text-sm sm:text-base font-bold text-white leading-snug">${{n.headline}}</h3>
-            <p class="text-xs text-slate-300 leading-relaxed">${{n.summary}}</p>
+            <h3 class="text-sm sm:text-base font-bold text-white leading-snug">${n.headline}</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">${n.summary}</p>
             <div class="pt-2 border-t border-slate-800/80 flex flex-wrap items-center">
               <span class="text-[11px] text-slate-400 mr-2 font-semibold flex items-center mb-1.5">
-                <i data-lucide="sparkles" class="w-3 h-3 text-amber-400 mr-1"></i>수혜/연관 RISE ETF:
+                <span class="mr-1 text-amber-400">⚡</span>수혜/연관 RISE ETF:
               </span>
-              ${{tagsHtml}}
+              ${tagsHtml}
             </div>
           </div>
         `;
-      }});
+      });
 
-      if (filtered.length > 0) {{
+      if (filtered.length > 0) {
         document.getElementById("tickerTime").innerText = filtered[0].time;
         document.getElementById("tickerHeadline").innerText = filtered[0].headline;
-      }}
+      }
       document.getElementById("newsBadge").innerText = filtered.length;
-      lucide.createIcons();
-    }}
+    }
 
-    function filterByEtfCode(code) {{
+    function filterByEtfCode(code) {
       switchMainTab('tab-explorer');
       document.getElementById('keyword').value = code;
       render();
-    }}
+    }
 
-    function openModal(code) {{
+    function openModal(code) {
       const item = masterList.find(x => x.code === code);
       if (!item) return;
 
@@ -578,106 +575,108 @@
       document.getElementById("modalReason").innerText = item.reason || "시장 상황에 부합하는 대표 추천 라인업";
 
       document.getElementById("etfModal").classList.remove("hidden");
-    }}
+    }
 
-    function closeModal() {{
+    function closeModal() {
       document.getElementById("etfModal").classList.add("hidden");
-    }}
+    }
 
-    function copySalesText() {{
+    function copySalesText() {
       if (!currentModalItem) return;
       const text = `[RISE ETF 상품 안내]
-■ 종목명: ${{currentModalItem.name}} (${{currentModalItem.code}})
-■ 종가: ${{currentModalItem.price}}원 (괴리율: ${{currentModalItem.disparity}})
-■ 총보수(TER): ${{currentModalItem.ter}} / 분배주기: ${{currentModalItem.cycle}}
-■ 성과: 1D(${{currentModalItem.ret1d}}) | 3M(${{currentModalItem.ret3m}}) | YTD(${{currentModalItem.retYtd}})
-■ 퇴직연금 편입한도: ${{currentModalItem.pension100 ? "100% 안전자산 적격" : "위험자산 70% 한도"}}
-■ 핵심 전략: ${{currentModalItem.reason}}
-■ 기준일: ${{currentModalItem.baseDate}}`;
+■ 종목명: ${currentModalItem.name} (${currentModalItem.code})
+■ 종가: ${currentModalItem.price}원 (괴리율: ${currentModalItem.disparity})
+■ 총보수(TER): ${currentModalItem.ter} / 분배주기: ${currentModalItem.cycle}
+■ 성과: 1D(${currentModalItem.ret1d}) | 3M(${currentModalItem.ret3m}) | YTD(${currentModalItem.retYtd})
+■ 퇴직연금 편입한도: ${currentModalItem.pension100 ? "100% 안전자산 적격" : "위험자산 70% 한도"}
+■ 핵심 전략: ${currentModalItem.reason}
+■ 기준일: ${currentModalItem.baseDate}`;
 
-      navigator.clipboard.writeText(text).then(() => {{
+      navigator.clipboard.writeText(text).then(() => {
         alert("📋 고객 안내용 텍스트가 클립보드에 복사되었습니다. 메신저나 이메일에 붙여넣기 하세요!");
-      }});
-    }}
+      });
+    }
 
-    function initCharts() {{
+    function initCharts() {
+      if (typeof Chart === 'undefined') return;
       const ctxPerf = document.getElementById("perfChart").getContext("2d");
-      new Chart(ctxPerf, {{
+      new Chart(ctxPerf, {
         type: "bar",
-        data: {{
+        data: {
           labels: ["삼전SK50", "미국AI", "전력인프라", "RISE 200", "원자력", "조선TOP5", "방산", "버크셔"],
-          datasets: [{{
+          datasets: [{
             data: [4.8, 15.2, 22.4, 18.4, 28.6, 44.1, 31.2, 8.9],
             backgroundColor: ["#F59E0B", "#F59E0B", "#F59E0B", "#F59E0B", "#F59E0B", "#F59E0B", "#F59E0B", "#F59E0B"],
             borderRadius: 6
-          }}]
-        }},
-        options: {{
+          }]
+        },
+        options: {
           responsive: true,
           maintainAspectRatio: false,
-          plugins: {{ legend: {{ display: false }} }},
-          scales: {{
-            y: {{ grid: {{ color: "#334155" }}, ticks: {{ color: "#94A3B8" }} }},
-            x: {{ grid: {{ display: false }}, ticks: {{ color: "#94A3B8" }} }}
-          }}
-        }}
-      }});
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { grid: { color: "#334155" }, ticks: { color: "#94A3B8" } },
+            x: { grid: { display: false }, ticks: { color: "#94A3B8" } }
+          }
+        }
+      });
 
       const ctxVol = document.getElementById("volumeChart").getContext("2d");
-      new Chart(ctxVol, {{
+      new Chart(ctxVol, {
         type: "doughnut",
-        data: {{
+        data: {
           labels: ["단기채/머니마켓", "시장대표지수(200)", "AI/반도체", "전력/원전/조선", "커버드콜/배당"],
-          datasets: [{{
+          datasets: [{
             data: [42, 24, 15, 12, 7],
             backgroundColor: ["#10B981", "#3B82F6", "#F59E0B", "#6366F1", "#EC4899"],
             borderWidth: 0
-          }}]
-        }},
-        options: {{
+          }]
+        },
+        options: {
           responsive: true,
           maintainAspectRatio: false,
-          plugins: {{
-            legend: {{ position: "bottom", labels: {{ color: "#CBD5E1", font: {{ size: 11 }} }} }}
-          }}
-        }}
-      }});
-    }}
+          plugins: {
+            legend: { position: "bottom", labels: { color: "#CBD5E1", font: { size: 11 } } }
+          }
+        }
+      });
+    }
 
-    function switchView(mode) {{
+    function switchView(mode) {
       currentMode = mode;
       document.getElementById('btnAll').className = mode === 'all' ? "px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 bg-amber-500 text-slate-950 shadow-md" : "px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-semibold transition flex items-center space-x-1.5 text-slate-400 hover:text-white";
       document.getElementById('btnFocus').className = mode === 'focus' ? "px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 bg-amber-500 text-slate-950 shadow-md" : "px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-semibold transition flex items-center space-x-1.5 text-slate-400 hover:text-white";
       render();
-    }}
+    }
 
-    function filterCat(cat) {{
+    function filterCat(cat) {
       currentCat = cat;
       document.querySelectorAll('.cat-btn').forEach(b => b.className = "cat-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition flex-shrink-0");
       event.target.className = "cat-btn text-xs px-2.5 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold transition flex-shrink-0";
       render();
-    }}
+    }
 
-    function render() {{
+    function render() {
       const rep = reportsDB[currentDate];
       const focusSet = new Set(rep ? rep.focusCodes : []);
 
       const q = document.getElementById('keyword').value.toLowerCase();
       const pensionOnly = document.getElementById('chkPension').checked;
 
-      const filtered = masterList.filter(item => {{
+      const filtered = masterList.filter(item => {
         const isFocus = focusSet.has(item.code);
         if (currentMode === 'focus' && !isFocus) return false;
         if (currentCat !== 'ALL' && !item.category.includes(currentCat)) return false;
         if (pensionOnly && !item.pension100) return false;
         if (q && !item.name.toLowerCase().includes(q) && !item.code.includes(q)) return false;
         return true;
-      }});
+      });
 
       const tbody = document.getElementById('tableBody');
+      if (!tbody) return;
       tbody.innerHTML = "";
 
-      filtered.forEach(item => {{
+      filtered.forEach(item => {
         const isFocus = focusSet.has(item.code);
         const reason = rep && rep.focusReasons ? (rep.focusReasons[item.code] || "") : "";
         const isUp = item.ret1d && item.ret1d.startsWith('+');
@@ -688,75 +687,71 @@
           ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">100% 안전</span>`
           : `<span class="px-2 py-0.5 rounded text-[10px] text-slate-400">70% 한도</span>`;
         const riseTag = `<span class="ml-1 px-1.5 py-0.5 rounded text-[9px] bg-amber-500/20 text-amber-300 border border-amber-500/30 font-extrabold">RISE</span>`;
-        const reasonTag = isFocus && reason ? `<div class="text-[11px] text-amber-400/90 mt-0.5 font-medium">${{reason}}</div>` : "";
+        const reasonTag = isFocus && reason ? `<div class="text-[11px] text-amber-400/90 mt-0.5 font-medium">${reason}</div>` : "";
 
         tbody.innerHTML += `
-          <tr class="${{trClass}}" onclick="openModal('${{item.code}}')">
-            <td class="py-2.5 sm:py-3 px-3 text-center select-none" onclick="event.stopPropagation(); toggleFocus('${{item.code}}')">
-              <span class="${{starColor}} text-sm">★</span>
+          <tr class="${trClass}" onclick="openModal('${item.code}')">
+            <td class="py-2.5 sm:py-3 px-3 text-center select-none" onclick="event.stopPropagation(); toggleFocus('${item.code}')">
+              <span class="${starColor} text-sm">★</span>
             </td>
-            <td class="py-2.5 sm:py-3 px-3 font-mono text-slate-300 text-[11px] font-bold">${{item.code}}</td>
+            <td class="py-2.5 sm:py-3 px-3 font-mono text-slate-300 text-[11px] font-bold">${item.code}</td>
             <td class="py-2.5 sm:py-3 px-3">
-              <div class="font-bold text-white flex items-center hover:text-amber-300 transition">${{item.name}} ${{riseTag}}</div>
-              ${{reasonTag}}
+              <div class="font-bold text-white flex items-center hover:text-amber-300 transition">${item.name} ${riseTag}</div>
+              ${reasonTag}
             </td>
-            <td class="py-2.5 sm:py-3 px-3 text-slate-400 text-[11px]">${{item.category}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-center font-mono text-slate-300 text-[11px]">${{item.ter}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-center font-mono text-amber-300/90 text-[11px]">${{item.cycle}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono font-bold text-white">${{item.price}}원</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${{item.nav}}원</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono font-semibold text-amber-300">${{item.disparity}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono font-semibold ${{color}}">${{item.ret1d}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${{item.ret1w}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${{item.ret1m}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono font-bold text-emerald-400">${{item.ret3m}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${{item.ret6m}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono font-semibold text-amber-300">${{item.retYtd}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${{item.retInc}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-center">${{badge}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${{item.vol}} 백만</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${{item.aum}} 억</td>
-            <td class="py-2.5 sm:py-3 px-3 text-center font-mono text-[10px] text-slate-400">${{item.baseDate}}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-slate-400 text-[11px]">${item.category}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-center font-mono text-slate-300 text-[11px]">${item.ter}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-center font-mono text-amber-300/90 text-[11px]">${item.cycle}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono font-bold text-white">${item.price}원</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${item.nav}원</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono font-semibold text-amber-300">${item.disparity}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono font-semibold ${color}">${item.ret1d}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${item.ret1w}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${item.ret1m}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono font-bold text-emerald-400">${item.ret3m}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${item.ret6m}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono font-semibold text-amber-300">${item.retYtd}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${item.retInc}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-center">${badge}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${item.vol} 백만</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${item.aum} 억</td>
+            <td class="py-2.5 sm:py-3 px-3 text-center font-mono text-[10px] text-slate-400">${item.baseDate}</td>
           </tr>
         `;
-      }});
+      });
 
       document.getElementById('focusCount').innerText = rep ? rep.focusCodes.length : 0;
       document.getElementById('allCount').innerText = masterList.length;
       document.getElementById('tabCount').innerText = masterList.length;
-      document.getElementById('statText').innerText = `RISE 전종목 ${{masterList.length}}개 중 ${{filtered.length}}개 표시 중 (${{currentDate.slice(2).replace(/-/g, '/')}} 종가 기준)`;
-    }}
+      document.getElementById('statText').innerText = `RISE 전종목 ${masterList.length}개 중 ${filtered.length}개 표시 중 (${currentDate.slice(2).replace(/-/g, '/')} 종가 기준)`;
+    }
 
-    function toggleFocus(code) {{
+    function toggleFocus(code) {
       const rep = reportsDB[currentDate];
       if (!rep) return;
       const idx = rep.focusCodes.indexOf(code);
-      if (idx > -1) {{
+      if (idx > -1) {
         rep.focusCodes.splice(idx, 1);
         delete rep.focusReasons[code];
-      }} else {{
+      } else {
         rep.focusCodes.push(code);
         rep.focusReasons[code] = "🔥 사용자 지정 포커스 종목";
-      }}
+      }
       render();
-    }}
+    }
 
-    window.onload = () => {{
-      lucide.createIcons();
-      updateBriefing();
-      renderNews();
-      render();
-    }};
+    // 즉각 무조건 실행 (Zero-Dependency & Fail-Safe)
+    function initApp() {
+      try { updateBriefing(); } catch(e) { console.error('updateBriefing err:', e); }
+      try { renderNews(); } catch(e) { console.error('renderNews err:', e); }
+      try { render(); } catch(e) { console.error('render err:', e); }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initApp);
+    } else {
+      initApp();
+    }
   </script>
 </body>
 </html>
-"""
-
-with open('/working_dir/c_74aa45c09ffd7e70/index.html', 'w', encoding='utf-8') as f:
-    f.write(html_v7)
-
-print("Saved upgraded index.html with Breaking News and Audited Tickers! Size:", len(html_v7))
-EOF
-python3 /working_dir/c_74aa45c09ffd7e70/build_portal_v7.py
-}
-}
