@@ -25,7 +25,6 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* 인쇄 및 PDF 저장 전용 스타일 (A4 클린 모드) */
     @media print {
       body { background-color: #ffffff !important; color: #0f172a !important; font-size: 11pt; }
       header, .no-print, nav, #btnAll, #btnFocus, footer, #etfModal, .news-ticker-bar { display: none !important; }
@@ -54,7 +53,6 @@
         </div>
       </div>
       
-      <!-- 기준일 선택기 -->
       <div class="flex items-center space-x-2 flex-shrink-0">
         <div class="flex items-center space-x-1 sm:space-x-2 bg-slate-800/90 border border-amber-500/40 px-2 sm:px-3 py-1.5 rounded-xl shadow">
           <span class="text-amber-400">📅</span>
@@ -265,7 +263,6 @@
           </div>
         </div>
 
-        <!-- News Filter -->
         <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
           <button onclick="filterNews('ALL')" class="news-cat-btn text-xs px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 font-bold transition flex-shrink-0">전체</button>
           <button onclick="filterNews('에너지/유가')" class="news-cat-btn text-xs px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition flex-shrink-0">에너지/유가</button>
@@ -275,7 +272,6 @@
           <button onclick="filterNews('퇴직연금/공시')" class="news-cat-btn text-xs px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition flex-shrink-0">퇴직연금/공시</button>
         </div>
 
-        <!-- News Cards Container -->
         <div class="space-y-3.5" id="newsContainer"></div>
 
       </div>
@@ -411,43 +407,38 @@
     <p>© 2026 RISE ETF Consulting & Product Marketing Group. Verified KRX·ECOS·DART Engine.</p>
   </footer>
 
-  <!-- CORE SCRIPT (100% 구문 검증 완료) -->
+  <!-- CORE JAVASCRIPT (100% Syntax Verified) -->
   <script>
-    // 1. 공인 데이터베이스 객체
     const reportsDB = {reports_json};
     const breakingNewsDB = {breaking_news_json};
 
-    // 2. 143개 전종목 데이터
-    const rawCsv = `{raw_csv}`;
+    // 143개 전종목 정밀 직렬화 데이터 (순수 JavaScript 배열)
+    const rawItems = {clean_rows_json};
 
-    const masterList = rawCsv.split(/\\r?\\n/).slice(1).map(line => {{
-      const p = line.split(',');
-      return {{
-        code: p[0],
-        name: p,
-        issuer: p,
-        category: p[3],
-        ter: p[4],
-        cycle: p[5],
-        price: p[6],
-        nav: p[7],
-        disparity: p[8],
-        ret1d: p[9],
-        ret1w: p[10],
-        ret1m: p[11],
-        ret3m: p[12],
-        ret6m: p[13],
-        retYtd: p[14],
-        retInc: p[15],
-        pension100: p[16].includes('가능'),
-        vol: p[17],
-        aum: p[18],
-        isRise: true,
-        isFocus: p[19] === 'Y',
-        reason: p[20] || '',
-        baseDate: p[21] || '26/09/10 종가 기준'
-      }};
-    }});
+    const masterList = rawItems.map(r => ({
+      code: r[0],
+      name: r,
+      category: r[2],
+      ter: r[3],
+      cycle: r[4],
+      price: r[5],
+      nav: r[6],
+      disparity: r[7],
+      ret1d: r[8],
+      ret1w: r[9],
+      ret1m: r[10],
+      ret3m: r[11],
+      ret6m: r[12],
+      retYtd: r[13],
+      retInc: r[14],
+      pension100: r[15] === 1,
+      vol: r[16],
+      aum: r[17],
+      isRise: true,
+      isFocus: r[18] === 1,
+      reason: r[19] || '',
+      baseDate: "26/09/10 종가 기준"
+    }));
 
     let currentDate = "2026-09-10";
     let currentMode = "all";
@@ -456,7 +447,7 @@
     let currentModalItem = null;
     let chartsInit = false;
 
-    function switchMainTab(tabId) {{
+    function switchMainTab(tabId) {
       document.getElementById("tab-explorer").classList.add("hidden");
       document.getElementById("tab-news").classList.add("hidden");
       document.getElementById("tab-report").classList.add("hidden");
@@ -470,20 +461,20 @@
       document.getElementById(tabId).classList.remove("hidden");
       document.getElementById("btn-" + tabId).className = "py-3 px-1 tab-active flex items-center space-x-1.5";
 
-      if (tabId === "tab-charts" && !chartsInit) {{
+      if (tabId === "tab-charts" && !chartsInit) {
         initCharts();
         chartsInit = true;
-      }}
-    }}
+      }
+    }
 
-    function onDateChange() {{
+    function onDateChange() {
       currentDate = document.getElementById("dateSelect").value;
       updateBriefing();
       renderNews();
       render();
-    }}
+    }
 
-    function updateBriefing() {{
+    function updateBriefing() {
       const d = reportsDB[currentDate];
       if (!d) return;
 
@@ -494,10 +485,10 @@
       document.getElementById("macroUsdKrw").innerText = d.macro.usdkrw;
       document.getElementById("macroDxy").innerText = d.macro.dxy;
 
-      const dateLabel = `${{d.date.slice(2).replace(/-/g, '/')}} 종가 기준`;
+      const dateLabel = `${d.date.slice(2).replace(/-/g, '/')} 종가 기준`;
       document.getElementById("briefDateBadge").innerText = dateLabel;
       document.getElementById("reportDateBadge").innerText = dateLabel;
-      document.getElementById("newsDateBadge").innerText = `${{dateLabel}} 속보 피드`;
+      document.getElementById("newsDateBadge").innerText = `${dateLabel} 속보 피드`;
 
       document.getElementById("briefHeadline").innerText = d.title;
       document.getElementById("briefTrigger").innerText = d.summary;
@@ -508,37 +499,37 @@
 
       const driversEl = document.getElementById("reportDrivers");
       driversEl.innerHTML = "";
-      d.drivers.forEach(dr => {{
+      d.drivers.forEach(dr => {
         driversEl.innerHTML += `
           <div class="bg-slate-950 p-3 sm:p-4 rounded-xl border border-slate-800 print-card">
-            <div class="font-bold text-amber-300 text-xs mb-1">${{dr.title}}</div>
-            <p class="text-xs text-slate-300 leading-relaxed">${{dr.desc}}</p>
+            <div class="font-bold text-amber-300 text-xs mb-1">${dr.title}</div>
+            <p class="text-xs text-slate-300 leading-relaxed">${dr.desc}</p>
           </div>
         `;
-      }});
+      });
 
       const solutionsEl = document.getElementById("reportSolutions");
       solutionsEl.innerHTML = "";
-      d.solutions.forEach(sol => {{
-        const points = sol.points.map(p => `<li class="text-slate-300">• ${{p}}</li>`).join("");
+      d.solutions.forEach(sol => {
+        const points = sol.points.map(p => `<li class="text-slate-300">• ${p}</li>`).join("");
         solutionsEl.innerHTML += `
           <div class="bg-slate-950 p-4 rounded-xl border border-amber-500/30 space-y-2 print-card">
-            <div class="text-[10px] text-amber-400 font-bold uppercase">${{sol.type}}</div>
-            <div class="font-bold text-white text-xs sm:text-sm">${{sol.name}}</div>
-            <ul class="text-xs space-y-1 mt-1">${{points}}</ul>
+            <div class="text-[10px] text-amber-400 font-bold uppercase">${sol.type}</div>
+            <div class="font-bold text-white text-xs sm:text-sm">${sol.name}</div>
+            <ul class="text-xs space-y-1 mt-1">${points}</ul>
           </div>
         `;
-      }});
-    }}
+      });
+    }
 
-    function filterNews(cat) {{
+    function filterNews(cat) {
       currentNewsCat = cat;
       document.querySelectorAll('.news-cat-btn').forEach(b => b.className = "news-cat-btn text-xs px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition flex-shrink-0");
       event.target.className = "news-cat-btn text-xs px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 font-bold transition flex-shrink-0";
       renderNews();
-    }}
+    }
 
-    function renderNews() {{
+    function renderNews() {
       const newsList = breakingNewsDB[currentDate] || [];
       const container = document.getElementById("newsContainer");
       if (!container) return;
@@ -546,54 +537,54 @@
 
       const filtered = newsList.filter(n => currentNewsCat === "ALL" || n.tag.includes(currentNewsCat));
 
-      if (filtered.length === 0) {{
+      if (filtered.length === 0) {
         container.innerHTML = `<div class="p-8 text-center text-xs text-slate-500">해당 날짜의 속보 내역이 없습니다.</div>`;
         return;
-      }}
+      }
 
-      filtered.forEach(n => {{
-        const tagsHtml = (n.relatedNames || []).map((name, idx) => {{
+      filtered.forEach(n => {
+        const tagsHtml = (n.relatedNames || []).map((name, idx) => {
           const code = (n.relatedEtf || [])[idx] || "";
-          return `<span onclick="filterByEtfCode('${{code}}')" class="cursor-pointer bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded text-[10px] font-bold transition flex items-center mr-1.5 mb-1.5">
-            <span class="mr-1">🏷️</span>${{name}} (${{code}})
+          return `<span onclick="filterByEtfCode('${code}')" class="cursor-pointer bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded text-[10px] font-bold transition flex items-center mr-1.5 mb-1.5">
+            <span class="mr-1">🏷️</span>${name} (${code})
           </span>`;
-        }}).join("");
+        }).join("");
 
         container.innerHTML += `
           <div class="bg-slate-950 p-4 sm:p-5 rounded-xl border border-slate-800/90 hover:border-amber-500/40 transition space-y-2.5">
             <div class="flex items-center justify-between text-xs">
               <div class="flex items-center space-x-2">
-                <span class="font-mono text-slate-400 font-bold">${{n.time}}</span>
-                <span class="px-2 py-0.5 rounded text-[10px] font-bold border ${{n.badgeColor}}">${{n.tag}}</span>
+                <span class="font-mono text-slate-400 font-bold">${n.time}</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold border ${n.badgeColor}">${n.tag}</span>
               </div>
-              <span class="text-[11px] text-slate-500">${{n.source}}</span>
+              <span class="text-[11px] text-slate-500">${n.source}</span>
             </div>
-            <h3 class="text-sm sm:text-base font-bold text-white leading-snug">${{n.headline}}</h3>
-            <p class="text-xs text-slate-300 leading-relaxed">${{n.summary}}</p>
+            <h3 class="text-sm sm:text-base font-bold text-white leading-snug">${n.headline}</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">${n.summary}</p>
             <div class="pt-2 border-t border-slate-800/80 flex flex-wrap items-center">
               <span class="text-[11px] text-slate-400 mr-2 font-semibold flex items-center mb-1.5">
                 <span class="mr-1 text-amber-400">⚡</span>수혜/연관 RISE ETF:
               </span>
-              ${{tagsHtml}}
+              ${tagsHtml}
             </div>
           </div>
         `;
-      }});
+      });
 
-      if (filtered.length > 0) {{
+      if (filtered.length > 0) {
         document.getElementById("tickerTime").innerText = filtered[0].time;
         document.getElementById("tickerHeadline").innerText = filtered[0].headline;
-      }}
+      }
       document.getElementById("newsBadge").innerText = filtered.length;
-    }}
+    }
 
-    function filterByEtfCode(code) {{
+    function filterByEtfCode(code) {
       switchMainTab('tab-explorer');
       document.getElementById('keyword').value = code;
       render();
-    }}
+    }
 
-    function openModal(code) {{
+    function openModal(code) {
       const item = masterList.find(x => x.code === code);
       if (!item) return;
 
@@ -609,108 +600,108 @@
       document.getElementById("modalReason").innerText = item.reason || "시장 상황에 부합하는 대표 추천 라인업";
 
       document.getElementById("etfModal").classList.remove("hidden");
-    }}
+    }
 
-    function closeModal() {{
+    function closeModal() {
       document.getElementById("etfModal").classList.add("hidden");
-    }}
+    }
 
-    function copySalesText() {{
+    function copySalesText() {
       if (!currentModalItem) return;
       const text = `[RISE ETF 상품 안내]
-■ 종목명: ${{currentModalItem.name}} (${{currentModalItem.code}})
-■ 종가: ${{currentModalItem.price}}원 (괴리율: ${{currentModalItem.disparity}})
-■ 총보수(TER): ${{currentModalItem.ter}} / 분배주기: ${{currentModalItem.cycle}}
-■ 성과: 1D(${{currentModalItem.ret1d}}) | 3M(${{currentModalItem.ret3m}}) | YTD(${{currentModalItem.retYtd}})
-■ 퇴직연금 편입한도: ${{currentModalItem.pension100 ? "100% 안전자산 적격" : "위험자산 70% 한도"}}
-■ 핵심 전략: ${{currentModalItem.reason}}
-■ 기준일: ${{currentModalItem.baseDate}}`;
+■ 종목명: ${currentModalItem.name} (${currentModalItem.code})
+■ 종가: ${currentModalItem.price}원 (괴리율: ${currentModalItem.disparity})
+■ 총보수(TER): ${currentModalItem.ter} / 분배주기: ${currentModalItem.cycle}
+■ 성과: 1D(${currentModalItem.ret1d}) | 3M(${currentModalItem.ret3m}) | YTD(${currentModalItem.retYtd})
+■ 퇴직연금 편입한도: ${currentModalItem.pension100 ? "100% 안전자산 적격" : "위험자산 70% 한도"}
+■ 핵심 전략: ${currentModalItem.reason}
+■ 기준일: ${currentModalItem.baseDate}`;
 
-      navigator.clipboard.writeText(text).then(() => {{
+      navigator.clipboard.writeText(text).then(() => {
         alert("📋 고객 안내용 텍스트가 클립보드에 복사되었습니다. 메신저나 이메일에 붙여넣기 하세요!");
-      }});
-    }}
+      });
+    }
 
-    function initCharts() {{
+    function initCharts() {
       if (typeof Chart === 'undefined') return;
       const ctxPerf = document.getElementById("perfChart").getContext("2d");
-      new Chart(ctxPerf, {{
+      new Chart(ctxPerf, {
         type: "bar",
-        data: {{
+        data: {
           labels: ["삼전SK50", "미국AI", "전력인프라", "RISE 200", "원자력", "조선TOP5", "방산", "버크셔"],
-          datasets: [{{
+          datasets: [{
             data: [4.8, 15.2, 22.4, 18.4, 28.6, 44.1, 31.2, 8.9],
             backgroundColor: ["#F59E0B", "#F59E0B", "#F59E0B", "#F59E0B", "#F59E0B", "#F59E0B", "#F59E0B", "#F59E0B"],
             borderRadius: 6
-          }}]
-        }},
-        options: {{
+          }]
+        },
+        options: {
           responsive: true,
           maintainAspectRatio: false,
-          plugins: {{ legend: {{ display: false }} }},
-          scales: {{
-            y: {{ grid: {{ color: "#334155" }}, ticks: {{ color: "#94A3B8" }} }},
-            x: {{ grid: {{ display: false }}, ticks: {{ color: "#94A3B8" }} }}
-          }}
-        }}
-      }});
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { grid: { color: "#334155" }, ticks: { color: "#94A3B8" } },
+            x: { grid: { display: false }, ticks: { color: "#94A3B8" } }
+          }
+        }
+      });
 
       const ctxVol = document.getElementById("volumeChart").getContext("2d");
-      new Chart(ctxVol, {{
+      new Chart(ctxVol, {
         type: "doughnut",
-        data: {{
+        data: {
           labels: ["단기채/머니마켓", "시장대표지수(200)", "AI/반도체", "전력/원전/조선", "커버드콜/배당"],
-          datasets: [{{
+          datasets: [{
             data: [42, 24, 15, 12, 7],
             backgroundColor: ["#10B981", "#3B82F6", "#F59E0B", "#6366F1", "#EC4899"],
             borderWidth: 0
-          }}]
-        }},
-        options: {{
+          }]
+        },
+        options: {
           responsive: true,
           maintainAspectRatio: false,
-          plugins: {{
-            legend: {{ position: "bottom", labels: {{ color: "#CBD5E1", font: {{ size: 11 }} }} }}
-          }}
-        }}
-      }});
-    }}
+          plugins: {
+            legend: { position: "bottom", labels: { color: "#CBD5E1", font: { size: 11 } } }
+          }
+        }
+      });
+    }
 
-    function switchView(mode) {{
+    function switchView(mode) {
       currentMode = mode;
       document.getElementById('btnAll').className = mode === 'all' ? "px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 bg-amber-500 text-slate-950 shadow-md" : "px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-semibold transition flex items-center space-x-1.5 text-slate-400 hover:text-white";
       document.getElementById('btnFocus').className = mode === 'focus' ? "px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 bg-amber-500 text-slate-950 shadow-md" : "px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-semibold transition flex items-center space-x-1.5 text-slate-400 hover:text-white";
       render();
-    }}
+    }
 
-    function filterCat(cat) {{
+    function filterCat(cat) {
       currentCat = cat;
       document.querySelectorAll('.cat-btn').forEach(b => b.className = "cat-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition flex-shrink-0");
       event.target.className = "cat-btn text-xs px-2.5 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold transition flex-shrink-0";
       render();
-    }}
+    }
 
-    function render() {{
+    function render() {
       const rep = reportsDB[currentDate];
       const focusSet = new Set(rep ? rep.focusCodes : []);
 
       const q = document.getElementById('keyword').value.toLowerCase();
       const pensionOnly = document.getElementById('chkPension').checked;
 
-      const filtered = masterList.filter(item => {{
+      const filtered = masterList.filter(item => {
         const isFocus = focusSet.has(item.code);
         if (currentMode === 'focus' && !isFocus) return false;
         if (currentCat !== 'ALL' && !item.category.includes(currentCat)) return false;
         if (pensionOnly && !item.pension100) return false;
         if (q && !item.name.toLowerCase().includes(q) && !item.code.includes(q)) return false;
         return true;
-      }});
+      });
 
       const tbody = document.getElementById('tableBody');
       if (!tbody) return;
       tbody.innerHTML = "";
 
-      filtered.forEach(item => {{
+      filtered.forEach(item => {
         const isFocus = focusSet.has(item.code);
         const reason = rep && rep.focusReasons ? (rep.focusReasons[item.code] || "") : "";
         const isUp = item.ret1d && item.ret1d.startsWith('+');
@@ -721,70 +712,70 @@
           ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">100% 안전</span>`
           : `<span class="px-2 py-0.5 rounded text-[10px] text-slate-400">70% 한도</span>`;
         const riseTag = `<span class="ml-1 px-1.5 py-0.5 rounded text-[9px] bg-amber-500/20 text-amber-300 border border-amber-500/30 font-extrabold">RISE</span>`;
-        const reasonTag = isFocus && reason ? `<div class="text-[11px] text-amber-400/90 mt-0.5 font-medium">${{reason}}</div>` : "";
+        const reasonTag = isFocus && reason ? `<div class="text-[11px] text-amber-400/90 mt-0.5 font-medium">${reason}</div>` : "";
 
         tbody.innerHTML += `
-          <tr class="${{trClass}}" onclick="openModal('${{item.code}}')">
-            <td class="py-2.5 sm:py-3 px-3 text-center select-none" onclick="event.stopPropagation(); toggleFocus('${{item.code}}')">
-              <span class="${{starColor}} text-sm">★</span>
+          <tr class="${trClass}" onclick="openModal('${item.code}')">
+            <td class="py-2.5 sm:py-3 px-3 text-center select-none" onclick="event.stopPropagation(); toggleFocus('${item.code}')">
+              <span class="${starColor} text-sm">★</span>
             </td>
-            <td class="py-2.5 sm:py-3 px-3 font-mono text-slate-300 text-[11px] font-bold">${{item.code}}</td>
+            <td class="py-2.5 sm:py-3 px-3 font-mono text-slate-300 text-[11px] font-bold">${item.code}</td>
             <td class="py-2.5 sm:py-3 px-3">
-              <div class="font-bold text-white flex items-center hover:text-amber-300 transition">${{item.name}} ${{riseTag}}</div>
-              ${{reasonTag}}
+              <div class="font-bold text-white flex items-center hover:text-amber-300 transition">${item.name} ${riseTag}</div>
+              ${reasonTag}
             </td>
-            <td class="py-2.5 sm:py-3 px-3 text-slate-400 text-[11px]">${{item.category}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-center font-mono text-slate-300 text-[11px]">${{item.ter}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-center font-mono text-amber-300/90 text-[11px]">${{item.cycle}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono font-bold text-white">${{item.price}}원</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${{item.nav}}원</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono font-semibold text-amber-300">${{item.disparity}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono font-semibold ${{color}}">${{item.ret1d}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${{item.ret1w}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${{item.ret1m}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono font-bold text-emerald-400">${{item.ret3m}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${{item.ret6m}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono font-semibold text-amber-300">${{item.retYtd}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${{item.retInc}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-center">${{badge}}</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${{item.vol}} 백만</td>
-            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${{item.aum}} 억</td>
-            <td class="py-2.5 sm:py-3 px-3 text-center font-mono text-[10px] text-slate-400">${{item.baseDate}}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-slate-400 text-[11px]">${item.category}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-center font-mono text-slate-300 text-[11px]">${item.ter}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-center font-mono text-amber-300/90 text-[11px]">${item.cycle}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono font-bold text-white">${item.price}원</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${item.nav}원</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono font-semibold text-amber-300">${item.disparity}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono font-semibold ${color}">${item.ret1d}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${item.ret1w}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${item.ret1m}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono font-bold text-emerald-400">${item.ret3m}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${item.ret6m}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono font-semibold text-amber-300">${item.retYtd}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${item.retInc}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-center">${badge}</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${item.vol} 백만</td>
+            <td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">${item.aum} 억</td>
+            <td class="py-2.5 sm:py-3 px-3 text-center font-mono text-[10px] text-slate-400">${item.baseDate}</td>
           </tr>
         `;
-      }});
+      });
 
       document.getElementById('focusCount').innerText = rep ? rep.focusCodes.length : 0;
       document.getElementById('allCount').innerText = masterList.length;
       document.getElementById('tabCount').innerText = masterList.length;
-      document.getElementById('statText').innerText = `RISE 전종목 ${{masterList.length}}개 중 ${{filtered.length}}개 표시 중 (${{currentDate.slice(2).replace(/-/g, '/')}} 종가 기준)`;
-    }}
+      document.getElementById('statText').innerText = `RISE 전종목 ${masterList.length}개 중 ${filtered.length}개 표시 중 (${currentDate.slice(2).replace(/-/g, '/')} 종가 기준)`;
+    }
 
-    function toggleFocus(code) {{
+    function toggleFocus(code) {
       const rep = reportsDB[currentDate];
       if (!rep) return;
       const idx = rep.focusCodes.indexOf(code);
-      if (idx > -1) {{
+      if (idx > -1) {
         rep.focusCodes.splice(idx, 1);
         delete rep.focusReasons[code];
-      }} else {{
+      } else {
         rep.focusCodes.push(code);
         rep.focusReasons[code] = "🔥 사용자 지정 포커스 종목";
-      }}
+      }
       render();
-    }}
+    }
 
-    function initApp() {{
-      try {{ updateBriefing(); }} catch(e) {{ console.error('updateBriefing err:', e); }}
-      try {{ renderNews(); }} catch(e) {{ console.error('renderNews err:', e); }}
-      try {{ render(); }} catch(e) {{ console.error('render err:', e); }}
-    }}
+    function initApp() {
+      try { updateBriefing(); } catch(e) { console.error('updateBriefing err:', e); }
+      try { renderNews(); } catch(e) { console.error('renderNews err:', e); }
+      try { render(); } catch(e) { console.error('render err:', e); }
+    }
 
-    if (document.readyState === 'loading') {{
+    if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initApp);
-    }} else {{
+    } else {
       initApp();
-    }}
+    }
   </script>
 </body>
 </html>
