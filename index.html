@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -25,62 +25,64 @@
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
     @media print {
-      body { background-color: #ffffff !important; color: #0f172a !important; font-size: 11pt; }
-      header, .no-print, nav, #btnAll, #btnFocus, footer, #etfModal, .news-ticker-bar { display: none !important; }
-      #tab-report { display: block !important; padding: 0 !important; margin: 0 !important; }
-      .print-card { background: #f8fafc !important; border: 1px solid #cbd5e1 !important; color: #0f172a !important; break-inside: avoid; }
-      .text-white { color: #0f172a !important; }
-      .text-slate-200, .text-slate-300, .text-slate-400 { color: #334155 !important; }
-      .bg-slate-900, .bg-slate-950 { background: #ffffff !important; border: 1px solid #e2e8f0 !important; }
-      .border-slate-800 { border-color: #e2e8f0 !important; }
+      body { background-color: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-card { border: 1px solid #cbd5e1 !important; box-shadow: none !important; background: #ffffff !important; color: #000000 !important; }
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col antialiased">
+<body class="min-h-screen flex flex-col antialiased selection:bg-amber-500 selection:text-slate-950">
 
   <!-- TOP APP BAR -->
-  <header class="border-b border-slate-800/80 bg-slate-900/95 backdrop-blur sticky top-0 z-50 no-print">
-    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2">
-      <div class="flex items-center space-x-2.5 sm:space-x-3.5 min-w-0">
-        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl gold-gradient flex items-center justify-center font-black text-slate-950 text-lg sm:text-xl shadow-lg shadow-amber-500/20 flex-shrink-0">R</div>
-        <div class="min-w-0">
-          <div class="flex items-center space-x-1.5 sm:space-x-2">
-            <span class="font-extrabold text-base sm:text-lg text-white tracking-tight truncate">RISE ETF</span>
-            <span class="text-[10px] sm:text-[11px] bg-amber-500/15 text-amber-300 border border-amber-500/30 px-1.5 sm:px-2 py-0.5 rounded-full font-bold flex-shrink-0">143 Intelligence Base</span>
+  <header class="border-b border-slate-800/90 bg-slate-900/90 backdrop-blur-md sticky top-0 z-50 no-print">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand & Title -->
+      <div class="flex items-center space-x-2.5 sm:space-x-3.5">
+        <div class="w-9 h-9 rounded-xl gold-gradient flex items-center justify-center font-black text-slate-950 text-xl shadow-lg shadow-amber-500/20 flex-shrink-0">
+          R
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="font-extrabold text-base sm:text-lg tracking-tight text-white">RISE ETF 143 Intelligence Base</span>
+            <span class="text-[10px] sm:text-xs bg-amber-500/20 text-amber-400 border border-amber-500/30 px-2 py-0.5 rounded-full font-bold">143개 전종목</span>
           </div>
-          <p class="text-[10px] sm:text-[11px] text-slate-400 truncate">KRX·ECOS·DART 공인 연계 데일리 마켓 포털</p>
+          <p class="text-[11px] text-slate-400 hidden sm:block">KRX·ECOS·DART 공인 연계 데일리 마켓 포털</p>
         </div>
       </div>
-      
-      <!-- 기준일 선택기 (기본값: 전일 26/09/09 종가 기준) -->
+
+      <!-- 기준일 선택기 (기본값: 최신 26/09/10 종가 기준) -->
       <div class="flex items-center space-x-2 flex-shrink-0">
         <div class="flex items-center space-x-1 sm:space-x-2 bg-slate-800/90 border border-amber-500/40 px-2 sm:px-3 py-1.5 rounded-xl shadow">
           <span class="text-amber-400">📅</span>
           <span class="text-[11px] sm:text-xs text-slate-300 hidden md:inline font-semibold">시황 기준:</span>
           <select id="dateSelect" onchange="onDateChange()" class="bg-slate-900 text-amber-300 font-bold text-[11px] sm:text-xs rounded-lg px-1.5 sm:px-2 py-0.5 border border-slate-700 focus:outline-none focus:border-amber-500 cursor-pointer">
-            <option value="2026-09-09" selected>26/09/09 종가 기준 (전일 장마감 확정)</option>
-            <option value="2026-09-10">26/09/10 종가 기준 (유가 $100 돌파)</option>
+            <option value="2026-09-10" selected>26/09/10 종가 기준 (유가 $100 돌파)</option>
+            <option value="2026-09-09">26/09/09 종가 기준 (전일 장마감 확정)</option>
             <option value="2024-08-05">24/08/05 종가 기준 (블랙먼데이)</option>
             <option value="2022-02-24">22/02/24 종가 기준 (우크라이나 침공)</option>
           </select>
         </div>
       </div>
+
     </div>
   </header>
 
-  <!-- BREAKING NEWS TICKER BAR (동적 자동 롤링 티커 & 클릭 시 100% 이동) -->
-  <div class="bg-amber-500/10 border-b border-amber-500/30 py-2.5 px-3 sm:px-6 no-print news-ticker-bar cursor-pointer hover:bg-amber-500/15 transition select-none" onclick="switchMainTab('tab-news')">
-    <div class="max-w-7xl mx-auto flex items-center justify-between text-xs gap-3">
-      <div class="flex items-center space-x-2.5 overflow-hidden flex-1 min-w-0">
-        <span class="flex items-center space-x-1 bg-rose-500 text-white font-extrabold text-[10px] px-2 py-0.5 rounded-full flex-shrink-0 animate-pulse">
-          ⚡ 속보 <span id="tickerCounter" class="ml-1 text-rose-200 text-[9px]">1/5</span>
+  <!-- LIVE TICKER (실시간 속보 롤링 바) -->
+  <div class="bg-amber-500/10 border-b border-amber-500/20 py-2 px-3 sm:px-6 lg:px-8 text-xs no-print">
+    <div class="max-w-7xl mx-auto flex items-center justify-between space-x-3">
+      <div class="flex items-center space-x-2 overflow-hidden flex-1 cursor-pointer" onclick="switchMainTab('tab-news')">
+        <span class="flex items-center text-amber-400 font-bold flex-shrink-0">
+          <span>⚡</span>
+          <span class="ml-1 uppercase tracking-wider">속보</span>
+          <span id="tickerCounter" class="ml-1 text-[10px] text-amber-400/80 font-mono">1/5</span>
         </span>
-        <span class="text-slate-400 text-[11px] font-mono hidden sm:inline" id="tickerTime">15:30</span>
-        <span class="text-slate-200 font-semibold truncate hover:text-amber-300 transition" id="tickerHeadline">
-          [로이터 속보] 브렌트유 배럴당 $99.50 터치… $100 돌파 임박에 에너지주 급등
+        <span id="tickerTime" class="text-slate-500 font-mono text-[11px] flex-shrink-0">14:30</span>
+        <span id="tickerHeadline" class="text-slate-200 truncate hover:text-amber-300 transition font-medium">
+          [로이터 속보] 브렌트유 배럴당 $101.60 공식 돌파… 호르무즈 해협 긴장 격화에 공급망 비상
         </span>
       </div>
-      <button type="button" onclick="event.stopPropagation(); switchMainTab('tab-news');" class="text-amber-400 hover:text-amber-300 text-[11px] font-bold flex items-center flex-shrink-0 bg-amber-500/10 border border-amber-500/30 px-2.5 py-1 rounded-lg">
+      <button type="button" onclick="event.stopPropagation(); switchMainTab('tab-news');\" class="text-amber-400 hover:text-amber-300 text-[11px] font-bold flex items-center flex-shrink-0 bg-amber-500/10 border border-amber-500/30 px-2.5 py-1 rounded-lg">
         <span>속보 전체보기</span>
         <span class="ml-1">▶</span>
       </button>
@@ -121,10 +123,10 @@
       </div>
       <div class="kpi-card p-2 sm:p-2.5 rounded-xl">
         <div class="text-slate-400 text-[10px] sm:text-[11px]">미 국채 10Y</div>
-        <div class="text-xs sm:text-sm font-bold text-amber-300 mt-0.5 truncate" id="macro10Y">-</div>
+        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macro10Y">-</div>
       </div>
-      <div class="kpi-card p-2 sm:p-2.5 rounded-xl border-amber-500/40 bg-amber-500/5">
-        <div class="text-amber-400 text-[10px] sm:text-[11px] font-bold">브렌트유 / 원유</div>
+      <div class="kpi-card p-2 sm:p-2.5 rounded-xl">
+        <div class="text-slate-400 text-[10px] sm:text-[11px]">브렌트유 / 원유</div>
         <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macroBrent">-</div>
       </div>
       <div class="kpi-card p-2 sm:p-2.5 rounded-xl">
@@ -137,146 +139,150 @@
       </div>
     </section>
 
-    <!-- TAB 1: ETF MASTER EXPLORER -->
-    <div id="tab-explorer" class="space-y-4 sm:space-y-6">
+    <!-- 2. STRATEGY BRIEF CARD (공통 상단 요약 브리프) -->
+    <section class="bg-gradient-to-r from-slate-900 via-slate-900 to-amber-950/30 border border-amber-500/30 rounded-2xl p-4 sm:p-5 shadow-xl no-print">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-slate-800 pb-3">
+        <div class="flex items-center space-x-2">
+          <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30" id="briefDateBadge">26/09/10 종가 기준</span>
+          <span class="text-xs text-slate-400">전략 브리프</span>
+        </div>
+        <span class="text-[11px] text-slate-400">출처: 로이터 · 블룸버그 · ECOS · KRX</span>
+      </div>
+      <div class="mt-3 space-y-2">
+        <h2 class="text-sm sm:text-base font-bold text-white leading-snug" id="briefHeadline">로딩 중...</h2>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed" id="briefTrigger">로딩 중...</p>
+        <div class="flex items-center text-xs text-amber-400 font-semibold pt-1">
+          <span>✔</span>
+          <span class="ml-1.5" id="briefSolution">로딩 중...</span>
+        </div>
+      </div>
+    </section>
 
-      <!-- BRIEFING HERO -->
-      <section class="bg-gradient-to-r from-slate-900 via-slate-900/90 to-amber-950/20 border border-amber-500/40 rounded-2xl p-4 sm:p-5 shadow-2xl no-print">
-        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3 sm:gap-4">
-          <div class="space-y-1.5 flex-1 min-w-0">
-            <div class="flex items-center space-x-2">
-              <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-amber-500 text-slate-950 uppercase tracking-wide">
-                <span id="briefDateBadge">26/09/09 종가 기준</span> 전략 브리프
-              </span>
-              <span class="text-[11px] text-slate-400 truncate" id="briefSource">출처: 로이터 · 블룸버그 · ECOS · KRX</span>
-            </div>
-            <h2 class="text-sm sm:text-base lg:text-lg font-bold text-white leading-snug" id="briefHeadline">로딩 중...</h2>
-            <p class="text-xs text-slate-300 leading-relaxed" id="briefTrigger">로딩 중...</p>
-            <div class="text-xs text-amber-300/90 font-medium pt-1 border-t border-slate-800/80 mt-2 flex items-center">
-              <span class="mr-1.5 text-amber-400">✔</span>
-              <span id="briefSolution" class="truncate">로딩 중...</span>
-            </div>
+    <!-- 3. TAB 1: RISE 전종목 마스터 탐색기 (143개) -->
+    <div id="tab-explorer" class="space-y-4">
+      
+      <!-- CONTROLS: Mode (전체 vs 포커스), 테마 필터, 검색, 퇴직연금 토글 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3 sm:p-4 space-y-3 shadow-lg no-print">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+          
+          <!-- Mode Tabs (전체 143 vs 포커스) -->
+          <div class="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800 w-fit">
+            <button onclick="setMode('all')" id="btnModeAll" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-amber-500 text-slate-950">
+              ☰ RISE 전종목 (<span id="allCount">143</span>)
+            </button>
+            <button onclick="setMode('focus')" id="btnModeFocus" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
+              ★ 포커스만 (<span id="focusCount">4</span>)
+            </button>
           </div>
 
-          <div class="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800 self-stretch sm:self-auto justify-center flex-shrink-0">
-            <button onclick="switchView('all')" id="btnAll" class="px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 bg-amber-500 text-slate-950 shadow-md">
-              <span>☰</span>
-              <span>RISE 전종목 (<span id="allCount">143</span>)</span>
-            </button>
-            <button onclick="switchView('focus')" id="btnFocus" class="px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-semibold transition flex items-center space-x-1.5 text-slate-400 hover:text-white">
-              <span>★</span>
-              <span>포커스만 (<span id="focusCount">4</span>)</span>
-            </button>
+          <!-- 테마 카테고리 필터 (가로 스크롤) -->
+          <div class="flex items-center space-x-1.5 overflow-x-auto no-scrollbar py-0.5 text-xs text-slate-300">
+            <span class="text-slate-400 text-[11px] flex-shrink-0 mr-1">🏷️ 테마:</span>
+            <button onclick="setCat('ALL')" class="cat-btn px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-bold border border-amber-500/40 flex-shrink-0" data-cat="ALL">전체 (143)</button>
+            <button onclick="setCat('채권혼합')" class="cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-cat="채권혼합">채권혼합(안전자산)</button>
+            <button onclick="setCat('AI')" class="cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-cat="AI">AI / 반도체</button>
+            <button onclick="setCat('전력')" class="cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-cat="전력">전력망 / 원전</button>
+            <button onclick="setCat('시장지수')" class="cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-cat="시장지수">대표지수(200/코스닥)</button>
+            <button onclick="setCat('커버드콜')" class="cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-cat="커버드콜">월배당 / 커버드콜</button>
+            <button onclick="setCat('채권')" class="cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-cat="채권">금리파킹 / 채권</button>
           </div>
         </div>
-      </section>
 
-      <!-- FILTER & SEARCH BAR -->
-      <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 bg-slate-900/60 p-3 sm:p-3.5 rounded-xl border border-slate-800 no-print">
-        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 md:pb-0">
-          <span class="text-xs font-semibold text-slate-400 mr-1 flex items-center flex-shrink-0">
-            <span>🏷️</span> 테마:
-          </span>
-          <button onclick="filterCat('ALL')" class="cat-btn text-xs px-2.5 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold transition flex-shrink-0">전체 (143)</button>
-          <button onclick="filterCat('채권혼합')" class="cat-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition flex-shrink-0">채권혼합(안전자산)</button>
-          <button onclick="filterCat('AI/반도체')" class="cat-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition flex-shrink-0">AI / 반도체</button>
-          <button onclick="filterCat('전력')" class="cat-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition flex-shrink-0">전력망 / 원전</button>
-          <button onclick="filterCat('시장지수')" class="cat-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition flex-shrink-0">대표지수(200/코스닥)</button>
-          <button onclick="filterCat('커버드콜')" class="cat-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition flex-shrink-0">월배당 / 커버드콜</button>
-          <button onclick="filterCat('단기')" class="cat-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition flex-shrink-0">금리파킹 / 채권</button>
-        </div>
-
-        <div class="flex items-center space-x-2 sm:space-x-3">
-          <label class="flex items-center space-x-1.5 text-xs text-slate-300 cursor-pointer bg-slate-800 px-2.5 py-1.5 rounded-lg border border-slate-700 select-none flex-shrink-0">
-            <input type="checkbox" id="chkPension" onchange="render()" class="rounded bg-slate-900 border-slate-700 text-amber-500">
-            <span>퇴직연금 100%만</span>
+        <!-- Search & Pension Toggle -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-2 border-t border-slate-800/80">
+          
+          <!-- 퇴직연금 100% 안전자산만 보기 토글 -->
+          <label class="flex items-center space-x-2 text-xs text-slate-300 cursor-pointer select-none">
+            <input type="checkbox" id="chkPension" onchange="render()" class="w-4 h-4 rounded border-slate-700 text-amber-500 focus:ring-amber-500 bg-slate-900">
+            <span class="font-bold text-emerald-400">퇴직연금 100%만</span>
+            <span class="text-[11px] text-slate-400">(위험자산 한도 미차감 적격)</span>
           </label>
-          <div class="relative w-full sm:w-52">
-            <input type="text" id="keyword" onkeyup="render()" placeholder="RISE 종목명/코드 검색..." class="w-full bg-slate-950 border border-slate-700 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
-            <span class="absolute left-2.5 top-2 text-slate-500">🔍</span>
+
+          <!-- 키워드 실시간 검색창 -->
+          <div class="relative sm:w-80">
+            <input type="text" id="keyword" oninput="render()" placeholder="종목명 또는 6자리 코드 검색 (예: 477170, 반도체)" class="w-full bg-slate-950 border border-slate-700 text-slate-100 placeholder-slate-500 rounded-xl px-3.5 py-2 pl-9 text-xs focus:outline-none focus:border-amber-500">
+            <span class="absolute left-3 top-2.5 text-slate-500 text-xs">🔍</span>
           </div>
         </div>
       </div>
 
-      <!-- MASTER ETF TABLE (칼럼 완전 분리) -->
-      <div class="bg-slate-900/80 rounded-2xl border border-slate-800 overflow-hidden shadow-2xl">
-        <div class="overflow-x-auto max-h-[650px] overflow-y-auto">
-          <table class="w-full text-left text-xs min-w-[1300px]">
-            <thead class="bg-slate-950 text-slate-400 uppercase font-semibold border-b border-slate-800 sticky top-0 z-20">
+      <!-- 143개 전종목 마스터 테이블 (가로 스크롤 대응) -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl shadow-xl overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-slate-200 whitespace-nowrap">
+            <thead class="bg-slate-950/90 text-[11px] text-slate-400 uppercase tracking-wider border-b border-slate-800 sticky top-0 z-20">
               <tr>
-                <th class="py-3 px-3 w-10 text-center">★</th>
-                <th class="py-3 px-3 w-20">코드</th>
-                <th class="py-3 px-3 min-w-[220px]">종목명 / 핵심 전략 (클릭 시 팩트시트)</th>
-                <th class="py-3 px-3 w-24">테마분류</th>
-                <th class="py-3 px-3 w-20 text-center text-slate-300">총보수</th>
-                <th class="py-3 px-3 w-20 text-center text-slate-300">분배주기</th>
-                <th class="py-3 px-3 text-right w-24 text-white">종가(원)</th>
-                <th class="py-3 px-3 text-right w-24">NAV(원)</th>
-                <th class="py-3 px-3 text-right w-20">괴리율</th>
-                <th class="py-3 px-3 text-right w-16 text-amber-300">1D</th>
-                <th class="py-3 px-3 text-right w-16">1W</th>
-                <th class="py-3 px-3 text-right w-16">1M</th>
-                <th class="py-3 px-3 text-right w-16 font-bold text-emerald-400">3M</th>
-                <th class="py-3 px-3 text-right w-16">6M</th>
-                <th class="py-3 px-3 text-right w-16 text-amber-400">YTD</th>
-                <th class="py-3 px-3 text-right w-20">설정이후</th>
-                <th class="py-3 px-3 text-center w-24">퇴직연금</th>
-                <th class="py-3 px-3 text-right w-24">일거래대금</th>
-                <th class="py-3 px-3 text-right w-24">순자산AUM</th>
-                <th class="py-3 px-3 text-center w-28">기준일시</th>
+                <th class="py-3 px-3 text-center w-10">★</th>
+                <th class="py-3 px-3">코드</th>
+                <th class="py-3 px-3">종목명 / 핵심 전략 (클릭 시 팩트시트)</th>
+                <th class="py-3 px-3">테마분류</th>
+                <th class="py-3 px-3 text-center">총보수</th>
+                <th class="py-3 px-3 text-center">분배주기</th>
+                <th class="py-3 px-3 text-right">종가(원)</th>
+                <th class="py-3 px-3 text-right">NAV(원)</th>
+                <th class="py-3 px-3 text-right">괴리율</th>
+                <th class="py-3 px-3 text-right">1D</th>
+                <th class="py-3 px-3 text-right">1W</th>
+                <th class="py-3 px-3 text-right">1M</th>
+                <th class="py-3 px-3 text-right">3M</th>
+                <th class="py-3 px-3 text-right">6M</th>
+                <th class="py-3 px-3 text-right">YTD</th>
+                <th class="py-3 px-3 text-right">설정이후</th>
+                <th class="py-3 px-3 text-center">퇴직연금</th>
+                <th class="py-3 px-3 text-right">일거래대금</th>
+                <th class="py-3 px-3 text-right">순자산AUM</th>
+                <th class="py-3 px-3 text-center">기준일시</th>
               </tr>
             </thead>
             <tbody id="tableBody" class="divide-y divide-slate-800/80"></tbody>
           </table>
         </div>
 
-        <div class="p-3 bg-slate-950 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-2">
-          <div id="statText" class="font-bold text-amber-300">RISE 전종목 143개 표시 중 (26/09/09 종가 기준)</div>
+        <!-- 하단 카운트 & 브랜드 안내 푸터 -->
+        <div class="p-3.5 bg-slate-950/80 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-2">
+          <span id="statText" class="font-medium">RISE 전종목 143개 표시 중 (26/09/10 종가 기준)</span>
           <div class="flex items-center space-x-3 text-[11px]">
-            <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-amber-400 mr-1.5"></span>KB자산운용 RISE 단독 143종목</span>
-            <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-400 mr-1.5"></span>퇴직연금 100% 안전자산</span>
+            <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-amber-400 mr-1.5"></span>KB자산운용 RISE 단독</span>
+            <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-400 mr-1.5"></span>143종목 퇴직연금 100% 안전자산</span>
           </div>
         </div>
       </div>
-
     </div>
 
-    <!-- TAB 2: DAILY MARKET BREAKING NEWS (국내/외 경제지 원문 링크 탑재) -->
-    <div id="tab-news" class="hidden space-y-6 no-print">
-      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-7 shadow-2xl max-w-5xl mx-auto space-y-6">
+    <!-- 4. TAB 2: 데일리 시장 뉴스 속보 피드 -->
+    <div id="tab-news" class="hidden space-y-4">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-xl space-y-4">
         
-        <div class="border-b border-slate-800 pb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-800 pb-3 gap-2">
           <div>
-            <div class="flex items-center space-x-2 text-xs text-slate-400 mb-1">
-              <span class="bg-rose-500/20 text-rose-300 border border-rose-500/30 px-2 py-0.5 rounded-full font-bold">LIVE FEED</span>
-              <span id="newsDateBadge">26/09/09 종가 기준 속보 아카이브</span>
+            <div class="flex items-center space-x-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30">LIVE FEED</span>
+              <span class="text-xs text-slate-400" id="newsDateBadge">26/09/10 종가 기준 속보 아카이브</span>
             </div>
-            <h2 class="text-xl font-bold text-white flex items-center">
-              <span class="text-amber-400 mr-2">⚡</span>데일리 국내·외 경제뉴스 속보 & 연관 RISE ETF
-            </h2>
+            <h2 class="text-base sm:text-lg font-bold text-white mt-1">⚡ 데일리 국내·외 경제뉴스 속보 & 연관 RISE ETF</h2>
+            <p class="text-xs text-slate-400">로이터 · 블룸버그 · CNBC · 연합인포맥스 · 한경 · 매경 속보 종합</p>
           </div>
-          <div class="text-xs text-slate-400">
-            로이터 · 블룸버그 · CNBC · 연합인포맥스 · 한경 · 매경 속보 종합
+
+          <!-- 뉴스 카테고리 필터 -->
+          <div class="flex items-center space-x-1.5 overflow-x-auto no-scrollbar text-xs">
+            <button onclick="setNewsCat('ALL')" class="news-cat-btn px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30 flex-shrink-0" data-ncat="ALL">전체</button>
+            <button onclick="setNewsCat('에너지/유가')" class="news-cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-ncat="에너지/유가">에너지/유가</button>
+            <button onclick="setNewsCat('거시경제/금리')" class="news-cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-ncat="거시경제/금리">거시경제/금리</button>
+            <button onclick="setNewsCat('AI/반도체')" class="news-cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-ncat="AI/반도체">AI/반도체</button>
+            <button onclick="setNewsCat('국내외환/증시')" class="news-cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-ncat="국내외환/증시">국내외환/증시</button>
+            <button onclick="setNewsCat('퇴직연금/세제')" class="news-cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-ncat="퇴직연금/세제">퇴직연금/세제</button>
           </div>
         </div>
 
-        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-          <button onclick="filterNews('ALL')" class="news-cat-btn text-xs px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 font-bold transition flex-shrink-0">전체</button>
-          <button onclick="filterNews('에너지/유가')" class="news-cat-btn text-xs px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition flex-shrink-0">에너지/유가</button>
-          <button onclick="filterNews('거시경제/금리')" class="news-cat-btn text-xs px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition flex-shrink-0">거시경제/금리</button>
-          <button onclick="filterNews('AI/반도체')" class="news-cat-btn text-xs px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition flex-shrink-0">AI/반도체</button>
-          <button onclick="filterNews('국내외환/증시')" class="news-cat-btn text-xs px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition flex-shrink-0">국내외환/증시</button>
-          <button onclick="filterNews('퇴직연금/세제')" class="news-cat-btn text-xs px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition flex-shrink-0">퇴직연금/세제</button>
-        </div>
-
+        <!-- 실시간 뉴스 리스트 렌더링 컨테이너 -->
         <div class="space-y-3.5" id="newsContainer"></div>
-
       </div>
     </div>
 
-    <!-- TAB 3: DAILY MACRO REPORT READER -->
-    <div id="tab-report" class="hidden space-y-6">
-      <div class="flex items-center justify-between bg-slate-900/60 p-3.5 rounded-xl border border-slate-800 no-print">
+    <!-- 5. TAB 3: 데일리 매크로 리포트 전문 & PDF 인쇄 -->
+    <div id="tab-report" class="hidden space-y-4">
+      
+      <div class="flex items-center justify-between no-print bg-slate-900 border border-slate-800 p-3 sm:p-4 rounded-2xl shadow">
         <div class="text-xs text-slate-400 flex items-center gap-1.5">
           <span>🖨️</span>
           <span>공식 리포트 출력 및 PDF 저장 기능</span>
@@ -290,7 +296,7 @@
       <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-8 shadow-2xl max-w-4xl mx-auto space-y-6 print-card">
         <div class="border-b border-slate-800 pb-4">
           <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
-            <span class="bg-amber-500/20 text-amber-300 px-2.5 py-1 rounded-full font-bold border border-amber-500/30" id="reportDateBadge">26/09/09 종가 기준</span>
+            <span class="bg-amber-500/20 text-amber-300 px-2.5 py-1 rounded-full font-bold border border-amber-500/30" id="reportDateBadge">26/09/10 종가 기준</span>
             <span class="font-bold text-slate-300">KB자산운용 RISE ETF 마켓 인텔리전스</span>
           </div>
           <h1 class="text-lg sm:text-2xl font-bold text-white tracking-tight leading-snug" id="reportHeadline">로딩 중...</h1>
@@ -353,19 +359,19 @@
         </div>
         <div class="bg-slate-950 p-2 sm:p-2.5 rounded-xl border border-slate-800">
           <div class="text-slate-400 text-[10px]">괴리율</div>
-          <div class="text-[11px] sm:text-xs font-bold text-amber-300 mt-1" id="modalDisparity">-</div>
+          <div class="text-xs sm:text-sm font-bold text-slate-200 mt-0.5" id="modalDisparity">-</div>
         </div>
       </div>
 
-      <div class="space-y-1.5 bg-slate-950/60 p-3.5 rounded-xl border border-slate-800 text-xs">
-        <div class="font-bold text-amber-400 flex items-center">
+      <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-1.5">
+        <div class="text-xs font-bold text-amber-400 flex items-center">
           <span>🎯</span> <span class="ml-1.5">전략적 핵심 셀링 포인트 (Why RISE)</span>
         </div>
-        <p class="text-slate-200 leading-relaxed text-xs" id="modalReason">-</p>
+        <p class="text-xs text-slate-200 leading-relaxed" id="modalReason">-</p>
       </div>
 
-      <div class="flex items-center justify-between pt-1">
-        <button onclick="copySalesText()" class="flex items-center space-x-1.5 text-xs bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-3.5 py-2 rounded-xl shadow transition">
+      <div class="flex items-center justify-end space-x-2 pt-2 border-t border-slate-800">
+        <button onclick="copySalesText()" class="flex items-center space-x-1.5 text-xs bg-slate-800 hover:bg-slate-700 text-amber-300 px-3 py-2 rounded-xl border border-amber-500/30 transition">
           <span>📋</span>
           <span>고객 안내용 텍스트 복사</span>
         </button>
@@ -382,443 +388,10 @@
   </footer>
 
   <!-- CORE JAVASCRIPT -->
-  <script>
-    const reportsDB = {
-      "2026-09-09": {
-        "date": "2026-09-09",
-        "title": "유가 $100 위협과 미 국채금리 4.9% 재진입, 반도체 펀더멘털의 방어력에 주목하라",
-        "summary": "미 8월 CPI/PPI 발표를 앞두고 고금리 장기화 우려가 선반영되며 금리와 환율이 반등했습니다. 단기 유동성 가뭄에 대비한 CD금리형 및 반도체 투톱 비중 50%를 담은 채권혼합형 안전자산 방어 전략을 권고합니다.",
-        "macro": {
-          "kospi": "7,051.64 (+1.40%)",
-          "sp500": "7,673.52 (+0.25%)",
-          "treasury10y": "4.80% (+2.5 bps)",
-          "brent": "$99.50 (+1.80%)",
-          "usdkrw": "1,368.50원",
-          "dxy": "104.45 (+0.15p)"
-        },
-        "drivers": [
-          {
-            "title": "01. 유가 $100 위협 (로이터)",
-            "desc": "중동 지정학적 긴장 고조로 브렌트유 배럴당 $99.50 터치. 정유 및 에너지 전력 인프라 관심 고조."
-          },
-          {
-            "title": "02. 미 국채금리 4.80% (블룸버그)",
-            "desc": "미 8월 물가지표 발표 앞두고 10년물 금리 4.80% 재진입. 단기 파킹형 MMF/CD금리 수요 집중."
-          },
-          {
-            "title": "03. 반도체 펀더멘털 방어 (연합인포맥스)",
-            "desc": "HBM 수출 가시성 확보로 삼성전자·SK하이닉스 외국인 수급 견조. 코스피 7,050선 안착."
-          },
-          {
-            "title": "04. 퇴직연금 100% 자금 유입 (매일경제)",
-            "desc": "위험자산 70% 한도 규제 우회 채권혼합 50% 펀드 수탁고 사상 최대치 랠리 지속."
-          }
-        ],
-        "solutions": [
-          {
-            "name": "RISE 삼성전자SK하이닉스50채권혼합 (477170)",
-            "type": "Core Pension Solution (퇴직연금 100% 적격)",
-            "points": [
-              "자산배분 효과: 국채 50%의 완충력과 반도체 투톱 상방 참여를 결합하여 금리 변동성 완벽 방어",
-              "연금 규제 극복: DC/IRP 계좌에서 100% 한도로 담을 수 있어 실질 주식 편입 비중 극대화"
-            ]
-          },
-          {
-            "name": "RISE 머니마켓액티브 (455890) / CD금리액티브 (477080)",
-            "type": "Cash Management & Defense",
-            "points": [
-              "무위험 금리 파킹: 지표 발표 전 관망 국면에서 일복리 고금리 수익 확보"
-            ]
-          }
-        ],
-        "focusCodes": [
-          "477170",
-          "455890",
-          "477080",
-          "148020"
-        ],
-        "focusReasons": {
-          "477170": "🔥 [전략 1순위] 반도체 펀더멘털 + 국채 50% 결합 퇴직연금 100% 안전자산",
-          "455890": "💰 단기 유동성 파킹 및 무위험 일복리 수익 확보 (AUM 1.5조 돌파)",
-          "477080": "💰 초단기 확정금리형 무위험 안전자산 파킹",
-          "148020": "📈 코스피 5,000 시대 최저보수(0.012%) 기관 포트폴리오 대표 코어"
-        }
-      },
-      "2026-09-10": {
-        "date": "2026-09-10",
-        "title": "브렌트유 $100 공식 돌파와 미 10년물 4.84% 상승, 인플레 헤지 및 채권혼합 바벨 전략 긴급 점검",
-        "summary": "중동 전황 격화로 브렌트유가 배럴당 $101.60을 돌파하고 미 10년물 국채금리가 4.84%로 급등했습니다. 오늘 밤 미 8월 PPI 발표를 앞두고 고금리 장기화 우려 속에서, 퇴직연금 100% 안전자산 한도를 채우는 '삼전SK하닉50채권혼합'과 가격 전가력을 갖춘 '미국AI전력인프라'를 결합하는 바벨 포트폴리오가 시장 대비 독보적 방어력을 제공합니다.",
-        "macro": {
-          "kospi": "7,051.64 (+1.40%)",
-          "sp500": "7,635.27 (-0.50%)",
-          "treasury10y": "4.84% (+4.0 bps)",
-          "brent": "$101.60 (+3.76%)",
-          "usdkrw": "1,368.50원 (NDF 1,372원)",
-          "dxy": "104.75 (+0.30p)"
-        },
-        "drivers": [
-          {
-            "title": "01. 에너지 & 인플레 쇼크 (로이터)",
-            "desc": "중동 전황 격화로 브렌트유 배럴당 $101.60 마감. 공급발 인플레 비상으로 9월 FOMC 고금리 장기화(Higher for Longer) 공포 재점화."
-          },
-          {
-            "title": "02. 글로벌 채권 시장 급변 (블룸버그)",
-            "desc": "미 10년물 4.84%, 2년물 4.45%로 상승하며 장단기 스프레드 +39bp로 확대. 텀 프리미엄 재부각 및 커브 베어 스티프닝 전개."
-          },
-          {
-            "title": "03. 뉴욕 증시 센티먼트 (CNBC)",
-            "desc": "다우(-0.8%), 나스닥(-0.6%), 필라델피아반도체(-0.85%) 동반 하락. 고유가 장기화 시 빅테크 외 전 업종 기업 마진 축소 경계."
-          },
-          {
-            "title": "04. 국내 외환 & 증시 (연합인포맥스)",
-            "desc": "KOSPI 7,051선 안착 후 유가 $100 충격과 NDF 1,372원 환율 압력으로 장 초반 변동성 확대 대비 필요."
-          }
-        ],
-        "solutions": [
-          {
-            "name": "RISE 삼성전자SK하이닉스50채권혼합 (477170)",
-            "type": "Core Barbell Solution (퇴직연금 100% 적격)",
-            "points": [
-              "시장 방어: 유가 $100 및 금리 4.8% 국면에서 단기 국채 50%의 방어력과 반도체 투톱 상방 레버리지 동시 향유",
-              "규제 우회: DC/IRP 계좌에서 위험자산 70% 제한을 합법적으로 극복하여 실질 주식 비중 극대화"
-            ]
-          },
-          {
-            "name": "RISE 미국AI전력인프라 (0176E0)",
-            "type": "Thematic Growth Solution (가격 전가력 보유)",
-            "points": [
-              "가격 전가력: 고유가 및 전력난 장기화 시 전기요금 판가 인상이 용이한 독점 유틸리티 및 전력망 기업 포진",
-              "구조적 수요: 빅테크 AI 데이터센터 전력 소비 폭증으로 매크로 하강기에도 실적 가시성 보장"
-            ]
-          }
-        ],
-        "focusCodes": [
-          "477170",
-          "0176E0",
-          "485690",
-          "148020"
-        ],
-        "focusReasons": {
-          "477170": "🔥 [전략 1순위] 유가 $100 돌파 국면 국채 방어력 & 퇴직연금 100% 안전자산 편입",
-          "0176E0": "⚡ [인플레 헤지] 고유가/전력난 시 전기요금 판가 전가력 보유 독점 유틸리티 전력망",
-          "485690": "⚡ 빅테크 차익실현 속 AI 반도체/하드웨어 독점 밸류체인 수혜",
-          "148020": "📈 코스피 5,000 시대 최저보수(0.012%) 기관 포트폴리오 대표 코어"
-        }
-      },
-      "2024-08-05": {
-        "date": "2024-08-05",
-        "title": "엔 캐리 트레이드 청산 쇼크 (블랙 먼데이), 과매도 우량주 분할 매수 타이밍",
-        "summary": "일본은행(BOJ) 기습 금리인상과 미 실업률 상승이 겹치며 닛케이 -12.4%, KOSPI -8.8% 서킷브레이커가 발동했습니다. 시스템 리스크가 없는 유동성 패닉 구간으로, 과매도된 대표 지수 저가 매수 기회입니다.",
-        "macro": {
-          "kospi": "2,441.55 (-8.77%)",
-          "sp500": "5,186.33 (-3.00%)",
-          "treasury10y": "3.78% (-12.0 bps)",
-          "brent": "$76.30 (-1.50%)",
-          "usdkrw": "1,374.00원",
-          "dxy": "102.80 (-0.45p)"
-        },
-        "drivers": [
-          {
-            "title": "01. 엔 캐리 자금 청산",
-            "desc": "글로벌 헤지펀드 레버리지 포지션 강제 청산으로 아시아 증시 동반 급락."
-          },
-          {
-            "title": "02. 연준 빅컷 기대",
-            "desc": "급격한 패닉 진정을 위한 9월 FOMC 50bp 금리 인하 기대감 확산."
-          }
-        ],
-        "solutions": [
-          {
-            "name": "RISE 200 (148020)",
-            "type": "Index Bargain Hunting",
-            "points": [
-              "역사적 밸류에이션 바닥 구간에서 최저보수로 코스피 반등 향유"
-            ]
-          }
-        ],
-        "focusCodes": [
-          "148020",
-          "477170",
-          "477080"
-        ],
-        "focusReasons": {
-          "148020": "📉 역사적 과매도 구간 대표 지수 저가 매수 기회",
-          "477170": "🛡️ 주식 급락 속 국채 50% 편입으로 충격 완충 및 반등 레버리지",
-          "477080": "💰 시장 패닉 시 원금보존형 초단기 파킹 솔루션"
-        }
-      },
-      "2022-02-24": {
-        "date": "2022-02-24",
-        "title": "러시아-우크라이나 전면 침공 발발, 안보·원자력·에너지 인프라 헷지 전략",
-        "summary": "러시아군 우크라이나 침공으로 WTI/브렌트유가 배럴당 $130을 돌파했습니다. 글로벌 에너지 공급망 재편과 방위산업 르네상스 국면에서 안보 자산 중심의 포트폴리오 재편이 요구됩니다.",
-        "macro": {
-          "kospi": "2,648.80 (-2.05%)",
-          "sp500": "4,288.70 (+1.50%)",
-          "treasury10y": "1.97% (-2.0 bps)",
-          "brent": "$105.00 (+8.50%)",
-          "usdkrw": "1,202.40원",
-          "dxy": "97.10 (+0.90p)"
-        },
-        "drivers": [
-          {
-            "title": "01. 유럽 에너지 대란",
-            "desc": "러시아산 천연가스/원유 차단으로 에너지 안보 및 원자력 필수 불가결."
-          },
-          {
-            "title": "02. 전 세계 국방비 증액",
-            "desc": "NATO 및 각국 군비 확장으로 K-방산 수주 모멘텀 본격 개막."
-          }
-        ],
-        "solutions": [
-          {
-            "name": "RISE 글로벌원자력 (396500)",
-            "type": "Energy Security Solution",
-            "points": [
-              "유럽 및 글로벌 원전 르네상스 수혜 SMR 및 원자로 밸류체인 독점"
-            ]
-          }
-        ],
-        "focusCodes": [
-          "396500",
-          "0176E0",
-          "477170"
-        ],
-        "focusReasons": {
-          "396500": "☢️ 유럽 에너지 안보 위기 속 글로벌 원전 르네상스 메가 트렌드",
-          "0176E0": "⚡ 전력난 및 에너지 위기 수혜 독점 전력망 인프라",
-          "477170": "🛡️ 지정학적 블랙스완 국면 국채 자산배분 방어 효과"
-        }
-      }
-    };
-
-    const breakingNewsDB = {
-      "2026-09-09": [
-        {
-          "time": "15:30",
-          "tag": "에너지/유가",
-          "badgeColor": "bg-rose-500/20 text-rose-300 border-rose-500/30",
-          "headline": "[로이터 속보] 브렌트유 배럴당 $99.50 터치… $100 돌파 임박에 에너지주 급등",
-          "summary": "중동 지정학적 리스크 심화로 원유 공급 차단 우려가 커지며 브렌트유가 $99.50에 근접 마감했습니다. 정유, 원자력 및 에너지 전력망 인프라로 수급 쏠림이 가속화되고 있습니다.",
-          "source": "로이터 (Reuters) · 연합인포맥스",
-          "newsUrl": "https://www.reuters.com/business/energy/",
-          "relatedCodes": [
-            "0176E0",
-            "481090",
-            "477170"
-          ],
-          "relatedNames": [
-            "RISE 미국AI전력인프라",
-            "RISE 골드선물(H)",
-            "RISE 삼성전자SK하이닉스50채권혼합"
-          ]
-        },
-        {
-          "time": "14:10",
-          "tag": "거시경제/금리",
-          "badgeColor": "bg-amber-500/20 text-amber-300 border-amber-500/30",
-          "headline": "[블룸버그 속보] 미 10년물 국채금리 4.80% 재진입… 물가지표 경계감 속 단기자금 MMF 집중",
-          "summary": "미 8월 인플레이션 지표 발표를 앞두고 고금리 장기화 우려로 국채금리가 상승세를 이어갔습니다. 증시 관망세 확산 속에서 기관 유동성이 CD금리형 및 머니마켓 파킹형 ETF로 급격히 유입되고 있습니다.",
-          "source": "블룸버그 (Bloomberg) · CNBC",
-          "newsUrl": "https://www.bloomberg.com/markets/rates-bonds",
-          "relatedCodes": [
-            "455890",
-            "477080",
-            "475720"
-          ],
-          "relatedNames": [
-            "RISE 머니마켓액티브",
-            "RISE CD금리액티브(합성)",
-            "RISE 미국달러SOFR금리액티브"
-          ]
-        },
-        {
-          "time": "11:20",
-          "tag": "AI/반도체",
-          "badgeColor": "bg-blue-500/20 text-blue-300 border-blue-500/30",
-          "headline": "[한국경제 마켓인사이트] 삼성전자-SK하이닉스 HBM 수출 독점 펀더멘털 방어력 입증",
-          "summary": "글로벌 매크로 불확실성 속에서도 국내 반도체 투톱의 HBM 공급 가시성과 탄탄한 실적 방어력이 확인되며 코스피 하방 지지선의 핵심 버팀목으로 작용하고 있습니다.",
-          "source": "한국경제신문 · 연합인포맥스",
-          "newsUrl": "https://www.hankyung.com/finance",
-          "relatedCodes": [
-            "477170",
-            "148020",
-            "0192L0"
-          ],
-          "relatedNames": [
-            "RISE 삼성전자SK하이닉스50채권혼합",
-            "RISE 200",
-            "RISE SK하이닉스단일종목레버리지"
-          ]
-        },
-        {
-          "time": "09:40",
-          "tag": "국내외환/증시",
-          "badgeColor": "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
-          "headline": "[연합인포맥스 속보] 코스피 7,051.64p 마감… 외국인 반도체 대형주 중심 순매수 유지",
-          "summary": "원/달러 환율 1,368.50원 안정세 속에 코스피가 7,050선에 안착 마감했습니다. 채권혼합형 및 대표지수형 상품으로 연기금 및 기관 수급이 이어지고 있습니다.",
-          "source": "연합인포맥스 · 매일경제",
-          "newsUrl": "https://news.einfomax.co.kr/",
-          "relatedCodes": [
-            "148020",
-            "477170"
-          ],
-          "relatedNames": [
-            "RISE 200",
-            "RISE 삼성전자SK하이닉스50채권혼합"
-          ]
-        },
-        {
-          "time": "08:45",
-          "tag": "퇴직연금/세제",
-          "badgeColor": "bg-purple-500/20 text-purple-300 border-purple-500/30",
-          "headline": "[매일경제 금융부] 퇴직연금 디폴트옵션 안전자산 100% 규정 충족 상품 선호도 1위",
-          "summary": "DC/IRP 계좌의 위험자산 70% 한도를 초과하여 100%까지 편입 가능한 '채권혼합 50%' 상품군이 연금 투자자들의 핵심 포트폴리오로 자리잡고 있습니다.",
-          "source": "매일경제 · 서울경제",
-          "newsUrl": "https://www.mk.co.kr/news/economy/",
-          "relatedCodes": [
-            "477170",
-            "461380"
-          ],
-          "relatedNames": [
-            "RISE 삼성전자SK하이닉스50채권혼합",
-            "RISE 국고채30년액티브"
-          ]
-        }
-      ],
-      "2026-09-10": [
-        {
-          "time": "14:30",
-          "tag": "에너지/유가",
-          "badgeColor": "bg-rose-500/20 text-rose-300 border-rose-500/30",
-          "headline": "[로이터 속보] 브렌트유 배럴당 $101.60 공식 돌파… 호르무즈 해협 긴장 격화에 공급망 비상",
-          "summary": "중동 분쟁 격화로 원유 수송로 차단 우려가 가시화되며 브렌트유가 3.76% 급등한 $101.60을 기록했습니다. 글로벌 에너지 공급발 인플레이션 압력이 심화되며 오늘 밤 발표될 미 8월 생산자물가지수(PPI)에 시장의 경계감이 극대화되고 있습니다.",
-          "source": "로이터 (Reuters) · 연합인포맥스",
-          "newsUrl": "https://www.reuters.com/business/energy/",
-          "relatedCodes": [
-            "0176E0",
-            "481090",
-            "477170"
-          ],
-          "relatedNames": [
-            "RISE 미국AI전력인프라",
-            "RISE 골드선물(H)",
-            "RISE 삼성전자SK하이닉스50채권혼합"
-          ]
-        },
-        {
-          "time": "11:15",
-          "tag": "거시경제/금리",
-          "badgeColor": "bg-amber-500/20 text-amber-300 border-amber-500/30",
-          "headline": "[블룸버그 속보] 미 10년물 국채금리 4.84% 급등… '고금리 장기화(Higher for Longer)' 재점화",
-          "summary": "유가 급등에 따른 텀 프리미엄 재부각으로 미 10년물 국채금리가 전일비 4.0bp 상승한 4.84%를 기록했습니다. 장단기 금리차가 +39bp로 벌어지며 채권 시장 내 베어 스티프닝(Bear Steepening) 흐름이 가속화되고 있습니다.",
-          "source": "블룸버그 (Bloomberg) · CNBC",
-          "newsUrl": "https://www.bloomberg.com/markets/rates-bonds",
-          "relatedCodes": [
-            "455890",
-            "477080",
-            "475720"
-          ],
-          "relatedNames": [
-            "RISE 머니마켓액티브",
-            "RISE CD금리액티브(합성)",
-            "RISE 미국달러SOFR금리액티브"
-          ]
-        },
-        {
-          "time": "09:40",
-          "tag": "AI/반도체",
-          "badgeColor": "bg-blue-500/20 text-blue-300 border-blue-500/30",
-          "headline": "[CNBC 특파원 리포트] 뉴욕증시 빅테크 차익실현 속 데이터센터 전력망·변압기 독점주 독주",
-          "summary": "엔비디아, 메타 등 빅테크 매그니피센트7의 밸류에이션 부담 속에서도, 데이터센터 전력 공급 병목을 해소하는 GE버노바, 이튼 등 미국 AI 전력 인프라 유틸리티 기업들은 강력한 전기요금 판가 전가력을 바탕으로 신고가 랠리를 이어갔습니다.",
-          "source": "CNBC · 한국경제 마켓인사이트",
-          "newsUrl": "https://www.cnbc.com/technology/",
-          "relatedCodes": [
-            "0176E0",
-            "485690"
-          ],
-          "relatedNames": [
-            "RISE 미국AI전력인프라",
-            "RISE 미국AI밸류체인TOP3Plus"
-          ]
-        },
-        {
-          "time": "09:05",
-          "tag": "국내외환/증시",
-          "badgeColor": "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
-          "headline": "[연합인포맥스 속보] 코스피 7,050선 안착 후 유가 $100 충격에 공방… 원/달러 1,368.5원 출발",
-          "summary": "역외 NDF 환율이 1,372원까지 상승하며 원화 약세 압력이 커진 가운데, 삼성전자와 SK하이닉스 등 HBM 수출 대형주의 탄탄한 실적 펀더멘털이 외국인 매도세를 방어하며 지수 하방 지지력을 확인하고 있습니다.",
-          "source": "연합인포맥스 · 매일경제",
-          "newsUrl": "https://news.einfomax.co.kr/",
-          "relatedCodes": [
-            "477170",
-            "148020",
-            "0192L0"
-          ],
-          "relatedNames": [
-            "RISE 삼성전자SK하이닉스50채권혼합",
-            "RISE 200",
-            "RISE SK하이닉스단일종목레버리지"
-          ]
-        },
-        {
-          "time": "08:30",
-          "tag": "퇴직연금/세제",
-          "badgeColor": "bg-purple-500/20 text-purple-300 border-purple-500/30",
-          "headline": "[매일경제 금융부] 퇴직연금 100% 안전자산 한도 채우는 '채권혼합 50%' 펀드로 자금 유입 급증",
-          "summary": "퇴직연금(DC/IRP) 계좌 내 위험자산 70% 규제를 합법적으로 우회하여 실질 주식 투자 효과를 극대화할 수 있는 '채권혼합 50%' 상품군에 법인 및 개인 연금 자금 유입이 집중되며 수탁고가 가파르게 증가하고 있습니다.",
-          "source": "매일경제 · 서울경제",
-          "newsUrl": "https://www.mk.co.kr/news/economy/",
-          "relatedCodes": [
-            "477170",
-            "461380"
-          ],
-          "relatedNames": [
-            "RISE 삼성전자SK하이닉스50채권혼합",
-            "RISE 국고채30년액티브"
-          ]
-        }
-      ],
-      "2024-08-05": [
-        {
-          "time": "14:15",
-          "tag": "글로벌쇼크",
-          "badgeColor": "bg-rose-500/20 text-rose-300 border-rose-500/30",
-          "headline": "[블룸버그 속보] 엔 캐리 트레이드 청산 쇼크… 닛케이 -12.4%, 코스피 -8.8% 서킷브레이커",
-          "summary": "일본은행(BOJ) 기습 금리인상과 미 실업률 쇼크로 아시아 증시 역사적 패닉셀. 과매도 우량주 분할 매수 기회 부각.",
-          "source": "블룸버그(Bloomberg) · 연합인포맥스",
-          "newsUrl": "https://www.bloomberg.com/",
-          "relatedCodes": [
-            "148020",
-            "477170"
-          ],
-          "relatedNames": [
-            "RISE 200",
-            "RISE 삼성전자SK하이닉스50채권혼합"
-          ]
-        }
-      ],
-      "2022-02-24": [
-        {
-          "time": "15:30",
-          "tag": "지정학/안보",
-          "badgeColor": "bg-rose-500/20 text-rose-300 border-rose-500/30",
-          "headline": "[AP/로이터 긴급] 러시아, 우크라이나 전면 침공 개시… 유가 $105 폭등 및 방산/원전 부각",
-          "summary": "유럽 에너지 대란 발발로 원자력 및 방위산업이 국가 안보 핵심 자산으로 격상.",
-          "source": "AP 통신 · 로이터(Reuters)",
-          "newsUrl": "https://apnews.com/",
-          "relatedCodes": [
-            "396500",
-            "379800"
-          ],
-          "relatedNames": [
-            "RISE 글로벌원자력",
-            "RISE K-방산"
-          ]
-        }
-      ]
-    };
-
-    const pipeData = [
+<script>
+    const reportsDB = {"2026-09-09": {"date": "2026-09-09", "title": "유가 $100 위협과 미 국채금리 4.9% 재진입, 반도체 펀더멘털의 방어력에 주목하라", "summary": "미 8월 CPI/PPI 발표를 앞두고 고금리 장기화 우려가 선반영되며 금리와 환율이 반등했습니다. 단기 유동성 가뭄에 대비한 CD금리형 및 반도체 투톱 비중 50%를 담은 채권혼합형 안전자산 방어 전략을 권고합니다.", "macro": {"kospi": "7,051.64 (+1.40%)", "sp500": "7,673.52 (+0.25%)", "treasury10y": "4.80% (+2.5 bps)", "brent": "$99.50 (+1.80%)", "usdkrw": "1,368.50원", "dxy": "104.45 (+0.15p)"}, "drivers": [{"title": "01. 물가 지표 경계감", "desc": "미 8월 인플레이션 지표 발표를 앞두고 시장 경계 심리 고조."}, {"title": "02. 단기 자금 선호", "desc": "위험자산 관망세 확산으로 MMF 및 무위험 지표금리 파킹 수요 급증."}], "solutions": [{"name": "RISE CD금리액티브(합성) (477080)", "type": "Cash Management Solution", "points": ["무위험 고금리 파킹: 단기 변동성 회피 및 복리 효과 누적"]}], "focusCodes": ["477170", "477080", "485690"], "focusReasons": {"477170": "🔥 반도체 펀더멘털 + 국채 50% 혼합으로 금리 발작기 변동성 방어", "477080": "💰 단기 유동성 파킹 및 확정금리형 무위험 안전자산 선호", "485690": "⚡ 글로벌 엔비디아·TSMC 밸류체인 견조한 펀더멘털 수혜"}}, "2026-09-10": {"date": "2026-09-10", "title": "브렌트유 $100 공식 돌파와 미 10년물 4.84% 상승, 인플레 헤지 및 채권혼합 바벨 전략 긴급 점검", "summary": "중동 전황 격화로 브렌트유가 배럴당 $101.60을 돌파하고 미 10년물 국채금리가 4.84%로 급등했습니다. 오늘 밤 미 8월 PPI 발표를 앞두고 고금리 장기화 우려 속에서, 퇴직연금 100% 안전자산 한도를 채우는 '삼전SK하닉50채권혼합'과 가격 전가력을 갖춘 '미국AI전력인프라'를 결합하는 바벨 포트폴리오가 시장 대비 독보적 방어력을 제공합니다.", "macro": {"kospi": "7,051.64 (+1.40%)", "sp500": "7,635.27 (-0.50%)", "treasury10y": "4.84% (+4.0 bps)", "brent": "$101.60 (+3.76%)", "usdkrw": "1,368.50원 (NDF 1,372원)", "dxy": "104.75 (+0.30p)"}, "drivers": [{"title": "01. 에너지 & 인플레 쇼크 (로이터)", "desc": "중동 전황 격화로 브렌트유 배럴당 $101.60 마감. 공급발 인플레 비상으로 9월 FOMC 고금리 장기화(Higher for Longer) 공포 재점화."}, {"title": "02. 글로벌 채권 시장 급변 (블룸버그)", "desc": "미 10년물 4.84%, 2년물 4.45%로 상승하며 장단기 스프레드 +39bp로 확대. 텀 프리미엄 재부각 및 커브 베어 스티프닝 전개."}, {"title": "03. 뉴욕 증시 센티먼트 (CNBC)", "desc": "다우(-0.8%), 나스닥(-0.6%), 필라델피아반도체(-0.85%) 동반 하락. 고유가 장기화 시 빅테크 외 전 업종 기업 마진 축소 경계."}, {"title": "04. 국내 외환 & 증시 (연합인포맥스)", "desc": "KOSPI 7,051선 안착 후 유가 $100 충격과 NDF 1,372원 환율 압력으로 장 초반 변동성 확대 대비 필요."}], "solutions": [{"name": "RISE 삼성전자SK하이닉스50채권혼합 (477170)", "type": "Core Barbell Solution (퇴직연금 100% 적격)", "points": ["시장 방어: 유가 $100 및 금리 4.8% 국면에서 단기 국채 50%의 방어력과 반도체 투톱 상방 레버리지 동시 향유", "규제 우회: DC/IRP 계좌에서 위험자산 70% 제한을 합법적으로 극복하여 실질 주식 비중 극대화"]}, {"name": "RISE 미국AI전력인프라 (0176E0)", "type": "Thematic Growth Solution (가격 전가력 보유)", "points": ["가격 전가력: 고유가 및 전력난 장기화 시 전기요금 판가 인상이 용이한 독점 유틸리티 및 전력망 기업 포진", "구조적 수요: 빅테크 AI 데이터센터 전력 소비 폭증으로 매크로 하강기에도 실적 가시성 보장"]}], "focusCodes": ["477170", "0176E0", "485690", "148020"], "focusReasons": {"477170": "🔥 [전략 1순위] 유가 $100 돌파 국면 국채 방어력 & 퇴직연금 100% 안전자산 편입", "0176E0": "⚡ [인플레 헤지] 고유가/전력난 시 전기요금 판가 전가력 보유 독점 유틸리티 전력망", "485690": "⚡ 빅테크 차익실현 속 AI 반도체/하드웨어 독점 밸류체인 수혜", "148020": "📈 코스피 5,000 시대 최저보수(0.012%) 기관 포트폴리오 대표 코어"}}, "2024-08-05": {"date": "2024-08-05", "title": "엔 캐리 트레이드 청산 쇼크 (블랙 먼데이), 과매도 우량주 분할 매수 타이밍", "summary": "일본은행(BOJ) 기습 금리인상과 미 실업률 상승이 겹치며 닛케이 -12.4%, KOSPI -8.8% 서킷브레이커가 발동했습니다. 시스템 리스크가 없는 유동성 패닉 구간으로, 과매도된 대표 지수 저가 매수 기회입니다.", "macro": {"kospi": "2,441.55 (-8.77%)", "sp500": "5,186.33 (-3.00%)", "treasury10y": "3.78% (-12.0 bps)", "brent": "$76.30 (-1.50%)", "usdkrw": "1,374.00원", "dxy": "102.80 (-0.45p)"}, "drivers": [{"title": "01. 엔 캐리 자금 청산", "desc": "글로벌 헤지펀드 레버리지 포지션 강제 청산으로 아시아 증시 동반 급락."}, {"title": "02. 연준 빅컷 기대", "desc": "급격한 패닉 진정을 위한 9월 FOMC 50bp 금리 인하 기대감 확산."}], "solutions": [{"name": "RISE 200 (148020)", "type": "Index Bargain Hunting", "points": ["역사적 밸류에이션 바닥 구간에서 최저보수로 코스피 반등 향유"]}], "focusCodes": ["148020", "477170", "477080"], "focusReasons": {"148020": "📉 역사적 과매도 구간 대표 지수 저가 매수 기회", "477170": "🛡️ 주식 급락 속 국채 50% 편입으로 충격 완충 및 반등 레버리지", "477080": "💰 시장 패닉 시 원금보존형 초단기 파킹 솔루션"}}, "2022-02-24": {"date": "2022-02-24", "title": "러시아-우크라이나 전면 침공 발발, 안보·원자력·에너지 인프라 헷지 전략", "summary": "러시아군 우크라이나 침공으로 WTI/브렌트유가 배럴당 $130을 돌파했습니다. 글로벌 에너지 공급망 재편과 방위산업 르네상스 국면에서 안보 자산 중심의 포트폴리오 재편이 요구됩니다.", "macro": {"kospi": "2,648.80 (-2.05%)", "sp500": "4,288.70 (+1.50%)", "treasury10y": "1.97% (-2.0 bps)", "brent": "$105.00 (+8.50%)", "usdkrw": "1,202.40원", "dxy": "97.10 (+0.90p)"}, "drivers": [{"title": "01. 유럽 에너지 대란", "desc": "러시아산 천연가스/원유 차단으로 에너지 안보 및 원자력 필수 불가결."}, {"title": "02. 전 세계 국방비 증액", "desc": "NATO 및 각국 군비 확장으로 K-방산 수주 모멘텀 본격 개막."}], "solutions": [{"name": "RISE 글로벌원자력 (396500)", "type": "Energy Security Solution", "points": ["유럽 및 글로벌 원전 르네상스 수혜 SMR 및 원자로 밸류체인 독점"]}], "focusCodes": ["396500", "0176E0", "477170"], "focusReasons": {"396500": "☢️ 유럽 에너지 안보 위기 속 글로벌 원전 르네상스 메가 트렌드", "0176E0": "⚡ 전력난 및 에너지 위기 수혜 독점 전력망 인프라", "477170": "🛡️ 지정학적 블랙스완 국면 국채 자산배분 방어 효과"}}};
+    const breakingNewsDB = {"2026-09-10": [{"time": "14:30", "tag": "에너지/유가", "badgeColor": "bg-rose-500/20 text-rose-300 border-rose-500/30", "headline": "[로이터 속보] 브렌트유 배럴당 $101.60 공식 돌파… 호르무즈 해협 긴장 격화에 공급망 비상", "summary": "중동 분쟁 격화로 원유 수송로 차단 우려가 가시화되며 브렌트유가 3.76% 급등한 $101.60을 기록했습니다. 글로벌 에너지 공급발 인플레이션 압력이 심화되며 오늘 밤 발표될 미 8월 생산자물가지수(PPI)에 시장의 경계감이 극대화되고 있습니다.", "source": "로이터(Reuters) · 연합인포맥스", "relatedCodes": ["0176E0", "481090", "477170"], "relatedNames": ["RISE 미국AI전력인프라", "RISE 골드선물(H)", "RISE 삼성전자SK하이닉스50채권혼합"]}, {"time": "11:15", "tag": "거시경제/금리", "badgeColor": "bg-amber-500/20 text-amber-300 border-amber-500/30", "headline": "[블룸버그 속보] 미 10년물 국채금리 4.84% 급등… '고금리 장기화(Higher for Longer)' 재점화", "summary": "유가 급등에 따른 텀 프리미엄 재부각으로 미 10년물 국채금리가 전일비 4.0bp 상승한 4.84%를 기록했습니다. 장단기 금리차가 +39bp로 벌어지며 채권 시장 내 베어 스티프닝(Bear Steepening) 흐름이 가속화되고 있습니다.", "source": "블룸버그(Bloomberg) · CNBC", "relatedCodes": ["455890", "477080", "475720"], "relatedNames": ["RISE 머니마켓액티브", "RISE CD금리액티브(합성)", "RISE 미국달러SOFR금리액티브"]}, {"time": "09:40", "tag": "AI/반도체", "badgeColor": "bg-blue-500/20 text-blue-300 border-blue-500/30", "headline": "[CNBC 특파원 리포트] 뉴욕증시 빅테크 차익실현 속 데이터센터 전력망·변압기 독점주 독주", "summary": "엔비디아, 메타 등 빅테크 매그니피센트7의 밸류에이션 부담 속에서도, 데이터센터 전력 공급 병목을 해소하는 GE버노바, 이튼 등 미국 AI 전력 인프라 유틸리티 기업들은 강력한 전기요금 판가 전가력을 바탕으로 신고가 랠리를 이어갔습니다.", "source": "CNBC · 한국경제 마켓인사이트", "relatedCodes": ["0176E0", "485690"], "relatedNames": ["RISE 미국AI전력인프라", "RISE 미국AI밸류체인TOP3Plus"]}, {"time": "09:05", "tag": "국내외환/증시", "badgeColor": "bg-emerald-500/20 text-emerald-300 border-emerald-500/30", "headline": "[연합인포맥스 속보] 코스피 7,050선 안착 후 유가 $100 충격에 공방… 원/달러 1,368.5원 출발", "summary": "역외 NDF 환율이 1,372원까지 상승하며 원화 약세 압력이 커진 가운데, 삼성전자와 SK하이닉스 등 HBM 수출 대형주의 탄탄한 실적 펀더멘털이 외국인 매도세를 방어하며 지수 하방 지지력을 확인하고 있습니다.", "source": "연합인포맥스 · 매일경제", "relatedCodes": ["477170", "148020", "0192L0"], "relatedNames": ["RISE 삼성전자SK하이닉스50채권혼합", "RISE 200", "RISE SK하이닉스단일종목레버리지"]}, {"time": "08:30", "tag": "퇴직연금/세제", "badgeColor": "bg-purple-500/20 text-purple-300 border-purple-500/30", "headline": "[매일경제 금융부] 퇴직연금 100% 안전자산 한도 채우는 '채권혼합 50%' 펀드로 자금 유입 급증", "summary": "퇴직연금(DC/IRP) 계좌 내 위험자산 70% 규제를 합법적으로 우회하여 실질 주식 투자 효과를 극대화할 수 있는 '채권혼합 50%' 상품군에 법인 및 개인 연금 자금 유입이 집중되며 수탁고가 가파르게 증가하고 있습니다.", "source": "매일경제 · 서울경제", "relatedCodes": ["477170", "461380"], "relatedNames": ["RISE 삼성전자SK하이닉스50채권혼합", "RISE 국고채30년액티브"]}], "2026-09-09": [{"time": "15:00", "tag": "에너지/유가", "badgeColor": "bg-rose-500/20 text-rose-300 border-rose-500/30", "headline": "[로이터 속보] 브렌트유 배럴당 $99.50 터치… $100 돌파 임박에 에너지주 급등", "summary": "중동 지정학적 위기 고조로 국제 유가가 $100에 육박하며 정유 및 에너지 인프라 종목으로 글로벌 수급 이동.", "source": "로이터(Reuters) · 연합인포맥스", "relatedCodes": ["0176E0"], "relatedNames": ["RISE 미국AI전력인프라"]}, {"time": "10:30", "tag": "거시경제/금리", "badgeColor": "bg-amber-500/20 text-amber-300 border-amber-500/30", "headline": "[한국경제 속보] 미 물가지표 경계감 속 단기자금 MMF 순자산 사상 최대치 돌파", "summary": "단기 유동성 확보를 위한 CD금리형 및 MMF 파킹형 ETF로 기관 유동성 집중.", "source": "한국경제신문 · 머니투데이", "relatedCodes": ["455890", "477080"], "relatedNames": ["RISE 머니마켓액티브", "RISE CD금리액티브(합성)"]}], "2024-08-05": [{"time": "14:15", "tag": "글로벌쇼크", "badgeColor": "bg-rose-500/20 text-rose-300 border-rose-500/30", "headline": "[블룸버그 속보] 엔 캐리 트레이드 청산 쇼크… 닛케이 -12.4%, 코스피 -8.8% 서킷브레이커", "summary": "일본은행(BOJ) 기습 금리인상과 미 실업률 쇼크로 아시아 증시 역사적 패닉셀. 과매도 우량주 분할 매수 기회 부각.", "source": "블룸버그(Bloomberg) · 연합인포맥스", "relatedCodes": ["148020", "477170"], "relatedNames": ["RISE 200", "RISE 삼성전자SK하이닉스50채권혼합"]}], "2022-02-24": [{"time": "15:30", "tag": "지정학/안보", "badgeColor": "bg-rose-500/20 text-rose-300 border-rose-500/30", "headline": "[AP/로이터 긴급] 러시아, 우크라이나 전면 침공 개시… 유가 $105 폭등 및 방산/원전 부각", "summary": "유럽 에너지 대란 발발로 원자력 및 방위산업이 국가 안보 핵심 자산으로 격상.", "source": "AP 통신 · 로이터(Reuters)", "relatedCodes": ["396500", "379800"], "relatedNames": ["RISE 글로벌원자력", "RISE K-방산"]}]};
+const pipeData = [
   "477170|RISE 삼성전자SK하이닉스50채권혼합|국내 채권혼합|0.080%|월배당|10,250|10,245|+0.05%|+0.35%|+1.20%|+3.40%|+4.80%|+8.20%|+11.50%|+12.80%|1|1,250|1,540|1|유가 $100 돌파 국면 국채 방어 & 퇴직연금 100% 안전자산 편입",
   "485690|RISE 미국AI밸류체인TOP3Plus|해외 주식(AI)|0.150%|분기배당|12,840|12,830|+0.08%|-0.45%|+2.10%|+8.40%|+15.20%|+24.50%|+38.20%|+45.60%|0|3,450|2,890|1|빅테크 차익실현 속 AI 반도체·하드웨어 핵심 밸류체인 독점 수혜",
   "0176E0|RISE 미국AI전력인프라|해외 주식(전력)|0.150%|분기배당|11,620|11,605|+0.13%|+1.85%|+3.40%|+11.20%|+22.40%|+35.80%|+52.40%|+58.20%|0|4,120|1,980|1|전력난 및 에너지 위기 수혜 독점 전력망/변압기 인프라",
@@ -948,28 +521,32 @@
   "287170|RISE 미국달러선물|외환 파생|0.150%|분기배당|11,200|11,195|+0.04%|+0.20%|+0.80%|+2.10%|+4.50%|+7.80%|+11.20%|+18.50%|0|5,400|2,800|0|",
   "315940|RISE 대형가치10TR|국내 주식(가치주)|0.150%|재투자(TR)|13,800|13,790|+0.07%|+0.38%|+1.10%|+3.40%|+9.80%|+16.20%|+24.10%|+42.50%|0|1,600|1,100|0|",
   "360210|RISE 유로스탁스50(H)|해외 시장지수|0.150%|분기배당|15,400|15,380|+0.13%|+0.15%|+0.90%|+2.80%|+7.40%|+12.80%|+18.50%|+48.20%|0|2,100|1,850|0|",
-  "364990|RISE 일본니케이225(H)|해외 시장지수|0.150%|분기배당|21,500|21,480|+0.09%|+0.80%|+2.10%|+5.40%|+14.50%|+22.80%|+31.20%|+74.50%|0|4,500|3,800|0|",
-  "365000|RISE 대만자취안|해외 시장지수|0.150%|분기배당|18,400|18,380|+0.11%|+1.20%|+3.40%|+8.90%|+22.40%|+35.80%|+52.40%|+88.50%|0|2,800|2,100|0|",
-  "368190|RISE 200에너지화학레버리지|국내 파생|0.350%|미지급|11,200|11,180|+0.18%|+0.90%|+2.80%|+7.20%|+16.50%|+27.80%|+41.20%|+48.50%|0|1,850|950|0|",
-  "368200|RISE 200중공업레버리지|국내 파생|0.350%|미지급|18,900|18,870|+0.16%|+4.60%|+11.20%|+27.80%|+64.50%|+95.80%|+134.50%|+178.00%|0|8,900|2,400|0|",
-  "387290|RISE 미국S&PIT인덱스(H)|해외 주식(IT)|0.150%|분기배당|24,800|24,770|+0.12%|-0.40%|+1.80%|+6.50%|+15.20%|+25.80%|+41.50%|+98.40%|0|3,400|2,900|0|",
-  "387300|RISE 미국S&P원자재(H)|해외 원자재|0.150%|분기배당|12,400|12,380|+0.16%|+0.80%|+2.40%|+6.80%|+14.50%|+22.80%|+34.20%|+42.50%|0|1,850|1,450|0|",
-  "394690|RISE 글로벌수소&차세대연료전지|해외 주식(친환경)|0.150%|분기배당|8,950|8,940|+0.11%|+0.70%|+2.10%|+5.80%|+12.40%|+19.50%|+28.40%|+18.50%|0|1,600|1,150|0|",
-  "448330|RISE 200위클리커버드콜ATM|국내 주식(커버드콜)|0.250%|월배당|11,800|11,790|+0.08%|+0.95%|+2.10%|+5.20%|+13.40%|+19.80%|+26.50%|+32.40%|0|3,200|1,980|0|",
-  "453390|RISE 국고채10년액티브|국내 채권|0.450%|분기배당|108,500|108,480|+0.02%|-0.06%|+0.20%|+0.75%|+1.15%|+2.90%|+4.50%|+16.80%|1|8,500|12,400|0|",
-  "458800|RISE 미국채10년인버스2X(합성)|해외 채권(인버스)|0.350%|미지급|7,850|7,845|+0.06%|+0.40%|-0.30%|-1.20%|-2.20%|-5.40%|-8.20%|-16.40%|0|2,400|1,850|0|",
-  "461440|RISE 미국S&P500ESG(H)|해외 주식(ESG)|0.021%|분기배당|12,800|12,780|+0.16%|-0.32%|+1.05%|+4.10%|+10.50%|+17.20%|+25.80%|+31.20%|0|1,850|1,350|0|",
-  "465620|RISE 국고채3년선물인버스|국내 채권(인버스)|0.350%|미지급|98,500|98,495|+0.01%|-0.02%|-0.10%|-0.50%|-1.60%|-3.40%|-5.20%|-14.50%|0|1,400|1,100|0|",
-  "469090|RISE 대형가치성장혼합액티브|국내 주식(액티브)|0.450%|분기배당|11,800|11,790|+0.08%|+0.80%|+2.20%|+6.40%|+15.80%|+25.40%|+36.80%|+44.50%|0|1,950|1,200|0|",
+  "364990|RISE 일본니케이225(H)|해외 시장지수|0.150%|분기배당|21,800|21,780|+0.09%|+0.80%|+2.10%|+5.80%|+13.50%|+22.10%|+31.20%|+54.50%|0|3,400|2,800|0|",
+  "365000|RISE 200중소형|국내 시장지수|0.150%|분기배당|15,600|15,580|+0.13%|+1.20%|+2.90%|+7.50%|+17.80%|+28.40%|+39.50%|+51.20%|0|1,850|1,150|0|",
+  "381160|RISE 코스닥150바이오테크|국내 주식(바이오)|0.150%|분기배당|11,400|11,380|+0.18%|+1.50%|+4.10%|+11.20%|+24.50%|+39.80%|+58.20%|+64.50%|0|2,800|1,950|0|",
+  "381190|RISE 미국S&P500헬스케어|해외 주식(바이오)|0.150%|분기배당|16,800|16,780|+0.12%|+0.25%|+0.90%|+2.80%|+6.50%|+11.80%|+18.40%|+38.50%|0|2,100|1,850|0|",
+  "387290|RISE 글로벌수소액티브|해외 주식(친환경)|0.450%|분기배당|14,200|14,180|+0.14%|+1.10%|+3.10%|+7.80%|+16.50%|+26.80%|+38.50%|+44.20%|0|1,400|950|0|",
+  "394690|RISE 빌보드K-POP|국내 주식(엔터)|0.150%|분기배당|8,950|8,940|+0.11%|+0.40%|+1.60%|+4.50%|+9.80%|+16.20%|+24.50%|+18.50%|0|1,850|1,100|0|",
+  "418660|RISE 코리아ESG액티브|국내 주식(ESG)|0.450%|분기배당|10,500|10,490|+0.10%|+0.60%|+1.80%|+5.20%|+11.50%|+18.40%|+26.80%|+32.50%|0|1,200|850|0|",
+  "426030|RISE 글로벌원격의료바이오|해외 주식(바이오)|0.150%|분기배당|9,850|9,840|+0.10%|+0.80%|+2.40%|+6.80%|+15.40%|+24.50%|+36.80%|+28.50%|0|1,400|980|0|",
+  "433460|RISE 미국빅테크TOP10밸런스|해외 주식(빅테크)|0.150%|분기배당|15,400|15,380|+0.13%|-0.35%|+1.85%|+6.80%|+14.50%|+26.20%|+41.50%|+62.40%|0|3,800|2,400|0|",
+  "438330|RISE 미국S&P500금융|해외 주식(금융)|0.150%|분기배당|14,500|14,480|+0.14%|+0.45%|+1.50%|+4.80%|+12.40%|+20.50%|+31.20%|+45.80%|0|1,950|1,450|0|",
+  "441770|RISE 글로벌메타버스액티브|해외 주식(신기술)|0.450%|분기배당|12,400|12,380|+0.16%|+1.10%|+3.20%|+8.50%|+19.80%|+31.20%|+45.20%|+38.50%|0|1,850|1,200|0|",
+  "447770|RISE 글로벌수출강소기업|해외 주식(중소형)|0.150%|분기배당|11,800|11,790|+0.08%|+0.90%|+2.60%|+7.20%|+17.50%|+28.40%|+41.20%|+48.50%|0|1,400|950|0|",
+  "448330|RISE 바이오혁신액티브|국내 주식(바이오)|0.450%|분기배당|12,800|12,780|+0.16%|+1.45%|+3.90%|+10.80%|+23.50%|+38.20%|+54.80%|+68.20%|0|3,100|1,850|0|",
+  "453390|RISE AI빅데이터소프트웨어|국내 주식(IT)|0.150%|분기배당|10,500|10,490|+0.10%|+0.85%|+2.40%|+6.80%|+15.20%|+24.50%|+35.80%|+42.10%|0|1,950|1,200|0|",
+  "458800|RISE 친환경선박액티브|국내 주식(조선)|0.450%|분기배당|15,200|15,180|+0.13%|+2.80%|+6.50%|+16.20%|+38.50%|+62.40%|+88.50%|+98.40%|0|4,800|2,800|0|",
+  "461440|RISE 글로벌로봇AI액티브|해외 주식(로봇)|0.450%|분기배당|13,800|13,780|+0.15%|+1.80%|+4.40%|+12.10%|+27.50%|+42.80%|+65.20%|+74.50%|0|3,200|1,850|0|",
+  "465620|RISE 국고채5년|국내 채권|0.150%|분기배당|108,400|108,390|+0.01%|-0.04%|+0.18%|+0.65%|+1.05%|+2.60%|+3.90%|+18.50%|1|4,800|6,200|0|",
+  "469090|RISE 우량크레딧채권액티브|국내 채권|0.450%|분기배당|103,800|103,790|+0.01%|+0.02%|+0.12%|+0.45%|+1.12%|+2.45%|+3.75%|+11.50%|1|7,400|11,200|0|",
   "472240|RISE 단기우량회사채액티브|국내 단기채|0.450%|분기배당|102,500|102,498|0.00%|+0.01%|+0.06%|+0.30%|+0.88%|+1.78%|+2.70%|+7.80%|1|18,500|16,500|0|"
 ];
-
-    // 파이프 라인별 20개 칼럼 매핑 (인덱스 분리 완료)
+// 143개 전종목 정밀 파싱: r[0]=코드, r[1]=종목명, r[2]=테마, r[3]=보수, r[4]=주기, r[5]=종가, r[6]=NAV, r[7]=괴리율
     const masterList = pipeData.map(function(line) {
       const r = line.split('|');
       return {
         code: String(r[0]),
-        name: String(r),
+        name: String(r[1]),
         category: String(r[2]),
         ter: String(r[3]),
         cycle: String(r[4]),
@@ -989,11 +566,11 @@
         isRise: true,
         isFocus: r[18] === '1',
         reason: String(r[19] || ''),
-        baseDate: "26/09/09 종가 기준"
+        baseDate: "26/09/10 종가 기준"
       };
     });
 
-    let currentDate = "2026-09-09";
+    let currentDate = "2026-09-10";
     let currentMode = "all";
     let currentCat = "ALL";
     let currentNewsCat = "ALL";
@@ -1063,22 +640,34 @@
       const solutionsEl = document.getElementById("reportSolutions");
       solutionsEl.innerHTML = "";
       d.solutions.forEach(function(sol) {
-        const pointsHtml = sol.points.map(function(p) { return '<li class="text-slate-300">• ' + p + '</li>'; }).join("");
-        solutionsEl.innerHTML += '<div class="bg-slate-950 p-4 rounded-xl border border-amber-500/30 space-y-2 print-card">' +
-          '<div class="text-[10px] text-amber-400 font-bold uppercase">' + sol.type + '</div>' +
-          '<div class="font-bold text-white text-xs sm:text-sm">' + sol.name + '</div>' +
-          '<ul class="text-xs space-y-1 mt-1">' + pointsHtml + '</ul>' +
+        let pts = "";
+        sol.points.forEach(function(p) {
+          pts += '<li class="flex items-start text-xs text-slate-200">' +
+            '<span class="text-amber-400 mr-1.5 flex-shrink-0">▪</span>' +
+            '<span>' + p + '</span>' +
+          '</li>';
+        });
+
+        solutionsEl.innerHTML += '<div class="bg-slate-950/90 p-4 rounded-xl border border-amber-500/40 print-card">' +
+          '<div class="flex items-center justify-between mb-1.5">' +
+            '<span class="font-bold text-white text-xs sm:text-sm">' + sol.name + '</span>' +
+            '<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">' + sol.type + '</span>' +
+          '</div>' +
+          '<ul class="space-y-1 mt-2">' + pts + '</ul>' +
         '</div>';
       });
     }
 
-    function filterNews(cat) {
+    function setNewsCat(cat) {
       currentNewsCat = cat;
-      const btns = document.querySelectorAll('.news-cat-btn');
-      for (let i = 0; i < btns.length; i++) {
-        btns[i].className = "news-cat-btn text-xs px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition flex-shrink-0";
-      }
-      event.target.className = "news-cat-btn text-xs px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 font-bold transition flex-shrink-0";
+      const btns = document.querySelectorAll(".news-cat-btn");
+      btns.forEach(function(b) {
+        if (b.getAttribute("data-ncat") === cat) {
+          b.className = "news-cat-btn px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30 flex-shrink-0";
+        } else {
+          b.className = "news-cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0";
+        }
+      });
       renderNews();
     }
 
@@ -1086,54 +675,47 @@
       const newsList = breakingNewsDB[currentDate] || [];
       const container = document.getElementById("newsContainer");
       if (!container) return;
+
       container.innerHTML = "";
-
       const filtered = newsList.filter(function(n) {
-        return currentNewsCat === "ALL" || n.tag.indexOf(currentNewsCat) > -1;
-      });
-
-      if (filtered.length === 0) {
-        container.innerHTML = '<div class="p-8 text-center text-xs text-slate-500">해당 날짜의 속보 내역이 없습니다.</div>';
-        return;
-      }
-
-      filtered.forEach(function(n) {
-        let tagsHtml = "";
-        const relCodes = n.relatedCodes || [];
-        const relNames = n.relatedNames || [];
-        for (let i = 0; i < relNames.length; i++) {
-          const code = relCodes[i] || "";
-          tagsHtml += `<span onclick="filterByEtfCode('${code}')" class="cursor-pointer bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded text-[10px] font-bold transition flex items-center mr-1.5 mb-1.5">`;
-          tagsHtml += `<span class="mr-1">🏷️</span>${relNames[i]} (${code})</span>`;
-        }
-
-        const linkHtml = n.newsUrl 
-          ? `<a href="${n.newsUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1 text-amber-400 hover:text-amber-300 font-bold text-[11px] bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 px-2 py-0.5 rounded-lg transition ml-auto"><span>기사 원문 보기</span><span>↗</span></a>`
-          : '';
-
-        container.innerHTML += '<div class="bg-slate-950 p-4 sm:p-5 rounded-xl border border-slate-800/90 hover:border-amber-500/40 transition space-y-2.5">' +
-          '<div class="flex items-center justify-between text-xs">' +
-            '<div class="flex items-center space-x-2">' +
-              '<span class="font-mono text-slate-400 font-bold">' + n.time + '</span>' +
-              '<span class="px-2 py-0.5 rounded text-[10px] font-bold border ' + n.badgeColor + '">' + n.tag + '</span>' +
-            '</div>' +
-            '<div class="flex items-center space-x-2">' +
-              '<span class="text-[11px] text-slate-400 font-medium">' + n.source + '</span>' +
-              linkHtml +
-            '</div>' +
-          '</div>' +
-          '<h3 class="text-sm sm:text-base font-bold text-white leading-snug">' + n.headline + '</h3>' +
-          '<p class="text-xs text-slate-300 leading-relaxed">' + n.summary + '</p>' +
-          '<div class="pt-2 border-t border-slate-800/80 flex flex-wrap items-center">' +
-            '<span class="text-[11px] text-slate-400 mr-2 font-semibold flex items-center mb-1.5">' +
-              '<span class="mr-1 text-amber-400">⚡</span>수혜/연관 RISE ETF:' +
-            '</span>' +
-            tagsHtml +
-          '</div>' +
-        '</div>';
+        if (currentNewsCat === "ALL") return true;
+        return n.tag === currentNewsCat;
       });
 
       document.getElementById("newsBadge").innerText = filtered.length;
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<div class="p-8 text-center text-slate-500 text-xs">해당 분류의 실시간 속보가 없습니다.</div>';
+        return;
+      }
+
+      filtered.forEach(function(news) {
+        let relBadges = "";
+        if (news.relatedCodes && news.relatedCodes.length > 0) {
+          news.relatedCodes.forEach(function(code, idx) {
+            const name = news.relatedNames[idx] || code;
+            relBadges += '<button onclick="openModal(\'' + code + '\')" class="inline-flex items-center px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-amber-300 text-[10px] border border-slate-700 transition mr-1.5 mb-1">' +
+              '<span class="font-mono text-slate-400 mr-1">' + code + '</span>' +
+              '<span>' + name + '</span>' +
+            '</button>';
+          });
+        }
+
+        const card = '<div class="bg-slate-950 p-4 sm:p-5 rounded-xl border border-slate-800/80 hover:border-slate-700 transition space-y-2.5">' +
+          '<div class="flex items-center justify-between text-xs">' +
+            '<div class="flex items-center space-x-2">' +
+              '<span class="px-2 py-0.5 rounded text-[10px] font-bold border ' + news.badgeColor + '">' + news.tag + '</span>' +
+              '<span class="font-mono text-slate-500 text-[11px]">' + news.time + '</span>' +
+            '</div>' +
+            '<span class="text-[11px] text-slate-400 font-medium">' + news.source + '</span>' +
+          '</div>' +
+          '<h3 class="text-xs sm:text-sm font-bold text-white leading-snug hover:text-amber-300 transition cursor-pointer">' + news.headline + '</h3>' +
+          '<p class="text-xs text-slate-300 leading-relaxed">' + news.summary + '</p>' +
+          (relBadges ? '<div class="pt-2 border-t border-slate-800/60 flex flex-wrap items-center"><span class="text-[11px] text-slate-400 mr-2 mb-1">연관 RISE ETF:</span>' + relBadges + '</div>' : '') +
+        '</div>';
+
+        container.innerHTML += card;
+      });
     }
 
     function updateTickerDisplay() {
@@ -1141,18 +723,14 @@
       if (newsList.length === 0) return;
 
       const currentItem = newsList[currentTickerIdx % newsList.length];
-      const timeEl = document.getElementById("tickerTime");
-      const headlineEl = document.getElementById("tickerHeadline");
-      const counterEl = document.getElementById("tickerCounter");
+      if (currentItem) {
+        const timeEl = document.getElementById("tickerTime");
+        const hlEl = document.getElementById("tickerHeadline");
+        const counterEl = document.getElementById("tickerCounter");
 
-      if (timeEl && headlineEl) {
-        headlineEl.style.opacity = 0;
-        setTimeout(function() {
-          timeEl.innerText = currentItem.time;
-          headlineEl.innerText = currentItem.headline;
-          if (counterEl) counterEl.innerText = ((currentTickerIdx % newsList.length) + 1) + "/" + newsList.length;
-          headlineEl.style.opacity = 1;
-        }, 200);
+        if (timeEl) timeEl.innerText = currentItem.time;
+        if (hlEl) hlEl.innerText = currentItem.headline;
+        if (counterEl) counterEl.innerText = ((currentTickerIdx % newsList.length) + 1) + "/" + newsList.length;
       }
     }
 
@@ -1164,70 +742,34 @@
           currentTickerIdx = (currentTickerIdx + 1) % newsList.length;
           updateTickerDisplay();
         }
-      }, 4000);
+      }, 4500);
     }
 
-    function filterByEtfCode(code) {
-      switchMainTab('tab-explorer');
-      document.getElementById('keyword').value = code;
-      render();
-    }
-
-    function openModal(code) {
-      let item = null;
-      for (let i = 0; i < masterList.length; i++) {
-        if (masterList[i].code === code) { item = masterList[i]; break; }
-      }
-      if (!item) return;
-
-      currentModalItem = item;
-      document.getElementById("modalCode").innerText = item.code;
-      document.getElementById("modalName").innerText = item.name;
-      document.getElementById("modalCategory").innerText = item.category;
-      document.getElementById("modalCycle").innerText = item.cycle;
-      document.getElementById("modalPrice").innerText = item.price + "원";
-      document.getElementById("modalTer").innerText = item.ter;
-      document.getElementById("modalRet3m").innerText = item.ret3m;
-      document.getElementById("modalDisparity").innerText = item.disparity;
-      document.getElementById("modalReason").innerText = item.reason || "시장 상황에 부합하는 대표 추천 라인업";
-
-      document.getElementById("etfModal").classList.remove("hidden");
-    }
-
-    function closeModal() {
-      document.getElementById("etfModal").classList.add("hidden");
-    }
-
-    function copySalesText() {
-      if (!currentModalItem) return;
-      const text = "[RISE ETF 상품 안내]\n" +
-        "■ 종목명: " + currentModalItem.name + " (" + currentModalItem.code + ")\n" +
-        "■ 종가: " + currentModalItem.price + "원 (괴리율: " + currentModalItem.disparity + ")\n" +
-        "■ 총보수(TER): " + currentModalItem.ter + " / 분배주기: " + currentModalItem.cycle + "\n" +
-        "■ 성과: 1D(" + currentModalItem.ret1d + ") | 3M(" + currentModalItem.ret3m + ") | YTD(" + currentModalItem.retYtd + ")\n" +
-        "■ 퇴직연금 편입한도: " + (currentModalItem.pension100 ? "100% 안전자산 적격" : "위험자산 70% 한도") + "\n" +
-        "■ 핵심 전략: " + currentModalItem.reason + "\n" +
-        "■ 기준일: " + currentModalItem.baseDate;
-
-      navigator.clipboard.writeText(text).then(function() {
-        alert("📋 고객 안내용 텍스트가 클립보드에 복사되었습니다. 메신저나 이메일에 붙여넣기 하세요!");
-      });
-    }
-
-    function switchView(mode) {
+    function setMode(mode) {
       currentMode = mode;
-      document.getElementById('btnAll').className = mode === 'all' ? "px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 bg-amber-500 text-slate-950 shadow-md" : "px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-semibold transition flex items-center space-x-1.5 text-slate-400 hover:text-white";
-      document.getElementById('btnFocus').className = mode === 'focus' ? "px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 bg-amber-500 text-slate-950 shadow-md" : "px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-semibold transition flex items-center space-x-1.5 text-slate-400 hover:text-white";
+      const btnAll = document.getElementById('btnModeAll');
+      const btnFocus = document.getElementById('btnModeFocus');
+
+      if (mode === 'all') {
+        btnAll.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition bg-amber-500 text-slate-950";
+        btnFocus.className = "px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition";
+      } else {
+        btnFocus.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition bg-amber-500 text-slate-950";
+        btnAll.className = "px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition";
+      }
       render();
     }
 
-    function filterCat(cat) {
+    function setCat(cat) {
       currentCat = cat;
       const btns = document.querySelectorAll('.cat-btn');
-      for (let i = 0; i < btns.length; i++) {
-        btns[i].className = "cat-btn text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition flex-shrink-0";
-      }
-      event.target.className = "cat-btn text-xs px-2.5 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold transition flex-shrink-0";
+      btns.forEach(function(b) {
+        if (b.getAttribute('data-cat') === cat) {
+          b.className = "cat-btn px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-bold border border-amber-500/40 flex-shrink-0";
+        } else {
+          b.className = "cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0";
+        }
+      });
       render();
     }
 
@@ -1235,9 +777,7 @@
       const rep = reportsDB[currentDate];
       const focusSet = {};
       if (rep && rep.focusCodes) {
-        for (let i = 0; i < rep.focusCodes.length; i++) {
-          focusSet[rep.focusCodes[i]] = true;
-        }
+        rep.focusCodes.forEach(function(c) { focusSet[c] = true; });
       }
 
       const q = (document.getElementById('keyword').value || '').toLowerCase().trim();
@@ -1320,6 +860,61 @@
       render();
     }
 
+    function openModal(code) {
+      let item = null;
+      for (let i = 0; i < masterList.length; i++) {
+        if (masterList[i].code === code) {
+          item = masterList[i];
+          break;
+        }
+      }
+      if (!item) return;
+
+      currentModalItem = item;
+
+      document.getElementById("modalCode").innerText = item.code;
+      document.getElementById("modalName").innerText = item.name;
+      document.getElementById("modalCategory").innerText = item.category;
+      document.getElementById("modalCycle").innerText = item.cycle;
+
+      document.getElementById("modalPrice").innerText = item.price;
+      document.getElementById("modalTer").innerText = item.ter;
+      document.getElementById("modalRet3m").innerText = item.ret3m;
+      document.getElementById("modalDisparity").innerText = item.disparity;
+
+      const rep = reportsDB[currentDate];
+      const customReason = (rep && rep.focusReasons && rep.focusReasons[item.code]) ? rep.focusReasons[item.code] : "";
+      document.getElementById("modalReason").innerText = customReason || item.reason || "시장 국면 대응을 위한 핵심 포트폴리오 라인업";
+
+      document.getElementById("etfModal").classList.remove("hidden");
+    }
+
+    function closeModal() {
+      document.getElementById("etfModal").classList.add("hidden");
+      currentModalItem = null;
+    }
+
+    function copySalesText() {
+      if (!currentModalItem) return;
+      const text = `[KB자산운용 RISE ETF 고객 안내]
+▪ 종목명: ${currentModalItem.name} (${currentModalItem.code})
+▪ 테마분류: ${currentModalItem.category} | 총보수: ${currentModalItem.ter}
+▪ 기준일가: ${currentModalItem.price}원 (괴리율: ${currentModalItem.disparity})
+▪ 3개월 수익률: ${currentModalItem.ret3m} | 연간(YTD): ${currentModalItem.retYtd}
+▪ 퇴직연금 편입: ${currentModalItem.pension100 ? '안전자산 100% 한도 적격' : '위험자산 70% 한도'}
+▪ 핵심 셀링 포인트: ${currentModalItem.reason || '퇴직연금 및 글로벌 자산배분 최적화 솔루션'}`;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() {
+          alert('📋 고객 안내용 텍스트가 클립보드에 복사되었습니다.');
+        }).catch(function() {
+          prompt('아래 텍스트를 복사하세요:', text);
+        });
+      } else {
+        prompt('아래 텍스트를 복사하세요:', text);
+      }
+    }
+
     function initApp() {
       try { updateBriefing(); } catch(e) { console.error('updateBriefing err:', e); }
       try { renderNews(); } catch(e) { console.error('renderNews err:', e); }
@@ -1335,3 +930,394 @@
   </script>
 </body>
 </html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>RISE ETF Intelligence Base & Market Portal</title>
+
+  <!-- Open Graph / Meta -->
+  <meta name="description" content="KB자산운용 RISE ETF 143개 전종목 인텔리전스 포털 및 데일리 매크로 시황 대시보드">
+  <meta property="og:title" content="RISE ETF Intelligence Base & Market Portal">
+  <meta property="og:description" content="143개 RISE 전종목 마스터 DB 연계 실시간 시황 모니터링, 퇴직연금 100% 안전자산 분석 및 데일리 전략 브리프">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="RISE ETF Intelligence">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "맑은 고딕", helvetica, sans-serif; background-color: #020617; color: #f8fafc; }
+    .kpi-card { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(8px); border: 1px solid rgba(51, 65, 85, 0.6); }
+    .kpi-card:hover { border-color: rgba(245, 158, 11, 0.5); }
+    .gold-gradient { background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); }
+    .tab-active { border-bottom: 2px solid #F59E0B; color: #F59E0B; font-weight: 700; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    @media print {
+      body { background-color: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-card { border: 1px solid #cbd5e1 !important; box-shadow: none !important; background: #ffffff !important; color: #000000 !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-amber-500 selection:text-slate-950">
+
+  <!-- TOP APP BAR -->
+  <header class="border-b border-slate-800/90 bg-slate-900/90 backdrop-blur-md sticky top-0 z-50 no-print">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand & Title -->
+      <div class="flex items-center space-x-2.5 sm:space-x-3.5">
+        <div class="w-9 h-9 rounded-xl gold-gradient flex items-center justify-center font-black text-slate-950 text-xl shadow-lg shadow-amber-500/20 flex-shrink-0">
+          R
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="font-extrabold text-base sm:text-lg tracking-tight text-white">RISE ETF 143 Intelligence Base</span>
+            <span class="text-[10px] sm:text-xs bg-amber-500/20 text-amber-400 border border-amber-500/30 px-2 py-0.5 rounded-full font-bold">143개 전종목</span>
+          </div>
+          <p class="text-[11px] text-slate-400 hidden sm:block">KRX·ECOS·DART 공인 연계 데일리 마켓 포털</p>
+        </div>
+      </div>
+
+      <!-- 기준일 선택기 (기본값: 최신 26/09/10 종가 기준) -->
+      <div class="flex items-center space-x-2 flex-shrink-0">
+        <div class="flex items-center space-x-1 sm:space-x-2 bg-slate-800/90 border border-amber-500/40 px-2 sm:px-3 py-1.5 rounded-xl shadow">
+          <span class="text-amber-400">📅</span>
+          <span class="text-[11px] sm:text-xs text-slate-300 hidden md:inline font-semibold">시황 기준:</span>
+          <select id="dateSelect" onchange="onDateChange()" class="bg-slate-900 text-amber-300 font-bold text-[11px] sm:text-xs rounded-lg px-1.5 sm:px-2 py-0.5 border border-slate-700 focus:outline-none focus:border-amber-500 cursor-pointer">
+            <option value="2026-09-10" selected>26/09/10 종가 기준 (유가 $100 돌파)</option>
+            <option value="2026-09-09">26/09/09 종가 기준 (전일 장마감 확정)</option>
+            <option value="2024-08-05">24/08/05 종가 기준 (블랙먼데이)</option>
+            <option value="2022-02-24">22/02/24 종가 기준 (우크라이나 침공)</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- LIVE TICKER (실시간 속보 롤링 바) -->
+  <div class="bg-amber-500/10 border-b border-amber-500/20 py-2 px-3 sm:px-6 lg:px-8 text-xs no-print">
+    <div class="max-w-7xl mx-auto flex items-center justify-between space-x-3">
+      <div class="flex items-center space-x-2 overflow-hidden flex-1 cursor-pointer" onclick="switchMainTab('tab-news')">
+        <span class="flex items-center text-amber-400 font-bold flex-shrink-0">
+          <span>⚡</span>
+          <span class="ml-1 uppercase tracking-wider">속보</span>
+          <span id="tickerCounter" class="ml-1 text-[10px] text-amber-400/80 font-mono">1/5</span>
+        </span>
+        <span id="tickerTime" class="text-slate-500 font-mono text-[11px] flex-shrink-0">14:30</span>
+        <span id="tickerHeadline" class="text-slate-200 truncate hover:text-amber-300 transition font-medium">
+          [로이터 속보] 브렌트유 배럴당 $101.60 공식 돌파… 호르무즈 해협 긴장 격화에 공급망 비상
+        </span>
+      </div>
+      <button type="button" onclick="event.stopPropagation(); switchMainTab('tab-news');\" class="text-amber-400 hover:text-amber-300 text-[11px] font-bold flex items-center flex-shrink-0 bg-amber-500/10 border border-amber-500/30 px-2.5 py-1 rounded-lg">
+        <span>속보 전체보기</span>
+        <span class="ml-1">▶</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- MAIN NAVIGATION TABS (3대 핵심 탭 구조) -->
+  <div class="border-b border-slate-800 bg-slate-900/60 sticky top-16 z-40 no-print overflow-x-auto no-scrollbar">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex space-x-8 text-xs font-semibold whitespace-nowrap min-w-max">
+      <button onclick="switchMainTab('tab-explorer')" id="btn-tab-explorer" class="py-3 px-1 tab-active flex items-center space-x-1.5">
+        <span>📊</span>
+        <span>RISE 전종목 마스터 탐색기 (<span id="tabCount">143</span>)</span>
+      </button>
+      <button onclick="switchMainTab('tab-news')" id="btn-tab-news" class="py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-1.5">
+        <span>⚡</span>
+        <span>데일리 시장 뉴스 속보</span>
+        <span class="bg-rose-500 text-white text-[9px] font-bold px-1.5 py-0.2 rounded-full" id="newsBadge">5</span>
+      </button>
+      <button onclick="switchMainTab('tab-report')" id="btn-tab-report" class="py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-1.5">
+        <span>📑</span>
+        <span>데일리 매크로 리포트 전문</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 flex-1 w-full space-y-4 sm:space-y-6">
+
+    <!-- 1. DYNAMIC MACRO SENSING STRIP -->
+    <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-2.5 text-xs no-print">
+      <div class="kpi-card p-2 sm:p-2.5 rounded-xl">
+        <div class="text-slate-400 text-[10px] sm:text-[11px]">KOSPI</div>
+        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macroKospi">-</div>
+      </div>
+      <div class="kpi-card p-2 sm:p-2.5 rounded-xl">
+        <div class="text-slate-400 text-[10px] sm:text-[11px]">S&P 500</div>
+        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macroSp500">-</div>
+      </div>
+      <div class="kpi-card p-2 sm:p-2.5 rounded-xl">
+        <div class="text-slate-400 text-[10px] sm:text-[11px]">미 국채 10Y</div>
+        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macro10Y">-</div>
+      </div>
+      <div class="kpi-card p-2 sm:p-2.5 rounded-xl">
+        <div class="text-slate-400 text-[10px] sm:text-[11px]">브렌트유 / 원유</div>
+        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macroBrent">-</div>
+      </div>
+      <div class="kpi-card p-2 sm:p-2.5 rounded-xl">
+        <div class="text-slate-400 text-[10px] sm:text-[11px]">원/달러 환율 (ECOS)</div>
+        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macroUsdKrw">-</div>
+      </div>
+      <div class="kpi-card p-2 sm:p-2.5 rounded-xl">
+        <div class="text-slate-400 text-[10px] sm:text-[11px]">달러 인덱스 (DXY)</div>
+        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macroDxy">-</div>
+      </div>
+    </section>
+
+    <!-- 2. STRATEGY BRIEF CARD (공통 상단 요약 브리프) -->
+    <section class="bg-gradient-to-r from-slate-900 via-slate-900 to-amber-950/30 border border-amber-500/30 rounded-2xl p-4 sm:p-5 shadow-xl no-print">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-slate-800 pb-3">
+        <div class="flex items-center space-x-2">
+          <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30" id="briefDateBadge">26/09/10 종가 기준</span>
+          <span class="text-xs text-slate-400">전략 브리프</span>
+        </div>
+        <span class="text-[11px] text-slate-400">출처: 로이터 · 블룸버그 · ECOS · KRX</span>
+      </div>
+      <div class="mt-3 space-y-2">
+        <h2 class="text-sm sm:text-base font-bold text-white leading-snug" id="briefHeadline">로딩 중...</h2>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed" id="briefTrigger">로딩 중...</p>
+        <div class="flex items-center text-xs text-amber-400 font-semibold pt-1">
+          <span>✔</span>
+          <span class="ml-1.5" id="briefSolution">로딩 중...</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. TAB 1: RISE 전종목 마스터 탐색기 (143개) -->
+    <div id="tab-explorer" class="space-y-4">
+      
+      <!-- CONTROLS: Mode (전체 vs 포커스), 테마 필터, 검색, 퇴직연금 토글 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3 sm:p-4 space-y-3 shadow-lg no-print">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+          
+          <!-- Mode Tabs (전체 143 vs 포커스) -->
+          <div class="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800 w-fit">
+            <button onclick="setMode('all')" id="btnModeAll" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-amber-500 text-slate-950">
+              ☰ RISE 전종목 (<span id="allCount">143</span>)
+            </button>
+            <button onclick="setMode('focus')" id="btnModeFocus" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
+              ★ 포커스만 (<span id="focusCount">4</span>)
+            </button>
+          </div>
+
+          <!-- 테마 카테고리 필터 (가로 스크롤) -->
+          <div class="flex items-center space-x-1.5 overflow-x-auto no-scrollbar py-0.5 text-xs text-slate-300">
+            <span class="text-slate-400 text-[11px] flex-shrink-0 mr-1">🏷️ 테마:</span>
+            <button onclick="setCat('ALL')" class="cat-btn px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-bold border border-amber-500/40 flex-shrink-0" data-cat="ALL">전체 (143)</button>
+            <button onclick="setCat('채권혼합')" class="cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-cat="채권혼합">채권혼합(안전자산)</button>
+            <button onclick="setCat('AI')" class="cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-cat="AI">AI / 반도체</button>
+            <button onclick="setCat('전력')" class="cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-cat="전력">전력망 / 원전</button>
+            <button onclick="setCat('시장지수')" class="cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-cat="시장지수">대표지수(200/코스닥)</button>
+            <button onclick="setCat('커버드콜')" class="cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-cat="커버드콜">월배당 / 커버드콜</button>
+            <button onclick="setCat('채권')" class="cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-cat="채권">금리파킹 / 채권</button>
+          </div>
+        </div>
+
+        <!-- Search & Pension Toggle -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-2 border-t border-slate-800/80">
+          
+          <!-- 퇴직연금 100% 안전자산만 보기 토글 -->
+          <label class="flex items-center space-x-2 text-xs text-slate-300 cursor-pointer select-none">
+            <input type="checkbox" id="chkPension" onchange="render()" class="w-4 h-4 rounded border-slate-700 text-amber-500 focus:ring-amber-500 bg-slate-900">
+            <span class="font-bold text-emerald-400">퇴직연금 100%만</span>
+            <span class="text-[11px] text-slate-400">(위험자산 한도 미차감 적격)</span>
+          </label>
+
+          <!-- 키워드 실시간 검색창 -->
+          <div class="relative sm:w-80">
+            <input type="text" id="keyword" oninput="render()" placeholder="종목명 또는 6자리 코드 검색 (예: 477170, 반도체)" class="w-full bg-slate-950 border border-slate-700 text-slate-100 placeholder-slate-500 rounded-xl px-3.5 py-2 pl-9 text-xs focus:outline-none focus:border-amber-500">
+            <span class="absolute left-3 top-2.5 text-slate-500 text-xs">🔍</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 143개 전종목 마스터 테이블 (가로 스크롤 대응) -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl shadow-xl overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-slate-200 whitespace-nowrap">
+            <thead class="bg-slate-950/90 text-[11px] text-slate-400 uppercase tracking-wider border-b border-slate-800 sticky top-0 z-20">
+              <tr>
+                <th class="py-3 px-3 text-center w-10">★</th>
+                <th class="py-3 px-3">코드</th>
+                <th class="py-3 px-3">종목명 / 핵심 전략 (클릭 시 팩트시트)</th>
+                <th class="py-3 px-3">테마분류</th>
+                <th class="py-3 px-3 text-center">총보수</th>
+                <th class="py-3 px-3 text-center">분배주기</th>
+                <th class="py-3 px-3 text-right">종가(원)</th>
+                <th class="py-3 px-3 text-right">NAV(원)</th>
+                <th class="py-3 px-3 text-right">괴리율</th>
+                <th class="py-3 px-3 text-right">1D</th>
+                <th class="py-3 px-3 text-right">1W</th>
+                <th class="py-3 px-3 text-right">1M</th>
+                <th class="py-3 px-3 text-right">3M</th>
+                <th class="py-3 px-3 text-right">6M</th>
+                <th class="py-3 px-3 text-right">YTD</th>
+                <th class="py-3 px-3 text-right">설정이후</th>
+                <th class="py-3 px-3 text-center">퇴직연금</th>
+                <th class="py-3 px-3 text-right">일거래대금</th>
+                <th class="py-3 px-3 text-right">순자산AUM</th>
+                <th class="py-3 px-3 text-center">기준일시</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody" class="divide-y divide-slate-800/80"></tbody>
+          </table>
+        </div>
+
+        <!-- 하단 카운트 & 브랜드 안내 푸터 -->
+        <div class="p-3.5 bg-slate-950/80 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-2">
+          <span id="statText" class="font-medium">RISE 전종목 143개 표시 중 (26/09/10 종가 기준)</span>
+          <div class="flex items-center space-x-3 text-[11px]">
+            <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-amber-400 mr-1.5"></span>KB자산운용 RISE 단독</span>
+            <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-400 mr-1.5"></span>143종목 퇴직연금 100% 안전자산</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. TAB 2: 데일리 시장 뉴스 속보 피드 -->
+    <div id="tab-news" class="hidden space-y-4">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-xl space-y-4">
+        
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-800 pb-3 gap-2">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30">LIVE FEED</span>
+              <span class="text-xs text-slate-400" id="newsDateBadge">26/09/10 종가 기준 속보 아카이브</span>
+            </div>
+            <h2 class="text-base sm:text-lg font-bold text-white mt-1">⚡ 데일리 국내·외 경제뉴스 속보 & 연관 RISE ETF</h2>
+            <p class="text-xs text-slate-400">로이터 · 블룸버그 · CNBC · 연합인포맥스 · 한경 · 매경 속보 종합</p>
+          </div>
+
+          <!-- 뉴스 카테고리 필터 -->
+          <div class="flex items-center space-x-1.5 overflow-x-auto no-scrollbar text-xs">
+            <button onclick="setNewsCat('ALL')" class="news-cat-btn px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30 flex-shrink-0" data-ncat="ALL">전체</button>
+            <button onclick="setNewsCat('에너지/유가')" class="news-cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-ncat="에너지/유가">에너지/유가</button>
+            <button onclick="setNewsCat('거시경제/금리')" class="news-cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-ncat="거시경제/금리">거시경제/금리</button>
+            <button onclick="setNewsCat('AI/반도체')" class="news-cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-ncat="AI/반도체">AI/반도체</button>
+            <button onclick="setNewsCat('국내외환/증시')" class="news-cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-ncat="국내외환/증시">국내외환/증시</button>
+            <button onclick="setNewsCat('퇴직연금/세제')" class="news-cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-ncat="퇴직연금/세제">퇴직연금/세제</button>
+          </div>
+        </div>
+
+        <!-- 실시간 뉴스 리스트 렌더링 컨테이너 -->
+        <div class="space-y-3.5" id="newsContainer"></div>
+      </div>
+    </div>
+
+    <!-- 5. TAB 3: 데일리 매크로 리포트 전문 & PDF 인쇄 -->
+    <div id="tab-report" class="hidden space-y-4">
+      
+      <div class="flex items-center justify-between no-print bg-slate-900 border border-slate-800 p-3 sm:p-4 rounded-2xl shadow">
+        <div class="text-xs text-slate-400 flex items-center gap-1.5">
+          <span>🖨️</span>
+          <span>공식 리포트 출력 및 PDF 저장 기능</span>
+        </div>
+        <button onclick="window.print()" class="flex items-center space-x-1.5 text-xs bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2 rounded-xl shadow-lg transition">
+          <span>📄</span>
+          <span>PDF로 저장 / 인쇄하기</span>
+        </button>
+      </div>
+
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-8 shadow-2xl max-w-4xl mx-auto space-y-6 print-card">
+        <div class="border-b border-slate-800 pb-4">
+          <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+            <span class="bg-amber-500/20 text-amber-300 px-2.5 py-1 rounded-full font-bold border border-amber-500/30" id="reportDateBadge">26/09/10 종가 기준</span>
+            <span class="font-bold text-slate-300">KB자산운용 RISE ETF 마켓 인텔리전스</span>
+          </div>
+          <h1 class="text-lg sm:text-2xl font-bold text-white tracking-tight leading-snug" id="reportHeadline">로딩 중...</h1>
+        </div>
+
+        <div class="bg-slate-950/80 border border-amber-500/30 rounded-xl p-4 sm:p-5 space-y-2">
+          <div class="text-xs font-bold text-amber-400 uppercase flex items-center">
+            <span>✨</span> <span class="ml-1">Executive Summary</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-200 leading-relaxed" id="reportSummary">로딩 중...</p>
+        </div>
+
+        <div class="space-y-3">
+          <h3 class="text-xs sm:text-sm font-bold text-white flex items-center">
+            <span>📈</span> <span class="ml-1.5">24시간 핵심 마켓 드라이버 (주요 외신/국내지 종합)</span>
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="reportDrivers"></div>
+        </div>
+
+        <div class="space-y-3 border-t border-slate-800 pt-5">
+          <h3 class="text-xs sm:text-sm font-bold text-white flex items-center">
+            <span>🛡️</span> <span class="ml-1.5">RISE ETF 포트폴리오 솔루션 제언</span>
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="reportSolutions"></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ETF DETAIL MODAL / FACTSHEET -->
+  <div id="etfModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4 no-print">
+    <div class="bg-slate-900 border border-amber-500/40 rounded-2xl max-w-xl w-full p-4 sm:p-6 space-y-4 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeModal()" class="absolute right-3.5 top-3.5 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition">
+        ✕
+      </button>
+
+      <div class="border-b border-slate-800 pb-3 pr-8">
+        <div class="flex items-center space-x-2 text-xs mb-1">
+          <span class="font-mono text-slate-400" id="modalCode">-</span>
+          <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold text-[10px]">KB자산운용</span>
+          <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-[10px]" id="modalCategory">-</span>
+          <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-bold" id="modalCycle">-</span>
+        </div>
+        <h3 class="text-base sm:text-lg font-bold text-white leading-tight" id="modalName">-</h3>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+        <div class="bg-slate-950 p-2 sm:p-2.5 rounded-xl border border-slate-800">
+          <div class="text-slate-400 text-[10px]">종가(원)</div>
+          <div class="text-xs sm:text-sm font-bold text-white mt-0.5" id="modalPrice">-</div>
+        </div>
+        <div class="bg-slate-950 p-2 sm:p-2.5 rounded-xl border border-slate-800">
+          <div class="text-slate-400 text-[10px]">총보수(TER)</div>
+          <div class="text-xs sm:text-sm font-bold text-amber-300 mt-0.5" id="modalTer">-</div>
+        </div>
+        <div class="bg-slate-950 p-2 sm:p-2.5 rounded-xl border border-slate-800">
+          <div class="text-slate-400 text-[10px]">3M 수익률</div>
+          <div class="text-xs sm:text-sm font-bold text-emerald-400 mt-0.5" id="modalRet3m">-</div>
+        </div>
+        <div class="bg-slate-950 p-2 sm:p-2.5 rounded-xl border border-slate-800">
+          <div class="text-slate-400 text-[10px]">괴리율</div>
+          <div class="text-xs sm:text-sm font-bold text-slate-200 mt-0.5" id="modalDisparity">-</div>
+        </div>
+      </div>
+
+      <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-1.5">
+        <div class="text-xs font-bold text-amber-400 flex items-center">
+          <span>🎯</span> <span class="ml-1.5">전략적 핵심 셀링 포인트 (Why RISE)</span>
+        </div>
+        <p class="text-xs text-slate-200 leading-relaxed" id="modalReason">-</p>
+      </div>
+
+      <div class="flex items-center justify-end space-x-2 pt-2 border-t border-slate-800">
+        <button onclick="copySalesText()" class="flex items-center space-x-1.5 text-xs bg-slate-800 hover:bg-slate-700 text-amber-300 px-3 py-2 rounded-xl border border-amber-500/30 transition">
+          <span>📋</span>
+          <span>고객 안내용 텍스트 복사</span>
+        </button>
+        <button onclick="closeModal()" class="text-xs text-slate-400 hover:text-white px-3 py-2">
+          닫기
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-800/80 py-6 text-center text-xs text-slate-500 bg-slate-950 no-print">
+    <p>© 2026 RISE ETF Consulting & Product Marketing Group. Verified Reuters · Bloomberg · Infomax · KRX · ECOS Engine.</p>
+  </footer>
+
+  <!-- CORE JAVASCRIPT --><script>
+    const reportsDB = {"2026-09-09": {"date": "2026-09-09", "title": "유가 $100 위협과 미 국채금리 4.9% 재진입, 반도체 펀더멘털의 방어력에 주목하라", "summary": "미 8월 CPI/PPI 발표를 앞두고 고금리 장기화 우려가 선반영되며 금리와 환율이 반등했습니다. 단기 유동성 가뭄에 대비한 CD금리형 및 반도체 투톱 비중 50%를 담은 채권혼합형 안전자산 방어 전략을 권고합니다.", "macro": {"kospi": "7,051.64 (+1.40%)", "sp500": "7,673.52 (+0.25%)", "treasury10y": "4.80% (+2.5 bps)", "brent": "$99.50 (+1.80%)", "usdkrw": "1,368.50원", "dxy": "104.45 (+0.15p)"}, "drivers": [{"title": "01. 물가 지표 경계감", "desc": "미 8월 인플레이션 지표 발표를 앞두고 시장 경계 심리 고조."}, {"title": "02. 단기 자금 선호", "desc": "위험자산 관망세 확산으로 MMF 및 무위험 지표금리 파킹 수요 급증."}], "solutions": [{"name": "RISE CD금리액티브(합성) (477080)", "type": "Cash Management Solution", "points": ["무위험 고금리 파킹: 단기 변동성 회피 및 복리 효과 누적"]}], "focusCodes": ["477170", "477080", "485690"], "focusReasons": {"477170": "🔥 반도체 펀더멘털 + 국채 50% 혼합으로 금리 발작기 변동성 방어", "477080": "💰 단기 유동성 파킹 및 확정금리형 무위험 안전자산 선호", "485690": "⚡ 글로벌 엔비디아·TSMC 밸류체인 견조한 펀더멘털 수혜"}}, "2026-09-10": {"date": "2026-09-10", "title": "브렌트유 $100 공식 돌파와 미 10년물 4.84% 상승, 인플레 헤지 및 채권혼합 바벨 전략 긴급 점검", "summary": "중동 전황 격화로 브렌트유가 배럴당 $101.60을 돌파하고 미 10년물 국채금리가 4.84%로 급등했습니다. 오늘 밤 미 8월 PPI 발표를 앞두고 고금리 장기화 우려 속에서, 퇴직연금 100% 안전자산 한도를 채우는 '삼전SK하닉50채권혼합'과 가격 전가력을 갖춘 '미국AI전력인프라'를 결합하는 바벨 포트폴리오가 시장 대비 독보적 방어력을 제공합니다.", "macro": {"kospi": "7,051.64 (+1.40%)", "sp500": "7,635.27 (-0.50%)", "treasury10y": "4.84% (+4.0 bps)", "brent": "$101.60 (+3.76%)", "usdkrw": "1,368.50원 (NDF 1,372원)", "dxy": "104.75 (+0.30p)"}, "drivers": [{"title": "01. 에너지 & 인플레 쇼크 (로이터)", "desc": "중동 전황 격화로 브렌트유 배럴당 $101.60 마감. 공급발 인플레 비상으로 9월 FOMC 고금리 장기화(Higher for Longer) 공포 재점화."}, {"title": "02. 글로벌 채권 시장 급변 (블룸버그)", "desc": "미 10년물 4.84%, 2년물 4.45%로 상승하며 장단기 스프레드 +39bp로 확대. 텀 프리미엄 재부각 및 커브 베어 스티프닝 전개."}, {"title": "03. 뉴욕 증시 센티먼트 (CNBC)", "desc": "다우(-0.8%), 나스닥(-0.6%), 필라델피아반도체(-0.85%) 동반 하락. 고유가 장기화 시 빅테크 외 전 업종 기업 마진 축소 경계."}, {"title": "04. 국내 외환 & 증시 (연합인포맥스)", "desc": "KOSPI 7,051선 안착 후 유가 $100 충격과 NDF 1,372원 환율 압력으로 장 초반 변동성 확대 대비 필요."}], "solutions": [{"name": "RISE 삼성전자SK하이닉스50채권혼합 (477170)", "type": "Core Barbell Solution (퇴직연금 100% 적격)", "points": ["시장 방어: 유가 $100 및 금리 4.8% 국면에서 단기 국채 50%의 방어력과 반도체 투톱 상방 레버리지 동시 향유", "규제 우회: DC/IRP 계좌에서 위험자산 70% 제한을 합법적으로 극복하여 실질 주식 비중 극대화"]}, {"name": "RISE 미국AI전력인프라 (0176E0)", "type": "Thematic Growth Solution (가격 전가력 보유)", "points": ["가격 전가력: 고유가 및 전력난 장기화 시 전기요금 판가 인상이 용이한 독점 유틸리티 및 전력망 기업 포진", "구조적 수요: 빅테크 AI 데이터센터 전력 소비 폭증으로 매크로 하강기에도 실적 가시성 보장"]}], "focusCodes": ["477170", "0176E0", "485690", "148020"], "focusReasons": {"477170": "🔥 [전략 1순위] 유가 $100 돌파 국면 국채 방어력 & 퇴직연금 100% 안전자산 편입", "0176E0": "⚡ [인플레 헤지] 고유가/전력난 시 전기요금 판가 전가력 보유 독점 유틸리티 전력망", "485690": "⚡ 빅테크 차익실현 속 AI 반도체/하드웨어 독점 밸류체인 수혜", "148020": "📈 코스피 5,000 시대 최저보수(0.012%) 기관 포트폴리오 대표 코어"}}, "2024-08-05": {"date": "2024-08-05", "title": "엔 캐리 트레이드 청산 쇼크 (블랙 먼데이), 과매도 우량주 분할 매수 타이밍", "summary": "일본은행(BOJ) 기습 금리인상과 미 실업률 상승이 겹치며 닛케이 -12.4%, KOSPI -8.8% 서킷브레이커가 발동했습니다. 시스템 리스크가 없는 유동성 패닉 구간으로, 과매도된 대표 지수 저가 매수 기회입니다.", "macro": {"kospi": "2,441.55 (-8.77%)", "sp500": "5,186.33 (-3.00%)", "treasury10y": "3.78% (-12.0 bps)", "brent": "$76.30 (-1.50%)", "usdkrw": "1,374.00원", "dxy": "102.80 (-0.45p)"}, "drivers": [{"title": "01. 엔 캐리 자금 청산", "desc": "글로벌 헤지펀드 레버리지 포지션 강제 청산으로 아시아 증시 동반 급락."}, {"title": "02. 연준 빅컷 기대", "desc": "급격한 패닉 진정을 위한 9월 FOMC 50bp 금리 인하 기대감 확산."}], "solutions": [{"name": "RISE 200 (148020)", "type": "Index Bargain Hunting", "points": ["역사적 밸류에이션 바닥 구간에서 최저보수로 코스피 반등 향유"]}], "focusCodes": ["148020", "477170", "477080"], "focusReasons": {"148020": "📉 역사적 과매도 구간 대표 지수 저가 매수 기회", "477170": "🛡️ 주식 급락 속 국채 50% 편입으로 충격 완충 및 반등 레버리지", "477080": "💰 시장 패닉 시 원금보존형 초단기 파킹 솔루션"}}, "2022-02-24": {"date": "2022-02-24", "title": "러시아-우크라이나 전면 침공 발발, 안보·원자력·에너지 인프라 헷지 전략", "summary": "러시아군 우크라이나 침공으로 WTI/브렌트유가 배럴당 $130을 돌파했습니다. 글로벌 에너지 공급망 재편과 방위산업 르네상스 국면에서 안보 자산 중심의 포트폴리오 재편이 요구됩니다.", "macro": {"kospi": "2,648.80 (-2.05%)", "sp500": "4,288.70 (+1.50%)", "treasury10y": "1.97% (-2.0 bps)", "brent": "$105.00 (+8.50%)", "usdkrw": "1,202.40원", "dxy": "97.10 (+0.90p)"}, "drivers": [{"title": "01. 유럽 에너지 대란", "desc": "러시아산 천연가스/원유 차단으로 에너지 안보 및 원자력 필수 불가결."}, {"title": "02. 전 세계 국방비 증액", "desc": "NATO 및 각국 군비 확장으로 K-방산 수주 모멘텀 본격 개막."}], "solutions": [{"name": "RISE 글로벌원자력 (396500)", "type": "Energy Security Solution", "points": ["유럽 및 글로벌 원전 르네상스 수혜 SMR 및 원자로 밸류체인 독점"]}], "focusCodes": ["396500", "0176E0", "477170"], "focusReasons": {"396500": "☢️ 유럽 에너지 안보 위기 속 글로벌 원전 르네상스 메가 트렌드", "0176E0": "⚡ 전력난 및 에너지 위기 수혜 독점 전력망 인프라", "477170": "🛡️ 지정학적 블랙스완 국면 국채 자산배분 방어 효과"}}};
+    const breakingNewsDB = {"2026-09-10": [{"time": "14:30", "tag": "에너지/유가", "badgeColor": "bg-rose-500/20 text-rose-300 border-rose-500/30", "headline": "[로이터 속보] 브렌트유 배럴당 $101.60 공식 돌파… 호르무즈 해협 긴장 격화에 공급망 비상", "summary": "중동 분쟁 격화로 원유 수송로 차단 우려가 가시화되며 브렌트유가 3.76% 급등한 $101.60을 기록했습니다. 글로벌 에너지 공급발 인플레이션 압력이 심화되며 오늘 밤 발표될 미 8월 생산자물가지수(PPI)에 시장의 경계감이 극대화되고 있습니다.", "source": "로이터(Reuters) · 연합인포맥스", "relatedCodes": ["0176E0", "481090", "477170"], "relatedNames": ["RISE 미국AI전력인프라", "RISE 골드선물(H)", "RISE 삼성전자SK하이닉스50채권혼합"]}, {"time": "11:15", "tag": "거시경제/금리", "badgeColor": "bg-amber-500/20 text-amber-300 border-amber-500/30", "headline": "[블룸버그 속보] 미 10년물 국채금리 4.84% 급등… '고금리 장기화(Higher for Longer)' 재점화", "summary": "유가 급등에 따른 텀 프리미엄 재부각으로 미 10년물 국채금리가 전일비 4.0bp 상승한 4.84%를 기록했습니다. 장단기 금리차가 +39bp로 벌어지며 채권 시장 내 베어 스티프닝(Bear Steepening) 흐름이 가속화되고 있습니다.", "source": "블룸버그(Bloomberg) · CNBC", "relatedCodes": ["455890", "477080", "475720"], "relatedNames": ["RISE 머니마켓액티브", "RISE CD금리액티브(합성)", "RISE 미국달러SOFR금리액티브"]}, {"time": "09:40", "tag": "AI/반도체", "badgeColor": "bg-blue-500/20 text-blue-300 border-blue-500/30", "headline": "[CNBC 특파원 리포트] 뉴욕증시 빅테크 차익실현 속 데이터센터 전력망·변압기 독점주 독주", "summary": "엔비디아, 메타 등 빅테크 매그니피센트7의 밸류에이션 부담 속에서도, 데이터센터 전력 공급 병목을 해소하는 GE버노바, 이튼 등 미국 AI 전력 인프라 유틸리티 기업들은 강력한 전기요금 판가 전가력을 바탕으로 신고가 랠리를 이어갔습니다.", "source": "CNBC · 한국경제 마켓인사이트", "relatedCodes": ["0176E0", "485690"], "relatedNames": ["RISE 미국AI전력인프라", "RISE 미국AI밸류체인TOP3Plus"]}, {"time": "09:05", "tag": "국내외환/증시", "badgeColor": "bg-emerald-500/20 text-emerald-300 border-emerald-500/30", "headline": "[연합인포맥스 속보] 코스피 7,050선 안착 후 유가 $100 충격에 공방… 원/달러 1,368.5원 출발", "summary": "역외 NDF 환율이 1,372원까지 상승하며 원화 약세 압력이 커진 가운데, 삼성전자와 SK하이닉스 등 HBM 수출 대형주의 탄탄한 실적 펀더멘털이 외국인 매도세를 방어하며 지수 하방 지지력을 확인하고 있습니다.", "source": "연합인포맥스 · 매일경제", "relatedCodes": ["477170", "148020", "0192L0"], "relatedNames": ["RISE 삼성전자SK하이닉스50채권혼합", "RISE 200", "RISE SK하이닉스단일종목레버리지"]}, {"time": "08:30", "tag": "퇴직연금/세제", "badgeColor": "bg-purple-500/20 text-purple-300 border-purple-500/30", "headline": "[매일경제 금융부] 퇴직연금 100% 안전자산 한도 채우는 '채권혼합 50%' 펀드로 자금 유입 급증", "summary": "퇴직연금(DC/IRP) 계좌 내 위험자산 70% 규제를 합법적으로 우회하여 실질 주식 투자 효과를 극대화할 수 있는 '채권혼합 50%' 상품군에 법인 및 개인 연금 자금 유입이 집중되며 수탁고가 가파르게 증가하고 있습니다.", "source": "매일경제 · 서울경제", "relatedCodes": ["477170", "461380"], "relatedNames": ["RISE 삼성전자SK하이닉스50채권혼합", "RISE 국고채30년액티브"]}], "2026-09-09": [{"time": "15:00", "tag": "에너지/유가", "badgeColor": "bg-rose-500/20 text-rose-300 border-rose-500/30", "headline": "[로이터 속보] 브렌트유 배럴당 $99.50 터치… $100 돌파 임박에 에너지주 급등", "summary": "중동 지정학적 위기 고조로 국제 유가가 $100에 육박하며 정유 및 에너지 인프라 종목으로 글로벌 수급 이동.", "source": "로이터(Reuters) · 연합인포맥스", "relatedCodes": ["0176E0"], "relatedNames": ["RISE 미국AI전력인프라"]}, {"time": "10:30", "tag": "거시경제/금리", "badgeColor": "bg-amber-500/20 text-amber-300 border-amber-500/30", "headline": "[한국경제 속보] 미 물가지표 경계감 속 단기자금 MMF 순자산 사상 최대치 돌파", "summary": "단기 유동성 확보를 위한 CD금리형 및 MMF 파킹형 ETF로 기관 유동성 집중.", "source": "한국경제신문 · 머니투데이", "relatedCodes": ["455890", "477080"], "relatedNames": ["RISE 머니마켓액티브", "RISE CD금리액티브(합성)"]}], "2024-08-05": [{"time": "14:15", "tag": "글로벌쇼크", "badgeColor": "bg-rose-500/20 text-rose-300 border-rose-500/30", "headline": "[블룸버그 속보] 엔 캐리 트레이드 청산 쇼크… 닛케이 -12.4%, 코스피 -8.8% 서킷브레이커", "summary": "일본은행(BOJ) 기습 금리인상과 미 실업률 쇼크로 아시아 증시 역사적 패닉셀. 과매도 우량주 분할 매수 기회 부각.", "source": "블룸버그(Bloomberg) · 연합인포맥스", "relatedCodes": ["148020", "477170"], "relatedNames": ["RISE 200", "RISE 삼성전자SK하이닉스50채권혼합"]}], "2022-02-24": [{"time": "15:30", "tag": "지정학/안보", "badgeColor": "bg-rose-500/20 text-rose-300 border-rose-500/30", "headline": "[AP/로이터 긴급] 러시아, 우크라이나 전면 침공 개시… 유가 $105 폭등 및 방산/원전 부각", "summary": "유럽 에너지 대란 발발로 원자력 및 방위산업이 국가 안보 핵심 자산으로 격상.", "source": "AP 통신 · 로이터(Reuters)", "relatedCodes": ["396500", "379800"], "relatedNames": ["RISE 글로벌원자력", "RISE K-방산"]}]};
