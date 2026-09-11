@@ -1,0 +1,905 @@
+{
+  "status": "BLOCKED_PENDING_OFFICIAL_MASTER",
+  "source_url": "https://finance.naver.com/api/sise/etfItemList.nhn",
+  "source_sha256": "1c2772e3d2c1ce91ca882d9bb52d20ade00b05f59362ec3c0cbdaf14648e011f",
+  "retrieved_at": "2026-09-11T04:04:19.164766+00:00",
+  "observation_date": null,
+  "legacy_count": 148,
+  "provider_rise_count": 143,
+  "counts": {
+    "NOT_FOUND_IN_CAPTURE": 78,
+    "NAME_CODE_MATCH_UNVERIFIED": 20,
+    "NAME_MISMATCH": 4,
+    "PROVIDER_BRAND_MISMATCH": 46
+  },
+  "records": [
+    {
+      "code": "477170",
+      "legacy_name": "RISE 삼성전자SK하이닉스50채권혼합",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "485690",
+      "legacy_name": "RISE 미국AI밸류체인TOP3Plus",
+      "provider_name": "RISE 미국AI밸류체인TOP3Plus",
+      "status": "NAME_CODE_MATCH_UNVERIFIED"
+    },
+    {
+      "code": "0176E0",
+      "legacy_name": "RISE 미국AI전력인프라",
+      "provider_name": "RISE 미국AI전력인프라액티브",
+      "status": "NAME_MISMATCH"
+    },
+    {
+      "code": "148020",
+      "legacy_name": "RISE 200",
+      "provider_name": "RISE 200",
+      "status": "NAME_CODE_MATCH_UNVERIFIED"
+    },
+    {
+      "code": "0192L0",
+      "legacy_name": "RISE SK하이닉스단일종목레버리지",
+      "provider_name": "RISE SK하이닉스단일종목레버리지",
+      "status": "NAME_CODE_MATCH_UNVERIFIED"
+    },
+    {
+      "code": "0191L0",
+      "legacy_name": "RISE 삼성전자단일종목레버리지",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "302190",
+      "legacy_name": "RISE 200선물레버리지",
+      "provider_name": "TIGER 중장기국채",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "253250",
+      "legacy_name": "RISE 200선물인버스2X",
+      "provider_name": "KIWOOM 200선물레버리지",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "465590",
+      "legacy_name": "RISE 코스닥150선물인버스",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "441690",
+      "legacy_name": "RISE 2차전지TOP10인버스",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "490600",
+      "legacy_name": "RISE 미국배당100데일리고정커버드콜",
+      "provider_name": "RISE 미국배당100데일리고정커버드콜",
+      "status": "NAME_CODE_MATCH_UNVERIFIED"
+    },
+    {
+      "code": "290080",
+      "legacy_name": "RISE 200고배당커버드콜ATM",
+      "provider_name": "RISE 200고배당커버드콜ATM",
+      "status": "NAME_CODE_MATCH_UNVERIFIED"
+    },
+    {
+      "code": "426020",
+      "legacy_name": "RISE 200위클리커버드콜",
+      "provider_name": "TIME 미국S&P500액티브",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "0227K0",
+      "legacy_name": "RISE 코스닥커버드콜액티브",
+      "provider_name": "RISE 미국우주위성통신",
+      "status": "NAME_MISMATCH"
+    },
+    {
+      "code": "0094L0",
+      "legacy_name": "RISE 차이나테크TOP10위클리타겟커버드콜",
+      "provider_name": "RISE 차이나테크TOP10위클리타겟커버드콜",
+      "status": "NAME_CODE_MATCH_UNVERIFIED"
+    },
+    {
+      "code": "458760",
+      "legacy_name": "RISE 미국배당다우존스",
+      "provider_name": "TIGER 미국배당다우존스타겟커버드콜2호",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "458770",
+      "legacy_name": "RISE 미국배당다우존스(H)",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "438320",
+      "legacy_name": "RISE 미국배당다우존스존슨앤드존슨",
+      "provider_name": "TIGER 차이나항셍테크레버리지(합성 H)",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "315960",
+      "legacy_name": "RISE 대형고배당10TR",
+      "provider_name": "RISE 대형고배당10TR",
+      "status": "NAME_CODE_MATCH_UNVERIFIED"
+    },
+    {
+      "code": "105190",
+      "legacy_name": "RISE 고배당",
+      "provider_name": "ACE 200",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "477080",
+      "legacy_name": "RISE CD금리액티브(합성)",
+      "provider_name": "RISE CD금리액티브(합성)",
+      "status": "NAME_CODE_MATCH_UNVERIFIED"
+    },
+    {
+      "code": "455890",
+      "legacy_name": "RISE 머니마켓액티브",
+      "provider_name": "RISE 머니마켓액티브",
+      "status": "NAME_CODE_MATCH_UNVERIFIED"
+    },
+    {
+      "code": "475720",
+      "legacy_name": "RISE 미국달러SOFR금리액티브(합성)",
+      "provider_name": "RISE 200위클리커버드콜",
+      "status": "NAME_MISMATCH"
+    },
+    {
+      "code": "196230",
+      "legacy_name": "RISE 단기통안채",
+      "provider_name": "RISE 단기통안채",
+      "status": "NAME_CODE_MATCH_UNVERIFIED"
+    },
+    {
+      "code": "441750",
+      "legacy_name": "RISE 단기채권액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "453350",
+      "legacy_name": "RISE 미국단기투자등급회사채액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "461380",
+      "legacy_name": "RISE 국고채30년액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "472210",
+      "legacy_name": "RISE 국고채10년",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "114100",
+      "legacy_name": "RISE 국고채3년",
+      "provider_name": "RISE 국고채3년",
+      "status": "NAME_CODE_MATCH_UNVERIFIED"
+    },
+    {
+      "code": "441700",
+      "legacy_name": "RISE 미국채10년액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "441710",
+      "legacy_name": "RISE 미국채30년액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "441740",
+      "legacy_name": "RISE 미국채30년엔화노출(합성H)",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "441760",
+      "legacy_name": "RISE 종합채권(AA-이상)액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "461490",
+      "legacy_name": "RISE 글로벌자산배분액티브",
+      "provider_name": "RISE 글로벌자산배분액티브",
+      "status": "NAME_CODE_MATCH_UNVERIFIED"
+    },
+    {
+      "code": "292050",
+      "legacy_name": "RISE KRX300",
+      "provider_name": "RISE KRX300",
+      "status": "NAME_CODE_MATCH_UNVERIFIED"
+    },
+    {
+      "code": "481060",
+      "legacy_name": "RISE 버크셔해서웨이",
+      "provider_name": "KODEX 미국30년국채타겟커버드콜(합성 H)",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "475350",
+      "legacy_name": "RISE 버크셔포트폴리오TOP10",
+      "provider_name": "RISE 버크셔포트폴리오TOP10",
+      "status": "NAME_CODE_MATCH_UNVERIFIED"
+    },
+    {
+      "code": "481080",
+      "legacy_name": "RISE 미국빅테크TOP10",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "472200",
+      "legacy_name": "RISE 미국AI테크TOP10액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "433450",
+      "legacy_name": "RISE 미국반도체NYSE",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "458780",
+      "legacy_name": "RISE 미국반도체TOP10",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "364960",
+      "legacy_name": "RISE 미국S&P500",
+      "provider_name": "TIGER BBIG",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "364970",
+      "legacy_name": "RISE 미국나스닥100",
+      "provider_name": "TIGER 바이오TOP10",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "453330",
+      "legacy_name": "RISE 미국S&P500(H)",
+      "provider_name": "RISE 미국S&P500(H)",
+      "status": "NAME_CODE_MATCH_UNVERIFIED"
+    },
+    {
+      "code": "396500",
+      "legacy_name": "RISE 글로벌원자력",
+      "provider_name": "TIGER 반도체TOP10",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "487430",
+      "legacy_name": "RISE 원자력소부장액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "487440",
+      "legacy_name": "RISE 전력설비TOP5Plus",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "491620",
+      "legacy_name": "RISE 미국테크100데일리고정커버드콜",
+      "provider_name": "RISE 미국테크100데일리고정커버드콜",
+      "status": "NAME_CODE_MATCH_UNVERIFIED"
+    },
+    {
+      "code": "491610",
+      "legacy_name": "RISE 미국S&P500데일리고정커버드콜",
+      "provider_name": "1Q CD금리액티브(합성)",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "473320",
+      "legacy_name": "RISE 글로벌휴머노이드로봇액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "453370",
+      "legacy_name": "RISE AI&로봇",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "472220",
+      "legacy_name": "RISE 미국양자컴퓨팅액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "0151P0",
+      "legacy_name": "RISE 코리아전략산업액티브",
+      "provider_name": "RISE 코리아전략산업액티브",
+      "status": "NAME_CODE_MATCH_UNVERIFIED"
+    },
+    {
+      "code": "490620",
+      "legacy_name": "RISE 글로벌비만치료제TOP5",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "481070",
+      "legacy_name": "RISE 바이오액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "461410",
+      "legacy_name": "RISE 코리아밸류업",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "469060",
+      "legacy_name": "RISE 코스닥150",
+      "provider_name": "RISE 미국반도체NYSE",
+      "status": "NAME_MISMATCH"
+    },
+    {
+      "code": "4489",
+      "legacy_name": "RISE 코스피",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "441680",
+      "legacy_name": "RISE 2차전지TOP10",
+      "provider_name": "TIGER 미국나스닥100커버드콜(합성)",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "441730",
+      "legacy_name": "RISE 2차전지액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "441720",
+      "legacy_name": "RISE 자동차TOP10",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "461420",
+      "legacy_name": "RISE 중소형주액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "465600",
+      "legacy_name": "RISE K-뉴딜디지털",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "487450",
+      "legacy_name": "RISE 인도Nifty50",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "448300",
+      "legacy_name": "RISE 차이나반도체",
+      "provider_name": "TIGER 미국나스닥100(H)",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "473350",
+      "legacy_name": "RISE ESG가치주액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "473360",
+      "legacy_name": "RISE 탄소배출권선물(H)",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "481090",
+      "legacy_name": "RISE 골드선물(H)",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "375270",
+      "legacy_name": "RISE 글로벌데이터센터리츠(합성)",
+      "provider_name": "RISE 글로벌데이터센터리츠(합성)",
+      "status": "NAME_CODE_MATCH_UNVERIFIED"
+    },
+    {
+      "code": "394670",
+      "legacy_name": "RISE 한국부동산리츠인프라",
+      "provider_name": "TIGER 글로벌리튬&2차전지SOLACTIVE(합성)",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "276650",
+      "legacy_name": "RISE 글로벌테크놀로지(합성 H)",
+      "provider_name": "RISE 글로벌테크놀로지(합성 H)",
+      "status": "NAME_CODE_MATCH_UNVERIFIED"
+    },
+    {
+      "code": "459750",
+      "legacy_name": "RISE 글로벌주식분산액티브",
+      "provider_name": "RISE 글로벌주식분산액티브",
+      "status": "NAME_CODE_MATCH_UNVERIFIED"
+    },
+    {
+      "code": "0195C0",
+      "legacy_name": "RISE 동학개미",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "0196C0",
+      "legacy_name": "RISE 네트워크인프라",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "140700",
+      "legacy_name": "RISE 5대그룹주",
+      "provider_name": "KODEX 보험",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "139280",
+      "legacy_name": "RISE 수출주",
+      "provider_name": "TIGER 경기방어",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "139290",
+      "legacy_name": "RISE 우량업종대표주",
+      "provider_name": "TIGER 200 경기소비재",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "098480",
+      "legacy_name": "RISE 코스닥엘리트30",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "139220",
+      "legacy_name": "RISE 건설",
+      "provider_name": "TIGER 200 건설",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "139230",
+      "legacy_name": "RISE 중공업",
+      "provider_name": "TIGER 200 중공업",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "139240",
+      "legacy_name": "RISE 철강소재",
+      "provider_name": "TIGER 200 철강소재",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "139250",
+      "legacy_name": "RISE 에너지화학",
+      "provider_name": "TIGER 200 에너지화학",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "139260",
+      "legacy_name": "RISE 운송",
+      "provider_name": "TIGER 200 IT",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "139270",
+      "legacy_name": "RISE 금융",
+      "provider_name": "TIGER 200 금융",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "140710",
+      "legacy_name": "RISE 은행",
+      "provider_name": "KODEX 운송",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "140720",
+      "legacy_name": "RISE 증권",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "140750",
+      "legacy_name": "RISE 보험",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "140770",
+      "legacy_name": "RISE 헬스케어",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "447760",
+      "legacy_name": "RISE 헬스케어채권혼합",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "140780",
+      "legacy_name": "RISE 미디어컨텐츠",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "140790",
+      "legacy_name": "RISE 필수소비재",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "226490",
+      "legacy_name": "RISE 코스피100",
+      "provider_name": "KODEX 코스피",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "237370",
+      "legacy_name": "RISE 코스피고배당",
+      "provider_name": "KODEX 코리아배당성장채권혼합",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "251350",
+      "legacy_name": "RISE 코스닥150선물레버리지",
+      "provider_name": "KODEX MSCI선진국",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "261050",
+      "legacy_name": "RISE 중기우량회사채",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "261060",
+      "legacy_name": "RISE 국채선물10년",
+      "provider_name": "TIGER 코스닥150IT",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "261070",
+      "legacy_name": "RISE 국채선물10년인버스",
+      "provider_name": "TIGER 코스닥150바이오테크",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "261080",
+      "legacy_name": "RISE 국채선물3년",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "287180",
+      "legacy_name": "RISE 미국달러선물인버스",
+      "provider_name": "PLUS 미국나스닥테크",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "287190",
+      "legacy_name": "RISE 미국달러선물레버리지",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "315950",
+      "legacy_name": "RISE 대형성장50",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "360200",
+      "legacy_name": "RISE 미국S&P500배당귀족",
+      "provider_name": "ACE 미국S&P500",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "365040",
+      "legacy_name": "RISE Fn수소경제테마",
+      "provider_name": "TIGER AI코리아그로스액티브",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "387270",
+      "legacy_name": "RISE 글로벌수소경제",
+      "provider_name": "TIGER 글로벌이노베이션액티브",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "387280",
+      "legacy_name": "RISE 글로벌클린에너지",
+      "provider_name": "TIGER 퓨처모빌리티액티브",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "394660",
+      "legacy_name": "RISE 메타버스",
+      "provider_name": "TIGER 글로벌자율주행&전기차SOLACTIVE",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "394680",
+      "legacy_name": "RISE K엔터&여행레저",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "396510",
+      "legacy_name": "RISE 비메모리반도체액티브",
+      "provider_name": "TIGER 차이나클린에너지SOLACTIVE",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "448310",
+      "legacy_name": "RISE AI플랫폼",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "448320",
+      "legacy_name": "RISE 대형가치50",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "453380",
+      "legacy_name": "RISE 대형혼합50",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "458790",
+      "legacy_name": "RISE 미국S&P500ESG",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "461430",
+      "legacy_name": "RISE 200TR",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "465610",
+      "legacy_name": "RISE 2차전지소부장",
+      "provider_name": "ACE 미국빅테크TOP7 Plus레버리지(합성)",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "469080",
+      "legacy_name": "RISE 반도체소부장",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "472230",
+      "legacy_name": "RISE 미국반도체소부장",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "473370",
+      "legacy_name": "RISE 코스피200동일가중",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "475730",
+      "legacy_name": "RISE 단기크레딧액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "481100",
+      "legacy_name": "RISE 미국빅테크TOP10(H)",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "487460",
+      "legacy_name": "RISE 글로벌방위산업액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "490630",
+      "legacy_name": "RISE 헬스케어TOP5",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "0152P0",
+      "legacy_name": "RISE K-컬처콘텐츠",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "0193L0",
+      "legacy_name": "RISE 현대차단일종목레버리지",
+      "provider_name": "PLUS 삼성전자선물단일종목인버스2X",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "0194L0",
+      "legacy_name": "RISE NAVER단일종목레버리지",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "276640",
+      "legacy_name": "RISE 중형주",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "276660",
+      "legacy_name": "RISE 소형주",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "287170",
+      "legacy_name": "RISE 미국달러선물",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "315940",
+      "legacy_name": "RISE 대형가치10TR",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "360210",
+      "legacy_name": "RISE 유로스탁스50(H)",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "364990",
+      "legacy_name": "RISE 일본니케이225(H)",
+      "provider_name": "TIGER 게임TOP10",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "365000",
+      "legacy_name": "RISE 200중소형",
+      "provider_name": "TIGER 인터넷TOP10",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "381160",
+      "legacy_name": "RISE 코스닥150바이오테크",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "381190",
+      "legacy_name": "RISE 미국S&P500헬스케어",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "387290",
+      "legacy_name": "RISE 글로벌수소액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "394690",
+      "legacy_name": "RISE 빌보드K-POP",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "418660",
+      "legacy_name": "RISE 코리아ESG액티브",
+      "provider_name": "TIGER 미국나스닥100레버리지(합성)",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "426030",
+      "legacy_name": "RISE 글로벌원격의료바이오",
+      "provider_name": "TIME 미국나스닥100액티브",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "433460",
+      "legacy_name": "RISE 미국빅테크TOP10밸런스",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "438330",
+      "legacy_name": "RISE 미국S&P500금융",
+      "provider_name": "TIGER 우량회사채액티브",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "441770",
+      "legacy_name": "RISE 글로벌메타버스액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "447770",
+      "legacy_name": "RISE 글로벌수출강소기업",
+      "provider_name": "TIGER 테슬라채권혼합Fn",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "448330",
+      "legacy_name": "RISE 바이오혁신액티브",
+      "provider_name": "KODEX 삼성전자채권혼합",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "453390",
+      "legacy_name": "RISE AI빅데이터소프트웨어",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "458800",
+      "legacy_name": "RISE 친환경선박액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "461440",
+      "legacy_name": "RISE 글로벌로봇AI액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "465620",
+      "legacy_name": "RISE 국고채5년",
+      "provider_name": "ACE 미국빅테크TOP7 Plus인버스(합성)",
+      "status": "PROVIDER_BRAND_MISMATCH"
+    },
+    {
+      "code": "469090",
+      "legacy_name": "RISE 우량크레딧채권액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    },
+    {
+      "code": "472240",
+      "legacy_name": "RISE 단기우량회사채액티브",
+      "provider_name": null,
+      "status": "NOT_FOUND_IN_CAPTURE"
+    }
+  ]
+}
