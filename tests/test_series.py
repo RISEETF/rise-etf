@@ -73,6 +73,25 @@ class SeriesTests(unittest.TestCase):
             stored=json.loads(next((root / "series/captures").glob("*.json")).read_text())
             self.assertEqual(stored,result)
 
+    def test_master_removal_and_rename_preserve_price_history(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            old={"effective_date":"2026-09-15", "products":[{"code":"148020","name":"Old name"}]}
+            write_json(root / "master/2026-09-15.json", old)
+            write_json(root / "master/latest.json", {"effective_date":"2026-09-16","products":[]})
+            write_json(root / "series_sources.json", {"price_instruments":[]})
+            capture(root,"NAVER_CHART_CANDIDATE","https://example.test","PRICE","148020",fetcher=lambda _:PRICE,now=NOW)
+            db=root / "research.sqlite"
+            build(root,db)
+            with sqlite3.connect(db) as connection:
+                self.assertEqual(connection.execute("SELECT close FROM latest_prices").fetchone()[0],105)
+                self.assertEqual(connection.execute("SELECT COUNT(*) FROM master_memberships WHERE is_current=1").fetchone()[0],0)
+            write_json(root / "master/latest.json", {"effective_date":"2026-09-16","products":[{"code":"148020","name":"New name"}]})
+            build(root,db)
+            with sqlite3.connect(db) as connection:
+                self.assertEqual(connection.execute("SELECT name FROM instruments").fetchone()[0],"New name")
+                self.assertEqual(connection.execute("SELECT name FROM master_memberships WHERE is_current=0").fetchone()[0],"Old name")
+
 
 if __name__ == "__main__":
     unittest.main()

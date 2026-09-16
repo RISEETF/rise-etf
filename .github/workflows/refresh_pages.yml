@@ -1,0 +1,29 @@
+name: Refresh Pages after data collection
+on:
+  workflow_run:
+    workflows:
+      - RISE source capture
+      - RISE official instrument master
+      - Capture dated price and FX series
+    types: [completed]
+permissions:
+  pages: write
+concurrency:
+  group: rise-pages-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    # Failed collectors may still commit failure status, which must reach the portal.
+    if: github.event.workflow_run.head_branch == github.event.repository.default_branch && github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      # No checkout or execution of upstream artifacts in this privileged workflow.
+      - name: Verify publishing source and request build
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          gh api "repos/$GH_REPO/pages" > "$RUNNER_TEMP/pages.json"
+          jq -e --arg branch "$DEFAULT_BRANCH" '.build_type == "legacy" and .source.branch == $branch and .source.path == "/"' "$RUNNER_TEMP/pages.json"
+          gh api --method POST "repos/$GH_REPO/pages/builds"

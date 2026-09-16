@@ -18,6 +18,11 @@ CREATE TABLE instruments (
  instrument_id TEXT PRIMARY KEY, market TEXT NOT NULL, code TEXT NOT NULL,
  name TEXT NOT NULL, currency TEXT NOT NULL, master_date TEXT NOT NULL,
  UNIQUE(market,code));
+CREATE TABLE master_memberships (
+ snapshot_path TEXT NOT NULL, effective_date TEXT NOT NULL,
+ instrument_id TEXT REFERENCES instruments(instrument_id), name TEXT NOT NULL,
+ is_current INTEGER NOT NULL CHECK(is_current IN (0,1)),
+ PRIMARY KEY(snapshot_path,instrument_id));
 CREATE TABLE captures (
  capture_id TEXT PRIMARY KEY, source_id TEXT NOT NULL, source_url TEXT NOT NULL,
  retrieved_at TEXT NOT NULL, source_sha256 TEXT, kind TEXT NOT NULL,
@@ -101,9 +106,17 @@ def build(data_dir, db_path):
     connection = sqlite3.connect(temporary)
     try:
         connection.executescript(SCHEMA)
-        for p in master["products"]:
-            connection.execute("INSERT INTO instruments VALUES (?,?,?,?,?,?)",
-                               ("XKRX:"+p["code"], "XKRX", p["code"], p["name"], "KRW", master["effective_date"]))
+        # Retain identities from historical masters; absence today is not delisting evidence.
+        historical = [(path, json.loads(path.read_text())) for path in
+                      (data_dir / "master").rglob("*.json") if path.name != "latest.json"]
+        historical.sort(key=lambda item: (item[1]["effective_date"], item[1].get("captured_at", ""), str(item[0])))
+        snapshots = historical + [(data_dir / "master/latest.json", master)]
+        for path, snapshot in snapshots:
+            for p in snapshot["products"]:
+                connection.execute("INSERT INTO instruments VALUES (?,?,?,?,?,?) ON CONFLICT(instrument_id) DO UPDATE SET name=excluded.name, master_date=excluded.master_date",
+                                   ("XKRX:"+p["code"], "XKRX", p["code"], p["name"], "KRW", snapshot["effective_date"]))
+                connection.execute("INSERT INTO master_memberships VALUES (?,?,?,?,?)",
+                                   (str(path.relative_to(data_dir)), snapshot["effective_date"], "XKRX:"+p["code"], p["name"], int(path.name == "latest.json")))
         for p in overseas:
             connection.execute("INSERT INTO instruments VALUES (?,?,?,?,?,?)",
                                ("US_LISTED:"+p["code"],"US_LISTED",p["code"],p["name"],p["currency"],"PROVISIONAL_PROVIDER_IDENTITY"))
