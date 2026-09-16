@@ -9,6 +9,7 @@ from pathlib import Path
 import sqlite3
 import tempfile
 from collect_series import parse_naver, parse_ecb
+from collect_overseas import parse_yahoo, audit_adjustments
 from update_daily import ROOT, write_json
 
 SCHEMA = """
@@ -25,7 +26,13 @@ CREATE TABLE prices (
  capture_id TEXT REFERENCES captures(capture_id), instrument_id TEXT REFERENCES instruments(instrument_id),
  observation_date TEXT NOT NULL, open REAL NOT NULL, high REAL NOT NULL,
  low REAL NOT NULL, close REAL NOT NULL CHECK(close>0), volume INTEGER NOT NULL CHECK(volume>=0),
- price_basis TEXT NOT NULL, PRIMARY KEY(capture_id,instrument_id,observation_date));
+ price_basis TEXT NOT NULL, adjusted_close REAL CHECK(adjusted_close>0),
+ PRIMARY KEY(capture_id,instrument_id,observation_date));
+CREATE TABLE corporate_actions (
+ capture_id TEXT REFERENCES captures(capture_id), instrument_id TEXT REFERENCES instruments(instrument_id),
+ event_id TEXT NOT NULL, observation_date TEXT NOT NULL, kind TEXT NOT NULL,
+ amount REAL, numerator REAL, denominator REAL,
+ PRIMARY KEY(capture_id,instrument_id,kind,event_id));
 CREATE TABLE fx (
  capture_id TEXT REFERENCES captures(capture_id), observation_date TEXT NOT NULL,
  base TEXT NOT NULL, quote TEXT NOT NULL, rate REAL NOT NULL CHECK(rate>0), kind TEXT NOT NULL,
@@ -61,6 +68,17 @@ def verify_capture(data_dir, record):
         expected = parse_naver(raw, record["instrument_code"], (captured + dt.timedelta(hours=9)).date())
         if record["price_basis"] != "ADJUSTMENT_UNCONFIRMED" or record["quality"] != "QUARANTINED" or record["currency"] != "KRW":
             raise ValueError("Unapproved price metadata promotion")
+    elif record["kind"] == "US_PRICE":
+        config=json.loads((data_dir / "overseas_sources.json").read_text())
+        instrument=next((i for i in config["instruments"] if i["code"]==record["instrument_code"]),None)
+        if not instrument or record["instrument_contract"] != instrument or record.get("market") != "US_LISTED":
+            raise ValueError("Unknown overseas instrument contract")
+        parsed=parse_yahoo(raw,instrument,captured)
+        expected=parsed["observations"]
+        if record["events"]!=parsed["events"] or record["missing_dates"]!=parsed["missing_dates"] or record["adjustment_audit"]!=audit_adjustments(expected,parsed["events"]):
+            raise ValueError("Corporate actions or diagnostics differ from raw source")
+        if record["price_basis"]!="PROVIDER_CLOSE_AND_ADJUSTED_CLOSE" or record["currency"]!="USD" or record["quality"]!="QUARANTINED":
+            raise ValueError("Unapproved overseas metadata promotion")
     elif record["kind"] == "FX":
         expected = parse_ecb(raw, captured.date())
         if record["quality"] != "REFERENCE_ONLY":
@@ -76,6 +94,8 @@ def build(data_dir, db_path):
     db_path.parent.mkdir(parents=True, exist_ok=True)
     master = json.loads((data_dir / "master/latest.json").read_text())
     config = json.loads((data_dir / "series_sources.json").read_text())
+    overseas_path=data_dir / "overseas_sources.json"
+    overseas=json.loads(overseas_path.read_text())["instruments"] if overseas_path.exists() else []
     with tempfile.NamedTemporaryFile(dir=db_path.parent, suffix=".sqlite", delete=False) as handle:
         temporary = Path(handle.name)
     connection = sqlite3.connect(temporary)
@@ -84,6 +104,9 @@ def build(data_dir, db_path):
         for p in master["products"]:
             connection.execute("INSERT INTO instruments VALUES (?,?,?,?,?,?)",
                                ("XKRX:"+p["code"], "XKRX", p["code"], p["name"], "KRW", master["effective_date"]))
+        for p in overseas:
+            connection.execute("INSERT INTO instruments VALUES (?,?,?,?,?,?)",
+                               ("US_LISTED:"+p["code"],"US_LISTED",p["code"],p["name"],p["currency"],"PROVISIONAL_PROVIDER_IDENTITY"))
         records = []
         for path in sorted((data_dir / "series/captures").glob("*.json")):
             record = json.loads(path.read_text())
@@ -94,26 +117,35 @@ def build(data_dir, db_path):
                 ("capture_id","source_id","source_url","retrieved_at","source_sha256","kind","status","quality","error")))
             records.append(record)
             for row in record["observations"]:
-                if record["kind"] == "PRICE":
-                    connection.execute("INSERT INTO prices VALUES (?,?,?,?,?,?,?,?,?)", (
-                        record["capture_id"], "XKRX:"+record["instrument_code"], row["date"],row["open"],row["high"],row["low"],row["close"],row["volume"],record["price_basis"]))
+                if record["kind"] in ("PRICE","US_PRICE"):
+                    market="US_LISTED" if record["kind"]=="US_PRICE" else "XKRX"
+                    connection.execute("INSERT INTO prices VALUES (?,?,?,?,?,?,?,?,?,?)", (
+                        record["capture_id"], market+":"+record["instrument_code"], row["date"],row["open"],row["high"],row["low"],row["close"],row["volume"],record["price_basis"],row.get("adjusted_close")))
                 else:
                     connection.execute("INSERT INTO fx VALUES (?,?,?,?,?,?)", (record["capture_id"],row["date"],row["base"],row["quote"],row["rate"],row["kind"]))
+            for event in record.get("events",[]):
+                connection.execute("INSERT INTO corporate_actions VALUES (?,?,?,?,?,?,?,?)", (
+                    record["capture_id"],"US_LISTED:"+record["instrument_code"],event["event_id"],event["date"],event["kind"],event.get("amount"),event.get("numerator"),event.get("denominator")))
         summary = {"built_at":dt.datetime.now(dt.timezone.utc).isoformat(), "storage":"REBUILDABLE_SQLITE_FROM_GIT_CAPTURES",
                    "rs_status":"BLOCKED", "ranking":None, "series":[], "fx":{}, "capture_count":len(records)}
-        for instrument in config["price_instruments"]:
+        for instrument in config["price_instruments"]+overseas:
             code = instrument["code"]
-            count, first, last = connection.execute("SELECT COUNT(*),MIN(observation_date),MAX(observation_date) FROM latest_prices WHERE instrument_id=?", ("XKRX:"+code,)).fetchone()
-            attempts = [r for r in records if r["instrument_code"] == code]
+            market=instrument.get("market","XKRX")
+            count, first, last = connection.execute("SELECT COUNT(*),MIN(observation_date),MAX(observation_date) FROM latest_prices WHERE instrument_id=?", (market+":"+code,)).fetchone()
+            attempts = [r for r in records if r["instrument_code"] == code and r.get("market","XKRX")==market]
             latest = max(attempts, key=lambda r:r["retrieved_at"]) if attempts else {}
             reasons = ["ADJUSTMENT_UNCONFIRMED", "DISTRIBUTIONS_UNVERIFIED", "SESSION_CALENDAR_UNVERIFIED", "CROSS_MARKET_ALIGNMENT_UNRESOLVED"]
+            if market=="US_LISTED":
+                reasons[0]="PROVIDER_ADJUSTMENT_NOT_INDEPENDENTLY_VERIFIED"
+                reasons.append("PROVISIONAL_INSTRUMENT_IDENTITY")
             if count < 253:
                 reasons.append("HISTORY_BELOW_253_OBSERVATIONS")
             if not count:
                 reasons.append("NO_PRICE_OBSERVATIONS")
             summary["series"].append({**instrument,"observations":count,"first_date":first,"last_date":last,
                 "last_attempt_status":latest.get("status","NOT_ATTEMPTED"),"retrieved_at":latest.get("retrieved_at"),
-                "error":latest.get("error"),"rs_eligible":False,"blockers":reasons})
+                "error":latest.get("error"),"rs_eligible":False,"blockers":reasons,
+                "adjustment_audit":latest.get("adjustment_audit"),"missing_dates":latest.get("missing_dates",[])})
         count, first, last = connection.execute("SELECT COUNT(*),MIN(observation_date),MAX(observation_date) FROM latest_fx WHERE base='USD' AND quote='KRW'").fetchone()
         fx_attempts = [r for r in records if r["kind"] == "FX"]
         latest = max(fx_attempts,key=lambda r:r["retrieved_at"]) if fx_attempts else {}

@@ -29,6 +29,14 @@
 
 ## Remaining implementation order
 
+### Overseas extension
+
+- SPY/IEF/AAPL: 501 observations each, 40 cash events in total and zero observed
+  split events. Provider-internal adjustment diagnostics found no flags.
+- One shared prices table for domestic ETFs, foreign ETFs and foreign equities;
+  adjusted close and corporate actions retained separately. No RS promotion.
+- Python suite: 20 passing tests. Details: OVERSEAS_ADJUSTMENT_AUDIT.md.
+
 ### Price/FX foundation added
 
 - Three official-master-linked price candidates: 300 dated rows each; adjustment

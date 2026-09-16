@@ -67,3 +67,9 @@ Run the builder after a fresh checkout for offline DB reconstruction.
 The three price series are quarantined; ECB FX is reference-only. No RS rank is
 computed. See `SERIES_AND_RS_CONTRACT.md` for schema, coverage, limitations and
 the unified cross-market representative-selection policy.
+
+`python scripts/collect_overseas.py` captures the SPY/IEF/AAPL ingestion pilot,
+including separate provider close/adjusted close and corporate-action events.
+The same database builder includes foreign and Korean instruments in one price
+table. `corporate_actions` retains event vintages. All remain quarantined;
+see `OVERSEAS_ADJUSTMENT_AUDIT.md` for provider-internal checks and unresolved gates.

@@ -1,0 +1,12 @@
+{
+  "status": "PROVIDER_IDENTITY_PILOT_NOT_FINAL_UNIVERSE",
+  "documentation_url": "https://help.yahoo.com/kb/SLN28256.html",
+  "source_id": "YAHOO_CHART_CANDIDATE",
+  "url_template": "https://query1.finance.yahoo.com/v8/finance/chart/{code}?range=2y&interval=1d&events=div%2Csplits%2CcapitalGains&includeAdjustedClose=true",
+  "instruments": [
+    {"code":"SPY","name":"SPY · 미국 주식시장 ETF 시범","market":"US_LISTED","currency":"USD","instrument_type":"ETF","timezone":"America/New_York"},
+    {"code":"IEF","name":"IEF · 미국 국채 ETF 시범","market":"US_LISTED","currency":"USD","instrument_type":"ETF","timezone":"America/New_York"},
+    {"code":"AAPL","name":"AAPL · 해외 개별주식 시범","market":"US_LISTED","currency":"USD","instrument_type":"EQUITY","timezone":"America/New_York"}
+  ],
+  "limits": "US_LISTED is a provisional identifier namespace, not a verified exchange MIC. Selection is for ingestion testing, not investment recommendation. Public chart endpoint has no assumed service guarantee. Provider adjusted close is not independent corporate-action verification."
+}

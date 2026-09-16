@@ -21,7 +21,11 @@ jobs:
         id: collect
         continue-on-error: true
         run: python scripts/collect_series.py
-      - name: Rebuild database and publish coverage
+      - name: Collect overseas series
+        id: overseas
+        continue-on-error: true
+        run: python scripts/collect_overseas.py
+      - name: Rebuild unified database and publish coverage
         run: python scripts/build_research_db.py
       - name: Save captures and failure records
         if: always()
@@ -34,5 +38,5 @@ jobs:
             git push
           fi
       - name: Report capture failure
-        if: steps.collect.outcome == 'failure'
+        if: steps.collect.outcome == 'failure' || steps.overseas.outcome == 'failure'
         run: exit 1

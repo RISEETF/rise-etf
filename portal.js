@@ -102,7 +102,9 @@ async function loadSeries() {
     for (const row of data.series) {
       const tr=document.createElement('tr');
       const state=row.last_attempt_status==='CAPTURED' ? '수집됨 · 검증 대기' : row.last_attempt_status==='FAILED' ? '실패' : '미수집';
-      for (const value of [row.name, row.observations, row.first_date && row.last_date ? `${row.first_date} ~ ${row.last_date}` : '자료 없음', `${state} / ${localTime(row.retrieved_at)}`, '보류']) {
+      const audit=row.adjustment_audit;
+      const adjustment=audit ? `제공처 수정종가 · 현금분배 ${audit.cash_event_count}건 / 분할 ${audit.split_count}건 · 독립 검증 대기` : '배당·분할 조정 미확인';
+      for (const value of [`${row.name} (${row.currency || '통화 미확인'})`, row.observations, row.first_date && row.last_date ? `${row.first_date} ~ ${row.last_date}` : '자료 없음', `${state} / ${localTime(row.retrieved_at)}`, adjustment, '보류']) {
         const td=document.createElement('td');td.textContent=value;tr.append(td);
       }
       el('seriesRows').append(tr);

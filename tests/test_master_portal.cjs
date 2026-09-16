@@ -24,7 +24,8 @@ const server = http.createServer((req,res) => {
     await page.goto(url);
     await page.waitForFunction(()=>!document.getElementById('search').disabled);
     assert.equal(await page.locator('#products tr').count(),master.instrument_count);
-    await page.waitForFunction(()=>document.querySelectorAll('#seriesRows tr').length===3);
+    const coverage=JSON.parse(fs.readFileSync(path.join(root,'data/series/status.json')));
+    await page.waitForFunction(count=>document.querySelectorAll('#seriesRows tr').length===count,coverage.series.length);
     assert.match(await page.locator('#seriesStatus').textContent(),/RS 계산 보류/);
     await page.locator('#search').fill(master.products[0].code);
     assert.equal(await page.locator('#products tr').count(),1);
