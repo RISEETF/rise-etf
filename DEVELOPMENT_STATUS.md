@@ -20,12 +20,16 @@
 - New Playwright browser checks authored for search, category filtering, missing
   data, duplicate rejection and narrow-screen overflow. Local execution blocked:
   Chromium was unavailable and browser download timed out/returned HTTP 502.
-  Browser visual/interaction QA is pending, not passed.
-- New workflow execution and deployment are not yet verified. PR remains draft.
+  GitHub Actions subsequently ran all browser checks successfully on commit
+  `90f6a5a64d541f9061c17622920e3992501534b4`:
+  https://github.com/RISEETF/rise-etf/actions/runs/35044168352
+  Automated interaction/mobile-overflow QA passed; manual visual review remains.
+- PR validation workflow passed. Scheduled collection workflow execution and
+  production deployment are not yet verified. PR remains draft.
 
 ## Remaining implementation order
 
-1. Complete browser/CI checks and review the portal before merge/deployment.
+1. Review the portal before merge/deployment; automated browser/CI checks passed.
 2. Establish daily price/NAV observation dates, corporate actions, distributions,
    FX and trading calendars. Current Naver capture is not an approved daily close.
 3. Accumulate validated price history and news URLs/publication timestamps in a
