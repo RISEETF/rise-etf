@@ -33,6 +33,10 @@ CREATE TABLE prices (
  low REAL NOT NULL, close REAL NOT NULL CHECK(close>0), volume INTEGER NOT NULL CHECK(volume>=0),
  price_basis TEXT NOT NULL, adjusted_close REAL CHECK(adjusted_close>0),
  PRIMARY KEY(capture_id,instrument_id,observation_date));
+CREATE TABLE instrument_contracts (
+ capture_id TEXT PRIMARY KEY REFERENCES captures(capture_id),
+ instrument_id TEXT NOT NULL REFERENCES instruments(instrument_id),
+ contract_json TEXT NOT NULL);
 CREATE TABLE corporate_actions (
  capture_id TEXT REFERENCES captures(capture_id), instrument_id TEXT REFERENCES instruments(instrument_id),
  event_id TEXT NOT NULL, observation_date TEXT NOT NULL, kind TEXT NOT NULL,
@@ -74,9 +78,11 @@ def verify_capture(data_dir, record):
         if record["price_basis"] != "ADJUSTMENT_UNCONFIRMED" or record["quality"] != "QUARANTINED" or record["currency"] != "KRW":
             raise ValueError("Unapproved price metadata promotion")
     elif record["kind"] == "US_PRICE":
-        config=json.loads((data_dir / "overseas_sources.json").read_text())
-        instrument=next((i for i in config["instruments"] if i["code"]==record["instrument_code"]),None)
-        if not instrument or record["instrument_contract"] != instrument or record.get("market") != "US_LISTED":
+        instrument=record["instrument_contract"]
+        if (instrument.get("code") != record["instrument_code"] or
+            instrument.get("market") != "US_LISTED" or record.get("market") != "US_LISTED" or
+            instrument.get("currency") != "USD" or instrument.get("instrument_type") not in ("ETF", "EQUITY") or
+            instrument.get("timezone") != "America/New_York" or not instrument.get("name")):
             raise ValueError("Unknown overseas instrument contract")
         parsed=parse_yahoo(raw,instrument,captured)
         expected=parsed["observations"]
@@ -109,7 +115,7 @@ def build(data_dir, db_path):
         # Retain identities from historical masters; absence today is not delisting evidence.
         historical = [(path, json.loads(path.read_text())) for path in
                       (data_dir / "master").rglob("*.json") if path.name != "latest.json"]
-        historical.sort(key=lambda item: (item[1]["effective_date"], item[1].get("captured_at", ""), str(item[0])))
+        historical.sort(key=lambda item: (item[1]["effective_date"], item[1].get("retrieved_at", ""), str(item[0])))
         snapshots = historical + [(data_dir / "master/latest.json", master)]
         for path, snapshot in snapshots:
             for p in snapshot["products"]:
@@ -117,6 +123,8 @@ def build(data_dir, db_path):
                                    ("XKRX:"+p["code"], "XKRX", p["code"], p["name"], "KRW", snapshot["effective_date"]))
                 connection.execute("INSERT INTO master_memberships VALUES (?,?,?,?,?)",
                                    (str(path.relative_to(data_dir)), snapshot["effective_date"], "XKRX:"+p["code"], p["name"], int(path.name == "latest.json")))
+        identity_fields = ("market", "currency", "instrument_type", "timezone")
+        contracts = {p["code"]: tuple(p[k] for k in identity_fields) for p in overseas}
         for p in overseas:
             connection.execute("INSERT INTO instruments VALUES (?,?,?,?,?,?)",
                                ("US_LISTED:"+p["code"],"US_LISTED",p["code"],p["name"],p["currency"],"PROVISIONAL_PROVIDER_IDENTITY"))
@@ -128,6 +136,16 @@ def build(data_dir, db_path):
             verify_capture(data_dir, record)
             connection.execute("INSERT INTO captures VALUES (?,?,?,?,?,?,?,?,?)", tuple(record.get(k) for k in
                 ("capture_id","source_id","source_url","retrieved_at","source_sha256","kind","status","quality","error")))
+            if record["kind"] == "US_PRICE" and record["status"] == "CAPTURED":
+                p = record["instrument_contract"]
+                identity = tuple(p[k] for k in identity_fields)
+                if p["code"] in contracts and contracts[p["code"]] != identity:
+                    raise ValueError("Conflicting overseas identity; explicit migration required")
+                contracts[p["code"]] = identity
+                connection.execute("INSERT OR IGNORE INTO instruments VALUES (?,?,?,?,?,?)",
+                                   ("US_LISTED:"+p["code"], "US_LISTED", p["code"], p["name"], p["currency"], "PROVISIONAL_PROVIDER_IDENTITY"))
+                connection.execute("INSERT INTO instrument_contracts VALUES (?,?,?)",
+                                   (record["capture_id"], "US_LISTED:"+p["code"], json.dumps(p, ensure_ascii=False, sort_keys=True)))
             records.append(record)
             for row in record["observations"]:
                 if record["kind"] in ("PRICE","US_PRICE"):

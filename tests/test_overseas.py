@@ -71,6 +71,27 @@ class OverseasTests(unittest.TestCase):
             with sqlite3.connect(root/"research.sqlite") as connection:
                 self.assertEqual(connection.execute("SELECT COUNT(*) FROM corporate_actions").fetchone()[0],1)
                 self.assertEqual(connection.execute("SELECT adjusted_close FROM prices LIMIT 1").fetchone()[0],99)
+            # Editing today's collection universe must not invalidate yesterday's evidence.
+            config["instruments"] = []
+            write_json(root/"overseas_sources.json", config)
+            self.assertEqual(build(root,root/"research.sqlite")["series"], [])
+            with sqlite3.connect(root/"research.sqlite") as connection:
+                self.assertEqual(connection.execute("SELECT COUNT(*) FROM prices").fetchone()[0],2)
+                saved=json.loads(connection.execute("SELECT contract_json FROM instrument_contracts").fetchone()[0])
+                self.assertEqual(saved,ITEM)
+            config["instruments"] = [{**ITEM,"name":"Renamed display label"}]
+            write_json(root/"overseas_sources.json", config)
+            build(root,root/"research.sqlite")
+            with sqlite3.connect(root/"research.sqlite") as connection:
+                self.assertEqual(connection.execute("SELECT name FROM instruments").fetchone()[0],"Renamed display label")
+            preserved=(root/"research.sqlite").read_bytes()
+            config["instruments"] = [{**ITEM,"instrument_type":"ETF"}]
+            write_json(root/"overseas_sources.json",config)
+            with self.assertRaisesRegex(ValueError,"Conflicting overseas identity"):
+                build(root,root/"research.sqlite")
+            self.assertEqual((root/"research.sqlite").read_bytes(),preserved)
+            config["instruments"] = []
+            write_json(root/"overseas_sources.json",config)
             result["events"][0]["amount"]=2
             write_json(root/"series/captures"/(result["capture_id"]+".json"),result)
             with self.assertRaises(ValueError):build(root,root/"research.sqlite")
