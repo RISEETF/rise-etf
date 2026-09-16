@@ -31,8 +31,8 @@ No live orders or model-generated replacement prices are implemented.
 
 ## Next implementation gates
 
-1. Validate the RISE instrument master and official source mappings, including
-   expense fields, pension eligibility, units and effective dates.
+1. The official identity master is generated from the RISE ETF Finder. Keep
+   validating fee semantics, pension eligibility and effective-date changes.
 2. Add validated daily prices, distributions, FX and market calendars; promote
    each field only with observation date, source URL and retrieval timestamp.
 3. Store news URLs, publication timestamps and entity links; calculate changes
