@@ -93,6 +93,26 @@ async function loadQuality() {
   } catch (_) { el('qualityStatus').textContent = '대조 보고서를 표시할 수 없습니다.'; }
 }
 el('search').addEventListener('input', renderProducts);
+async function loadSeries() {
+  try {
+    const data = await readJSON('data/series/status.json');
+    if (!Array.isArray(data.series) || data.rs_status !== 'BLOCKED' || data.ranking !== null ||
+        data.series.some(row => row.rs_eligible !== false || !Number.isInteger(row.observations) || row.observations < 0)) throw new Error('시계열 검증 상태 오류');
+    el('seriesStatus').textContent = `가격·환율 수집 이력 ${data.capture_count}건 · RS 계산 보류 · 집계 ${localTime(data.built_at)}`;
+    for (const row of data.series) {
+      const tr=document.createElement('tr');
+      const state=row.last_attempt_status==='CAPTURED' ? '수집됨 · 검증 대기' : row.last_attempt_status==='FAILED' ? '실패' : '미수집';
+      for (const value of [row.name, row.observations, row.first_date && row.last_date ? `${row.first_date} ~ ${row.last_date}` : '자료 없음', `${state} / ${localTime(row.retrieved_at)}`, '보류']) {
+        const td=document.createElement('td');td.textContent=value;tr.append(td);
+      }
+      el('seriesRows').append(tr);
+    }
+    const fx=data.fx;
+    el('fxCoverage').textContent=`원/달러 참고환율: ${fx.observations}개 관측일 · ${fx.first_date || '—'} ~ ${fx.last_date || '—'} · 최근 시도 ${fx.last_attempt_status==='CAPTURED' ? '수집 성공' : '수집 실패 또는 미수집'} (${localTime(fx.retrieved_at)})`;
+  } catch (_) {
+    el('seriesRows').replaceChildren();el('seriesStatus').textContent='시계열 현황을 표시할 수 없습니다. RS 계산은 보류합니다.';
+  }
+}
 el('category').addEventListener('change', renderProducts);
 el('reset').addEventListener('click', () => {el('search').value='';el('category').value='';renderProducts();});
-Promise.allSettled([loadMaster(), loadCapture(), loadQuality(), loadMasterAttempt()]);
+Promise.allSettled([loadMaster(), loadCapture(), loadQuality(), loadMasterAttempt(), loadSeries()]);

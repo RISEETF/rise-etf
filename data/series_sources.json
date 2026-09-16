@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "universe_status": "INGESTION_PILOT_NOT_RS_UNIVERSE",
+  "selection_reason": "Small official-master-linked pilot covering Korean equity, overseas equity via a Korean ETF, and Korean government bonds. No claim of liquidity leadership or final representativeness.",
+  "price_instruments": [
+    {"code": "148020", "name": "RISE 200", "currency": "KRW", "market": "XKRX", "exposure_candidate": "KR_LARGE_CAP"},
+    {"code": "379780", "name": "RISE 미국S&P500", "currency": "KRW", "market": "XKRX", "exposure_candidate": "US_LARGE_CAP"},
+    {"code": "114100", "name": "RISE 국고채3년", "currency": "KRW", "market": "XKRX", "exposure_candidate": "KR_GOVERNMENT_BOND_3Y"}
+  ],
+  "price_source": {
+    "id": "NAVER_CHART_CANDIDATE",
+    "url_template": "https://fchart.stock.naver.com/sise.nhn?symbol={code}&timeframe=day&count=300&requestType=0",
+    "price_basis": "ADJUSTMENT_UNCONFIRMED",
+    "quality": "QUARANTINED",
+    "unresolved": ["provider adjustment methodology", "distribution reinvestment", "corporate actions", "session close finality", "exchange calendar completeness", "automated access stability"]
+  },
+  "fx_source": {
+    "id": "ECB_REFERENCE",
+    "url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",
+    "documentation_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
+    "base_currency": "EUR",
+    "quote_currencies": ["USD", "KRW"],
+    "cross_rate": "KRW per USD = (KRW per EUR) / (USD per EUR), same observation date only",
+    "usage": "Reference only, not an executable rate or a Korean/US closing FX rate. No forward fill. Cross-market timing alignment remains unresolved."
+  }
+}

@@ -29,6 +29,16 @@
 
 ## Remaining implementation order
 
+### Price/FX foundation added
+
+- Three official-master-linked price candidates: 300 dated rows each; adjustment
+  and final close semantics remain unconfirmed. ECB cross FX: 64 reference dates.
+- Immutable captures, failure records and a reproducible SQLite query database.
+- Portal coverage view and weekday series workflow staged on this PR.
+- Python suite expanded to 15 passing tests. New series browser assertions are
+  included in CI; the earlier browser success above applies to the prior commit.
+- See SERIES_AND_RS_CONTRACT.md. No ranking or trading signal has been enabled.
+
 1. Review the portal before merge/deployment; automated browser/CI checks passed.
 2. Establish daily price/NAV observation dates, corporate actions, distributions,
    FX and trading calendars. Current Naver capture is not an approved daily close.

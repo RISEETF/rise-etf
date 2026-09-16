@@ -1,0 +1,81 @@
+{
+  "built_at": "2026-09-16T01:47:25.355947+00:00",
+  "storage": "REBUILDABLE_SQLITE_FROM_GIT_CAPTURES",
+  "rs_status": "BLOCKED",
+  "ranking": null,
+  "series": [
+    {
+      "code": "148020",
+      "name": "RISE 200",
+      "currency": "KRW",
+      "market": "XKRX",
+      "exposure_candidate": "KR_LARGE_CAP",
+      "observations": 300,
+      "first_date": "2025-06-27",
+      "last_date": "2026-09-16",
+      "last_attempt_status": "CAPTURED",
+      "retrieved_at": "2026-09-16T01:45:21.350625+00:00",
+      "error": null,
+      "rs_eligible": false,
+      "blockers": [
+        "ADJUSTMENT_UNCONFIRMED",
+        "DISTRIBUTIONS_UNVERIFIED",
+        "SESSION_CALENDAR_UNVERIFIED",
+        "CROSS_MARKET_ALIGNMENT_UNRESOLVED"
+      ]
+    },
+    {
+      "code": "379780",
+      "name": "RISE 미국S&P500",
+      "currency": "KRW",
+      "market": "XKRX",
+      "exposure_candidate": "US_LARGE_CAP",
+      "observations": 300,
+      "first_date": "2025-06-27",
+      "last_date": "2026-09-16",
+      "last_attempt_status": "CAPTURED",
+      "retrieved_at": "2026-09-16T01:45:39.333393+00:00",
+      "error": null,
+      "rs_eligible": false,
+      "blockers": [
+        "ADJUSTMENT_UNCONFIRMED",
+        "DISTRIBUTIONS_UNVERIFIED",
+        "SESSION_CALENDAR_UNVERIFIED",
+        "CROSS_MARKET_ALIGNMENT_UNRESOLVED"
+      ]
+    },
+    {
+      "code": "114100",
+      "name": "RISE 국고채3년",
+      "currency": "KRW",
+      "market": "XKRX",
+      "exposure_candidate": "KR_GOVERNMENT_BOND_3Y",
+      "observations": 300,
+      "first_date": "2025-06-27",
+      "last_date": "2026-09-16",
+      "last_attempt_status": "CAPTURED",
+      "retrieved_at": "2026-09-16T01:45:53.282376+00:00",
+      "error": null,
+      "rs_eligible": false,
+      "blockers": [
+        "ADJUSTMENT_UNCONFIRMED",
+        "DISTRIBUTIONS_UNVERIFIED",
+        "SESSION_CALENDAR_UNVERIFIED",
+        "CROSS_MARKET_ALIGNMENT_UNRESOLVED"
+      ]
+    }
+  ],
+  "fx": {
+    "pair": "USD/KRW",
+    "unit": "KRW per USD",
+    "observations": 64,
+    "first_date": "2026-06-18",
+    "last_date": "2026-09-15",
+    "last_attempt_status": "CAPTURED",
+    "retrieved_at": "2026-09-16T01:46:09.892591+00:00",
+    "kind": "ECB_DERIVED_REFERENCE_ONLY",
+    "rs_eligible": false,
+    "error": null
+  },
+  "capture_count": 8
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "capture_id": "20260916T014417849136Z-NAVER_CHART_CANDIDATE-114100",
+  "source_id": "NAVER_CHART_CANDIDATE",
+  "source_url": "https://fchart.stock.naver.com/sise.nhn?symbol=114100&timeframe=day&count=300&requestType=0",
+  "retrieved_at": "2026-09-16T01:44:17.849136+00:00",
+  "kind": "PRICE",
+  "instrument_code": "114100",
+  "publication_time": null,
+  "price_basis": "ADJUSTMENT_UNCONFIRMED",
+  "currency": "KRW",
+  "rs_eligible": false,
+  "observations": [],
+  "source_sha256": "bc73405d168a52cb0db5c7c069be476f343aa6163116ba14b990f11dfedd23bd",
+  "status": "FAILED",
+  "quality": "UNUSABLE",
+  "error": "ValueError: multi-byte encodings are not supported"
+}

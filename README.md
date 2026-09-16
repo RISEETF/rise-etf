@@ -57,3 +57,13 @@ effective date. New captures preserve both listing and overview HTML by SHA-256,
 so the official page's count/date can be traced. Attempts, including failures,
 are logged in `data/master_runs/` and `data/master_collection_status.json`.
 The September 11 snapshot predates overview retention and retains that limitation.
+
+## Dated price and FX pilot
+
+`python scripts/collect_series.py` appends source and normalized captures.
+`python scripts/build_research_db.py` verifies and rebuilds `var/research.sqlite`
+and the portal's `data/series/status.json`. Python standard library only.
+Run the builder after a fresh checkout for offline DB reconstruction.
+The three price series are quarantined; ECB FX is reference-only. No RS rank is
+computed. See `SERIES_AND_RS_CONTRACT.md` for schema, coverage, limitations and
+the unified cross-market representative-selection policy.
