@@ -1,7 +1,7 @@
 const fs = require('node:fs');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
-const html = fs.readFileSync('index.html', 'utf8');
+const html = fs.readFileSync('legacy.html', 'utf8');
 const script = html.match(/<script>([\s\S]*?)<\/script>/)[1];
 const elements = new Map();
 const el = id => { if (!elements.has(id)) elements.set(id, {textContent:'',hidden:false}); return elements.get(id); };

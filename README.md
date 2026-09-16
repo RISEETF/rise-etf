@@ -5,7 +5,9 @@
 This branch repairs data integrity before extending RS and marketing research.
 The existing source snapshot is unverified. Its market values, news, ETF metadata
 and marketing statements have NOT been validated against original sources.
-The portal labels this state and blocks customer-copy export.
+The default portal reads only the official identity master, capture status and
+reconciliation report. Legacy prices/news are isolated in `legacy.html`, labeled
+unverified, with customer-copy export blocked.
 
 - Date choices come from `data/manifest.json`; missing dates never fall back to latest.
 - `data/YYYY-MM-DD.json` preserves the first stored baseline for its stated date.
@@ -26,6 +28,10 @@ The portal labels this state and blocks customer-copy export.
 `python -m http.server 8000`
 
 Open the local server to view the existing portal. Python standard library only.
+The portal supports code/name search and official-category filters, displays
+source dates and KST retrieval times, and rejects missing or malformed masters.
+Browser QA: `node tests/test_master_portal.cjs` (Playwright + Chromium).
+Legacy date QA: `node tests/test_portal.cjs`.
 The workflow becomes active after this branch is merged to the default branch.
 No live orders or model-generated replacement prices are implemented.
 
@@ -42,3 +48,12 @@ No live orders or model-generated replacement prices are implemented.
 
 Current capture JSON is an initial append-only collection layer, not a completed
 market database. No production data-quality approval is implied by passing tests.
+
+## Master history
+
+The first `data/master/YYYY-MM-DD.json` vintage is immutable. New captures are
+stored under `data/master/captures/`; `latest.json` must not regress to an earlier
+effective date. New captures preserve both listing and overview HTML by SHA-256,
+so the official page's count/date can be traced. Attempts, including failures,
+are logged in `data/master_runs/` and `data/master_collection_status.json`.
+The September 11 snapshot predates overview retention and retains that limitation.

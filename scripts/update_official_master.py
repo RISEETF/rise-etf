@@ -80,6 +80,8 @@ def parse_products(page):
 
 
 def validate_master(products, expected_count):
+    if expected_count <= 0:
+        raise ValueError("Official master cannot be empty")
     if len(products) != expected_count:
         raise ValueError(f"Expected {expected_count} official rows, got {len(products)}")
     codes = [item["code"] for item in products]
@@ -148,6 +150,25 @@ def reconcile_secondary_capture(products, quotes):
                       else "IDENTITY_DIFFERENCE"}
 
 
+def persist_master(master_dir, master):
+    """Keep the first daily vintage and every distinct captured version."""
+    effective = dt.date.fromisoformat(master["effective_date"]).isoformat()
+    retrieved = dt.datetime.fromisoformat(master["retrieved_at"])
+    capture_id = retrieved.strftime("%Y%m%dT%H%M%S%fZ")
+    vintage = master_dir / "captures" / f"{capture_id}-{master['source_sha256']}.json"
+    if not vintage.exists():
+        write_json(vintage, master)
+    daily = master_dir / f"{effective}.json"
+    if not daily.exists():
+        write_json(daily, master)
+    latest = master_dir / "latest.json"
+    if latest.exists():
+        previous = json.loads(latest.read_text(encoding="utf-8"))
+        if previous["effective_date"] > effective:
+            raise ValueError("Refusing to replace master with an older effective date")
+    write_json(latest, master)
+
+
 def main():
     captured_at = dt.datetime.now(dt.timezone.utc).isoformat()
     overview, listing, total, effective_date = fetch_official_pages()
@@ -164,7 +185,18 @@ def main():
         "content_encoding": "gzip+base64",
         "content": base64.b64encode(gzip.compress(raw, mtime=0)).decode("ascii"),
     }
-    write_json(ROOT / "data/raw/rise_finder" / f"{digest}.json", raw_record)
+    raw_path = ROOT / "data/raw/rise_finder" / f"{digest}.json"
+    if not raw_path.exists():
+        write_json(raw_path, raw_record)
+    overview_raw = overview.encode("utf-8")
+    overview_digest = hashlib.sha256(overview_raw).hexdigest()
+    overview_path = ROOT / "data/raw/rise_finder" / f"{overview_digest}.json"
+    if not overview_path.exists():
+        write_json(overview_path, {
+            "source_url": FINDER_URL, "retrieved_at": captured_at,
+            "sha256_uncompressed": overview_digest, "content_encoding": "gzip+base64",
+            "content": base64.b64encode(gzip.compress(overview_raw, mtime=0)).decode("ascii"),
+        })
 
     master = {
         "status": "OFFICIAL_IDENTITY_MASTER",
@@ -172,13 +204,12 @@ def main():
         "retrieved_at": captured_at,
         "effective_date": effective_date,
         "source_sha256": digest,
+        "overview_sha256": overview_digest,
         "instrument_count": len(products),
         "field_scope": ["code", "name", "detail_id", "category", "labels", "published_total_fee", "listed_on"],
         "products": products,
     }
     master_dir = ROOT / "data/master"
-    write_json(master_dir / f"{effective_date}.json", master)
-    write_json(master_dir / "latest.json", master)
 
     legacy = json.loads((ROOT / "data/latest.json").read_text(encoding="utf-8"))["items"]
     reconciliation = reconcile_legacy(products, legacy)
@@ -194,12 +225,17 @@ def main():
         if secondary_digest and secondary_path.exists():
             raw_record = json.loads(secondary_path.read_text(encoding="utf-8"))
             secondary_raw = base64.b64decode(raw_record["raw_base64"])
+            if hashlib.sha256(secondary_raw).hexdigest() != secondary_digest:
+                raise ValueError("Secondary source checksum mismatch")
             try:
                 secondary_text = secondary_raw.decode("utf-8")
             except UnicodeDecodeError:
                 secondary_text = secondary_raw.decode("cp949")
             quotes = json.loads(secondary_text)["result"]["etfItemList"]
             secondary_reconciliation = reconcile_secondary_capture(products, quotes)
+            secondary_reconciliation["retrieved_at"] = capture_status.get("retrieved_at")
+            secondary_reconciliation["sha256"] = secondary_digest
+            secondary_reconciliation["scope"] = "Captured identities only; captures may be from different dates"
 
     quality = {
         "status": "COMPLETE_FOR_IDENTITY_FIELDS",
@@ -225,15 +261,31 @@ def main():
     lines.extend(f"| {key} | {value} |" for key, value in counts.items())
     if secondary_reconciliation:
         lines.extend(["", "## Secondary market capture check", "",
-                      f"Status: **{secondary_reconciliation['status']}**. ",
-                      f"The independent capture contained {secondary_reconciliation['secondary_rise_count']} RISE identities."])
+                      f"Status: **{secondary_reconciliation['status']}**.",
+                      f"The independent capture contained {secondary_reconciliation['secondary_rise_count']} RISE identities.",
+                      f"Secondary retrieval time: {secondary_reconciliation.get('retrieved_at')}. Captures may be from different dates."])
     lines.extend(["", "## Scope", "",
                   "Identity, official category labels, published total fee, listing date and official detail URL are captured.",
                   "Price, NAV, returns, AUM, pension limits and marketing claims remain outside this verification.", ""])
     (ROOT / "OFFICIAL_MASTER_VALIDATION.md").write_text("\n".join(lines), encoding="utf-8")
+    persist_master(master_dir, master)
     print(json.dumps({"official_count": len(products), "effective_date": effective_date,
                       "legacy_reconciliation": counts}, ensure_ascii=False))
 
 
+def run():
+    now = dt.datetime.now(dt.timezone.utc)
+    status = {"attempted_at": now.isoformat(), "source_url": FINDER_URL}
+    try:
+        main()
+        status["status"] = "SUCCESS"
+    except Exception as exc:
+        status.update(status="FAILED", reason=f"{type(exc).__name__}: {exc}")
+    write_json(ROOT / "data/master_runs" / f"{now.strftime('%Y%m%dT%H%M%S%fZ')}.json", status)
+    write_json(ROOT / "data/master_collection_status.json", status)
+    print(json.dumps(status, ensure_ascii=False))
+    return 0 if status["status"] == "SUCCESS" else 1
+
+
 if __name__ == "__main__":
-    main()
+    raise SystemExit(run())

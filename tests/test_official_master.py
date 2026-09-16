@@ -6,6 +6,7 @@ import base64
 import gzip
 import hashlib
 import json
+import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -15,6 +16,33 @@ spec.loader.exec_module(master)
 
 
 class OfficialMasterTests(unittest.TestCase):
+    def test_latest_capture_matches_preserved_overview_and_listing(self):
+        snapshot = json.loads((ROOT / "data/master/latest.json").read_text())
+        def source(digest):
+            record = json.loads((ROOT / "data/raw/rise_finder" / f"{digest}.json").read_text())
+            raw = gzip.decompress(base64.b64decode(record["content"]))
+            self.assertEqual(hashlib.sha256(raw).hexdigest(), digest)
+            return raw.decode()
+        total, effective = master.extract_overview(source(snapshot["overview_sha256"]))
+        self.assertEqual(total, snapshot["instrument_count"])
+        self.assertEqual(effective, snapshot["effective_date"])
+        products = master.validate_master(master.parse_products(source(snapshot["source_sha256"])), total)
+        self.assertEqual(products, snapshot["products"])
+
+    def test_daily_vintage_is_immutable_and_latest_cannot_regress(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            first = {"effective_date":"2026-09-11", "retrieved_at":"2026-09-11T01:00:00+00:00", "source_sha256":"a"}
+            revised = {**first, "retrieved_at":"2026-09-11T02:00:00+00:00", "source_sha256":"b"}
+            master.persist_master(root, first)
+            master.persist_master(root, revised)
+            self.assertEqual(json.loads((root / "2026-09-11.json").read_text()), first)
+            self.assertEqual(json.loads((root / "latest.json").read_text()), revised)
+            self.assertEqual(len(list((root / "captures").glob("*.json"))), 2)
+            with self.assertRaises(ValueError):
+                master.persist_master(root, {**revised, "effective_date":"2026-09-10"})
+            self.assertEqual(json.loads((root / "latest.json").read_text()), revised)
+
     def test_preserved_official_snapshot_and_secondary_identity(self):
         snapshot = json.loads((ROOT / "data/master/2026-09-11.json").read_text())
         digest = snapshot["source_sha256"]

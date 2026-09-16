@@ -6,7 +6,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: rise-source-capture
+  group: rise-data-writer-${{ github.ref }}
   cancel-in-progress: false
 jobs:
   capture:

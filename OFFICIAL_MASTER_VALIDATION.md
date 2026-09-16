@@ -1,27 +1,24 @@
 # Official RISE instrument master validation
 
 - Official source: https://riseetf.co.kr/prod/finder
-- Official effective date: 2026-09-11
-- Official products captured: 143
-- Snapshot revalidated offline: 2026-09-16. This is not a fresh market capture.
-- Official identity fields: exchange code, product name, detail URL, category labels, published total fee, listing date
+- Official effective date: 2026-09-16
+- Official products: 143
 
 ## Legacy portal reconciliation
 
 | Result | Count |
 |---|---:|
-| Identity match | 20 |
-| Official name mismatch | 4 |
-| Not in official current master | 124 |
+| NOT_IN_OFFICIAL_CURRENT_MASTER | 124 |
+| IDENTITY_MATCH | 20 |
+| OFFICIAL_NAME_MISMATCH | 4 |
 
-The legacy portal rows were not overwritten automatically. A missing legacy code is a current-master difference, not proof of delisting. The official master is the canonical identity source for later price and return joins.
+## Secondary market capture check
 
-## Independent market capture check
+Status: **EXACT_IDENTITY_MATCH**.
+The independent capture contained 143 RISE identities.
+Secondary retrieval time: 2026-09-11T04:04:19.164766+00:00. Captures are from different dates; this is an identity comparison, not a current price check.
 
-The preserved Naver ETF response contained 143 RISE identities. Its code and name set matched the official 143-product identity set exactly after the official capture was made. The independent response is used as a secondary identity check only; it does not establish official status or observation dates for prices, NAV, returns, AUM or fees.
+## Scope
 
-Reproduction: `python -m unittest discover -s tests -v`. The preserved-snapshot test checks both source SHA-256 hashes, reparses the official raw HTML, checks unique codes and detail IDs, compares all 143 code/name pairs and reproduces the legacy reconciliation counts. All 8 Python tests and the Node portal date checks passed on 2026-09-16. The original reconciliation JSON predates this secondary check; its null secondary field means no result was recorded in that original report.
-
-## Scope boundary
-
-The following remain separate validation tasks: market price and NAV observation dates, total-return methodology, distributions, AUM and volume units, pension eligibility, fee semantics, corporate actions, product status changes and marketing claims.
+Identity, official category labels, published total fee, listing date and official detail URL are captured.
+Price, NAV, returns, AUM, pension limits and marketing claims remain outside this verification.
