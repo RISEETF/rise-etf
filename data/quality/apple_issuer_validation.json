@@ -1,0 +1,149 @@
+{
+  "status": "PARTIAL_ISSUER_RECONCILIATION",
+  "rs_eligible": false,
+  "issuer_source_url": "https://investor.apple.com/dividend-history/default.aspx",
+  "issuer_accessed_date": "2026-09-16",
+  "issuer_extraction_method": "ASSISTANT_TRANSCRIBED_FACTS_FROM_WEB_PAGE_TEXT",
+  "issuer_evidence_file_sha256": "bfa356f59915212825952217525657d2156bb7b0803e3b04cb9f9556b6cd5864",
+  "original_issuer_html_sha256": null,
+  "current_capture_id": "20260916T052651325957Z-YAHOO_CHART_CANDIDATE-AAPL",
+  "current_source_sha256": "d83abe8a6f82e5419562abd2f7509855461df45deb7cb410412eec974bfbafa4",
+  "current_window": {
+    "first_date": "2024-09-16",
+    "last_date": "2026-09-15"
+  },
+  "historical_capture_id": "20260916T053840724775Z-YAHOO_CHART_CANDIDATE-AAPL",
+  "historical_source_sha256": "b26c89b61c8658268efe7ba2da97240b0b5b115db27461c2ccd12551494fb059",
+  "current_cash": {
+    "checks": [
+      {
+        "issuer_record_date": "2024-11-11",
+        "issuer_payable_date": "2024-11-14",
+        "issuer_unadjusted_amount": 0.25,
+        "ex_date_verified": false,
+        "provider_event_date": "2024-11-08",
+        "provider_amount": 0.25,
+        "subsequent_split_divisor": 1.0,
+        "split_adjusted_expected_amount": 0.25,
+        "status": "AMOUNT_MATCH_ONLY"
+      },
+      {
+        "issuer_record_date": "2025-02-10",
+        "issuer_payable_date": "2025-02-13",
+        "issuer_unadjusted_amount": 0.25,
+        "ex_date_verified": false,
+        "provider_event_date": "2025-02-10",
+        "provider_amount": 0.25,
+        "subsequent_split_divisor": 1.0,
+        "split_adjusted_expected_amount": 0.25,
+        "status": "AMOUNT_MATCH_ONLY"
+      },
+      {
+        "issuer_record_date": "2025-05-12",
+        "issuer_payable_date": "2025-05-15",
+        "issuer_unadjusted_amount": 0.26,
+        "ex_date_verified": false,
+        "provider_event_date": "2025-05-12",
+        "provider_amount": 0.26,
+        "subsequent_split_divisor": 1.0,
+        "split_adjusted_expected_amount": 0.26,
+        "status": "AMOUNT_MATCH_ONLY"
+      },
+      {
+        "issuer_record_date": "2025-08-11",
+        "issuer_payable_date": "2025-08-14",
+        "issuer_unadjusted_amount": 0.26,
+        "ex_date_verified": false,
+        "provider_event_date": "2025-08-11",
+        "provider_amount": 0.26,
+        "subsequent_split_divisor": 1.0,
+        "split_adjusted_expected_amount": 0.26,
+        "status": "AMOUNT_MATCH_ONLY"
+      },
+      {
+        "issuer_record_date": "2025-11-10",
+        "issuer_payable_date": "2025-11-13",
+        "issuer_unadjusted_amount": 0.26,
+        "ex_date_verified": false,
+        "provider_event_date": "2025-11-10",
+        "provider_amount": 0.26,
+        "subsequent_split_divisor": 1.0,
+        "split_adjusted_expected_amount": 0.26,
+        "status": "AMOUNT_MATCH_ONLY"
+      },
+      {
+        "issuer_record_date": "2026-02-09",
+        "issuer_payable_date": "2026-02-12",
+        "issuer_unadjusted_amount": 0.26,
+        "ex_date_verified": false,
+        "provider_event_date": "2026-02-09",
+        "provider_amount": 0.26,
+        "subsequent_split_divisor": 1.0,
+        "split_adjusted_expected_amount": 0.26,
+        "status": "AMOUNT_MATCH_ONLY"
+      },
+      {
+        "issuer_record_date": "2026-05-11",
+        "issuer_payable_date": "2026-05-14",
+        "issuer_unadjusted_amount": 0.27,
+        "ex_date_verified": false,
+        "provider_event_date": "2026-05-11",
+        "provider_amount": 0.27,
+        "subsequent_split_divisor": 1.0,
+        "split_adjusted_expected_amount": 0.27,
+        "status": "AMOUNT_MATCH_ONLY"
+      },
+      {
+        "issuer_record_date": "2026-08-10",
+        "issuer_payable_date": "2026-08-13",
+        "issuer_unadjusted_amount": 0.27,
+        "ex_date_verified": false,
+        "provider_event_date": "2026-08-10",
+        "provider_amount": 0.27,
+        "subsequent_split_divisor": 1.0,
+        "split_adjusted_expected_amount": 0.27,
+        "status": "AMOUNT_MATCH_ONLY"
+      }
+    ],
+    "unmatched_provider_dividends": [],
+    "matched_amount_count": 8,
+    "ex_date_status": "NOT_IN_ISSUER_SOURCE"
+  },
+  "historical_cash": {
+    "checks": [
+      {
+        "issuer_record_date": "2020-08-10",
+        "issuer_payable_date": "2020-08-13",
+        "issuer_unadjusted_amount": 0.82,
+        "ex_date_verified": false,
+        "provider_event_date": "2020-08-07",
+        "provider_amount": 0.205,
+        "subsequent_split_divisor": 4.0,
+        "split_adjusted_expected_amount": 0.205,
+        "status": "AMOUNT_MATCH_ONLY"
+      }
+    ],
+    "unmatched_provider_dividends": [],
+    "matched_amount_count": 1,
+    "ex_date_status": "NOT_IN_ISSUER_SOURCE"
+  },
+  "historical_split": {
+    "status": "SPLIT_EVENT_DATE_AND_RATIO_MATCH",
+    "first_trading_date": "2020-08-31",
+    "ratio": 4.0,
+    "issuer_faq_generic_date": "2020-08-28",
+    "previous_price_date": "2020-08-28",
+    "previous_provider_close": 124.80750274658203,
+    "split_date_provider_close": 129.0399932861328,
+    "as_received_close_return": 0.03391214827961697,
+    "incorrect_return_if_previous_close_divided_again": 3.135648593118468,
+    "price_mutation_applied": false,
+    "total_return_certified": false
+  },
+  "limitations": [
+    "Cash ex-dates not independently verified",
+    "Manual official-page fact transcription, not automated source ingestion",
+    "Split fixture remains outside live price coverage",
+    "No full-market or total-return certification"
+  ]
+}

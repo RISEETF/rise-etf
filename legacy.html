@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>RISE ETF Intelligence Base & Market Portal</title>
+
+  <!-- Open Graph / Meta -->
+  <meta name="description" content="KB자산운용 RISE ETF 등록 ETF 인텔리전스 포털 및 데일리 매크로 시황 대시보드">
+  <meta property="og:title" content="RISE ETF Intelligence Base & Market Portal">
+  <meta property="og:description" content="등록 RISE ETF 마스터 DB 연계 저장 시점별 시황 조회, 퇴직연금 100% 안전자산 분석 및 데일리 전략 브리프">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="RISE ETF Intelligence">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "맑은 고딕", helvetica, sans-serif; background-color: #020617; color: #f8fafc; }
+    .kpi-card { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(8px); border: 1px solid rgba(51, 65, 85, 0.6); }
+    .kpi-card:hover { border-color: rgba(245, 158, 11, 0.5); }
+    .gold-gradient { background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); }
+    .tab-active { border-bottom: 2px solid #F59E0B; color: #F59E0B; font-weight: 700; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    @media print {
+      body { background-color: #ffffff !important; color: #000000 !important; }
+      .no-print { display: none !important; }
+      .print-card { border: 1px solid #cbd5e1 !important; box-shadow: none !important; background: #ffffff !important; color: #000000 !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-amber-500 selection:text-slate-950">
+  <aside style="padding:16px;background:#78350f;color:white">검증 대기 보관 자료입니다. 가격·뉴스·연금 분류를 투자 판단이나 고객 안내에 사용하지 마세요. <a href="index.html" style="text-decoration:underline">공식 종목 마스터로 돌아가기</a></aside>
+
+  <!-- TOP APP BAR -->
+  <header class="border-b border-slate-800/90 bg-slate-900/90 backdrop-blur-md sticky top-0 z-50 no-print">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand & Title -->
+      <div class="flex items-center space-x-2.5 sm:space-x-3.5">
+        <div class="w-9 h-9 rounded-xl gold-gradient flex items-center justify-center font-black text-slate-950 text-xl shadow-lg shadow-amber-500/20 flex-shrink-0">
+          R
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="font-extrabold text-base sm:text-lg tracking-tight text-white">RISE ETF Intelligence Base</span>
+            <span class="text-[10px] sm:text-xs bg-amber-500/20 text-amber-400 border border-amber-500/30 px-2 py-0.5 rounded-full font-bold">등록 ETF</span>
+          </div>
+          <p class="text-[11px] text-slate-400 hidden sm:block">시장 데이터 · ETF 리서치 포털</p>
+        </div>
+      </div>
+
+      <!-- 기준일 선택기 -->
+      <div class="flex items-center space-x-2 flex-shrink-0">
+        <div class="flex items-center space-x-1 sm:space-x-2 bg-slate-800/90 border border-amber-500/40 px-2 sm:px-3 py-1.5 rounded-xl shadow">
+          <span class="text-amber-400">📅</span>
+          <span class="text-[11px] sm:text-xs text-slate-300 hidden md:inline font-semibold">시황 기준:</span>
+          <select id="dateSelect" onchange="onDateChange()" class="bg-slate-900 text-amber-300 font-bold text-[11px] sm:text-xs rounded-lg px-1.5 sm:px-2 py-0.5 border border-slate-700 focus:outline-none focus:border-amber-500 cursor-pointer">
+            <option value="">날짜 목록 불러오는 중</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- LIVE TICKER (실시간 속보 롤링 바) -->
+  <div class="bg-amber-500/10 border-b border-amber-500/20 py-2 px-3 sm:px-6 lg:px-8 text-xs no-print">
+    <div class="max-w-7xl mx-auto flex items-center justify-between space-x-3">
+      <div class="flex items-center space-x-2 overflow-hidden flex-1 cursor-pointer" onclick="switchMainTab('tab-news')">
+        <span class="flex items-center text-amber-400 font-bold flex-shrink-0">
+          <span>⚡</span>
+          <span class="ml-1 uppercase tracking-wider">저장 뉴스</span>
+          <span id="tickerCounter" class="ml-1 text-[10px] text-amber-400/80 font-mono">1/5</span>
+        </span>
+        <span id="tickerTime" class="text-slate-500 font-mono text-[11px] flex-shrink-0">14:30</span>
+        <span id="tickerHeadline" class="text-slate-200 truncate hover:text-amber-300 transition font-medium">
+          [로이터 속보] 브렌트유 배럴당 $101.60 공식 돌파… 호르무즈 해협 긴장 격화에 공급망 비상
+        </span>
+      </div>
+      <button type="button" onclick="event.stopPropagation(); switchMainTab('tab-news');" class="text-amber-400 hover:text-amber-300 text-[11px] font-bold flex items-center flex-shrink-0 bg-amber-500/10 border border-amber-500/30 px-2.5 py-1 rounded-lg">
+        <span>속보 전체보기</span>
+        <span class="ml-1">▶</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- MAIN NAVIGATION TABS (3대 핵심 탭 구조) -->
+  <div class="border-b border-slate-800 bg-slate-900/60 sticky top-16 z-40 no-print overflow-x-auto no-scrollbar">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex space-x-8 text-xs font-semibold whitespace-nowrap min-w-max">
+      <button onclick="switchMainTab('tab-explorer')" id="btn-tab-explorer" class="py-3 px-1 tab-active flex items-center space-x-1.5">
+        <span>📊</span>
+        <span>RISE 전종목 마스터 탐색기 (<span id="tabCount">—</span>)</span>
+      </button>
+      <button onclick="switchMainTab('tab-news')" id="btn-tab-news" class="py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-1.5">
+        <span>⚡</span>
+        <span>저장된 시장 뉴스</span>
+        <span class="bg-rose-500 text-white text-[9px] font-bold px-1.5 py-0.2 rounded-full" id="newsBadge">5</span>
+      </button>
+      <button onclick="switchMainTab('tab-report')" id="btn-tab-report" class="py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-1.5">
+        <span>📑</span>
+        <span>데일리 매크로 리포트 전문</span>
+      </button>
+    </div>
+  </div>
+
+  <div id="dataStatus" role="status" aria-live="polite" class="max-w-7xl mx-auto w-full px-4 py-3 text-sm text-amber-300">저장 자료를 확인하고 있습니다.</div>
+  <!-- MAIN CONTENT AREA -->
+  <main class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 flex-1 w-full space-y-4 sm:space-y-6">
+
+    <!-- 1. DYNAMIC MACRO SENSING STRIP -->
+    <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-2.5 text-xs no-print">
+      <div class="kpi-card p-2 sm:p-2.5 rounded-xl">
+        <div class="text-slate-400 text-[10px] sm:text-[11px]">KOSPI</div>
+        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macroKospi">-</div>
+      </div>
+      <div class="kpi-card p-2 sm:p-2.5 rounded-xl">
+        <div class="text-slate-400 text-[10px] sm:text-[11px]">S&P 500</div>
+        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macroSp500">-</div>
+      </div>
+      <div class="kpi-card p-2 sm:p-2.5 rounded-xl">
+        <div class="text-slate-400 text-[10px] sm:text-[11px]">미 국채 10Y</div>
+        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macro10Y">-</div>
+      </div>
+      <div class="kpi-card p-2 sm:p-2.5 rounded-xl">
+        <div class="text-slate-400 text-[10px] sm:text-[11px]">브렌트유 / 원유</div>
+        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macroBrent">-</div>
+      </div>
+      <div class="kpi-card p-2 sm:p-2.5 rounded-xl">
+        <div class="text-slate-400 text-[10px] sm:text-[11px]">원/달러 환율 (ECOS)</div>
+        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macroUsdKrw">-</div>
+      </div>
+      <div class="kpi-card p-2 sm:p-2.5 rounded-xl">
+        <div class="text-slate-400 text-[10px] sm:text-[11px]">달러 인덱스 (DXY)</div>
+        <div class="text-xs sm:text-sm font-bold text-white mt-0.5 truncate" id="macroDxy">-</div>
+      </div>
+    </section>
+
+    <!-- 2. STRATEGY BRIEF CARD -->
+    <section class="bg-gradient-to-r from-slate-900 via-slate-900 to-amber-950/30 border border-amber-500/30 rounded-2xl p-4 sm:p-5 shadow-xl no-print">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-slate-800 pb-3">
+        <div class="flex items-center space-x-2">
+          <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30" id="briefDateBadge">26/09/10 종가 기준</span>
+          <span class="text-xs text-slate-400">전략 브리프</span>
+        </div>
+        <span class="text-[11px] text-slate-400">출처 검증 대기 · 기존 작성 자료</span>
+      </div>
+      <div class="mt-3 space-y-2">
+        <h2 class="text-sm sm:text-base font-bold text-white leading-snug" id="briefHeadline">로딩 중...</h2>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed" id="briefTrigger">로딩 중...</p>
+        <div class="flex items-center text-xs text-amber-400 font-semibold pt-1">
+          <span>✔</span>
+          <span class="ml-1.5" id="briefSolution">로딩 중...</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. TAB 1: RISE 전종목 마스터 탐색기 (143개) -->
+    <div id="tab-explorer" class="space-y-4">
+      
+      <!-- CONTROLS -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3 sm:p-4 space-y-3 shadow-lg no-print">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+          
+          <div class="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800 w-fit">
+            <button onclick="setMode('all')" id="btnModeAll" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-amber-500 text-slate-950">
+              ☰ RISE 전종목 (<span id="allCount">—</span>)
+            </button>
+            <button onclick="setMode('focus')" id="btnModeFocus" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
+              ★ 포커스만 (<span id="focusCount">4</span>)
+            </button>
+          </div>
+
+          <div class="flex items-center space-x-1.5 overflow-x-auto no-scrollbar py-0.5 text-xs text-slate-300">
+            <span class="text-slate-400 text-[11px] flex-shrink-0 mr-1">🏷️ 테마:</span>
+            <button onclick="setCat('ALL')" class="cat-btn px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-bold border border-amber-500/40 flex-shrink-0" data-cat="ALL">전체</button>
+            <button onclick="setCat('채권혼합')" class="cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-cat="채권혼합">채권혼합(안전자산)</button>
+            <button onclick="setCat('AI')" class="cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-cat="AI">AI / 반도체</button>
+            <button onclick="setCat('전력')" class="cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-cat="전력">전력망 / 원전</button>
+            <button onclick="setCat('시장지수')" class="cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-cat="시장지수">대표지수(200/코스닥)</button>
+            <button onclick="setCat('커버드콜')" class="cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-cat="커버드콜">월배당 / 커버드콜</button>
+            <button onclick="setCat('채권')" class="cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-cat="채권">금리파킹 / 채권</button>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-2 border-t border-slate-800/80">
+          <label class="flex items-center space-x-2 text-xs text-slate-300 cursor-pointer select-none">
+            <input type="checkbox" id="chkPension" onchange="render()" class="w-4 h-4 rounded border-slate-700 text-amber-500 focus:ring-amber-500 bg-slate-900">
+            <span class="font-bold text-emerald-400">퇴직연금 100%만</span>
+            <span class="text-[11px] text-slate-400">(위험자산 한도 미차감 적격)</span>
+          </label>
+
+          <div class="relative sm:w-80">
+            <input type="text" id="keyword" oninput="render()" placeholder="종목명 또는 6자리 코드 검색 (예: 477170, 반도체)" class="w-full bg-slate-950 border border-slate-700 text-slate-100 placeholder-slate-500 rounded-xl px-3.5 py-2 pl-9 text-xs focus:outline-none focus:border-amber-500">
+            <span class="absolute left-3 top-2.5 text-slate-500 text-xs">🔍</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABLE -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl shadow-xl overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-slate-200 whitespace-nowrap">
+            <thead class="bg-slate-950/90 text-[11px] text-slate-400 uppercase tracking-wider border-b border-slate-800 sticky top-0 z-20">
+              <tr>
+                <th class="py-3 px-3 text-center w-10">★</th>
+                <th class="py-3 px-3">코드</th>
+                <th class="py-3 px-3">종목명 / 핵심 전략 (클릭 시 팩트시트)</th>
+                <th class="py-3 px-3">테마분류</th>
+                <th class="py-3 px-3 text-center">총보수</th>
+                <th class="py-3 px-3 text-center">분배주기</th>
+                <th class="py-3 px-3 text-right">종가(원)</th>
+                <th class="py-3 px-3 text-right">NAV(원)</th>
+                <th class="py-3 px-3 text-right">괴리율</th>
+                <th class="py-3 px-3 text-right">1D</th>
+                <th class="py-3 px-3 text-right">1W</th>
+                <th class="py-3 px-3 text-right">1M</th>
+                <th class="py-3 px-3 text-right">3M</th>
+                <th class="py-3 px-3 text-right">6M</th>
+                <th class="py-3 px-3 text-right">YTD</th>
+                <th class="py-3 px-3 text-right">설정이후</th>
+                <th class="py-3 px-3 text-center">퇴직연금</th>
+                <th class="py-3 px-3 text-right">일거래대금</th>
+                <th class="py-3 px-3 text-right">순자산AUM</th>
+                <th class="py-3 px-3 text-center">기준일시</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody" class="divide-y divide-slate-800/80"></tbody>
+          </table>
+        </div>
+
+        <div class="p-3.5 bg-slate-950/80 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-2">
+          <span id="statText" class="font-medium">등록 ETF 자료 로딩 중...</span>
+          <div class="flex items-center space-x-3 text-[11px]">
+            <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-amber-400 mr-1.5"></span>KB자산운용 RISE 단독</span>
+            <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-400 mr-1.5"></span>퇴직연금 분류 검증 대기</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. TAB 2: 저장된 시장 뉴스 -->
+    <div id="tab-news" class="hidden space-y-4">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-xl space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-800 pb-3 gap-2">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30">LIVE FEED</span>
+              <span class="text-xs text-slate-400" id="newsDateBadge">속보 아카이브</span>
+            </div>
+            <h2 class="text-base sm:text-lg font-bold text-white mt-1">⚡ 데일리 국내·외 경제뉴스 속보 & 연관 RISE ETF</h2>
+            <p class="text-xs text-slate-400">로이터 · 블룸버그 · CNBC · 연합인포맥스 · 한경 · 매경 속보 종합</p>
+          </div>
+
+          <div class="flex items-center space-x-1.5 overflow-x-auto no-scrollbar text-xs">
+            <button onclick="setNewsCat('ALL')" class="news-cat-btn px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30 flex-shrink-0" data-ncat="ALL">전체</button>
+            <button onclick="setNewsCat('에너지/유가')" class="news-cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-ncat="에너지/유가">에너지/유가</button>
+            <button onclick="setNewsCat('거시경제/금리')" class="news-cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-ncat="거시경제/금리">거시경제/금리</button>
+            <button onclick="setNewsCat('AI/반도체')" class="news-cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-ncat="AI/반도체">AI/반도체</button>
+            <button onclick="setNewsCat('국내외환/증시')" class="news-cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-ncat="국내외환/증시">국내외환/증시</button>
+            <button onclick="setNewsCat('퇴직연금/세제')" class="news-cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0" data-ncat="퇴직연금/세제">퇴직연금/세제</button>
+          </div>
+        </div>
+
+        <div class="space-y-3.5" id="newsContainer"></div>
+      </div>
+    </div>
+
+    <!-- 5. TAB 3: 데일리 매크로 리포트 전문 -->
+    <div id="tab-report" class="hidden space-y-4">
+      <div class="flex items-center justify-between no-print bg-slate-900 border border-slate-800 p-3 sm:p-4 rounded-2xl shadow">
+        <div class="text-xs text-slate-400 flex items-center gap-1.5">
+          <span>🖨️</span>
+          <span>공식 리포트 출력 및 PDF 저장 기능</span>
+        </div>
+        <button onclick="window.print()" class="flex items-center space-x-1.5 text-xs bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2 rounded-xl shadow-lg transition">
+          <span>📄</span>
+          <span>PDF로 저장 / 인쇄하기</span>
+        </button>
+      </div>
+
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-8 shadow-2xl max-w-4xl mx-auto space-y-6 print-card">
+        <div class="border-b border-slate-800 pb-4">
+          <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+            <span class="bg-amber-500/20 text-amber-300 px-2.5 py-1 rounded-full font-bold border border-amber-500/30" id="reportDateBadge">기준일 로딩 중</span>
+            <span class="font-bold text-slate-300">KB자산운용 RISE ETF 마켓 인텔리전스</span>
+          </div>
+          <h1 class="text-lg sm:text-2xl font-bold text-white tracking-tight leading-snug" id="reportHeadline">로딩 중...</h1>
+        </div>
+
+        <div class="bg-slate-950/80 border border-amber-500/30 rounded-xl p-4 sm:p-5 space-y-2">
+          <div class="text-xs font-bold text-amber-400 uppercase flex items-center">
+            <span>✨</span> <span class="ml-1">Executive Summary</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-200 leading-relaxed" id="reportSummary">로딩 중...</p>
+        </div>
+
+        <div class="space-y-3">
+          <h3 class="text-xs sm:text-sm font-bold text-white flex items-center">
+            <span>📈</span> <span class="ml-1.5">24시간 핵심 마켓 드라이버 (주요 외신/국내지 종합)</span>
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="reportDrivers"></div>
+        </div>
+
+        <div class="space-y-3 border-t border-slate-800 pt-5">
+          <h3 class="text-xs sm:text-sm font-bold text-white flex items-center">
+            <span>🛡️</span> <span class="ml-1.5">RISE ETF 포트폴리오 솔루션 제언</span>
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="reportSolutions"></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ETF DETAIL MODAL / FACTSHEET -->
+  <div id="etfModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4 no-print">
+    <div class="bg-slate-900 border border-amber-500/40 rounded-2xl max-w-xl w-full p-4 sm:p-6 space-y-4 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeModal()" class="absolute right-3.5 top-3.5 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition">
+        ✕
+      </button>
+
+      <div class="border-b border-slate-800 pb-3 pr-8">
+        <div class="flex items-center space-x-2 text-xs mb-1">
+          <span class="font-mono text-slate-400" id="modalCode">-</span>
+          <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold text-[10px]">KB자산운용</span>
+          <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-[10px]" id="modalCategory">-</span>
+          <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-bold" id="modalCycle">-</span>
+        </div>
+        <h3 class="text-base sm:text-lg font-bold text-white leading-tight" id="modalName">-</h3>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+        <div class="bg-slate-950 p-2 sm:p-2.5 rounded-xl border border-slate-800">
+          <div class="text-slate-400 text-[10px]">종가(원)</div>
+          <div class="text-xs sm:text-sm font-bold text-white mt-0.5" id="modalPrice">-</div>
+        </div>
+        <div class="bg-slate-950 p-2 sm:p-2.5 rounded-xl border border-slate-800">
+          <div class="text-slate-400 text-[10px]">총보수(TER)</div>
+          <div class="text-xs sm:text-sm font-bold text-amber-300 mt-0.5" id="modalTer">-</div>
+        </div>
+        <div class="bg-slate-950 p-2 sm:p-2.5 rounded-xl border border-slate-800">
+          <div class="text-slate-400 text-[10px]">3M 수익률</div>
+          <div class="text-xs sm:text-sm font-bold text-emerald-400 mt-0.5" id="modalRet3m">-</div>
+        </div>
+        <div class="bg-slate-950 p-2 sm:p-2.5 rounded-xl border border-slate-800">
+          <div class="text-slate-400 text-[10px]">괴리율</div>
+          <div class="text-xs sm:text-sm font-bold text-slate-200 mt-0.5" id="modalDisparity">-</div>
+        </div>
+      </div>
+
+      <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-1.5">
+        <div class="text-xs font-bold text-amber-400 flex items-center">
+          <span>🎯</span> <span class="ml-1.5">전략적 핵심 셀링 포인트 (Why RISE)</span>
+        </div>
+        <p class="text-xs text-slate-200 leading-relaxed" id="modalReason">-</p>
+      </div>
+
+      <div class="flex items-center justify-end space-x-2 pt-2 border-t border-slate-800">
+        <button onclick="copySalesText()" class="flex items-center space-x-1.5 text-xs bg-slate-800 hover:bg-slate-700 text-amber-300 px-3 py-2 rounded-xl border border-amber-500/30 transition">
+          <span>📋</span>
+          <span>고객 안내용 텍스트 복사</span>
+        </button>
+        <button onclick="closeModal()" class="text-xs text-slate-400 hover:text-white px-3 py-2">
+          닫기
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-800/80 py-6 text-center text-xs text-slate-500 bg-slate-950 no-print">
+    <p>© 2026 RISE ETF Consulting & Product Marketing Group. 리서치 초안 · 원문 및 데이터 검증 필요.</p>
+  </footer>
+
+  <!-- CORE JAVASCRIPT -->
+<script>
+    let currentData = null;
+    let masterList = [];
+    let currentMode = 'all';
+    let currentCat = 'ALL';
+    let currentNewsCat = 'ALL';
+    let currentModalItem = null;
+    let currentTickerIdx = 0;
+    let tickerTimer = null;
+
+    let loadSequence = 0;
+    async function loadData(dateStr) {
+      const sequence = ++loadSequence;
+      document.getElementById('dataStatus').textContent = '자료를 불러오는 중입니다.';
+      document.querySelector('main').hidden = true;
+      if (tickerTimer) clearInterval(tickerTimer);
+      document.getElementById('tickerHeadline').textContent = '자료를 불러오는 중입니다.';
+      try {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) throw new Error('날짜가 올바르지 않습니다.');
+        const res = await fetch(`./data/${dateStr}.json`, {cache: 'no-store'});
+        if (!res.ok) throw new Error('해당 날짜의 저장 자료가 없습니다.');
+        const data = await res.json();
+        if (data.date !== dateStr || !Array.isArray(data.items) || !data.items.every(r => Array.isArray(r) && r.length === 20)) throw new Error('자료 형식 또는 기준일이 일치하지 않습니다.');
+        if (sequence !== loadSequence) return;
+        currentData = data;
+      } catch (error) {
+        if (sequence !== loadSequence) return;
+        currentData = null;
+        masterList = [];
+        document.getElementById('dataStatus').textContent = error.message + ' 다른 날짜를 선택하거나 새로고침해 주세요.';
+        document.getElementById('tickerHeadline').textContent = '조회할 수 없습니다.';
+        return;
+      }
+      document.getElementById('dataStatus').textContent = `${dateStr} 저장 자료 · 원문·가격·상품정보 검증 대기 · 자동 갱신 시각과 시장 기준일은 구분됩니다.`;
+      document.querySelector('main').hidden = false;
+
+      masterList = currentData.items.map(function(r) {
+        return {
+          code: String(r[0]),
+          name: String(r[1]),
+          category: String(r[2]),
+          ter: String(r[3]),
+          cycle: String(r[4]),
+          price: String(r[5]),
+          nav: String(r[6]),
+          disparity: String(r[7]),
+          ret1d: String(r[8]),
+          ret1w: String(r[9]),
+          ret1m: String(r[10]),
+          ret3m: String(r[11]),
+          ret6m: String(r[12]),
+          retYtd: String(r[13]),
+          retInc: String(r[14]),
+          pension100: r[15] === 1 || r[15] === '1',
+          vol: String(r[16]),
+          aum: String(r[17]),
+          isRise: true,
+          isFocus: r[18] === 1 || r[18] === '1',
+          reason: String(r[19] || ''),
+          baseDate: currentData.baseDateLabel || (currentData.date.slice(2).replace(/-/g, '/') + ' 종가 기준')
+        };
+      });
+
+      updateBriefing();
+      renderNews();
+      render();
+      updateTickerDisplay();
+      startTickerRolling();
+    }
+
+    function switchMainTab(tabId) {
+      const tabs = ['tab-explorer', 'tab-news', 'tab-report'];
+      for (let i = 0; i < tabs.length; i++) {
+        const el = document.getElementById(tabs[i]);
+        if (el) el.classList.add('hidden');
+        const btn = document.getElementById('btn-' + tabs[i]);
+        if (btn) btn.className = 'py-3 px-1 text-slate-400 hover:text-white flex items-center space-x-1.5 transition';
+      }
+
+      const targetTab = document.getElementById(tabId);
+      if (targetTab) targetTab.classList.remove('hidden');
+
+      const targetBtn = document.getElementById('btn-' + tabId);
+      if (targetBtn) targetBtn.className = 'py-3 px-1 tab-active flex items-center space-x-1.5 transition';
+
+      window.scrollTo({ top: 100, behavior: 'smooth' });
+    }
+
+    function onDateChange() {
+      const selDate = document.getElementById('dateSelect').value;
+      currentTickerIdx = 0;
+      loadData(selDate);
+    }
+
+    function updateBriefing() {
+      if (!currentData || !currentData.macro) return;
+      const d = currentData;
+
+      document.getElementById('macroKospi').innerText = d.macro.kospi;
+      document.getElementById('macroSp500').innerText = d.macro.sp500;
+      document.getElementById('macro10Y').innerText = d.macro.treasury10y;
+      document.getElementById('macroBrent').innerText = d.macro.brent;
+      document.getElementById('macroUsdKrw').innerText = d.macro.usdkrw;
+      document.getElementById('macroDxy').innerText = d.macro.dxy;
+
+      const dateLabel = d.baseDateLabel || (d.date.slice(2).replace(/-/g, '/') + ' 종가 기준');
+      document.getElementById('briefDateBadge').innerText = dateLabel;
+      document.getElementById('reportDateBadge').innerText = dateLabel;
+      document.getElementById('newsDateBadge').innerText = dateLabel + ' 속보 피드';
+
+      document.getElementById('briefHeadline').innerText = d.briefing ? d.briefing.title : d.report.title;
+      document.getElementById('briefTrigger').innerText = d.briefing ? d.briefing.summary : d.report.summary;
+      document.getElementById('briefSolution').innerText = d.briefing ? d.briefing.solution : (d.report.solutions[0] ? d.report.solutions[0].name : '-');
+
+      document.getElementById('reportHeadline').innerText = d.report.title;
+      document.getElementById('reportSummary').innerText = d.report.summary;
+
+      const driversEl = document.getElementById('reportDrivers');
+      driversEl.innerHTML = '';
+      if (d.report.drivers) {
+        d.report.drivers.forEach(function(dr) {
+          driversEl.innerHTML += '<div class="bg-slate-950 p-3 sm:p-4 rounded-xl border border-slate-800 print-card">' +
+            '<div class="font-bold text-amber-300 text-xs mb-1">' + dr.title + '</div>' +
+            '<p class="text-xs text-slate-300 leading-relaxed">' + dr.desc + '</p>' +
+          '</div>';
+        });
+      }
+
+      const solutionsEl = document.getElementById('reportSolutions');
+      solutionsEl.innerHTML = '';
+      if (d.report.solutions) {
+        d.report.solutions.forEach(function(sol) {
+          let pts = '';
+          sol.points.forEach(function(p) {
+            pts += '<li class="flex items-start text-xs text-slate-200">' +
+              '<span class="text-amber-400 mr-1.5 flex-shrink-0">▪</span>' +
+              '<span>' + p + '</span>' +
+            '</li>';
+          });
+
+          solutionsEl.innerHTML += '<div class="bg-slate-950/90 p-4 rounded-xl border border-amber-500/40 print-card">' +
+            '<div class="flex items-center justify-between mb-1.5">' +
+              '<span class="font-bold text-white text-xs sm:text-sm">' + sol.name + '</span>' +
+              '<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">' + sol.type + '</span>' +
+            '</div>' +
+            '<ul class="space-y-1 mt-2">' + pts + '</ul>' +
+          '</div>';
+        });
+      }
+    }
+
+    function setNewsCat(cat) {
+      currentNewsCat = cat;
+      const btns = document.querySelectorAll('.news-cat-btn');
+      btns.forEach(function(b) {
+        if (b.getAttribute('data-ncat') === cat) {
+          b.className = 'news-cat-btn px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30 flex-shrink-0';
+        } else {
+          b.className = 'news-cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0';
+        }
+      });
+      renderNews();
+    }
+
+    function renderNews() {
+      const newsList = (currentData && currentData.news) ? currentData.news : [];
+      const container = document.getElementById('newsContainer');
+      if (!container) return;
+
+      container.innerHTML = '';
+      const filtered = newsList.filter(function(n) {
+        if (currentNewsCat === 'ALL') return true;
+        return n.tag === currentNewsCat;
+      });
+
+      document.getElementById('newsBadge').innerText = filtered.length;
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<div class="p-8 text-center text-slate-500 text-xs">해당 분류의 실시간 속보가 없습니다.</div>';
+        return;
+      }
+
+      filtered.forEach(function(news) {
+        let relBadges = '';
+        if (news.relatedCodes && news.relatedCodes.length > 0) {
+          news.relatedCodes.forEach(function(code, idx) {
+            const name = news.relatedNames[idx] || code;
+            relBadges += `<button onclick="openModal('${code}')" class="inline-flex items-center px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-amber-300 text-[10px] border border-slate-700 transition mr-1.5 mb-1"><span class="font-mono text-slate-400 mr-1">${code}</span><span>${name}</span></button>`;
+          });
+        }
+
+        const card = '<div class="bg-slate-950 p-4 sm:p-5 rounded-xl border border-slate-800/80 hover:border-slate-700 transition space-y-2.5">' +
+          '<div class="flex items-center justify-between text-xs">' +
+            '<div class="flex items-center space-x-2">' +
+              '<span class="px-2 py-0.5 rounded text-[10px] font-bold border ' + news.badgeColor + '">' + news.tag + '</span>' +
+              '<span class="font-mono text-slate-500 text-[11px]">' + news.time + '</span>' +
+            '</div>' +
+            '<span class="text-[11px] text-slate-400 font-medium">' + news.source + '</span>' +
+          '</div>' +
+          '<h3 class="text-xs sm:text-sm font-bold text-white leading-snug hover:text-amber-300 transition cursor-pointer">' + news.headline + '</h3>' +
+          '<p class="text-xs text-slate-300 leading-relaxed">' + news.summary + '</p>' +
+          (relBadges ? '<div class="pt-2 border-t border-slate-800/60 flex flex-wrap items-center"><span class="text-[11px] text-slate-400 mr-2 mb-1">연관 RISE ETF:</span>' + relBadges + '</div>' : '') +
+        '</div>';
+
+        container.innerHTML += card;
+      });
+    }
+
+    function updateTickerDisplay() {
+      const newsList = (currentData && currentData.news) ? currentData.news : [];
+      if (newsList.length === 0) return;
+
+      const currentItem = newsList[currentTickerIdx % newsList.length];
+      if (currentItem) {
+        const timeEl = document.getElementById('tickerTime');
+        const hlEl = document.getElementById('tickerHeadline');
+        const counterEl = document.getElementById('tickerCounter');
+
+        if (timeEl) timeEl.innerText = currentItem.time;
+        if (hlEl) hlEl.innerText = currentItem.headline;
+        if (counterEl) counterEl.innerText = ((currentTickerIdx % newsList.length) + 1) + '/' + newsList.length;
+      }
+    }
+
+    function startTickerRolling() {
+      if (tickerTimer) clearInterval(tickerTimer);
+      tickerTimer = setInterval(function() {
+        const newsList = (currentData && currentData.news) ? currentData.news : [];
+        if (newsList.length > 1) {
+          currentTickerIdx = (currentTickerIdx + 1) % newsList.length;
+          updateTickerDisplay();
+        }
+      }, 4500);
+    }
+
+    function setMode(mode) {
+      currentMode = mode;
+      const btnAll = document.getElementById('btnModeAll');
+      const btnFocus = document.getElementById('btnModeFocus');
+
+      if (mode === 'all') {
+        btnAll.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-amber-500 text-slate-950';
+        btnFocus.className = 'px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition';
+      } else {
+        btnFocus.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-amber-500 text-slate-950';
+        btnAll.className = 'px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition';
+      }
+      render();
+    }
+
+    function setCat(cat) {
+      currentCat = cat;
+      const btns = document.querySelectorAll('.cat-btn');
+      btns.forEach(function(b) {
+        if (b.getAttribute('data-cat') === cat) {
+          b.className = 'cat-btn px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-bold border border-amber-500/40 flex-shrink-0';
+        } else {
+          b.className = 'cat-btn px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex-shrink-0';
+        }
+      });
+      render();
+    }
+
+    function render() {
+      const focusSet = {};
+      if (currentData && currentData.focusCodes) {
+        currentData.focusCodes.forEach(function(c) { focusSet[c] = true; });
+      }
+
+      const q = (document.getElementById('keyword').value || '').toLowerCase().trim();
+      const pensionOnly = document.getElementById('chkPension').checked;
+
+      const filtered = [];
+      for (let i = 0; i < masterList.length; i++) {
+        const item = masterList[i];
+        const isFocus = !!focusSet[item.code];
+        if (currentMode === 'focus' && !isFocus) continue;
+        if (currentCat !== 'ALL' && item.category.indexOf(currentCat) === -1) continue;
+        if (pensionOnly && !item.pension100) continue;
+        if (q && item.name.toLowerCase().indexOf(q) === -1 && item.code.indexOf(q) === -1) continue;
+        filtered.push(item);
+      }
+
+      const tbody = document.getElementById('tableBody');
+      if (!tbody) return;
+      
+      let rowsHtml = '';
+      for (let i = 0; i < filtered.length; i++) {
+        const item = filtered[i];
+        const isFocus = !!focusSet[item.code];
+        const reason = (currentData && currentData.focusReasons) ? (currentData.focusReasons[item.code] || '') : '';
+        const isUp = item.ret1d && item.ret1d.indexOf('+') === 0;
+        const color = isUp ? 'text-emerald-400' : (item.ret1d && item.ret1d.indexOf('-') === 0 ? 'text-rose-400' : 'text-slate-300');
+        const starColor = isFocus ? 'text-amber-400 font-bold' : 'text-slate-600 hover:text-slate-300';
+        const badge = item.pension100 
+          ? '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">100% 안전</span>'
+          : '<span class="px-2 py-0.5 rounded text-[10px] text-slate-400">70% 한도</span>';
+        const riseTag = '<span class="ml-1 px-1.5 py-0.5 rounded text-[9px] bg-amber-500/20 text-amber-300 border border-amber-500/30 font-extrabold">RISE</span>';
+        const reasonTag = isFocus && reason ? '<div class="text-[11px] text-amber-400/90 mt-0.5 font-medium">' + reason + '</div>' : '';
+
+        rowsHtml += `<tr class="bg-amber-500/5 hover:bg-amber-500/10 cursor-pointer transition" onclick="openModal('${item.code}')">`;
+        rowsHtml += `<td class="py-2.5 sm:py-3 px-3 text-center select-none" onclick="event.stopPropagation(); toggleFocus('${item.code}')"><span class="${starColor} text-sm">★</span></td>`;
+        rowsHtml += '<td class="py-2.5 sm:py-3 px-3 font-mono text-slate-300 text-[11px] font-bold">' + item.code + '</td>' +
+          '<td class="py-2.5 sm:py-3 px-3">' +
+            '<div class="font-bold text-white flex items-center hover:text-amber-300 transition">' + item.name + ' ' + riseTag + '</div>' +
+            reasonTag +
+          '</td>' +
+          '<td class="py-2.5 sm:py-3 px-3 text-slate-400 text-[11px]">' + item.category + '</td>' +
+          '<td class="py-2.5 sm:py-3 px-3 text-center font-mono text-slate-300 text-[11px]">' + item.ter + '</td>' +
+          '<td class="py-2.5 sm:py-3 px-3 text-center font-mono text-amber-300/90 text-[11px]">' + item.cycle + '</td>' +
+          '<td class="py-2.5 sm:py-3 px-3 text-right font-mono font-bold text-white">' + item.price + '원</td>' +
+          '<td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">' + item.nav + '원</td>' +
+          '<td class="py-2.5 sm:py-3 px-3 text-right font-mono font-semibold text-amber-300">' + item.disparity + '</td>' +
+          '<td class="py-2.5 sm:py-3 px-3 text-right font-mono font-semibold ' + color + '">' + item.ret1d + '</td>' +
+          '<td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">' + item.ret1w + '</td>' +
+          '<td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">' + item.ret1m + '</td>' +
+          '<td class="py-2.5 sm:py-3 px-3 text-right font-mono font-bold text-emerald-400">' + item.ret3m + '</td>' +
+          '<td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">' + item.ret6m + '</td>' +
+          '<td class="py-2.5 sm:py-3 px-3 text-right font-mono font-semibold text-amber-300">' + item.retYtd + '</td>' +
+          '<td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">' + item.retInc + '</td>' +
+          '<td class="py-2.5 sm:py-3 px-3 text-center">' + badge + '</td>' +
+          '<td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">' + item.vol + ' 백만</td>' +
+          '<td class="py-2.5 sm:py-3 px-3 text-right font-mono text-slate-300">' + item.aum + ' 억</td>' +
+          '<td class="py-2.5 sm:py-3 px-3 text-center font-mono text-[10px] text-slate-400">' + item.baseDate + '</td>' +
+        '</tr>';
+      }
+
+      tbody.innerHTML = rowsHtml;
+
+      const fCodes = (currentData && currentData.focusCodes) ? currentData.focusCodes.length : 0;
+      document.getElementById('focusCount').innerText = fCodes;
+      document.getElementById('allCount').innerText = masterList.length;
+      document.getElementById('tabCount').innerText = masterList.length;
+      
+      const dateLabel = currentData ? (currentData.baseDateLabel || currentData.date) : '';
+      document.getElementById('statText').innerText = 'RISE 전종목 ' + masterList.length + '개 중 ' + filtered.length + '개 표시 중 (' + dateLabel + ')';
+    }
+
+    function toggleFocus(code) {
+      if (!currentData || !currentData.focusCodes) return;
+      const idx = currentData.focusCodes.indexOf(code);
+      if (idx > -1) {
+        currentData.focusCodes.splice(idx, 1);
+        delete currentData.focusReasons[code];
+      } else {
+        currentData.focusCodes.push(code);
+        currentData.focusReasons[code] = '🔥 사용자 지정 포커스 종목';
+      }
+      render();
+    }
+
+    function openModal(code) {
+      let item = null;
+      for (let i = 0; i < masterList.length; i++) {
+        if (masterList[i].code === code) {
+          item = masterList[i];
+          break;
+        }
+      }
+      if (!item) return;
+
+      currentModalItem = item;
+
+      document.getElementById('modalCode').innerText = item.code;
+      document.getElementById('modalName').innerText = item.name;
+      document.getElementById('modalCategory').innerText = item.category;
+      document.getElementById('modalCycle').innerText = item.cycle;
+
+      document.getElementById('modalPrice').innerText = item.price;
+      document.getElementById('modalTer').innerText = item.ter;
+      document.getElementById('modalRet3m').innerText = item.ret3m;
+      document.getElementById('modalDisparity').innerText = item.disparity;
+
+      const customReason = (currentData && currentData.focusReasons && currentData.focusReasons[item.code]) ? currentData.focusReasons[item.code] : '';
+      document.getElementById('modalReason').innerText = customReason || item.reason || '시장 국면 대응을 위한 핵심 포트폴리오 라인업';
+
+      document.getElementById('etfModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('etfModal').classList.add('hidden');
+      currentModalItem = null;
+    }
+
+    function copySalesText() {
+      if (!currentModalItem) return;
+      alert('가격·수익률·상품정보 검증이 완료되지 않아 고객 안내용 복사를 보류합니다.');
+      return;
+      const text = `[KB자산운용 RISE ETF 고객 안내]
+▪ 종목명: ${currentModalItem.name} (${currentModalItem.code})
+▪ 테마분류: ${currentModalItem.category} | 총보수: ${currentModalItem.ter}
+▪ 기준일가: ${currentModalItem.price}원 (괴리율: ${currentModalItem.disparity})
+▪ 3개월 수익률: ${currentModalItem.ret3m} | 연간(YTD): ${currentModalItem.retYtd}
+▪ 퇴직연금 편입: ${currentModalItem.pension100 ? '안전자산 100% 한도 적격' : '위험자산 70% 한도'}
+▪ 핵심 셀링 포인트: ${currentModalItem.reason || '퇴직연금 및 글로벌 자산배분 최적화 솔루션'}`;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() {
+          alert('📋 고객 안내용 텍스트가 클립보드에 복사되었습니다.');
+        }).catch(function() {
+          prompt('아래 텍스트를 복사하세요:', text);
+        });
+      } else {
+        prompt('아래 텍스트를 복사하세요:', text);
+      }
+    }
+
+    async function initApp() {
+      try {
+        const response = await fetch('./data/manifest.json', {cache: 'no-store'});
+        if (!response.ok) throw new Error('날짜 목록을 불러올 수 없습니다.');
+        const manifest = await response.json();
+        if (!Array.isArray(manifest.snapshots) || !manifest.snapshots.length) throw new Error('저장된 자료가 없습니다.');
+        const select = document.getElementById('dateSelect');
+        select.replaceChildren();
+        manifest.snapshots.forEach(item => {
+          const option = document.createElement('option');
+          option.value = item.date;
+          option.textContent = item.date + ' 저장 자료';
+          select.appendChild(option);
+        });
+        await loadData(select.value);
+      } catch (error) {
+        document.querySelector('main').hidden = true;
+        document.getElementById('dataStatus').textContent = error.message;
+        document.getElementById('tickerHeadline').textContent = '조회할 수 없습니다.';
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initApp);
+    } else {
+      initApp();
+    }
+  </script>
+</body>
+</html>

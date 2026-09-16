@@ -1,0 +1,29 @@
+{
+  "issuer": "Apple Inc.",
+  "symbol": "AAPL",
+  "source_url": "https://investor.apple.com/dividend-history/default.aspx",
+  "context_url": "https://investor.apple.com/faq/default.aspx",
+  "accessed_date": "2026-09-16",
+  "extraction_method": "ASSISTANT_TRANSCRIBED_FACTS_FROM_WEB_PAGE_TEXT",
+  "original_html_sha256": null,
+  "automated_refresh_status": "ACCESS_CHALLENGE_NOT_BYPASSED",
+  "scope": "Selected 2024-2026 cash dividends plus the 2020 split and adjacent cash dividend. Not the complete issuer history.",
+  "amount_basis": "NOT_SPLIT_ADJUSTED",
+  "currency": "USD",
+  "date_semantics": "Issuer table gives declared, record and payable dates. It does not give cash ex-dividend dates. Split starred payable date means first split-adjusted trading date.",
+  "dividends": [
+    {"declared_date":"2026-07-30","record_date":"2026-08-10","payable_date":"2026-08-13","amount":0.27},
+    {"declared_date":"2026-04-30","record_date":"2026-05-11","payable_date":"2026-05-14","amount":0.27},
+    {"declared_date":"2026-01-29","record_date":"2026-02-09","payable_date":"2026-02-12","amount":0.26},
+    {"declared_date":"2025-10-30","record_date":"2025-11-10","payable_date":"2025-11-13","amount":0.26},
+    {"declared_date":"2025-07-31","record_date":"2025-08-11","payable_date":"2025-08-14","amount":0.26},
+    {"declared_date":"2025-05-01","record_date":"2025-05-12","payable_date":"2025-05-15","amount":0.26},
+    {"declared_date":"2025-01-30","record_date":"2025-02-10","payable_date":"2025-02-13","amount":0.25},
+    {"declared_date":"2024-10-31","record_date":"2024-11-11","payable_date":"2024-11-14","amount":0.25},
+    {"declared_date":"2020-07-30","record_date":"2020-08-10","payable_date":"2020-08-13","amount":0.82}
+  ],
+  "splits": [
+    {"declared_date":"2020-07-30","record_date":"2020-08-24","first_split_adjusted_trading_date":"2020-08-31","numerator":4,"denominator":1,"faq_generic_split_date":"2020-08-28"}
+  ],
+  "split_date_resolution": "Use the history table's explicit first-trading-date footnote for a daily-price event, retaining the FAQ date separately rather than silently equating them."
+}

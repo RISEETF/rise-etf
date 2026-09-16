@@ -1,0 +1,36 @@
+name: RISE source capture
+on:
+  schedule:
+    - cron: '30 7 * * 1-5'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: rise-data-writer-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test integrity rules
+        run: python -m unittest discover -s tests -v
+      - name: Capture source and record outcome
+        id: capture
+        continue-on-error: true
+        run: python scripts/update_daily.py
+      - name: Save source and failure history
+        run: |
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git config user.name 'github-actions[bot]'
+          git add data/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record source capture and data quality status'
+            git push
+          fi
+      - name: Report collection failure
+        if: steps.capture.outcome == 'failure'
+        run: exit 1

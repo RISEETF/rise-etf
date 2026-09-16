@@ -1,0 +1,586 @@
+{
+  "built_at": "2026-09-16T05:31:34.685150+00:00",
+  "storage": "REBUILDABLE_SQLITE_FROM_GIT_CAPTURES",
+  "rs_status": "BLOCKED",
+  "ranking": null,
+  "series": [
+    {
+      "code": "148020",
+      "name": "RISE 200",
+      "currency": "KRW",
+      "market": "XKRX",
+      "exposure_candidate": "KR_LARGE_CAP",
+      "observations": 300,
+      "first_date": "2025-06-27",
+      "last_date": "2026-09-16",
+      "last_attempt_status": "CAPTURED",
+      "retrieved_at": "2026-09-16T01:45:21.350625+00:00",
+      "error": null,
+      "rs_eligible": false,
+      "blockers": [
+        "ADJUSTMENT_UNCONFIRMED",
+        "DISTRIBUTIONS_UNVERIFIED",
+        "SESSION_CALENDAR_UNVERIFIED",
+        "CROSS_MARKET_ALIGNMENT_UNRESOLVED"
+      ],
+      "adjustment_audit": null,
+      "missing_dates": []
+    },
+    {
+      "code": "379780",
+      "name": "RISE 미국S&P500",
+      "currency": "KRW",
+      "market": "XKRX",
+      "exposure_candidate": "US_LARGE_CAP",
+      "observations": 300,
+      "first_date": "2025-06-27",
+      "last_date": "2026-09-16",
+      "last_attempt_status": "CAPTURED",
+      "retrieved_at": "2026-09-16T01:45:39.333393+00:00",
+      "error": null,
+      "rs_eligible": false,
+      "blockers": [
+        "ADJUSTMENT_UNCONFIRMED",
+        "DISTRIBUTIONS_UNVERIFIED",
+        "SESSION_CALENDAR_UNVERIFIED",
+        "CROSS_MARKET_ALIGNMENT_UNRESOLVED"
+      ],
+      "adjustment_audit": null,
+      "missing_dates": []
+    },
+    {
+      "code": "114100",
+      "name": "RISE 국고채3년",
+      "currency": "KRW",
+      "market": "XKRX",
+      "exposure_candidate": "KR_GOVERNMENT_BOND_3Y",
+      "observations": 300,
+      "first_date": "2025-06-27",
+      "last_date": "2026-09-16",
+      "last_attempt_status": "CAPTURED",
+      "retrieved_at": "2026-09-16T01:45:53.282376+00:00",
+      "error": null,
+      "rs_eligible": false,
+      "blockers": [
+        "ADJUSTMENT_UNCONFIRMED",
+        "DISTRIBUTIONS_UNVERIFIED",
+        "SESSION_CALENDAR_UNVERIFIED",
+        "CROSS_MARKET_ALIGNMENT_UNRESOLVED"
+      ],
+      "adjustment_audit": null,
+      "missing_dates": []
+    },
+    {
+      "code": "SPY",
+      "name": "SPY · 미국 주식시장 ETF 시범",
+      "market": "US_LISTED",
+      "currency": "USD",
+      "instrument_type": "ETF",
+      "timezone": "America/New_York",
+      "observations": 501,
+      "first_date": "2024-09-16",
+      "last_date": "2026-09-15",
+      "last_attempt_status": "CAPTURED",
+      "retrieved_at": "2026-09-16T05:26:31.047837+00:00",
+      "error": null,
+      "rs_eligible": false,
+      "blockers": [
+        "PROVIDER_ADJUSTMENT_NOT_INDEPENDENTLY_VERIFIED",
+        "DISTRIBUTIONS_UNVERIFIED",
+        "SESSION_CALENDAR_UNVERIFIED",
+        "CROSS_MARKET_ALIGNMENT_UNRESOLVED",
+        "PROVISIONAL_INSTRUMENT_IDENTITY"
+      ],
+      "adjustment_audit": {
+        "status": "PROVIDER_INTERNAL_CHECK_ONLY",
+        "rs_eligible": false,
+        "split_count": 0,
+        "cash_event_count": 8,
+        "events_without_price_date": [],
+        "factor_changes": [
+          {
+            "date": "2024-09-20",
+            "factor_ratio": 0.9969420977506133,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9969420994435451,
+            "cash_residual": -1.6929317947500522e-09,
+            "requires_review": false
+          },
+          {
+            "date": "2024-12-20",
+            "factor_ratio": 0.9966455316898984,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9966456234739909,
+            "cash_residual": -9.178409243748575e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2025-03-21",
+            "factor_ratio": 0.9970008295530072,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9970008310858038,
+            "cash_residual": -1.532796667369496e-09,
+            "requires_review": false
+          },
+          {
+            "date": "2025-06-20",
+            "factor_ratio": 0.9970523627100748,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.997052423686389,
+            "cash_residual": -6.097631422008476e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2025-09-19",
+            "factor_ratio": 0.9972352014897402,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9972352248769362,
+            "cash_residual": -2.338719595762484e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2025-12-19",
+            "factor_ratio": 0.9970537207470579,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9970538233974695,
+            "cash_residual": -1.0265041161527932e-07,
+            "requires_review": false
+          },
+          {
+            "date": "2026-03-20",
+            "factor_ratio": 0.9972763712546941,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9972764473579168,
+            "cash_residual": -7.610322261264457e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2026-06-18",
+            "factor_ratio": 0.9974303718921977,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9974303606894593,
+            "cash_residual": 1.1202738403603973e-08,
+            "requires_review": false
+          }
+        ],
+        "note": "Close and adjusted close are preserved as received. Never apply a split again to already adjusted prices. Cash-factor comparison is diagnostic, not a total-return certification."
+      },
+      "missing_dates": []
+    },
+    {
+      "code": "IEF",
+      "name": "IEF · 미국 국채 ETF 시범",
+      "market": "US_LISTED",
+      "currency": "USD",
+      "instrument_type": "ETF",
+      "timezone": "America/New_York",
+      "observations": 501,
+      "first_date": "2024-09-16",
+      "last_date": "2026-09-15",
+      "last_attempt_status": "CAPTURED",
+      "retrieved_at": "2026-09-16T05:26:41.787359+00:00",
+      "error": null,
+      "rs_eligible": false,
+      "blockers": [
+        "PROVIDER_ADJUSTMENT_NOT_INDEPENDENTLY_VERIFIED",
+        "DISTRIBUTIONS_UNVERIFIED",
+        "SESSION_CALENDAR_UNVERIFIED",
+        "CROSS_MARKET_ALIGNMENT_UNRESOLVED",
+        "PROVISIONAL_INSTRUMENT_IDENTITY"
+      ],
+      "adjustment_audit": {
+        "status": "PROVIDER_INTERNAL_CHECK_ONLY",
+        "rs_eligible": false,
+        "split_count": 0,
+        "cash_event_count": 24,
+        "events_without_price_date": [],
+        "factor_changes": [
+          {
+            "date": "2024-10-01",
+            "factor_ratio": 0.9970853713520729,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9970852018753132,
+            "cash_residual": 1.69476759626086e-07,
+            "requires_review": false
+          },
+          {
+            "date": "2024-11-01",
+            "factor_ratio": 0.9969106745750864,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9969107066190166,
+            "cash_residual": -3.20439301759734e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2024-12-02",
+            "factor_ratio": 0.9969321613234754,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.996932450966374,
+            "cash_residual": -2.896428985543764e-07,
+            "requires_review": false
+          },
+          {
+            "date": "2024-12-18",
+            "factor_ratio": 0.996713808563462,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9967136150662793,
+            "cash_residual": 1.9349718272110294e-07,
+            "requires_review": false
+          },
+          {
+            "date": "2025-02-03",
+            "factor_ratio": 0.9968177235749561,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.996817888511265,
+            "cash_residual": -1.6493630883296362e-07,
+            "requires_review": false
+          },
+          {
+            "date": "2025-03-03",
+            "factor_ratio": 0.9971149299488027,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9971149811070034,
+            "cash_residual": -5.115820067569388e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2025-04-01",
+            "factor_ratio": 0.9968123438349415,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9968124148972943,
+            "cash_residual": -7.106235277998252e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2025-05-01",
+            "factor_ratio": 0.9967418860631726,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9967419589778883,
+            "cash_residual": -7.291471570969321e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2025-06-02",
+            "factor_ratio": 0.9967221731380866,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9967220048535438,
+            "cash_residual": 1.6828454285633399e-07,
+            "requires_review": false
+          },
+          {
+            "date": "2025-07-01",
+            "factor_ratio": 0.9968362973478944,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9968361698797038,
+            "cash_residual": 1.2746819055831082e-07,
+            "requires_review": false
+          },
+          {
+            "date": "2025-08-01",
+            "factor_ratio": 0.9967438992758215,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9967439410428699,
+            "cash_residual": -4.176704837544065e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2025-09-02",
+            "factor_ratio": 0.996734357282782,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9967342694226012,
+            "cash_residual": 8.786018079742774e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2025-10-01",
+            "factor_ratio": 0.9969520170431965,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9969521044703459,
+            "cash_residual": -8.742714940890295e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2025-11-03",
+            "factor_ratio": 0.9968610785873027,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9968611254022762,
+            "cash_residual": -4.6814973564401896e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2025-12-01",
+            "factor_ratio": 0.9970461401761902,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9970461538461538,
+            "cash_residual": -1.366996360552264e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2025-12-19",
+            "factor_ratio": 0.9967658015873728,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9967655263939453,
+            "cash_residual": 2.751934274902723e-07,
+            "requires_review": false
+          },
+          {
+            "date": "2026-02-02",
+            "factor_ratio": 0.9967480396326638,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.99674796756243,
+            "cash_residual": 7.207023378086319e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2026-03-02",
+            "factor_ratio": 0.9971119456168981,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.997111950136039,
+            "cash_residual": -4.5191409503431146e-09,
+            "requires_review": false
+          },
+          {
+            "date": "2026-04-01",
+            "factor_ratio": 0.9966784357949139,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9966785415770015,
+            "cash_residual": -1.0578208764489005e-07,
+            "requires_review": false
+          },
+          {
+            "date": "2026-05-01",
+            "factor_ratio": 0.996715213442037,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9967150980314509,
+            "cash_residual": 1.154105860878829e-07,
+            "requires_review": false
+          },
+          {
+            "date": "2026-06-01",
+            "factor_ratio": 0.9966507302355994,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.996650818860121,
+            "cash_residual": -8.86245216102921e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2026-07-01",
+            "factor_ratio": 0.9967113628719106,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9967114306756519,
+            "cash_residual": -6.780374128823041e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2026-08-03",
+            "factor_ratio": 0.9965788616571163,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9965788056972495,
+            "cash_residual": 5.59598667404515e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2026-09-01",
+            "factor_ratio": 0.9964200912220251,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9964200991196086,
+            "cash_residual": -7.897583476079717e-09,
+            "requires_review": false
+          }
+        ],
+        "note": "Close and adjusted close are preserved as received. Never apply a split again to already adjusted prices. Cash-factor comparison is diagnostic, not a total-return certification."
+      },
+      "missing_dates": []
+    },
+    {
+      "code": "AAPL",
+      "name": "AAPL · 해외 개별주식 시범",
+      "market": "US_LISTED",
+      "currency": "USD",
+      "instrument_type": "EQUITY",
+      "timezone": "America/New_York",
+      "observations": 501,
+      "first_date": "2024-09-16",
+      "last_date": "2026-09-15",
+      "last_attempt_status": "CAPTURED",
+      "retrieved_at": "2026-09-16T05:26:51.325957+00:00",
+      "error": null,
+      "rs_eligible": false,
+      "blockers": [
+        "PROVIDER_ADJUSTMENT_NOT_INDEPENDENTLY_VERIFIED",
+        "DISTRIBUTIONS_UNVERIFIED",
+        "SESSION_CALENDAR_UNVERIFIED",
+        "CROSS_MARKET_ALIGNMENT_UNRESOLVED",
+        "PROVISIONAL_INSTRUMENT_IDENTITY"
+      ],
+      "adjustment_audit": {
+        "status": "PROVIDER_INTERNAL_CHECK_ONLY",
+        "rs_eligible": false,
+        "split_count": 0,
+        "cash_event_count": 8,
+        "events_without_price_date": [],
+        "factor_changes": [
+          {
+            "date": "2024-11-08",
+            "factor_ratio": 0.9989009672035923,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9989010022652742,
+            "cash_residual": -3.506168189115755e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2025-02-10",
+            "factor_ratio": 0.9989017827328558,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9989017265095228,
+            "cash_residual": 5.622333298926918e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2025-05-12",
+            "factor_ratio": 0.9986903603797378,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9986903742426905,
+            "cash_residual": -1.3862952674692508e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2025-08-11",
+            "factor_ratio": 0.998866431494315,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9988663614864581,
+            "cash_residual": 7.000785684496691e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2025-11-10",
+            "factor_ratio": 0.9990316809521459,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9990315491532842,
+            "cash_residual": 1.317988617133281e-07,
+            "requires_review": false
+          },
+          {
+            "date": "2026-02-09",
+            "factor_ratio": 0.9990650202348619,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9990651517166522,
+            "cash_residual": -1.3148179034416785e-07,
+            "requires_review": false
+          },
+          {
+            "date": "2026-05-11",
+            "factor_ratio": 0.9990794836009884,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9990795036367854,
+            "cash_residual": -2.0035797021478174e-08,
+            "requires_review": false
+          },
+          {
+            "date": "2026-08-10",
+            "factor_ratio": 0.9991383237313942,
+            "event_kinds": [
+              "DIVIDEND"
+            ],
+            "cash_factor_candidate": 0.9991382886682704,
+            "cash_residual": 3.506312384882193e-08,
+            "requires_review": false
+          }
+        ],
+        "note": "Close and adjusted close are preserved as received. Never apply a split again to already adjusted prices. Cash-factor comparison is diagnostic, not a total-return certification."
+      },
+      "missing_dates": []
+    }
+  ],
+  "fx": {
+    "pair": "USD/KRW",
+    "unit": "KRW per USD",
+    "observations": 64,
+    "first_date": "2026-06-18",
+    "last_date": "2026-09-15",
+    "last_attempt_status": "CAPTURED",
+    "retrieved_at": "2026-09-16T01:46:09.892591+00:00",
+    "kind": "ECB_DERIVED_REFERENCE_ONLY",
+    "rs_eligible": false,
+    "error": null
+  },
+  "capture_count": 11
+}
