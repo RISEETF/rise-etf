@@ -29,6 +29,15 @@
 
 ## Remaining implementation order
 
+### Bounded issuer reconciliation
+
+- AAPL official amount comparison: eight recent dividends plus one 2020 dividend.
+- Real 2020 4:1 split trading-date/ratio match and double-adjustment regression.
+- Record dates are not promoted to ex-dates. Official source facts were manually
+  extracted from accessible web-page text; automatic refresh hit an access challenge.
+- Historical fixture is outside live coverage. Python suite: 24 passing tests.
+- See APPLE_ISSUER_VALIDATION.md; partial evidence only, RS still blocked.
+
 ### Overseas extension
 
 - SPY/IEF/AAPL: 501 observations each, 40 cash events in total and zero observed

@@ -1,0 +1,354 @@
+{
+  "schema_version": 2,
+  "capture_id": "20260916T053840724775Z-YAHOO_CHART_CANDIDATE-AAPL",
+  "source_id": "YAHOO_CHART_CANDIDATE",
+  "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AAPL?period1=1596240000&period2=1600214400&interval=1d&events=div%2Csplits%2CcapitalGains&includeAdjustedClose=true",
+  "retrieved_at": "2026-09-16T05:38:40.724775+00:00",
+  "kind": "US_PRICE",
+  "instrument_code": "AAPL",
+  "market": "US_LISTED",
+  "currency": "USD",
+  "instrument_contract": {
+    "code": "AAPL",
+    "name": "AAPL · 해외 개별주식 시범",
+    "market": "US_LISTED",
+    "currency": "USD",
+    "instrument_type": "EQUITY",
+    "timezone": "America/New_York"
+  },
+  "publication_time": null,
+  "price_basis": "PROVIDER_CLOSE_AND_ADJUSTED_CLOSE",
+  "rs_eligible": false,
+  "observations": [
+    {
+      "date": "2020-08-03",
+      "open": 108.19999694824219,
+      "high": 111.63749694824219,
+      "low": 107.89250183105469,
+      "close": 108.9375,
+      "volume": 308151200,
+      "adjusted_close": 105.38543701171875
+    },
+    {
+      "date": "2020-08-04",
+      "open": 109.13249969482422,
+      "high": 110.79000091552734,
+      "low": 108.38749694824219,
+      "close": 109.66500091552734,
+      "volume": 173071600,
+      "adjusted_close": 106.08921813964844
+    },
+    {
+      "date": "2020-08-05",
+      "open": 109.37750244140625,
+      "high": 110.39250183105469,
+      "low": 108.89749908447266,
+      "close": 110.0625,
+      "volume": 121776800,
+      "adjusted_close": 106.47373962402344
+    },
+    {
+      "date": "2020-08-06",
+      "open": 110.40499877929688,
+      "high": 114.4124984741211,
+      "low": 109.79750061035156,
+      "close": 113.90249633789062,
+      "volume": 202428800,
+      "adjusted_close": 110.18854522705078
+    },
+    {
+      "date": "2020-08-07",
+      "open": 113.20500183105469,
+      "high": 113.67500305175781,
+      "low": 110.2925033569336,
+      "close": 111.11250305175781,
+      "volume": 198045600,
+      "adjusted_close": 107.6833267211914
+    },
+    {
+      "date": "2020-08-10",
+      "open": 112.5999984741211,
+      "high": 113.7750015258789,
+      "low": 110.0,
+      "close": 112.72750091552734,
+      "volume": 212403600,
+      "adjusted_close": 109.24847412109375
+    },
+    {
+      "date": "2020-08-11",
+      "open": 111.97000122070312,
+      "high": 112.48249816894531,
+      "low": 109.10749816894531,
+      "close": 109.375,
+      "volume": 187902400,
+      "adjusted_close": 105.99944305419922
+    },
+    {
+      "date": "2020-08-12",
+      "open": 110.49749755859375,
+      "high": 113.2750015258789,
+      "low": 110.29750061035156,
+      "close": 113.01000213623047,
+      "volume": 165598000,
+      "adjusted_close": 109.52226257324219
+    },
+    {
+      "date": "2020-08-13",
+      "open": 114.43000030517578,
+      "high": 116.0425033569336,
+      "low": 113.92749786376953,
+      "close": 115.01000213623047,
+      "volume": 210082000,
+      "adjusted_close": 111.46055603027344
+    },
+    {
+      "date": "2020-08-14",
+      "open": 114.83000183105469,
+      "high": 115.0,
+      "low": 113.04499816894531,
+      "close": 114.90750122070312,
+      "volume": 165565200,
+      "adjusted_close": 111.3612060546875
+    },
+    {
+      "date": "2020-08-17",
+      "open": 116.0625,
+      "high": 116.0875015258789,
+      "low": 113.9625015258789,
+      "close": 114.60749816894531,
+      "volume": 119561600,
+      "adjusted_close": 111.07044982910156
+    },
+    {
+      "date": "2020-08-18",
+      "open": 114.35250091552734,
+      "high": 116.0,
+      "low": 114.00749969482422,
+      "close": 115.5625,
+      "volume": 105633600,
+      "adjusted_close": 111.99600219726562
+    },
+    {
+      "date": "2020-08-19",
+      "open": 115.98249816894531,
+      "high": 117.1624984741211,
+      "low": 115.61000061035156,
+      "close": 115.7074966430664,
+      "volume": 145538000,
+      "adjusted_close": 112.13652801513672
+    },
+    {
+      "date": "2020-08-20",
+      "open": 115.75,
+      "high": 118.39250183105469,
+      "low": 115.73249816894531,
+      "close": 118.2750015258789,
+      "volume": 126907200,
+      "adjusted_close": 114.62476348876953
+    },
+    {
+      "date": "2020-08-21",
+      "open": 119.26249694824219,
+      "high": 124.86750030517578,
+      "low": 119.25,
+      "close": 124.37000274658203,
+      "volume": 338054800,
+      "adjusted_close": 120.53166198730469
+    },
+    {
+      "date": "2020-08-24",
+      "open": 128.69749450683594,
+      "high": 128.78500366210938,
+      "low": 123.9375,
+      "close": 125.85749816894531,
+      "volume": 345937600,
+      "adjusted_close": 121.9732666015625
+    },
+    {
+      "date": "2020-08-25",
+      "open": 124.69750213623047,
+      "high": 125.18000030517578,
+      "low": 123.05249786376953,
+      "close": 124.82499694824219,
+      "volume": 211495600,
+      "adjusted_close": 120.97262573242188
+    },
+    {
+      "date": "2020-08-26",
+      "open": 126.18000030517578,
+      "high": 126.99250030517578,
+      "low": 125.0824966430664,
+      "close": 126.52249908447266,
+      "volume": 163022400,
+      "adjusted_close": 122.61773681640625
+    },
+    {
+      "date": "2020-08-27",
+      "open": 127.14250183105469,
+      "high": 127.48500061035156,
+      "low": 123.8324966430664,
+      "close": 125.01000213623047,
+      "volume": 155552400,
+      "adjusted_close": 121.15193939208984
+    },
+    {
+      "date": "2020-08-28",
+      "open": 126.01249694824219,
+      "high": 126.44249725341797,
+      "low": 124.57749938964844,
+      "close": 124.80750274658203,
+      "volume": 187630000,
+      "adjusted_close": 120.9556884765625
+    },
+    {
+      "date": "2020-08-31",
+      "open": 127.58000183105469,
+      "high": 131.0,
+      "low": 126.0,
+      "close": 129.0399932861328,
+      "volume": 225702700,
+      "adjusted_close": 125.0575180053711
+    },
+    {
+      "date": "2020-09-01",
+      "open": 132.75999450683594,
+      "high": 134.8000030517578,
+      "low": 130.52999877929688,
+      "close": 134.17999267578125,
+      "volume": 151948100,
+      "adjusted_close": 130.03890991210938
+    },
+    {
+      "date": "2020-09-02",
+      "open": 137.58999633789062,
+      "high": 137.97999572753906,
+      "low": 127.0,
+      "close": 131.39999389648438,
+      "volume": 200119000,
+      "adjusted_close": 127.34474182128906
+    },
+    {
+      "date": "2020-09-03",
+      "open": 126.91000366210938,
+      "high": 128.83999633789062,
+      "low": 120.5,
+      "close": 120.87999725341797,
+      "volume": 257599600,
+      "adjusted_close": 117.14935302734375
+    },
+    {
+      "date": "2020-09-04",
+      "open": 120.06999969482422,
+      "high": 123.69999694824219,
+      "low": 110.88999938964844,
+      "close": 120.95999908447266,
+      "volume": 332607200,
+      "adjusted_close": 117.2269058227539
+    },
+    {
+      "date": "2020-09-08",
+      "open": 113.94999694824219,
+      "high": 118.98999786376953,
+      "low": 112.68000030517578,
+      "close": 112.81999969482422,
+      "volume": 231366600,
+      "adjusted_close": 109.33811950683594
+    },
+    {
+      "date": "2020-09-09",
+      "open": 117.26000213623047,
+      "high": 119.13999938964844,
+      "low": 115.26000213623047,
+      "close": 117.31999969482422,
+      "volume": 176940500,
+      "adjusted_close": 113.69924926757812
+    },
+    {
+      "date": "2020-09-10",
+      "open": 120.36000061035156,
+      "high": 120.5,
+      "low": 112.5,
+      "close": 113.48999786376953,
+      "volume": 182274400,
+      "adjusted_close": 109.98741912841797
+    },
+    {
+      "date": "2020-09-11",
+      "open": 114.56999969482422,
+      "high": 115.2300033569336,
+      "low": 110.0,
+      "close": 112.0,
+      "volume": 180860300,
+      "adjusted_close": 108.54344177246094
+    },
+    {
+      "date": "2020-09-14",
+      "open": 114.72000122070312,
+      "high": 115.93000030517578,
+      "low": 112.80000305175781,
+      "close": 115.36000061035156,
+      "volume": 140150100,
+      "adjusted_close": 111.79973602294922
+    },
+    {
+      "date": "2020-09-15",
+      "open": 118.33000183105469,
+      "high": 118.83000183105469,
+      "low": 113.61000061035156,
+      "close": 115.54000091552734,
+      "volume": 184642000,
+      "adjusted_close": 111.97419738769531
+    }
+  ],
+  "events": [
+    {
+      "event_id": "1596807000",
+      "date": "2020-08-07",
+      "kind": "DIVIDEND",
+      "amount": 0.205
+    },
+    {
+      "event_id": "1598880600",
+      "date": "2020-08-31",
+      "kind": "SPLIT",
+      "numerator": 4.0,
+      "denominator": 1.0
+    }
+  ],
+  "source_sha256": "b26c89b61c8658268efe7ba2da97240b0b5b115db27461c2ccd12551494fb059",
+  "missing_dates": [],
+  "status": "CAPTURED",
+  "quality": "QUARANTINED",
+  "first_date": "2020-08-03",
+  "last_date": "2020-09-15",
+  "adjustment_audit": {
+    "status": "PROVIDER_INTERNAL_CHECK_ONLY",
+    "rs_eligible": false,
+    "split_count": 1,
+    "cash_event_count": 1,
+    "events_without_price_date": [],
+    "factor_changes": [
+      {
+        "date": "2020-08-07",
+        "factor_ratio": 0.9982002494665188,
+        "event_kinds": [
+          "DIVIDEND"
+        ],
+        "cash_factor_candidate": 0.9982002150383792,
+        "cash_residual": 3.4428139561448745e-08,
+        "requires_review": false
+      },
+      {
+        "date": "2020-08-31",
+        "factor_ratio": 1.0000003015738066,
+        "event_kinds": [
+          "SPLIT"
+        ],
+        "cash_factor_candidate": null,
+        "cash_residual": null,
+        "requires_review": true
+      }
+    ],
+    "note": "Close and adjusted close are preserved as received. Never apply a split again to already adjusted prices. Cash-factor comparison is diagnostic, not a total-return certification."
+  }
+}

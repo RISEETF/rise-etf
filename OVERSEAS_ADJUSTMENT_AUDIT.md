@@ -17,7 +17,8 @@ the final representative universe.
 
 Zero missing returned rows does not prove exchange-calendar completeness. Zero
 split events means no split was present in this sample; live split adjustment
-has not been empirically validated. Synthetic split tests check that the code
+was not empirically validated by this two-year sample. A separate real 2020
+AAPL fixture is now documented in APPLE_ISSUER_VALIDATION.md. Synthetic tests also check that the code
 does not apply a split a second time.
 
 ## Source and method
@@ -53,8 +54,8 @@ event completeness, execution returns or publication-time availability.
 - Local Python suite: 20 tests passed. Browser assertions now use the configured
   combined-universe row count rather than a hard-coded three-row assumption.
 
-Still unresolved: independent issuer-event reconciliation, actual split-event
-empirical validation, Korean ETF distribution adjustment, exchange calendars,
+Still unresolved: full issuer-event reconciliation, broader split-event
+validation, Korean ETF distribution adjustment, exchange calendars,
 decision cutoffs and FX alignment. All six instruments remain quarantined;
 `rs_status=BLOCKED` and `ranking=null` are unchanged.
 

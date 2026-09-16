@@ -116,5 +116,22 @@ async function loadSeries() {
   }
 }
 el('category').addEventListener('change', renderProducts);
+async function loadIssuerChecks() {
+  try {
+    const data=await readJSON('data/quality/apple_issuer_validation.json');
+    if(data.status!=='PARTIAL_ISSUER_RECONCILIATION' || data.rs_eligible!==false || !validDate(data.issuer_accessed_date)) throw new Error('검증 범위 오류');
+    for(const key of ['current_cash','historical_cash']) {
+      const group=data[key];
+      if(!Array.isArray(group.checks) || group.matched_amount_count!==group.checks.filter(row=>row.status==='AMOUNT_MATCH_ONLY').length || group.checks.some(row=>row.ex_date_verified!==false)) throw new Error('배당 대조 집계 오류');
+    }
+    el('issuerStatus').textContent=`공식 배당금액 대조: 최근 구간 ${data.current_cash.matched_amount_count}건 / 2020년 검증 구간 ${data.historical_cash.matched_amount_count}건 일치 · 배당락일 확인 대기`;
+    const split=data.historical_split;
+    el('issuerSplit').textContent=split.status==='SPLIT_EVENT_DATE_AND_RATIO_MATCH' ? `${split.first_trading_date} 분할조정 거래 시작일·${split.ratio}:1 비율 일치. 제공처 가격에 분할을 다시 적용하지 않습니다.` : '실제 분할 사례: 불일치 또는 추가 확인 필요';
+    el('issuerScope').textContent=`공식 사실 확인일 ${data.issuer_accessed_date} · 최근 대조 구간 ${data.current_window.first_date} ~ ${data.current_window.last_date} · 2020년 자료는 검증 사례로만 보관하며 현재 적재 기간에 합산하지 않습니다.`;
+  } catch (_) {
+    el('issuerStatus').textContent='발행사 대조 결과를 표시할 수 없습니다. 검증 완료로 간주하지 않습니다.';
+    el('issuerSplit').textContent='';el('issuerScope').textContent='';
+  }
+}
 el('reset').addEventListener('click', () => {el('search').value='';el('category').value='';renderProducts();});
-Promise.allSettled([loadMaster(), loadCapture(), loadQuality(), loadMasterAttempt(), loadSeries()]);
+Promise.allSettled([loadMaster(), loadCapture(), loadQuality(), loadMasterAttempt(), loadSeries(), loadIssuerChecks()]);

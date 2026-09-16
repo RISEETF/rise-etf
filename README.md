@@ -73,3 +73,8 @@ including separate provider close/adjusted close and corporate-action events.
 The same database builder includes foreign and Korean instruments in one price
 table. `corporate_actions` retains event vintages. All remain quarantined;
 see `OVERSEAS_ADJUSTMENT_AUDIT.md` for provider-internal checks and unresolved gates.
+
+`python scripts/verify_apple_actions.py` reproduces the bounded official Apple
+amount/split comparison and a real 2020 double-adjustment regression fixture.
+Read `APPLE_ISSUER_VALIDATION.md` for manual source-extraction limits and the
+record-date/ex-date distinction. This partial evidence does not enable RS.
