@@ -31,6 +31,8 @@ const server = http.createServer((req,res) => {
     await page.waitForFunction(count=>document.querySelectorAll('#universeRows tr').length===count,universe.groups.length);
     assert.match(await page.locator('#universeStatus').textContent(),/대표자산 확정 0개/);
     assert.match(await page.locator('#universeRows').textContent(),/SPY/);
+    assert.match(await page.locator('#universeRows').textContent(),/미국 국채 잔존만기 7~10년/);
+    assert.match(await page.locator('#universeRows').textContent(),/2026-06-30 팩트시트/);
     await page.waitForFunction(()=>document.getElementById('issuerStatus').textContent.includes('최근 구간 8건'));
     assert.match(await page.locator('#issuerStatus').textContent(),/배당락일 확인 대기/);
     assert.match(await page.locator('#issuerSplit').textContent(),/2020-08-31/);
