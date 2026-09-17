@@ -27,6 +27,8 @@ jobs:
         run: python scripts/collect_overseas.py
       - name: Rebuild unified database and publish coverage
         run: python scripts/build_research_db.py
+      - name: Rebuild exposure candidates
+        run: python scripts/build_universe.py
       - name: Save captures and failure records
         if: always()
         run: |

@@ -1,0 +1,170 @@
+{
+  "version": 2,
+  "status": "RESEARCH_PROPOSAL",
+  "activation_date": null,
+  "reporting_currency_candidate": "KRW",
+  "comparison_policy_status": "UNVALIDATED",
+  "required_evidence": [
+    "benchmark_and_holdings",
+    "hedging_and_structure",
+    "liquidity_and_spread",
+    "tracking_quality",
+    "total_return_history",
+    "session_and_fx_alignment",
+    "proxy_sensitivity",
+    "point_in_time_selection_history"
+  ],
+  "selection_order": [
+    "define_exposure_and_purpose",
+    "verify_exposure_structure_comparability",
+    "compare_liquidity_tracking_cost_data_quality",
+    "test_proxy_currency_window_sensitivity",
+    "record_selection_effective_dates"
+  ],
+  "groups": [
+    {
+      "id": "KR_LARGE_CAP",
+      "label": "한국 대형주 시장 후보",
+      "scope": "MARKET",
+      "candidates": [
+        "XKRX:148020"
+      ],
+      "observation_track": "CORE_CANDIDATE"
+    },
+    {
+      "id": "US_LARGE_CAP",
+      "label": "미국 대형주 시장 후보",
+      "scope": "MARKET",
+      "candidates": [
+        "XKRX:379780",
+        "US_LISTED:SPY"
+      ],
+      "observation_track": "CORE_CANDIDATE"
+    },
+    {
+      "id": "KR_GOVERNMENT_BOND_3Y",
+      "label": "한국 국채 3년 후보",
+      "scope": "MARKET",
+      "candidates": [
+        "XKRX:114100"
+      ],
+      "observation_track": "CORE_CANDIDATE"
+    },
+    {
+      "id": "US_TREASURY_INTERMEDIATE",
+      "label": "미국 중기 국채 후보",
+      "scope": "MARKET",
+      "candidates": [
+        "US_LISTED:IEF"
+      ],
+      "observation_track": "CORE_CANDIDATE"
+    },
+    {
+      "id": "AAPL_COMPANY",
+      "label": "Apple 개별기업 관찰",
+      "scope": "COMPANY",
+      "candidates": [
+        "US_LISTED:AAPL"
+      ],
+      "observation_track": "CORE_CANDIDATE"
+    },
+    {
+      "id": "US_EQUITY_EQUAL_WEIGHT",
+      "label": "미국 주식 동일가중",
+      "scope": "MARKET",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": []
+    },
+    {
+      "id": "GLOBAL_EX_US_EQUITY",
+      "label": "미국 외 주식시장",
+      "scope": "MARKET",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": []
+    },
+    {
+      "id": "KR_CASH",
+      "label": "원화 현금성 기준",
+      "scope": "MARKET",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": []
+    },
+    {
+      "id": "USD_CASH",
+      "label": "달러 현금성 기준",
+      "scope": "MARKET",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": []
+    },
+    {
+      "id": "US_TREASURY_SHORT",
+      "label": "미국 단기 국채",
+      "scope": "MARKET",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": []
+    },
+    {
+      "id": "US_TREASURY_LONG",
+      "label": "미국 장기 국채",
+      "scope": "MARKET",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": []
+    },
+    {
+      "id": "KR_CREDIT_IG",
+      "label": "원화 투자등급 크레딧",
+      "scope": "MARKET",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": []
+    },
+    {
+      "id": "USD_CREDIT_IG",
+      "label": "달러 투자등급 크레딧",
+      "scope": "MARKET",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": []
+    },
+    {
+      "id": "USD_CREDIT_HY",
+      "label": "달러 하이일드 크레딧",
+      "scope": "MARKET",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": []
+    },
+    {
+      "id": "GOLD",
+      "label": "금 노출",
+      "scope": "MARKET",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": []
+    },
+    {
+      "id": "EQUITY_SECTORS",
+      "label": "주요 주식 섹터 · 세분화 필요",
+      "scope": "SECTOR",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": []
+    },
+    {
+      "id": "EMERGING_THEMES",
+      "label": "신규 테마 탐색 · 세분화 필요",
+      "scope": "THEME",
+      "observation_track": "EXPLORATORY",
+      "candidates": []
+    }
+  ],
+  "evidence": {},
+  "limits": "Exposure design proposal, not complete market coverage. Empty groups are research/data gaps, not evidence of an ETF product gap. Bond groups require currency, credit and duration definitions. No representative or RS activated.",
+  "layers": [
+    "MARKET_OBSERVATION",
+    "INVESTABLE_PROXY",
+    "RISE_PRODUCT_MAPPING"
+  ],
+  "aggregation_policy": "Multiple exposure links allowed; no global group vote sum. Future views require explicit overlap and weighting rules; shared holdings are not independent confirmation.",
+  "comparison_views": [
+    "COMMON_CURRENCY_TOTAL_RETURN",
+    "RISK_ADJUSTED_STRENGTH",
+    "FX_RATE_CREDIT_ATTRIBUTION",
+    "CONSTITUENT_BREADTH"
+  ]
+}

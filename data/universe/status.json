@@ -1,0 +1,337 @@
+{
+  "policy_version": 2,
+  "status": "CANDIDATE_GROUPS_ONLY",
+  "rs_status": "BLOCKED",
+  "ranking": null,
+  "activation_date": null,
+  "source_sha256": {
+    "universe/policy.json": "013300a16d9e1dd3f21360df2500b9dee7d57ed621a2fc8d58929339ac8bea56",
+    "series_sources.json": "e51ada8cd800aa81389dda345dfa5019fca0500fdf7da662740c5b615d91c9a9",
+    "overseas_sources.json": "2e188cda4576782211c7e4c45172adf457d8293294fe6c534a22b48e446e4e53"
+  },
+  "groups": [
+    {
+      "id": "KR_LARGE_CAP",
+      "label": "한국 대형주 시장 후보",
+      "scope": "MARKET",
+      "candidates": [
+        {
+          "instrument_id": "XKRX:148020",
+          "name": "RISE 200",
+          "currency": "KRW",
+          "missing_evidence": [
+            "benchmark_and_holdings",
+            "hedging_and_structure",
+            "liquidity_and_spread",
+            "tracking_quality",
+            "total_return_history",
+            "session_and_fx_alignment",
+            "proxy_sensitivity",
+            "point_in_time_selection_history"
+          ],
+          "exposure_relationship_status": "PROPOSED_NOT_VERIFIED",
+          "rs_eligible": false
+        }
+      ],
+      "observation_track": "CORE_CANDIDATE",
+      "selected_instrument_id": null,
+      "selection_status": "UNSELECTED",
+      "overview_votes": 0,
+      "aggregation_status": "NOT_IMPLEMENTED_NO_CROSS_GROUP_SUM",
+      "max_primary_representatives_per_group": 1
+    },
+    {
+      "id": "US_LARGE_CAP",
+      "label": "미국 대형주 시장 후보",
+      "scope": "MARKET",
+      "candidates": [
+        {
+          "instrument_id": "XKRX:379780",
+          "name": "RISE 미국S&P500",
+          "currency": "KRW",
+          "missing_evidence": [
+            "benchmark_and_holdings",
+            "hedging_and_structure",
+            "liquidity_and_spread",
+            "tracking_quality",
+            "total_return_history",
+            "session_and_fx_alignment",
+            "proxy_sensitivity",
+            "point_in_time_selection_history"
+          ],
+          "exposure_relationship_status": "PROPOSED_NOT_VERIFIED",
+          "rs_eligible": false
+        },
+        {
+          "instrument_id": "US_LISTED:SPY",
+          "name": "SPY · 미국 주식시장 ETF 시범",
+          "currency": "USD",
+          "missing_evidence": [
+            "benchmark_and_holdings",
+            "hedging_and_structure",
+            "liquidity_and_spread",
+            "tracking_quality",
+            "total_return_history",
+            "session_and_fx_alignment",
+            "proxy_sensitivity",
+            "point_in_time_selection_history"
+          ],
+          "exposure_relationship_status": "PROPOSED_NOT_VERIFIED",
+          "rs_eligible": false
+        }
+      ],
+      "observation_track": "CORE_CANDIDATE",
+      "selected_instrument_id": null,
+      "selection_status": "UNSELECTED",
+      "overview_votes": 0,
+      "aggregation_status": "NOT_IMPLEMENTED_NO_CROSS_GROUP_SUM",
+      "max_primary_representatives_per_group": 1
+    },
+    {
+      "id": "KR_GOVERNMENT_BOND_3Y",
+      "label": "한국 국채 3년 후보",
+      "scope": "MARKET",
+      "candidates": [
+        {
+          "instrument_id": "XKRX:114100",
+          "name": "RISE 국고채3년",
+          "currency": "KRW",
+          "missing_evidence": [
+            "benchmark_and_holdings",
+            "hedging_and_structure",
+            "liquidity_and_spread",
+            "tracking_quality",
+            "total_return_history",
+            "session_and_fx_alignment",
+            "proxy_sensitivity",
+            "point_in_time_selection_history"
+          ],
+          "exposure_relationship_status": "PROPOSED_NOT_VERIFIED",
+          "rs_eligible": false
+        }
+      ],
+      "observation_track": "CORE_CANDIDATE",
+      "selected_instrument_id": null,
+      "selection_status": "UNSELECTED",
+      "overview_votes": 0,
+      "aggregation_status": "NOT_IMPLEMENTED_NO_CROSS_GROUP_SUM",
+      "max_primary_representatives_per_group": 1
+    },
+    {
+      "id": "US_TREASURY_INTERMEDIATE",
+      "label": "미국 중기 국채 후보",
+      "scope": "MARKET",
+      "candidates": [
+        {
+          "instrument_id": "US_LISTED:IEF",
+          "name": "IEF · 미국 국채 ETF 시범",
+          "currency": "USD",
+          "missing_evidence": [
+            "benchmark_and_holdings",
+            "hedging_and_structure",
+            "liquidity_and_spread",
+            "tracking_quality",
+            "total_return_history",
+            "session_and_fx_alignment",
+            "proxy_sensitivity",
+            "point_in_time_selection_history"
+          ],
+          "exposure_relationship_status": "PROPOSED_NOT_VERIFIED",
+          "rs_eligible": false
+        }
+      ],
+      "observation_track": "CORE_CANDIDATE",
+      "selected_instrument_id": null,
+      "selection_status": "UNSELECTED",
+      "overview_votes": 0,
+      "aggregation_status": "NOT_IMPLEMENTED_NO_CROSS_GROUP_SUM",
+      "max_primary_representatives_per_group": 1
+    },
+    {
+      "id": "AAPL_COMPANY",
+      "label": "Apple 개별기업 관찰",
+      "scope": "COMPANY",
+      "candidates": [
+        {
+          "instrument_id": "US_LISTED:AAPL",
+          "name": "AAPL · 해외 개별주식 시범",
+          "currency": "USD",
+          "missing_evidence": [
+            "benchmark_and_holdings",
+            "hedging_and_structure",
+            "liquidity_and_spread",
+            "tracking_quality",
+            "total_return_history",
+            "session_and_fx_alignment",
+            "proxy_sensitivity",
+            "point_in_time_selection_history"
+          ],
+          "exposure_relationship_status": "PROPOSED_NOT_VERIFIED",
+          "rs_eligible": false
+        }
+      ],
+      "observation_track": "CORE_CANDIDATE",
+      "selected_instrument_id": null,
+      "selection_status": "UNSELECTED",
+      "overview_votes": 0,
+      "aggregation_status": "NOT_IMPLEMENTED_NO_CROSS_GROUP_SUM",
+      "max_primary_representatives_per_group": 1
+    },
+    {
+      "id": "US_EQUITY_EQUAL_WEIGHT",
+      "label": "미국 주식 동일가중",
+      "scope": "MARKET",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": [],
+      "selected_instrument_id": null,
+      "selection_status": "DATA_GAP",
+      "overview_votes": 0,
+      "aggregation_status": "NOT_IMPLEMENTED_NO_CROSS_GROUP_SUM",
+      "max_primary_representatives_per_group": 1
+    },
+    {
+      "id": "GLOBAL_EX_US_EQUITY",
+      "label": "미국 외 주식시장",
+      "scope": "MARKET",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": [],
+      "selected_instrument_id": null,
+      "selection_status": "DATA_GAP",
+      "overview_votes": 0,
+      "aggregation_status": "NOT_IMPLEMENTED_NO_CROSS_GROUP_SUM",
+      "max_primary_representatives_per_group": 1
+    },
+    {
+      "id": "KR_CASH",
+      "label": "원화 현금성 기준",
+      "scope": "MARKET",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": [],
+      "selected_instrument_id": null,
+      "selection_status": "DATA_GAP",
+      "overview_votes": 0,
+      "aggregation_status": "NOT_IMPLEMENTED_NO_CROSS_GROUP_SUM",
+      "max_primary_representatives_per_group": 1
+    },
+    {
+      "id": "USD_CASH",
+      "label": "달러 현금성 기준",
+      "scope": "MARKET",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": [],
+      "selected_instrument_id": null,
+      "selection_status": "DATA_GAP",
+      "overview_votes": 0,
+      "aggregation_status": "NOT_IMPLEMENTED_NO_CROSS_GROUP_SUM",
+      "max_primary_representatives_per_group": 1
+    },
+    {
+      "id": "US_TREASURY_SHORT",
+      "label": "미국 단기 국채",
+      "scope": "MARKET",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": [],
+      "selected_instrument_id": null,
+      "selection_status": "DATA_GAP",
+      "overview_votes": 0,
+      "aggregation_status": "NOT_IMPLEMENTED_NO_CROSS_GROUP_SUM",
+      "max_primary_representatives_per_group": 1
+    },
+    {
+      "id": "US_TREASURY_LONG",
+      "label": "미국 장기 국채",
+      "scope": "MARKET",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": [],
+      "selected_instrument_id": null,
+      "selection_status": "DATA_GAP",
+      "overview_votes": 0,
+      "aggregation_status": "NOT_IMPLEMENTED_NO_CROSS_GROUP_SUM",
+      "max_primary_representatives_per_group": 1
+    },
+    {
+      "id": "KR_CREDIT_IG",
+      "label": "원화 투자등급 크레딧",
+      "scope": "MARKET",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": [],
+      "selected_instrument_id": null,
+      "selection_status": "DATA_GAP",
+      "overview_votes": 0,
+      "aggregation_status": "NOT_IMPLEMENTED_NO_CROSS_GROUP_SUM",
+      "max_primary_representatives_per_group": 1
+    },
+    {
+      "id": "USD_CREDIT_IG",
+      "label": "달러 투자등급 크레딧",
+      "scope": "MARKET",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": [],
+      "selected_instrument_id": null,
+      "selection_status": "DATA_GAP",
+      "overview_votes": 0,
+      "aggregation_status": "NOT_IMPLEMENTED_NO_CROSS_GROUP_SUM",
+      "max_primary_representatives_per_group": 1
+    },
+    {
+      "id": "USD_CREDIT_HY",
+      "label": "달러 하이일드 크레딧",
+      "scope": "MARKET",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": [],
+      "selected_instrument_id": null,
+      "selection_status": "DATA_GAP",
+      "overview_votes": 0,
+      "aggregation_status": "NOT_IMPLEMENTED_NO_CROSS_GROUP_SUM",
+      "max_primary_representatives_per_group": 1
+    },
+    {
+      "id": "GOLD",
+      "label": "금 노출",
+      "scope": "MARKET",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": [],
+      "selected_instrument_id": null,
+      "selection_status": "DATA_GAP",
+      "overview_votes": 0,
+      "aggregation_status": "NOT_IMPLEMENTED_NO_CROSS_GROUP_SUM",
+      "max_primary_representatives_per_group": 1
+    },
+    {
+      "id": "EQUITY_SECTORS",
+      "label": "주요 주식 섹터 · 세분화 필요",
+      "scope": "SECTOR",
+      "observation_track": "CORE_CANDIDATE",
+      "candidates": [],
+      "selected_instrument_id": null,
+      "selection_status": "DATA_GAP",
+      "overview_votes": 0,
+      "aggregation_status": "NOT_IMPLEMENTED_NO_CROSS_GROUP_SUM",
+      "max_primary_representatives_per_group": 1
+    },
+    {
+      "id": "EMERGING_THEMES",
+      "label": "신규 테마 탐색 · 세분화 필요",
+      "scope": "THEME",
+      "observation_track": "EXPLORATORY",
+      "candidates": [],
+      "selected_instrument_id": null,
+      "selection_status": "DATA_GAP",
+      "overview_votes": 0,
+      "aggregation_status": "NOT_IMPLEMENTED_NO_CROSS_GROUP_SUM",
+      "max_primary_representatives_per_group": 1
+    }
+  ],
+  "unmapped_instruments": [],
+  "selection_order": [
+    "define_exposure_and_purpose",
+    "verify_exposure_structure_comparability",
+    "compare_liquidity_tracking_cost_data_quality",
+    "test_proxy_currency_window_sensitivity",
+    "record_selection_effective_dates"
+  ],
+  "candidate_link_count": 6,
+  "gap_group_count": 12,
+  "candidate_count": 6,
+  "selected_count": 0
+}
