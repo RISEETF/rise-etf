@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "records": [
+    {
+      "evidence_id": "SPY_FACTSHEET_20260630_REVIEW_20260917",
+      "instrument_id": "US_LISTED:SPY",
+      "group_id": "US_LARGE_CAP",
+      "source_url": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-spy.pdf",
+      "accessed_date": "2026-09-17",
+      "source_as_of": "2026-06-30",
+      "capture_method": "MANUAL_FACT_EXTRACTION_FROM_OFFICIAL_WEB_READER",
+      "raw_source_sha256": null,
+      "status": "PARTIAL_OFFICIAL_OBJECTIVE_CHECK",
+      "summary_ko": "S&P 500 추종 목적·미국 대형주·유동주식 시가총액가중 확인. 2026-06-30 팩트시트 기준.",
+      "facts": {"benchmark":"S&P 500 Index", "exposure":"US_LARGE_CAP_EQUITY", "index_weighting":"FLOAT_ADJUSTED_MARKET_CAP"},
+      "source_locations": ["page 1: Key Features", "page 2: About This Benchmark"],
+      "not_verified": ["full_holdings_reconciliation", "equivalence_to_korean_listed_ETF", "daily_total_return", "current_liquidity_comparison", "representative_selection"],
+      "rs_eligible": false
+    },
+    {
+      "evidence_id": "IEF_PRODUCT_REVIEW_20260917",
+      "instrument_id": "US_LISTED:IEF",
+      "group_id": "US_TREASURY_INTERMEDIATE",
+      "source_url": "https://www.ishares.com/us/products/239456/ishares-710-year-treasury-bond-etf",
+      "accessed_date": "2026-09-17",
+      "source_as_of": null,
+      "capture_method": "MANUAL_FACT_EXTRACTION_FROM_OFFICIAL_WEB_READER",
+      "raw_source_sha256": null,
+      "status": "PARTIAL_OFFICIAL_OBJECTIVE_CHECK",
+      "summary_ko": "미국 국채 잔존만기 7~10년 추종 목적 확인. 듀레이션과 만기는 별도 지표.",
+      "facts": {"benchmark":"ICE US Treasury 7-10 Year Bond Index", "exposure":"US_TREASURY", "target_remaining_maturity_years":[7,10], "effective_duration":{"value":6.90,"unit":"years","as_of":"2026-09-15"}},
+      "source_locations": ["Product objective", "Key Facts: Benchmark Index", "Portfolio Characteristics: Effective Duration"],
+      "not_verified": ["full_holdings_reconciliation", "duration_matched_comparison", "daily_total_return", "current_liquidity_comparison", "representative_selection"],
+      "rs_eligible": false
+    }
+  ],
+  "limits": "Manually transcribed facts, not an automated issuer feed or a retained raw document. No evidence here clears representative selection or RS gates. Dates apply per document or per fact; accessed date is not an observation date."
+}

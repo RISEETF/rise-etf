@@ -7,7 +7,8 @@
   "source_sha256": {
     "universe/policy.json": "013300a16d9e1dd3f21360df2500b9dee7d57ed621a2fc8d58929339ac8bea56",
     "series_sources.json": "e51ada8cd800aa81389dda345dfa5019fca0500fdf7da662740c5b615d91c9a9",
-    "overseas_sources.json": "2e188cda4576782211c7e4c45172adf457d8293294fe6c534a22b48e446e4e53"
+    "overseas_sources.json": "2e188cda4576782211c7e4c45172adf457d8293294fe6c534a22b48e446e4e53",
+    "universe/issuer_evidence.json": "96f504f8ea9b6df22e5ba5a7f47e3e28cd67276a4ec04826ee4356f643f0d2bb"
   },
   "groups": [
     {
@@ -29,6 +30,7 @@
             "proxy_sensitivity",
             "point_in_time_selection_history"
           ],
+          "issuer_evidence": [],
           "exposure_relationship_status": "PROPOSED_NOT_VERIFIED",
           "rs_eligible": false
         }
@@ -59,6 +61,7 @@
             "proxy_sensitivity",
             "point_in_time_selection_history"
           ],
+          "issuer_evidence": [],
           "exposure_relationship_status": "PROPOSED_NOT_VERIFIED",
           "rs_eligible": false
         },
@@ -75,6 +78,37 @@
             "session_and_fx_alignment",
             "proxy_sensitivity",
             "point_in_time_selection_history"
+          ],
+          "issuer_evidence": [
+            {
+              "evidence_id": "SPY_FACTSHEET_20260630_REVIEW_20260917",
+              "instrument_id": "US_LISTED:SPY",
+              "group_id": "US_LARGE_CAP",
+              "source_url": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-spy.pdf",
+              "accessed_date": "2026-09-17",
+              "source_as_of": "2026-06-30",
+              "capture_method": "MANUAL_FACT_EXTRACTION_FROM_OFFICIAL_WEB_READER",
+              "raw_source_sha256": null,
+              "status": "PARTIAL_OFFICIAL_OBJECTIVE_CHECK",
+              "summary_ko": "S&P 500 추종 목적·미국 대형주·유동주식 시가총액가중 확인. 2026-06-30 팩트시트 기준.",
+              "facts": {
+                "benchmark": "S&P 500 Index",
+                "exposure": "US_LARGE_CAP_EQUITY",
+                "index_weighting": "FLOAT_ADJUSTED_MARKET_CAP"
+              },
+              "source_locations": [
+                "page 1: Key Features",
+                "page 2: About This Benchmark"
+              ],
+              "not_verified": [
+                "full_holdings_reconciliation",
+                "equivalence_to_korean_listed_ETF",
+                "daily_total_return",
+                "current_liquidity_comparison",
+                "representative_selection"
+              ],
+              "rs_eligible": false
+            }
           ],
           "exposure_relationship_status": "PROPOSED_NOT_VERIFIED",
           "rs_eligible": false
@@ -106,6 +140,7 @@
             "proxy_sensitivity",
             "point_in_time_selection_history"
           ],
+          "issuer_evidence": [],
           "exposure_relationship_status": "PROPOSED_NOT_VERIFIED",
           "rs_eligible": false
         }
@@ -135,6 +170,46 @@
             "session_and_fx_alignment",
             "proxy_sensitivity",
             "point_in_time_selection_history"
+          ],
+          "issuer_evidence": [
+            {
+              "evidence_id": "IEF_PRODUCT_REVIEW_20260917",
+              "instrument_id": "US_LISTED:IEF",
+              "group_id": "US_TREASURY_INTERMEDIATE",
+              "source_url": "https://www.ishares.com/us/products/239456/ishares-710-year-treasury-bond-etf",
+              "accessed_date": "2026-09-17",
+              "source_as_of": null,
+              "capture_method": "MANUAL_FACT_EXTRACTION_FROM_OFFICIAL_WEB_READER",
+              "raw_source_sha256": null,
+              "status": "PARTIAL_OFFICIAL_OBJECTIVE_CHECK",
+              "summary_ko": "미국 국채 잔존만기 7~10년 추종 목적 확인. 듀레이션과 만기는 별도 지표.",
+              "facts": {
+                "benchmark": "ICE US Treasury 7-10 Year Bond Index",
+                "exposure": "US_TREASURY",
+                "target_remaining_maturity_years": [
+                  7,
+                  10
+                ],
+                "effective_duration": {
+                  "value": 6.9,
+                  "unit": "years",
+                  "as_of": "2026-09-15"
+                }
+              },
+              "source_locations": [
+                "Product objective",
+                "Key Facts: Benchmark Index",
+                "Portfolio Characteristics: Effective Duration"
+              ],
+              "not_verified": [
+                "full_holdings_reconciliation",
+                "duration_matched_comparison",
+                "daily_total_return",
+                "current_liquidity_comparison",
+                "representative_selection"
+              ],
+              "rs_eligible": false
+            }
           ],
           "exposure_relationship_status": "PROPOSED_NOT_VERIFIED",
           "rs_eligible": false
@@ -166,6 +241,7 @@
             "proxy_sensitivity",
             "point_in_time_selection_history"
           ],
+          "issuer_evidence": [],
           "exposure_relationship_status": "PROPOSED_NOT_VERIFIED",
           "rs_eligible": false
         }
@@ -333,5 +409,6 @@
   "candidate_link_count": 6,
   "gap_group_count": 12,
   "candidate_count": 6,
-  "selected_count": 0
+  "selected_count": 0,
+  "issuer_evidence_count": 2
 }

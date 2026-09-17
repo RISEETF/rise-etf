@@ -156,6 +156,13 @@ async function loadUniverse() {
         const td=document.createElement('td');td.textContent=value;tr.append(td);
       }
       el('universeRows').append(tr);
+      for(const candidate of group.candidates) {
+        for(const evidence of candidate.issuer_evidence || []) {
+          const note=document.createElement('p');note.className='muted';
+          note.textContent=`${candidate.instrument_id}: ${evidence.summary_ko} 공식 자료 조회 ${evidence.accessed_date} · 부분 확인, 대표 선정 미완료`;
+          tr.lastChild.append(note);
+        }
+      }
     }
   } catch (_) {
     el('universeRows').replaceChildren();el('universeStatus').textContent='후보 자료를 표시할 수 없습니다. 대표 선정·RS 계산은 보류합니다.';

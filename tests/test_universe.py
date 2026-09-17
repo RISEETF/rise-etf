@@ -47,6 +47,25 @@ class UniverseTests(unittest.TestCase):
             write_json(root/'overseas_sources.json',config)
             self.assertEqual(build(root)['unmapped_instruments'],['US_LISTED:NEW'])
 
+    def test_issuer_facts_do_not_clear_selection_gates(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory); self.fixture(root)
+            facts=json.loads((ROOT/'data/universe/issuer_evidence.json').read_text())
+            write_json(root/'universe/issuer_evidence.json', facts)
+            result=build(root)
+            self.assertEqual(result['issuer_evidence_count'],2)
+            candidate=next(c for g in result['groups'] for c in g['candidates'] if c['instrument_id']=='US_LISTED:IEF')
+            self.assertFalse(candidate['rs_eligible'])
+            self.assertIn('benchmark_and_holdings',candidate['missing_evidence'])
+            self.assertEqual(result['selected_count'],0)
+            facts['records'][0]['rs_eligible']=True
+            write_json(root/'universe/issuer_evidence.json',facts)
+            with self.assertRaises(ValueError):build(root)
+            facts['records'][0]['rs_eligible']=False
+            facts['records'][0]['group_id']='US_TREASURY_INTERMEDIATE'
+            write_json(root/'universe/issuer_evidence.json',facts)
+            with self.assertRaises(ValueError):build(root)
+
     def test_multiple_exposures_and_empty_groups_preserve_unique_counts(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory); policy=self.fixture(root)

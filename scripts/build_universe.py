@@ -2,6 +2,8 @@
 """Build a non-ranking exposure candidate registry from the collection pilot."""
 import hashlib
 import json
+import datetime as dt
+from urllib.parse import urlparse
 from pathlib import Path
 from update_daily import ROOT, write_json
 
@@ -11,6 +13,26 @@ def build(data_dir):
     paths = ['universe/policy.json', 'series_sources.json', 'overseas_sources.json']
     raw = {path: (data_dir / path).read_bytes() for path in paths}
     policy, domestic, overseas = (json.loads(raw[path]) for path in paths)
+    evidence_path = 'universe/issuer_evidence.json'
+    evidence_records = []
+    if (data_dir / evidence_path).exists():
+        raw[evidence_path] = (data_dir / evidence_path).read_bytes()
+        evidence_records = json.loads(raw[evidence_path])['records']
+    evidence_ids = set()
+    allowed_hosts = {'US_LISTED:SPY': 'www.ssga.com', 'US_LISTED:IEF': 'www.ishares.com'}
+    links = {(g['id'], key) for g in policy['groups'] for key in g['candidates']}
+    for record in evidence_records:
+        url = urlparse(record['source_url'])
+        if (record['evidence_id'] in evidence_ids or
+            (record['group_id'], record['instrument_id']) not in links or
+            url.scheme != 'https' or url.hostname != allowed_hosts.get(record['instrument_id']) or
+            url.username or url.password or record['status'] != 'PARTIAL_OFFICIAL_OBJECTIVE_CHECK' or
+            record['rs_eligible'] is not False):
+            raise ValueError('Invalid issuer evidence identity, source or scope')
+        accessed = dt.date.fromisoformat(record['accessed_date'])
+        if record['source_as_of'] and dt.date.fromisoformat(record['source_as_of']) > accessed:
+            raise ValueError('Source date follows access date')
+        evidence_ids.add(record['evidence_id'])
     if policy['status'] != 'RESEARCH_PROPOSAL' or policy['activation_date'] is not None:
         raise ValueError('Activation requires a separately reviewed selection implementation')
     instruments = {}
@@ -34,6 +56,7 @@ def build(data_dir):
             missing = list(policy['required_evidence'])
             candidates.append({'instrument_id': key, 'name': instruments[key]['name'],
                                'currency': instruments[key]['currency'], 'missing_evidence': missing,
+                               'issuer_evidence': [r for r in evidence_records if r['instrument_id'] == key and r['group_id'] == group['id']],
                                'exposure_relationship_status': 'PROPOSED_NOT_VERIFIED',
                                'rs_eligible': False})
         groups.append({**group, 'candidates': candidates, 'selected_instrument_id': None,
@@ -49,6 +72,7 @@ def build(data_dir):
               'candidate_link_count': sum(len(g['candidates']) for g in groups),
               'gap_group_count': sum(not g['candidates'] for g in groups),
               'candidate_count': len(members), 'selected_count': 0}
+    result['issuer_evidence_count'] = len(evidence_records)
     write_json(data_dir / 'universe/status.json', result)
     return result
 
