@@ -19,7 +19,9 @@ def build(data_dir):
         raw[evidence_path] = (data_dir / evidence_path).read_bytes()
         evidence_records = json.loads(raw[evidence_path])['records']
     evidence_ids = set()
-    allowed_hosts = {'US_LISTED:SPY': 'www.ssga.com', 'US_LISTED:IEF': 'www.ishares.com'}
+    allowed_hosts = {'US_LISTED:SPY': 'www.ssga.com', 'US_LISTED:IEF': 'www.ishares.com',
+                     'XKRX:148020': 'riseetf.co.kr', 'XKRX:379780': 'riseetf.co.kr',
+                     'XKRX:114100': 'riseetf.co.kr'}
     links = {(g['id'], key) for g in policy['groups'] for key in g['candidates']}
     for record in evidence_records:
         url = urlparse(record['source_url'])

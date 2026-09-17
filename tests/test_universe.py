@@ -53,7 +53,7 @@ class UniverseTests(unittest.TestCase):
             facts=json.loads((ROOT/'data/universe/issuer_evidence.json').read_text())
             write_json(root/'universe/issuer_evidence.json', facts)
             result=build(root)
-            self.assertEqual(result['issuer_evidence_count'],2)
+            self.assertEqual(result['issuer_evidence_count'],len(facts['records']))
             candidate=next(c for g in result['groups'] for c in g['candidates'] if c['instrument_id']=='US_LISTED:IEF')
             self.assertFalse(candidate['rs_eligible'])
             self.assertIn('benchmark_and_holdings',candidate['missing_evidence'])

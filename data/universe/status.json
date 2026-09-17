@@ -8,7 +8,7 @@
     "universe/policy.json": "013300a16d9e1dd3f21360df2500b9dee7d57ed621a2fc8d58929339ac8bea56",
     "series_sources.json": "e51ada8cd800aa81389dda345dfa5019fca0500fdf7da662740c5b615d91c9a9",
     "overseas_sources.json": "2e188cda4576782211c7e4c45172adf457d8293294fe6c534a22b48e446e4e53",
-    "universe/issuer_evidence.json": "96f504f8ea9b6df22e5ba5a7f47e3e28cd67276a4ec04826ee4356f643f0d2bb"
+    "universe/issuer_evidence.json": "066182f0341670cec256c58c6e13ca205dabd14f5452223b81f7307ab3187e37"
   },
   "groups": [
     {
@@ -30,7 +30,37 @@
             "proxy_sensitivity",
             "point_in_time_selection_history"
           ],
-          "issuer_evidence": [],
+          "issuer_evidence": [
+            {
+              "evidence_id": "RISE_148020_REVIEW_20260918_KST",
+              "instrument_id": "XKRX:148020",
+              "group_id": "KR_LARGE_CAP",
+              "source_url": "https://riseetf.co.kr/prod/finderDetail/4435",
+              "accessed_date": "2026-09-18",
+              "accessed_date_timezone": "Asia/Seoul",
+              "accessed_at_utc": "2026-09-17T22:58:57.289941+00:00",
+              "source_as_of": null,
+              "page_displayed_date": "2026-09-18",
+              "capture_method": "MANUAL_FACT_EXTRACTION_FROM_DIRECT_OFFICIAL_HTML",
+              "raw_source_sha256": null,
+              "status": "PARTIAL_OFFICIAL_OBJECTIVE_CHECK",
+              "summary_ko": "공식 기본정보의 KOSPI200 기초지수 확인. 구성종목 전체 대조는 미완료.",
+              "facts": {
+                "benchmark": "KOSPI200"
+              },
+              "source_locations": [
+                "기본정보: ETF명(종목번호) / 기초지수"
+              ],
+              "not_verified": [
+                "full_holdings_reconciliation",
+                "hedging_and_structure",
+                "daily_total_return",
+                "session_and_fx_alignment",
+                "representative_selection"
+              ],
+              "rs_eligible": false
+            }
+          ],
           "exposure_relationship_status": "PROPOSED_NOT_VERIFIED",
           "rs_eligible": false
         }
@@ -61,7 +91,37 @@
             "proxy_sensitivity",
             "point_in_time_selection_history"
           ],
-          "issuer_evidence": [],
+          "issuer_evidence": [
+            {
+              "evidence_id": "RISE_379780_REVIEW_20260918_KST",
+              "instrument_id": "XKRX:379780",
+              "group_id": "US_LARGE_CAP",
+              "source_url": "https://riseetf.co.kr/prod/finderDetail/44B3",
+              "accessed_date": "2026-09-18",
+              "accessed_date_timezone": "Asia/Seoul",
+              "accessed_at_utc": "2026-09-17T22:58:57.289941+00:00",
+              "source_as_of": null,
+              "page_displayed_date": "2026-09-18",
+              "capture_method": "MANUAL_FACT_EXTRACTION_FROM_DIRECT_OFFICIAL_HTML",
+              "raw_source_sha256": null,
+              "status": "PARTIAL_OFFICIAL_OBJECTIVE_CHECK",
+              "summary_ko": "공식 기초지수 표기는 S&P 500 Index (KRW)(T-1). SPY와 통화·기준시점 차이 검증 필요.",
+              "facts": {
+                "benchmark": "S&P 500 Index (KRW)(T-1)"
+              },
+              "source_locations": [
+                "기본정보: ETF명(종목번호) / 기초지수"
+              ],
+              "not_verified": [
+                "full_holdings_reconciliation",
+                "hedging_and_structure",
+                "daily_total_return",
+                "session_and_fx_alignment",
+                "representative_selection"
+              ],
+              "rs_eligible": false
+            }
+          ],
           "exposure_relationship_status": "PROPOSED_NOT_VERIFIED",
           "rs_eligible": false
         },
@@ -140,7 +200,37 @@
             "proxy_sensitivity",
             "point_in_time_selection_history"
           ],
-          "issuer_evidence": [],
+          "issuer_evidence": [
+            {
+              "evidence_id": "RISE_114100_REVIEW_20260918_KST",
+              "instrument_id": "XKRX:114100",
+              "group_id": "KR_GOVERNMENT_BOND_3Y",
+              "source_url": "https://riseetf.co.kr/prod/finderDetail/4427",
+              "accessed_date": "2026-09-18",
+              "accessed_date_timezone": "Asia/Seoul",
+              "accessed_at_utc": "2026-09-17T22:58:57.289941+00:00",
+              "source_as_of": null,
+              "page_displayed_date": "2026-09-18",
+              "capture_method": "MANUAL_FACT_EXTRACTION_FROM_DIRECT_OFFICIAL_HTML",
+              "raw_source_sha256": null,
+              "status": "PARTIAL_OFFICIAL_OBJECTIVE_CHECK",
+              "summary_ko": "공식 기초지수는 KTB채권지수. 상품명 3년을 실제 듀레이션 3년으로 간주하지 않음.",
+              "facts": {
+                "benchmark": "KTB채권지수"
+              },
+              "source_locations": [
+                "기본정보: ETF명(종목번호) / 기초지수"
+              ],
+              "not_verified": [
+                "full_holdings_reconciliation",
+                "hedging_and_structure",
+                "daily_total_return",
+                "session_and_fx_alignment",
+                "representative_selection"
+              ],
+              "rs_eligible": false
+            }
+          ],
           "exposure_relationship_status": "PROPOSED_NOT_VERIFIED",
           "rs_eligible": false
         }
@@ -410,5 +500,5 @@
   "gap_group_count": 12,
   "candidate_count": 6,
   "selected_count": 0,
-  "issuer_evidence_count": 2
+  "issuer_evidence_count": 5
 }
