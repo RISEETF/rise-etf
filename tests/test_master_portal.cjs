@@ -27,6 +27,10 @@ const server = http.createServer((req,res) => {
     const coverage=JSON.parse(fs.readFileSync(path.join(root,'data/series/status.json')));
     await page.waitForFunction(count=>document.querySelectorAll('#seriesRows tr').length===count,coverage.series.length);
     assert.match(await page.locator('#seriesStatus').textContent(),/RS 계산 보류/);
+    const universe=JSON.parse(fs.readFileSync(path.join(root,'data/universe/status.json')));
+    await page.waitForFunction(count=>document.querySelectorAll('#universeRows tr').length===count,universe.groups.length);
+    assert.match(await page.locator('#universeStatus').textContent(),/대표자산 확정 0개/);
+    assert.match(await page.locator('#universeRows').textContent(),/SPY/);
     await page.waitForFunction(()=>document.getElementById('issuerStatus').textContent.includes('최근 구간 8건'));
     assert.match(await page.locator('#issuerStatus').textContent(),/배당락일 확인 대기/);
     assert.match(await page.locator('#issuerSplit').textContent(),/2020-08-31/);

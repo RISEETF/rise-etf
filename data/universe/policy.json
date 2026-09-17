@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "status": "RESEARCH_PROPOSAL",
+  "activation_date": null,
+  "reporting_currency_candidate": "KRW",
+  "comparison_policy_status": "UNVALIDATED",
+  "required_evidence": ["benchmark_and_holdings", "hedging_and_structure", "liquidity_and_spread", "tracking_quality", "total_return_history", "session_and_fx_alignment"],
+  "selection_order": ["verified_exposure_fit", "comparable_total_return_history", "stable_data_access", "liquidity_and_spread", "tracking_quality", "operating_history"],
+  "groups": [
+    {"id":"KR_LARGE_CAP", "label":"한국 대형주 시장 후보", "scope":"MARKET", "candidates":["XKRX:148020"]},
+    {"id":"US_LARGE_CAP", "label":"미국 대형주 시장 후보", "scope":"MARKET", "candidates":["XKRX:379780","US_LISTED:SPY"]},
+    {"id":"KR_GOVERNMENT_BOND_3Y", "label":"한국 국채 3년 후보", "scope":"MARKET", "candidates":["XKRX:114100"]},
+    {"id":"US_TREASURY_INTERMEDIATE", "label":"미국 중기 국채 후보", "scope":"MARKET", "candidates":["US_LISTED:IEF"]},
+    {"id":"AAPL_COMPANY", "label":"Apple 개별기업 관찰", "scope":"COMPANY", "candidates":["US_LISTED:AAPL"]}
+  ],
+  "evidence": {},
+  "limits": "Candidate groupings from ingestion pilot labels only; benchmark, holdings, hedging and equivalence are unverified. No representative selected. No sector-wide inference from one company."
+}

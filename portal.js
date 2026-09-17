@@ -134,4 +134,29 @@ async function loadIssuerChecks() {
   }
 }
 el('reset').addEventListener('click', () => {el('search').value='';el('category').value='';renderProducts();});
-Promise.allSettled([loadMaster(), loadCapture(), loadQuality(), loadMasterAttempt(), loadSeries(), loadIssuerChecks()]);
+async function loadUniverse() {
+  try {
+    const data=await readJSON('data/universe/status.json');
+    if(data.status!=='CANDIDATE_GROUPS_ONLY' || data.rs_status!=='BLOCKED' || data.ranking!==null || data.selected_count!==0 || !Array.isArray(data.groups)) throw new Error('후보 상태 오류');
+    const seen=new Set();
+    for(const group of data.groups) {
+      if(group.selected_instrument_id!==null || group.overview_votes!==0 || !Array.isArray(group.candidates) || !['MARKET','SECTOR','COMPANY'].includes(group.scope)) throw new Error('선정 상태 오류');
+      for(const candidate of group.candidates) {
+        if(candidate.rs_eligible!==false || seen.has(candidate.instrument_id)) throw new Error('중복 후보');
+        seen.add(candidate.instrument_id);
+      }
+    }
+    if(seen.size!==data.candidate_count) throw new Error('후보 집계 오류');
+    el('universeStatus').textContent=`${data.candidate_count}개 후보 · ${data.groups.length}개 노출 후보군 · 대표자산 확정 0개 · RS 보류`;
+    for(const group of data.groups) {
+      const tr=document.createElement('tr');
+      for(const value of [group.label,group.scope==='COMPANY'?'기업 관찰':group.scope==='SECTOR'?'섹터 비교':'시장 비교',group.candidates.map(c=>`${c.name} (${c.currency})`).join(' / '),'근거 확인 후 선정']) {
+        const td=document.createElement('td');td.textContent=value;tr.append(td);
+      }
+      el('universeRows').append(tr);
+    }
+  } catch (_) {
+    el('universeRows').replaceChildren();el('universeStatus').textContent='후보 자료를 표시할 수 없습니다. 대표 선정·RS 계산은 보류합니다.';
+  }
+}
+Promise.allSettled([loadMaster(), loadCapture(), loadQuality(), loadMasterAttempt(), loadSeries(), loadIssuerChecks(), loadUniverse()]);
