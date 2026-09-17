@@ -140,17 +140,19 @@ async function loadUniverse() {
     if(data.status!=='CANDIDATE_GROUPS_ONLY' || data.rs_status!=='BLOCKED' || data.ranking!==null || data.selected_count!==0 || !Array.isArray(data.groups)) throw new Error('후보 상태 오류');
     const seen=new Set();
     for(const group of data.groups) {
-      if(group.selected_instrument_id!==null || group.overview_votes!==0 || !Array.isArray(group.candidates) || !['MARKET','SECTOR','COMPANY'].includes(group.scope)) throw new Error('선정 상태 오류');
+      if(group.selected_instrument_id!==null || group.overview_votes!==0 || !Array.isArray(group.candidates) || !['MARKET','SECTOR','COMPANY','THEME'].includes(group.scope)) throw new Error('선정 상태 오류');
+      const groupSeen=new Set();
       for(const candidate of group.candidates) {
-        if(candidate.rs_eligible!==false || seen.has(candidate.instrument_id)) throw new Error('중복 후보');
+        if(candidate.rs_eligible!==false || groupSeen.has(candidate.instrument_id)) throw new Error('그룹 내 중복 후보');
+        groupSeen.add(candidate.instrument_id);
         seen.add(candidate.instrument_id);
       }
     }
     if(seen.size!==data.candidate_count) throw new Error('후보 집계 오류');
-    el('universeStatus').textContent=`${data.candidate_count}개 후보 · ${data.groups.length}개 노출 후보군 · 대표자산 확정 0개 · RS 보류`;
+    el('universeStatus').textContent=`고유 후보 ${data.candidate_count}개 · 노출 설계 ${data.groups.length}개 · 후보 미확보 ${data.gap_group_count}개 · 대표자산 확정 0개 · RS 보류`;
     for(const group of data.groups) {
       const tr=document.createElement('tr');
-      for(const value of [group.label,group.scope==='COMPANY'?'기업 관찰':group.scope==='SECTOR'?'섹터 비교':'시장 비교',group.candidates.map(c=>`${c.name} (${c.currency})`).join(' / '),'근거 확인 후 선정']) {
+      for(const value of [group.label,group.scope==='COMPANY'?'기업 관찰':group.scope==='THEME'?'테마 탐색':group.scope==='SECTOR'?'섹터 비교':'시장 비교',group.candidates.map(c=>`${c.name} (${c.currency})`).join(' / ') || '관측수단 조사 필요',group.selection_status==='DATA_GAP'?'후보·데이터 미확보':'노출 관계·근거 검토 중']) {
         const td=document.createElement('td');td.textContent=value;tr.append(td);
       }
       el('universeRows').append(tr);

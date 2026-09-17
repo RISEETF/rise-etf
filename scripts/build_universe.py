@@ -21,30 +21,33 @@ def build(data_dir):
         instruments[key] = row
     groups, group_ids, members = [], set(), set()
     for group in policy['groups']:
-        if group['id'] in group_ids or group['scope'] not in ('MARKET', 'SECTOR', 'COMPANY'):
+        if group['id'] in group_ids or group['scope'] not in ('MARKET', 'SECTOR', 'COMPANY', 'THEME'):
             raise ValueError('Duplicate group or invalid scope')
         group_ids.add(group['id'])
-        if not group['candidates']:
-            raise ValueError('Empty exposure group')
-        candidates = []
+        candidates, group_members = [], set()
         for key in group['candidates']:
-            if key not in instruments or key in members:
-                raise ValueError('Unknown or multiply counted instrument')
+            if key not in instruments or key in group_members:
+                raise ValueError('Unknown or duplicate instrument within group')
+            group_members.add(key)
             members.add(key)
-            evidence = policy['evidence'].get(key, {})
-            # This version cannot promote a candidate, even if somebody adds evidence.
-            missing = [field for field in policy['required_evidence'] if not evidence.get(field)]
+            # Evidence is exposure-specific; unreviewed values cannot clear a gate.
+            missing = list(policy['required_evidence'])
             candidates.append({'instrument_id': key, 'name': instruments[key]['name'],
                                'currency': instruments[key]['currency'], 'missing_evidence': missing,
+                               'exposure_relationship_status': 'PROPOSED_NOT_VERIFIED',
                                'rs_eligible': False})
         groups.append({**group, 'candidates': candidates, 'selected_instrument_id': None,
-                       'selection_status': 'UNSELECTED', 'overview_votes': 0,
-                       'max_overview_votes_after_validation': 0 if group['scope'] == 'COMPANY' else 1})
+                       'selection_status': 'UNSELECTED' if candidates else 'DATA_GAP',
+                       'overview_votes': 0,
+                       'aggregation_status': 'NOT_IMPLEMENTED_NO_CROSS_GROUP_SUM',
+                       'max_primary_representatives_per_group': 1})
     result = {'policy_version': policy['version'], 'status': 'CANDIDATE_GROUPS_ONLY',
               'rs_status': 'BLOCKED', 'ranking': None, 'activation_date': None,
               'source_sha256': {path: hashlib.sha256(value).hexdigest() for path, value in raw.items()},
               'groups': groups, 'unmapped_instruments': sorted(set(instruments) - members),
               'selection_order': policy['selection_order'],
+              'candidate_link_count': sum(len(g['candidates']) for g in groups),
+              'gap_group_count': sum(not g['candidates'] for g in groups),
               'candidate_count': len(members), 'selected_count': 0}
     write_json(data_dir / 'universe/status.json', result)
     return result

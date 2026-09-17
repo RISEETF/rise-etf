@@ -21,19 +21,19 @@ class UniverseTests(unittest.TestCase):
             result=build(root)
             us=next(g for g in result['groups'] if g['id']=='US_LARGE_CAP')
             self.assertEqual(len(us['candidates']),2)
-            self.assertEqual(us['max_overview_votes_after_validation'],1)
+            self.assertEqual(us['max_primary_representatives_per_group'],1)
             self.assertIsNone(us['selected_instrument_id'])
             self.assertEqual(result['selected_count'],0)
             self.assertIsNone(result['ranking'])
             company=next(g for g in result['groups'] if g['scope']=='COMPANY')
-            self.assertEqual(company['max_overview_votes_after_validation'],0)
+            self.assertEqual(company['overview_votes'],0)
 
     def test_duplicates_unknown_and_unreviewed_activation_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory); original=self.fixture(root)
             for mode in ('duplicate','unknown','activation'):
                 policy=copy.deepcopy(original)
-                if mode=='duplicate':policy['groups'][1]['candidates'].append(policy['groups'][0]['candidates'][0])
+                if mode=='duplicate':policy['groups'][0]['candidates'].append(policy['groups'][0]['candidates'][0])
                 elif mode=='unknown':policy['groups'][0]['candidates']=['XKRX:UNKNOWN']
                 else:policy['activation_date']='2026-09-17'
                 write_json(root/'universe/policy.json',policy)
@@ -46,3 +46,19 @@ class UniverseTests(unittest.TestCase):
             config['instruments'].append({**config['instruments'][0],'code':'NEW'})
             write_json(root/'overseas_sources.json',config)
             self.assertEqual(build(root)['unmapped_instruments'],['US_LISTED:NEW'])
+
+    def test_multiple_exposures_and_empty_groups_preserve_unique_counts(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory); policy=self.fixture(root)
+            before=build(root)
+            policy['groups'].append({'id':'TEST_LINK','label':'Synthetic overlap','scope':'THEME','candidates':['US_LISTED:AAPL']})
+            policy['groups'].append({'id':'TEST_GAP','label':'Uncovered exposure','scope':'MARKET','candidates':[]})
+            policy['evidence']={'US_LISTED:AAPL':{field:True for field in policy['required_evidence']}}
+            write_json(root/'universe/policy.json',policy)
+            after=build(root)
+            self.assertEqual(after['candidate_count'],before['candidate_count'])
+            self.assertEqual(after['candidate_link_count'],before['candidate_link_count']+1)
+            self.assertEqual(after['gap_group_count'],before['gap_group_count']+1)
+            self.assertEqual(after['groups'][-1]['selection_status'],'DATA_GAP')
+            self.assertEqual(after['groups'][-2]['candidates'][0]['missing_evidence'],policy['required_evidence'])
+            self.assertTrue(all(g['overview_votes']==0 for g in after['groups']))
