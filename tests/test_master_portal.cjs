@@ -34,6 +34,8 @@ const server = http.createServer((req,res) => {
     assert.match(await page.locator('#universeRows').textContent(),/미국 국채 잔존만기 7~10년/);
     assert.match(await page.locator('#universeRows').textContent(),/2026-06-30 팩트시트/);
     assert.match(await page.locator('#universeRows').textContent(),/S&P 500 Index \(KRW\)\(T-1\)/);
+    assert.match(await page.locator('#universeRows').textContent(),/서로 다른 수익률 기준/);
+    assert.equal(await page.locator('#universeRows a[href="https://riseetf.co.kr/upload/cdn/2026/09/08/20260908bbf1937eb74144b.pdf"]').count(),1);
     await page.waitForFunction(()=>document.getElementById('issuerStatus').textContent.includes('최근 구간 8건'));
     assert.match(await page.locator('#issuerStatus').textContent(),/배당락일 확인 대기/);
     assert.match(await page.locator('#issuerSplit').textContent(),/2020-08-31/);
