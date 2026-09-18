@@ -2,6 +2,45 @@
   "schema_version": 1,
   "records": [
     {
+      "evidence_id": "RISE_379780_PROSPECTUS_20260807_REVIEW_20260918",
+      "instrument_id": "XKRX:379780",
+      "group_id": "US_LARGE_CAP",
+      "source_url": "https://riseetf.co.kr/upload/cdn/2026/08/07/202608077ee54aeec9bc426.pdf",
+      "accessed_date": "2026-09-18",
+      "accessed_date_timezone": "Asia/Seoul",
+      "source_as_of": "2026-07-20",
+      "document_effective_date": "2026-08-07",
+      "capture_method": "MANUAL_FACT_EXTRACTION_FROM_DIRECT_OFFICIAL_PDF",
+      "raw_source_sha256": "5064105725d4180e956ef984f99a04aeecf4c7dfffb5cc67f66a727f6051caa0",
+      "raw_source_retained_in_repository": false,
+      "status": "PARTIAL_OFFICIAL_OBJECTIVE_CHECK",
+      "summary_ko": "투자설명서상 환헤지 미실시 방침 확인. 기준가격·시장가격·기초지수는 별도 시계열이며, T-1 날짜 대응과 환율 고시시각은 미확인.",
+      "facts": {
+        "fx_hedging_policy": "NO_FX_HEDGING_PLANNED",
+        "replication_policy": "FULL_REPLICATION_PLANNED_WITH_PARTIAL_REPLICATION_AND_ETF_DERIVATIVE_EXCEPTIONS",
+        "nav_publication_basis": "PREVIOUS_DAY_NET_ASSETS_DIVIDED_BY_PREVIOUS_DAY_UNITS",
+        "listed_equity_valuation_basis": "FINAL_MARKET_PRICE_IN_ACQUISITION_COUNTRY_ON_VALUATION_DATE",
+        "benchmark_t_minus_one_date_mapping": null,
+        "benchmark_fx_fixing": null,
+        "nav_fx_fixing": null
+      },
+      "source_locations": [
+        "PDF page 1: preparation date and effective date",
+        "PDF pages 17-19 (printed 16-18): section 9 investment strategy and currency risk",
+        "PDF page 31 (printed 30): section 12 NAV calculation and asset valuation"
+      ],
+      "not_verified": [
+        "actual_portfolio_hedge_positions",
+        "full_holdings_reconciliation",
+        "benchmark_t_minus_one_date_mapping",
+        "benchmark_and_nav_fx_fixing",
+        "daily_total_return",
+        "session_and_fx_alignment",
+        "representative_selection"
+      ],
+      "rs_eligible": false
+    },
+    {
       "evidence_id": "SPY_FACTSHEET_20260630_REVIEW_20260917",
       "instrument_id": "US_LISTED:SPY",
       "group_id": "US_LARGE_CAP",
@@ -156,5 +195,5 @@
       "rs_eligible": false
     }
   ],
-  "limits": "Manual fact extracts from official sources. Source HTML/PDF is not retained here; no raw source hash claimed. Each accessed date has its stated timezone (legacy records: review calendar date). Page display date does not certify price finality. No selection or RS gates cleared."
+  "limits": "Manual fact extracts from official sources. Source HTML/PDF is not retained here; a non-null hash identifies reviewed bytes but does not imply an archived source. Each accessed date has its stated timezone (legacy records: review calendar date). Page display date does not certify price finality. No selection or RS gates cleared."
 }
