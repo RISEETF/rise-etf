@@ -2,6 +2,42 @@
   "schema_version": 1,
   "records": [
     {
+      "evidence_id": "RISE_379780_MONTHLY_20260831_REVIEW_20260918",
+      "instrument_id": "XKRX:379780",
+      "group_id": "US_LARGE_CAP",
+      "source_url": "https://riseetf.co.kr/upload/cdn/2026/09/08/20260908bbf1937eb74144b.pdf",
+      "accessed_date": "2026-09-18",
+      "accessed_date_timezone": "Asia/Seoul",
+      "source_as_of": "2026-08-31",
+      "capture_method": "MANUAL_FACT_EXTRACTION_FROM_DIRECT_OFFICIAL_PDF",
+      "raw_source_sha256": "2390a9f104f6952d1f9547419f99c51850fcf47c0be41d32b844a4b86a6c0b59",
+      "raw_source_retained_in_repository": false,
+      "status": "PARTIAL_OFFICIAL_OBJECTIVE_CHECK",
+      "summary_ko": "2026-08-31 월간 성과표: ETF는 분배금 재투자 가정, 기초지수는 분배금 제외. 서로 다른 수익률 기준이므로 표시 차이를 운용 초과성과·RS로 바로 사용하지 않음.",
+      "facts": {
+        "scope": "MONTHLY_REPORT_PERFORMANCE_TABLE_ONLY",
+        "etf_table_distribution_basis": "REINVESTMENT_ASSUMED",
+        "benchmark_table_distribution_basis": "EXCLUDED",
+        "performance_chart_distribution_basis": "EXCLUDED",
+        "table_return_basis_match": false,
+        "benchmark_vendor_identifier": null,
+        "benchmark_t_minus_one_date_mapping": null,
+        "benchmark_fx_fixing": null
+      },
+      "source_locations": [
+        "PDF page 1: report date and ETF overview benchmark label",
+        "PDF page 1: ETF performance table heading, row asterisks and chart heading"
+      ],
+      "not_verified": [
+        "daily_total_return",
+        "gross_or_net_tax_reinvestment_convention",
+        "benchmark_vendor_identifier",
+        "session_and_fx_alignment",
+        "representative_selection"
+      ],
+      "rs_eligible": false
+    },
+    {
       "evidence_id": "RISE_379780_PROSPECTUS_20260807_REVIEW_20260918",
       "instrument_id": "XKRX:379780",
       "group_id": "US_LARGE_CAP",

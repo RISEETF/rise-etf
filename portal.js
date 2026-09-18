@@ -160,6 +160,15 @@ async function loadUniverse() {
         for(const evidence of candidate.issuer_evidence || []) {
           const note=document.createElement('p');note.className='muted';
           note.textContent=`${candidate.instrument_id}: ${evidence.summary_ko} 공식 자료 조회 ${evidence.accessed_date} · 부분 확인, 대표 선정 미완료`;
+          try {
+            const url=new URL(evidence.source_url);
+            if(url.protocol==='https:' && !url.username && !url.password && ['riseetf.co.kr','www.ssga.com','www.ishares.com'].includes(url.hostname)) {
+              const link=document.createElement('a');
+              link.href=url.href;link.target='_blank';link.rel='noopener noreferrer';
+              link.textContent='공식 근거 원문';
+              note.append(' · ',link);
+            }
+          } catch (_) { /* Keep the evidence text when its source URL is invalid. */ }
           tr.lastChild.append(note);
         }
       }
