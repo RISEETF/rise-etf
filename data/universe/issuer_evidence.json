@@ -12,9 +12,22 @@
       "raw_source_sha256": null,
       "status": "PARTIAL_OFFICIAL_OBJECTIVE_CHECK",
       "summary_ko": "S&P 500 추종 목적·미국 대형주·유동주식 시가총액가중 확인. 2026-06-30 팩트시트 기준.",
-      "facts": {"benchmark":"S&P 500 Index", "exposure":"US_LARGE_CAP_EQUITY", "index_weighting":"FLOAT_ADJUSTED_MARKET_CAP"},
-      "source_locations": ["page 1: Key Features", "page 2: About This Benchmark"],
-      "not_verified": ["full_holdings_reconciliation", "equivalence_to_korean_listed_ETF", "daily_total_return", "current_liquidity_comparison", "representative_selection"],
+      "facts": {
+        "benchmark": "S&P 500 Index",
+        "exposure": "US_LARGE_CAP_EQUITY",
+        "index_weighting": "FLOAT_ADJUSTED_MARKET_CAP"
+      },
+      "source_locations": [
+        "page 1: Key Features",
+        "page 2: About This Benchmark"
+      ],
+      "not_verified": [
+        "full_holdings_reconciliation",
+        "equivalence_to_korean_listed_ETF",
+        "daily_total_return",
+        "current_liquidity_comparison",
+        "representative_selection"
+      ],
       "rs_eligible": false
     },
     {
@@ -28,11 +41,120 @@
       "raw_source_sha256": null,
       "status": "PARTIAL_OFFICIAL_OBJECTIVE_CHECK",
       "summary_ko": "미국 국채 잔존만기 7~10년 추종 목적 확인. 듀레이션과 만기는 별도 지표.",
-      "facts": {"benchmark":"ICE US Treasury 7-10 Year Bond Index", "exposure":"US_TREASURY", "target_remaining_maturity_years":[7,10], "effective_duration":{"value":6.90,"unit":"years","as_of":"2026-09-15"}},
-      "source_locations": ["Product objective", "Key Facts: Benchmark Index", "Portfolio Characteristics: Effective Duration"],
-      "not_verified": ["full_holdings_reconciliation", "duration_matched_comparison", "daily_total_return", "current_liquidity_comparison", "representative_selection"],
+      "facts": {
+        "benchmark": "ICE US Treasury 7-10 Year Bond Index",
+        "exposure": "US_TREASURY",
+        "target_remaining_maturity_years": [
+          7,
+          10
+        ],
+        "effective_duration": {
+          "value": 6.9,
+          "unit": "years",
+          "as_of": "2026-09-15"
+        }
+      },
+      "source_locations": [
+        "Product objective",
+        "Key Facts: Benchmark Index",
+        "Portfolio Characteristics: Effective Duration"
+      ],
+      "not_verified": [
+        "full_holdings_reconciliation",
+        "duration_matched_comparison",
+        "daily_total_return",
+        "current_liquidity_comparison",
+        "representative_selection"
+      ],
+      "rs_eligible": false
+    },
+    {
+      "evidence_id": "RISE_148020_REVIEW_20260918_KST",
+      "instrument_id": "XKRX:148020",
+      "group_id": "KR_LARGE_CAP",
+      "source_url": "https://riseetf.co.kr/prod/finderDetail/4435",
+      "accessed_date": "2026-09-18",
+      "accessed_date_timezone": "Asia/Seoul",
+      "accessed_at_utc": "2026-09-17T22:58:57.289941+00:00",
+      "source_as_of": null,
+      "page_displayed_date": "2026-09-18",
+      "capture_method": "MANUAL_FACT_EXTRACTION_FROM_DIRECT_OFFICIAL_HTML",
+      "raw_source_sha256": null,
+      "status": "PARTIAL_OFFICIAL_OBJECTIVE_CHECK",
+      "summary_ko": "공식 기본정보의 KOSPI200 기초지수 확인. 구성종목 전체 대조는 미완료.",
+      "facts": {
+        "benchmark": "KOSPI200"
+      },
+      "source_locations": [
+        "기본정보: ETF명(종목번호) / 기초지수"
+      ],
+      "not_verified": [
+        "full_holdings_reconciliation",
+        "hedging_and_structure",
+        "daily_total_return",
+        "session_and_fx_alignment",
+        "representative_selection"
+      ],
+      "rs_eligible": false
+    },
+    {
+      "evidence_id": "RISE_379780_REVIEW_20260918_KST",
+      "instrument_id": "XKRX:379780",
+      "group_id": "US_LARGE_CAP",
+      "source_url": "https://riseetf.co.kr/prod/finderDetail/44B3",
+      "accessed_date": "2026-09-18",
+      "accessed_date_timezone": "Asia/Seoul",
+      "accessed_at_utc": "2026-09-17T22:58:57.289941+00:00",
+      "source_as_of": null,
+      "page_displayed_date": "2026-09-18",
+      "capture_method": "MANUAL_FACT_EXTRACTION_FROM_DIRECT_OFFICIAL_HTML",
+      "raw_source_sha256": null,
+      "status": "PARTIAL_OFFICIAL_OBJECTIVE_CHECK",
+      "summary_ko": "공식 기초지수 표기는 S&P 500 Index (KRW)(T-1). SPY와 통화·기준시점 차이 검증 필요.",
+      "facts": {
+        "benchmark": "S&P 500 Index (KRW)(T-1)"
+      },
+      "source_locations": [
+        "기본정보: ETF명(종목번호) / 기초지수"
+      ],
+      "not_verified": [
+        "full_holdings_reconciliation",
+        "hedging_and_structure",
+        "daily_total_return",
+        "session_and_fx_alignment",
+        "representative_selection"
+      ],
+      "rs_eligible": false
+    },
+    {
+      "evidence_id": "RISE_114100_REVIEW_20260918_KST",
+      "instrument_id": "XKRX:114100",
+      "group_id": "KR_GOVERNMENT_BOND_3Y",
+      "source_url": "https://riseetf.co.kr/prod/finderDetail/4427",
+      "accessed_date": "2026-09-18",
+      "accessed_date_timezone": "Asia/Seoul",
+      "accessed_at_utc": "2026-09-17T22:58:57.289941+00:00",
+      "source_as_of": null,
+      "page_displayed_date": "2026-09-18",
+      "capture_method": "MANUAL_FACT_EXTRACTION_FROM_DIRECT_OFFICIAL_HTML",
+      "raw_source_sha256": null,
+      "status": "PARTIAL_OFFICIAL_OBJECTIVE_CHECK",
+      "summary_ko": "공식 기초지수는 KTB채권지수. 상품명 3년을 실제 듀레이션 3년으로 간주하지 않음.",
+      "facts": {
+        "benchmark": "KTB채권지수"
+      },
+      "source_locations": [
+        "기본정보: ETF명(종목번호) / 기초지수"
+      ],
+      "not_verified": [
+        "full_holdings_reconciliation",
+        "hedging_and_structure",
+        "daily_total_return",
+        "session_and_fx_alignment",
+        "representative_selection"
+      ],
       "rs_eligible": false
     }
   ],
-  "limits": "Manually transcribed facts, not an automated issuer feed or a retained raw document. No evidence here clears representative selection or RS gates. Dates apply per document or per fact; accessed date is not an observation date."
+  "limits": "Manual fact extracts from official sources. Source HTML/PDF is not retained here; no raw source hash claimed. Each accessed date has its stated timezone (legacy records: review calendar date). Page display date does not certify price finality. No selection or RS gates cleared."
 }
