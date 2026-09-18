@@ -8,7 +8,7 @@
     "universe/policy.json": "013300a16d9e1dd3f21360df2500b9dee7d57ed621a2fc8d58929339ac8bea56",
     "series_sources.json": "e51ada8cd800aa81389dda345dfa5019fca0500fdf7da662740c5b615d91c9a9",
     "overseas_sources.json": "2e188cda4576782211c7e4c45172adf457d8293294fe6c534a22b48e446e4e53",
-    "universe/issuer_evidence.json": "066182f0341670cec256c58c6e13ca205dabd14f5452223b81f7307ab3187e37"
+    "universe/issuer_evidence.json": "75ddcd88c28a8798fad6b647c7fd037822158d2afe473a5e95bc7f793eb634cb"
   },
   "groups": [
     {
@@ -92,6 +92,45 @@
             "point_in_time_selection_history"
           ],
           "issuer_evidence": [
+            {
+              "evidence_id": "RISE_379780_PROSPECTUS_20260807_REVIEW_20260918",
+              "instrument_id": "XKRX:379780",
+              "group_id": "US_LARGE_CAP",
+              "source_url": "https://riseetf.co.kr/upload/cdn/2026/08/07/202608077ee54aeec9bc426.pdf",
+              "accessed_date": "2026-09-18",
+              "accessed_date_timezone": "Asia/Seoul",
+              "source_as_of": "2026-07-20",
+              "document_effective_date": "2026-08-07",
+              "capture_method": "MANUAL_FACT_EXTRACTION_FROM_DIRECT_OFFICIAL_PDF",
+              "raw_source_sha256": "5064105725d4180e956ef984f99a04aeecf4c7dfffb5cc67f66a727f6051caa0",
+              "raw_source_retained_in_repository": false,
+              "status": "PARTIAL_OFFICIAL_OBJECTIVE_CHECK",
+              "summary_ko": "투자설명서상 환헤지 미실시 방침 확인. 기준가격·시장가격·기초지수는 별도 시계열이며, T-1 날짜 대응과 환율 고시시각은 미확인.",
+              "facts": {
+                "fx_hedging_policy": "NO_FX_HEDGING_PLANNED",
+                "replication_policy": "FULL_REPLICATION_PLANNED_WITH_PARTIAL_REPLICATION_AND_ETF_DERIVATIVE_EXCEPTIONS",
+                "nav_publication_basis": "PREVIOUS_DAY_NET_ASSETS_DIVIDED_BY_PREVIOUS_DAY_UNITS",
+                "listed_equity_valuation_basis": "FINAL_MARKET_PRICE_IN_ACQUISITION_COUNTRY_ON_VALUATION_DATE",
+                "benchmark_t_minus_one_date_mapping": null,
+                "benchmark_fx_fixing": null,
+                "nav_fx_fixing": null
+              },
+              "source_locations": [
+                "PDF page 1: preparation date and effective date",
+                "PDF pages 17-19 (printed 16-18): section 9 investment strategy and currency risk",
+                "PDF page 31 (printed 30): section 12 NAV calculation and asset valuation"
+              ],
+              "not_verified": [
+                "actual_portfolio_hedge_positions",
+                "full_holdings_reconciliation",
+                "benchmark_t_minus_one_date_mapping",
+                "benchmark_and_nav_fx_fixing",
+                "daily_total_return",
+                "session_and_fx_alignment",
+                "representative_selection"
+              ],
+              "rs_eligible": false
+            },
             {
               "evidence_id": "RISE_379780_REVIEW_20260918_KST",
               "instrument_id": "XKRX:379780",
@@ -500,5 +539,5 @@
   "gap_group_count": 12,
   "candidate_count": 6,
   "selected_count": 0,
-  "issuer_evidence_count": 5
+  "issuer_evidence_count": 6
 }
