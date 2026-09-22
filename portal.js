@@ -182,28 +182,55 @@ async function loadResearchRS() {
     const data=await readJSON('data/research/rs.json');
     if(data.status!=='EXPLORATORY_PRICE_RS' || data.production_eligible!==false || data.fx_basis!=='ECB_REFERENCE_NOT_CLOSE' || !Array.isArray(data.windows)) throw new Error('연구용 RS 형식 오류');
     const selector=el('researchHorizon');
+    const basisSelector=el('researchBasis');
     const pct=value=>`${value>=0?'+':''}${value.toFixed(2)}%`;
+    const sources=el('researchSources');sources.replaceChildren();
+    for(const source of data.sources || []) {
+      const li=document.createElement('li');
+      li.textContent=`${source.name}: 최근 가격 ${source.latest_price_date || '없음'} · 수집 ${localTime(source.capture?.retrieved_at)}`;
+      sources.append(li);
+    }
+    const fxLine=document.createElement('li');
+    fxLine.textContent=`ECB 기준환율 수집 ${localTime(data.fx_capture?.retrieved_at)} · 종가 환율 아님`;
+    sources.append(fxLine);
     const render=()=>{
       el('researchRows').replaceChildren();
+      el('researchSummary').textContent='';
+      const basis=basisSelector.value;
+      if(!['krw','local'].includes(basis)) throw new Error('통화 기준 오류');
+      const label=basis==='krw'?'원화':'현지통화';
+      el('researchRankHeading').textContent=`${label} 순위`;
+      el('researchRSHeading').textContent=`SPY 대비 RS · ${label}`;
       const w=data.windows.find(item=>item.calendar_days===Number(selector.value));
-      const age=data.latest_common_date ? Math.max(0,Math.floor((Date.now()-Date.parse(data.latest_common_date))/86400000)) : null;
+      const todayKST=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+      const age=validDate(data.latest_common_date) ? Math.floor((Date.parse(todayKST)-Date.parse(data.latest_common_date))/86400000) : null;
+      if(age!==null && age<0) throw new Error('미래 관측일');
+      el('researchFreshness').hidden=age===null || age<7;
+      el('researchFreshness').textContent=age!==null && age>=7 ? `공통 관측일이 한국 날짜 기준 ${age}일 전입니다. 과거 비교값이며 오늘 시장 상황으로 해석하지 마세요. 7일은 달력일 기준 안내로, 휴장일·수집 장애 판정은 아닙니다.` : '';
       el('researchDates').textContent=`계산 시각 ${localTime(data.decision_time_utc)} · 공통 가격·환율 관측일 ${data.latest_common_date || '없음'}${age!==null?` · 오늘 기준 ${age}일 전`:''}`;
       if(!w || w.status!=='CALCULATED_RESEARCH_ONLY') {
         el('researchStatus').textContent=w?.status==='KNOWN_SPLIT_IN_WINDOW'?'구간 내 주식분할이 있어 종가 비교를 보류합니다.':'공통 가격·환율 기간이 부족해 계산하지 못했습니다.';
         return;
       }
-      if(!validDate(w.start_date) || !validDate(w.end_date) || !Array.isArray(w.rows) || w.rows.some(r=>['krw_rank','local_rank','local_return_pct','krw_return_pct','fx_return_pct','krw_rs_vs_spy_pct'].some(k=>!Number.isFinite(r[k])))) throw new Error('계산값 오류');
+      if(!validDate(w.start_date) || !validDate(w.end_date) || !Array.isArray(w.rows) || w.rows.some(r=>['krw_rank','local_rank','local_return_pct','krw_return_pct','fx_return_pct','krw_rs_vs_spy_pct','local_rs_vs_spy_pct'].some(k=>!Number.isFinite(r[k])))) throw new Error('계산값 오류');
       el('researchStatus').textContent=`연구용 ${w.rows.length}종목 · ${w.start_date} → ${w.end_date} (${w.actual_calendar_days}일) · ECB 기준환율`;
-      for(const row of w.rows) {
+      const rows=[...w.rows].sort((a,b)=>a[basis+'_rank']-b[basis+'_rank'] || a.instrument_id.localeCompare(b.instrument_id));
+      const positive=rows.filter(r=>r[basis+'_return_pct']>0).length;
+      const changed=rows.filter(r=>r.krw_rank!==r.local_rank).length;
+      el('researchSummary').textContent=`이 시범 풀의 ${label} 수익률 양수 ${positive}/${rows.length}종목 · 통화 기준에 따라 순위가 다른 종목 ${changed}개 (시간에 따른 순위 변화 아님)`;
+      for(const row of rows) {
         const tr=document.createElement('tr');
-        for(const value of [row.krw_rank,`${row.name} (${row.currency})`,pct(row.local_return_pct),pct(row.krw_return_pct),row.currency==='KRW'?'별도 환산 없음':pct(row.fx_return_pct),pct(row.krw_rs_vs_spy_pct),row.local_rank]) {
+        tr.dataset.instrument=row.instrument_id;
+        const delta=row.krw_return_pct-row.local_return_pct;
+        for(const value of [row[basis+'_rank'],`${row.name} (${row.currency})`,pct(row.local_return_pct),pct(row.krw_return_pct),row.currency==='KRW'?'별도 환산 없음':pct(row.fx_return_pct),row.currency==='KRW'?'별도 환산 없음':`${delta>=0?'+':''}${delta.toFixed(2)}%p`,pct(row[basis+'_rs_vs_spy_pct']),`${row.local_rank} → ${row.krw_rank}`]) {
           const td=document.createElement('td');td.textContent=value;tr.append(td);
         }
         el('researchRows').append(tr);
       }
     };
-    const safeRender=()=>{try{render();}catch(_){el('researchRows').replaceChildren();el('researchStatus').textContent='연구용 계산값을 표시할 수 없습니다.';}};
-    selector.disabled=false;selector.addEventListener('change',safeRender);safeRender();
+    const safeRender=()=>{try{render();}catch(_){el('researchRows').replaceChildren();el('researchSummary').textContent='';el('researchStatus').textContent='연구용 계산값을 표시할 수 없습니다.';}};
+    selector.disabled=false;basisSelector.disabled=false;
+    selector.addEventListener('change',safeRender);basisSelector.addEventListener('change',safeRender);safeRender();
   } catch (_) {
     el('researchRows').replaceChildren();el('researchStatus').textContent='연구용 RS 자료를 표시할 수 없습니다.';
   }
