@@ -5,6 +5,7 @@ const http = require('node:http');
 const {chromium} = require('playwright');
 const root = path.resolve(__dirname, '..');
 const master = JSON.parse(fs.readFileSync(path.join(root, 'data/master/latest.json')));
+const displayedProducts=[...master.products,...(master.pending_products || [])];
 const server = http.createServer((req,res) => {
   const file = path.join(root, req.url === '/' ? 'index.html' : req.url.split('?')[0]);
   if (!file.startsWith(root + path.sep)) {res.writeHead(403).end(); return;}
@@ -23,7 +24,12 @@ const server = http.createServer((req,res) => {
     const url=`http://127.0.0.1:${server.address().port}`;
     await page.goto(url);
     await page.waitForFunction(()=>!document.getElementById('search').disabled);
-    assert.equal(await page.locator('#products tr').count(),master.instrument_count);
+    assert.equal(await page.locator('#products tr').count(),displayedProducts.length);
+    assert.equal(await page.locator('#total').textContent(),displayedProducts.length.toLocaleString('ko-KR'));
+    if(master.pending_products?.length) assert.match(await page.locator('#products').textContent(),/공식 코드 확인 중/);
+    const changes=JSON.parse(fs.readFileSync(path.join(root,'data/master/changes.json')));
+    await page.waitForFunction(()=>!document.getElementById('masterChangesStatus').textContent.includes('확인 중'));
+    assert.equal(await page.locator('#masterChanges li').count(),Math.min(changes.events.length,20));
     const research=JSON.parse(fs.readFileSync(path.join(root,'data/research/rs.json')));
     await page.waitForFunction(()=>!document.getElementById('researchHorizon').disabled);
     for(const days of [30,7,60]) {
@@ -63,7 +69,7 @@ const server = http.createServer((req,res) => {
     await page.locator('#reset').click();
     const category=master.products[0].primary_category;
     await page.locator('#category').selectOption(category);
-    assert.equal(await page.locator('#products tr').count(),master.products.filter(p=>p.primary_category===category).length);
+    assert.equal(await page.locator('#products tr').count(),displayedProducts.filter(p=>p.primary_category===category).length);
     await page.locator('#reset').click();
     await page.screenshot({path:'/tmp/rise-master-desktop.png'});
     await page.setViewportSize({width:390,height:844});

@@ -40,6 +40,7 @@ class SeriesTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory)
             write_json(root / "master/latest.json", {"effective_date":"2026-09-16", "products":[{"code":"148020","name":"RISE 200"}]})
+            write_json(root / "master/changes.json", {"effective_date":"2026-09-16", "events":[]})
             write_json(root / "series_sources.json", {"price_instruments":[{"code":"148020","name":"RISE 200"}]})
             first=capture(root,"NAVER_CHART_CANDIDATE","https://example.test", "PRICE","148020",fetcher=lambda _:PRICE,now=NOW)
             capture(root,"NAVER_CHART_CANDIDATE","https://example.test", "PRICE","148020",fetcher=lambda _:PRICE.replace(b'|105|',b'|106|'),now=NOW+dt.timedelta(hours=1))

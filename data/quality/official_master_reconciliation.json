@@ -1,10 +1,12 @@
 {
   "status": "COMPLETE_FOR_IDENTITY_FIELDS",
-  "official_effective_date": "2026-09-16",
-  "official_source_url": "https://riseetf.co.kr/prod/finder",
-  "official_source_sha256": "6ddf894c4ae80223e6d662469da15e8db7efcde8261a1fd5012e68a1a547b9f8",
+  "official_effective_date": "2026-09-22",
+  "official_source_url": "https://kbam.co.kr/find",
+  "official_source_sha256": "acd6bfafbf9a96d32aeaee5ceed55b75e1c0ae102600b6a739273296afa34b97",
   "legacy_count": 148,
   "official_count": 143,
+  "source_product_count": 144,
+  "pending_identity_count": 1,
   "counts": {
     "NOT_IN_OFFICIAL_CURRENT_MASTER": 124,
     "IDENTITY_MATCH": 20,
@@ -434,7 +436,7 @@
     {
       "code": "276650",
       "legacy_name": "RISE 글로벌테크놀로지(합성 H)",
-      "official_name": "RISE 글로벌테크놀로지(합성 H)",
+      "official_name": "RISE 글로벌 테크놀로지(합성H)",
       "status": "IDENTITY_MATCH"
     },
     {
@@ -905,10 +907,21 @@
     "secondary_rise_count": 143,
     "only_official": [],
     "only_secondary": [],
-    "name_mismatches": [],
-    "status": "EXACT_IDENTITY_MATCH",
-    "retrieved_at": "2026-09-11T04:04:19.164766+00:00",
-    "sha256": "1c2772e3d2c1ce91ca882d9bb52d20ade00b05f59362ec3c0cbdaf14648e011f",
+    "name_mismatches": [
+      {
+        "code": "0005C0",
+        "official_name": "RISE 미국S&P500엔화노출",
+        "secondary_name": "RISE 미국S&P500엔화노출(합성 H)"
+      },
+      {
+        "code": "183700",
+        "official_name": "RISE 채권혼합",
+        "secondary_name": "RISE 200채권혼합50"
+      }
+    ],
+    "status": "IDENTITY_DIFFERENCE",
+    "retrieved_at": "2026-09-21T07:45:08.480732+00:00",
+    "sha256": "3f498cb545edfa7cc185fc70279f6963a21c0f4a593c4256cbb7de373d0394b5",
     "scope": "Captured identities only; captures may be from different dates"
   },
   "excluded_from_verification": [

@@ -18,8 +18,15 @@ function validateMaster(data) {
   for (const row of data.products) {
     if (!/^[0-9A-Z]{6}$/.test(row.code) || codes.has(row.code) ||
         typeof row.name !== 'string' || !row.name.startsWith('RISE ') || !validDate(row.listed_on) ||
-        !/^https:\/\/riseetf\.co\.kr\/prod\/finderDetail\/[a-zA-Z0-9]+$/.test(row.detail_url)) throw new Error('종목 식별 정보 오류');
+        !/^https:\/\/(?:riseetf\.co\.kr\/prod\/finderDetail|kbam\.co\.kr\/products)\/[a-zA-Z0-9]+$/.test(row.detail_url)) throw new Error('종목 식별 정보 오류');
     codes.add(row.code);
+  }
+  const pending=data.pending_products || [];
+  const details=new Set(data.products.map(r=>r.detail_id));
+  if(!Array.isArray(pending) || (data.source_product_count ?? data.instrument_count)!==data.instrument_count+pending.length) throw new Error('공식 상품 수량 오류');
+  for(const row of pending) {
+    if(row.code!==null || row.identity_status!=='OFFICIAL_CODE_PENDING' || typeof row.name!=='string' || !row.name.startsWith('RISE ') || !validDate(row.listed_on) || details.has(row.detail_id) || !/^https:\/\/kbam\.co\.kr\/products\/[a-zA-Z0-9]+$/.test(row.detail_url)) throw new Error('대기 상품 식별 정보 오류');
+    details.add(row.detail_id);
   }
   return data;
 }
@@ -34,7 +41,7 @@ function renderProducts() {
   const body = el('products'); body.replaceChildren();
   for (const row of selected) {
     const tr = document.createElement('tr');
-    for (const value of [row.code, row.name, row.primary_category || '미분류', row.listed_on]) {
+    for (const value of [row.code || '공식 코드 확인 중', row.name, row.primary_category || '미분류', row.listed_on]) {
       const td = document.createElement('td'); td.textContent = value; tr.append(td);
     }
     const td = document.createElement('td'), link = document.createElement('a');
@@ -47,8 +54,9 @@ function renderProducts() {
 async function loadMaster() {
   try {
     const data = validateMaster(await readJSON('data/master/latest.json'));
-    products = data.products;
-    el('total').textContent = data.instrument_count.toLocaleString('ko-KR');
+    products = [...data.products,...(data.pending_products || [])];
+    el('total').textContent = products.length.toLocaleString('ko-KR');
+    el('identityCounts').textContent=`종목코드 확인 ${data.instrument_count}개 · 공식 코드 대기 ${data.pending_products?.length || 0}개`;
     el('effective').textContent = data.effective_date;
     el('retrieved').textContent = `수집 ${localTime(data.retrieved_at)}`;
     const age = Math.floor((Date.now() - Date.parse(data.retrieved_at)) / 86400000);
@@ -58,10 +66,29 @@ async function loadMaster() {
     }
     for (const id of ['search','category','reset']) el(id).disabled = false;
     renderProducts();
+    await loadMasterChanges(data);
   } catch (error) {
     products = []; el('products').replaceChildren();
     el('masterStatus').textContent = `공식 마스터를 표시할 수 없습니다. ${error.message}.`;
     el('resultCount').textContent = '자료 없음 · 기존 자료로 대체하지 않습니다.';
+  }
+}
+async function loadMasterChanges(master) {
+  try {
+    const changes=await readJSON('data/master/changes.json');
+    if(changes.source_sha256!==master.source_sha256 || changes.instrument_count!==master.instrument_count || !Array.isArray(changes.events)) throw new Error('변동 내역 기준 불일치');
+    el('masterChanges').replaceChildren();
+    const labels={ADDED_TO_OFFICIAL_LIST:'공식 목록 추가',REMOVED_FROM_OFFICIAL_LIST:'공식 목록 제외 · 상장폐지 확정 아님',NAME_CHANGED:'명칭 변경',CODE_UPDATED:'공식 코드 갱신'};
+    const events=[...changes.events].reverse().slice(0,20);
+    el('masterChangesStatus').textContent=events.length?`저장된 변동 ${changes.events.length}건 · 최근 ${events.length}건 표시`:'비교 이력에서 종목 추가·제외·명칭 변경이 없습니다.';
+    for(const item of events) {
+      if(!labels[item.kind]) continue;
+      const li=document.createElement('li');
+      li.textContent=`${labels[item.kind]}: ${item.name} (${item.code || '공식 코드 확인 중'})${item.listed_on?` · 공식 상장일 ${item.listed_on}`:''}${item.previous_name?` · 이전 ${item.previous_name}`:''} · 발견 ${localTime(item.detected_at)}`;
+      el('masterChanges').append(li);
+    }
+  } catch (_) {
+    el('masterChanges').replaceChildren();el('masterChangesStatus').textContent='현재 목록과 일치하는 변동 이력을 불러오지 못했습니다.';
   }
 }
 async function loadCapture() {

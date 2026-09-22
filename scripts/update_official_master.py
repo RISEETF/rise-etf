@@ -6,17 +6,16 @@ import gzip
 import hashlib
 import html
 import json
-import math
 import re
 from pathlib import Path
-import urllib.parse
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor
 
 from update_daily import ROOT, write_json
+from master_changes import record_changes
 
-FINDER_URL = "https://riseetf.co.kr/prod/finder"
-LIST_URL = "https://riseetf.co.kr/prod/finder/listJquery"
-PAGE_SIZE = 12
+FINDER_URL = "https://kbam.co.kr/find"
+LIST_URL = "https://kbam.co.kr/api/products/etfs"
 
 
 def clean(fragment):
@@ -26,6 +25,13 @@ def clean(fragment):
 
 
 def extract_overview(page):
+    if 'filtergroup_count_value' in page:
+        total = re.search(r'filtergroup_count_value[^\"]*\">(\d+)</span>', page)
+        effective = re.search(r'<time dateTime="(\d{4}-\d{2}-\d{2})"', page)
+        if not total or not effective:
+            raise ValueError('Official count or date missing from redesigned Finder')
+        dt.date.fromisoformat(effective.group(1))
+        return int(total.group(1)), effective.group(1)
     total = re.search(r"전체\s*<span>(\d+)</span>\s*건", page)
     effective = re.search(r"(\d{4}\.\d{2}\.\d{2})\s*기준", page)
     if not total or not effective:
@@ -33,7 +39,46 @@ def extract_overview(page):
     return int(total.group(1)), effective.group(1).replace(".", "-")
 
 
+def parse_catalog(page):
+    if page.lstrip().startswith('{'):
+        envelope=json.loads(page)
+        if envelope.get('format')!='KBAM_ETF_API_V1':
+            raise ValueError('Unknown official source format')
+        pages=envelope['pages']
+        if not pages:
+            raise ValueError('Missing API pages')
+        products=[]; pending=[]
+        total=None
+        for number, capture in enumerate(pages,1):
+            payload=json.loads(capture['body']); info=payload['page_info']
+            if (info['current_page']!=number or info['total_page']!=len(pages) or
+                (total is not None and info['total_count']!=total)):
+                raise ValueError('Incomplete or inconsistent official API pagination')
+            total=info['total_count']
+            for row in payload['page_items']:
+                code=row['krx_cd'];detail=row['fund_cd'];name=row['name'].strip()
+                listed=dt.datetime.fromisoformat(row['listing_dt']).date().isoformat()
+                if (code is not None and not re.fullmatch(r'[0-9A-Z]{6}',code)) or not re.fullmatch(r'[a-zA-Z0-9]+',detail) or not name.startswith('RISE '):
+                    raise ValueError('Invalid official product identity')
+                item={'code':code,'name':name,'detail_id':detail,
+                                 'detail_url':f'https://kbam.co.kr/products/{detail}',
+                                 'primary_category':row.get('category1'),
+                                 'secondary_categories':[row['category2']] if row.get('category2') else [],
+                                 'labels':[], 'published_total_fee':None,'listed_on':listed}
+                if code is None:
+                    item['identity_status']='OFFICIAL_CODE_PENDING';pending.append(item)
+                else:products.append(item)
+        details=[r['detail_id'] for r in products+pending]
+        if len(details)!=total or len(set(details))!=len(details):
+            raise ValueError('Incomplete or duplicate official catalog')
+        validate_master(products,total-len(pending))
+        return products,pending
+    return parse_products(page),[]
+
+
 def parse_products(page):
+    if page.lstrip().startswith('{'):
+        return parse_catalog(page)[0]
     products = []
     for block in re.findall(r'<tr data-class="dataList">(.*?)</tr>', page, re.S):
         link = re.search(r'href="/prod/finderDetail/([^\"]+)">(.*?)</a>', block, re.S)
@@ -94,7 +139,7 @@ def validate_master(products, expected_count):
 
 
 def fetch_text(url, data=None):
-    headers = {"User-Agent": "RISE-research/0.1", "Accept": "text/html"}
+    headers = {"User-Agent": "RISE-research/0.1", "Accept": "application/json" if '/api/' in url else "text/html"}
     if data is not None:
         headers["Content-Type"] = "application/x-www-form-urlencoded"
         headers["Referer"] = FINDER_URL
@@ -106,13 +151,16 @@ def fetch_text(url, data=None):
 def fetch_official_pages():
     overview = fetch_text(FINDER_URL)
     total, effective_date = extract_overview(overview)
-    page_count = math.ceil(total / PAGE_SIZE)
-    form = urllib.parse.urlencode({
-        "searchText": "", "searchType1": "", "searchType2": "",
-        "page": str(page_count), "searchOrder": "", "searchBoardType": "",
-        "searchFieldType": "list",
-    }).encode()
-    listing = fetch_text(LIST_URL, form)
+    first=fetch_text(LIST_URL+'?page=1')
+    info=json.loads(first)['page_info']
+    if info['total_count']!=total or not 1<=info['total_page']<=100:
+        raise ValueError('Finder and API count disagree')
+    def capture(number):
+        url=LIST_URL+f'?page={number}'
+        return {'url':url,'body':first if number==1 else fetch_text(url)}
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        pages=list(pool.map(capture,range(1,info['total_page']+1)))
+    listing=json.dumps({'format':'KBAM_ETF_API_V1','pages':pages},ensure_ascii=False)
     return overview, listing, total, effective_date
 
 
@@ -162,17 +210,21 @@ def persist_master(master_dir, master):
     if not daily.exists():
         write_json(daily, master)
     latest = master_dir / "latest.json"
+    previous = None
     if latest.exists():
         previous = json.loads(latest.read_text(encoding="utf-8"))
         if previous["effective_date"] > effective:
             raise ValueError("Refusing to replace master with an older effective date")
     write_json(latest, master)
+    if 'products' in master:
+        record_changes(master_dir, previous, master)
 
 
 def main():
     captured_at = dt.datetime.now(dt.timezone.utc).isoformat()
     overview, listing, total, effective_date = fetch_official_pages()
-    products = validate_master(parse_products(listing), total)
+    products, pending = parse_catalog(listing)
+    validate_master(products, total-len(pending))
 
     raw = listing.encode("utf-8")
     digest = hashlib.sha256(raw).hexdigest()
@@ -206,7 +258,10 @@ def main():
         "source_sha256": digest,
         "overview_sha256": overview_digest,
         "instrument_count": len(products),
-        "field_scope": ["code", "name", "detail_id", "category", "labels", "published_total_fee", "listed_on"],
+        "source_product_count": total,
+        "pending_products": pending,
+        "field_scope": ["code", "name", "detail_id", "category", "listed_on"],
+        "unavailable_fields": ["pension_labels", "published_total_fee"],
         "products": products,
     }
     master_dir = ROOT / "data/master"
@@ -244,6 +299,8 @@ def main():
         "official_source_sha256": digest,
         "legacy_count": len(legacy),
         "official_count": len(products),
+        "source_product_count": total,
+        "pending_identity_count": len(pending),
         "counts": counts,
         "records": reconciliation,
         "secondary_capture_reconciliation": secondary_reconciliation,
@@ -254,7 +311,9 @@ def main():
         "# Official RISE instrument master validation", "",
         f"- Official source: {FINDER_URL}",
         f"- Official effective date: {effective_date}",
-        f"- Official products: {len(products)}", "",
+        f"- Official catalog products: {total}",
+        f"- Verified exchange-code identities: {len(products)}",
+        f"- Official products awaiting exchange code: {len(pending)}", "",
         "## Legacy portal reconciliation", "",
         "| Result | Count |", "|---|---:|",
     ]
@@ -265,11 +324,11 @@ def main():
                       f"The independent capture contained {secondary_reconciliation['secondary_rise_count']} RISE identities.",
                       f"Secondary retrieval time: {secondary_reconciliation.get('retrieved_at')}. Captures may be from different dates."])
     lines.extend(["", "## Scope", "",
-                  "Identity, official category labels, published total fee, listing date and official detail URL are captured.",
+                  "Identity, official categories, listing date and official detail URL are captured. The redesigned list does not supply pension labels or total fees; these are left unavailable, not copied from old snapshots.",
                   "Price, NAV, returns, AUM, pension limits and marketing claims remain outside this verification.", ""])
     (ROOT / "OFFICIAL_MASTER_VALIDATION.md").write_text("\n".join(lines), encoding="utf-8")
     persist_master(master_dir, master)
-    print(json.dumps({"official_count": len(products), "effective_date": effective_date,
+    print(json.dumps({"official_count": len(products), "source_product_count": total, "pending_identity_count": len(pending), "effective_date": effective_date,
                       "legacy_reconciliation": counts}, ensure_ascii=False))
 
 

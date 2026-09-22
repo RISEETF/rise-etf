@@ -114,7 +114,7 @@ def build(data_dir, db_path):
         connection.executescript(SCHEMA)
         # Retain identities from historical masters; absence today is not delisting evidence.
         historical = [(path, json.loads(path.read_text())) for path in
-                      (data_dir / "master").rglob("*.json") if path.name != "latest.json"]
+                      (data_dir / "master").rglob("*.json") if path.name not in {"latest.json", "changes.json"}]
         historical.sort(key=lambda item: (item[1]["effective_date"], item[1].get("retrieved_at", ""), str(item[0])))
         snapshots = historical + [(data_dir / "master/latest.json", master)]
         for path, snapshot in snapshots:

@@ -1,8 +1,10 @@
 # Official RISE instrument master validation
 
-- Official source: https://riseetf.co.kr/prod/finder
-- Official effective date: 2026-09-16
-- Official products: 143
+- Official source: https://kbam.co.kr/find
+- Official effective date: 2026-09-22
+- Official catalog products: 144
+- Verified exchange-code identities: 143
+- Official products awaiting exchange code: 1
 
 ## Legacy portal reconciliation
 
@@ -14,11 +16,11 @@
 
 ## Secondary market capture check
 
-Status: **EXACT_IDENTITY_MATCH**.
+Status: **IDENTITY_DIFFERENCE**.
 The independent capture contained 143 RISE identities.
-Secondary retrieval time: 2026-09-11T04:04:19.164766+00:00. Captures are from different dates; this is an identity comparison, not a current price check.
+Secondary retrieval time: 2026-09-21T07:45:08.480732+00:00. Captures may be from different dates.
 
 ## Scope
 
-Identity, official category labels, published total fee, listing date and official detail URL are captured.
+Identity, official categories, listing date and official detail URL are captured. The redesigned list does not supply pension labels or total fees; these are left unavailable, not copied from old snapshots.
 Price, NAV, returns, AUM, pension limits and marketing claims remain outside this verification.
