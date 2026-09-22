@@ -1,0 +1,55 @@
+name: KRX ETF primary ledger
+
+on:
+  schedule:
+    # 08:00 KST, Monday-Friday (23:00 UTC on the prior day)
+    - cron: '0 23 * * 0-4'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: krx-etf-primary-ledger
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify parser and accumulation rules
+        run: python -m unittest tests.test_krx_etf -v
+      - name: Restore cumulative KRX database
+        uses: actions/cache/restore@v4
+        with:
+          path: var/krx_etf.sqlite
+          key: krx-etf-db-${{ github.run_id }}
+          restore-keys: krx-etf-db-
+      - name: Require configured secret
+        env:
+          KRX_AUTH_KEY: ${{ secrets.KRX_AUTH_KEY }}
+        run: test -n "$KRX_AUTH_KEY"
+      - name: Collect official KRX ETF snapshot
+        env:
+          KRX_AUTH_KEY: ${{ secrets.KRX_AUTH_KEY }}
+        run: python scripts/collect_krx_etf.py
+      - name: Save cumulative KRX database cache
+        uses: actions/cache/save@v4
+        if: success()
+        with:
+          path: var/krx_etf.sqlite
+          key: krx-etf-db-${{ github.run_id }}
+      - name: Upload restricted runtime artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: krx-etf-${{ github.run_id }}
+          path: |
+            var/krx-output/receipt.json
+            var/krx_etf.sqlite
+          if-no-files-found: error
+          retention-days: 30
