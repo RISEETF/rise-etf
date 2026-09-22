@@ -177,4 +177,35 @@ async function loadUniverse() {
     el('universeRows').replaceChildren();el('universeStatus').textContent='후보 자료를 표시할 수 없습니다. 대표 선정·RS 계산은 보류합니다.';
   }
 }
-Promise.allSettled([loadMaster(), loadCapture(), loadQuality(), loadMasterAttempt(), loadSeries(), loadIssuerChecks(), loadUniverse()]);
+async function loadResearchRS() {
+  try {
+    const data=await readJSON('data/research/rs.json');
+    if(data.status!=='EXPLORATORY_PRICE_RS' || data.production_eligible!==false || data.fx_basis!=='ECB_REFERENCE_NOT_CLOSE' || !Array.isArray(data.windows)) throw new Error('연구용 RS 형식 오류');
+    const selector=el('researchHorizon');
+    const pct=value=>`${value>=0?'+':''}${value.toFixed(2)}%`;
+    const render=()=>{
+      el('researchRows').replaceChildren();
+      const w=data.windows.find(item=>item.calendar_days===Number(selector.value));
+      const age=data.latest_common_date ? Math.max(0,Math.floor((Date.now()-Date.parse(data.latest_common_date))/86400000)) : null;
+      el('researchDates').textContent=`계산 시각 ${localTime(data.decision_time_utc)} · 공통 가격·환율 관측일 ${data.latest_common_date || '없음'}${age!==null?` · 오늘 기준 ${age}일 전`:''}`;
+      if(!w || w.status!=='CALCULATED_RESEARCH_ONLY') {
+        el('researchStatus').textContent=w?.status==='KNOWN_SPLIT_IN_WINDOW'?'구간 내 주식분할이 있어 종가 비교를 보류합니다.':'공통 가격·환율 기간이 부족해 계산하지 못했습니다.';
+        return;
+      }
+      if(!validDate(w.start_date) || !validDate(w.end_date) || !Array.isArray(w.rows) || w.rows.some(r=>['krw_rank','local_rank','local_return_pct','krw_return_pct','fx_return_pct','krw_rs_vs_spy_pct'].some(k=>!Number.isFinite(r[k])))) throw new Error('계산값 오류');
+      el('researchStatus').textContent=`연구용 ${w.rows.length}종목 · ${w.start_date} → ${w.end_date} (${w.actual_calendar_days}일) · ECB 기준환율`;
+      for(const row of w.rows) {
+        const tr=document.createElement('tr');
+        for(const value of [row.krw_rank,`${row.name} (${row.currency})`,pct(row.local_return_pct),pct(row.krw_return_pct),row.currency==='KRW'?'별도 환산 없음':pct(row.fx_return_pct),pct(row.krw_rs_vs_spy_pct),row.local_rank]) {
+          const td=document.createElement('td');td.textContent=value;tr.append(td);
+        }
+        el('researchRows').append(tr);
+      }
+    };
+    const safeRender=()=>{try{render();}catch(_){el('researchRows').replaceChildren();el('researchStatus').textContent='연구용 계산값을 표시할 수 없습니다.';}};
+    selector.disabled=false;selector.addEventListener('change',safeRender);safeRender();
+  } catch (_) {
+    el('researchRows').replaceChildren();el('researchStatus').textContent='연구용 RS 자료를 표시할 수 없습니다.';
+  }
+}
+Promise.allSettled([loadMaster(), loadCapture(), loadQuality(), loadMasterAttempt(), loadSeries(), loadIssuerChecks(), loadUniverse(), loadResearchRS()]);

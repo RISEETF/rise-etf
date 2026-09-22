@@ -24,6 +24,15 @@ const server = http.createServer((req,res) => {
     await page.goto(url);
     await page.waitForFunction(()=>!document.getElementById('search').disabled);
     assert.equal(await page.locator('#products tr').count(),master.instrument_count);
+    const research=JSON.parse(fs.readFileSync(path.join(root,'data/research/rs.json')));
+    await page.waitForFunction(()=>!document.getElementById('researchHorizon').disabled);
+    for(const days of [30,7,60]) {
+      await page.locator('#researchHorizon').selectOption(String(days));
+      const window=research.windows.find(w=>w.calendar_days===days);
+      assert.equal(await page.locator('#researchRows tr').count(),window.rows.length);
+      if(window.rows.length) assert.match(await page.locator('#researchStatus').textContent(),new RegExp(window.start_date));
+    }
+    await page.locator('#researchHorizon').selectOption('30');
     const coverage=JSON.parse(fs.readFileSync(path.join(root,'data/series/status.json')));
     await page.waitForFunction(count=>document.querySelectorAll('#seriesRows tr').length===count,coverage.series.length);
     assert.match(await page.locator('#seriesStatus').textContent(),/RS 계산 보류/);
@@ -54,6 +63,11 @@ const server = http.createServer((req,res) => {
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
     await page.screenshot({path:'/tmp/rise-master-mobile.png'});
     let legacyRequests=0;
+    await page.route('**/data/research/rs.json',route=>route.fulfill({status:404,body:'missing'}));
+    await page.reload();
+    await page.waitForFunction(()=>document.getElementById('researchStatus').textContent.includes('표시할 수 없습니다'));
+    assert.equal(await page.locator('#researchRows tr').count(),0);
+    await page.unroute('**/data/research/rs.json');
     page.on('request', r=>{if(r.url().endsWith('/data/latest.json'))legacyRequests++;});
     await page.route('**/data/master/latest.json', route=>route.fulfill({status:404,body:'missing'}));
     await page.reload();
