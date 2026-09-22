@@ -13,13 +13,15 @@
 <p class="intro">공식 RISE 종목을 조회하고, 수집된 데이터의 기준일과 검증 범위를 확인합니다.</p>
 <div id="masterStatus" class="notice" role="status" aria-live="polite">공식 마스터를 불러오는 중입니다.</div>
 <p id="masterAttempt" class="muted" role="status">마스터 수집 이력 확인 중</p>
+<p class="muted">종목 수는 최근 성공한 공식 목록에서 자동 집계합니다. 평일 07:17 및 09:17~18:47 KST에 30분 간격으로 확인합니다. 공식 사이트 반영·예약 실행·배포 지연이 있어 실시간은 아닙니다. 수집 실패 시 마지막 성공 목록을 유지합니다.</p>
+<details><summary>종목 추가·제외·명칭 변경</summary><p id="masterChangesStatus">변동 이력 확인 중</p><ul id="masterChanges"></ul><p class="muted">목록 제외는 상장폐지 확정이 아닙니다. 거래소 공시와의 별도 대조가 필요합니다. 새 종목의 가격 수집·RS 편입은 별도 검토합니다.</p></details>
 <section class="metrics" aria-label="데이터 현황">
-<article><span>공식 마스터 종목 수</span><strong id="total">—</strong><small>저장된 공식 목록의 고유 종목코드 수</small></article>
+<article><span>공식 목록 상품 수</span><strong id="total">—</strong><small id="identityCounts">종목코드 확인·대기 상태를 구분합니다.</small></article>
 <article><span>공식 페이지 기준일</span><strong id="effective">—</strong><small id="retrieved">수집 시각 확인 중</small></article>
 <article><span>가격 데이터 상태</span><strong class="small" id="captureState">확인 중</strong><small id="captureTime">수집 시각과 시장 기준일은 별도입니다.</small></article>
 </section>
 <section class="panel" aria-labelledby="listTitle">
-<div class="section-head"><div><h2 id="listTitle">공식 종목 탐색기</h2><p>코드·명칭·공식 분류·상장일 · 가격 및 수익률 미표시</p></div><a href="https://riseetf.co.kr/prod/finder" target="_blank" rel="noopener noreferrer">RISE 공식 출처 ↗</a></div>
+<div class="section-head"><div><h2 id="listTitle">공식 종목 탐색기</h2><p>코드·명칭·공식 분류·상장일 · 가격 및 수익률 미표시</p></div><a href="https://kbam.co.kr/find" target="_blank" rel="noopener noreferrer">RISE 공식 출처 ↗</a></div>
 <div class="filters"><label>종목 검색<input id="search" type="search" placeholder="종목명 또는 6자리 코드" disabled></label><label>공식 분류<select id="category" disabled><option value="">전체 분류</option></select></label><button id="reset" type="button" disabled>초기화</button></div>
 <p id="resultCount" role="status" aria-live="polite">목록 확인 중</p>
 <div class="table-wrap"><table><thead><tr><th scope="col">종목코드</th><th scope="col">공식 종목명</th><th scope="col">공식 분류</th><th scope="col">상장일</th><th scope="col">출처</th></tr></thead><tbody id="products"></tbody></table></div>

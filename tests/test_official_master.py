@@ -7,6 +7,7 @@ import gzip
 import hashlib
 import json
 import tempfile
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -16,6 +17,36 @@ spec.loader.exec_module(master)
 
 
 class OfficialMasterTests(unittest.TestCase):
+    def test_failed_collection_preserves_last_good_membership(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d); path=root/'data/master/latest.json';path.parent.mkdir(parents=True)
+            path.write_text('{"instrument_count":144}')
+            with patch.object(master,'ROOT',root), patch.object(master,'fetch_official_pages',side_effect=ValueError('Incomplete page')):
+                self.assertEqual(master.run(),1)
+            self.assertEqual(json.loads(path.read_text())['instrument_count'],144)
+            self.assertEqual(json.loads((root/'data/master_collection_status.json').read_text())['status'],'FAILED')
+
+    def test_redesigned_finder_and_paginated_api(self):
+        overview='<span class="x__filtergroup_count_value">2</span><time dateTime="2026-09-22">2026. 09. 22</time>'
+        self.assertEqual(master.extract_overview(overview),(2,'2026-09-22'))
+        row={'fund_cd':'44A1','krx_cd':'123456','name':'RISE 신규','listing_dt':'2026-09-22T00:00:00+09:00','category1':'국내주식','category2':'테마'}
+        payload={'page_items':[row],'page_info':{'current_page':1,'total_page':2,'total_count':2}}
+        other={'page_items':[{**row,'fund_cd':'44A2','krx_cd':'123457'}],'page_info':{'current_page':2,'total_page':2,'total_count':2}}
+        def pack(parts):return json.dumps({'format':'KBAM_ETF_API_V1','pages':[{'body':json.dumps(p)} for p in parts]})
+        products=master.parse_products(pack([payload,other]))
+        self.assertEqual(products[0]['detail_url'],'https://kbam.co.kr/products/44A1')
+        self.assertIsNone(products[0]['published_total_fee'])
+        other['page_items'][0]['krx_cd']=None
+        known,pending=master.parse_catalog(pack([payload,other]))
+        self.assertEqual(len(known),1)
+        self.assertEqual(pending[0]['detail_id'],'44A2')
+        self.assertIsNone(pending[0]['code'])
+        self.assertEqual(pending[0]['identity_status'],'OFFICIAL_CODE_PENDING')
+        other['page_items'][0]['krx_cd']='INVALID'
+        with self.assertRaises(ValueError):master.parse_catalog(pack([payload,other]))
+        for pages in ([payload],[payload,payload]):
+            with self.assertRaises(ValueError):master.parse_products(pack(pages))
+
     def test_latest_capture_matches_preserved_overview_and_listing(self):
         snapshot = json.loads((ROOT / "data/master/latest.json").read_text())
         def source(digest):
@@ -24,9 +55,11 @@ class OfficialMasterTests(unittest.TestCase):
             self.assertEqual(hashlib.sha256(raw).hexdigest(), digest)
             return raw.decode()
         total, effective = master.extract_overview(source(snapshot["overview_sha256"]))
-        self.assertEqual(total, snapshot["instrument_count"])
+        self.assertEqual(total, snapshot.get('source_product_count',snapshot['instrument_count']))
         self.assertEqual(effective, snapshot["effective_date"])
-        products = master.validate_master(master.parse_products(source(snapshot["source_sha256"])), total)
+        products,pending=master.parse_catalog(source(snapshot["source_sha256"]))
+        master.validate_master(products,total-len(pending))
+        self.assertEqual(pending,snapshot.get('pending_products',[]))
         self.assertEqual(products, snapshot["products"])
 
     def test_daily_vintage_is_immutable_and_latest_cannot_regress(self):
