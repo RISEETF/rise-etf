@@ -46,6 +46,37 @@ class KrxEtfTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "DUPLICATE"):
             MODULE.parse_snapshot(json.dumps(duplicate).encode(), dt.date(2026, 9, 18))
 
+    def test_completeness_rejects_partial_and_stale_snapshots(self):
+        snapshot = MODULE.parse_snapshot(json.dumps(self.fixture()).encode(), dt.date(2026, 9, 18))
+        with tempfile.TemporaryDirectory() as temp:
+            db = Path(temp) / "krx.sqlite"
+            with self.assertRaisesRegex(ValueError, "UNIVERSE_TOO_SMALL"):
+                MODULE.validate_completeness(db, snapshot, dt.date(2026, 9, 18))
+            expanded = {"page_date": "2026-09-01", "records": snapshot["records"] * 250}
+            with self.assertRaisesRegex(ValueError, "STALE"):
+                MODULE.validate_completeness(db, expanded, dt.date(2026, 9, 18))
+
+    def test_completeness_rejects_low_coverage_and_universe_collapse(self):
+        base = self.fixture()["OutBlock_1"][0]
+        rows = []
+        for number in range(100000, 100600):
+            row = dict(base)
+            row["ISU_SRT_CD"] = str(number)
+            rows.append(row)
+        snapshot = MODULE.parse_snapshot(json.dumps({"OutBlock_1": rows}).encode(), dt.date(2026, 9, 18))
+        with tempfile.TemporaryDirectory() as temp:
+            db = Path(temp) / "krx.sqlite"
+            quality = MODULE.validate_completeness(db, snapshot, dt.date(2026, 9, 18))
+            self.assertEqual(quality["lag_calendar_days"], 0)
+            MODULE.accumulate(db, snapshot, "hash-a", "2026-09-18T10:00:00+00:00")
+            collapsed = {"page_date": "2026-09-19", "records": snapshot["records"][:500]}
+            with self.assertRaisesRegex(ValueError, "UNIVERSE_COLLAPSE"):
+                MODULE.validate_completeness(db, collapsed, dt.date(2026, 9, 19))
+            for item in snapshot["records"][:40]:
+                item["nav"] = None
+            with self.assertRaisesRegex(ValueError, "FIELD_COVERAGE_LOW"):
+                MODULE.validate_completeness(Path(temp) / "empty.sqlite", snapshot, dt.date(2026, 9, 18))
+
 
 if __name__ == "__main__":
     unittest.main()

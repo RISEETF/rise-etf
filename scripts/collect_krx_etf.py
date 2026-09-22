@@ -119,6 +119,40 @@ def connect(path: Path) -> sqlite3.Connection:
     return connection
 
 
+def validate_completeness(db_path: Path, snapshot: dict, asof: dt.date) -> dict:
+    """Reject partial or stale market-wide responses before any write."""
+    records = snapshot["records"]
+    current_count = len(records)
+    observed = dt.date.fromisoformat(snapshot["page_date"])
+    lag_days = (asof - observed).days
+    if lag_days < 0 or lag_days > 7:
+        raise ValueError(f"KRX_SNAPSHOT_STALE_OR_FUTURE:{lag_days}")
+    if current_count < 500:
+        raise ValueError(f"KRX_UNIVERSE_TOO_SMALL:{current_count}")
+    coverage = {}
+    for field in ("close", "nav", "volume", "listed_shares"):
+        present = sum(item.get(field) is not None for item in records)
+        ratio = present / current_count
+        coverage[field] = ratio
+        if ratio < 0.95:
+            raise ValueError(f"KRX_FIELD_COVERAGE_LOW:{field}:{ratio:.4f}")
+    prior_count = None
+    if db_path.is_file():
+        with sqlite3.connect(f"file:{db_path.resolve()}?mode=ro", uri=True) as connection:
+            latest = connection.execute("SELECT max(observation_date) FROM snapshots").fetchone()[0]
+            if latest:
+                prior_count = connection.execute(
+                    "SELECT count(DISTINCT ticker) FROM snapshots WHERE observation_date=?", (latest,)
+                ).fetchone()[0]
+    if prior_count and current_count < prior_count * 0.90:
+        raise ValueError(f"KRX_UNIVERSE_COLLAPSE:{prior_count}->{current_count}")
+    return {
+        "lag_calendar_days": lag_days,
+        "prior_ticker_count": prior_count,
+        "field_coverage": coverage,
+    }
+
+
 def accumulate(db_path: Path, snapshot: dict, raw_hash: str, retrieved_at: str) -> dict:
     new = unchanged = revisions = 0
     with connect(db_path) as connection:
@@ -167,6 +201,7 @@ def main() -> int:
     raw_hash = hashlib.sha256(payload).hexdigest()
     raw_path = output / f"krx_etf_{result['snapshot']['page_date'].replace('-', '')}.json"
     raw_path.write_bytes(payload)
+    quality = validate_completeness(Path(args.db), result["snapshot"], asof)
     delta = accumulate(Path(args.db), result["snapshot"], raw_hash, retrieved_at)
     receipt = {
         "status": "SUCCESS",
@@ -178,6 +213,7 @@ def main() -> int:
         "delta": delta,
         "retrieved_at": retrieved_at,
         "raw_sha256": raw_hash,
+        "quality": quality,
         "flow_warning": "AUM_OR_LISTED_SHARES_CHANGE_IS_NOT_DIRECT_NET_FLOW",
     }
     (output / "receipt.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2))
