@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "status": "EXPLORATORY_PRICE_RS",
-  "decision_time_utc": "2026-09-22T03:05:09.807396+00:00",
+  "decision_time_utc": "2026-09-22T03:06:57.567968+00:00",
   "benchmark": "US_LISTED:SPY",
   "price_field": "close",
   "fx_basis": "ECB_REFERENCE_NOT_CLOSE",
@@ -444,7 +444,7 @@
   ],
   "limits": [
     "Close-price changes, not total returns; distributions are not reinvested.",
-    "Domestic adjustment basis is unconfirmed; USD raw close excludes split adjustment.",
+    "Domestic adjustment basis is unconfirmed; provider close corporate-action handling is not independently verified.",
     "Same date labels are not simultaneous closes; no benchmark T-1 shift is applied.",
     "ECB reference rates are not closing or executable rates. No forward fill.",
     "Ranks describe this pilot pool, not the market or approved representatives.",

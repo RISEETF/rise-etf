@@ -61,7 +61,7 @@ def calculate(data, instruments, horizons=(7, 30, 60), benchmark='US_LISTED:SPY'
               'fx_capture': fx_data['capture'] if fx_data else None,
               'windows': [],
               'limits': ['Close-price changes, not total returns; distributions are not reinvested.',
-                         'Domestic adjustment basis is unconfirmed; USD raw close excludes split adjustment.',
+                         'Domestic adjustment basis is unconfirmed; provider close corporate-action handling is not independently verified.',
                          'Same date labels are not simultaneous closes; no benchmark T-1 shift is applied.',
                          'ECB reference rates are not closing or executable rates. No forward fill.',
                          'Ranks describe this pilot pool, not the market or approved representatives.',
@@ -79,7 +79,7 @@ def calculate(data, instruments, horizons=(7, 30, 60), benchmark='US_LISTED:SPY'
             continue
         start = max(starts)
         window.update(start_date=start, actual_calendar_days=(dt.date.fromisoformat(end)-dt.date.fromisoformat(start)).days)
-        # A known split makes raw-close ranks misleading; withhold the entire pool.
+        # Split handling is not independently verified; conservatively withhold the pool.
         splits = [key for key in configs if any(e['kind']=='SPLIT' and start < e['observation_date'] <= end
                   for e in captured[key].get('corporate_actions', []))]
         if splits:
