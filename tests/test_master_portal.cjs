@@ -33,6 +33,13 @@ const server = http.createServer((req,res) => {
       if(window.rows.length) assert.match(await page.locator('#researchStatus').textContent(),new RegExp(window.start_date));
     }
     await page.locator('#researchHorizon').selectOption('30');
+    const currentWindow=research.windows.find(w=>w.calendar_days===30);
+    await page.locator('#researchBasis').selectOption('local');
+    const localOrder=[...currentWindow.rows].sort((a,b)=>a.local_rank-b.local_rank || a.instrument_id.localeCompare(b.instrument_id)).map(r=>r.instrument_id);
+    assert.deepEqual(await page.locator('#researchRows tr').evaluateAll(rows=>rows.map(r=>r.dataset.instrument)),localOrder);
+    assert.match(await page.locator('#researchRSHeading').textContent(),/현지통화/);
+    await page.locator('#researchBasis').selectOption('krw');
+    assert.equal(await page.locator('#researchSources li').count(),research.sources.length+1);
     const coverage=JSON.parse(fs.readFileSync(path.join(root,'data/series/status.json')));
     await page.waitForFunction(count=>document.querySelectorAll('#seriesRows tr').length===count,coverage.series.length);
     assert.match(await page.locator('#seriesStatus').textContent(),/RS 계산 보류/);
@@ -63,6 +70,23 @@ const server = http.createServer((req,res) => {
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
     await page.screenshot({path:'/tmp/rise-master-mobile.png'});
     let legacyRequests=0;
+    const synthetic={...research,latest_common_date:'2000-01-08',windows:[{calendar_days:30,start_date:'1999-12-09',end_date:'2000-01-08',actual_calendar_days:30,status:'CALCULATED_RESEARCH_ONLY',rows:[
+      {instrument_id:'US_LISTED:SPY',name:'Test USD',currency:'USD',local_rank:2,krw_rank:1,local_return_pct:5,krw_return_pct:15.5,fx_return_pct:10,local_rs_vs_spy_pct:0,krw_rs_vs_spy_pct:0},
+      {instrument_id:'XKRX:TEST',name:'Test KRW',currency:'KRW',local_rank:1,krw_rank:2,local_return_pct:10,krw_return_pct:10,fx_return_pct:0,local_rs_vs_spy_pct:100*(1.1/1.05-1),krw_rs_vs_spy_pct:100*(1.1/1.155-1)}
+    ]}]};
+    await page.route('**/data/research/rs.json',route=>route.fulfill({contentType:'application/json',body:JSON.stringify(synthetic)}));
+    await page.reload();
+    await page.waitForFunction(()=>document.querySelectorAll('#researchRows tr').length===2);
+    assert.equal(await page.locator('#researchFreshness').isVisible(),true);
+    assert.match(await page.locator('#researchRows tr').first().textContent(),/\+10\.50%p/);
+    assert.match(await page.locator('#researchSummary').textContent(),/다른 종목 2개/);
+    await page.locator('#researchBasis').selectOption('local');
+    assert.equal(await page.locator('#researchRows tr').first().getAttribute('data-instrument'),'XKRX:TEST');
+    assert.equal(await page.locator('#researchRows tr').first().locator('td').nth(6).textContent(),'+4.76%');
+    await page.locator('#researchHorizon').selectOption('60');
+    assert.equal(await page.locator('#researchRows tr').count(),0);
+    assert.equal(await page.locator('#researchSummary').textContent(),'');
+    await page.unroute('**/data/research/rs.json');
     await page.route('**/data/research/rs.json',route=>route.fulfill({status:404,body:'missing'}));
     await page.reload();
     await page.waitForFunction(()=>document.getElementById('researchStatus').textContent.includes('표시할 수 없습니다'));
