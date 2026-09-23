@@ -50,6 +50,8 @@ class KrxEtfTest(unittest.TestCase):
             MODULE.parse_snapshot(json.dumps(duplicate).encode(), dt.date(2026, 9, 18))
 
     def test_reject_nonfinite_numbers(self):
+        self.assertEqual(MODULE.number(0, 'VOLUME'), 0)
+        self.assertIsNone(MODULE.number(None, 'VOLUME'))
         for value in ['NaN', 'Infinity', '-Infinity']:
             with self.assertRaisesRegex(ValueError, 'NONFINITE'):
                 MODULE.number(value, 'NAV')

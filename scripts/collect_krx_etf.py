@@ -35,7 +35,7 @@ FIELDS = {
 
 
 def number(value: object, field: str) -> float | None:
-    text = str(value or "").replace(",", "").strip()
+    text = ("" if value is None else str(value)).replace(",", "").strip()
     if not text:
         return None
     try:
