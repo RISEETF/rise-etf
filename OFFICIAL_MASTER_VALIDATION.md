@@ -1,10 +1,10 @@
 # Official RISE instrument master validation
 
 - Official source: https://kbam.co.kr/find
-- Official effective date: 2026-09-22
+- Official effective date: 2026-09-23
 - Official catalog products: 144
-- Verified exchange-code identities: 143
-- Official products awaiting exchange code: 1
+- Verified exchange-code identities: 144
+- Official products awaiting exchange code: 0
 
 ## Legacy portal reconciliation
 
@@ -18,7 +18,7 @@
 
 Status: **IDENTITY_DIFFERENCE**.
 The independent capture contained 143 RISE identities.
-Secondary retrieval time: 2026-09-21T07:45:08.480732+00:00. Captures may be from different dates.
+Secondary retrieval time: 2026-09-22T07:43:29.842436+00:00. Captures may be from different dates.
 
 ## Scope
 

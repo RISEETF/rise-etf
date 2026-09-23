@@ -1,12 +1,12 @@
 {
   "status": "COMPLETE_FOR_IDENTITY_FIELDS",
-  "official_effective_date": "2026-09-22",
+  "official_effective_date": "2026-09-23",
   "official_source_url": "https://kbam.co.kr/find",
-  "official_source_sha256": "acd6bfafbf9a96d32aeaee5ceed55b75e1c0ae102600b6a739273296afa34b97",
+  "official_source_sha256": "d5f59fcdfa8545100343b36fa5af96f5fb56e9d02fda0669a9eb7240acb6ae23",
   "legacy_count": 148,
-  "official_count": 143,
+  "official_count": 144,
   "source_product_count": 144,
-  "pending_identity_count": 1,
+  "pending_identity_count": 0,
   "counts": {
     "NOT_IN_OFFICIAL_CURRENT_MASTER": 124,
     "IDENTITY_MATCH": 20,
@@ -903,9 +903,11 @@
     }
   ],
   "secondary_capture_reconciliation": {
-    "official_count": 143,
+    "official_count": 144,
     "secondary_rise_count": 143,
-    "only_official": [],
+    "only_official": [
+      "0240J0"
+    ],
     "only_secondary": [],
     "name_mismatches": [
       {
@@ -920,8 +922,8 @@
       }
     ],
     "status": "IDENTITY_DIFFERENCE",
-    "retrieved_at": "2026-09-21T07:45:08.480732+00:00",
-    "sha256": "3f498cb545edfa7cc185fc70279f6963a21c0f4a593c4256cbb7de373d0394b5",
+    "retrieved_at": "2026-09-22T07:43:29.842436+00:00",
+    "sha256": "d70e6590813c642f681bca2ae9e2a450048d79822e8b6f99b95742a19035e060",
     "scope": "Captured identities only; captures may be from different dates"
   },
   "excluded_from_verification": [

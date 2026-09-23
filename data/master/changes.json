@@ -1,9 +1,9 @@
 {
   "status": "OFFICIAL_LIST_CHANGES_NOT_DELISTING_CONFIRMATION",
-  "checked_at": "2026-09-22T22:56:35.385294+00:00",
-  "effective_date": "2026-09-22",
-  "source_sha256": "acd6bfafbf9a96d32aeaee5ceed55b75e1c0ae102600b6a739273296afa34b97",
-  "instrument_count": 143,
+  "checked_at": "2026-09-23T00:30:35.094494+00:00",
+  "effective_date": "2026-09-23",
+  "source_sha256": "d5f59fcdfa8545100343b36fa5af96f5fb56e9d02fda0669a9eb7240acb6ae23",
+  "instrument_count": 144,
   "source_product_count": 144,
   "previous_count": 144,
   "events": [
@@ -114,7 +114,19 @@
       "previous_source_sha256": "6ddf894c4ae80223e6d662469da15e8db7efcde8261a1fd5012e68a1a547b9f8",
       "source_sha256": "acd6bfafbf9a96d32aeaee5ceed55b75e1c0ae102600b6a739273296afa34b97",
       "event_id": "290fe10587fb01c44233c0834094a01023eda511760315f1ab69557ed0e5da94"
+    },
+    {
+      "kind": "CODE_UPDATED",
+      "code": "0240J0",
+      "detail_id": "44L1",
+      "name": "RISE 삼성SK그룹",
+      "previous_code": null,
+      "detected_at": "2026-09-23T00:30:35.094494+00:00",
+      "source_effective_date": "2026-09-23",
+      "previous_source_sha256": "acd6bfafbf9a96d32aeaee5ceed55b75e1c0ae102600b6a739273296afa34b97",
+      "source_sha256": "d5f59fcdfa8545100343b36fa5af96f5fb56e9d02fda0669a9eb7240acb6ae23",
+      "event_id": "d71c347bd403fddfec0c3c12402cff2a8f3efcd0f9b1aa6769bc173aca08aff5"
     }
   ],
-  "last_check_change_count": 0
+  "last_check_change_count": 1
 }
