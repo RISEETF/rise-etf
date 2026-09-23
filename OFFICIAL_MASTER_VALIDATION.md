@@ -17,8 +17,8 @@
 ## Secondary market capture check
 
 Status: **IDENTITY_DIFFERENCE**.
-The independent capture contained 143 RISE identities.
-Secondary retrieval time: 2026-09-22T07:43:29.842436+00:00. Captures may be from different dates.
+The independent capture contained 144 RISE identities.
+Secondary retrieval time: 2026-09-23T07:44:21.668073+00:00. Captures may be from different dates.
 
 ## Scope
 
