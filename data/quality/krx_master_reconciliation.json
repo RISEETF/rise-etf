@@ -1,0 +1,1462 @@
+{
+  "schema_version": 1,
+  "status": "KRX_DAILY_IDENTITY_COMPARISON",
+  "source_role": "PRIMARY_EXCHANGE_OBSERVATION",
+  "source_url": "https://data-dbg.krx.co.kr/svc/apis/etp/etf_bydd_trd",
+  "observed_on": "2026-09-22",
+  "retrieved_at": "2026-09-23T04:37:09.284348+00:00",
+  "raw_sha256": "04b90577fa83a34cc2df3765952db60e9d697a2a31e137820717ab1b5d85b3a6",
+  "krx_market_count": 1175,
+  "issuer_effective_date": "2026-09-23",
+  "issuer_source_sha256": "d5f59fcdfa8545100343b36fa5af96f5fb56e9d02fda0669a9eb7240acb6ae23",
+  "issuer_product_count": 144,
+  "counts": {
+    "MATCHED_CODE_NAME": 142,
+    "NAME_DIFFERENCE": 2
+  },
+  "rows": [
+    {
+      "detail_id": "4413",
+      "issuer_code": "105780",
+      "issuer_name": "RISE 5대그룹주",
+      "issuer_listed_on": "2008-10-22",
+      "krx_code": "105780",
+      "krx_name": "RISE 5대그룹주",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4427",
+      "issuer_code": "114100",
+      "issuer_name": "RISE 국고채3년",
+      "issuer_listed_on": "2009-07-29",
+      "krx_code": "114100",
+      "krx_name": "RISE 국고채3년",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4432",
+      "issuer_code": "136340",
+      "issuer_name": "RISE 중기우량회사채",
+      "issuer_listed_on": "2011-04-15",
+      "krx_code": "136340",
+      "krx_name": "RISE 중기우량회사채",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4433",
+      "issuer_code": "140570",
+      "issuer_name": "RISE 수출주",
+      "issuer_listed_on": "2011-04-15",
+      "krx_code": "140570",
+      "krx_name": "RISE 수출주",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4434",
+      "issuer_code": "140580",
+      "issuer_name": "RISE 우량업종대표주",
+      "issuer_listed_on": "2011-04-15",
+      "krx_code": "140580",
+      "krx_name": "RISE 우량업종대표주",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4435",
+      "issuer_code": "148020",
+      "issuer_name": "RISE 200",
+      "issuer_listed_on": "2011-10-20",
+      "krx_code": "148020",
+      "krx_name": "RISE 200",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4437",
+      "issuer_code": "174360",
+      "issuer_name": "RISE 중국본토대형주CSI100",
+      "issuer_listed_on": "2013-06-04",
+      "krx_code": "174360",
+      "krx_name": "RISE 중국본토대형주CSI100",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4439",
+      "issuer_code": "183710",
+      "issuer_name": "RISE 주식혼합",
+      "issuer_listed_on": "2013-10-17",
+      "krx_code": "183710",
+      "krx_name": "RISE 주식혼합",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4440",
+      "issuer_code": "183700",
+      "issuer_name": "RISE 채권혼합",
+      "issuer_listed_on": "2013-10-17",
+      "krx_code": "183700",
+      "krx_name": "RISE 200채권혼합50",
+      "candidate_codes": [],
+      "status": "NAME_DIFFERENCE"
+    },
+    {
+      "detail_id": "4441",
+      "issuer_code": "196230",
+      "issuer_name": "RISE 단기통안채",
+      "issuer_listed_on": "2014-05-19",
+      "krx_code": "196230",
+      "krx_name": "RISE 단기통안채",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4443",
+      "issuer_code": "219390",
+      "issuer_name": "RISE 미국S&P원유생산기업(합성 H)",
+      "issuer_listed_on": "2015-06-02",
+      "krx_code": "219390",
+      "krx_name": "RISE 미국S&P원유생산기업(합성 H)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4444",
+      "issuer_code": "234310",
+      "issuer_name": "RISE V&S셀렉트밸류",
+      "issuer_listed_on": "2016-02-02",
+      "krx_code": "234310",
+      "krx_name": "RISE V&S셀렉트밸류",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4445",
+      "issuer_code": "241390",
+      "issuer_name": "RISE V&S셀렉트밸류채권혼합",
+      "issuer_listed_on": "2016-04-12",
+      "krx_code": "241390",
+      "krx_name": "RISE V&S셀렉트밸류채권혼합",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4446",
+      "issuer_code": "250730",
+      "issuer_name": "RISE 차이나HSCEI(H)",
+      "issuer_listed_on": "2016-08-10",
+      "krx_code": "250730",
+      "krx_name": "RISE 차이나HSCEI(H)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4447",
+      "issuer_code": "252400",
+      "issuer_name": "RISE 200선물레버리지",
+      "issuer_listed_on": "2016-09-12",
+      "krx_code": "252400",
+      "krx_name": "RISE 200선물레버리지",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4448",
+      "issuer_code": "252410",
+      "issuer_name": "RISE 200선물인버스",
+      "issuer_listed_on": "2016-09-12",
+      "krx_code": "252410",
+      "krx_name": "RISE 200선물인버스",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4449",
+      "issuer_code": "252420",
+      "issuer_name": "RISE 200선물인버스2X",
+      "issuer_listed_on": "2016-09-22",
+      "krx_code": "252420",
+      "krx_name": "RISE 200선물인버스2X",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4450",
+      "issuer_code": "253280",
+      "issuer_name": "RISE 헬스케어",
+      "issuer_listed_on": "2016-09-23",
+      "krx_code": "253280",
+      "krx_name": "RISE 헬스케어",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4451",
+      "issuer_code": "253290",
+      "issuer_name": "RISE 헬스케어채권혼합",
+      "issuer_listed_on": "2016-09-23",
+      "krx_code": "253290",
+      "krx_name": "RISE 헬스케어채권혼합",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4454",
+      "issuer_code": "266160",
+      "issuer_name": "RISE 고배당",
+      "issuer_listed_on": "2017-04-14",
+      "krx_code": "266160",
+      "krx_name": "RISE 고배당",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4455",
+      "issuer_code": "267440",
+      "issuer_name": "RISE 미국장기국채선물(H)",
+      "issuer_listed_on": "2017-04-20",
+      "krx_code": "267440",
+      "krx_name": "RISE 미국장기국채선물(H)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4456",
+      "issuer_code": "267450",
+      "issuer_name": "RISE 미국장기국채선물인버스(H)",
+      "issuer_listed_on": "2017-04-20",
+      "krx_code": "267450",
+      "krx_name": "RISE 미국장기국채선물인버스(H)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4457",
+      "issuer_code": "267490",
+      "issuer_name": "RISE 미국장기국채선물레버리지(합성 H)",
+      "issuer_listed_on": "2017-04-20",
+      "krx_code": "267490",
+      "krx_name": "RISE 미국장기국채선물레버리지(합성 H)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4459",
+      "issuer_code": "270810",
+      "issuer_name": "RISE 코스닥150",
+      "issuer_listed_on": "2017-06-16",
+      "krx_code": "270810",
+      "krx_name": "RISE 코스닥150",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4460",
+      "issuer_code": "272560",
+      "issuer_name": "RISE 단기국공채액티브",
+      "issuer_listed_on": "2017-06-29",
+      "krx_code": "272560",
+      "krx_name": "RISE 단기국공채액티브",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4461",
+      "issuer_code": "272570",
+      "issuer_name": "RISE 중장기국공채액티브",
+      "issuer_listed_on": "2017-06-29",
+      "krx_code": "272570",
+      "krx_name": "RISE 중장기국공채액티브",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4462",
+      "issuer_code": "270800",
+      "issuer_name": "RISE KQ고배당",
+      "issuer_listed_on": "2017-07-07",
+      "krx_code": "270800",
+      "krx_name": "RISE KQ고배당",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4463",
+      "issuer_code": "275750",
+      "issuer_name": "RISE 코스닥150선물인버스",
+      "issuer_listed_on": "2017-08-01",
+      "krx_code": "275750",
+      "krx_name": "RISE 코스닥150선물인버스",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4464",
+      "issuer_code": "276650",
+      "issuer_name": "RISE 글로벌 테크놀로지(합성H)",
+      "issuer_listed_on": "2017-08-17",
+      "krx_code": "276650",
+      "krx_name": "RISE 글로벌테크놀로지(합성 H)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4465",
+      "issuer_code": "278240",
+      "issuer_name": "RISE 코스닥150선물레버리지",
+      "issuer_listed_on": "2017-08-31",
+      "krx_code": "278240",
+      "krx_name": "RISE 코스닥150선물레버리지",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4466",
+      "issuer_code": "281990",
+      "issuer_name": "RISE 중소형고배당",
+      "issuer_listed_on": "2017-11-02",
+      "krx_code": "281990",
+      "krx_name": "RISE 중소형고배당",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4467",
+      "issuer_code": "282000",
+      "issuer_name": "RISE 국고채3년선물인버스",
+      "issuer_listed_on": "2017-11-09",
+      "krx_code": "282000",
+      "krx_name": "RISE 국고채3년선물인버스",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4470",
+      "issuer_code": "284980",
+      "issuer_name": "RISE 200금융",
+      "issuer_listed_on": "2017-12-08",
+      "krx_code": "284980",
+      "krx_name": "RISE 200금융",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4478",
+      "issuer_code": "290080",
+      "issuer_name": "RISE 200고배당커버드콜ATM",
+      "issuer_listed_on": "2018-02-27",
+      "krx_code": "290080",
+      "krx_name": "RISE 200고배당커버드콜ATM",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4479",
+      "issuer_code": "290130",
+      "issuer_name": "RISE ESG사회책임투자",
+      "issuer_listed_on": "2018-02-27",
+      "krx_code": "290130",
+      "krx_name": "RISE ESG사회책임투자",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4480",
+      "issuer_code": "291680",
+      "issuer_name": "RISE 차이나H선물인버스(H)",
+      "issuer_listed_on": "2018-03-23",
+      "krx_code": "291680",
+      "krx_name": "RISE 차이나H선물인버스(H)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4481",
+      "issuer_code": "292050",
+      "issuer_name": "RISE KRX300",
+      "issuer_listed_on": "2018-03-26",
+      "krx_code": "292050",
+      "krx_name": "RISE KRX300",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4482",
+      "issuer_code": "295000",
+      "issuer_name": "RISE 국채선물10년",
+      "issuer_listed_on": "2018-05-11",
+      "krx_code": "295000",
+      "krx_name": "RISE 국채선물10년",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4483",
+      "issuer_code": "295020",
+      "issuer_name": "RISE 국채선물10년인버스",
+      "issuer_listed_on": "2018-05-11",
+      "krx_code": "295020",
+      "krx_name": "RISE 국채선물10년인버스",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4488",
+      "issuer_code": "300640",
+      "issuer_name": "RISE 게임테마",
+      "issuer_listed_on": "2018-07-24",
+      "krx_code": "300640",
+      "krx_name": "RISE 게임테마",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4489",
+      "issuer_code": "302450",
+      "issuer_name": "RISE 코스피",
+      "issuer_listed_on": "2018-07-24",
+      "krx_code": "302450",
+      "krx_name": "RISE 코스피",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4492",
+      "issuer_code": "310080",
+      "issuer_name": "RISE 중국MSCI China(H)",
+      "issuer_listed_on": "2018-11-28",
+      "krx_code": "310080",
+      "krx_name": "RISE 중국MSCI China(H)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4494",
+      "issuer_code": "315960",
+      "issuer_name": "RISE 대형고배당10TR",
+      "issuer_listed_on": "2019-01-22",
+      "krx_code": "315960",
+      "krx_name": "RISE 대형고배당10TR",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4496",
+      "issuer_code": "326240",
+      "issuer_name": "RISE IT플러스",
+      "issuer_listed_on": "2019-06-20",
+      "krx_code": "326240",
+      "krx_name": "RISE IT플러스",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4497",
+      "issuer_code": "326230",
+      "issuer_name": "RISE 내수주플러스",
+      "issuer_listed_on": "2019-06-20",
+      "krx_code": "326230",
+      "krx_name": "RISE 내수주플러스",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4498",
+      "issuer_code": "334690",
+      "issuer_name": "RISE 팔라듐선물(H)",
+      "issuer_listed_on": "2019-09-24",
+      "krx_code": "334690",
+      "krx_name": "RISE 팔라듐선물(H)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4499",
+      "issuer_code": "334700",
+      "issuer_name": "RISE 팔라듐선물인버스(H)",
+      "issuer_listed_on": "2019-09-24",
+      "krx_code": "334700",
+      "krx_name": "RISE 팔라듐선물인버스(H)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44A4",
+      "issuer_code": "354240",
+      "issuer_name": "RISE 미국고정배당우선증권",
+      "issuer_listed_on": "2020-05-19",
+      "krx_code": "354240",
+      "krx_name": "RISE 미국고정배당우선증권",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44A5",
+      "issuer_code": "361580",
+      "issuer_name": "RISE 200TR",
+      "issuer_listed_on": "2020-08-21",
+      "krx_code": "361580",
+      "krx_name": "RISE 200TR",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44A7",
+      "issuer_code": "367760",
+      "issuer_name": "RISE 네트워크인프라",
+      "issuer_listed_on": "2020-10-29",
+      "krx_code": "367760",
+      "krx_name": "RISE 네트워크인프라",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44A8",
+      "issuer_code": "367770",
+      "issuer_name": "RISE 수소경제테마",
+      "issuer_listed_on": "2020-10-29",
+      "krx_code": "367770",
+      "krx_name": "RISE 수소경제테마",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44A9",
+      "issuer_code": "368590",
+      "issuer_name": "RISE 미국나스닥100",
+      "issuer_listed_on": "2020-11-06",
+      "krx_code": "368590",
+      "krx_name": "RISE 미국나스닥100",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44B1",
+      "issuer_code": "371150",
+      "issuer_name": "RISE 차이나항셍테크",
+      "issuer_listed_on": "2020-12-16",
+      "krx_code": "371150",
+      "krx_name": "RISE 차이나항셍테크",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44B2",
+      "issuer_code": "375270",
+      "issuer_name": "RISE 글로벌데이터센터리츠(합성)",
+      "issuer_listed_on": "2021-01-14",
+      "krx_code": "375270",
+      "krx_name": "RISE 글로벌데이터센터리츠(합성)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44B3",
+      "issuer_code": "379780",
+      "issuer_name": "RISE 미국S&P500",
+      "issuer_listed_on": "2021-04-09",
+      "krx_code": "379780",
+      "krx_name": "RISE 미국S&P500",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44B4",
+      "issuer_code": "379790",
+      "issuer_name": "RISE 유로스탁스50(H)",
+      "issuer_listed_on": "2021-04-09",
+      "krx_code": "379790",
+      "krx_name": "RISE 유로스탁스50(H)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44B5",
+      "issuer_code": "385540",
+      "issuer_name": "RISE 종합채권(A-이상)액티브",
+      "issuer_listed_on": "2021-05-26",
+      "krx_code": "385540",
+      "krx_name": "RISE 종합채권(A-이상)액티브",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44B6",
+      "issuer_code": "385550",
+      "issuer_name": "RISE 단기채권알파액티브",
+      "issuer_listed_on": "2021-05-26",
+      "krx_code": "385550",
+      "krx_name": "RISE 단기채권알파액티브",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44B7",
+      "issuer_code": "385560",
+      "issuer_name": "RISE KIS국고채30년Enhanced",
+      "issuer_listed_on": "2021-05-26",
+      "krx_code": "385560",
+      "krx_name": "RISE KIS국고채30년Enhanced",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44B8",
+      "issuer_code": "388280",
+      "issuer_name": "RISE K엔터&여행레저",
+      "issuer_listed_on": "2021-06-10",
+      "krx_code": "388280",
+      "krx_name": "RISE K엔터&여행레저",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44B9",
+      "issuer_code": "388420",
+      "issuer_name": "RISE 비메모리반도체액티브",
+      "issuer_listed_on": "2021-06-10",
+      "krx_code": "388420",
+      "krx_name": "RISE 비메모리반도체액티브",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44C2",
+      "issuer_code": "401170",
+      "issuer_name": "RISE 메타버스",
+      "issuer_listed_on": "2021-10-13",
+      "krx_code": "401170",
+      "krx_name": "RISE 메타버스",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44C3",
+      "issuer_code": "399580",
+      "issuer_name": "RISE 글로벌클린에너지",
+      "issuer_listed_on": "2021-10-21",
+      "krx_code": "399580",
+      "krx_name": "RISE 글로벌클린에너지",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44C6",
+      "issuer_code": "417450",
+      "issuer_name": "RISE 글로벌수소경제",
+      "issuer_listed_on": "2022-02-15",
+      "krx_code": "417450",
+      "krx_name": "RISE 글로벌수소경제",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44C7",
+      "issuer_code": "422420",
+      "issuer_name": "RISE 2차전지액티브",
+      "issuer_listed_on": "2022-04-08",
+      "krx_code": "422420",
+      "krx_name": "RISE 2차전지액티브",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44C9",
+      "issuer_code": "427120",
+      "issuer_name": "RISE AI플랫폼",
+      "issuer_listed_on": "2022-05-17",
+      "krx_code": "427120",
+      "krx_name": "RISE AI플랫폼",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44D0",
+      "issuer_code": "432600",
+      "issuer_name": "RISE 국채선물3년",
+      "issuer_listed_on": "2022-06-14",
+      "krx_code": "432600",
+      "krx_name": "RISE 국채선물3년",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44D1",
+      "issuer_code": "437370",
+      "issuer_name": "RISE 글로벌농업경제",
+      "issuer_listed_on": "2022-07-29",
+      "krx_code": "437370",
+      "krx_name": "RISE 글로벌농업경제",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44D2",
+      "issuer_code": "437350",
+      "issuer_name": "RISE 미국단기투자등급회사채액티브",
+      "issuer_listed_on": "2022-07-29",
+      "krx_code": "437350",
+      "krx_name": "RISE 미국단기투자등급회사채액티브",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44D3",
+      "issuer_code": "442550",
+      "issuer_name": "RISE TDF2030액티브적격",
+      "issuer_listed_on": "2022-12-22",
+      "krx_code": "442550",
+      "krx_name": "RISE TDF2030액티브 적격",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44D4",
+      "issuer_code": "442560",
+      "issuer_name": "RISE TDF2040액티브적격",
+      "issuer_listed_on": "2022-09-22",
+      "krx_code": "442560",
+      "krx_name": "RISE TDF2040액티브 적격",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44D5",
+      "issuer_code": "442570",
+      "issuer_name": "RISE TDF2050액티브적격",
+      "issuer_listed_on": "2022-09-22",
+      "krx_code": "442570",
+      "krx_name": "RISE TDF2050액티브 적격",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44D6",
+      "issuer_code": "442320",
+      "issuer_name": "RISE 글로벌원자력",
+      "issuer_listed_on": "2022-10-13",
+      "krx_code": "442320",
+      "krx_name": "RISE 글로벌원자력",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44D7",
+      "issuer_code": "446700",
+      "issuer_name": "RISE 배터리 리사이클링",
+      "issuer_listed_on": "2022-11-01",
+      "krx_code": "446700",
+      "krx_name": "RISE 배터리 리사이클링",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44E0",
+      "issuer_code": "448630",
+      "issuer_name": "RISE 삼성그룹Top3채권혼합",
+      "issuer_listed_on": "2022-11-29",
+      "krx_code": "448630",
+      "krx_name": "RISE 삼성그룹Top3채권혼합",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44E1",
+      "issuer_code": "449580",
+      "issuer_name": "RISE 테슬라애플아마존채권혼합",
+      "issuer_listed_on": "2022-12-20",
+      "krx_code": "449580",
+      "krx_name": "RISE 테슬라애플아마존채권혼합",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44E2",
+      "issuer_code": "451670",
+      "issuer_name": "RISE 국채30년레버리지(합성)",
+      "issuer_listed_on": "2023-02-14",
+      "krx_code": "451670",
+      "krx_name": "RISE 국채30년레버리지(합성)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44E3",
+      "issuer_code": "453330",
+      "issuer_name": "RISE 미국S&P500(H)",
+      "issuer_listed_on": "2023-03-21",
+      "krx_code": "453330",
+      "krx_name": "RISE 미국S&P500(H)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44E4",
+      "issuer_code": "455890",
+      "issuer_name": "RISE 머니마켓액티브",
+      "issuer_listed_on": "2023-05-09",
+      "krx_code": "455890",
+      "krx_name": "RISE 머니마켓액티브",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44E5",
+      "issuer_code": "455960",
+      "issuer_name": "RISE 미국달러SOFR금리액티브(합성)",
+      "issuer_listed_on": "2023-05-16",
+      "krx_code": "455960",
+      "krx_name": "RISE 미국달러SOFR금리액티브(합성)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44E6",
+      "issuer_code": "460660",
+      "issuer_name": "RISE 미국S&P배당킹",
+      "issuer_listed_on": "2023-06-27",
+      "krx_code": "460660",
+      "krx_name": "RISE 미국S&P배당킹",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44E7",
+      "issuer_code": "459750",
+      "issuer_name": "RISE 글로벌주식분산액티브",
+      "issuer_listed_on": "2023-06-27",
+      "krx_code": "459750",
+      "krx_name": "RISE 글로벌주식분산액티브",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44E8",
+      "issuer_code": "461490",
+      "issuer_name": "RISE 글로벌자산배분액티브",
+      "issuer_listed_on": "2023-06-27",
+      "krx_code": "461490",
+      "krx_name": "RISE 글로벌자산배분액티브",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44E9",
+      "issuer_code": "463300",
+      "issuer_name": "RISE 중국본토CSI300",
+      "issuer_listed_on": "2023-08-08",
+      "krx_code": "463300",
+      "krx_name": "RISE 중국본토CSI300",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44F1",
+      "issuer_code": "465350",
+      "issuer_name": "RISE 2차전지TOP10인버스(합성)",
+      "issuer_listed_on": "2023-09-12",
+      "krx_code": "465350",
+      "krx_name": "RISE 2차전지TOP10인버스(합성)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44F2",
+      "issuer_code": "465330",
+      "issuer_name": "RISE 2차전지TOP10",
+      "issuer_listed_on": "2023-09-12",
+      "krx_code": "465330",
+      "krx_name": "RISE 2차전지TOP10",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44F3",
+      "issuer_code": "469060",
+      "issuer_name": "RISE 미국반도체NYSE",
+      "issuer_listed_on": "2023-10-24",
+      "krx_code": "469060",
+      "krx_name": "RISE 미국반도체NYSE",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44F4",
+      "issuer_code": "469050",
+      "issuer_name": "RISE 미국반도체NYSE(H)",
+      "issuer_listed_on": "2023-10-24",
+      "krx_code": "469050",
+      "krx_name": "RISE 미국반도체NYSE(H)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44F5",
+      "issuer_code": "469070",
+      "issuer_name": "RISE AI&로봇",
+      "issuer_listed_on": "2023-10-24",
+      "krx_code": "469070",
+      "krx_name": "RISE AI&로봇",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44F6",
+      "issuer_code": "469530",
+      "issuer_name": "RISE 미국달러선물인버스",
+      "issuer_listed_on": "2023-11-09",
+      "krx_code": "469530",
+      "krx_name": "RISE 미국달러선물인버스",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44F8",
+      "issuer_code": "472830",
+      "issuer_name": "RISE 미국30년국채커버드콜(합성)",
+      "issuer_listed_on": "2023-12-14",
+      "krx_code": "472830",
+      "krx_name": "RISE 미국30년국채커버드콜(합성)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44F9",
+      "issuer_code": "472870",
+      "issuer_name": "RISE 미국30년국채엔화노출(합성 H)",
+      "issuer_listed_on": "2023-12-27",
+      "krx_code": "472870",
+      "krx_name": "RISE 미국30년국채엔화노출(합성 H)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44G0",
+      "issuer_code": "475380",
+      "issuer_name": "RISE 글로벌리얼티인컴",
+      "issuer_listed_on": "2024-02-20",
+      "krx_code": "475380",
+      "krx_name": "RISE 글로벌리얼티인컴",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44G1",
+      "issuer_code": "475350",
+      "issuer_name": "RISE 버크셔포트폴리오TOP10",
+      "issuer_listed_on": "2024-02-27",
+      "krx_code": "475350",
+      "krx_name": "RISE 버크셔포트폴리오TOP10",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44G2",
+      "issuer_code": "476310",
+      "issuer_name": "RISE 글로벌비만산업TOP2+",
+      "issuer_listed_on": "2024-02-27",
+      "krx_code": "476310",
+      "krx_name": "RISE 글로벌비만산업TOP2+",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44G3",
+      "issuer_code": "475720",
+      "issuer_name": "RISE 200위클리커버드콜",
+      "issuer_listed_on": "2024-03-05",
+      "krx_code": "475720",
+      "krx_name": "RISE 200위클리커버드콜",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44G4",
+      "issuer_code": "477080",
+      "issuer_name": "RISE CD금리액티브(합성)",
+      "issuer_listed_on": "2024-03-26",
+      "krx_code": "477080",
+      "krx_name": "RISE CD금리액티브(합성)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44G5",
+      "issuer_code": "479520",
+      "issuer_name": "RISE KOFR금리액티브(합성)",
+      "issuer_listed_on": "2024-04-30",
+      "krx_code": "479520",
+      "krx_name": "RISE KOFR금리액티브(합성)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44G6",
+      "issuer_code": "481340",
+      "issuer_name": "RISE 미국30년국채액티브",
+      "issuer_listed_on": "2024-05-28",
+      "krx_code": "481340",
+      "krx_name": "RISE 미국30년국채액티브",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44G7",
+      "issuer_code": "481430",
+      "issuer_name": "RISE 국고채10년액티브",
+      "issuer_listed_on": "2024-05-21",
+      "krx_code": "481430",
+      "krx_name": "RISE 국고채10년액티브",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44G9",
+      "issuer_code": "485690",
+      "issuer_name": "RISE 미국AI밸류체인TOP3Plus",
+      "issuer_listed_on": "2024-07-23",
+      "krx_code": "485690",
+      "krx_name": "RISE 미국AI밸류체인TOP3Plus",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44H0",
+      "issuer_code": "488480",
+      "issuer_name": "RISE 일본섹터TOP4Plus",
+      "issuer_listed_on": "2024-08-20",
+      "krx_code": "488480",
+      "krx_name": "RISE 일본섹터TOP4Plus",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44H1",
+      "issuer_code": "490590",
+      "issuer_name": "RISE 미국AI밸류체인데일리고정커버드콜",
+      "issuer_listed_on": "2024-10-02",
+      "krx_code": "490590",
+      "krx_name": "RISE 미국AI밸류체인데일리고정커버드콜",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44H2",
+      "issuer_code": "490600",
+      "issuer_name": "RISE 미국배당100데일리고정커버드콜",
+      "issuer_listed_on": "2024-09-24",
+      "krx_code": "490600",
+      "krx_name": "RISE 미국배당100데일리고정커버드콜",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44H3",
+      "issuer_code": "491630",
+      "issuer_name": "RISE 미국반도체인버스(합성 H)",
+      "issuer_listed_on": "2024-10-22",
+      "krx_code": "491630",
+      "krx_name": "RISE 미국반도체인버스(합성 H)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44H4",
+      "issuer_code": "498610",
+      "issuer_name": "RISE 인도디지털성장",
+      "issuer_listed_on": "2025-04-01",
+      "krx_code": "498610",
+      "krx_name": "RISE 인도디지털성장",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44H5",
+      "issuer_code": "491620",
+      "issuer_name": "RISE 미국테크100데일리고정커버드콜",
+      "issuer_listed_on": "2024-10-02",
+      "krx_code": "491620",
+      "krx_name": "RISE 미국테크100데일리고정커버드콜",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44H6",
+      "issuer_code": "495940",
+      "issuer_name": "RISE 미국AI테크액티브",
+      "issuer_listed_on": "2024-11-26",
+      "krx_code": "495940",
+      "krx_name": "RISE 미국AI테크액티브",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44H7",
+      "issuer_code": "495050",
+      "issuer_name": "RISE 코리아밸류업",
+      "issuer_listed_on": "2024-11-04",
+      "krx_code": "495050",
+      "krx_name": "RISE 코리아밸류업",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44H8",
+      "issuer_code": "498860",
+      "issuer_name": "RISE 코리아금융고배당",
+      "issuer_listed_on": "2024-12-10",
+      "krx_code": "498860",
+      "krx_name": "RISE 코리아금융고배당",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44H9",
+      "issuer_code": "0005C0",
+      "issuer_name": "RISE 미국S&P500엔화노출",
+      "issuer_listed_on": "2025-01-14",
+      "krx_code": "0005C0",
+      "krx_name": "RISE 미국S&P500엔화노출(합성 H)",
+      "candidate_codes": [],
+      "status": "NAME_DIFFERENCE"
+    },
+    {
+      "detail_id": "44I0",
+      "issuer_code": "0000Z0",
+      "issuer_name": "RISE 바이오TOP10액티브",
+      "issuer_listed_on": "2024-12-24",
+      "krx_code": "0000Z0",
+      "krx_name": "RISE 바이오TOP10액티브",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44I1",
+      "issuer_code": "0013R0",
+      "issuer_name": "RISE 테슬라미국채타겟커버드콜혼합(합성)",
+      "issuer_listed_on": "2025-02-18",
+      "krx_code": "0013R0",
+      "krx_name": "RISE 테슬라미국채타겟커버드콜혼합(합성)",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44I2",
+      "issuer_code": "0013P0",
+      "issuer_name": "RISE 미국은행TOP10",
+      "issuer_listed_on": "2025-02-18",
+      "krx_code": "0013P0",
+      "krx_name": "RISE 미국은행TOP10",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44I3",
+      "issuer_code": "0018Z0",
+      "issuer_name": "RISE 미국양자컴퓨팅",
+      "issuer_listed_on": "2025-03-11",
+      "krx_code": "0018Z0",
+      "krx_name": "RISE 미국양자컴퓨팅",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44I4",
+      "issuer_code": "0036Z0",
+      "issuer_name": "RISE 미국천연가스밸류체인",
+      "issuer_listed_on": "2025-04-22",
+      "krx_code": "0036Z0",
+      "krx_name": "RISE 미국천연가스밸류체인",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44I5",
+      "issuer_code": "0036R0",
+      "issuer_name": "RISE 미국휴머노이드로봇",
+      "issuer_listed_on": "2025-04-15",
+      "krx_code": "0036R0",
+      "krx_name": "RISE 미국휴머노이드로봇",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44I6",
+      "issuer_code": "0047P0",
+      "issuer_name": "RISE 테슬라고정테크100",
+      "issuer_listed_on": "2025-05-13",
+      "krx_code": "0047P0",
+      "krx_name": "RISE 테슬라고정테크100",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44I7",
+      "issuer_code": "0047R0",
+      "issuer_name": "RISE 팔란티어고정테크100",
+      "issuer_listed_on": "2025-05-13",
+      "krx_code": "0047R0",
+      "krx_name": "RISE 팔란티어고정테크100",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44I8",
+      "issuer_code": "0061Z0",
+      "issuer_name": "RISE 단기특수은행채액티브",
+      "issuer_listed_on": "2025-06-24",
+      "krx_code": "0061Z0",
+      "krx_name": "RISE 단기특수은행채액티브",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44I9",
+      "issuer_code": "0093B0",
+      "issuer_name": "RISE 엔비디아고정테크100",
+      "issuer_listed_on": "2025-08-26",
+      "krx_code": "0093B0",
+      "krx_name": "RISE 엔비디아고정테크100",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44J0",
+      "issuer_code": "0093A0",
+      "issuer_name": "RISE AI반도체TOP10",
+      "issuer_listed_on": "2025-08-26",
+      "krx_code": "0093A0",
+      "krx_name": "RISE AI반도체TOP10",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44J1",
+      "issuer_code": "0094L0",
+      "issuer_name": "RISE 차이나테크TOP10위클리타겟커버드콜",
+      "issuer_listed_on": "2025-09-02",
+      "krx_code": "0094L0",
+      "krx_name": "RISE 차이나테크TOP10위클리타겟커버드콜",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44J2",
+      "issuer_code": "0094M0",
+      "issuer_name": "RISE 코리아밸류업위클리고정커버드콜",
+      "issuer_listed_on": "2025-09-02",
+      "krx_code": "0094M0",
+      "krx_name": "RISE 코리아밸류업위클리고정커버드콜",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44J3",
+      "issuer_code": "0101N0",
+      "issuer_name": "RISE AI전력인프라",
+      "issuer_listed_on": "2025-09-23",
+      "krx_code": "0101N0",
+      "krx_name": "RISE AI전력인프라",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44J4",
+      "issuer_code": "0122W0",
+      "issuer_name": "RISE 26-11 회사채(AA-이상)액티브",
+      "issuer_listed_on": "2025-11-18",
+      "krx_code": "0122W0",
+      "krx_name": "RISE 26-11 회사채(AA-이상)액티브",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44J5",
+      "issuer_code": "0114X0",
+      "issuer_name": "RISE 글로벌게임테크TOP3Plus",
+      "issuer_listed_on": "2025-10-21",
+      "krx_code": "0114X0",
+      "krx_name": "RISE 글로벌게임테크TOP3Plus",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44J6",
+      "issuer_code": "0115C0",
+      "issuer_name": "RISE 미국고배당다우존스TOP10",
+      "issuer_listed_on": "2025-10-21",
+      "krx_code": "0115C0",
+      "krx_name": "RISE 미국고배당다우존스TOP10",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44J7",
+      "issuer_code": "0127R0",
+      "issuer_name": "RISE 미국AI클라우드인프라",
+      "issuer_listed_on": "2025-11-25",
+      "krx_code": "0127R0",
+      "krx_name": "RISE 미국AI클라우드인프라",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44J8",
+      "issuer_code": "0138D0",
+      "issuer_name": "RISE 동학개미",
+      "issuer_listed_on": "2025-12-16",
+      "krx_code": "0138D0",
+      "krx_name": "RISE 동학개미",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44J9",
+      "issuer_code": "0138T0",
+      "issuer_name": "RISE 미국S&P500데일리고정커버드콜",
+      "issuer_listed_on": "2025-12-23",
+      "krx_code": "0138T0",
+      "krx_name": "RISE 미국S&P500데일리고정커버드콜",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44K0",
+      "issuer_code": "0151P0",
+      "issuer_name": "RISE 코리아전략산업액티브",
+      "issuer_listed_on": "2026-01-20",
+      "krx_code": "0151P0",
+      "krx_name": "RISE 코리아전략산업액티브",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44K1",
+      "issuer_code": "0162Z0",
+      "issuer_name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "issuer_listed_on": "2026-02-26",
+      "krx_code": "0162Z0",
+      "krx_name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44K2",
+      "issuer_code": "0164G0",
+      "issuer_name": "RISE 차이나AI반도체TOP4Plus",
+      "issuer_listed_on": "2026-03-10",
+      "krx_code": "0164G0",
+      "krx_name": "RISE 차이나AI반도체TOP4Plus",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44K3",
+      "issuer_code": "0176E0",
+      "issuer_name": "RISE 미국AI전력인프라액티브",
+      "issuer_listed_on": "2026-04-07",
+      "krx_code": "0176E0",
+      "krx_name": "RISE 미국AI전력인프라액티브",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44K4",
+      "issuer_code": "0190C0",
+      "issuer_name": "RISE 현대차고정피지컬AI",
+      "issuer_listed_on": "2026-05-12",
+      "krx_code": "0190C0",
+      "krx_name": "RISE 현대차고정피지컬AI",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44K5",
+      "issuer_code": "0192M0",
+      "issuer_name": "RISE 삼성전자단일종목레버리지",
+      "issuer_listed_on": "2026-05-27",
+      "krx_code": "0192M0",
+      "krx_name": "RISE 삼성전자단일종목레버리지",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44K6",
+      "issuer_code": "0192L0",
+      "issuer_name": "RISE SK하이닉스단일종목레버리지",
+      "issuer_listed_on": "2026-05-27",
+      "krx_code": "0192L0",
+      "krx_name": "RISE SK하이닉스단일종목레버리지",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44K7",
+      "issuer_code": "0218J0",
+      "issuer_name": "RISE 미국우주&로봇TOP2미국채혼합50",
+      "issuer_listed_on": "2026-07-10",
+      "krx_code": "0218J0",
+      "krx_name": "RISE 미국우주&로봇TOP2미국채혼합50",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44K8",
+      "issuer_code": "0223A0",
+      "issuer_name": "RISE 코스닥커버드콜액티브",
+      "issuer_listed_on": "2026-07-28",
+      "krx_code": "0223A0",
+      "krx_name": "RISE 코스닥커버드콜액티브",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44K9",
+      "issuer_code": "0227K0",
+      "issuer_name": "RISE 미국우주위성통신",
+      "issuer_listed_on": "2026-08-11",
+      "krx_code": "0227K0",
+      "krx_name": "RISE 미국우주위성통신",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44L0",
+      "issuer_code": "0233N0",
+      "issuer_name": "RISE 글로벌AI낸드메모리반도체",
+      "issuer_listed_on": "2026-09-01",
+      "krx_code": "0233N0",
+      "krx_name": "RISE 글로벌AI낸드메모리반도체",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "44L1",
+      "issuer_code": "0240J0",
+      "issuer_name": "RISE 삼성SK그룹",
+      "issuer_listed_on": "2026-09-22",
+      "krx_code": "0240J0",
+      "krx_name": "RISE 삼성SK그룹",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    },
+    {
+      "detail_id": "4500",
+      "issuer_code": "336160",
+      "issuer_name": "RISE 금융채액티브",
+      "issuer_listed_on": "2019-10-29",
+      "krx_code": "336160",
+      "krx_name": "RISE 금융채액티브",
+      "candidate_codes": [],
+      "status": "MATCHED_CODE_NAME"
+    }
+  ],
+  "krx_rise_without_confirmed_issuer_code": [],
+  "legal_lifecycle_status": "NOTICE_VERIFICATION_NOT_CONNECTED",
+  "note": "Presence is an exchange observation. Absence is not delisting. Name-only codes require identity review."
+}
