@@ -66,12 +66,56 @@ async function loadMaster() {
     }
     for (const id of ['search','category','reset']) el(id).disabled = false;
     renderProducts();
+    loadKrxComparison(data);
     await loadMasterChanges(data);
   } catch (error) {
     products = []; el('products').replaceChildren();
+    el('krxStatus').textContent='운용사 목록을 확인할 수 없어 KRX 대조를 표시하지 않습니다.';
     el('masterStatus').textContent = `공식 마스터를 표시할 수 없습니다. ${error.message}.`;
     el('resultCount').textContent = '자료 없음 · 기존 자료로 대체하지 않습니다.';
   }
+}
+async function loadKrxComparison(master) {
+  const labels={MATCHED_CODE_NAME:'코드·명칭 일치',NAME_DIFFERENCE:'코드 일치·명칭 확인 필요',
+    CODE_PENDING_NAME_CANDIDATE:'명칭 일치 코드 후보',IDENTITY_REVIEW_REQUIRED:'식별 검토 필요',
+    LISTED_AFTER_KRX_DATE:'상장일이 KRX 관측일 이후',NOT_OBSERVED:'KRX 관측 없음 · 폐지 확정 아님',
+    NO_NAME_CANDIDATE:'코드 후보 미확인'};
+  try {
+    const report=await readJSON('data/quality/krx_master_reconciliation.json');
+    if(report.status!=='KRX_DAILY_IDENTITY_COMPARISON' || !validDate(report.observed_on) || !validDate(report.issuer_effective_date) ||
+       !Number.isFinite(Date.parse(report.retrieved_at)) || !Array.isArray(report.rows) || !Array.isArray(report.krx_rise_without_confirmed_issuer_code)) throw new Error('대조 형식 오류');
+    const expected=[...master.products,...(master.pending_products || [])].map(p=>[p.detail_id,p.code,p.name,p.listed_on]).sort((a,b)=>a[0].localeCompare(b[0]));
+    const actual=report.rows.map(p=>[p.detail_id,p.issuer_code,p.issuer_name,p.issuer_listed_on]).sort((a,b)=>a[0].localeCompare(b[0]));
+    if(JSON.stringify(expected)!==JSON.stringify(actual) || report.issuer_product_count!==expected.length) throw new Error('현재 운용사 목록과 달라 재대조 대기');
+    const counts={};
+    for(const row of report.rows) {
+      if(!labels[row.status] || !Array.isArray(row.candidate_codes)) throw new Error('판정 오류');
+      counts[row.status]=(counts[row.status] || 0)+1;
+    }
+    if(Object.keys(report.counts || {}).length!==Object.keys(counts).length || Object.entries(counts).some(([key,n])=>report.counts[key]!==n)) throw new Error('대조 집계 오류');
+    const age=Math.floor((Date.now()-Date.parse(report.retrieved_at))/86400000);
+    const observationLag=Math.floor((Date.now()-Date.parse(report.observed_on))/86400000);
+    el('krxStatus').textContent=`KRX 기준 ${report.issuer_product_count}개 상품 대조 · 코드·명칭 일치 ${counts.MATCHED_CODE_NAME || 0}개${age>2 || observationLag>4?' · 자료 지연 확인 필요':''}`;
+    el('krxDates').textContent=`거래소 관측일 ${report.observed_on} · 대조 당시 운용사 기준일 ${report.issuer_effective_date} · KRX 수집 ${localTime(report.retrieved_at)}`;
+    el('krxCounts').replaceChildren(); el('krxIssues').replaceChildren();
+    for(const [key,n] of Object.entries(counts)) {
+      const item=document.createElement('p');item.textContent=`${labels[key]} ${n}개`;el('krxCounts').append(item);
+    }
+    for(const row of report.rows.filter(r=>r.status!=='MATCHED_CODE_NAME')) {
+      const item=document.createElement('li');item.textContent=`${row.issuer_name}: ${labels[row.status]}${row.krx_code?` · KRX ${row.krx_code} ${row.krx_name}`:''}${row.candidate_codes.length?` · 후보 ${row.candidate_codes.join(', ')}`:''}`;el('krxIssues').append(item);
+    }
+    for(const row of report.krx_rise_without_confirmed_issuer_code) {
+      const item=document.createElement('li');item.textContent=`KRX ${row.code} ${row.name}: 운용사 확정 코드와 미연결 · 신규 상장 확정 아님`;el('krxIssues').append(item);
+    }
+  } catch(error) {
+    el('krxCounts').replaceChildren();el('krxIssues').replaceChildren();el('krxDates').textContent='';
+    el('krxStatus').textContent=`KRX 대조 결과 확인 대기 · ${error.message}`;
+  }
+  try {
+    const attempt=await readJSON('data/krx_collection_status.json');
+    if(!['SUCCESS','FAILED'].includes(attempt.status)) throw new Error('상태 오류');
+    el('krxAttempt').textContent=`최근 KRX 대조 시도 ${localTime(attempt.attempted_at)} · ${attempt.status==='SUCCESS'?'성공':'실패 · 마지막 성공 대조 유지'}`;
+  } catch(_) {el('krxAttempt').textContent='KRX 최근 시도 이력 확인 대기';}
 }
 async function loadMasterChanges(master) {
   try {

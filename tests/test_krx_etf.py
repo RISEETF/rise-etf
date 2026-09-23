@@ -2,11 +2,14 @@ import datetime as dt
 import importlib.util
 import json
 import tempfile
+import sys
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 
 SCRIPT = Path(__file__).parents[1] / "scripts" / "collect_krx_etf.py"
+sys.path.insert(0, str(SCRIPT.parent))
 SPEC = importlib.util.spec_from_file_location("collect_krx_etf", SCRIPT)
 MODULE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
@@ -45,6 +48,33 @@ class KrxEtfTest(unittest.TestCase):
         duplicate["OutBlock_1"][1]["ISU_SRT_CD"] = "123456"
         with self.assertRaisesRegex(ValueError, "DUPLICATE"):
             MODULE.parse_snapshot(json.dumps(duplicate).encode(), dt.date(2026, 9, 18))
+
+    def test_reject_nonfinite_numbers(self):
+        for value in ['NaN', 'Infinity', '-Infinity']:
+            with self.assertRaisesRegex(ValueError, 'NONFINITE'):
+                MODULE.number(value, 'NAV')
+
+    def test_failed_attempt_preserves_public_comparison(self):
+        with tempfile.TemporaryDirectory() as d:
+            report=Path(d)/'report.json';report.write_text('{"previous":"good"}')
+            status=Path(d)/'status.json'
+            with patch.object(sys,'argv',['collect','--reconciliation',str(report),'--status',str(status)]), \
+                 patch.object(MODULE,'collect',side_effect=ValueError('secret must not be published')):
+                self.assertEqual(MODULE.main(),1)
+            self.assertEqual(json.loads(report.read_text()),{'previous':'good'})
+            self.assertNotIn('secret',status.read_text())
+            self.assertEqual(json.loads(status.read_text())['status'],'FAILED')
+
+    def test_requested_date_mismatch_never_accepted(self):
+        class Response:
+            def __enter__(self):return self
+            def __exit__(self,*args):pass
+            def read(self):return b'{}'
+        # Always return a wrong (but otherwise valid) snapshot date.
+        with patch.object(MODULE.urllib.request,'urlopen',return_value=Response()), \
+             patch.object(MODULE,'parse_snapshot',return_value={'page_date':'2026-09-01','records':[]}):
+            with self.assertRaisesRegex(RuntimeError,'REQUESTED_DATE_MISMATCH'):
+                MODULE.fetch_latest('test-key',dt.date(2026,9,23))
 
     def test_completeness_rejects_partial_and_stale_snapshots(self):
         snapshot = MODULE.parse_snapshot(json.dumps(self.fixture()).encode(), dt.date(2026, 9, 18))

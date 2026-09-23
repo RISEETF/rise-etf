@@ -30,6 +30,26 @@ const server = http.createServer((req,res) => {
     const changes=JSON.parse(fs.readFileSync(path.join(root,'data/master/changes.json')));
     await page.waitForFunction(()=>!document.getElementById('masterChangesStatus').textContent.includes('확인 중'));
     assert.equal(await page.locator('#masterChanges li').count(),Math.min(changes.events.length,20));
+    // Synthetic comparison exercises delayed KRX publication without claiming live verification.
+    const krxFixture={status:'KRX_DAILY_IDENTITY_COMPARISON',observed_on:'2026-09-22',issuer_effective_date:master.effective_date,
+      retrieved_at:'2026-09-23T00:00:00+00:00',issuer_product_count:displayedProducts.length,
+      rows:displayedProducts.map((p,i)=>({detail_id:p.detail_id,issuer_code:p.code,issuer_name:p.name,issuer_listed_on:p.listed_on,
+        status:i===0?'NOT_OBSERVED':'MATCHED_CODE_NAME',candidate_codes:[],krx_code:null,krx_name:null})),
+      counts:{NOT_OBSERVED:1,MATCHED_CODE_NAME:displayedProducts.length-1},krx_rise_without_confirmed_issuer_code:[]};
+    await page.route('**/data/quality/krx_master_reconciliation.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify(krxFixture)}));
+    await page.route('**/data/krx_collection_status.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({status:'FAILED',attempted_at:'2026-09-23T00:00:00+00:00'})}));
+    await page.reload();
+    await page.waitForFunction(()=>document.getElementById('krxStatus').textContent.includes('KRX 기준'));
+    assert.equal(await page.locator('#krxIssues li').count(),1);
+    assert.match(await page.locator('#krxIssues').textContent(),/폐지 확정 아님/);
+    await page.waitForFunction(()=>document.getElementById('krxAttempt').textContent.includes('실패'));
+    krxFixture.rows[0].issuer_name='RISE changed fixture';
+    await page.reload();
+    await page.waitForFunction(()=>document.getElementById('krxStatus').textContent.includes('재대조 대기'));
+    assert.equal(await page.locator('#krxIssues li').count(),0);
+    await page.unroute('**/data/quality/krx_master_reconciliation.json');
+    await page.unroute('**/data/krx_collection_status.json');
+    await page.reload();
     const research=JSON.parse(fs.readFileSync(path.join(root,'data/research/rs.json')));
     await page.waitForFunction(()=>!document.getElementById('researchHorizon').disabled);
     for(const days of [30,7,60]) {

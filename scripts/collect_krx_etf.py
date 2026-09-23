@@ -10,6 +10,7 @@ import argparse
 import datetime as dt
 import hashlib
 import json
+import math
 import os
 import re
 import sqlite3
@@ -17,6 +18,8 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 from zoneinfo import ZoneInfo
+
+from reconcile_krx_master import reconcile
 
 
 API_URL = "https://data-dbg.krx.co.kr/svc/apis/etp/etf_bydd_trd"
@@ -39,6 +42,8 @@ def number(value: object, field: str) -> float | None:
         parsed = float(text)
     except ValueError as exc:
         raise ValueError(f"KRX_NUMBER_INVALID:{field}") from exc
+    if not math.isfinite(parsed):
+        raise ValueError(f"KRX_NUMBER_NONFINITE:{field}")
     if parsed < 0:
         raise ValueError(f"KRX_NUMBER_NEGATIVE:{field}")
     return parsed
@@ -95,6 +100,8 @@ def fetch_latest(auth_key: str, asof: dt.date) -> tuple[bytes, dict]:
             with urllib.request.urlopen(request, timeout=30) as response:
                 payload = response.read()
             snapshot = parse_snapshot(payload, asof)
+            if snapshot['page_date'] != requested.isoformat():
+                raise ValueError('KRX_REQUESTED_DATE_MISMATCH')
             return payload, {"requested_date": requested.isoformat(), "snapshot": snapshot}
         except Exception as exc:  # keep bounded attempts in the receipt
             attempts.append({"date": requested.isoformat(), "error": str(exc)[:160]})
@@ -184,12 +191,37 @@ def accumulate(db_path: Path, snapshot: dict, raw_hash: str, retrieved_at: str) 
     return {"new": new, "revisions": revisions, "unchanged": unchanged, "total": total}
 
 
+def write_json_atomic(path, document):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + '.tmp')
+    temporary.write_text(json.dumps(document, ensure_ascii=False, indent=2) + '\n')
+    temporary.replace(path)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--db", default="var/krx_etf.sqlite")
     parser.add_argument("--output", default="var/krx-output")
     parser.add_argument("--asof")
+    parser.add_argument('--master', default='data/master/latest.json')
+    parser.add_argument('--reconciliation', default='data/quality/krx_master_reconciliation.json')
+    parser.add_argument('--status', default='data/krx_collection_status.json')
     args = parser.parse_args()
+    attempted_at = dt.datetime.now(dt.timezone.utc).isoformat()
+    try:
+        collect(args)
+    except Exception as exc:
+        # Public status contains a stable reason only, never request headers or secrets.
+        write_json_atomic(args.status, {'status':'FAILED', 'attempted_at':attempted_at,
+                                      'reason':type(exc).__name__, 'last_success_preserved':True})
+        print(json.dumps({'status':'FAILED', 'reason':type(exc).__name__}))
+        return 1
+    write_json_atomic(args.status, {'status':'SUCCESS', 'attempted_at':attempted_at})
+    return 0
+
+
+def collect(args):
     auth_key = os.environ.get("KRX_AUTH_KEY", "").strip()
     if not auth_key:
         raise RuntimeError("KRX_AUTH_KEY_MISSING")
@@ -216,6 +248,14 @@ def main() -> int:
         "quality": quality,
         "flow_warning": "AUM_OR_LISTED_SHARES_CHANGE_IS_NOT_DIRECT_NET_FLOW",
     }
+    master = json.loads(Path(args.master).read_text())
+    report = reconcile(master, result['snapshot'], receipt)
+    previous_path = Path(args.reconciliation)
+    if previous_path.exists():
+        previous = json.loads(previous_path.read_text())
+        if previous.get('observed_on', '') > report['observed_on']:
+            raise ValueError('KRX_PUBLIC_REPORT_DATE_REGRESSION')
+    write_json_atomic(args.reconciliation, report)
     (output / "receipt.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2))
     print(json.dumps(receipt, ensure_ascii=False))
     return 0
