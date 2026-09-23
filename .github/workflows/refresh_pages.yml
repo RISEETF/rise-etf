@@ -4,6 +4,7 @@ on:
     workflows:
       - RISE source capture
       - RISE official instrument master
+      - KRX ETF primary ledger
       - Capture dated price and FX series
     types: [completed]
 permissions:
