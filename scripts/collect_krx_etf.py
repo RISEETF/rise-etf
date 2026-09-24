@@ -200,6 +200,23 @@ def write_json_atomic(path, document):
     temporary.replace(path)
 
 
+def safe_reason(exc):
+    # Only collector-defined codes are public; arbitrary exception text may contain URLs/secrets.
+    code = re.match(r'^(KRX_[A-Z_]+|ISSUER_MASTER_IDENTITY_INVALID)(?=:|$)', str(exc))
+    return code[1] if code else type(exc).__name__
+
+
+def refresh_notice_report(args):
+    path = Path(args.reconciliation)
+    if not path.is_file():return
+    report = json.loads(path.read_text())
+    if report.get('status') != 'KRX_DAILY_IDENTITY_COMPARISON':return
+    asof = dt.date.fromisoformat(args.asof) if args.asof else dt.datetime.now(ZoneInfo('Asia/Seoul')).date()
+    report['lifecycle_notices'] = refresh_kind_notices(asof, report.get('lifecycle_notices'))
+    report['legal_lifecycle_status'] = 'NOTICE_MONITORING_ONLY_CURRENT_STATUS_NOT_ASSIGNED'
+    write_json_atomic(path, report)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--db", default="var/krx_etf.sqlite")
@@ -215,9 +232,11 @@ def main() -> int:
     except Exception as exc:
         # Public status contains a stable reason only, never request headers or secrets.
         write_json_atomic(args.status, {'status':'FAILED', 'attempted_at':attempted_at,
-                                      'reason':type(exc).__name__, 'last_success_preserved':True})
-        print(json.dumps({'status':'FAILED', 'reason':type(exc).__name__}))
+                                      'reason':safe_reason(exc), 'last_success_preserved':True})
+        print(json.dumps({'status':'FAILED', 'reason':safe_reason(exc)}))
+        refresh_notice_report(args)
         return 1
+    refresh_notice_report(args)
     write_json_atomic(args.status, {'status':'SUCCESS', 'attempted_at':attempted_at})
     return 0
 
@@ -257,8 +276,8 @@ def collect(args):
         previous = json.loads(previous_path.read_text())
         if previous.get('observed_on', '') > report['observed_on']:
             raise ValueError('KRX_PUBLIC_REPORT_DATE_REGRESSION')
-    report['lifecycle_notices'] = refresh_kind_notices(asof, previous.get('lifecycle_notices'))
-    report['legal_lifecycle_status'] = 'NOTICE_MONITORING_ONLY_CURRENT_STATUS_NOT_ASSIGNED'
+    if 'lifecycle_notices' in previous:
+        report['lifecycle_notices'] = previous['lifecycle_notices']
     write_json_atomic(args.reconciliation, report)
     (output / "receipt.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2))
     print(json.dumps(receipt, ensure_ascii=False))
