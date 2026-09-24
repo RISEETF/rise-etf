@@ -71,17 +71,21 @@ async function loadMaster() {
   } catch (error) {
     products = []; el('products').replaceChildren();
     el('krxStatus').textContent='운용사 목록을 확인할 수 없어 KRX 대조를 표시하지 않습니다.';
+    el('kindStatus').textContent='공시 수집 결과를 불러오지 못했습니다.';
     el('masterStatus').textContent = `공식 마스터를 표시할 수 없습니다. ${error.message}.`;
     el('resultCount').textContent = '자료 없음 · 기존 자료로 대체하지 않습니다.';
   }
 }
 async function loadKrxComparison(master) {
+  let kindLoaded=false;
   const labels={MATCHED_CODE_NAME:'코드·명칭 일치',NAME_DIFFERENCE:'코드 일치·명칭 확인 필요',
     CODE_PENDING_NAME_CANDIDATE:'명칭 일치 코드 후보',IDENTITY_REVIEW_REQUIRED:'식별 검토 필요',
     LISTED_AFTER_KRX_DATE:'상장일이 KRX 관측일 이후',NOT_OBSERVED:'KRX 관측 없음 · 폐지 확정 아님',
     NO_NAME_CANDIDATE:'코드 후보 미확인'};
   try {
     const report=await readJSON('data/quality/krx_master_reconciliation.json');
+    renderKindNotices(report.lifecycle_notices);
+    kindLoaded=true;
     if(report.status!=='KRX_DAILY_IDENTITY_COMPARISON' || !validDate(report.observed_on) || !validDate(report.issuer_effective_date) ||
        !Number.isFinite(Date.parse(report.retrieved_at)) || !Array.isArray(report.rows) || !Array.isArray(report.krx_rise_without_confirmed_issuer_code)) throw new Error('대조 형식 오류');
     const expected=[...master.products,...(master.pending_products || [])].map(p=>[p.detail_id,p.code,p.name,p.listed_on]).sort((a,b)=>a[0].localeCompare(b[0]));
@@ -110,12 +114,36 @@ async function loadKrxComparison(master) {
   } catch(error) {
     el('krxCounts').replaceChildren();el('krxIssues').replaceChildren();el('krxDates').textContent='';
     el('krxStatus').textContent=`KRX 대조 결과 확인 대기 · ${error.message}`;
+    if(!kindLoaded)renderKindNotices(null);
   }
   try {
     const attempt=await readJSON('data/krx_collection_status.json');
     if(!['SUCCESS','FAILED'].includes(attempt.status)) throw new Error('상태 오류');
     el('krxAttempt').textContent=`최근 KRX 대조 시도 ${localTime(attempt.attempted_at)} · ${attempt.status==='SUCCESS'?'성공':'실패 · 마지막 성공 대조 유지'}`;
   } catch(_) {el('krxAttempt').textContent='KRX 최근 시도 이력 확인 대기';}
+}
+function renderKindNotices(data) {
+  const kinds={LISTING_NOTICE:'신규상장 공시',DELISTING_NOTICE:'상장폐지 공시',DELISTING_REVIEW:'폐지 관련 검토',REVISION_REVIEW:'정정·철회 검토'};
+  const states={NOTICE_CODE_DATE_VERIFIED:'본문 코드·날짜 확인',BODY_IDENTITY_REVIEW:'본문 식별 검토',NOTICE_REVIEW_REQUIRED:'공시 검토 필요',EFFECTIVE_DATE_REVIEW:'효력일 확인 필요',DOCUMENT_HISTORY_REVIEW:'문서 이력 검토'};
+  el('kindRows').replaceChildren();el('kindWindow').textContent='';
+  try {
+    if(!data || !['SUCCESS','FAILED'].includes(data.status) || !Array.isArray(data.events)) throw new Error('수집 결과 대기');
+    const rows=document.createDocumentFragment();
+    for(const event of data.events.slice(0,50)) {
+      if(!kinds[event.kind] || !states[event.verification] || !/^[0-9A-Z]{6}$/.test(event.code) ||
+         !/^\d{14}$/.test(event.receipt_id) || event.viewer_url!==`https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=${event.receipt_id}` ||
+         (event.effective_date!==null && !validDate(event.effective_date)) ||
+         (event.verification==='NOTICE_CODE_DATE_VERIFIED' && !event.effective_date)) throw new Error('공시 형식 확인 필요');
+      const row=document.createElement('tr');
+      for(const value of [`${event.name} (${event.code})`,kinds[event.kind],localTime(event.published_at),event.effective_date || '미확인',`${states[event.verification]}${event.in_latest_search===false?' · 이번 검색에 없음':''} · 확인 ${localTime(event.last_checked_at)}`]) {
+        const td=document.createElement('td');td.textContent=value;row.append(td);
+      }
+      const td=document.createElement('td'),link=document.createElement('a');link.href=event.viewer_url;link.textContent='KIND 원문 ↗';link.target='_blank';link.rel='noopener noreferrer';td.append(link);row.append(td);rows.append(row);
+    }
+    el('kindRows').append(rows);
+    el('kindStatus').textContent=`KIND 수집 ${data.status==='SUCCESS'?'성공':'실패 · 마지막 성공 공시 유지'} · 누적 ${data.events.length}건 · 최근 ${Math.min(data.events.length,50)}건 표시 · 최근 시도 ${localTime(data.attempted_at)}`;
+    if(data.window_start && data.window_end)el('kindWindow').textContent=`마지막 성공 검색 구간 ${data.window_start}~${data.window_end} · 본문 미지원·정정 공시는 검토 필요로 표시합니다.`;
+  } catch(error) {el('kindRows').replaceChildren();el('kindStatus').textContent=`KIND 공시 확인 대기 · ${error.message}`;}
 }
 async function loadMasterChanges(master) {
   try {
