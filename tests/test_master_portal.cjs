@@ -35,18 +35,30 @@ const server = http.createServer((req,res) => {
       retrieved_at:'2026-09-23T00:00:00+00:00',issuer_product_count:displayedProducts.length,
       rows:displayedProducts.map((p,i)=>({detail_id:p.detail_id,issuer_code:p.code,issuer_name:p.name,issuer_listed_on:p.listed_on,
         status:i===0?'NOT_OBSERVED':'MATCHED_CODE_NAME',candidate_codes:[],krx_code:null,krx_name:null})),
-      counts:{NOT_OBSERVED:1,MATCHED_CODE_NAME:displayedProducts.length-1},krx_rise_without_confirmed_issuer_code:[]};
+      counts:{NOT_OBSERVED:1,MATCHED_CODE_NAME:displayedProducts.length-1},krx_rise_without_confirmed_issuer_code:[],
+      lifecycle_notices:{status:'SUCCESS',attempted_at:'2026-09-24T01:00:00+00:00',window_start:'2026-08-25',window_end:'2026-09-24',events:[
+        {receipt_id:'20260918000210',name:'RISE synthetic fixture',code:'123456',kind:'LISTING_NOTICE',published_at:'2026-09-18T16:13:00+09:00',effective_date:'2026-09-22',verification:'NOTICE_CODE_DATE_VERIFIED',in_latest_search:true,last_checked_at:'2026-09-24T01:00:00+00:00',viewer_url:'https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20260918000210'}]}};
     await page.route('**/data/quality/krx_master_reconciliation.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify(krxFixture)}));
     await page.route('**/data/krx_collection_status.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({status:'FAILED',attempted_at:'2026-09-23T00:00:00+00:00'})}));
     await page.reload();
     await page.waitForFunction(()=>document.getElementById('krxStatus').textContent.includes('KRX 기준'));
     assert.equal(await page.locator('#krxIssues li').count(),1);
     assert.match(await page.locator('#krxIssues').textContent(),/폐지 확정 아님/);
+    assert.equal(await page.locator('#kindRows tr').count(),1);
+    assert.match(await page.locator('#kindRows').textContent(),/본문 코드·날짜 확인/);
+    assert.match(await page.locator('#kindRows').textContent(),/2026-09-22/);
     await page.waitForFunction(()=>document.getElementById('krxAttempt').textContent.includes('실패'));
     krxFixture.rows[0].issuer_name='RISE changed fixture';
+    krxFixture.lifecycle_notices.status='FAILED';
     await page.reload();
     await page.waitForFunction(()=>document.getElementById('krxStatus').textContent.includes('재대조 대기'));
     assert.equal(await page.locator('#krxIssues li').count(),0);
+    assert.equal(await page.locator('#kindRows tr').count(),1);
+    assert.match(await page.locator('#kindStatus').textContent(),/실패 · 마지막 성공 공시 유지/);
+    krxFixture.lifecycle_notices.events[0].viewer_url='javascript:alert(1)';
+    await page.reload();
+    await page.waitForFunction(()=>document.getElementById('kindStatus').textContent.includes('공시 형식 확인 필요'));
+    assert.equal(await page.locator('#kindRows tr').count(),0);
     await page.unroute('**/data/quality/krx_master_reconciliation.json');
     await page.unroute('**/data/krx_collection_status.json');
     await page.reload();

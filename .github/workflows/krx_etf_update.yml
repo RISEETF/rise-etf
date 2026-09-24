@@ -6,6 +6,8 @@ on:
     paths:
       - 'scripts/collect_krx_etf.py'
       - 'scripts/reconcile_krx_master.py'
+      - 'scripts/collect_kind_notices.py'
+      - 'tests/test_kind_notices.py'
       - 'tests/test_krx_etf.py'
       - '.github/workflows/krx_etf_update.yml'
   schedule:
@@ -31,7 +33,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Verify parser and accumulation rules
-        run: python -m unittest tests.test_krx_etf -v
+        run: python -m unittest tests.test_krx_etf tests.test_kind_notices -v
       - name: Restore cumulative KRX database
         uses: actions/cache/restore@v4
         with:
@@ -69,6 +71,7 @@ jobs:
           path: |
             var/krx-output/receipt.json
             var/krx_etf.sqlite
+            var/kind-raw/
           if-no-files-found: error
           retention-days: 30
       - name: Publish identity comparison and attempt status

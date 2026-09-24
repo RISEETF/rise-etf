@@ -20,6 +20,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from reconcile_krx_master import reconcile
+from collect_kind_notices import refresh as refresh_kind_notices
 
 
 API_URL = "https://data-dbg.krx.co.kr/svc/apis/etp/etf_bydd_trd"
@@ -251,10 +252,13 @@ def collect(args):
     master = json.loads(Path(args.master).read_text())
     report = reconcile(master, result['snapshot'], receipt)
     previous_path = Path(args.reconciliation)
+    previous = {}
     if previous_path.exists():
         previous = json.loads(previous_path.read_text())
         if previous.get('observed_on', '') > report['observed_on']:
             raise ValueError('KRX_PUBLIC_REPORT_DATE_REGRESSION')
+    report['lifecycle_notices'] = refresh_kind_notices(asof, previous.get('lifecycle_notices'))
+    report['legal_lifecycle_status'] = 'NOTICE_MONITORING_ONLY_CURRENT_STATUS_NOT_ASSIGNED'
     write_json_atomic(args.reconciliation, report)
     (output / "receipt.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2))
     print(json.dumps(receipt, ensure_ascii=False))
