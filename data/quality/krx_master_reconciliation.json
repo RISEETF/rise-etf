@@ -1457,6 +1457,123 @@
     }
   ],
   "krx_rise_without_confirmed_issuer_code": [],
-  "legal_lifecycle_status": "NOTICE_VERIFICATION_NOT_CONNECTED",
-  "note": "Presence is an exchange observation. Absence is not delisting. Name-only codes require identity review."
+  "legal_lifecycle_status": "NOTICE_MONITORING_ONLY_CURRENT_STATUS_NOT_ASSIGNED",
+  "note": "Presence is an exchange observation. Absence is not delisting. Name-only codes require identity review.",
+  "lifecycle_notices": {
+    "status": "SUCCESS",
+    "attempted_at": "2026-09-24T16:34:01.309528+00:00",
+    "last_success_at": "2026-09-24T16:34:01.309528+00:00",
+    "window_start": "2026-08-26",
+    "window_end": "2026-09-25",
+    "scope": "RISE_TITLE_SEARCH_ROLLING_30_DAYS_NOT_FULL_LIFECYCLE",
+    "current_legal_status": "NOT_AUTOMATICALLY_ASSIGNED",
+    "search_sources": [
+      {
+        "url": "https://kind.krx.co.kr/disclosure/disclosurebystocktype.do",
+        "request": {
+          "method": "searchDisclosureByStockTypeEtfSub",
+          "forward": "disclosurebystocktype_etf_sub",
+          "currentPageSize": "100",
+          "pageIndex": "1",
+          "fromDate": "2026-08-26",
+          "toDate": "2026-09-25",
+          "etfIsuSrtNm": "RISE",
+          "reportNm": "신규상장",
+          "orderMode": "",
+          "orderStat": ""
+        },
+        "sha256": "92c09a8913a71904959dd9dad4fd0282b9e7419879e9059485d88709eaf51edc"
+      },
+      {
+        "url": "https://kind.krx.co.kr/disclosure/disclosurebystocktype.do",
+        "request": {
+          "method": "searchDisclosureByStockTypeEtfSub",
+          "forward": "disclosurebystocktype_etf_sub",
+          "currentPageSize": "100",
+          "pageIndex": "1",
+          "fromDate": "2026-08-26",
+          "toDate": "2026-09-25",
+          "etfIsuSrtNm": "RISE",
+          "reportNm": "상장폐지",
+          "orderMode": "",
+          "orderStat": ""
+        },
+        "sha256": "fbf2bc5e75093db7cad32530aa9a7d6b1b7064b45cfbcfbd878e7568ee294af8"
+      }
+    ],
+    "events": [
+      {
+        "receipt_id": "20260918000210",
+        "kind_stock_id": "0240J",
+        "published_at": "2026-09-18T16:13:00+09:00",
+        "name": "RISE 삼성SK그룹",
+        "title": "신규상장(KB RISE 삼성SK그룹증권상장지수투자신탁(주식), 상장일 2026.09.22)",
+        "publisher": "유가증권시장본부",
+        "kind": "LISTING_NOTICE",
+        "search_sha256": "92c09a8913a71904959dd9dad4fd0282b9e7419879e9059485d88709eaf51edc",
+        "event_id": "20260918000210:0240J",
+        "code": "0240J0",
+        "effective_date": "2026-09-22",
+        "verification": "NOTICE_CODE_DATE_VERIFIED",
+        "viewer_url": "https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20260918000210",
+        "sources": [
+          {
+            "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20260918000210",
+            "request": null,
+            "sha256": "a1cf8328914f2ed7b6c5d3b7de6dba9081bda9fe237ee37905df45f96c5f2405"
+          },
+          {
+            "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=searchContents&docNo=20260918000527",
+            "request": null,
+            "sha256": "d83ab24ac29d4e40337359d46b2d27d642002f6ebecdb4b3c3533f3343e429fe"
+          },
+          {
+            "url": "https://kind.krx.co.kr/external/2026/09/18/000210/20260918000527/68152.htm",
+            "request": null,
+            "sha256": "96109cce93526adec1caf2bd7d003c85b35b20d1d1024d01d8bc694dc8664961"
+          }
+        ],
+        "first_seen_at": "2026-09-24T16:34:01.309528+00:00",
+        "last_checked_at": "2026-09-24T16:34:01.309528+00:00",
+        "versions": [],
+        "in_latest_search": true
+      },
+      {
+        "receipt_id": "20260828000409",
+        "kind_stock_id": "0233N",
+        "published_at": "2026-08-28T15:43:00+09:00",
+        "name": "RISE 글로벌AI낸드메모리반도체",
+        "title": "신규상장(KB RISE 글로벌AI낸드메모리반도체증권상장지수투자신탁(주식), 상장일 2026.09.01)",
+        "publisher": "유가증권시장본부",
+        "kind": "LISTING_NOTICE",
+        "search_sha256": "92c09a8913a71904959dd9dad4fd0282b9e7419879e9059485d88709eaf51edc",
+        "event_id": "20260828000409:0233N",
+        "code": "0233N0",
+        "effective_date": "2026-09-01",
+        "verification": "NOTICE_CODE_DATE_VERIFIED",
+        "viewer_url": "https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20260828000409",
+        "sources": [
+          {
+            "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20260828000409",
+            "request": null,
+            "sha256": "a2cc64adc9218daa32b5fee68962965f5f3abf804619512e8d1c6e1f994879e3"
+          },
+          {
+            "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=searchContents&docNo=20260828001038",
+            "request": null,
+            "sha256": "fbf28bd4fb29e163cd5733042243a7cdf05fe879804db28d8c966b63cc5d32af"
+          },
+          {
+            "url": "https://kind.krx.co.kr/external/2026/08/28/000409/20260828001038/68152.htm",
+            "request": null,
+            "sha256": "e042f368c0ce1ed4348ca85a3d06f6d55f6499d03423218cb5d00ec4fd17510d"
+          }
+        ],
+        "first_seen_at": "2026-09-24T16:34:01.309528+00:00",
+        "last_checked_at": "2026-09-24T16:34:01.309528+00:00",
+        "versions": [],
+        "in_latest_search": true
+      }
+    ]
+  }
 }
