@@ -78,6 +78,26 @@ class KrxEtfTest(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError,'REQUESTED_DATE_MISMATCH'):
                 MODULE.fetch_latest('test-key',dt.date(2026,9,23))
 
+    def test_krx_failure_does_not_block_kind_refresh_or_replace_exchange_evidence(self):
+        with tempfile.TemporaryDirectory() as d:
+            report=Path(d)/'report.json';status=Path(d)/'status.json'
+            original={'status':'KRX_DAILY_IDENTITY_COMPARISON','observed_on':'2026-09-23','raw_sha256':'old','rows':[]}
+            report.write_text(json.dumps(original))
+            with patch.object(sys,'argv',['collect','--reconciliation',str(report),'--status',str(status)]), \
+                 patch.object(MODULE,'collect',side_effect=ValueError('KRX_FIELD_COVERAGE_LOW:nav:0.1')), \
+                 patch.object(MODULE,'refresh_kind_notices',return_value={'status':'SUCCESS','events':[]}) as refresh:
+                self.assertEqual(MODULE.main(),1)
+            updated=json.loads(report.read_text())
+            self.assertEqual(updated['observed_on'],original['observed_on'])
+            self.assertEqual(updated['raw_sha256'],'old')
+            self.assertEqual(updated['lifecycle_notices']['status'],'SUCCESS')
+            self.assertEqual(json.loads(status.read_text())['reason'],'KRX_FIELD_COVERAGE_LOW')
+            refresh.assert_called_once()
+
+    def test_public_error_reason_excludes_arbitrary_details(self):
+        self.assertEqual(MODULE.safe_reason(ValueError('secret token')),'ValueError')
+        self.assertEqual(MODULE.safe_reason(ValueError('KRX_UNIVERSE_TOO_SMALL:123')),'KRX_UNIVERSE_TOO_SMALL')
+
     def test_completeness_rejects_partial_and_stale_snapshots(self):
         snapshot = MODULE.parse_snapshot(json.dumps(self.fixture()).encode(), dt.date(2026, 9, 18))
         with tempfile.TemporaryDirectory() as temp:
