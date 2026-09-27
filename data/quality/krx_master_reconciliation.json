@@ -4,11 +4,11 @@
   "source_role": "PRIMARY_EXCHANGE_OBSERVATION",
   "source_url": "https://data-dbg.krx.co.kr/svc/apis/etp/etf_bydd_trd",
   "observed_on": "2026-09-23",
-  "retrieved_at": "2026-09-25T09:37:49.098092+00:00",
-  "raw_sha256": "6a482a504e3c48212952b2996ebee4376c80d153ddb7085477de6e1c44556e51",
+  "retrieved_at": "2026-09-27T23:11:27.323060+00:00",
+  "raw_sha256": "a6c87957ae9fbb3cb87632315318037a34d97150085711f8199d628ddcc20265",
   "krx_market_count": 1175,
-  "issuer_effective_date": "2026-09-25",
-  "issuer_source_sha256": "4d6d4140c2d1d05bd8225e2efd3309f4b442eaaca4a5982047dcdd9e9b1e75e8",
+  "issuer_effective_date": "2026-09-27",
+  "issuer_source_sha256": "5192813c018d37fafd2633974e286c8979f5828db90eb95ec21647c66a141927",
   "issuer_product_count": 144,
   "counts": {
     "MATCHED_CODE_NAME": 142,
@@ -1461,10 +1461,10 @@
   "note": "Presence is an exchange observation. Absence is not delisting. Name-only codes require identity review.",
   "lifecycle_notices": {
     "status": "SUCCESS",
-    "attempted_at": "2026-09-25T09:37:51.212342+00:00",
-    "last_success_at": "2026-09-25T09:37:51.212342+00:00",
-    "window_start": "2026-08-26",
-    "window_end": "2026-09-25",
+    "attempted_at": "2026-09-27T23:11:29.498767+00:00",
+    "last_success_at": "2026-09-27T23:11:29.498767+00:00",
+    "window_start": "2026-08-29",
+    "window_end": "2026-09-28",
     "scope": "RISE_TITLE_SEARCH_ROLLING_30_DAYS_NOT_FULL_LIFECYCLE",
     "current_legal_status": "NOT_AUTOMATICALLY_ASSIGNED",
     "search_sources": [
@@ -1475,14 +1475,14 @@
           "forward": "disclosurebystocktype_etf_sub",
           "currentPageSize": "100",
           "pageIndex": "1",
-          "fromDate": "2026-08-26",
-          "toDate": "2026-09-25",
+          "fromDate": "2026-08-29",
+          "toDate": "2026-09-28",
           "etfIsuSrtNm": "RISE",
           "reportNm": "신규상장",
           "orderMode": "",
           "orderStat": ""
         },
-        "sha256": "92c09a8913a71904959dd9dad4fd0282b9e7419879e9059485d88709eaf51edc"
+        "sha256": "3771292e892c1c6c10d16ac0e50dad34d0563bbf722431f6878831e05ffb83ee"
       },
       {
         "url": "https://kind.krx.co.kr/disclosure/disclosurebystocktype.do",
@@ -1491,8 +1491,8 @@
           "forward": "disclosurebystocktype_etf_sub",
           "currentPageSize": "100",
           "pageIndex": "1",
-          "fromDate": "2026-08-26",
-          "toDate": "2026-09-25",
+          "fromDate": "2026-08-29",
+          "toDate": "2026-09-28",
           "etfIsuSrtNm": "RISE",
           "reportNm": "상장폐지",
           "orderMode": "",
@@ -1510,7 +1510,7 @@
         "title": "신규상장(KB RISE 삼성SK그룹증권상장지수투자신탁(주식), 상장일 2026.09.22)",
         "publisher": "유가증권시장본부",
         "kind": "LISTING_NOTICE",
-        "search_sha256": "92c09a8913a71904959dd9dad4fd0282b9e7419879e9059485d88709eaf51edc",
+        "search_sha256": "3771292e892c1c6c10d16ac0e50dad34d0563bbf722431f6878831e05ffb83ee",
         "event_id": "20260918000210:0240J",
         "code": "0240J0",
         "effective_date": "2026-09-22",
@@ -1534,7 +1534,7 @@
           }
         ],
         "first_seen_at": "2026-09-24T16:34:01.309528+00:00",
-        "last_checked_at": "2026-09-25T09:37:51.212342+00:00",
+        "last_checked_at": "2026-09-27T23:11:29.498767+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1572,7 +1572,7 @@
         "first_seen_at": "2026-09-24T16:34:01.309528+00:00",
         "last_checked_at": "2026-09-25T09:37:51.212342+00:00",
         "versions": [],
-        "in_latest_search": true
+        "in_latest_search": false
       }
     ]
   }
