@@ -29,6 +29,9 @@ const server = http.createServer((req,res) => {
     assert.equal(await page.evaluate(()=>{try{krxFreshness('2026-09-29','2026-09-27T15:00:00Z',Date.parse('2026-09-27T15:00:00Z'));return false;}catch(_){return true;}}),true);
     assert.equal(await page.locator('#products tr').count(),displayedProducts.length);
     assert.equal(await page.locator('#total').textContent(),displayedProducts.length.toLocaleString('ko-KR'));
+    await page.waitForFunction(()=>document.getElementById('operationsRows').children.length>0);
+    assert.match(await page.locator('#operationsRows').textContent(),/RISE 공식 종목 목록.*KRX ETF 일별 대조.*USD\/KRW 참고환율/);
+    assert.match(await page.locator('#operationsRows').textContent(),/종가 시점 환율 미확보/);
     if(master.pending_products?.length) assert.match(await page.locator('#products').textContent(),/공식 코드 확인 중/);
     const changes=JSON.parse(fs.readFileSync(path.join(root,'data/master/changes.json')));
     await page.waitForFunction(()=>!document.getElementById('masterChangesStatus').textContent.includes('확인 중'));
@@ -139,6 +142,8 @@ const server = http.createServer((req,res) => {
     await page.route('**/data/master/latest.json', route=>route.fulfill({status:404,body:'missing'}));
     await page.reload();
     await page.waitForFunction(()=>document.getElementById('masterStatus').textContent.includes('표시할 수 없습니다'));
+    await page.waitForFunction(()=>document.getElementById('operationsStatus').textContent.includes('상태 파일 확인 불가'));
+    assert.match(await page.locator('#operationsRows').textContent(),/기준일 미확인.*KRX ETF 일별 대조/);
     assert.equal(await page.locator('#products tr').count(),0);
     assert.equal(await page.locator('#search').isDisabled(),true);
     assert.equal(legacyRequests,0);
