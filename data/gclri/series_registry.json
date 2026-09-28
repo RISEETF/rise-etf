@@ -10,7 +10,8 @@
       "tier": "TIER1_OFFICIAL",
       "source_org": "Board of Governors / FRED",
       "gclri_layer": "Fiscal Capacity / Rates",
-      "role": "long_yield"
+      "role": "long_yield",
+      "stale_after_days": 5
     },
     {
       "id": "DGS2",
@@ -20,7 +21,8 @@
       "tier": "TIER1_OFFICIAL",
       "source_org": "Board of Governors / FRED",
       "gclri_layer": "Policy / Rates",
-      "role": "front_yield"
+      "role": "front_yield",
+      "stale_after_days": 5
     },
     {
       "id": "T10Y2Y",
@@ -30,7 +32,8 @@
       "tier": "TIER1_OFFICIAL",
       "source_org": "Federal Reserve / FRED",
       "gclri_layer": "Cross-Asset / Curve",
-      "role": "curve"
+      "role": "curve",
+      "stale_after_days": 5
     },
     {
       "id": "SOFR",
@@ -40,17 +43,19 @@
       "tier": "TIER1_OFFICIAL",
       "source_org": "Federal Reserve Bank of New York / FRED",
       "gclri_layer": "Funding Liquidity",
-      "role": "secured_funding"
+      "role": "secured_funding",
+      "stale_after_days": 5
     },
     {
       "id": "WRESBAL",
       "name": "Reserve Balances with Federal Reserve Banks",
-      "unit": "Billions USD",
+      "unit": "Millions USD",
       "frequency": "Weekly",
       "tier": "TIER1_OFFICIAL",
       "source_org": "Board of Governors / FRED",
       "gclri_layer": "Funding Liquidity",
-      "role": "bank_reserves"
+      "role": "bank_reserves",
+      "stale_after_days": 10
     },
     {
       "id": "BAMLC0A0CM",
@@ -60,7 +65,8 @@
       "tier": "TIER2_MARKET",
       "source_org": "ICE BofA via FRED",
       "gclri_layer": "Credit Creation & Stress",
-      "role": "ig_credit_spread"
+      "role": "ig_credit_spread",
+      "stale_after_days": 5
     },
     {
       "id": "BAMLH0A0HYM2",
@@ -70,7 +76,8 @@
       "tier": "TIER2_MARKET",
       "source_org": "ICE BofA via FRED",
       "gclri_layer": "Credit Creation & Stress",
-      "role": "hy_credit_spread"
+      "role": "hy_credit_spread",
+      "stale_after_days": 5
     },
     {
       "id": "DTWEXBGS",
@@ -80,7 +87,8 @@
       "tier": "TIER1_OFFICIAL",
       "source_org": "Board of Governors / FRED",
       "gclri_layer": "FX / Dollar",
-      "role": "dollar"
+      "role": "dollar",
+      "stale_after_days": 5
     },
     {
       "id": "DCOILBRENTEU",
@@ -90,7 +98,8 @@
       "tier": "TIER1_OFFICIAL",
       "source_org": "EIA via FRED",
       "gclri_layer": "Cross-Asset / Energy",
-      "role": "brent"
+      "role": "brent",
+      "stale_after_days": 7
     },
     {
       "id": "DCOILWTICO",
@@ -100,7 +109,8 @@
       "tier": "TIER1_OFFICIAL",
       "source_org": "EIA via FRED",
       "gclri_layer": "Cross-Asset / Energy",
-      "role": "wti"
+      "role": "wti",
+      "stale_after_days": 7
     },
     {
       "id": "VIXCLS",
@@ -110,7 +120,8 @@
       "tier": "TIER2_MARKET",
       "source_org": "CBOE via FRED",
       "gclri_layer": "Market Liquidity / Risk",
-      "role": "volatility"
+      "role": "volatility",
+      "stale_after_days": 5
     }
   ]
 }
