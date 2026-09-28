@@ -24,6 +24,9 @@ const server = http.createServer((req,res) => {
     const url=`http://127.0.0.1:${server.address().port}`;
     await page.goto(url);
     await page.waitForFunction(()=>!document.getElementById('search').disabled);
+    assert.deepEqual(await page.evaluate(()=>krxFreshness('2026-09-23','2026-09-27T15:00:00Z',Date.parse('2026-09-27T15:00:00Z'))),{calendarDays:5,needsReview:true});
+    assert.deepEqual(await page.evaluate(()=>krxFreshness('2026-09-25','2026-09-27T14:59:00Z',Date.parse('2026-09-27T14:59:00Z'))),{calendarDays:2,needsReview:false});
+    assert.equal(await page.evaluate(()=>{try{krxFreshness('2026-09-29','2026-09-27T15:00:00Z',Date.parse('2026-09-27T15:00:00Z'));return false;}catch(_){return true;}}),true);
     assert.equal(await page.locator('#products tr').count(),displayedProducts.length);
     assert.equal(await page.locator('#total').textContent(),displayedProducts.length.toLocaleString('ko-KR'));
     if(master.pending_products?.length) assert.match(await page.locator('#products').textContent(),/공식 코드 확인 중/);
@@ -42,6 +45,7 @@ const server = http.createServer((req,res) => {
     await page.route('**/data/krx_collection_status.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({status:'FAILED',attempted_at:'2026-09-23T00:00:00+00:00',reason:'KRX_PUBLIC_REPORT_DATE_REGRESSION',rejected_observed_on:'2026-09-18',retained_observed_on:'2026-09-23'})}));
     await page.reload();
     await page.waitForFunction(()=>document.getElementById('krxStatus').textContent.includes('KRX 기준'));
+    assert.match(await page.locator('#krxDates').textContent(),/달력일.*수집 성공은 최신 거래일 확보를 뜻하지 않습니다/);
     assert.equal(await page.locator('#krxIssues li').count(),1);
     assert.match(await page.locator('#krxIssues').textContent(),/폐지 확정 아님/);
     assert.equal(await page.locator('#kindRows tr').count(),1);

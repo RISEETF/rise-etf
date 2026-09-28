@@ -33,6 +33,14 @@ function validateMaster(data) {
 function localTime(value) {
   return Number.isFinite(Date.parse(value)) ? new Date(value).toLocaleString('ko-KR', {timeZone:'Asia/Seoul', hour12:false}) + ' KST' : '시각 미확인';
 }
+function krxFreshness(observedOn, retrievedAt, now=Date.now()) {
+  // Calendar age in Korea is not a count of missed exchange trading sessions.
+  const koreaDate=new Date(now+9*3600000).toISOString().slice(0,10);
+  const calendarDays=Math.round((Date.parse(koreaDate)-Date.parse(observedOn))/86400000);
+  const retrievalHours=Math.floor((now-Date.parse(retrievedAt))/3600000);
+  if(calendarDays<0 || retrievalHours<0) throw new Error('KRX 미래 기준일 또는 수집시각');
+  return {calendarDays, needsReview:calendarDays>4 || retrievalHours>=72};
+}
 function renderProducts() {
   const query = el('search').value.trim().toLocaleLowerCase();
   const category = el('category').value;
@@ -97,10 +105,9 @@ async function loadKrxComparison(master) {
       counts[row.status]=(counts[row.status] || 0)+1;
     }
     if(Object.keys(report.counts || {}).length!==Object.keys(counts).length || Object.entries(counts).some(([key,n])=>report.counts[key]!==n)) throw new Error('대조 집계 오류');
-    const age=Math.floor((Date.now()-Date.parse(report.retrieved_at))/86400000);
-    const observationLag=Math.floor((Date.now()-Date.parse(report.observed_on))/86400000);
-    el('krxStatus').textContent=`KRX 기준 ${report.issuer_product_count}개 상품 대조 · 코드·명칭 일치 ${counts.MATCHED_CODE_NAME || 0}개${age>2 || observationLag>4?' · 자료 지연 확인 필요':''}`;
-    el('krxDates').textContent=`거래소 관측일 ${report.observed_on} · 대조 당시 운용사 기준일 ${report.issuer_effective_date} · KRX 수집 ${localTime(report.retrieved_at)}`;
+    const freshness=krxFreshness(report.observed_on,report.retrieved_at);
+    el('krxStatus').textContent=`KRX 기준 ${report.issuer_product_count}개 상품 대조 · 코드·명칭 일치 ${counts.MATCHED_CODE_NAME || 0}개${freshness.needsReview?' · 자료 최신성 확인 필요':''}`;
+    el('krxDates').textContent=`거래소 관측일 ${report.observed_on} · 한국 날짜 기준 ${freshness.calendarDays}일 전(달력일) · 대조 당시 운용사 기준일 ${report.issuer_effective_date} · KRX 수집 ${localTime(report.retrieved_at)} · 수집 성공은 최신 거래일 확보를 뜻하지 않습니다. 휴장일 미반영으로 지연 여부는 별도 확인이 필요합니다.`;
     el('krxCounts').replaceChildren(); el('krxIssues').replaceChildren();
     for(const [key,n] of Object.entries(counts)) {
       const item=document.createElement('p');item.textContent=`${labels[key]} ${n}개`;el('krxCounts').append(item);
@@ -121,7 +128,7 @@ async function loadKrxComparison(master) {
     if(!['SUCCESS','FAILED'].includes(attempt.status)) throw new Error('상태 오류');
     el('krxAttempt').textContent=`최근 KRX 대조 시도 ${localTime(attempt.attempted_at)} · ${attempt.status==='SUCCESS'?'성공':'실패 · 마지막 성공 대조 유지'}`;
     if(attempt.status==='FAILED') {
-      const reasons={KRX_PUBLIC_REPORT_DATE_REGRESSION:'과거 기준일 응답 차단',KRX_FETCH_FAILED:'유효한 KRX 응답 확보 실패',KRX_FIELD_COVERAGE_LOW:'필수 가격·거래 필드 부족',KRX_UNIVERSE_TOO_SMALL:'전체 ETF 응답 건수 부족',KRX_UNIVERSE_COLLAPSE:'이전 대비 ETF 응답 건수 급감',KRX_SNAPSHOT_STALE_OR_FUTURE:'허용 기간을 지난 응답'};
+      const reasons={KRX_PUBLIC_REPORT_DATE_REGRESSION:'과거 기준일 응답 차단',KRX_FETCH_FAILED:'유효한 KRX 응답 확보 실패',KRX_FIELD_COVERAGE_LOW:'필수 가격·거래 필드 부족',KRX_UNIVERSE_TOO_SMALL:'전체 ETF 응답 건수 부족',KRX_UNIVERSE_COLLAPSE:'이전 대비 ETF 응답 건수 급감',KRX_SNAPSHOT_STALE_OR_FUTURE:'허용 기간 밖의 기준일 응답'};
       el('krxAttempt').textContent+=` · ${reasons[attempt.reason] || '수집 또는 검증 오류'}`;
       for(const [key,label] of [['rejected_observed_on','차단 기준일'],['retained_observed_on','유지 기준일']]) {
         if(/^\d{4}-\d{2}-\d{2}$/.test(attempt[key] || '')) el('krxAttempt').textContent+=` · ${label} ${attempt[key]}`;
