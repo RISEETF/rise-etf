@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.9",
+  "built_at_utc": null,
+  "source_episode_built_at_utc": null,
+  "gate_state": "KEEP",
+  "independent_persistent_channel_count": 0,
+  "watch_channel_count": 0,
+  "extreme_event_override": false,
+  "production_eligible": false,
+  "regime_change_authorized": false,
+  "channels": [],
+  "governance": {
+    "shared_signal_channels_deduplicated": true,
+    "stale_or_low_confidence_not_counted": true,
+    "policy_response_not_independent_confirmation": true,
+    "final_regime_decision_reserved_for_daily_intelligence": true
+  }
+}
