@@ -1,0 +1,45 @@
+name: Regime transition gate
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Signal episode tracker"]
+    types: [completed]
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_regime_gate.py'
+      - 'data/regime/channel_registry.json'
+      - '.github/workflows/regime_gate_update.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: regime-gate
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test regime gate
+        run: python -m unittest tests.test_regime_gate -v
+      - name: Build regime gate
+        run: python scripts/build_regime_gate.py
+      - name: Commit regime gate outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/regime/gate_latest.json data/regime/gate_history.json
+          if git diff --cached --quiet; then
+            echo "No regime gate changes"
+          else
+            git commit -m "Update regime transition gate"
+            git push
+          fi

@@ -1,0 +1,67 @@
+{
+  "schema_version": "0.9",
+  "governance": "Channel gate suggests KEEP / CHALLENGE / TRANSITION_CANDIDATE only; it cannot change the regime.",
+  "channels": [
+    {
+      "channel_id": "RATES",
+      "signals": [
+        "SIG-RATE-001",
+        "SIG-RATE-002"
+      ],
+      "dedup_key": "rates",
+      "fresh_required": true
+    },
+    {
+      "channel_id": "CREDIT",
+      "signals": [
+        "SIG-CREDIT-001"
+      ],
+      "dedup_key": "credit",
+      "fresh_required": true
+    },
+    {
+      "channel_id": "FUNDING",
+      "signals": [
+        "SIG-LIQ-001"
+      ],
+      "dedup_key": "funding",
+      "fresh_required": true
+    },
+    {
+      "channel_id": "FX_DOLLAR",
+      "signals": [
+        "SIG-FX-001"
+      ],
+      "dedup_key": "fx",
+      "fresh_required": true
+    },
+    {
+      "channel_id": "ENERGY",
+      "signals": [
+        "SIG-ENERGY-001"
+      ],
+      "dedup_key": "energy",
+      "fresh_required": true
+    },
+    {
+      "channel_id": "VOLATILITY",
+      "signals": [
+        "SIG-MKT-001"
+      ],
+      "dedup_key": "volatility",
+      "fresh_required": true
+    }
+  ],
+  "transition_rule": {
+    "independent_persistent_channels_required": 2,
+    "extreme_event_override_allowed": true,
+    "statuses_counted": [
+      "ACTIVE",
+      "STRENGTHENING"
+    ],
+    "watch_only_result": "CHALLENGE",
+    "insufficient_or_stale_only_result": "KEEP"
+  },
+  "production_eligible": false,
+  "regime_change_authorized": false
+}
