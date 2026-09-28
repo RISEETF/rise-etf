@@ -348,4 +348,27 @@ async function loadResearchRS() {
     el('researchRows').replaceChildren();el('researchStatus').textContent='연구용 RS 자료를 표시할 수 없습니다.';
   }
 }
-Promise.allSettled([loadMaster(), loadCapture(), loadQuality(), loadMasterAttempt(), loadSeries(), loadIssuerChecks(), loadUniverse(), loadResearchRS()]);
+async function loadOperations() {
+  const paths=['data/master/latest.json','data/master_collection_status.json','data/quality/krx_master_reconciliation.json','data/krx_collection_status.json','data/series/status.json'];
+  const results=await Promise.allSettled(paths.map(readJSON));
+  const [master,masterAttempt,krx,krxAttempt,series]=results.map(r=>r.status==='fulfilled'?r.value:null);
+  const rows=[];
+  const state=value=>({SUCCESS:'성공',CAPTURED:'수집됨 · 검증 대기',FAILED:'실패'}[value] || '상태 미확인');
+  const add=(name,status,date,time,note)=>rows.push([name,state(status),validDate(date)?date:'기준일 미확인',localTime(time),note]);
+  add('RISE 공식 종목 목록',masterAttempt?.status,master?.effective_date,masterAttempt?.attempted_at,'가격·노출 분류 검증은 별도');
+  add('KRX ETF 일별 대조',krxAttempt?.status,krx?.observed_on,krxAttempt?.attempted_at,'관측일 최신성 확인 · 부재는 폐지 확정 아님');
+  if(Array.isArray(series?.series) && series.series.length) {
+    for(const row of series.series) add(`가격 · ${row.code}`,row.last_attempt_status,row.last_date,row.retrieved_at,'배당·분할·거래일 정합성 검증 대기');
+  } else add('가격 시계열',null,null,null,'가격 수집 현황 파일 확인 필요');
+  add('USD/KRW 참고환율',series?.fx?.last_attempt_status,series?.fx?.last_date,series?.fx?.retrieved_at,'ECB 참고환율 · 종가 시점 환율 미확보');
+  const fragment=document.createDocumentFragment();
+  for(const values of rows) {
+    const tr=document.createElement('tr');
+    for(const value of values) {const td=document.createElement('td');td.textContent=value;tr.append(td);}
+    fragment.append(tr);
+  }
+  el('operationsRows').replaceChildren(fragment);
+  const unavailable=results.filter(r=>r.status==='rejected').length;
+  el('operationsStatus').textContent=`${rows.length}개 데이터 항목 · ${unavailable?`${unavailable}개 상태 파일 확인 불가`:'상태 파일 조회 완료'} · 투자 신호 승인과 별개`;
+}
+Promise.allSettled([loadMaster(), loadCapture(), loadQuality(), loadMasterAttempt(), loadSeries(), loadIssuerChecks(), loadUniverse(), loadResearchRS(), loadOperations()]);
