@@ -26,7 +26,7 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:9px;borde
 <div class="card"><h3>오늘의 핵심 변화</h3><div id="topChange" class="big"></div></div><div class="card"><h3>핵심 위험</h3><div id="topRisk" class="big"></div></div></div>
 <div class="section grid two"><div class="card"><h2>충격 흡수력 / 추가 여력</h2><table><tr><th>구분</th><th>수준</th><th>추가 여력</th></tr><tr><td>거시경제</td><td id="macroAbs"></td><td id="macroHead"></td></tr><tr><td>기업</td><td id="corpAbs"></td><td id="corpHead"></td></tr></table></div>
 <div class="card"><h2>핵심 스트레스 지도</h2><table><tr><td>재정</td><td id="fiscal"></td></tr><tr><td>신용 스트레스(현재)</td><td id="creditNow"></td></tr><tr><td>신용 스트레스(향후)</td><td id="creditFwd"></td></tr><tr><td>시장 유동성</td><td id="mktLiq"></td></tr><tr><td>자금조달 유동성</td><td id="fundLiq"></td></tr><tr><td>에너지</td><td id="energy"></td></tr></table></div></div>
-<div class="section card"><h2>레짐 변화 이력</h2><div id="regimeHistory" class="callout"></div><p id="reportLink"></p></div></section>
+<div class="section card"><h2>데이터 신선도 경고</h2><div id="freshnessWarning" class="callout">원시계열 관측일을 확인 중입니다.</div></div><div class="section card"><h2>레짐 변화 이력</h2><div id="regimeHistory" class="callout"></div><p id="reportLink"></p></div></section>
 <section id="gclri" class="tab">
     <div class="grid two">
       <div class="card"><h2>프레임워크 추세</h2><svg id="gclriChart" class="chart" viewBox="0 0 700 240"></svg><div class="small">Daily Intelligence framework-history scores — not raw observations. Blue: Fiscal stress · Yellow: Corporate headroom.</div></div>
@@ -186,8 +186,22 @@ function renderEpisodes(){
   $('episodeEvidence').innerHTML=eps.map(x=>`<div class="item"><b>${esc(x.signal_id)} · ${esc(ko(x.episode_status))}</b><span>cumulative_move=${x.cumulative_episode_move==null?'—':Number(x.cumulative_episode_move).toFixed(4)} · normal_confirm=${esc(x.normal_confirmation_runs)}<br>${(x.evidence||[]).slice(-5).map(e=>esc(e.date)+' · '+esc(e.evidence_role)+' · '+esc(e.signal_state)+' · z='+(e.zscore==null?'—':Number(e.zscore).toFixed(2))).join('<br>')}</span></div>`).join('');
 }
 
+function renderFreshnessWarning(){
+  if(!signalData){ $('freshnessWarning').textContent='신호 원시계열 상태를 불러오지 못했습니다.'; return; }
+  const rows=(signalData.signals||[]).flatMap(s=>(s.details||[]).map(d=>({signal:s.signal_id,...d})));
+  const stale=rows.filter(x=>x.data_state==='STALE'||x.data_state==='UNAVAILABLE');
+  const dates=rows.map(x=>x.observation_date).filter(Boolean).sort();
+  const oldest=dates[0]||'—', newest=dates[dates.length-1]||'—';
+  const lagged=rows.filter(x=>x.observation_date && signalData.built_at_utc && x.observation_date < signalData.built_at_utc.slice(0,10));
+  let msg='신호 생성시각 '+(signalData.built_at_utc||'—')+' · 원시계열 관측범위 '+oldest+' ~ '+newest+'. ';
+  if(stale.length) msg+='STALE/UNAVAILABLE '+stale.map(x=>x.series_id).join(', ')+'는 현재 확인 채널로 사용하지 않습니다. ';
+  if(lagged.length) msg+='일부 계열은 보고일보다 관측일이 늦습니다. 신호 상태는 해당 관측시점 기준이며 최신 시장가격을 의미하지 않습니다.';
+  else msg+='주요 원시계열 관측일이 신호 생성일과 정렬되어 있습니다.';
+  $('freshnessWarning').textContent=msg;
+}
 function renderSignals(){
   if(!signalData) return;
+  renderFreshnessWarning();
   $('signalEngineStatus').textContent='READY';
   $('signalBuilt').textContent='Built '+(signalData.built_at_utc||'—');
   $('signalProd').textContent=signalData.production_eligible?'YES':'NO';
