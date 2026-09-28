@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.8",
+  "built_at_utc": null,
+  "source_signal_built_at_utc": null,
+  "production_eligible": false,
+  "regime_change_authorized": false,
+  "active_episode_count": 0,
+  "confirmation_eligible_episode_count": 0,
+  "episodes": [],
+  "governance": {
+    "policy_response_is_not_independent_confirmation": true,
+    "one_normal_run_does_not_close": true,
+    "stress_scope_default": "UNRESOLVED",
+    "policy_intervention_effect_default": "UNRESOLVED"
+  }
+}

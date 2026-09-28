@@ -1,0 +1,45 @@
+name: Signal episode tracker
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["GCLRI signal engine"]
+    types: [completed]
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_signal_episodes.py'
+      - 'data/episodes/episode_registry.json'
+      - '.github/workflows/signal_episode_update.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: signal-episodes
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test episode tracker
+        run: python -m unittest tests.test_signal_episodes -v
+      - name: Build episode state
+        run: python scripts/build_signal_episodes.py
+      - name: Commit episode outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/episodes/latest.json data/episodes/history.json
+          if git diff --cached --quiet; then
+            echo "No episode changes"
+          else
+            git commit -m "Update signal episodes"
+            git push
+          fi
