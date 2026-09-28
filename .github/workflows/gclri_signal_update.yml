@@ -1,0 +1,45 @@
+name: GCLRI signal engine
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["GCLRI market data update"]
+    types: [completed]
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_gclri_signals.py'
+      - 'data/signals/signal_registry.json'
+      - '.github/workflows/gclri_signal_update.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gclri-signals
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Unit test signal engine
+        run: python -m unittest tests.test_gclri_signals -v
+      - name: Build signals
+        run: python scripts/build_gclri_signals.py
+      - name: Commit signal outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/signals/latest.json data/signals/history.json
+          if git diff --cached --quiet; then
+            echo "No signal changes"
+          else
+            git commit -m "Update GCLRI signals"
+            git push
+          fi
