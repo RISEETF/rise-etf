@@ -399,7 +399,19 @@ async function loadRSTasks() {
       const li=document.createElement('li');
       const calculated=w.status==='CALCULATED_RESEARCH_ONLY' && validDate(w.start_date) && validDate(w.end_date);
       li.textContent=`${w.calendar_days}일 비교: ${calculated?`연구용 계산 가능 · ${w.start_date} ~ ${w.end_date}`:w.status==='KNOWN_SPLIT_IN_WINDOW'?'구간 내 분할로 계산 보류':'기간 또는 데이터 확인 필요'}`;
+      if(Number.isInteger(w.start_shift_calendar_days) && w.start_shift_calendar_days>0) li.textContent+=` · 목표 시작일보다 ${w.start_shift_calendar_days}일 이전 공통 관측일 사용`;
       el('rsWindows').append(li);
+    }
+    if(rs.alignment_audit && Array.isArray(rs.alignment_audit.excluded_recent_dates)) {
+      const audit=rs.alignment_audit;
+      const li=document.createElement('li');
+      li.textContent=`날짜 정합성: 공통 관측일 ${audit.common_date_count}개 · 최근 관측 날짜 ${audit.recent_dates_checked}개 중 공통 비교 제외 ${audit.excluded_recent_dates.length}개 (휴장·장애 판정 아님)`;
+      el('rsWindows').append(li);
+      for(const item of audit.excluded_recent_dates.slice(0,5)) {
+        const detail=document.createElement('li');
+        detail.textContent=`${item.date} 공통 비교 제외 · 관측값 없음: ${item.missing_sources.join(', ')}`;
+        el('rsWindows').append(detail);
+      }
     }
     el('rsReadiness').textContent=`${series.series.length}개 시범 종목 · 미해결 작업 ${rows.length}개 항목 · 공식 투자 신호 승인과 별개`;
   } catch(_) {

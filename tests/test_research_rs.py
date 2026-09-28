@@ -22,6 +22,31 @@ def fixture():
 
 
 class ResearchRSTests(unittest.TestCase):
+    def test_alignment_audit_explains_missing_endpoint_and_start_shift(self):
+        data,configs=fixture()
+        data['prices'][0]['prices'].append({'observation_date':'2026-09-09','close':112})
+        result=calculate(data,configs,(6,))
+        audit=result['alignment_audit']
+        self.assertEqual(audit['latest_available_date'],'2026-09-09')
+        self.assertEqual(audit['latest_common_date'],'2026-09-08')
+        self.assertEqual(audit['excluded_recent_dates'],[{'date':'2026-09-09','missing_sources':['US_LISTED:SPY','FX:USD/KRW']}])
+        w=result['windows'][0]
+        self.assertEqual(w['target_start_date'],'2026-09-02')
+        self.assertEqual(w['start_shift_calendar_days'],1)
+        self.assertEqual(w['actual_calendar_days'],7)
+        self.assertEqual(w['skipped_start_dates'][0]['missing_sources'],['XKRX:KR','US_LISTED:SPY','FX:USD/KRW'])
+        self.assertEqual(w['status'],'CALCULATED_RESEARCH_ONLY')
+
+    def test_alignment_no_common_data_and_search_limit(self):
+        data,configs=fixture();data['fx']['observations']=[]
+        r=calculate(data,configs,(7,))
+        self.assertEqual(r['alignment_audit']['common_date_count'],0)
+        self.assertIsNone(r['alignment_audit']['first_common_date'])
+        self.assertEqual(r['windows'][0]['rows'],[])
+        data,configs=fixture()
+        w=calculate(data,configs,(30,))['windows'][0]
+        self.assertEqual(w['start_selection_reason'],'NO_COMMON_DATE_WITHIN_SEARCH_LIMIT')
+
     def test_fx_multiplication_relative_strength_and_rank_reversal(self):
         data,configs=fixture();original=copy.deepcopy(data)
         result=calculate(data,configs,(7,));rows={r['instrument_id']:r for r in result['windows'][0]['rows']}
