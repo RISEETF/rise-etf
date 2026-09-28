@@ -1,0 +1,43 @@
+name: GCLRI market data update
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '5 22 * * 0-4'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/collect_gclri_market.py'
+      - 'data/gclri/series_registry.json'
+      - '.github/workflows/gclri_market_update.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gclri-market-data
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Unit test collector
+        run: python -m unittest tests.test_gclri_market -v
+      - name: Collect official/market GCLRI series
+        run: python scripts/collect_gclri_market.py
+      - name: Commit changed GCLRI data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/gclri/latest.json data/gclri/history.json
+          if git diff --cached --quiet; then
+            echo "No GCLRI data changes"
+          else
+            git commit -m "Update GCLRI market data"
+            git push
+          fi

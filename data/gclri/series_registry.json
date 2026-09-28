@@ -1,0 +1,116 @@
+{
+  "schema_version": "0.6",
+  "purpose": "GCLRI raw market data foundation; raw observations are not regime judgments.",
+  "series": [
+    {
+      "id": "DGS10",
+      "name": "US Treasury 10Y",
+      "unit": "Percent",
+      "frequency": "Daily",
+      "tier": "TIER1_OFFICIAL",
+      "source_org": "Board of Governors / FRED",
+      "gclri_layer": "Fiscal Capacity / Rates",
+      "role": "long_yield"
+    },
+    {
+      "id": "DGS2",
+      "name": "US Treasury 2Y",
+      "unit": "Percent",
+      "frequency": "Daily",
+      "tier": "TIER1_OFFICIAL",
+      "source_org": "Board of Governors / FRED",
+      "gclri_layer": "Policy / Rates",
+      "role": "front_yield"
+    },
+    {
+      "id": "T10Y2Y",
+      "name": "10Y-2Y Treasury Spread",
+      "unit": "Percent",
+      "frequency": "Daily",
+      "tier": "TIER1_OFFICIAL",
+      "source_org": "Federal Reserve / FRED",
+      "gclri_layer": "Cross-Asset / Curve",
+      "role": "curve"
+    },
+    {
+      "id": "SOFR",
+      "name": "Secured Overnight Financing Rate",
+      "unit": "Percent",
+      "frequency": "Daily",
+      "tier": "TIER1_OFFICIAL",
+      "source_org": "Federal Reserve Bank of New York / FRED",
+      "gclri_layer": "Funding Liquidity",
+      "role": "secured_funding"
+    },
+    {
+      "id": "WRESBAL",
+      "name": "Reserve Balances with Federal Reserve Banks",
+      "unit": "Billions USD",
+      "frequency": "Weekly",
+      "tier": "TIER1_OFFICIAL",
+      "source_org": "Board of Governors / FRED",
+      "gclri_layer": "Funding Liquidity",
+      "role": "bank_reserves"
+    },
+    {
+      "id": "BAMLC0A0CM",
+      "name": "US Corporate Master OAS",
+      "unit": "Percent",
+      "frequency": "Daily",
+      "tier": "TIER2_MARKET",
+      "source_org": "ICE BofA via FRED",
+      "gclri_layer": "Credit Creation & Stress",
+      "role": "ig_credit_spread"
+    },
+    {
+      "id": "BAMLH0A0HYM2",
+      "name": "US High Yield OAS",
+      "unit": "Percent",
+      "frequency": "Daily",
+      "tier": "TIER2_MARKET",
+      "source_org": "ICE BofA via FRED",
+      "gclri_layer": "Credit Creation & Stress",
+      "role": "hy_credit_spread"
+    },
+    {
+      "id": "DTWEXBGS",
+      "name": "Nominal Broad US Dollar Index",
+      "unit": "Index",
+      "frequency": "Daily",
+      "tier": "TIER1_OFFICIAL",
+      "source_org": "Board of Governors / FRED",
+      "gclri_layer": "FX / Dollar",
+      "role": "dollar"
+    },
+    {
+      "id": "DCOILBRENTEU",
+      "name": "Brent Crude Oil Price",
+      "unit": "USD/bbl",
+      "frequency": "Daily",
+      "tier": "TIER1_OFFICIAL",
+      "source_org": "EIA via FRED",
+      "gclri_layer": "Cross-Asset / Energy",
+      "role": "brent"
+    },
+    {
+      "id": "DCOILWTICO",
+      "name": "WTI Crude Oil Price",
+      "unit": "USD/bbl",
+      "frequency": "Daily",
+      "tier": "TIER1_OFFICIAL",
+      "source_org": "EIA via FRED",
+      "gclri_layer": "Cross-Asset / Energy",
+      "role": "wti"
+    },
+    {
+      "id": "VIXCLS",
+      "name": "CBOE VIX",
+      "unit": "Index",
+      "frequency": "Daily",
+      "tier": "TIER2_MARKET",
+      "source_org": "CBOE via FRED",
+      "gclri_layer": "Market Liquidity / Risk",
+      "role": "volatility"
+    }
+  ]
+}
