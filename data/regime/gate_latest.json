@@ -1,14 +1,140 @@
 {
   "schema_version": "0.9",
-  "built_at_utc": null,
-  "source_episode_built_at_utc": null,
-  "gate_state": "KEEP",
-  "independent_persistent_channel_count": 0,
-  "watch_channel_count": 0,
+  "built_at_utc": "2026-09-28T08:28:03.398721+00:00",
+  "source_episode_built_at_utc": "2026-09-28T08:23:18.636606+00:00",
+  "gate_state": "CHALLENGE",
+  "independent_persistent_channel_count": 1,
+  "watch_channel_count": 2,
   "extreme_event_override": false,
   "production_eligible": false,
   "regime_change_authorized": false,
-  "channels": [],
+  "channels": [
+    {
+      "channel_id": "RATES",
+      "channel_state": "PERSISTENT_ACTIVE",
+      "counts_as_independent_confirmation": true,
+      "evidence": [
+        {
+          "signal_id": "SIG-RATE-001",
+          "signal_state": "ACTIVE_CANDIDATE",
+          "episode_status": "ACTIVE",
+          "persistence_runs": 1,
+          "peak_zscore": 2.678190712248472,
+          "latest_zscore": 2.678190712248472,
+          "confirmation_eligible": true,
+          "confidence": "MODERATE",
+          "primary_series": "DGS10"
+        },
+        {
+          "signal_id": "SIG-RATE-002",
+          "signal_state": "ACTIVE_CANDIDATE",
+          "episode_status": "ACTIVE",
+          "persistence_runs": 1,
+          "peak_zscore": 2.678190712248472,
+          "latest_zscore": 2.678190712248472,
+          "confirmation_eligible": true,
+          "confidence": "HIGH",
+          "primary_series": "DGS10"
+        }
+      ],
+      "fresh_persistent_signal_count": 2,
+      "fresh_watch_signal_count": 0,
+      "nonconfirming_or_stale_count": 0
+    },
+    {
+      "channel_id": "CREDIT",
+      "channel_state": "WATCH",
+      "counts_as_independent_confirmation": false,
+      "evidence": [
+        {
+          "signal_id": "SIG-CREDIT-001",
+          "signal_state": "WATCH",
+          "episode_status": "WATCH",
+          "persistence_runs": 1,
+          "peak_zscore": 1.5950742911577607,
+          "latest_zscore": 1.5950742911577607,
+          "confirmation_eligible": true,
+          "confidence": "HIGH",
+          "primary_series": "BAMLH0A0HYM2"
+        }
+      ],
+      "fresh_persistent_signal_count": 0,
+      "fresh_watch_signal_count": 1,
+      "nonconfirming_or_stale_count": 0
+    },
+    {
+      "channel_id": "FUNDING",
+      "channel_state": "NO_EPISODE",
+      "counts_as_independent_confirmation": false,
+      "evidence": [],
+      "fresh_persistent_signal_count": 0,
+      "fresh_watch_signal_count": 0,
+      "nonconfirming_or_stale_count": 0
+    },
+    {
+      "channel_id": "FX_DOLLAR",
+      "channel_state": "NON_CONFIRMING",
+      "counts_as_independent_confirmation": false,
+      "evidence": [
+        {
+          "signal_id": "SIG-FX-001",
+          "signal_state": "ACTIVE_CANDIDATE",
+          "episode_status": "ACTIVE",
+          "persistence_runs": 1,
+          "peak_zscore": 2.1331806324348874,
+          "latest_zscore": 2.1331806324348874,
+          "confirmation_eligible": false,
+          "confidence": "LOW",
+          "primary_series": "DTWEXBGS"
+        }
+      ],
+      "fresh_persistent_signal_count": 0,
+      "fresh_watch_signal_count": 0,
+      "nonconfirming_or_stale_count": 1
+    },
+    {
+      "channel_id": "ENERGY",
+      "channel_state": "WATCH",
+      "counts_as_independent_confirmation": false,
+      "evidence": [
+        {
+          "signal_id": "SIG-ENERGY-001",
+          "signal_state": "WATCH",
+          "episode_status": "WATCH",
+          "persistence_runs": 1,
+          "peak_zscore": -1.8306449349516034,
+          "latest_zscore": -1.8306449349516034,
+          "confirmation_eligible": true,
+          "confidence": "HIGH",
+          "primary_series": "DCOILBRENTEU"
+        }
+      ],
+      "fresh_persistent_signal_count": 0,
+      "fresh_watch_signal_count": 1,
+      "nonconfirming_or_stale_count": 0
+    },
+    {
+      "channel_id": "VOLATILITY",
+      "channel_state": "NON_CONFIRMING",
+      "counts_as_independent_confirmation": false,
+      "evidence": [
+        {
+          "signal_id": "SIG-MKT-001",
+          "signal_state": "WATCH",
+          "episode_status": "WATCH",
+          "persistence_runs": 1,
+          "peak_zscore": -1.675056810025763,
+          "latest_zscore": -1.675056810025763,
+          "confirmation_eligible": false,
+          "confidence": "LOW",
+          "primary_series": "VIXCLS"
+        }
+      ],
+      "fresh_persistent_signal_count": 0,
+      "fresh_watch_signal_count": 0,
+      "nonconfirming_or_stale_count": 1
+    }
+  ],
   "governance": {
     "shared_signal_channels_deduplicated": true,
     "stale_or_low_confidence_not_counted": true,

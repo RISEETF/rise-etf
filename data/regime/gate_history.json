@@ -1,4 +1,43 @@
 {
   "schema_version": "0.9",
-  "runs": []
+  "runs": [
+    {
+      "built_at_utc": "2026-09-28T08:28:03.398721+00:00",
+      "gate_state": "CHALLENGE",
+      "independent_persistent_channel_count": 1,
+      "watch_channel_count": 2,
+      "channels": [
+        {
+          "channel_id": "RATES",
+          "state": "PERSISTENT_ACTIVE",
+          "counts": true
+        },
+        {
+          "channel_id": "CREDIT",
+          "state": "WATCH",
+          "counts": false
+        },
+        {
+          "channel_id": "FUNDING",
+          "state": "NO_EPISODE",
+          "counts": false
+        },
+        {
+          "channel_id": "FX_DOLLAR",
+          "state": "NON_CONFIRMING",
+          "counts": false
+        },
+        {
+          "channel_id": "ENERGY",
+          "state": "WATCH",
+          "counts": false
+        },
+        {
+          "channel_id": "VOLATILITY",
+          "state": "NON_CONFIRMING",
+          "counts": false
+        }
+      ]
+    }
+  ]
 }
