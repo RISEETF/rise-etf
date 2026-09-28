@@ -1,11 +1,220 @@
 {
   "schema_version": "0.7",
-  "built_at_utc": null,
+  "built_at_utc": "2026-09-28T08:13:02.486775+00:00",
+  "source_gclri_built_at_utc": "2026-09-28T08:07:49.251911+00:00",
   "production_eligible": false,
   "regime_change_authorized": false,
-  "signals": [],
+  "signals": [
+    {
+      "signal_id": "SIG-RATE-001",
+      "name": "US Treasury Long Yield Shock",
+      "status": "SHADOW_READY",
+      "signal_state": "ACTIVE_CANDIDATE",
+      "direction": "UP",
+      "strongest_series": "DGS10",
+      "strongest_zscore": 2.678190712248472,
+      "confidence": "MODERATE",
+      "confirmation_count": 1,
+      "details": [
+        {
+          "series_id": "DGS10",
+          "observation_date": "2026-09-24",
+          "latest_value": 5.18,
+          "horizon_observations": 5,
+          "horizon_move": 0.23999999999999932,
+          "zscore": 2.678190712248472,
+          "data_state": "CURRENT"
+        }
+      ],
+      "production_eligible": false
+    },
+    {
+      "signal_id": "SIG-RATE-002",
+      "name": "Yield Curve Regime Shift",
+      "status": "SHADOW",
+      "signal_state": "ACTIVE_CANDIDATE",
+      "direction": "UP",
+      "strongest_series": "DGS10",
+      "strongest_zscore": 2.678190712248472,
+      "confidence": "HIGH",
+      "confirmation_count": 3,
+      "details": [
+        {
+          "series_id": "T10Y2Y",
+          "observation_date": "2026-09-25",
+          "latest_value": 0.36,
+          "horizon_observations": 5,
+          "horizon_move": 0.10999999999999999,
+          "zscore": 1.8713312040726837,
+          "data_state": "CURRENT"
+        },
+        {
+          "series_id": "DGS10",
+          "observation_date": "2026-09-24",
+          "latest_value": 5.18,
+          "horizon_observations": 5,
+          "horizon_move": 0.23999999999999932,
+          "zscore": 2.678190712248472,
+          "data_state": "CURRENT"
+        },
+        {
+          "series_id": "DGS2",
+          "observation_date": "2026-09-24",
+          "latest_value": 4.87,
+          "horizon_observations": 5,
+          "horizon_move": 0.20000000000000018,
+          "zscore": 1.4349240539741184,
+          "data_state": "CURRENT"
+        }
+      ],
+      "production_eligible": false
+    },
+    {
+      "signal_id": "SIG-CREDIT-001",
+      "name": "Credit Spread Widening Impulse",
+      "status": "CANDIDATE",
+      "signal_state": "WATCH",
+      "direction": "UP",
+      "strongest_series": "BAMLH0A0HYM2",
+      "strongest_zscore": 1.5950742911577607,
+      "confidence": "HIGH",
+      "confirmation_count": 2,
+      "details": [
+        {
+          "series_id": "BAMLC0A0CM",
+          "observation_date": "2026-09-24",
+          "latest_value": 0.79,
+          "horizon_observations": 5,
+          "horizon_move": 0.010000000000000009,
+          "zscore": 0.478080155079429,
+          "data_state": "CURRENT"
+        },
+        {
+          "series_id": "BAMLH0A0HYM2",
+          "observation_date": "2026-09-24",
+          "latest_value": 2.8,
+          "horizon_observations": 5,
+          "horizon_move": 0.09999999999999964,
+          "zscore": 1.5950742911577607,
+          "data_state": "CURRENT"
+        }
+      ],
+      "production_eligible": false
+    },
+    {
+      "signal_id": "SIG-LIQ-001",
+      "name": "Funding Liquidity Stress",
+      "status": "CANDIDATE",
+      "signal_state": "NORMAL",
+      "direction": "DOWN",
+      "strongest_series": "WRESBAL",
+      "strongest_zscore": 0.24098696151608137,
+      "confidence": "HIGH",
+      "confirmation_count": 1,
+      "details": [
+        {
+          "series_id": "SOFR",
+          "observation_date": "2026-09-24",
+          "latest_value": 3.88,
+          "horizon_observations": 5,
+          "horizon_move": 0.029999999999999805,
+          "zscore": 0.14109432813427272,
+          "data_state": "CURRENT"
+        },
+        {
+          "series_id": "WRESBAL",
+          "observation_date": "2026-09-23",
+          "latest_value": 2930193.0,
+          "horizon_observations": 5,
+          "horizon_move": -5094.0,
+          "zscore": 0.24098696151608137,
+          "data_state": "CURRENT"
+        }
+      ],
+      "production_eligible": false
+    },
+    {
+      "signal_id": "SIG-FX-001",
+      "name": "Dollar Shock",
+      "status": "CANDIDATE",
+      "signal_state": "ACTIVE_CANDIDATE",
+      "direction": "UP",
+      "strongest_series": "DTWEXBGS",
+      "strongest_zscore": 2.1331806324348874,
+      "confidence": "LOW",
+      "confirmation_count": 1,
+      "details": [
+        {
+          "series_id": "DTWEXBGS",
+          "observation_date": "2026-09-18",
+          "latest_value": 119.5133,
+          "horizon_observations": 5,
+          "horizon_move": 0.011003057203716082,
+          "zscore": 2.1331806324348874,
+          "data_state": "STALE"
+        }
+      ],
+      "production_eligible": false
+    },
+    {
+      "signal_id": "SIG-ENERGY-001",
+      "name": "Oil Price Shock",
+      "status": "CANDIDATE",
+      "signal_state": "WATCH",
+      "direction": "DOWN",
+      "strongest_series": "DCOILBRENTEU",
+      "strongest_zscore": -1.8306449349516034,
+      "confidence": "HIGH",
+      "confirmation_count": 0,
+      "details": [
+        {
+          "series_id": "DCOILBRENTEU",
+          "observation_date": "2026-09-22",
+          "latest_value": 114.89,
+          "horizon_observations": 5,
+          "horizon_move": -0.12163608562691142,
+          "zscore": -1.8306449349516034,
+          "data_state": "CURRENT"
+        },
+        {
+          "series_id": "DCOILWTICO",
+          "observation_date": "2026-09-22",
+          "latest_value": 96.41,
+          "horizon_observations": 5,
+          "horizon_move": -0.0991403475985797,
+          "zscore": -1.7817514798795493,
+          "data_state": "CURRENT"
+        }
+      ],
+      "production_eligible": false
+    },
+    {
+      "signal_id": "SIG-MKT-001",
+      "name": "Equity Volatility Shock",
+      "status": "CANDIDATE",
+      "signal_state": "WATCH",
+      "direction": "DOWN",
+      "strongest_series": "VIXCLS",
+      "strongest_zscore": -1.675056810025763,
+      "confidence": "LOW",
+      "confirmation_count": 0,
+      "details": [
+        {
+          "series_id": "VIXCLS",
+          "observation_date": "2026-09-22",
+          "latest_value": 14.21,
+          "horizon_observations": 5,
+          "horizon_move": -0.1738372093023255,
+          "zscore": -1.675056810025763,
+          "data_state": "STALE"
+        }
+      ],
+      "production_eligible": false
+    }
+  ],
   "methodology": {
     "no_forward_fill": true,
-    "raw_signal_not_regime_change": true
+    "raw_signal_not_regime_change": true,
+    "hysteresis_rule": "Regime transition requires >=2 independent persistent channels or an extreme event changing market functioning/funding/policy/physical supply."
   }
 }
