@@ -50,7 +50,7 @@ def main():
                 "prior_value":prev["value"] if prev else None,
                 "change_1obs":(last["value"]-prev["value"]) if prev else None,
                 "age_calendar_days":age,
-                "data_state":"CURRENT" if age<=7 else "STALE"
+                "data_state":"CURRENT" if age<=int(meta.get("stale_after_days",7)) else "STALE"
             }
         except Exception as e:
             errors.append({"series_id":sid,"error":type(e).__name__+": "+str(e)[:300]})
