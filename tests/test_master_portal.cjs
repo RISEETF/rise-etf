@@ -32,6 +32,9 @@ const server = http.createServer((req,res) => {
     await page.waitForFunction(()=>document.getElementById('operationsRows').children.length>0);
     assert.match(await page.locator('#operationsRows').textContent(),/RISE 공식 종목 목록.*KRX ETF 일별 대조.*USD\/KRW 참고환율/);
     assert.match(await page.locator('#operationsRows').textContent(),/종가 시점 환율 미확보/);
+    await page.waitForFunction(()=>document.getElementById('rsTasks').children.length>0);
+    assert.match(await page.locator('#rsTasks').textContent(),/종목 식별 검증.*SPY.*국내 가격 조정 방식.*148020.*종가 시점 환율/);
+    assert.equal(await page.locator('#rsWindows li').count(),3);
     if(master.pending_products?.length) assert.match(await page.locator('#products').textContent(),/공식 코드 확인 중/);
     const changes=JSON.parse(fs.readFileSync(path.join(root,'data/master/changes.json')));
     await page.waitForFunction(()=>!document.getElementById('masterChangesStatus').textContent.includes('확인 중'));
@@ -136,6 +139,8 @@ const server = http.createServer((req,res) => {
     await page.route('**/data/research/rs.json',route=>route.fulfill({status:404,body:'missing'}));
     await page.reload();
     await page.waitForFunction(()=>document.getElementById('researchStatus').textContent.includes('표시할 수 없습니다'));
+    await page.waitForFunction(()=>document.getElementById('rsReadiness').textContent.includes('확인 불가'));
+    assert.equal(await page.locator('#rsTasks tr').count(),0);
     assert.equal(await page.locator('#researchRows tr').count(),0);
     await page.unroute('**/data/research/rs.json');
     page.on('request', r=>{if(r.url().endsWith('/data/latest.json'))legacyRequests++;});

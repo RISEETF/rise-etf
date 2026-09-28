@@ -371,4 +371,40 @@ async function loadOperations() {
   const unavailable=results.filter(r=>r.status==='rejected').length;
   el('operationsStatus').textContent=`${rows.length}개 데이터 항목 · ${unavailable?`${unavailable}개 상태 파일 확인 불가`:'상태 파일 조회 완료'} · 투자 신호 승인과 별개`;
 }
-Promise.allSettled([loadMaster(), loadCapture(), loadQuality(), loadMasterAttempt(), loadSeries(), loadIssuerChecks(), loadUniverse(), loadResearchRS(), loadOperations()]);
+async function loadRSTasks() {
+  try {
+    const [series,rs]=await Promise.all([readJSON('data/series/status.json'),readJSON('data/research/rs.json')]);
+    if(!Array.isArray(series.series) || !Array.isArray(rs.windows) || series.series.some(r=>!Array.isArray(r.blockers))) throw new Error('검증 항목 형식 오류');
+    const rules=[
+      ['PROVISIONAL_INSTRUMENT_IDENTITY','종목 식별 검증','상장시장·공식 코드·발행사 원문 대조'],
+      ['ADJUSTMENT_UNCONFIRMED','국내 가격 조정 방식','분할·병합 발생일의 원종가와 조정 방식 대조'],
+      ['PROVIDER_ADJUSTMENT_NOT_INDEPENDENTLY_VERIFIED','해외 수정주가 독립 검증','발행사 분할 이력과 제공처 가격 대조'],
+      ['DISTRIBUTIONS_UNVERIFIED','분배금·배당','배당락일·금액 확보 후 총수익 계산 검증'],
+      ['SESSION_CALENDAR_UNVERIFIED','시장별 거래일','한국·미국 휴장일과 거래 세션 대조'],
+      ['CROSS_MARKET_ALIGNMENT_UNRESOLVED','시장 간 시점 정렬','마감 시차·기준환율 시각에 따른 결과 민감도 비교']
+    ];
+    const known=new Set(rules.map(r=>r[0]));
+    for(const code of new Set(series.series.flatMap(r=>r.blockers))) if(!known.has(code)) rules.push([code,`추가 검증 · ${code}`,'원본 검증 내역 확인']);
+    const rows=[];
+    for(const [code,label,action] of rules) {
+      const affected=[...new Set(series.series.filter(r=>r.blockers.includes(code)).map(r=>r.code))];
+      if(affected.length) rows.push([label,affected.join(', '),action]);
+    }
+    if(rs.fx_basis==='ECB_REFERENCE_NOT_CLOSE') rows.push(['종가 시점 환율','USD 표시 종목의 원화환산','사용할 종가 시각 정의 → 해당 USD/KRW 시계열 확보 → ECB 기준 결과와 비교']);
+    const fragment=document.createDocumentFragment();
+    for(const values of rows) {const tr=document.createElement('tr');for(const value of values){const td=document.createElement('td');td.textContent=value;tr.append(td);}fragment.append(tr);}
+    el('rsTasks').replaceChildren(fragment);
+    el('rsWindows').replaceChildren();
+    for(const w of rs.windows) {
+      const li=document.createElement('li');
+      const calculated=w.status==='CALCULATED_RESEARCH_ONLY' && validDate(w.start_date) && validDate(w.end_date);
+      li.textContent=`${w.calendar_days}일 비교: ${calculated?`연구용 계산 가능 · ${w.start_date} ~ ${w.end_date}`:w.status==='KNOWN_SPLIT_IN_WINDOW'?'구간 내 분할로 계산 보류':'기간 또는 데이터 확인 필요'}`;
+      el('rsWindows').append(li);
+    }
+    el('rsReadiness').textContent=`${series.series.length}개 시범 종목 · 미해결 작업 ${rows.length}개 항목 · 공식 투자 신호 승인과 별개`;
+  } catch(_) {
+    el('rsTasks').replaceChildren();el('rsWindows').replaceChildren();
+    el('rsReadiness').textContent='데이터 보완 항목 확인 불가 · 검증 완료로 해석하지 마세요.';
+  }
+}
+Promise.allSettled([loadMaster(), loadCapture(), loadQuality(), loadMasterAttempt(), loadSeries(), loadIssuerChecks(), loadUniverse(), loadResearchRS(), loadOperations(), loadRSTasks()]);
