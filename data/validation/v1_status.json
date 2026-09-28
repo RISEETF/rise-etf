@@ -1,15 +1,39 @@
 {
   "schema_version": "1.0",
-  "built_at_utc": null,
+  "built_at_utc": "2026-09-28T08:34:45.778505+00:00",
   "validation_state": "INSUFFICIENT_HISTORY",
   "production_eligible": false,
   "framework_promotion_authorized": false,
-  "checks": [],
+  "checks": [
+    {
+      "name": "Signal history depth",
+      "value": 1,
+      "required": 60,
+      "status": "INSUFFICIENT_HISTORY"
+    },
+    {
+      "name": "Episode history depth",
+      "value": 1,
+      "required": 40,
+      "status": "INSUFFICIENT_HISTORY"
+    },
+    {
+      "name": "Gate history depth",
+      "value": 1,
+      "required": 40,
+      "status": "INSUFFICIENT_HISTORY"
+    }
+  ],
   "promotion_gate": {
     "incremental_explanatory_value_required": true,
     "non_redundancy_required": true,
     "observable_data_required": true,
     "lead_lag_usefulness_required": true,
     "decision_relevance_required": true
-  }
+  },
+  "notes": [
+    "No signal, episode, or regime-gate rule is promoted to VALIDATED solely from current live runs.",
+    "Historical false-positive / false-negative testing is required before promotion.",
+    "Framework additions that fail parsimony checks should be downgraded or removed."
+  ]
 }
