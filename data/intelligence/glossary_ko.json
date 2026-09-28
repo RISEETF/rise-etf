@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "terms": [
+    {
+      "term": "Z-score",
+      "ko": "표준화 점수",
+      "meaning": "현재 변화폭이 과거 분포에서 평균으로부터 몇 표준편차 떨어져 있는지 나타냅니다.",
+      "numbers": "|Z|<1.5 보통, 1.5 이상 주의(WATCH), 2.0 이상 활성 후보(ACTIVE_CANDIDATE), 3.0 이상 극단 움직임 후보."
+    },
+    {
+      "term": "OAS",
+      "ko": "옵션조정스프레드",
+      "meaning": "회사채 금리에서 무위험금리와 옵션효과를 제거하고 남는 추가 보상입니다. 신용위험·유동성 프리미엄을 반영합니다.",
+      "numbers": "상승=신용 스트레스 확대, 하락=완화. 절대수준보다 변화폭과 지속성을 함께 봅니다."
+    },
+    {
+      "term": "SOFR",
+      "ko": "담보부 익일물 금리",
+      "meaning": "미 국채 담보 레포시장의 익일 자금조달 금리입니다.",
+      "numbers": "단독 상승만으로 스트레스 확정 금지. 준비금·레포 스프레드 등과 교차 확인."
+    },
+    {
+      "term": "Headroom",
+      "ko": "충격 여력",
+      "meaning": "현재 충격을 버틴 뒤 추가 충격을 감내할 수 있는 남은 여력입니다.",
+      "numbers": "HIGH/MODERATE/LOW 또는 IMPROVING/STABLE/DETERIORATING로 표시."
+    },
+    {
+      "term": "Absorption",
+      "ko": "충격 흡수력",
+      "meaning": "행동을 바꾸지 않고 충격을 견디는 능력입니다.",
+      "numbers": "Macro와 Corporate를 분리해 봅니다. 하나의 합산 점수로 자동 결론내리지 않습니다."
+    },
+    {
+      "term": "Adaptation",
+      "ko": "적응",
+      "meaning": "경로·조달·가격·CAPEX·정책 등을 바꿔 충격을 완화하는 행동입니다.",
+      "numbers": "흡수력과 별개입니다. 적응에는 비용이 들 수 있습니다."
+    },
+    {
+      "term": "Persistence",
+      "ko": "지속성",
+      "meaning": "신호가 한 번이 아니라 여러 관측/실행에서 이어지는 정도입니다.",
+      "numbers": "Episode persistence_runs로 표시. 1회성 경보와 지속 신호를 구분."
+    },
+    {
+      "term": "Regime Gate",
+      "ko": "레짐 전환 관문",
+      "meaning": "독립 채널을 중복 제거해 현재 레짐 유지/도전/전환 후보를 제안합니다.",
+      "numbers": "KEEP=유지, CHALLENGE=도전, TRANSITION_CANDIDATE=전환 후보. 최종 레짐 확정 권한은 없음."
+    },
+    {
+      "term": "Independent Persistent Channel",
+      "ko": "독립 지속 확인 채널",
+      "meaning": "같은 원천데이터를 중복 계산하지 않고, 서로 다른 시장경로에서 지속적으로 확인된 채널입니다.",
+      "numbers": "현재 기본 기준은 2개 이상이면 TRANSITION_CANDIDATE 후보."
+    },
+    {
+      "term": "Production Eligible",
+      "ko": "운영 사용 가능 여부",
+      "meaning": "실제 운영·매매·상품승인 등에 바로 사용 가능한 수준인지 표시합니다.",
+      "numbers": "현재 주요 신호/게이트는 false. 연구용/Shadow 단계."
+    },
+    {
+      "term": "Shadow",
+      "ko": "시험운영 단계",
+      "meaning": "실제 데이터로 관찰하지만 운영 의사결정에 자동 사용하지 않는 단계입니다.",
+      "numbers": "CANDIDATE → SHADOW → VALIDATED → FROZEN 순으로 승격."
+    },
+    {
+      "term": "RS",
+      "ko": "상대강도",
+      "meaning": "기준 자산 대비 상대적인 수익률/강도를 비교합니다.",
+      "numbers": "현재 repo RS는 exploratory이며 production_eligible=false."
+    },
+    {
+      "term": "ROIC-WACC",
+      "ko": "투하자본수익률-자본비용",
+      "meaning": "기업이 자본비용을 넘어 얼마나 경제적 가치를 창출하는지 보는 핵심 수익성 격차입니다.",
+      "numbers": "양(+)의 폭이 크고 지속될수록 자본생산성이 높다는 해석이 가능하나 업종 비교 주의."
+    }
+  ]
+}
