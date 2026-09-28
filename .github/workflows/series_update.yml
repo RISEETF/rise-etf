@@ -5,6 +5,12 @@ on:
     paths:
       - scripts/build_research_rs.py
   schedule:
+    # 08:15 KST Mon-Sat: recapture the previous Korean session on a new local date.
+    - cron: '15 23 * * 0-5'
+    # 14:15 KST Tue-Sat: New York has crossed midnight in both DST and standard time.
+    # Saturday includes Friday's US observations; same-day bars remain excluded.
+    - cron: '15 5 * * 2-6'
+    # 17:15 KST Mon-Fri: preserve the existing afternoon refresh.
     - cron: '15 8 * * 1-5'
   workflow_dispatch:
 permissions:
