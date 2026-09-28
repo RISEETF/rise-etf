@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.8",
+  "purpose": "Track signal episodes through time without upgrading alerts into regime judgments.",
+  "trigger_states": [
+    "WATCH",
+    "ACTIVE_CANDIDATE"
+  ],
+  "close_rule": {
+    "normal_confirmation_runs": 2,
+    "path": "WEAKENING -> CLOSED",
+    "note": "One NORMAL observation does not automatically close an episode."
+  },
+  "stale_rule": "STALE/LOW-confidence episodes may be tracked but are not independent regime-confirmation channels.",
+  "stress_scope_values": [
+    "LOCALIZED",
+    "SECTORAL",
+    "SYSTEMIC",
+    "UNRESOLVED"
+  ],
+  "policy_intervention_effect_values": [
+    "NONE",
+    "MITIGATING",
+    "DOMINANT",
+    "UNRESOLVED"
+  ],
+  "evidence_roles": [
+    "PRIMARY_OBSERVATION",
+    "CONFIRMATION",
+    "CONTEXT",
+    "CONTRADICTION",
+    "POLICY_RESPONSE",
+    "PROXY"
+  ],
+  "default_policy_intervention_effect": "UNRESOLVED",
+  "default_stress_scope": "UNRESOLVED",
+  "production_eligible": false
+}
