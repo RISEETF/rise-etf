@@ -1,5 +1,9 @@
 name: Capture dated price and FX series
 on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build_research_rs.py
   schedule:
     - cron: '15 8 * * 1-5'
   workflow_dispatch:

@@ -48,12 +48,30 @@ def calculate(data, instruments, horizons=(7, 30, 60), benchmark='US_LISTED:SPY'
     for rows in prices.values():
         common &= set(rows)
     end = max(common) if common else None
+    datasets = {**prices, 'FX:USD/KRW': fx}
+    union = set().union(*(set(rows) for rows in datasets.values()))
+    def missing_on(day):
+        return [key for key, rows in datasets.items() if day not in rows]
+    # These are observed date labels, not an authoritative exchange calendar.
+    recent_dates = sorted(union, reverse=True)[:30]
+    alignment = {
+        'rule': 'OBSERVED_DATE_UNION_NOT_TRADING_CALENDAR',
+        'common_date_count': len(common),
+        'first_common_date': min(common) if common else None,
+        'latest_available_date': max(union) if union else None,
+        'latest_common_date': end,
+        'recent_dates_checked': len(recent_dates),
+        'excluded_recent_dates': [{'date': day, 'missing_sources': missing_on(day)}
+                                  for day in recent_dates if day not in common],
+        'note': 'Missing observation does not establish a collection outage or exchange holiday. No forward fill.',
+    }
     result = {'schema_version': 1, 'status': 'EXPLORATORY_PRICE_RS',
               'decision_time_utc': cutoff.isoformat(), 'benchmark': benchmark,
               'price_field': 'close', 'fx_basis': 'ECB_REFERENCE_NOT_CLOSE',
               'production_eligible': False, 'representative_selection_changed': False,
               'endpoint_rule': 'SAME_DATE_INTERSECTION_ALL_REQUESTED_PRICES_AND_FX',
               'latest_common_date': end,
+              'alignment_audit': alignment,
               'source_age_calendar_days': (cutoff.date()-dt.date.fromisoformat(end)).days if end else None,
               'sources': [{'instrument_id': k, 'name': c['name'], 'currency': c['currency'],
                            'capture': captured[k]['capture'] if k in captured else None,
@@ -74,11 +92,20 @@ def calculate(data, instruments, horizons=(7, 30, 60), benchmark='US_LISTED:SPY'
         if not end:
             continue
         target = dt.date.fromisoformat(end)-dt.timedelta(days=days)
+        window['target_start_date'] = target.isoformat()
+        window['start_search_limit_calendar_days'] = 7
         starts = [d for d in common if 0 <= (target-dt.date.fromisoformat(d)).days <= 7]
         if not starts:
+            window['start_selection_reason'] = 'NO_COMMON_DATE_WITHIN_SEARCH_LIMIT'
             continue
         start = max(starts)
         window.update(start_date=start, actual_calendar_days=(dt.date.fromisoformat(end)-dt.date.fromisoformat(start)).days)
+        shift = (target-dt.date.fromisoformat(start)).days
+        window.update(start_shift_calendar_days=shift,
+                      start_selection_reason='EXACT_TARGET' if shift==0 else 'PREVIOUS_COMMON_DATE',
+                      skipped_start_dates=[{'date': (target-dt.timedelta(days=i)).isoformat(),
+                                            'missing_sources': missing_on((target-dt.timedelta(days=i)).isoformat())}
+                                           for i in range(shift)])
         # Split handling is not independently verified; conservatively withhold the pool.
         splits = [key for key in configs if any(e['kind']=='SPLIT' and start < e['observation_date'] <= end
                   for e in captured[key].get('corporate_actions', []))]
