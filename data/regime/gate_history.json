@@ -38,6 +38,44 @@
           "counts": false
         }
       ]
+    },
+    {
+      "built_at_utc": "2026-09-28T22:14:08.762249+00:00",
+      "gate_state": "CHALLENGE",
+      "independent_persistent_channel_count": 1,
+      "watch_channel_count": 1,
+      "channels": [
+        {
+          "channel_id": "RATES",
+          "state": "NON_CONFIRMING",
+          "counts": false
+        },
+        {
+          "channel_id": "CREDIT",
+          "state": "PERSISTENT_ACTIVE",
+          "counts": true
+        },
+        {
+          "channel_id": "FUNDING",
+          "state": "NO_EPISODE",
+          "counts": false
+        },
+        {
+          "channel_id": "FX_DOLLAR",
+          "state": "NON_CONFIRMING",
+          "counts": false
+        },
+        {
+          "channel_id": "ENERGY",
+          "state": "WATCH",
+          "counts": false
+        },
+        {
+          "channel_id": "VOLATILITY",
+          "state": "NON_CONFIRMING",
+          "counts": false
+        }
+      ]
     }
   ]
 }
