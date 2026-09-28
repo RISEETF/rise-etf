@@ -120,6 +120,13 @@ async function loadKrxComparison(master) {
     const attempt=await readJSON('data/krx_collection_status.json');
     if(!['SUCCESS','FAILED'].includes(attempt.status)) throw new Error('상태 오류');
     el('krxAttempt').textContent=`최근 KRX 대조 시도 ${localTime(attempt.attempted_at)} · ${attempt.status==='SUCCESS'?'성공':'실패 · 마지막 성공 대조 유지'}`;
+    if(attempt.status==='FAILED') {
+      const reasons={KRX_PUBLIC_REPORT_DATE_REGRESSION:'과거 기준일 응답 차단',KRX_FETCH_FAILED:'유효한 KRX 응답 확보 실패',KRX_FIELD_COVERAGE_LOW:'필수 가격·거래 필드 부족',KRX_UNIVERSE_TOO_SMALL:'전체 ETF 응답 건수 부족',KRX_UNIVERSE_COLLAPSE:'이전 대비 ETF 응답 건수 급감',KRX_SNAPSHOT_STALE_OR_FUTURE:'허용 기간을 지난 응답'};
+      el('krxAttempt').textContent+=` · ${reasons[attempt.reason] || '수집 또는 검증 오류'}`;
+      for(const [key,label] of [['rejected_observed_on','차단 기준일'],['retained_observed_on','유지 기준일']]) {
+        if(/^\d{4}-\d{2}-\d{2}$/.test(attempt[key] || '')) el('krxAttempt').textContent+=` · ${label} ${attempt[key]}`;
+      }
+    }
   } catch(_) {el('krxAttempt').textContent='KRX 최근 시도 이력 확인 대기';}
 }
 function renderKindNotices(data) {

@@ -4,6 +4,7 @@ import json
 import tempfile
 import sys
 import unittest
+from types import SimpleNamespace
 from unittest.mock import patch
 from pathlib import Path
 
@@ -16,6 +17,27 @@ SPEC.loader.exec_module(MODULE)
 
 
 class KrxEtfTest(unittest.TestCase):
+    def test_date_regression_is_rejected_before_database_mutation(self):
+        snapshot = MODULE.parse_snapshot(json.dumps(self.fixture()).encode(), dt.date(2026,9,18))
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d); report=root/'report.json'; master=root/'master.json'
+            report.write_text('{"observed_on":"2026-09-23"}')
+            master.write_text('{}')
+            args=SimpleNamespace(db=str(root/'db.sqlite'),output=str(root/'raw'),asof='2026-09-24',
+                                 master=str(master),reconciliation=str(report))
+            with patch.dict(MODULE.os.environ,{'KRX_AUTH_KEY':'test'}), \
+                 patch.object(MODULE,'fetch_latest',return_value=(b'{}',{'snapshot':snapshot})), \
+                 patch.object(MODULE,'validate_completeness',return_value={}), \
+                 patch.object(MODULE,'reconcile',return_value={'observed_on':'2026-09-18'}), \
+                 patch.object(MODULE,'accumulate') as accumulate:
+                with self.assertRaisesRegex(ValueError,'KRX_PUBLIC_REPORT_DATE_REGRESSION') as raised:
+                    MODULE.collect(args)
+            accumulate.assert_not_called()
+            self.assertFalse(Path(args.db).exists())
+            self.assertEqual(json.loads(report.read_text()),{'observed_on':'2026-09-23'})
+            self.assertEqual(raised.exception.date_evidence,{
+                'rejected_observed_on':'2026-09-18','retained_observed_on':'2026-09-23'})
+
     def fixture(self):
         return {"OutBlock_1": [
             {"BAS_DD": "20260918", "ISU_SRT_CD": "123456", "ISU_NM": "TEST ETF",
