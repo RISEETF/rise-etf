@@ -1,0 +1,128 @@
+{
+  "schema_version": "0.7",
+  "governance": "Signals are change-detection aids, not production trading signals.",
+  "signals": [
+    {
+      "signal_id": "SIG-RATE-001",
+      "name": "US Treasury Long Yield Shock",
+      "status": "SHADOW_READY",
+      "source_series": [
+        "DGS10"
+      ],
+      "methodology": {
+        "primary_horizon_observations": 5,
+        "normalization_window_observations": 60,
+        "zscore_basis": "change over primary horizon, normalized by prior-window distribution of same-horizon changes",
+        "watch_abs_z": 1.5,
+        "active_candidate_abs_z": 2,
+        "extreme_abs_z": 3,
+        "persistence_observations": 2,
+        "extreme_persistence_exception": true,
+        "direction": [
+          "UP",
+          "DOWN"
+        ],
+        "forward_fill": false
+      }
+    },
+    {
+      "signal_id": "SIG-RATE-002",
+      "name": "Yield Curve Regime Shift",
+      "status": "SHADOW",
+      "source_series": [
+        "T10Y2Y",
+        "DGS10",
+        "DGS2"
+      ],
+      "methodology": {
+        "horizon_observations": 5,
+        "normalization_window_observations": 60,
+        "watch_abs_z": 1.5,
+        "active_candidate_abs_z": 2,
+        "confirmation_required": "DGS10 and/or DGS2 contribution must be present",
+        "forward_fill": false
+      }
+    },
+    {
+      "signal_id": "SIG-CREDIT-001",
+      "name": "Credit Spread Widening Impulse",
+      "status": "CANDIDATE",
+      "source_series": [
+        "BAMLC0A0CM",
+        "BAMLH0A0HYM2"
+      ],
+      "methodology": {
+        "horizon_observations": 5,
+        "normalization_window_observations": 60,
+        "watch_abs_z": 1.5,
+        "active_candidate_abs_z": 2,
+        "direction_of_stress": "UP",
+        "breadth_rule": "IG and HY both widening strengthens confidence",
+        "forward_fill": false
+      }
+    },
+    {
+      "signal_id": "SIG-LIQ-001",
+      "name": "Funding Liquidity Stress",
+      "status": "CANDIDATE",
+      "source_series": [
+        "SOFR",
+        "WRESBAL"
+      ],
+      "methodology": {
+        "horizon_observations": 5,
+        "normalization_window_observations": 60,
+        "notes": "SOFR and reserves are incomplete proxies. Do not label systemic stress without independent repo/funding confirmation.",
+        "forward_fill": false
+      }
+    },
+    {
+      "signal_id": "SIG-FX-001",
+      "name": "Dollar Shock",
+      "status": "CANDIDATE",
+      "source_series": [
+        "DTWEXBGS"
+      ],
+      "methodology": {
+        "horizon_observations": 5,
+        "normalization_window_observations": 60,
+        "watch_abs_z": 1.5,
+        "active_candidate_abs_z": 2,
+        "forward_fill": false
+      }
+    },
+    {
+      "signal_id": "SIG-ENERGY-001",
+      "name": "Oil Price Shock",
+      "status": "CANDIDATE",
+      "source_series": [
+        "DCOILBRENTEU",
+        "DCOILWTICO"
+      ],
+      "methodology": {
+        "horizon_observations": 5,
+        "normalization_window_observations": 60,
+        "watch_abs_z": 1.5,
+        "active_candidate_abs_z": 2,
+        "confirmation_rule": "Brent/WTI co-move strengthens confidence; physical transmission still assessed separately.",
+        "forward_fill": false
+      }
+    },
+    {
+      "signal_id": "SIG-MKT-001",
+      "name": "Equity Volatility Shock",
+      "status": "CANDIDATE",
+      "source_series": [
+        "VIXCLS"
+      ],
+      "methodology": {
+        "horizon_observations": 5,
+        "normalization_window_observations": 60,
+        "watch_abs_z": 1.5,
+        "active_candidate_abs_z": 2,
+        "direction_of_stress": "UP",
+        "forward_fill": false
+      }
+    }
+  ]
+}
