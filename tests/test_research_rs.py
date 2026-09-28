@@ -22,6 +22,29 @@ def fixture():
 
 
 class ResearchRSTests(unittest.TestCase):
+    def test_intraday_capture_never_becomes_final_just_by_rerunning_later(self):
+        data,configs=fixture()
+        data['prices'][0]['capture']['retrieved_at']='2026-09-08T05:00:00Z'
+        result=calculate(data,configs,(7,))
+        self.assertEqual(result['latest_common_date'],'2026-09-01')
+        excluded=result['session_finality']['excluded_observations']
+        self.assertEqual(excluded[0]['observation_date'],'2026-09-08')
+        self.assertEqual(excluded[0]['capture_local_date'],'2026-09-08')
+        data['decision_time_utc']='2026-09-12T00:00:00Z'
+        self.assertEqual(calculate(data,configs,(7,))['latest_common_date'],'2026-09-01')
+        data['prices'][0]['capture']['retrieved_at']='2026-09-09T00:00:00Z'
+        self.assertEqual(calculate(data,configs,(7,))['latest_common_date'],'2026-09-08')
+
+    def test_market_local_capture_date_and_after_close_buffer(self):
+        data,configs=fixture()
+        # Still Sep 8 in New York, even though UTC is Sep 9.
+        data['prices'][1]['capture']['retrieved_at']='2026-09-09T01:00:00Z'
+        r=calculate(data,configs,(7,))
+        self.assertEqual(r['latest_common_date'],'2026-09-01')
+        self.assertEqual(r['session_finality']['excluded_observations'][0]['timezone'],'America/New_York')
+        data['prices'][1]['capture']['retrieved_at']='2026-09-09T05:00:00Z'
+        self.assertEqual(calculate(data,configs,(7,))['latest_common_date'],'2026-09-08')
+
     def test_alignment_audit_explains_missing_endpoint_and_start_shift(self):
         data,configs=fixture()
         data['prices'][0]['prices'].append({'observation_date':'2026-09-09','close':112})

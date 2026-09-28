@@ -35,6 +35,8 @@ const server = http.createServer((req,res) => {
     await page.waitForFunction(()=>document.getElementById('rsTasks').children.length>0);
     assert.match(await page.locator('#rsTasks').textContent(),/종목 식별 검증.*SPY.*국내 가격 조정 방식.*148020.*종가 시점 환율/);
     assert.ok(await page.locator('#rsWindows li').count()>=3);
+    const rsFile=JSON.parse(fs.readFileSync(path.join(root,'data/research/rs.json')));
+    if(rsFile.session_finality) assert.match(await page.locator('#rsWindows').textContent(),/종가 보호:.*다음 현지 날짜에 다시 수집한 가격/);
     if(master.pending_products?.length) assert.match(await page.locator('#products').textContent(),/공식 코드 확인 중/);
     const changes=JSON.parse(fs.readFileSync(path.join(root,'data/master/changes.json')));
     await page.waitForFunction(()=>!document.getElementById('masterChangesStatus').textContent.includes('확인 중'));
