@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "built_at_utc": null,
+  "validation_state": "INSUFFICIENT_HISTORY",
+  "production_eligible": false,
+  "framework_promotion_authorized": false,
+  "checks": [],
+  "promotion_gate": {
+    "incremental_explanatory_value_required": true,
+    "non_redundancy_required": true,
+    "observable_data_required": true,
+    "lead_lag_usefulness_required": true,
+    "decision_relevance_required": true
+  }
+}
