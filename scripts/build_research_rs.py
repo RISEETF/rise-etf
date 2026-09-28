@@ -5,6 +5,7 @@ import datetime as dt
 import math
 from pathlib import Path
 import json
+from zoneinfo import ZoneInfo
 from query_asof import snapshot, timestamp
 from update_daily import ROOT, write_json
 
@@ -37,7 +38,26 @@ def calculate(data, instruments, horizons=(7, 30, 60), benchmark='US_LISTED:SPY'
         if timestamp(item['capture']['retrieved_at']) > cutoff:
             raise ValueError('Capture after cutoff')
         captured[key] = item
-    prices = {key: observations(captured[key]['prices'], 'close') if key in captured else {} for key in configs}
+    prices = {}
+    session_exclusions = []
+    for key, config in configs.items():
+        timezone = {'XKRX':'Asia/Seoul', 'US_LISTED':'America/New_York'}.get(config['market'])
+        if timezone is None:
+            raise ValueError('Unsupported market session timezone')
+        available = observations(captured[key]['prices'], 'close') if key in captured else {}
+        prices[key] = {}
+        if key not in captured:
+            continue
+        # A bar captured during its local calendar day is never promoted merely
+        # because calculation is rerun later. Require a later-day capture.
+        capture_date = timestamp(captured[key]['capture']['retrieved_at']).astimezone(ZoneInfo(timezone)).date()
+        for day, value in available.items():
+            if dt.date.fromisoformat(day) >= capture_date:
+                session_exclusions.append({'instrument_id':key, 'observation_date':day,
+                    'capture_local_date':capture_date.isoformat(), 'timezone':timezone,
+                    'reason':'NOT_BEFORE_CAPTURE_LOCAL_DATE'})
+            else:
+                prices[key][day] = value
     fx_data = data.get('fx')
     if fx_data and fx_data['capture']['source_id'] != 'ECB_REFERENCE':
         raise ValueError('Expected ECB reference FX source')
@@ -72,6 +92,11 @@ def calculate(data, instruments, horizons=(7, 30, 60), benchmark='US_LISTED:SPY'
               'endpoint_rule': 'SAME_DATE_INTERSECTION_ALL_REQUESTED_PRICES_AND_FX',
               'latest_common_date': end,
               'alignment_audit': alignment,
+              'session_finality': {
+                  'rule':'PRICE_DATE_STRICTLY_BEFORE_CAPTURE_LOCAL_DATE',
+                  'excluded_observations':session_exclusions,
+                  'note':'Conservative full-calendar-day buffer, including after-close captures. Not independent confirmation of official close or exchange calendar.',
+              },
               'source_age_calendar_days': (cutoff.date()-dt.date.fromisoformat(end)).days if end else None,
               'sources': [{'instrument_id': k, 'name': c['name'], 'currency': c['currency'],
                            'capture': captured[k]['capture'] if k in captured else None,

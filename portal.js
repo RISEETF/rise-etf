@@ -413,6 +413,11 @@ async function loadRSTasks() {
         el('rsWindows').append(detail);
       }
     }
+    if(rs.session_finality?.rule==='PRICE_DATE_STRICTLY_BEFORE_CAPTURE_LOCAL_DATE') {
+      const li=document.createElement('li');
+      li.textContent=`종가 보호: 수집 당시 시장 현지 날짜의 당일·이후 가격 ${rs.session_finality.excluded_observations.length}개 제외. 장 종료 후 수집도 당일 값은 보류하며, 다음 현지 날짜에 다시 수집한 가격부터 비교합니다. 공식 종가 확정 검증은 별도입니다.`;
+      el('rsWindows').append(li);
+    }
     el('rsReadiness').textContent=`${series.series.length}개 시범 종목 · 미해결 작업 ${rows.length}개 항목 · 공식 투자 신호 승인과 별개`;
   } catch(_) {
     el('rsTasks').replaceChildren();el('rsWindows').replaceChildren();
