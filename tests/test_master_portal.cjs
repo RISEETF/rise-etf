@@ -39,7 +39,7 @@ const server = http.createServer((req,res) => {
       lifecycle_notices:{status:'SUCCESS',attempted_at:'2026-09-24T01:00:00+00:00',window_start:'2026-08-25',window_end:'2026-09-24',events:[
         {receipt_id:'20260918000210',name:'RISE synthetic fixture',code:'123456',kind:'LISTING_NOTICE',published_at:'2026-09-18T16:13:00+09:00',effective_date:'2026-09-22',verification:'NOTICE_CODE_DATE_VERIFIED',in_latest_search:true,last_checked_at:'2026-09-24T01:00:00+00:00',viewer_url:'https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20260918000210'}]}};
     await page.route('**/data/quality/krx_master_reconciliation.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify(krxFixture)}));
-    await page.route('**/data/krx_collection_status.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({status:'FAILED',attempted_at:'2026-09-23T00:00:00+00:00'})}));
+    await page.route('**/data/krx_collection_status.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({status:'FAILED',attempted_at:'2026-09-23T00:00:00+00:00',reason:'KRX_PUBLIC_REPORT_DATE_REGRESSION',rejected_observed_on:'2026-09-18',retained_observed_on:'2026-09-23'})}));
     await page.reload();
     await page.waitForFunction(()=>document.getElementById('krxStatus').textContent.includes('KRX 기준'));
     assert.equal(await page.locator('#krxIssues li').count(),1);
@@ -48,6 +48,7 @@ const server = http.createServer((req,res) => {
     assert.match(await page.locator('#kindRows').textContent(),/본문 코드·날짜 확인/);
     assert.match(await page.locator('#kindRows').textContent(),/2026-09-22/);
     await page.waitForFunction(()=>document.getElementById('krxAttempt').textContent.includes('실패'));
+    assert.match(await page.locator('#krxAttempt').textContent(),/과거 기준일 응답 차단.*차단 기준일 2026-09-18.*유지 기준일 2026-09-23/);
     krxFixture.rows[0].issuer_name='RISE changed fixture';
     krxFixture.lifecycle_notices.status='FAILED';
     await page.reload();

@@ -232,7 +232,8 @@ def main() -> int:
     except Exception as exc:
         # Public status contains a stable reason only, never request headers or secrets.
         write_json_atomic(args.status, {'status':'FAILED', 'attempted_at':attempted_at,
-                                      'reason':safe_reason(exc), 'last_success_preserved':True})
+                                      'reason':safe_reason(exc), 'last_success_preserved':True,
+                                      **getattr(exc, 'date_evidence', {})})
         print(json.dumps({'status':'FAILED', 'reason':safe_reason(exc)}))
         refresh_notice_report(args)
         return 1
@@ -254,7 +255,6 @@ def collect(args):
     raw_path = output / f"krx_etf_{result['snapshot']['page_date'].replace('-', '')}.json"
     raw_path.write_bytes(payload)
     quality = validate_completeness(Path(args.db), result["snapshot"], asof)
-    delta = accumulate(Path(args.db), result["snapshot"], raw_hash, retrieved_at)
     receipt = {
         "status": "SUCCESS",
         "source": "KRX_OPEN_API_ETF_DAILY",
@@ -262,7 +262,6 @@ def collect(args):
         "asof": asof.isoformat(),
         "observation_date": result["snapshot"]["page_date"],
         "record_count": len(result["snapshot"]["records"]),
-        "delta": delta,
         "retrieved_at": retrieved_at,
         "raw_sha256": raw_hash,
         "quality": quality,
@@ -275,9 +274,16 @@ def collect(args):
     if previous_path.exists():
         previous = json.loads(previous_path.read_text())
         if previous.get('observed_on', '') > report['observed_on']:
-            raise ValueError('KRX_PUBLIC_REPORT_DATE_REGRESSION')
+            error = ValueError('KRX_PUBLIC_REPORT_DATE_REGRESSION')
+            error.date_evidence = {
+                'rejected_observed_on': report['observed_on'],
+                'retained_observed_on': previous['observed_on'],
+            }
+            raise error
     if 'lifecycle_notices' in previous:
         report['lifecycle_notices'] = previous['lifecycle_notices']
+    # Validate identity and date ordering before changing the historical database.
+    receipt['delta'] = accumulate(Path(args.db), result['snapshot'], raw_hash, retrieved_at)
     write_json_atomic(args.reconciliation, report)
     (output / "receipt.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2))
     print(json.dumps(receipt, ensure_ascii=False))
