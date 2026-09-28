@@ -1,0 +1,40 @@
+name: RISE Intelligence Portal Validate
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'intelligence/**'
+      - 'scripts/validate_intelligence_snapshot.py'
+      - 'scripts/update_intelligence_portal.py'
+      - 'tests/test_intelligence_portal.py'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate latest snapshot
+        run: python scripts/validate_intelligence_snapshot.py intelligence/data/latest.json
+      - name: Run portal tests
+        run: python -m unittest tests.test_intelligence_portal -v
+      - name: Verify archive links
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('intelligence')
+          m=json.loads((p/'data/archive.json').read_text())
+          assert m['dates'], 'archive dates empty'
+          assert m['latest'] in m['dates'], 'latest missing from archive'
+          for d in m['dates']:
+              assert (p/f'data/daily/{d}.json').exists(), d
+              assert (p/f'reports/{d}.html').exists(), d
+          print('archive links ok:', len(m['dates']))
+          PY
