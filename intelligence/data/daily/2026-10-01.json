@@ -1,0 +1,94 @@
+{
+  "asof_date": "2026-10-01",
+  "current_regime": "GLOBAL TIGHTENING / HIGH ENERGY STRESS / HIGH MACRO ABSORPTION",
+  "regime_confidence": 88,
+  "regime_change_candidate": "RATES + CREDIT REACCELERATING TIGHTENING",
+  "regime_change_status": "ACTIVE",
+  "top_change": "금리·신용 전환 후보 지속, 에너지 가격충격 신호는 정상화",
+  "top_risk": "장기금리 상승과 신용스프레드 확대가 차환비용·기업 충격여력으로 전파",
+  "macro_absorption_level": "HIGH",
+  "macro_absorption_headroom": "MODERATE",
+  "corporate_absorption_level": "MODERATE",
+  "corporate_headroom": "DETERIORATING",
+  "fiscal_stress": "HIGH",
+  "credit_stress_current": "DETERIORATING",
+  "credit_stress_forward": "DETERIORATING",
+  "market_liquidity": "CAUTION",
+  "funding_liquidity": "FUNCTIONING",
+  "energy_stress": "HIGH",
+  "energy_reliability": "LOW",
+  "energy_adaptation": "IMPROVING",
+  "flow_state": "UNRESOLVED",
+  "top_rise_matches": [
+    {
+      "name": "RISE 국고채3년",
+      "priority": "SELECTIVE",
+      "angle": "장기채보다 낮은 듀레이션과 캐리 중심 방어",
+      "counter": "국내 금리 추가 상승 시 가격 부담"
+    },
+    {
+      "name": "RISE 미국S&P500",
+      "priority": "WATCH",
+      "angle": "완화된 단기 Fed 인상 기대와 장기 성장 노출",
+      "counter": "5%대 장기금리와 신용비용 상승은 밸류에이션 부담"
+    },
+    {
+      "name": "RISE 200",
+      "priority": "WATCH",
+      "angle": "한국 주식 상대강도 관찰",
+      "counter": "RS는 연구용이며 production_eligible=false"
+    }
+  ],
+  "product_candidates": [
+    {
+      "name": "지속가능 자본생산성",
+      "stage": "RESEARCH",
+      "product_gap_status": "UNRESOLVED",
+      "thesis_status": "STRENGTHENING"
+    },
+    {
+      "name": "Energy Resilience & Electrification",
+      "stage": "WATCH",
+      "product_gap_status": "UNRESOLVED",
+      "thesis_status": "WATCH"
+    }
+  ],
+  "framework_updates": [
+    {
+      "name": "Cost Reset Velocity",
+      "status": "SHADOW"
+    },
+    {
+      "name": "Adaptation Efficiency",
+      "status": "CANDIDATE"
+    }
+  ],
+  "key_triggers": [
+    "UST 10Y 5.30% 및 5.50% 접근 여부",
+    "HY OAS 3.08% 이후 추가 확대 또는 정상화",
+    "SOFR·준비금에서 Funding Stress 출현 여부",
+    "Brent $100대 유지와 수송·정제 마찰비용",
+    "미국 고용·CPI와 Fed 10월 기대 재가격"
+  ],
+  "no_action": [
+    "금리+신용 Gate만으로 최종 레짐 변경 금지",
+    "Funding 정상 상태에서 전면 유동성 위기 선언 금지",
+    "미확정 Flow를 risk-on/risk-off로 단정 금지",
+    "상품 공백·수요 미확정 상태에서 신규 ETF 출시 결론 금지"
+  ],
+  "gclri_scores": {
+    "Fiscal": 86,
+    "Credit": 66,
+    "Market Liquidity": 56,
+    "Funding Liquidity": 30,
+    "Policy": 86,
+    "Macro Absorption": 78,
+    "Corporate Headroom": 38
+  },
+  "regime_history_update": {
+    "prior_state": "GLOBAL TIGHTENING / HIGH ENERGY STRESS / HIGH MACRO ABSORPTION",
+    "today_state": "GLOBAL TIGHTENING / HIGH ENERGY STRESS / HIGH MACRO ABSORPTION",
+    "transition_gate_crossed": true
+  },
+  "full_report_path": "reports/2026-10-01.html"
+}
