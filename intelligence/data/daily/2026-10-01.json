@@ -1,0 +1,79 @@
+{
+  "asof_date": "2026-10-01",
+  "current_regime": "GLOBAL TIGHTENING / HIGH ENERGY STRESS / HIGH MACRO ABSORPTION",
+  "regime_confidence": 88,
+  "regime_change_candidate": "RATES + CREDIT REACCELERATING TIGHTENING",
+  "regime_change_status": "ACTIVE",
+  "top_change": "금리·신용의 두 독립 지속채널이 전환 후보를 유지하는 가운데 에너지 가격충격 신호는 정상화",
+  "top_risk": "장기금리 상승과 신용스프레드 확대가 차환비용·기업 충격흡수 여력으로 전파",
+  "macro_absorption_level": "HIGH",
+  "macro_absorption_headroom": "MODERATE",
+  "corporate_absorption_level": "MODERATE",
+  "corporate_headroom": "DETERIORATING",
+  "fiscal_stress": "HIGH",
+  "credit_stress_current": "DETERIORATING",
+  "credit_stress_forward": "DETERIORATING",
+  "market_liquidity": "CAUTION",
+  "funding_liquidity": "FUNCTIONING",
+  "energy_stress": "HIGH",
+  "energy_reliability": "LOW",
+  "energy_adaptation": "IMPROVING",
+  "flow_state": "UNRESOLVED",
+  "top_rise_matches": [
+    {
+      "name": "RISE 국고채3년",
+      "priority": "SELECTIVE"
+    },
+    {
+      "name": "RISE 미국S&P500",
+      "priority": "WATCH"
+    },
+    {
+      "name": "RISE 200",
+      "priority": "WATCH"
+    }
+  ],
+  "product_candidates": [
+    {
+      "name": "지속가능 자본생산성",
+      "stage": "RESEARCH",
+      "product_gap_status": "UNRESOLVED",
+      "thesis_status": "STRENGTHENING"
+    },
+    {
+      "name": "Energy Resilience & Electrification",
+      "stage": "WATCH",
+      "product_gap_status": "UNRESOLVED",
+      "thesis_status": "WATCH"
+    }
+  ],
+  "framework_updates": [
+    {
+      "name": "Cost Reset Velocity",
+      "status": "SHADOW"
+    },
+    {
+      "name": "Adaptation Efficiency",
+      "status": "CANDIDATE"
+    }
+  ],
+  "key_triggers": [
+    "UST 10Y 5.30% 및 5.50% 접근 여부",
+    "HY OAS 추가 확대 또는 정상화",
+    "SOFR·준비금 Funding Stress",
+    "Brent $100대와 에너지 마찰비용",
+    "미국 고용·CPI"
+  ],
+  "no_action": [
+    "최종 레짐 변경 보류",
+    "전면적 유동성 위기 선언 보류",
+    "미확정 Flow 단정 보류",
+    "신상품 출시 결론 보류"
+  ],
+  "regime_history_update": {
+    "prior_state": "GLOBAL TIGHTENING / HIGH ENERGY STRESS / HIGH MACRO ABSORPTION",
+    "today_state": "GLOBAL TIGHTENING / HIGH ENERGY STRESS / HIGH MACRO ABSORPTION",
+    "transition_gate_crossed": true
+  },
+  "full_report_path": "reports/2026-10-01.html"
+}
