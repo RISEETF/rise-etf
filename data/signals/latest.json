@@ -1,7 +1,7 @@
 {
   "schema_version": "0.7",
-  "built_at_utc": "2026-09-29T22:13:51.478460+00:00",
-  "source_gclri_built_at_utc": "2026-09-29T22:13:37.126151+00:00",
+  "built_at_utc": "2026-09-30T22:14:34.131982+00:00",
+  "source_gclri_built_at_utc": "2026-09-30T22:14:00.953887+00:00",
   "production_eligible": false,
   "regime_change_authorized": false,
   "signals": [
@@ -12,17 +12,17 @@
       "signal_state": "ACTIVE_CANDIDATE",
       "direction": "UP",
       "strongest_series": "DGS10",
-      "strongest_zscore": 2.984126872740528,
+      "strongest_zscore": 2.9999643779668674,
       "confidence": "MODERATE",
       "confirmation_count": 1,
       "details": [
         {
           "series_id": "DGS10",
-          "observation_date": "2026-09-28",
-          "latest_value": 5.24,
+          "observation_date": "2026-09-29",
+          "latest_value": 5.26,
           "horizon_observations": 5,
-          "horizon_move": 0.28000000000000025,
-          "zscore": 2.984126872740528,
+          "horizon_move": 0.2999999999999998,
+          "zscore": 2.9999643779668674,
           "data_state": "CURRENT"
         }
       ],
@@ -35,35 +35,35 @@
       "signal_state": "ACTIVE_CANDIDATE",
       "direction": "UP",
       "strongest_series": "DGS10",
-      "strongest_zscore": 2.984126872740528,
+      "strongest_zscore": 2.9999643779668674,
       "confidence": "HIGH",
       "confirmation_count": 3,
       "details": [
         {
           "series_id": "T10Y2Y",
-          "observation_date": "2026-09-29",
-          "latest_value": 0.37,
+          "observation_date": "2026-09-30",
+          "latest_value": 0.41,
           "horizon_observations": 5,
-          "horizon_move": 0.12,
-          "zscore": 1.880770951172127,
+          "horizon_move": 0.14999999999999997,
+          "zscore": 2.2689527818575286,
           "data_state": "CURRENT"
         },
         {
           "series_id": "DGS10",
-          "observation_date": "2026-09-28",
-          "latest_value": 5.24,
+          "observation_date": "2026-09-29",
+          "latest_value": 5.26,
           "horizon_observations": 5,
-          "horizon_move": 0.28000000000000025,
-          "zscore": 2.984126872740528,
+          "horizon_move": 0.2999999999999998,
+          "zscore": 2.9999643779668674,
           "data_state": "CURRENT"
         },
         {
           "series_id": "DGS2",
-          "observation_date": "2026-09-28",
-          "latest_value": 4.92,
+          "observation_date": "2026-09-29",
+          "latest_value": 4.89,
           "horizon_observations": 5,
-          "horizon_move": 0.16000000000000014,
-          "zscore": 0.9962880647616836,
+          "horizon_move": 0.17999999999999972,
+          "zscore": 1.1629419719989376,
           "data_state": "CURRENT"
         }
       ],
@@ -76,26 +76,26 @@
       "signal_state": "ACTIVE_CANDIDATE",
       "direction": "UP",
       "strongest_series": "BAMLH0A0HYM2",
-      "strongest_zscore": 4.782160649796819,
+      "strongest_zscore": 4.485282484271141,
       "confidence": "HIGH",
       "confirmation_count": 2,
       "details": [
         {
           "series_id": "BAMLC0A0CM",
-          "observation_date": "2026-09-28",
-          "latest_value": 0.83,
+          "observation_date": "2026-09-29",
+          "latest_value": 0.84,
           "horizon_observations": 5,
-          "horizon_move": 0.05999999999999994,
-          "zscore": 2.95268360195634,
+          "horizon_move": 0.06999999999999995,
+          "zscore": 3.194382824999696,
           "data_state": "CURRENT"
         },
         {
           "series_id": "BAMLH0A0HYM2",
-          "observation_date": "2026-09-28",
-          "latest_value": 3.02,
+          "observation_date": "2026-09-29",
+          "latest_value": 3.08,
           "horizon_observations": 5,
-          "horizon_move": 0.3599999999999999,
-          "zscore": 4.782160649796819,
+          "horizon_move": 0.3999999999999999,
+          "zscore": 4.485282484271141,
           "data_state": "CURRENT"
         }
       ],
@@ -106,19 +106,19 @@
       "name": "Funding Liquidity Stress",
       "status": "CANDIDATE",
       "signal_state": "NORMAL",
-      "direction": "UP",
-      "strongest_series": "SOFR",
-      "strongest_zscore": 0.41496617436063177,
+      "direction": "DOWN",
+      "strongest_series": "WRESBAL",
+      "strongest_zscore": 0.24098696151608137,
       "confidence": "HIGH",
       "confirmation_count": 1,
       "details": [
         {
           "series_id": "SOFR",
-          "observation_date": "2026-09-28",
-          "latest_value": 3.9,
+          "observation_date": "2026-09-29",
+          "latest_value": 3.88,
           "horizon_observations": 5,
-          "horizon_move": 0.04999999999999982,
-          "zscore": 0.41496617436063177,
+          "horizon_move": 0.009999999999999787,
+          "zscore": -0.134473724720279,
           "data_state": "CURRENT"
         },
         {
@@ -160,29 +160,29 @@
       "signal_id": "SIG-ENERGY-001",
       "name": "Oil Price Shock",
       "status": "CANDIDATE",
-      "signal_state": "WATCH",
+      "signal_state": "NORMAL",
       "direction": "DOWN",
       "strongest_series": "DCOILBRENTEU",
-      "strongest_zscore": -1.8306449349516034,
+      "strongest_zscore": -0.6138693086941647,
       "confidence": "HIGH",
       "confirmation_count": 0,
       "details": [
         {
           "series_id": "DCOILBRENTEU",
-          "observation_date": "2026-09-22",
-          "latest_value": 114.89,
+          "observation_date": "2026-09-29",
+          "latest_value": 113.96,
           "horizon_observations": 5,
-          "horizon_move": -0.12163608562691142,
-          "zscore": -1.8306449349516034,
+          "horizon_move": -0.008094699277569894,
+          "zscore": -0.6138693086941647,
           "data_state": "CURRENT"
         },
         {
           "series_id": "DCOILWTICO",
-          "observation_date": "2026-09-22",
-          "latest_value": 96.41,
+          "observation_date": "2026-09-29",
+          "latest_value": 96.16,
           "horizon_observations": 5,
-          "horizon_move": -0.0991403475985797,
-          "zscore": -1.7817514798795493,
+          "horizon_move": -0.0025930920029042515,
+          "zscore": -0.39793374160731415,
           "data_state": "CURRENT"
         }
       ],
@@ -195,17 +195,17 @@
       "signal_state": "NORMAL",
       "direction": "UP",
       "strongest_series": "VIXCLS",
-      "strongest_zscore": 0.8678990044352325,
+      "strongest_zscore": 1.3367802041575183,
       "confidence": "MODERATE",
       "confirmation_count": 1,
       "details": [
         {
           "series_id": "VIXCLS",
-          "observation_date": "2026-09-28",
-          "latest_value": 16.07,
+          "observation_date": "2026-09-29",
+          "latest_value": 16.04,
           "horizon_observations": 5,
-          "horizon_move": 0.08069939475453936,
-          "zscore": 0.8678990044352325,
+          "horizon_move": 0.12878254750175921,
+          "zscore": 1.3367802041575183,
           "data_state": "CURRENT"
         }
       ],
