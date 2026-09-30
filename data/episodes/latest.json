@@ -1,11 +1,11 @@
 {
   "schema_version": "0.8",
-  "built_at_utc": "2026-09-29T22:14:04.300618+00:00",
-  "source_signal_built_at_utc": "2026-09-29T22:13:51.478460+00:00",
+  "built_at_utc": "2026-09-30T22:14:46.330430+00:00",
+  "source_signal_built_at_utc": "2026-09-30T22:14:34.131982+00:00",
   "production_eligible": false,
   "regime_change_authorized": false,
-  "active_episode_count": 5,
-  "confirmation_eligible_episode_count": 4,
+  "active_episode_count": 4,
+  "confirmation_eligible_episode_count": 3,
   "episodes": [
     {
       "episode_id": "SIG-RATE-001::2026-09-24::UP",
@@ -19,11 +19,11 @@
       "primary_series": "DGS10",
       "move_basis": "diff",
       "initial_zscore": 2.678190712248472,
-      "peak_magnitude_date": "2026-09-28",
-      "peak_abs_zscore": 2.984126872740528,
-      "peak_signed_zscore": 2.984126872740528,
-      "cumulative_episode_move": 0.0600000000000005,
-      "persistence_runs": 3,
+      "peak_magnitude_date": "2026-09-29",
+      "peak_abs_zscore": 2.9999643779668674,
+      "peak_signed_zscore": 2.9999643779668674,
+      "cumulative_episode_move": 0.08000000000000007,
+      "persistence_runs": 4,
       "normal_confirmation_runs": 0,
       "stress_scope": "UNRESOLVED",
       "policy_intervention_effect": "UNRESOLVED",
@@ -31,8 +31,8 @@
       "confidence": "MODERATE",
       "latest_signal_state": "ACTIVE_CANDIDATE",
       "latest_direction": "UP",
-      "latest_observation_date": "2026-09-28",
-      "latest_zscore": 2.984126872740528,
+      "latest_observation_date": "2026-09-29",
+      "latest_zscore": 2.9999643779668674,
       "falsification_status": "NOT_TESTED",
       "evidence": [
         {
@@ -52,10 +52,16 @@
           "evidence_role": "CONFIRMATION",
           "signal_state": "ACTIVE_CANDIDATE",
           "zscore": 2.984126872740528
+        },
+        {
+          "date": "2026-09-29",
+          "evidence_role": "CONFIRMATION",
+          "signal_state": "ACTIVE_CANDIDATE",
+          "zscore": 2.9999643779668674
         }
       ],
       "opened_at_utc": "2026-09-28T08:13:02.486775+00:00",
-      "last_updated_utc": "2026-09-29T22:13:51.478460+00:00",
+      "last_updated_utc": "2026-09-30T22:14:34.131982+00:00",
       "closed_at_utc": null
     },
     {
@@ -70,11 +76,11 @@
       "primary_series": "DGS10",
       "move_basis": "diff",
       "initial_zscore": 2.678190712248472,
-      "peak_magnitude_date": "2026-09-29",
-      "peak_abs_zscore": 2.984126872740528,
-      "peak_signed_zscore": 2.984126872740528,
-      "cumulative_episode_move": 0.07000000000000028,
-      "persistence_runs": 3,
+      "peak_magnitude_date": "2026-09-30",
+      "peak_abs_zscore": 2.9999643779668674,
+      "peak_signed_zscore": 2.9999643779668674,
+      "cumulative_episode_move": 0.08999999999999986,
+      "persistence_runs": 4,
       "normal_confirmation_runs": 0,
       "stress_scope": "UNRESOLVED",
       "policy_intervention_effect": "UNRESOLVED",
@@ -82,8 +88,8 @@
       "confidence": "HIGH",
       "latest_signal_state": "ACTIVE_CANDIDATE",
       "latest_direction": "UP",
-      "latest_observation_date": "2026-09-29",
-      "latest_zscore": 2.984126872740528,
+      "latest_observation_date": "2026-09-30",
+      "latest_zscore": 2.9999643779668674,
       "falsification_status": "NOT_TESTED",
       "evidence": [
         {
@@ -103,10 +109,16 @@
           "evidence_role": "CONFIRMATION",
           "signal_state": "ACTIVE_CANDIDATE",
           "zscore": 2.984126872740528
+        },
+        {
+          "date": "2026-09-30",
+          "evidence_role": "CONFIRMATION",
+          "signal_state": "ACTIVE_CANDIDATE",
+          "zscore": 2.9999643779668674
         }
       ],
       "opened_at_utc": "2026-09-28T08:13:02.486775+00:00",
-      "last_updated_utc": "2026-09-29T22:13:51.478460+00:00",
+      "last_updated_utc": "2026-09-30T22:14:34.131982+00:00",
       "closed_at_utc": null
     },
     {
@@ -124,8 +136,8 @@
       "peak_magnitude_date": "2026-09-28",
       "peak_abs_zscore": 4.782160649796819,
       "peak_signed_zscore": 4.782160649796819,
-      "cumulative_episode_move": 0.2200000000000002,
-      "persistence_runs": 3,
+      "cumulative_episode_move": 0.28000000000000025,
+      "persistence_runs": 4,
       "normal_confirmation_runs": 0,
       "stress_scope": "UNRESOLVED",
       "policy_intervention_effect": "UNRESOLVED",
@@ -133,8 +145,8 @@
       "confidence": "HIGH",
       "latest_signal_state": "ACTIVE_CANDIDATE",
       "latest_direction": "UP",
-      "latest_observation_date": "2026-09-28",
-      "latest_zscore": 4.782160649796819,
+      "latest_observation_date": "2026-09-29",
+      "latest_zscore": 4.485282484271141,
       "falsification_status": "NOT_TESTED",
       "evidence": [
         {
@@ -154,10 +166,16 @@
           "evidence_role": "CONFIRMATION",
           "signal_state": "ACTIVE_CANDIDATE",
           "zscore": 4.782160649796819
+        },
+        {
+          "date": "2026-09-29",
+          "evidence_role": "CONFIRMATION",
+          "signal_state": "ACTIVE_CANDIDATE",
+          "zscore": 4.485282484271141
         }
       ],
       "opened_at_utc": "2026-09-28T08:13:02.486775+00:00",
-      "last_updated_utc": "2026-09-29T22:13:51.478460+00:00",
+      "last_updated_utc": "2026-09-30T22:14:34.131982+00:00",
       "closed_at_utc": null
     },
     {
@@ -216,7 +234,7 @@
       "signal_id": "SIG-ENERGY-001",
       "signal_name": "Oil Price Shock",
       "signal_governance_status": "CANDIDATE",
-      "episode_status": "WATCH",
+      "episode_status": "WEAKENING",
       "initial_trigger_date": "2026-09-28",
       "initial_observation_date": "2026-09-22",
       "initial_direction": "DOWN",
@@ -226,17 +244,17 @@
       "peak_magnitude_date": "2026-09-22",
       "peak_abs_zscore": 1.8306449349516034,
       "peak_signed_zscore": -1.8306449349516034,
-      "cumulative_episode_move": 0.0,
-      "persistence_runs": 3,
-      "normal_confirmation_runs": 0,
+      "cumulative_episode_move": -0.008094699277569894,
+      "persistence_runs": 4,
+      "normal_confirmation_runs": 1,
       "stress_scope": "UNRESOLVED",
       "policy_intervention_effect": "UNRESOLVED",
-      "confirmation_eligible": true,
+      "confirmation_eligible": false,
       "confidence": "HIGH",
-      "latest_signal_state": "WATCH",
+      "latest_signal_state": "NORMAL",
       "latest_direction": "DOWN",
-      "latest_observation_date": "2026-09-22",
-      "latest_zscore": -1.8306449349516034,
+      "latest_observation_date": "2026-09-29",
+      "latest_zscore": -0.6138693086941647,
       "falsification_status": "NOT_TESTED",
       "evidence": [
         {
@@ -256,10 +274,16 @@
           "evidence_role": "CONFIRMATION",
           "signal_state": "WATCH",
           "zscore": -1.8306449349516034
+        },
+        {
+          "date": "2026-09-29",
+          "evidence_role": "CONTRADICTION",
+          "signal_state": "NORMAL",
+          "zscore": -0.6138693086941647
         }
       ],
       "opened_at_utc": "2026-09-28T08:13:02.486775+00:00",
-      "last_updated_utc": "2026-09-29T22:13:51.478460+00:00",
+      "last_updated_utc": "2026-09-30T22:14:34.131982+00:00",
       "closed_at_utc": null
     },
     {
@@ -267,7 +291,7 @@
       "signal_id": "SIG-MKT-001",
       "signal_name": "Equity Volatility Shock",
       "signal_governance_status": "CANDIDATE",
-      "episode_status": "WEAKENING",
+      "episode_status": "CLOSED",
       "initial_trigger_date": "2026-09-28",
       "initial_observation_date": "2026-09-22",
       "initial_direction": "DOWN",
@@ -277,18 +301,18 @@
       "peak_magnitude_date": "2026-09-22",
       "peak_abs_zscore": 1.675056810025763,
       "peak_signed_zscore": -1.675056810025763,
-      "cumulative_episode_move": 0.13089373680506688,
-      "persistence_runs": 3,
-      "normal_confirmation_runs": 1,
+      "cumulative_episode_move": 0.12878254750175921,
+      "persistence_runs": 4,
+      "normal_confirmation_runs": 2,
       "stress_scope": "UNRESOLVED",
       "policy_intervention_effect": "UNRESOLVED",
       "confirmation_eligible": false,
       "confidence": "MODERATE",
       "latest_signal_state": "NORMAL",
       "latest_direction": "UP",
-      "latest_observation_date": "2026-09-28",
-      "latest_zscore": 0.8678990044352325,
-      "falsification_status": "NOT_TESTED",
+      "latest_observation_date": "2026-09-29",
+      "latest_zscore": 1.3367802041575183,
+      "falsification_status": "NOT_FALSIFIED",
       "evidence": [
         {
           "date": "2026-09-22",
@@ -307,11 +331,17 @@
           "evidence_role": "CONTRADICTION",
           "signal_state": "NORMAL",
           "zscore": 0.8678990044352325
+        },
+        {
+          "date": "2026-09-29",
+          "evidence_role": "CONTRADICTION",
+          "signal_state": "NORMAL",
+          "zscore": 1.3367802041575183
         }
       ],
       "opened_at_utc": "2026-09-28T08:13:02.486775+00:00",
-      "last_updated_utc": "2026-09-29T22:13:51.478460+00:00",
-      "closed_at_utc": null
+      "last_updated_utc": "2026-09-30T22:14:34.131982+00:00",
+      "closed_at_utc": "2026-09-30T22:14:34.131982+00:00"
     }
   ],
   "governance": {
