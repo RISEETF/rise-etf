@@ -1,11 +1,11 @@
 {
-  "asof_date": "2026-09-30",
+  "asof_date": "2026-10-01",
   "current_regime": "GLOBAL TIGHTENING / HIGH ENERGY STRESS / HIGH MACRO ABSORPTION",
   "regime_confidence": 88,
   "regime_change_candidate": "RATES + CREDIT REACCELERATING TIGHTENING",
   "regime_change_status": "ACTIVE",
-  "top_change": "금리·신용 두 독립 지속채널 동시 활성화",
-  "top_risk": "장기금리 상승이 신용스프레드와 차환비용으로 전파되는 경로",
+  "top_change": "금리·신용의 두 독립 지속채널이 전환 후보를 유지하는 가운데 에너지 가격충격 신호는 정상화",
+  "top_risk": "장기금리 상승과 신용스프레드 확대가 차환비용·기업 충격흡수 여력으로 전파",
   "macro_absorption_level": "HIGH",
   "macro_absorption_headroom": "MODERATE",
   "corporate_absorption_level": "MODERATE",
@@ -22,21 +22,15 @@
   "top_rise_matches": [
     {
       "name": "RISE 국고채3년",
-      "priority": "SELECTIVE",
-      "angle": "단기·중기 금리 노출과 캐리 중심 방어",
-      "counter": "장기금리 재상승이 국내 금리로 전이될 경우 가격 부담"
-    },
-    {
-      "name": "RISE 200",
-      "priority": "WATCH",
-      "angle": "한국 주식의 60일 상대강도 관찰",
-      "counter": "RS 데이터는 연구용이며 조정·분배·시장시각 정렬 미검증"
+      "priority": "SELECTIVE"
     },
     {
       "name": "RISE 미국S&P500",
-      "priority": "WATCH",
-      "angle": "미국 주식 장기 성장 노출",
-      "counter": "5%대 장기금리와 신용비용 상승은 밸류에이션 할인율 부담"
+      "priority": "WATCH"
+    },
+    {
+      "name": "RISE 200",
+      "priority": "WATCH"
     }
   ],
   "product_candidates": [
@@ -64,31 +58,22 @@
     }
   ],
   "key_triggers": [
-    "UST 10Y 5.30% 재돌파 및 5.50% 접근",
-    "HY OAS 추가 확대와 IG 동반 지속",
-    "SOFR/준비금에서 Funding Stress 확인 여부",
-    "Brent $100 하회 지속 또는 재급등",
-    "미국 PCE·고용지표와 Fed 10월 기대 재가격"
+    "UST 10Y 5.30% 및 5.50% 접근 여부",
+    "HY OAS 추가 확대 또는 정상화",
+    "SOFR·준비금 Funding Stress",
+    "Brent $100대와 에너지 마찰비용",
+    "미국 고용·CPI"
   ],
   "no_action": [
-    "금리+신용 Gate만으로 최종 레짐 변경 금지",
-    "SOFR 정상 상태에서 전면적 유동성 위기 선언 금지",
-    "미확정 Flow를 risk-on/risk-off로 단정 금지",
-    "상품 공백 미확정 상태에서 신규 ETF 출시 결론 금지"
+    "최종 레짐 변경 보류",
+    "전면적 유동성 위기 선언 보류",
+    "미확정 Flow 단정 보류",
+    "신상품 출시 결론 보류"
   ],
-  "gclri_scores": {
-    "Fiscal": 86,
-    "Credit": 64,
-    "Market Liquidity": 56,
-    "Funding Liquidity": 30,
-    "Policy": 90,
-    "Macro Absorption": 78,
-    "Corporate Headroom": 40
-  },
   "regime_history_update": {
     "prior_state": "GLOBAL TIGHTENING / HIGH ENERGY STRESS / HIGH MACRO ABSORPTION",
     "today_state": "GLOBAL TIGHTENING / HIGH ENERGY STRESS / HIGH MACRO ABSORPTION",
     "transition_gate_crossed": true
   },
-  "full_report_path": "reports/2026-09-30.html"
+  "full_report_path": "reports/2026-10-01.html"
 }
