@@ -1,11 +1,11 @@
 {
-  "asof_date": "2026-09-30",
+  "asof_date": "2026-10-01",
   "current_regime": "GLOBAL TIGHTENING / HIGH ENERGY STRESS / HIGH MACRO ABSORPTION",
-  "regime_confidence": 88,
+  "regime_confidence": 86,
   "regime_change_candidate": "RATES + CREDIT REACCELERATING TIGHTENING",
   "regime_change_status": "ACTIVE",
-  "top_change": "금리·신용 두 독립 지속채널 동시 활성화",
-  "top_risk": "장기금리 상승이 신용스프레드와 차환비용으로 전파되는 경로",
+  "top_change": "금리·신용 전환 후보는 유지되지만, 미국 물가 둔화로 추가 긴축 기대는 일부 완화",
+  "top_risk": "높은 장기금리와 확대된 신용스프레드가 차환비용으로 전파되는 경로",
   "macro_absorption_level": "HIGH",
   "macro_absorption_headroom": "MODERATE",
   "corporate_absorption_level": "MODERATE",
@@ -64,17 +64,17 @@
     }
   ],
   "key_triggers": [
-    "UST 10Y 5.30% 재돌파 및 5.50% 접근",
-    "HY OAS 추가 확대와 IG 동반 지속",
-    "SOFR/준비금에서 Funding Stress 확인 여부",
-    "Brent $100 하회 지속 또는 재급등",
-    "미국 PCE·고용지표와 Fed 10월 기대 재가격"
+    "UST 10Y 5.30% 재돌파 및 5.50% 접근 여부",
+    "HY OAS 3%대 추가 확대와 IG OAS 동반 악화 지속 여부",
+    "SOFR·준비금에서 실제 자금조달 스트레스 확인 여부",
+    "Brent 재급등 및 중동 수출 회복의 지속성",
+    "고용·물가 데이터에 따른 10월 Fed 기대 재가격"
   ],
   "no_action": [
-    "금리+신용 Gate만으로 최종 레짐 변경 금지",
-    "SOFR 정상 상태에서 전면적 유동성 위기 선언 금지",
-    "미확정 Flow를 risk-on/risk-off로 단정 금지",
-    "상품 공백 미확정 상태에서 신규 ETF 출시 결론 금지"
+    "기계 Gate가 TRANSITION_CANDIDATE라도 현재 레짐을 자동 변경하지 않음",
+    "Funding Liquidity가 정상인 상황에서 전면적 유동성 위기로 규정하지 않음",
+    "가격 움직임만으로 Flow를 추정하지 않음",
+    "검증 이력 부족 상태에서 신호/프레임워크를 VALIDATED로 승격하지 않음"
   ],
   "gclri_scores": {
     "Fiscal": 86,
@@ -90,5 +90,7 @@
     "today_state": "GLOBAL TIGHTENING / HIGH ENERGY STRESS / HIGH MACRO ABSORPTION",
     "transition_gate_crossed": true
   },
-  "full_report_path": "reports/2026-09-30.html"
+  "full_report_path": "reports/2026-10-01.html",
+  "report_generated_at": "2026-10-01T08:55:00+09:00",
+  "market_data_asof": "2026-09-30"
 }
