@@ -1,7 +1,7 @@
 {
   "schema_version": "0.7",
-  "built_at_utc": "2026-09-30T22:14:34.131982+00:00",
-  "source_gclri_built_at_utc": "2026-09-30T22:14:00.953887+00:00",
+  "built_at_utc": "2026-10-01T22:13:02.917888+00:00",
+  "source_gclri_built_at_utc": "2026-10-01T22:12:47.008284+00:00",
   "production_eligible": false,
   "regime_change_authorized": false,
   "signals": [
@@ -9,20 +9,20 @@
       "signal_id": "SIG-RATE-001",
       "name": "US Treasury Long Yield Shock",
       "status": "SHADOW_READY",
-      "signal_state": "ACTIVE_CANDIDATE",
+      "signal_state": "NORMAL",
       "direction": "UP",
       "strongest_series": "DGS10",
-      "strongest_zscore": 2.9999643779668674,
+      "strongest_zscore": 1.3744963393949745,
       "confidence": "MODERATE",
       "confirmation_count": 1,
       "details": [
         {
           "series_id": "DGS10",
-          "observation_date": "2026-09-29",
-          "latest_value": 5.26,
+          "observation_date": "2026-09-30",
+          "latest_value": 5.29,
           "horizon_observations": 5,
-          "horizon_move": 0.2999999999999998,
-          "zscore": 2.9999643779668674,
+          "horizon_move": 0.17999999999999972,
+          "zscore": 1.3744963393949745,
           "data_state": "CURRENT"
         }
       ],
@@ -34,36 +34,36 @@
       "status": "SHADOW",
       "signal_state": "ACTIVE_CANDIDATE",
       "direction": "UP",
-      "strongest_series": "DGS10",
-      "strongest_zscore": 2.9999643779668674,
+      "strongest_series": "T10Y2Y",
+      "strongest_zscore": 2.185340810486229,
       "confidence": "HIGH",
       "confirmation_count": 3,
       "details": [
         {
           "series_id": "T10Y2Y",
-          "observation_date": "2026-09-30",
-          "latest_value": 0.41,
+          "observation_date": "2026-10-01",
+          "latest_value": 0.46,
           "horizon_observations": 5,
-          "horizon_move": 0.14999999999999997,
-          "zscore": 2.2689527818575286,
+          "horizon_move": 0.15000000000000002,
+          "zscore": 2.185340810486229,
           "data_state": "CURRENT"
         },
         {
           "series_id": "DGS10",
-          "observation_date": "2026-09-29",
-          "latest_value": 5.26,
+          "observation_date": "2026-09-30",
+          "latest_value": 5.29,
           "horizon_observations": 5,
-          "horizon_move": 0.2999999999999998,
-          "zscore": 2.9999643779668674,
+          "horizon_move": 0.17999999999999972,
+          "zscore": 1.3744963393949745,
           "data_state": "CURRENT"
         },
         {
           "series_id": "DGS2",
-          "observation_date": "2026-09-29",
-          "latest_value": 4.89,
+          "observation_date": "2026-09-30",
+          "latest_value": 4.88,
           "horizon_observations": 5,
-          "horizon_move": 0.17999999999999972,
-          "zscore": 1.1629419719989376,
+          "horizon_move": 0.03000000000000025,
+          "zscore": -0.29469509133193283,
           "data_state": "CURRENT"
         }
       ],
@@ -76,26 +76,26 @@
       "signal_state": "ACTIVE_CANDIDATE",
       "direction": "UP",
       "strongest_series": "BAMLH0A0HYM2",
-      "strongest_zscore": 4.485282484271141,
+      "strongest_zscore": 3.738745798834486,
       "confidence": "HIGH",
       "confirmation_count": 2,
       "details": [
         {
           "series_id": "BAMLC0A0CM",
-          "observation_date": "2026-09-29",
+          "observation_date": "2026-09-30",
           "latest_value": 0.84,
           "horizon_observations": 5,
           "horizon_move": 0.06999999999999995,
-          "zscore": 3.194382824999696,
+          "zscore": 2.905854237048704,
           "data_state": "CURRENT"
         },
         {
           "series_id": "BAMLH0A0HYM2",
-          "observation_date": "2026-09-29",
-          "latest_value": 3.08,
+          "observation_date": "2026-09-30",
+          "latest_value": 3.12,
           "horizon_observations": 5,
-          "horizon_move": 0.3999999999999999,
-          "zscore": 4.485282484271141,
+          "horizon_move": 0.3900000000000001,
+          "zscore": 3.738745798834486,
           "data_state": "CURRENT"
         }
       ],
@@ -106,28 +106,28 @@
       "name": "Funding Liquidity Stress",
       "status": "CANDIDATE",
       "signal_state": "NORMAL",
-      "direction": "DOWN",
+      "direction": "UP",
       "strongest_series": "WRESBAL",
-      "strongest_zscore": 0.24098696151608137,
+      "strongest_zscore": 0.49023059966749183,
       "confidence": "HIGH",
-      "confirmation_count": 1,
+      "confirmation_count": 2,
       "details": [
         {
           "series_id": "SOFR",
-          "observation_date": "2026-09-29",
-          "latest_value": 3.88,
+          "observation_date": "2026-09-30",
+          "latest_value": 3.9,
           "horizon_observations": 5,
-          "horizon_move": 0.009999999999999787,
-          "zscore": -0.134473724720279,
+          "horizon_move": 0.029999999999999805,
+          "zscore": 0.13447372472027386,
           "data_state": "CURRENT"
         },
         {
           "series_id": "WRESBAL",
-          "observation_date": "2026-09-23",
-          "latest_value": 2930193.0,
+          "observation_date": "2026-09-30",
+          "latest_value": 2948090.0,
           "horizon_observations": 5,
-          "horizon_move": -5094.0,
-          "zscore": 0.24098696151608137,
+          "horizon_move": 23154.0,
+          "zscore": 0.49023059966749183,
           "data_state": "CURRENT"
         }
       ],
@@ -141,7 +141,7 @@
       "direction": "UP",
       "strongest_series": "DTWEXBGS",
       "strongest_zscore": 1.4298515249214119,
-      "confidence": "MODERATE",
+      "confidence": "LOW",
       "confirmation_count": 1,
       "details": [
         {
@@ -151,7 +151,7 @@
           "horizon_observations": 5,
           "horizon_move": 0.006833549069434008,
           "zscore": 1.4298515249214119,
-          "data_state": "CURRENT"
+          "data_state": "STALE"
         }
       ],
       "production_eligible": false
@@ -195,17 +195,17 @@
       "signal_state": "NORMAL",
       "direction": "UP",
       "strongest_series": "VIXCLS",
-      "strongest_zscore": 1.3367802041575183,
+      "strongest_zscore": 0.7580670654027367,
       "confidence": "MODERATE",
       "confirmation_count": 1,
       "details": [
         {
           "series_id": "VIXCLS",
-          "observation_date": "2026-09-29",
-          "latest_value": 16.04,
+          "observation_date": "2026-09-30",
+          "latest_value": 16.34,
           "horizon_observations": 5,
-          "horizon_move": 0.12878254750175921,
-          "zscore": 1.3367802041575183,
+          "horizon_move": 0.07641633728590258,
+          "zscore": 0.7580670654027367,
           "data_state": "CURRENT"
         }
       ],
