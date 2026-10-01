@@ -176,6 +176,50 @@
           "latest_zscore": 1.3367802041575183
         }
       ]
+    },
+    {
+      "built_at_utc": "2026-10-01T22:13:15.242401+00:00",
+      "source_signal_built_at_utc": "2026-10-01T22:13:02.917888+00:00",
+      "active_episode_count": 3,
+      "confirmation_eligible_episode_count": 2,
+      "episode_states": [
+        {
+          "episode_id": "SIG-RATE-001::2026-09-24::UP",
+          "signal_id": "SIG-RATE-001",
+          "status": "WEAKENING",
+          "latest_zscore": 1.3744963393949745
+        },
+        {
+          "episode_id": "SIG-RATE-002::2026-09-25::UP",
+          "signal_id": "SIG-RATE-002",
+          "status": "STRENGTHENING",
+          "latest_zscore": 2.185340810486229
+        },
+        {
+          "episode_id": "SIG-CREDIT-001::2026-09-24::UP",
+          "signal_id": "SIG-CREDIT-001",
+          "status": "STRENGTHENING",
+          "latest_zscore": 3.738745798834486
+        },
+        {
+          "episode_id": "SIG-FX-001::2026-09-18::UP",
+          "signal_id": "SIG-FX-001",
+          "status": "CLOSED",
+          "latest_zscore": 1.4298515249214119
+        },
+        {
+          "episode_id": "SIG-ENERGY-001::2026-09-22::DOWN",
+          "signal_id": "SIG-ENERGY-001",
+          "status": "CLOSED",
+          "latest_zscore": -0.6138693086941647
+        },
+        {
+          "episode_id": "SIG-MKT-001::2026-09-22::DOWN",
+          "signal_id": "SIG-MKT-001",
+          "status": "CLOSED",
+          "latest_zscore": 1.3367802041575183
+        }
+      ]
     }
   ]
 }
