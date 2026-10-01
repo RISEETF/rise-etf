@@ -1,7 +1,7 @@
 {
   "schema_version": "0.9",
-  "built_at_utc": "2026-09-30T22:14:59.516125+00:00",
-  "source_episode_built_at_utc": "2026-09-30T22:14:46.330430+00:00",
+  "built_at_utc": "2026-10-01T22:13:28.684395+00:00",
+  "source_episode_built_at_utc": "2026-10-01T22:13:15.242401+00:00",
   "gate_state": "TRANSITION_CANDIDATE",
   "independent_persistent_channel_count": 2,
   "watch_channel_count": 0,
@@ -16,12 +16,12 @@
       "evidence": [
         {
           "signal_id": "SIG-RATE-001",
-          "signal_state": "ACTIVE_CANDIDATE",
-          "episode_status": "STRENGTHENING",
-          "persistence_runs": 4,
+          "signal_state": "NORMAL",
+          "episode_status": "WEAKENING",
+          "persistence_runs": 5,
           "peak_zscore": 2.9999643779668674,
-          "latest_zscore": 2.9999643779668674,
-          "confirmation_eligible": true,
+          "latest_zscore": 1.3744963393949745,
+          "confirmation_eligible": false,
           "confidence": "MODERATE",
           "primary_series": "DGS10"
         },
@@ -29,17 +29,17 @@
           "signal_id": "SIG-RATE-002",
           "signal_state": "ACTIVE_CANDIDATE",
           "episode_status": "STRENGTHENING",
-          "persistence_runs": 4,
+          "persistence_runs": 5,
           "peak_zscore": 2.9999643779668674,
-          "latest_zscore": 2.9999643779668674,
+          "latest_zscore": 2.185340810486229,
           "confirmation_eligible": true,
           "confidence": "HIGH",
           "primary_series": "DGS10"
         }
       ],
-      "fresh_persistent_signal_count": 2,
+      "fresh_persistent_signal_count": 1,
       "fresh_watch_signal_count": 0,
-      "nonconfirming_or_stale_count": 0
+      "nonconfirming_or_stale_count": 1
     },
     {
       "channel_id": "CREDIT",
@@ -50,9 +50,9 @@
           "signal_id": "SIG-CREDIT-001",
           "signal_state": "ACTIVE_CANDIDATE",
           "episode_status": "STRENGTHENING",
-          "persistence_runs": 4,
+          "persistence_runs": 5,
           "peak_zscore": 4.782160649796819,
-          "latest_zscore": 4.485282484271141,
+          "latest_zscore": 3.738745798834486,
           "confirmation_eligible": true,
           "confidence": "HIGH",
           "primary_series": "BAMLH0A0HYM2"
@@ -82,24 +82,12 @@
     },
     {
       "channel_id": "ENERGY",
-      "channel_state": "NON_CONFIRMING",
+      "channel_state": "NO_EPISODE",
       "counts_as_independent_confirmation": false,
-      "evidence": [
-        {
-          "signal_id": "SIG-ENERGY-001",
-          "signal_state": "NORMAL",
-          "episode_status": "WEAKENING",
-          "persistence_runs": 4,
-          "peak_zscore": -1.8306449349516034,
-          "latest_zscore": -0.6138693086941647,
-          "confirmation_eligible": false,
-          "confidence": "HIGH",
-          "primary_series": "DCOILBRENTEU"
-        }
-      ],
+      "evidence": [],
       "fresh_persistent_signal_count": 0,
       "fresh_watch_signal_count": 0,
-      "nonconfirming_or_stale_count": 1
+      "nonconfirming_or_stale_count": 0
     },
     {
       "channel_id": "VOLATILITY",
