@@ -1,7 +1,7 @@
 # Official RISE instrument master validation
 
 - Official source: https://kbam.co.kr/find
-- Official effective date: 2026-10-01
+- Official effective date: 2026-10-02
 - Official catalog products: 144
 - Verified exchange-code identities: 144
 - Official products awaiting exchange code: 0
