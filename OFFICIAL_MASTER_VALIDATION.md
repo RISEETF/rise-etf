@@ -18,7 +18,7 @@
 
 Status: **IDENTITY_DIFFERENCE**.
 The independent capture contained 144 RISE identities.
-Secondary retrieval time: 2026-10-01T07:47:22.786907+00:00. Captures may be from different dates.
+Secondary retrieval time: 2026-10-02T07:47:15.770201+00:00. Captures may be from different dates.
 
 ## Scope
 
