@@ -4,11 +4,11 @@
   "source_role": "PRIMARY_EXCHANGE_OBSERVATION",
   "source_url": "https://data-dbg.krx.co.kr/svc/apis/etp/etf_bydd_trd",
   "observed_on": "2026-10-01",
-  "retrieved_at": "2026-10-01T23:10:36.417354+00:00",
-  "raw_sha256": "92181ac83e4cdec4e7a92101418becfc30637b3aecb84183469789f86c20b69f",
+  "retrieved_at": "2026-10-02T09:39:48.009330+00:00",
+  "raw_sha256": "844c3c6df4c428b45b70e7a12c63adc02e44ade4dddf935b6c99c7d2e2f5a6be",
   "krx_market_count": 1171,
-  "issuer_effective_date": "2026-10-01",
-  "issuer_source_sha256": "1b63c89bec6b9237decf133577d959db1a93cfea82c20e34109ebd1f9bd7a36d",
+  "issuer_effective_date": "2026-10-02",
+  "issuer_source_sha256": "161daa6dd6c3de2be4f34c20d1ebbb56b669ce18a953fc9d3846e15e9425f4bc",
   "issuer_product_count": 144,
   "counts": {
     "MATCHED_CODE_NAME": 142,
@@ -1461,8 +1461,8 @@
   "note": "Presence is an exchange observation. Absence is not delisting. Name-only codes require identity review.",
   "lifecycle_notices": {
     "status": "SUCCESS",
-    "attempted_at": "2026-10-01T23:10:38.145122+00:00",
-    "last_success_at": "2026-10-01T23:10:38.145122+00:00",
+    "attempted_at": "2026-10-02T09:39:49.636465+00:00",
+    "last_success_at": "2026-10-02T09:39:49.636465+00:00",
     "window_start": "2026-09-02",
     "window_end": "2026-10-02",
     "scope": "RISE_TITLE_SEARCH_ROLLING_30_DAYS_NOT_FULL_LIFECYCLE",
@@ -1534,7 +1534,7 @@
           }
         ],
         "first_seen_at": "2026-09-24T16:34:01.309528+00:00",
-        "last_checked_at": "2026-10-01T23:10:38.145122+00:00",
+        "last_checked_at": "2026-10-02T09:39:49.636465+00:00",
         "versions": [],
         "in_latest_search": true
       },
