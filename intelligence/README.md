@@ -20,6 +20,8 @@ timezone-aware generation timestamp. Summary snapshots do not provide confidence
 transition-gate decisions, product mappings, or framework changes. The UI labels
 these fields as unavailable and leaves historical chart gaps unfilled.
 
+`SUMMARY_ONLY` is retained only for historical/read-only or emergency compatibility. Routine Daily Intelligence publishing MUST use the canonical FULL snapshot and is rejected by `update_intelligence_portal.py` when a summary snapshot is supplied. This preserves the operating rule: Full Daily Intelligence → canonical Dashboard Snapshot → validation → publication.
+
 Validate with `python scripts/validate_intelligence_snapshot.py intelligence/data/latest.json`
 before publishing. Adding the summary type does not upgrade or invent evidence.
 Full PR CI and the dedicated intelligence workflow retain report validation.
