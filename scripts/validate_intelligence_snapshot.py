@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import argparse, json
 from pathlib import Path
-from datetime import date
+from datetime import date, datetime
 
 REQ = [
  "asof_date","current_regime","regime_confidence","regime_change_candidate",
@@ -17,6 +17,24 @@ REGIME_CHANGE = {"NONE","WATCH","ACTIVE"}
 
 def validate(d):
     errors=[]
+    if not isinstance(d,dict): return ['snapshot must be object']
+    if d.get('snapshot_type') == 'SUMMARY_ONLY':
+        required={'snapshot_type','asof_date','current_regime','regime_change_status','top_change','full_report_path','report_generated_at','market_data_asof'}
+        if set(d)!=required: errors.append('summary fields must match SUMMARY_ONLY contract')
+        for key in ('asof_date','market_data_asof'):
+            try: date.fromisoformat(d.get(key,''))
+            except (ValueError,TypeError): errors.append(key+' must be YYYY-MM-DD')
+        if not errors and d['market_data_asof']>d['asof_date']: errors.append('market date after report date')
+        for key in ('current_regime','top_change'):
+            if not isinstance(d.get(key),str) or not d[key].strip(): errors.append(key+' must be non-empty text')
+        if d.get('regime_change_status') not in REGIME_CHANGE|{'KEEP','CHALLENGE','TRANSITION_CANDIDATE'}: errors.append('summary regime_change_status invalid')
+        if d.get('full_report_path')!=f"reports/{d.get('asof_date')}.html": errors.append('summary report path must match date')
+        try:
+            stamp=datetime.fromisoformat(d.get('report_generated_at','').replace('Z','+00:00'))
+            if stamp.utcoffset() is None: raise ValueError()
+        except (ValueError,TypeError): errors.append('report_generated_at must include timezone')
+        return errors
+    if d.get('snapshot_type') not in (None,'FULL'): errors.append('unknown snapshot_type')
     missing=[k for k in REQ if k not in d]
     if missing: errors.append("missing: "+", ".join(missing))
     try: date.fromisoformat(str(d.get("asof_date","")))
