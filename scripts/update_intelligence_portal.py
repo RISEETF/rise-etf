@@ -5,9 +5,11 @@ from datetime import datetime
 from validate_intelligence_snapshot import validate
 
 def render_report(snapshot, narrative_text):
-    d=snapshot
+    d=dict(snapshot)
+    d.setdefault('regime_confidence','미제공')
+    d.setdefault('regime_change_candidate','미제공')
     body = "<p>".join(html.escape(x) for x in narrative_text.split("\n\n") if x.strip())
-    return f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>RISE Daily Intelligence — {html.escape(d['asof_date'])}</title><style>body{{font-family:system-ui,'Noto Sans KR';max-width:980px;margin:40px auto;padding:0 20px;background:#0b1020;color:#eef3ff;line-height:1.7}}a{{color:#9fc0ff}}.meta{{background:#121a2d;border:1px solid #253451;padding:16px;border-radius:14px}}</style></head><body><p><a href="../index.html">← RISE Intelligence Portal</a></p><h1>RISE Daily Intelligence — {html.escape(d['asof_date'])}</h1><div class="meta"><b>Current Regime:</b> {html.escape(d['current_regime'])}<br><b>Confidence:</b> {d['regime_confidence']}%<br><b>Regime Change:</b> {html.escape(d['regime_change_status'])} · {html.escape(d['regime_change_candidate'])}<br><b>Top Change:</b> {html.escape(d['top_change'])}</div><hr>{body}</body></html>'''
+    return f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>RISE Daily Intelligence — {html.escape(d['asof_date'])}</title><style>body{{font-family:system-ui,'Noto Sans KR';max-width:980px;margin:40px auto;padding:0 20px;background:#0b1020;color:#eef3ff;line-height:1.7}}a{{color:#9fc0ff}}.meta{{background:#121a2d;border:1px solid #253451;padding:16px;border-radius:14px}}</style></head><body><p><a href="../index.html">← RISE Intelligence Portal</a></p><h1>RISE Daily Intelligence — {html.escape(d['asof_date'])}</h1><div class="meta"><b>Current Regime:</b> {html.escape(d['current_regime'])}<br><b>Confidence:</b> {html.escape(str(d['regime_confidence']))}{'%' if isinstance(d['regime_confidence'], (int,float)) else ''}<br><b>Regime Change:</b> {html.escape(d['regime_change_status'])} · {html.escape(d['regime_change_candidate'])}<br><b>Top Change:</b> {html.escape(d['top_change'])}</div><hr>{body}</body></html>'''
 
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument("--snapshot",required=True); ap.add_argument("--narrative",required=True); ap.add_argument("--portal-dir",default="intelligence"); args=ap.parse_args()

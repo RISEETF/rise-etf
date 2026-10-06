@@ -159,6 +159,19 @@ const server = http.createServer((req,res) => {
     await page.reload();
     await page.waitForFunction(()=>document.getElementById('masterStatus').textContent.includes('종목 식별 정보 오류'));
     assert.equal(await page.locator('#products tr').count(),0);
+    const latestIntelligence=JSON.parse(fs.readFileSync(path.join(root,'intelligence/data/daily/2026-10-06.json')));
+    const intelligenceArchive=JSON.parse(fs.readFileSync(path.join(root,'intelligence/data/archive.json')));
+    await page.route('**/intelligence/data/daily/'+intelligenceArchive.latest+'.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify(latestIntelligence)}));
+    await page.goto(url+'/intelligence/index.html');
+    await page.waitForFunction(()=>document.getElementById('regimeConf').textContent.includes('미제공'));
+    assert.equal(await page.locator('#err').isVisible(),false);
+    assert.match(await page.locator('#date').textContent(),/요약본/);
+    assert.equal(await page.locator('#reportLink a').getAttribute('href'),latestIntelligence.full_report_path);
+    assert.doesNotMatch(await page.locator('#gclriChart').innerHTML(),/NaN|undefined/);
+    await page.selectOption('#dateSelect','2026-09-22');
+    assert.match(await page.locator('#regimeConf').textContent(),/Confidence/);
+    await page.click('#latestBtn');
+    assert.match(await page.locator('#regimeConf').textContent(),/미제공/);
     assert.deepEqual(errors,[]);
     console.log('PASS: official count, search, category, empty state, mobile overflow, missing master, duplicate rejection, no legacy fallback');
   } finally {await browser.close();}

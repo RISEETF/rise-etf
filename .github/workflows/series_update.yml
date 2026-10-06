@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - scripts/build_research_rs.py
+      - .github/workflows/series_update.yml
   schedule:
     # 08:15 KST Mon-Sat: recapture the previous Korean session on a new local date.
     - cron: '15 23 * * 0-5'
@@ -26,7 +27,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: python -m unittest discover -s tests -v
+      - name: Validate market-data dependencies
+        run: >-
+          python -m unittest
+          tests.test_pipeline tests.test_series tests.test_overseas tests.test_asof
+          tests.test_research_rs tests.test_alignment tests.test_universe
+          tests.test_official_master tests.test_master_changes tests.test_apple_actions -v
       - name: Collect series
         id: collect
         continue-on-error: true
