@@ -1,9 +1,9 @@
 {
   "schema_version": "0.9",
-  "built_at_utc": "2026-10-05T22:14:19.309196+00:00",
-  "source_episode_built_at_utc": "2026-10-05T22:14:05.803167+00:00",
-  "gate_state": "CHALLENGE",
-  "independent_persistent_channel_count": 1,
+  "built_at_utc": "2026-10-06T22:14:20.382145+00:00",
+  "source_episode_built_at_utc": "2026-10-06T22:14:06.455507+00:00",
+  "gate_state": "KEEP",
+  "independent_persistent_channel_count": 0,
   "watch_channel_count": 0,
   "extreme_event_override": false,
   "production_eligible": false,
@@ -11,45 +11,33 @@
   "channels": [
     {
       "channel_id": "RATES",
-      "channel_state": "PERSISTENT_ACTIVE",
-      "counts_as_independent_confirmation": true,
-      "evidence": [
-        {
-          "signal_id": "SIG-RATE-002",
-          "signal_state": "ACTIVE_CANDIDATE",
-          "episode_status": "STRENGTHENING",
-          "persistence_runs": 7,
-          "peak_zscore": 2.9999643779668674,
-          "latest_zscore": 2.072946712715648,
-          "confirmation_eligible": true,
-          "confidence": "HIGH",
-          "primary_series": "DGS10"
-        }
-      ],
-      "fresh_persistent_signal_count": 1,
-      "fresh_watch_signal_count": 0,
-      "nonconfirming_or_stale_count": 0
-    },
-    {
-      "channel_id": "CREDIT",
       "channel_state": "NON_CONFIRMING",
       "counts_as_independent_confirmation": false,
       "evidence": [
         {
-          "signal_id": "SIG-CREDIT-001",
+          "signal_id": "SIG-RATE-002",
           "signal_state": "NORMAL",
           "episode_status": "WEAKENING",
-          "persistence_runs": 7,
-          "peak_zscore": 4.782160649796819,
-          "latest_zscore": 1.3119338382209613,
+          "persistence_runs": 8,
+          "peak_zscore": 2.9999643779668674,
+          "latest_zscore": 1.4217557453956884,
           "confirmation_eligible": false,
           "confidence": "HIGH",
-          "primary_series": "BAMLH0A0HYM2"
+          "primary_series": "DGS10"
         }
       ],
       "fresh_persistent_signal_count": 0,
       "fresh_watch_signal_count": 0,
       "nonconfirming_or_stale_count": 1
+    },
+    {
+      "channel_id": "CREDIT",
+      "channel_state": "NO_EPISODE",
+      "counts_as_independent_confirmation": false,
+      "evidence": [],
+      "fresh_persistent_signal_count": 0,
+      "fresh_watch_signal_count": 0,
+      "nonconfirming_or_stale_count": 0
     },
     {
       "channel_id": "FUNDING",
