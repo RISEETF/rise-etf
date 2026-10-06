@@ -1460,8 +1460,8 @@
   "legal_lifecycle_status": "NOTICE_MONITORING_ONLY_CURRENT_STATUS_NOT_ASSIGNED",
   "note": "Presence is an exchange observation. Absence is not delisting. Name-only codes require identity review.",
   "lifecycle_notices": {
-    "status": "SUCCESS",
-    "attempted_at": "2026-10-06T09:40:30.251633+00:00",
+    "status": "FAILED",
+    "attempted_at": "2026-10-06T23:11:30.513683+00:00",
     "last_success_at": "2026-10-06T09:40:30.251633+00:00",
     "window_start": "2026-09-06",
     "window_end": "2026-10-06",
@@ -1574,6 +1574,7 @@
         "versions": [],
         "in_latest_search": false
       }
-    ]
+    ],
+    "reason": "HTTPError"
   }
 }
