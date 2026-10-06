@@ -15,6 +15,8 @@ def main():
     ap=argparse.ArgumentParser(); ap.add_argument("--snapshot",required=True); ap.add_argument("--narrative",required=True); ap.add_argument("--portal-dir",default="intelligence"); args=ap.parse_args()
     snap_path=Path(args.snapshot); narrative_path=Path(args.narrative); portal=Path(args.portal_dir)
     d=json.loads(snap_path.read_text(encoding="utf-8")); errors=validate(d)
+    if d.get("snapshot_type") == "SUMMARY_ONLY":
+        errors.append("routine Daily publishing requires canonical FULL snapshot; SUMMARY_ONLY is read-only/emergency compatibility")
     if errors: raise SystemExit("snapshot validation failed:\n- "+"\n- ".join(errors))
     daily=portal/"data"/"daily"; reports=portal/"reports"; daily.mkdir(parents=True,exist_ok=True); reports.mkdir(parents=True,exist_ok=True)
     asof=d["asof_date"]; d["full_report_path"]=f"reports/{asof}.html"; daily_path=daily/f"{asof}.json"
