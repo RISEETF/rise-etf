@@ -1,10 +1,10 @@
 {
   "schema_version": "0.8",
-  "built_at_utc": "2026-10-06T22:14:06.455507+00:00",
-  "source_signal_built_at_utc": "2026-10-06T22:13:53.394071+00:00",
+  "built_at_utc": "2026-10-07T22:12:52.133456+00:00",
+  "source_signal_built_at_utc": "2026-10-07T22:12:38.381924+00:00",
   "production_eligible": false,
   "regime_change_authorized": false,
-  "active_episode_count": 1,
+  "active_episode_count": 0,
   "confirmation_eligible_episode_count": 0,
   "episodes": [
     {
@@ -81,7 +81,7 @@
       "signal_id": "SIG-RATE-002",
       "signal_name": "Yield Curve Regime Shift",
       "signal_governance_status": "SHADOW",
-      "episode_status": "WEAKENING",
+      "episode_status": "CLOSED",
       "initial_trigger_date": "2026-09-28",
       "initial_observation_date": "2026-09-25",
       "initial_direction": "UP",
@@ -91,18 +91,18 @@
       "peak_magnitude_date": "2026-09-30",
       "peak_abs_zscore": 2.9999643779668674,
       "peak_signed_zscore": 2.9999643779668674,
-      "cumulative_episode_move": 0.13999999999999968,
-      "persistence_runs": 8,
-      "normal_confirmation_runs": 1,
+      "cumulative_episode_move": 0.09999999999999964,
+      "persistence_runs": 9,
+      "normal_confirmation_runs": 2,
       "stress_scope": "UNRESOLVED",
       "policy_intervention_effect": "UNRESOLVED",
       "confirmation_eligible": false,
       "confidence": "HIGH",
       "latest_signal_state": "NORMAL",
-      "latest_direction": "UP",
-      "latest_observation_date": "2026-10-06",
-      "latest_zscore": 1.4217557453956884,
-      "falsification_status": "NOT_TESTED",
+      "latest_direction": "DOWN",
+      "latest_observation_date": "2026-10-07",
+      "latest_zscore": -1.4367805226420427,
+      "falsification_status": "NOT_FALSIFIED",
       "evidence": [
         {
           "date": "2026-09-25",
@@ -151,11 +151,17 @@
           "evidence_role": "CONTRADICTION",
           "signal_state": "NORMAL",
           "zscore": 1.4217557453956884
+        },
+        {
+          "date": "2026-10-07",
+          "evidence_role": "CONTRADICTION",
+          "signal_state": "NORMAL",
+          "zscore": -1.4367805226420427
         }
       ],
       "opened_at_utc": "2026-09-28T08:13:02.486775+00:00",
-      "last_updated_utc": "2026-10-06T22:13:53.394071+00:00",
-      "closed_at_utc": null
+      "last_updated_utc": "2026-10-07T22:12:38.381924+00:00",
+      "closed_at_utc": "2026-10-07T22:12:38.381924+00:00"
     },
     {
       "episode_id": "SIG-CREDIT-001::2026-09-24::UP",
