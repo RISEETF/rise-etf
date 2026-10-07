@@ -1,7 +1,7 @@
 {
   "schema_version": "0.9",
-  "built_at_utc": "2026-10-06T22:14:20.382145+00:00",
-  "source_episode_built_at_utc": "2026-10-06T22:14:06.455507+00:00",
+  "built_at_utc": "2026-10-07T22:13:07.006303+00:00",
+  "source_episode_built_at_utc": "2026-10-07T22:12:52.133456+00:00",
   "gate_state": "KEEP",
   "independent_persistent_channel_count": 0,
   "watch_channel_count": 0,
@@ -11,24 +11,12 @@
   "channels": [
     {
       "channel_id": "RATES",
-      "channel_state": "NON_CONFIRMING",
+      "channel_state": "NO_EPISODE",
       "counts_as_independent_confirmation": false,
-      "evidence": [
-        {
-          "signal_id": "SIG-RATE-002",
-          "signal_state": "NORMAL",
-          "episode_status": "WEAKENING",
-          "persistence_runs": 8,
-          "peak_zscore": 2.9999643779668674,
-          "latest_zscore": 1.4217557453956884,
-          "confirmation_eligible": false,
-          "confidence": "HIGH",
-          "primary_series": "DGS10"
-        }
-      ],
+      "evidence": [],
       "fresh_persistent_signal_count": 0,
       "fresh_watch_signal_count": 0,
-      "nonconfirming_or_stale_count": 1
+      "nonconfirming_or_stale_count": 0
     },
     {
       "channel_id": "CREDIT",
