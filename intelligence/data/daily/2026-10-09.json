@@ -1,0 +1,61 @@
+{
+  "asof_date": "2026-10-09",
+  "current_regime": "GLOBAL TIGHTENING / HIGH ENERGY STRESS / HIGH MACRO ABSORPTION",
+  "regime_change_status": "KEEP",
+  "daily_intelligence_gate_decision": "ACCEPT_KEEP",
+  "top_change": "10월 8일 브렌트 선물 +4.1%, 나스닥 -1.25%로 새 충격이 나타났으나 내부 관문은 KEEP. 30년물 국채 입찰은 견조.",
+  "top_risk": "호르무즈 물류·미국 생산 차질에 따른 유가/물가 재상승, AI 집중과 높은 장기금리",
+  "flow_state": "UNRESOLVED",
+  "top_rise_matches": [
+    {
+      "name": "RISE 국고채3년",
+      "priority": "SELECTIVE",
+      "angle": "장기물 대비 듀레이션 통제 및 캐리",
+      "counter": "국내 금리 재상승 시 평가손실 가능"
+    },
+    {
+      "name": "RISE 미국S&P500",
+      "priority": "WATCH",
+      "angle": "미국 대형주 이익 성장",
+      "counter": "장기금리·AI 집중도 및 에너지 가격"
+    },
+    {
+      "name": "RISE 200",
+      "priority": "WATCH",
+      "angle": "반도체 이익 성장",
+      "counter": "외국인 매도·유가·가격과 자금흐름 괴리"
+    }
+  ],
+  "product_candidates": [
+    {
+      "name": "지속가능 자본생산성",
+      "stage": "RESEARCH",
+      "product_gap_status": "UNRESOLVED"
+    },
+    {
+      "name": "에너지 회복탄력성",
+      "stage": "WATCH",
+      "product_gap_status": "UNRESOLVED"
+    }
+  ],
+  "framework_updates": [],
+  "key_triggers": [
+    "브렌트·호르무즈 통항과 운송비",
+    "10년물 국채금리 및 국채입찰 테일·딜러 인수",
+    "IG/HY OAS 재확대",
+    "SOFR·준비금·VIX 교차확인",
+    "AI 실적·FCF·차환비용"
+  ],
+  "no_action": [
+    "기계 Gate 단독 레짐 변경 금지",
+    "검증 이력 부족: 신호·상품·프레임워크 승격 금지",
+    "STALE 달러와 BLOCKED RS를 자금흐름 확인에 사용 금지"
+  ],
+  "validation_state": "INSUFFICIENT_HISTORY",
+  "production_eligible": false,
+  "full_report_path": "reports/2026-10-09.html",
+  "report_generated_at": "2026-10-08T22:31:09.847Z",
+  "market_data_asof": "2026-10-08",
+  "internal_data_asof": "2026-10-07",
+  "snapshot_type": "SUMMARY_ONLY"
+}
