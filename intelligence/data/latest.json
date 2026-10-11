@@ -1,29 +1,29 @@
 {
-  "asof_date": "2026-10-09",
+  "asof_date": "2026-10-12",
   "current_regime": "GLOBAL TIGHTENING / HIGH ENERGY STRESS / HIGH MACRO ABSORPTION",
-  "regime_change_status": "KEEP",
-  "daily_intelligence_gate_decision": "ACCEPT_KEEP",
-  "top_change": "10월 8일 브렌트 선물 +4.1%, 나스닥 -1.25%로 새 충격이 나타났으나 내부 관문은 KEEP. 30년물 국채 입찰은 견조.",
-  "top_risk": "호르무즈 물류·미국 생산 차질에 따른 유가/물가 재상승, AI 집중과 높은 장기금리",
+  "regime_change_status": "CHALLENGE",
+  "daily_intelligence_gate_decision": "HOLD_PRIOR_REGIME",
+  "top_change": "기계 Gate KEEP→CHALLENGE: 신용 스프레드 축소 방향 WATCH 1회, 독립 지속 채널 0개. 주말 호르무즈 충격은 내부 원시계열 미반영.",
+  "top_risk": "호르무즈 통항 차질과 중동 확전, 고금리·기업 차환비용; 신용 WATCH 방향성 오해 위험",
   "flow_state": "UNRESOLVED",
   "top_rise_matches": [
     {
       "name": "RISE 국고채3년",
       "priority": "SELECTIVE",
       "angle": "장기물 대비 듀레이션 통제 및 캐리",
-      "counter": "국내 금리 재상승 시 평가손실 가능"
+      "counter": "국내 금리 상승 시 평가손실"
     },
     {
       "name": "RISE 미국S&P500",
       "priority": "WATCH",
       "angle": "미국 대형주 이익 성장",
-      "counter": "장기금리·AI 집중도 및 에너지 가격"
+      "counter": "높은 장기금리·AI 집중·에너지 비용"
     },
     {
       "name": "RISE 200",
       "priority": "WATCH",
       "angle": "반도체 이익 성장",
-      "counter": "외국인 매도·유가·가격과 자금흐름 괴리"
+      "counter": "외국인 수급·에너지·환율 위험"
     }
   ],
   "product_candidates": [
@@ -38,24 +38,31 @@
       "product_gap_status": "UNRESOLVED"
     }
   ],
-  "framework_updates": [],
+  "framework_updates": [
+    {
+      "name": "CREDIT WATCH polarity audit",
+      "status": "RESEARCH_REQUIRED",
+      "note": "OAS 축소 DOWN WATCH를 신용위험 상승으로 표현하지 않도록 점검. Canonical signal/gate 수정 없음."
+    }
+  ],
   "key_triggers": [
-    "브렌트·호르무즈 통항과 운송비",
-    "10년물 국채금리 및 국채입찰 테일·딜러 인수",
-    "IG/HY OAS 재확대",
+    "호르무즈 통항·보험료·운송 마찰비용",
+    "미국 10년물 금리·입찰 테일·딜러 인수비중",
+    "IG/HY OAS 방향과 지속성",
     "SOFR·준비금·VIX 교차확인",
     "AI 실적·FCF·차환비용"
   ],
   "no_action": [
-    "기계 Gate 단독 레짐 변경 금지",
+    "Gate CHALLENGE만으로 레짐 변경 금지",
     "검증 이력 부족: 신호·상품·프레임워크 승격 금지",
-    "STALE 달러와 BLOCKED RS를 자금흐름 확인에 사용 금지"
+    "STALE 달러 및 BLOCKED RS를 확인 증거로 사용 금지"
   ],
   "validation_state": "INSUFFICIENT_HISTORY",
   "production_eligible": false,
-  "full_report_path": "reports/2026-10-09.html",
-  "report_generated_at": "2026-10-08T22:31:09.847Z",
-  "market_data_asof": "2026-10-08",
-  "internal_data_asof": "2026-10-07",
-  "snapshot_type": "SUMMARY_ONLY"
+  "full_report_path": null,
+  "report_generated_at": "2026-10-11T22:28:43Z",
+  "market_data_asof": "2026-10-09",
+  "internal_data_asof": "2026-10-09",
+  "snapshot_type": "SUMMARY_ONLY",
+  "report_status": "HTML_PUBLISH_BLOCKED"
 }
