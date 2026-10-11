@@ -1,7 +1,7 @@
 {
   "schema_version": "0.7",
-  "built_at_utc": "2026-10-08T22:14:07.316100+00:00",
-  "source_gclri_built_at_utc": "2026-10-08T22:13:54.171111+00:00",
+  "built_at_utc": "2026-10-11T22:13:26.068971+00:00",
+  "source_gclri_built_at_utc": "2026-10-11T22:13:13.563783+00:00",
   "production_eligible": false,
   "regime_change_authorized": false,
   "signals": [
@@ -12,17 +12,17 @@
       "signal_state": "NORMAL",
       "direction": "DOWN",
       "strongest_series": "DGS10",
-      "strongest_zscore": -0.8065530186728884,
+      "strongest_zscore": -0.9111086310698251,
       "confidence": "MODERATE",
       "confirmation_count": 0,
       "details": [
         {
           "series_id": "DGS10",
-          "observation_date": "2026-10-07",
-          "latest_value": 5.28,
+          "observation_date": "2026-10-08",
+          "latest_value": 5.22,
           "horizon_observations": 5,
-          "horizon_move": -0.009999999999999787,
-          "zscore": -0.8065530186728884,
+          "horizon_move": -0.020000000000000462,
+          "zscore": -0.9111086310698251,
           "data_state": "CURRENT"
         }
       ],
@@ -34,36 +34,36 @@
       "status": "SHADOW",
       "signal_state": "NORMAL",
       "direction": "DOWN",
-      "strongest_series": "DGS2",
-      "strongest_zscore": -1.475347337874693,
+      "strongest_series": "DGS10",
+      "strongest_zscore": -0.9111086310698251,
       "confidence": "HIGH",
-      "confirmation_count": 1,
+      "confirmation_count": 0,
       "details": [
         {
           "series_id": "T10Y2Y",
-          "observation_date": "2026-10-08",
-          "latest_value": 0.47,
+          "observation_date": "2026-10-09",
+          "latest_value": 0.44,
           "horizon_observations": 5,
-          "horizon_move": 0.009999999999999953,
-          "zscore": 0.015543624166674255,
+          "horizon_move": -0.010000000000000009,
+          "zscore": -0.23894228796494701,
           "data_state": "CURRENT"
         },
         {
           "series_id": "DGS10",
-          "observation_date": "2026-10-07",
-          "latest_value": 5.28,
+          "observation_date": "2026-10-08",
+          "latest_value": 5.22,
           "horizon_observations": 5,
-          "horizon_move": -0.009999999999999787,
-          "zscore": -0.8065530186728884,
+          "horizon_move": -0.020000000000000462,
+          "zscore": -0.9111086310698251,
           "data_state": "CURRENT"
         },
         {
           "series_id": "DGS2",
-          "observation_date": "2026-10-07",
-          "latest_value": 4.77,
+          "observation_date": "2026-10-08",
+          "latest_value": 4.75,
           "horizon_observations": 5,
-          "horizon_move": -0.11000000000000032,
-          "zscore": -1.475347337874693,
+          "horizon_move": -0.03000000000000025,
+          "zscore": -0.7183266348290053,
           "data_state": "CURRENT"
         }
       ],
@@ -73,29 +73,29 @@
       "signal_id": "SIG-CREDIT-001",
       "name": "Credit Spread Widening Impulse",
       "status": "CANDIDATE",
-      "signal_state": "NORMAL",
+      "signal_state": "WATCH",
       "direction": "DOWN",
       "strongest_series": "BAMLC0A0CM",
-      "strongest_zscore": -1.0219022668770263,
+      "strongest_zscore": -1.7738960590306792,
       "confidence": "HIGH",
       "confirmation_count": 0,
       "details": [
         {
           "series_id": "BAMLC0A0CM",
-          "observation_date": "2026-10-07",
+          "observation_date": "2026-10-08",
           "latest_value": 0.82,
           "horizon_observations": 5,
-          "horizon_move": -0.020000000000000018,
-          "zscore": -1.0219022668770263,
+          "horizon_move": -0.040000000000000036,
+          "zscore": -1.7738960590306792,
           "data_state": "CURRENT"
         },
         {
           "series_id": "BAMLH0A0HYM2",
-          "observation_date": "2026-10-07",
-          "latest_value": 3.09,
+          "observation_date": "2026-10-08",
+          "latest_value": 3.15,
           "horizon_observations": 5,
-          "horizon_move": -0.03000000000000025,
-          "zscore": -0.5265263895196062,
+          "horizon_move": -0.0900000000000003,
+          "zscore": -1.0039642455341398,
           "data_state": "CURRENT"
         }
       ],
@@ -114,11 +114,11 @@
       "details": [
         {
           "series_id": "SOFR",
-          "observation_date": "2026-10-07",
-          "latest_value": 3.88,
+          "observation_date": "2026-10-08",
+          "latest_value": 3.87,
           "horizon_observations": 5,
-          "horizon_move": -0.020000000000000018,
-          "zscore": -0.6718849486004888,
+          "horizon_move": 0.0,
+          "zscore": -0.3712422334191395,
           "data_state": "CURRENT"
         },
         {
@@ -195,17 +195,17 @@
       "signal_state": "NORMAL",
       "direction": "DOWN",
       "strongest_series": "VIXCLS",
-      "strongest_zscore": -0.8062367874349589,
+      "strongest_zscore": -0.628265203034748,
       "confidence": "MODERATE",
       "confirmation_count": 0,
       "details": [
         {
           "series_id": "VIXCLS",
-          "observation_date": "2026-10-07",
-          "latest_value": 15.08,
+          "observation_date": "2026-10-08",
+          "latest_value": 15.41,
           "horizon_observations": 5,
-          "horizon_move": -0.07711138310893506,
-          "zscore": -0.8062367874349589,
+          "horizon_move": -0.059792556436851774,
+          "zscore": -0.628265203034748,
           "data_state": "CURRENT"
         }
       ],
