@@ -1,11 +1,11 @@
 {
   "schema_version": "0.8",
-  "built_at_utc": "2026-10-08T22:14:20.436190+00:00",
-  "source_signal_built_at_utc": "2026-10-08T22:14:07.316100+00:00",
+  "built_at_utc": "2026-10-11T22:13:38.417464+00:00",
+  "source_signal_built_at_utc": "2026-10-11T22:13:26.068971+00:00",
   "production_eligible": false,
   "regime_change_authorized": false,
-  "active_episode_count": 0,
-  "confirmation_eligible_episode_count": 0,
+  "active_episode_count": 1,
+  "confirmation_eligible_episode_count": 1,
   "episodes": [
     {
       "episode_id": "SIG-RATE-001::2026-09-24::UP",
@@ -414,6 +414,45 @@
       "opened_at_utc": "2026-09-28T08:13:02.486775+00:00",
       "last_updated_utc": "2026-09-30T22:14:34.131982+00:00",
       "closed_at_utc": "2026-09-30T22:14:34.131982+00:00"
+    },
+    {
+      "episode_id": "SIG-CREDIT-001::2026-10-08::DOWN",
+      "signal_id": "SIG-CREDIT-001",
+      "signal_name": "Credit Spread Widening Impulse",
+      "signal_governance_status": "CANDIDATE",
+      "episode_status": "WATCH",
+      "initial_trigger_date": "2026-10-11",
+      "initial_observation_date": "2026-10-08",
+      "initial_direction": "DOWN",
+      "primary_series": "BAMLC0A0CM",
+      "move_basis": "diff",
+      "initial_zscore": -1.7738960590306792,
+      "peak_magnitude_date": "2026-10-08",
+      "peak_abs_zscore": 1.7738960590306792,
+      "peak_signed_zscore": -1.7738960590306792,
+      "cumulative_episode_move": 0.0,
+      "persistence_runs": 1,
+      "normal_confirmation_runs": 0,
+      "stress_scope": "UNRESOLVED",
+      "policy_intervention_effect": "UNRESOLVED",
+      "confirmation_eligible": true,
+      "confidence": "HIGH",
+      "latest_signal_state": "WATCH",
+      "latest_direction": "DOWN",
+      "latest_observation_date": "2026-10-08",
+      "latest_zscore": -1.7738960590306792,
+      "falsification_status": "NOT_TESTED",
+      "evidence": [
+        {
+          "date": "2026-10-08",
+          "evidence_role": "PRIMARY_OBSERVATION",
+          "signal_state": "WATCH",
+          "zscore": -1.7738960590306792
+        }
+      ],
+      "opened_at_utc": "2026-10-11T22:13:26.068971+00:00",
+      "last_updated_utc": "2026-10-11T22:13:26.068971+00:00",
+      "closed_at_utc": null
     }
   ],
   "governance": {
