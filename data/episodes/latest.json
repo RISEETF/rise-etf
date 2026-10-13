@@ -1,7 +1,7 @@
 {
   "schema_version": "0.8",
-  "built_at_utc": "2026-10-11T22:13:38.417464+00:00",
-  "source_signal_built_at_utc": "2026-10-11T22:13:26.068971+00:00",
+  "built_at_utc": "2026-10-13T02:54:40.495068+00:00",
+  "source_signal_built_at_utc": "2026-10-13T02:54:27.104723+00:00",
   "production_eligible": false,
   "regime_change_authorized": false,
   "active_episode_count": 1,
@@ -431,7 +431,7 @@
       "peak_abs_zscore": 1.7738960590306792,
       "peak_signed_zscore": -1.7738960590306792,
       "cumulative_episode_move": 0.0,
-      "persistence_runs": 1,
+      "persistence_runs": 2,
       "normal_confirmation_runs": 0,
       "stress_scope": "UNRESOLVED",
       "policy_intervention_effect": "UNRESOLVED",
@@ -448,10 +448,16 @@
           "evidence_role": "PRIMARY_OBSERVATION",
           "signal_state": "WATCH",
           "zscore": -1.7738960590306792
+        },
+        {
+          "date": "2026-10-08",
+          "evidence_role": "CONFIRMATION",
+          "signal_state": "WATCH",
+          "zscore": -1.7738960590306792
         }
       ],
       "opened_at_utc": "2026-10-11T22:13:26.068971+00:00",
-      "last_updated_utc": "2026-10-11T22:13:26.068971+00:00",
+      "last_updated_utc": "2026-10-13T02:54:27.104723+00:00",
       "closed_at_utc": null
     }
   ],
