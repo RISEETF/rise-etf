@@ -1,7 +1,7 @@
 {
   "schema_version": "0.7",
-  "built_at_utc": "2026-10-11T22:13:26.068971+00:00",
-  "source_gclri_built_at_utc": "2026-10-11T22:13:13.563783+00:00",
+  "built_at_utc": "2026-10-13T02:54:27.104723+00:00",
+  "source_gclri_built_at_utc": "2026-10-13T02:54:14.146227+00:00",
   "production_eligible": false,
   "regime_change_authorized": false,
   "signals": [
@@ -195,17 +195,17 @@
       "signal_state": "NORMAL",
       "direction": "DOWN",
       "strongest_series": "VIXCLS",
-      "strongest_zscore": -0.628265203034748,
+      "strongest_zscore": -0.31141983566209047,
       "confidence": "MODERATE",
       "confirmation_count": 0,
       "details": [
         {
           "series_id": "VIXCLS",
-          "observation_date": "2026-10-08",
-          "latest_value": 15.41,
+          "observation_date": "2026-10-09",
+          "latest_value": 14.84,
           "horizon_observations": 5,
-          "horizon_move": -0.059792556436851774,
-          "zscore": -0.628265203034748,
+          "horizon_move": -0.030698889614630964,
+          "zscore": -0.31141983566209047,
           "data_state": "CURRENT"
         }
       ],
