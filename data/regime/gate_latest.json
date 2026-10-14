@@ -1,10 +1,10 @@
 {
   "schema_version": "0.9",
-  "built_at_utc": "2026-10-13T02:54:54.431859+00:00",
-  "source_episode_built_at_utc": "2026-10-13T02:54:40.495068+00:00",
-  "gate_state": "CHALLENGE",
+  "built_at_utc": "2026-10-14T00:57:35.194556+00:00",
+  "source_episode_built_at_utc": "2026-10-14T00:57:22.544622+00:00",
+  "gate_state": "KEEP",
   "independent_persistent_channel_count": 0,
-  "watch_channel_count": 1,
+  "watch_channel_count": 0,
   "extreme_event_override": false,
   "production_eligible": false,
   "regime_change_authorized": false,
@@ -20,24 +20,24 @@
     },
     {
       "channel_id": "CREDIT",
-      "channel_state": "WATCH",
+      "channel_state": "NON_CONFIRMING",
       "counts_as_independent_confirmation": false,
       "evidence": [
         {
           "signal_id": "SIG-CREDIT-001",
-          "signal_state": "WATCH",
-          "episode_status": "WATCH",
-          "persistence_runs": 2,
+          "signal_state": "NORMAL",
+          "episode_status": "WEAKENING",
+          "persistence_runs": 3,
           "peak_zscore": -1.7738960590306792,
-          "latest_zscore": -1.7738960590306792,
-          "confirmation_eligible": true,
+          "latest_zscore": -0.5166577092966034,
+          "confirmation_eligible": false,
           "confidence": "HIGH",
           "primary_series": "BAMLC0A0CM"
         }
       ],
       "fresh_persistent_signal_count": 0,
-      "fresh_watch_signal_count": 1,
-      "nonconfirming_or_stale_count": 0
+      "fresh_watch_signal_count": 0,
+      "nonconfirming_or_stale_count": 1
     },
     {
       "channel_id": "FUNDING",
