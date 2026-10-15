@@ -164,8 +164,8 @@ const server = http.createServer((req,res) => {
     await page.reload();
     await page.waitForFunction(()=>document.getElementById('masterStatus').textContent.includes('종목 식별 정보 오류'));
     assert.equal(await page.locator('#products tr').count(),0);
-    const latestIntelligence=JSON.parse(fs.readFileSync(path.join(root,'intelligence/data/daily/2026-10-06.json')));
     const intelligenceArchive=JSON.parse(fs.readFileSync(path.join(root,'intelligence/data/archive.json')));
+    const latestIntelligence={...JSON.parse(fs.readFileSync(path.join(root,'intelligence/data/daily/2026-10-06.json'))),asof_date:intelligenceArchive.latest,full_report_path:'reports/'+intelligenceArchive.latest+'.html'};
     await page.route('**/intelligence/data/daily/'+intelligenceArchive.latest+'.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify(latestIntelligence)}));
     await page.goto(url+'/intelligence/index.html');
     await page.waitForFunction(()=>document.getElementById('regimeConf').textContent.includes('미제공'));
