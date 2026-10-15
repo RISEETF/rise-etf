@@ -24,15 +24,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        id: checkout
       - uses: actions/setup-python@v5
+        id: setup
         with:
           python-version: '3.11'
       - name: Validate market-data dependencies
+        id: preflight
         run: >-
           python -m unittest
           tests.test_pipeline tests.test_series tests.test_overseas tests.test_asof
           tests.test_research_rs tests.test_alignment tests.test_universe
-          tests.test_official_master tests.test_master_changes tests.test_apple_actions -v
+          tests.test_official_master tests.test_master_changes tests.test_apple_actions tests.test_pipeline_status -v
       - name: Collect series
         id: collect
         continue-on-error: true
@@ -42,13 +45,21 @@ jobs:
         continue-on-error: true
         run: python scripts/collect_overseas.py
       - name: Rebuild unified database and publish coverage
+        id: database
         run: python scripts/build_research_db.py
       - name: Rebuild exposure candidates
+        id: universe
         run: python scripts/build_universe.py
       - name: Publish exploratory price RS with ECB reference FX
+        id: rs
         run: python scripts/build_research_rs.py
+      - name: Record workflow outcome including preflight failures
+        if: always() && steps.checkout.outcome == 'success'
+        env:
+          PIPELINE_STAGES: '{"setup":"${{ steps.setup.outcome }}","preflight":"${{ steps.preflight.outcome }}","collect":"${{ steps.collect.outcome }}","overseas":"${{ steps.overseas.outcome }}","database":"${{ steps.database.outcome }}","universe":"${{ steps.universe.outcome }}","rs":"${{ steps.rs.outcome }}"}'
+        run: python scripts/record_pipeline_status.py series
       - name: Save captures and failure records
-        if: always()
+        if: always() && steps.checkout.outcome == 'success'
         run: |
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           git config user.name 'github-actions[bot]'

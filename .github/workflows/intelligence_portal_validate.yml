@@ -28,6 +28,9 @@ jobs:
         run: |
           python - <<'PY'
           import json
+          import sys
+          sys.path.insert(0,'scripts')
+          from validate_intelligence_snapshot import validate
           from pathlib import Path
           p=Path('intelligence')
           m=json.loads((p/'data/archive.json').read_text())
@@ -35,6 +38,9 @@ jobs:
           assert m['latest'] in m['dates'], 'latest missing from archive'
           for d in m['dates']:
               assert (p/f'data/daily/{d}.json').exists(), d
-              assert (p/f'reports/{d}.html').exists(), d
+              snapshot=json.loads((p/f'data/daily/{d}.json').read_text())
+              assert not validate(snapshot), (d,validate(snapshot))
+              if snapshot.get('full_report_path'):
+                  assert (p/snapshot['full_report_path']).exists(), d
           print('archive links ok:', len(m['dates']))
           PY

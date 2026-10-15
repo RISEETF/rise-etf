@@ -187,6 +187,12 @@ async function loadCapture() {
 async function loadMasterAttempt() {
   try {
     const data = await readJSON('data/master_collection_status.json');
+    const pipeline=await readJSON('data/operations/master.json').catch(()=>null);
+    if(pipeline && pipeline.status!=='SUCCESS' && Date.parse(pipeline.finished_at)>Date.parse(data.attempted_at||'1970-01-01')) {
+      const phase={setup:'실행 환경 준비',preflight:'수집 전 검증',collect:'원천 수집'}[pipeline.failed_stage]||'처리';
+      el('masterAttempt').textContent=`최근 마스터 자동화 ${localTime(pipeline.finished_at)} · ${phase} 실패 · 마지막 성공 자료 유지`;
+      return;
+    }
     const label = data.status === 'SUCCESS' ? '성공' : data.status === 'FAILED' ? '실패 · 마지막 성공 자료 유지' : '상태 확인 필요';
     el('masterAttempt').textContent = `최근 마스터 수집 시도 ${localTime(data.attempted_at)} · ${label}`;
   } catch (_) { el('masterAttempt').textContent = '마스터 수집 시도 이력이 없습니다.'; }
@@ -361,6 +367,16 @@ async function loadOperations() {
     for(const row of series.series) add(`가격 · ${row.code}`,row.last_attempt_status,row.last_date,row.retrieved_at,'배당·분할·거래일 정합성 검증 대기');
   } else add('가격 시계열',null,null,null,'가격 수집 현황 파일 확인 필요');
   add('USD/KRW 참고환율',series?.fx?.last_attempt_status,series?.fx?.last_date,series?.fx?.retrieved_at,'ECB 참고환율 · 종가 시점 환율 미확보');
+  const pipelineResults=await Promise.allSettled(['master','series'].map(name=>readJSON(`data/operations/${name}.json`)));
+  for(let i=0;i<pipelineResults.length;i++) {
+    const result=pipelineResults[i];
+    if(result.status!=='fulfilled') continue;
+    const receipt=result.value;
+    const stages={setup:'실행 환경 준비',preflight:'수집 전 검증',collect:'원천 수집',overseas:'해외 가격 수집',database:'DB 구성',universe:'대표자산 후보 구성',rs:'RS 계산'};
+    const label=i===0?'종목 목록 자동화':'가격·환율 자동화';
+    const status=receipt.status==='SUCCESS'?'처리 단계 완료':receipt.status==='FAILED'?'실패':'완료 확인 불가';
+    rows.push([label,status,'실행 상태',localTime(receipt.finished_at),receipt.failed_stage?`${stages[receipt.failed_stage]||receipt.failed_stage} 실패 · 기존 자료의 기준일을 확인하세요`:'원천 자료 기준일·수집 결과는 위 행 확인']);
+  }
   const fragment=document.createDocumentFragment();
   for(const values of rows) {
     const tr=document.createElement('tr');
