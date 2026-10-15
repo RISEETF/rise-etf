@@ -15,5 +15,5 @@ jobs:
           import urllib.request, re
           url='https://www.kebhana.com/cms/rate/wpfxd651_01i.do'
           with urllib.request.urlopen(url,timeout=40) as r: text=r.read().decode('utf-8')
-          for script in re.findall(r'<script\\b[^>]*[\\s\\S]*?</script>',text,re.I): print(script[:12000])
+          print('PUBLIC_FORM',text[-12000:])
           PY
