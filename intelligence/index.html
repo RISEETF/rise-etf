@@ -268,13 +268,17 @@ function renderFull(d){$('date').textContent='리포트 생성일 '+(d.asof_date
 function render(d){
   if(d.snapshot_type!=='SUMMARY_ONLY'){renderFull(d);return;}
   $('date').textContent='리포트 생성일 '+d.asof_date+' · 시장 기준일 '+d.market_data_asof+' · 요약본 / 상세 판단 미제공';
-  const fields={regime:'current_regime',regimeChangeStatus:'regime_change_status',topChange:'top_change'};
-  for(const id of ['regime','regimeConf','regimeChange','regimeChangeStatus','topChange','topRisk','macroAbs','macroHead','corpAbs','corpHead','fiscal','creditNow','creditFwd','mktLiq','fundLiq','energy','flowState','regimeHistory']) $(id).textContent=fields[id]?d[fields[id]]:'미제공 · 전체 보고서 확인';
+  const fields={regime:'current_regime',regimeChangeStatus:'regime_change_status',topChange:'top_change',topRisk:'top_risk',flowState:'flow_state'};
+  for(const id of ['regime','regimeConf','regimeChange','regimeChangeStatus','topChange','topRisk','macroAbs','macroHead','corpAbs','corpHead','fiscal','creditNow','creditFwd','mktLiq','fundLiq','energy','flowState','regimeHistory']) $(id).textContent=fields[id]&&d[fields[id]]?d[fields[id]]:'미제공 · 전체 보고서 확인';
   $('riseCards').textContent='요약본에 RISE 연결 정보 미제공';
   resetTable('productTable','<tr><td>요약본에 상품 판단 미제공</td></tr>');
   resetTable('frameworkTable','<tr><td>요약본에 프레임워크 변경 미제공</td></tr>');
+  if(Array.isArray(d.top_rise_matches)) $('riseCards').innerHTML=d.top_rise_matches.length?d.top_rise_matches.map(x=>`<div class="card"><h3>${esc(x.priority||'미제공')}</h3><div class="big">${esc(x.name)}</div><div class="delta">${esc(x.angle||'미제공')}</div><div class="delta">${esc(x.counter||'미제공')}</div></div>`).join(''):'기재된 RISE 연결 없음';
+  if(Array.isArray(d.product_candidates)) resetTable('productTable','<tr><th>아이디어</th><th>단계</th><th>투자논리</th><th>상품 공백</th></tr>'+d.product_candidates.map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.stage||'미제공')}</td><td>${esc(x.thesis_status||'미제공')}</td><td>${esc(x.product_gap_status||'미제공')}</td></tr>`).join(''));
+  if(Array.isArray(d.framework_updates)) resetTable('frameworkTable','<tr><th>프레임워크</th><th>상태</th><th>근거</th></tr>'+d.framework_updates.map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.status==='RESEARCH_REQUIRED'?'추가 연구 필요':x.status)}</td><td>${esc(x.note||'미제공')}</td></tr>`).join(''));
   $('reportLink').replaceChildren();
   if(/^reports\/\d{4}-\d{2}-\d{2}\.html$/.test(d.full_report_path||'')){const a=document.createElement('a');a.href=d.full_report_path;a.textContent='전체 보고서 보기';$('reportLink').append(a);}
+  else $('reportLink').textContent='전체 보고서 게시 대기';
 }
 async function boot(){try{
   const [rr,ss,gr,gh,sg,ep,rg,gl,va]=await Promise.all([fetch('../data/research/rs.json',{cache:'no-store'}),fetch('../data/series/status.json',{cache:'no-store'}),fetch('../data/gclri/latest.json',{cache:'no-store'}),fetch('../data/gclri/history.json',{cache:'no-store'}),fetch('../data/signals/latest.json',{cache:'no-store'}),fetch('../data/episodes/latest.json',{cache:'no-store'}),fetch('../data/regime/gate_latest.json',{cache:'no-store'}),fetch('../data/intelligence/glossary_ko.json',{cache:'no-store'}),fetch('../data/validation/v1_status.json',{cache:'no-store'})]);

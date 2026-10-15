@@ -155,6 +155,11 @@ const server = http.createServer((req,res) => {
     assert.equal(await page.locator('#search').isDisabled(),true);
     assert.equal(legacyRequests,0);
     await page.unroute('**/data/master/latest.json');
+    await page.route('**/data/operations/master.json',route=>route.fulfill({contentType:'application/json',body:JSON.stringify({status:'FAILED',finished_at:'2099-01-01T00:00:00Z',failed_stage:'preflight'})}));
+    await page.reload();
+    await page.waitForFunction(()=>document.getElementById('operationsRows').textContent.includes('수집 전 검증 실패'));
+    assert.match(await page.locator('#masterAttempt').textContent(),/수집 전 검증 실패/);
+    await page.unroute('**/data/operations/master.json');
     await page.route('**/data/master/latest.json', route=>route.fulfill({contentType:'application/json',body:JSON.stringify({...master,products:[master.products[0],master.products[0]],instrument_count:2})}));
     await page.reload();
     await page.waitForFunction(()=>document.getElementById('masterStatus').textContent.includes('종목 식별 정보 오류'));
@@ -171,6 +176,16 @@ const server = http.createServer((req,res) => {
     await page.selectOption('#dateSelect','2026-09-22');
     assert.match(await page.locator('#regimeConf').textContent(),/Confidence/);
     await page.click('#latestBtn');
+    assert.match(await page.locator('#regimeConf').textContent(),/미제공/);
+    const expanded={...latestIntelligence,full_report_path:null,report_status:'SUMMARY_ONLY_FULL_REPORT_PENDING',top_risk:'확인된 위험',top_rise_matches:[{name:'테스트 ETF',priority:'WATCH',angle:'연결 근거',counter:'반대 근거'}],framework_updates:[{name:'검증 항목',status:'RESEARCH_REQUIRED'}]};
+    await page.route('**/intelligence/data/daily/'+intelligenceArchive.latest+'.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify(expanded)}));
+    await page.reload();
+    await page.waitForFunction(()=>document.getElementById('topRisk').textContent==='확인된 위험');
+    assert.match(await page.locator('#riseCards').textContent(),/테스트 ETF/);
+    assert.match(await page.locator('#frameworkTable').textContent(),/추가 연구 필요/);
+    assert.equal(await page.locator('#reportLink a').count(),0);
+    assert.match(await page.locator('#reportLink').textContent(),/게시 대기/);
+    assert.equal(await page.locator('#archiveTable a[href="null"]').count(),0);
     assert.match(await page.locator('#regimeConf').textContent(),/미제공/);
     assert.deepEqual(errors,[]);
     console.log('PASS: official count, search, category, empty state, mobile overflow, missing master, duplicate rejection, no legacy fallback');

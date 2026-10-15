@@ -1,6 +1,12 @@
 name: RISE official instrument master
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/master_update.yml
+      - scripts/update_official_master.py
+      - scripts/record_pipeline_status.py
   schedule:
     # Weekdays 09:17-18:47 KST, plus 07:17 KST pre-open check.
     # GitHub scheduling and source publication can be delayed; not real-time.
@@ -20,19 +26,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        id: checkout
       - uses: actions/setup-python@v5
+        id: setup
         with:
           python-version: '3.11'
       - name: Test parser and integrity rules
-        run: python -m unittest discover -s tests -v
+        id: preflight
+        run: python -m unittest tests.test_official_master tests.test_master_changes tests.test_pipeline tests.test_pipeline_status -v
       - name: Build official instrument master
+        id: collect
         run: python scripts/update_official_master.py
+      - name: Record workflow outcome including preflight failures
+        if: always() && steps.checkout.outcome == 'success'
+        env:
+          PIPELINE_STAGES: '{"setup":"${{ steps.setup.outcome }}","preflight":"${{ steps.preflight.outcome }}","collect":"${{ steps.collect.outcome }}"}'
+        run: python scripts/record_pipeline_status.py master
       - name: Save a changed master
-        if: always()
+        if: always() && steps.checkout.outcome == 'success'
         run: |
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           git config user.name 'github-actions[bot]'
           git add data/master/ data/quality/ data/raw/rise_finder/ OFFICIAL_MASTER_VALIDATION.md
+          git add data/operations/
           if [ -f data/master_collection_status.json ]; then
             git add data/master_collection_status.json data/master_runs/
           fi

@@ -14,7 +14,7 @@ def render_report(snapshot, narrative_text):
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument("--snapshot",required=True); ap.add_argument("--narrative",required=True); ap.add_argument("--portal-dir",default="intelligence"); args=ap.parse_args()
     snap_path=Path(args.snapshot); narrative_path=Path(args.narrative); portal=Path(args.portal_dir)
-    d=json.loads(snap_path.read_text(encoding="utf-8")); errors=validate(d)
+    d=json.loads(snap_path.read_text(encoding="utf-8")); d.setdefault('schema_version','1.0'); errors=validate(d)
     if d.get("snapshot_type") == "SUMMARY_ONLY":
         errors.append("routine Daily publishing requires canonical FULL snapshot; SUMMARY_ONLY is read-only/emergency compatibility")
     if errors: raise SystemExit("snapshot validation failed:\n- "+"\n- ".join(errors))
