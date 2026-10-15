@@ -12,8 +12,9 @@ jobs:
       - name: Read public FX form structure
         run: |
           python - <<'PY'
-          import urllib.request, re
-          url='https://image.kebhana.com/pbk/resource/js/foreign/rate/cms/wpfxd651_01i.js'
-          with urllib.request.urlopen(url,timeout=40) as r: text=r.read().decode('utf-8')
-          print('PUBLIC_JS',text[:26000])
+          import urllib.request, urllib.parse
+          url='https://www.kebhana.com/cms/rate/wpfxd651_01i_01.do'
+          form={'ajax':'true','curCd':'USD','pbldDvCd':'0','tmpInqStrDt':'2026-10-14','inqStrDt':'20261014','inqKindCd':'1','requestTarget':'searchContentDiv'}
+          req=urllib.request.Request(url,data=urllib.parse.urlencode(form).encode(),headers={'User-Agent':'RISE-research/0.2','Referer':'https://www.kebhana.com/cms/rate/wpfxd651_01i.do','Content-Type':'application/x-www-form-urlencoded'})
+          with urllib.request.urlopen(req,timeout=40) as r: print('HISTORICAL_RESPONSE',r.read().decode('utf-8'))
           PY
