@@ -1,6 +1,6 @@
 {
   "schema_version": "0.6",
-  "built_at_utc": "2026-10-14T00:56:55.675779+00:00",
+  "built_at_utc": "2026-10-15T00:19:54.740022+00:00",
   "status": "SUCCESS",
   "series": {
     "DGS10": {
@@ -13,12 +13,12 @@
       "gclri_layer": "Fiscal Capacity / Rates",
       "role": "long_yield",
       "stale_after_days": 5,
-      "observation_date": "2026-10-09",
-      "value": 5.24,
-      "prior_observation_date": "2026-10-08",
-      "prior_value": 5.22,
-      "change_1obs": 0.020000000000000462,
-      "age_calendar_days": 5,
+      "observation_date": "2026-10-13",
+      "value": 5.21,
+      "prior_observation_date": "2026-10-09",
+      "prior_value": 5.24,
+      "change_1obs": -0.03000000000000025,
+      "age_calendar_days": 2,
       "data_state": "CURRENT"
     },
     "DGS2": {
@@ -31,12 +31,12 @@
       "gclri_layer": "Policy / Rates",
       "role": "front_yield",
       "stale_after_days": 5,
-      "observation_date": "2026-10-09",
-      "value": 4.8,
-      "prior_observation_date": "2026-10-08",
-      "prior_value": 4.75,
-      "change_1obs": 0.04999999999999982,
-      "age_calendar_days": 5,
+      "observation_date": "2026-10-13",
+      "value": 4.79,
+      "prior_observation_date": "2026-10-09",
+      "prior_value": 4.8,
+      "change_1obs": -0.009999999999999787,
+      "age_calendar_days": 2,
       "data_state": "CURRENT"
     },
     "T10Y2Y": {
@@ -49,11 +49,11 @@
       "gclri_layer": "Cross-Asset / Curve",
       "role": "curve",
       "stale_after_days": 5,
-      "observation_date": "2026-10-13",
-      "value": 0.42,
-      "prior_observation_date": "2026-10-09",
-      "prior_value": 0.44,
-      "change_1obs": -0.020000000000000018,
+      "observation_date": "2026-10-14",
+      "value": 0.37,
+      "prior_observation_date": "2026-10-13",
+      "prior_value": 0.42,
+      "change_1obs": -0.04999999999999999,
       "age_calendar_days": 1,
       "data_state": "CURRENT"
     },
@@ -67,12 +67,12 @@
       "gclri_layer": "Funding Liquidity",
       "role": "secured_funding",
       "stale_after_days": 5,
-      "observation_date": "2026-10-09",
-      "value": 3.87,
-      "prior_observation_date": "2026-10-08",
+      "observation_date": "2026-10-13",
+      "value": 3.89,
+      "prior_observation_date": "2026-10-09",
       "prior_value": 3.87,
-      "change_1obs": 0.0,
-      "age_calendar_days": 5,
+      "change_1obs": 0.020000000000000018,
+      "age_calendar_days": 2,
       "data_state": "CURRENT"
     },
     "WRESBAL": {
@@ -90,7 +90,7 @@
       "prior_observation_date": "2026-09-30",
       "prior_value": 2948090.0,
       "change_1obs": 81569.0,
-      "age_calendar_days": 7,
+      "age_calendar_days": 8,
       "data_state": "CURRENT"
     },
     "BAMLC0A0CM": {
@@ -103,9 +103,9 @@
       "gclri_layer": "Credit Creation & Stress",
       "role": "ig_credit_spread",
       "stale_after_days": 5,
-      "observation_date": "2026-10-12",
+      "observation_date": "2026-10-13",
       "value": 0.83,
-      "prior_observation_date": "2026-10-09",
+      "prior_observation_date": "2026-10-12",
       "prior_value": 0.83,
       "change_1obs": 0.0,
       "age_calendar_days": 2,
@@ -121,11 +121,11 @@
       "gclri_layer": "Credit Creation & Stress",
       "role": "hy_credit_spread",
       "stale_after_days": 5,
-      "observation_date": "2026-10-12",
-      "value": 3.11,
-      "prior_observation_date": "2026-10-09",
+      "observation_date": "2026-10-13",
+      "value": 3.16,
+      "prior_observation_date": "2026-10-12",
       "prior_value": 3.11,
-      "change_1obs": 0.0,
+      "change_1obs": 0.050000000000000266,
       "age_calendar_days": 2,
       "data_state": "CURRENT"
     },
@@ -144,8 +144,8 @@
       "prior_observation_date": "2026-10-08",
       "prior_value": 121.4469,
       "change_1obs": 0.1554000000000002,
-      "age_calendar_days": 5,
-      "data_state": "CURRENT"
+      "age_calendar_days": 6,
+      "data_state": "STALE"
     },
     "DCOILBRENTEU": {
       "id": "DCOILBRENTEU",
@@ -162,7 +162,7 @@
       "prior_observation_date": "2026-10-05",
       "prior_value": 125.51,
       "change_1obs": -0.07000000000000739,
-      "age_calendar_days": 8,
+      "age_calendar_days": 9,
       "data_state": "STALE"
     },
     "DCOILWTICO": {
@@ -180,7 +180,7 @@
       "prior_observation_date": "2026-10-05",
       "prior_value": 96.13,
       "change_1obs": 0.10999999999999943,
-      "age_calendar_days": 8,
+      "age_calendar_days": 9,
       "data_state": "STALE"
     },
     "VIXCLS": {
@@ -193,11 +193,11 @@
       "gclri_layer": "Market Liquidity / Risk",
       "role": "volatility",
       "stale_after_days": 5,
-      "observation_date": "2026-10-12",
-      "value": 15.21,
-      "prior_observation_date": "2026-10-09",
-      "prior_value": 14.84,
-      "change_1obs": 0.370000000000001,
+      "observation_date": "2026-10-13",
+      "value": 15.27,
+      "prior_observation_date": "2026-10-12",
+      "prior_value": 15.21,
+      "change_1obs": 0.05999999999999872,
       "age_calendar_days": 2,
       "data_state": "CURRENT"
     }
