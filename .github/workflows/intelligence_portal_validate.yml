@@ -22,6 +22,23 @@ jobs:
           python-version: '3.11'
       - name: Validate latest snapshot
         run: python scripts/validate_intelligence_snapshot.py intelligence/data/latest.json
+      - name: Enforce full published Daily contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path('intelligence')
+          latest = json.loads((root/'data/latest.json').read_text(encoding='utf-8'))
+          assert latest.get('snapshot_type') != 'SUMMARY_ONLY', 'latest Daily must be FULL'
+          assert latest.get('full_report_path'), 'missing full report path'
+          report = root / latest['full_report_path']
+          assert report.is_file(), f'full report missing: {report}'
+          assert latest.get('asof_date'), 'missing asof date'
+          daily = root / 'data/daily' / (latest['asof_date'] + '.json')
+          assert daily.is_file(), f'daily snapshot missing: {daily}'
+          assert json.loads(daily.read_text(encoding='utf-8')) == latest, 'latest/daily mismatch'
+          print('full publication contract ok')
+          PY
       - name: Run portal tests
         run: python -m unittest tests.test_intelligence_portal -v
       - name: Verify archive links
