@@ -27,6 +27,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         id: checkout
+        with:
+          ref: main
       - uses: actions/setup-python@v5
         id: setup
         with:
@@ -54,5 +56,6 @@ jobs:
           fi
           if ! git diff --cached --quiet; then
             git commit -m 'Update official RISE instrument master'
+            git pull --rebase origin main
             git push
           fi
