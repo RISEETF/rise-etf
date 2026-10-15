@@ -1,0 +1,35 @@
+name: Inspect Hana public FX source
+on:
+  push:
+    branches: [research/hana-fx-source-20261015]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Read public FX form structure
+        run: |
+          python - <<'PY'
+          import urllib.request, re
+          from html.parser import HTMLParser
+          class Form(HTMLParser):
+              def handle_starttag(self,tag,attrs):
+                  a=dict(attrs)
+                  if tag in ('input','select','form'):
+                      safe={k:v for k,v in a.items() if k in ('id','name','type','action','method')}
+                      if a.get('name') in ('pbldDvCd','inqKindCd','curCd'): safe['value']=a.get('value')
+                      print(tag,safe)
+          url='https://www.kebhana.com/cms/rate/wpfxd651_01i.do'
+          try:
+              with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'RISE-research/0.2'}),timeout=40) as r:
+                  text=r.read().decode('utf-8')
+                  print('HTTP',r.status,'BYTES',len(text))
+              Form().feed(text)
+              for line in text.splitlines():
+                  if any(k in line for k in ('pbldDvCd','inqKindCd','curCd','wpfxd651_01i_01','inqStrDt','tmpInpStrDt')):
+                      print(line[:1200])
+          except Exception as exc:
+              print('SOURCE_FETCH_FAILED',type(exc).__name__,str(exc)[:250])
+          PY
