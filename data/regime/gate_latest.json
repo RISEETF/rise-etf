@@ -1,43 +1,54 @@
 {
   "schema_version": "0.9",
-  "built_at_utc": "2026-10-14T00:57:35.194556+00:00",
-  "source_episode_built_at_utc": "2026-10-14T00:57:22.544622+00:00",
-  "gate_state": "KEEP",
+  "built_at_utc": "2026-10-15T00:20:35.100117+00:00",
+  "source_episode_built_at_utc": "2026-10-15T00:20:22.356113+00:00",
+  "gate_state": "CHALLENGE",
   "independent_persistent_channel_count": 0,
-  "watch_channel_count": 0,
+  "watch_channel_count": 1,
   "extreme_event_override": false,
   "production_eligible": false,
   "regime_change_authorized": false,
   "channels": [
     {
       "channel_id": "RATES",
+      "channel_state": "WATCH",
+      "counts_as_independent_confirmation": false,
+      "evidence": [
+        {
+          "signal_id": "SIG-RATE-001",
+          "signal_state": "WATCH",
+          "episode_status": "WATCH",
+          "persistence_runs": 1,
+          "peak_zscore": -1.8016317046908523,
+          "latest_zscore": -1.8016317046908523,
+          "confirmation_eligible": true,
+          "confidence": "MODERATE",
+          "primary_series": "DGS10"
+        },
+        {
+          "signal_id": "SIG-RATE-002",
+          "signal_state": "WATCH",
+          "episode_status": "WATCH",
+          "persistence_runs": 1,
+          "peak_zscore": -1.8016317046908523,
+          "latest_zscore": -1.8016317046908523,
+          "confirmation_eligible": true,
+          "confidence": "HIGH",
+          "primary_series": "DGS10"
+        }
+      ],
+      "fresh_persistent_signal_count": 0,
+      "fresh_watch_signal_count": 2,
+      "nonconfirming_or_stale_count": 0
+    },
+    {
+      "channel_id": "CREDIT",
       "channel_state": "NO_EPISODE",
       "counts_as_independent_confirmation": false,
       "evidence": [],
       "fresh_persistent_signal_count": 0,
       "fresh_watch_signal_count": 0,
       "nonconfirming_or_stale_count": 0
-    },
-    {
-      "channel_id": "CREDIT",
-      "channel_state": "NON_CONFIRMING",
-      "counts_as_independent_confirmation": false,
-      "evidence": [
-        {
-          "signal_id": "SIG-CREDIT-001",
-          "signal_state": "NORMAL",
-          "episode_status": "WEAKENING",
-          "persistence_runs": 3,
-          "peak_zscore": -1.7738960590306792,
-          "latest_zscore": -0.5166577092966034,
-          "confirmation_eligible": false,
-          "confidence": "HIGH",
-          "primary_series": "BAMLC0A0CM"
-        }
-      ],
-      "fresh_persistent_signal_count": 0,
-      "fresh_watch_signal_count": 0,
-      "nonconfirming_or_stale_count": 1
     },
     {
       "channel_id": "FUNDING",
