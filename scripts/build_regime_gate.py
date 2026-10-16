@@ -27,6 +27,15 @@ def episode_map(payload):
             out[e.get("signal_id")]=e
     return out
 
+def distinct_trigger_observations(episode):
+    # Last evidence vintage per observation date wins; run count is not persistence.
+    by_date = {}
+    for item in episode.get("evidence", []):
+        if item.get("date") and item.get("evidence_role") in {"PRIMARY_OBSERVATION", "CONFIRMATION", "CONTRADICTION"}:
+            by_date[item["date"]] = item.get("signal_state")
+    return sum(state in {"WATCH", "ACTIVE_CANDIDATE"} for state in by_date.values())
+
+
 def channel_state(ch,sigs,eps):
     evidence=[]
     persistent=0
@@ -40,13 +49,15 @@ def channel_state(ch,sigs,eps):
         fresh=bool(e.get("confirmation_eligible"))
         status=e.get("episode_status")
         if not fresh: stale_or_low+=1
-        if fresh and status in ACTIVE: persistent+=1
-        elif fresh and status=="WATCH": watch+=1
+        observations = distinct_trigger_observations(e)
+        if fresh and status in ACTIVE and observations >= 2: persistent+=1
+        elif fresh and status in ACTIVE | {"WATCH"}: watch+=1
         evidence.append({
           "signal_id":sid,
           "signal_state":s.get("signal_state"),
           "episode_status":status,
           "persistence_runs":e.get("persistence_runs"),
+          "distinct_trigger_observations":observations,
           "peak_zscore":e.get("peak_signed_zscore"),
           "latest_zscore":e.get("latest_zscore"),
           "confirmation_eligible":fresh,
@@ -102,6 +113,7 @@ def main():
         "shared_signal_channels_deduplicated":True,
         "stale_or_low_confidence_not_counted":True,
         "policy_response_not_independent_confirmation":True,
+        "persistence_requires_distinct_observation_dates":True,
         "final_regime_decision_reserved_for_daily_intelligence":True
       }
     }
