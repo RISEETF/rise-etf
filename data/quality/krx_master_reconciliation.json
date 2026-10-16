@@ -4,7 +4,7 @@
   "source_role": "PRIMARY_EXCHANGE_OBSERVATION",
   "source_url": "https://data-dbg.krx.co.kr/svc/apis/etp/etf_bydd_trd",
   "observed_on": "2026-10-15",
-  "retrieved_at": "2026-10-16T05:21:31.962843+00:00",
+  "retrieved_at": "2026-10-16T14:04:51.384821+00:00",
   "raw_sha256": "e6b0b779a676697e734bc25c6dd4c430f82cd5ad8189520c62161065a80b6f95",
   "krx_market_count": 1176,
   "issuer_effective_date": "2026-10-04",
@@ -1461,8 +1461,8 @@
   "note": "Presence is an exchange observation. Absence is not delisting. Name-only codes require identity review.",
   "lifecycle_notices": {
     "status": "SUCCESS",
-    "attempted_at": "2026-10-16T05:21:33.719937+00:00",
-    "last_success_at": "2026-10-16T05:21:33.719937+00:00",
+    "attempted_at": "2026-10-16T14:04:52.760393+00:00",
+    "last_success_at": "2026-10-16T14:04:52.760393+00:00",
     "window_start": "2026-09-16",
     "window_end": "2026-10-16",
     "scope": "RISE_TITLE_SEARCH_ROLLING_30_DAYS_NOT_FULL_LIFECYCLE",
@@ -1482,7 +1482,7 @@
           "orderMode": "",
           "orderStat": ""
         },
-        "sha256": "ddad7dc048bd9bab196c0e422ac4298b18e49654d71742b32446a2097dc6131b"
+        "sha256": "ed31687d296df7d5effe3ecc3559c251c453a51ddded68aec71d94af316da4f5"
       },
       {
         "url": "https://kind.krx.co.kr/disclosure/disclosurebystocktype.do",
@@ -1503,6 +1503,42 @@
     ],
     "events": [
       {
+        "receipt_id": "20261016000464",
+        "kind_stock_id": "0254H",
+        "published_at": "2026-10-16T15:40:00+09:00",
+        "name": "RISE 반도체소부장액티브",
+        "title": "신규상장(KB RISE 반도체소부장액티브증권상장지수투자신탁(주식), 상장일 2026.10.20)",
+        "publisher": "유가증권시장본부",
+        "kind": "LISTING_NOTICE",
+        "search_sha256": "ed31687d296df7d5effe3ecc3559c251c453a51ddded68aec71d94af316da4f5",
+        "event_id": "20261016000464:0254H",
+        "code": "0254H0",
+        "effective_date": "2026-10-20",
+        "verification": "NOTICE_CODE_DATE_VERIFIED",
+        "viewer_url": "https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20261016000464",
+        "sources": [
+          {
+            "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20261016000464",
+            "request": null,
+            "sha256": "7384e9e18c904569518cebd4d4bcc46345dfef407f7b7397b75a048c629d5a98"
+          },
+          {
+            "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=searchContents&docNo=20261016000923",
+            "request": null,
+            "sha256": "adf5381900d0169f7a857eb9e32c2fa7f325cd3f21ce80163daaab9cc04d0faa"
+          },
+          {
+            "url": "https://kind.krx.co.kr/external/2026/10/16/000464/20261016000923/68152.htm",
+            "request": null,
+            "sha256": "ddccd0371a191b3e2fc83e351391392364e91a75d0d14bdbd0921aa37fe7066a"
+          }
+        ],
+        "first_seen_at": "2026-10-16T14:04:52.760393+00:00",
+        "last_checked_at": "2026-10-16T14:04:52.760393+00:00",
+        "versions": [],
+        "in_latest_search": true
+      },
+      {
         "receipt_id": "20260918000210",
         "kind_stock_id": "0240J",
         "published_at": "2026-09-18T16:13:00+09:00",
@@ -1510,7 +1546,7 @@
         "title": "신규상장(KB RISE 삼성SK그룹증권상장지수투자신탁(주식), 상장일 2026.09.22)",
         "publisher": "유가증권시장본부",
         "kind": "LISTING_NOTICE",
-        "search_sha256": "ddad7dc048bd9bab196c0e422ac4298b18e49654d71742b32446a2097dc6131b",
+        "search_sha256": "ed31687d296df7d5effe3ecc3559c251c453a51ddded68aec71d94af316da4f5",
         "event_id": "20260918000210:0240J",
         "code": "0240J0",
         "effective_date": "2026-09-22",
@@ -1534,7 +1570,7 @@
           }
         ],
         "first_seen_at": "2026-09-24T16:34:01.309528+00:00",
-        "last_checked_at": "2026-10-16T05:21:33.719937+00:00",
+        "last_checked_at": "2026-10-16T14:04:52.760393+00:00",
         "versions": [],
         "in_latest_search": true
       },
