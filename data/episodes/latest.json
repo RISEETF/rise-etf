@@ -1,7 +1,7 @@
 {
   "schema_version": "0.8",
-  "built_at_utc": "2026-10-15T00:20:22.356113+00:00",
-  "source_signal_built_at_utc": "2026-10-15T00:20:08.018940+00:00",
+  "built_at_utc": "2026-10-16T00:08:43.659424+00:00",
+  "source_signal_built_at_utc": "2026-10-16T00:08:30.691665+00:00",
   "production_eligible": false,
   "regime_change_authorized": false,
   "active_episode_count": 2,
@@ -487,8 +487,8 @@
       "peak_magnitude_date": "2026-10-13",
       "peak_abs_zscore": 1.8016317046908523,
       "peak_signed_zscore": -1.8016317046908523,
-      "cumulative_episode_move": 0.0,
-      "persistence_runs": 1,
+      "cumulative_episode_move": -0.019999999999999574,
+      "persistence_runs": 2,
       "normal_confirmation_runs": 0,
       "stress_scope": "UNRESOLVED",
       "policy_intervention_effect": "UNRESOLVED",
@@ -496,8 +496,8 @@
       "confidence": "MODERATE",
       "latest_signal_state": "WATCH",
       "latest_direction": "DOWN",
-      "latest_observation_date": "2026-10-13",
-      "latest_zscore": -1.8016317046908523,
+      "latest_observation_date": "2026-10-14",
+      "latest_zscore": -1.5223808210593783,
       "falsification_status": "NOT_TESTED",
       "evidence": [
         {
@@ -505,10 +505,16 @@
           "evidence_role": "PRIMARY_OBSERVATION",
           "signal_state": "WATCH",
           "zscore": -1.8016317046908523
+        },
+        {
+          "date": "2026-10-14",
+          "evidence_role": "CONFIRMATION",
+          "signal_state": "WATCH",
+          "zscore": -1.5223808210593783
         }
       ],
       "opened_at_utc": "2026-10-15T00:20:08.018940+00:00",
-      "last_updated_utc": "2026-10-15T00:20:08.018940+00:00",
+      "last_updated_utc": "2026-10-16T00:08:30.691665+00:00",
       "closed_at_utc": null
     },
     {
@@ -516,27 +522,27 @@
       "signal_id": "SIG-RATE-002",
       "signal_name": "Yield Curve Regime Shift",
       "signal_governance_status": "SHADOW",
-      "episode_status": "WATCH",
+      "episode_status": "STRENGTHENING",
       "initial_trigger_date": "2026-10-15",
       "initial_observation_date": "2026-10-14",
       "initial_direction": "DOWN",
       "primary_series": "DGS10",
       "move_basis": "diff",
       "initial_zscore": -1.8016317046908523,
-      "peak_magnitude_date": "2026-10-14",
-      "peak_abs_zscore": 1.8016317046908523,
-      "peak_signed_zscore": -1.8016317046908523,
+      "peak_magnitude_date": "2026-10-15",
+      "peak_abs_zscore": 2.4061594207273465,
+      "peak_signed_zscore": -2.4061594207273465,
       "cumulative_episode_move": 0.0,
-      "persistence_runs": 1,
+      "persistence_runs": 2,
       "normal_confirmation_runs": 0,
       "stress_scope": "UNRESOLVED",
       "policy_intervention_effect": "UNRESOLVED",
       "confirmation_eligible": true,
       "confidence": "HIGH",
-      "latest_signal_state": "WATCH",
+      "latest_signal_state": "ACTIVE_CANDIDATE",
       "latest_direction": "DOWN",
-      "latest_observation_date": "2026-10-14",
-      "latest_zscore": -1.8016317046908523,
+      "latest_observation_date": "2026-10-15",
+      "latest_zscore": -2.4061594207273465,
       "falsification_status": "NOT_TESTED",
       "evidence": [
         {
@@ -544,10 +550,16 @@
           "evidence_role": "PRIMARY_OBSERVATION",
           "signal_state": "WATCH",
           "zscore": -1.8016317046908523
+        },
+        {
+          "date": "2026-10-15",
+          "evidence_role": "CONFIRMATION",
+          "signal_state": "ACTIVE_CANDIDATE",
+          "zscore": -2.4061594207273465
         }
       ],
       "opened_at_utc": "2026-10-15T00:20:08.018940+00:00",
-      "last_updated_utc": "2026-10-15T00:20:08.018940+00:00",
+      "last_updated_utc": "2026-10-16T00:08:30.691665+00:00",
       "closed_at_utc": null
     }
   ],
