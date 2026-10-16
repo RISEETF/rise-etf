@@ -1,0 +1,117 @@
+
+
+
+
+
+
+<script>
+	var regYmdt = "20261014";
+	$j("#tmpInqStrDt").val(regYmdt.substring(0,4)+"-"+regYmdt.substring(4,6)+"-"+regYmdt.substring(6,8));
+</script>
+
+	 
+	<div class="btnRight_tbl mt50">
+		<a href="#//HanaBank" class="btnTxt txt" onclick="pbk.foreign.rate.pbld.prs.doExcelDown('Y');" title="현재환율 TXT 다운로드"><span>다운로드</span></a>
+		<a href="#//HanaBank" class="btnTxt excel" onclick="pbk.foreign.rate.pbld.prs.doExcelDown('N');" title="현재환율 엑셀 다운로드"><span>다운로드</span></a>
+		<a href="#//HanaBank" class="btn_print" onclick="printPopup.open();" title="새창으로 열림"><span>인쇄하기</span></a>
+	</div>
+
+<div class="printdiv">
+	
+	<div style="display:none">	
+		<h4>현재환율</h4>
+	</div>
+	
+	<p class="txtRateBox">
+	<span class="fl">
+	<em>기준일</em> : <strong>2026년10월14일</strong>
+	<em>고시일시</em> : <strong>
+		
+			
+			
+				2026년10월15일
+				</strong> <strong>07시51분20초 </strong><strong>(1206회차)</strong></span>
+			
+		
+		
+	
+	<span class="fr"><em>조회시각</em> : <strong>2026년10월15일 17시50분34초</strong></span>
+	</p>
+	
+	<table class="tblBasic leftNone" summary="통화코드/통화명,매매기준율,현찰,사실때,환율,spread,파실때,환율,spread,송금,보낼때,받을때,미화환산율,변동환율 항목이 포함된 테이블">
+	<caption>기간별 기준가격 고시회차에 대한 내용</caption> 
+	<colgroup>
+		<col style="width:*" />
+		<col style="width:8%" />
+		<col style="width:7%" />
+		<col style="width:8%" />
+		<col style="width:7%" />
+		<col style="width:8%" />
+		<col style="width:7%" />
+		<col style="width:8%" />
+		<col style="width:8%" />
+		<col style="width:8%" />
+		<col style="width:8%" />
+<!-- 		<col style="width:8%" /> -->
+	</colgroup>
+	<thead>
+		<tr>
+			<th class="leftNone" scope="col" rowspan="3">통화</th>
+			<th class="leftLine" scope="col" colspan="4">현찰</th>
+			<th class="leftLine" scope="col" colspan="2">송금</th>
+		
+			<th class="leftLine" scope="col" rowspan="3">외화<br />수표<br />파실때</th>
+			<th class="leftLine" scope="col" rowspan="3">매매<br />기준율</th>
+			<th class="leftLine" scope="col" rowspan="3">환가<br />료율</th>
+			<th class="leftLine" scope="col" rowspan="3">미화<br />환산율</th>
+		</tr>
+		<tr>
+			<th class="leftLine" scope="col" colspan="2">사실 때</th>
+			<th class="leftLine" scope="col" colspan="2">파실 때</th>
+			<th class="leftLine" scope="col" rowspan="2">보낼 때</th>
+			<th class="leftLine" scope="col" rowspan="2">받을 때</th>
+		</tr>
+		<tr>
+			<th class="leftLine" scope="col">환율</th>
+			<th class="leftLine" scope="col">Spread</th>
+			<th class="leftLine" scope="col">환율</th>
+			<th class="leftLine" scope="col">Spread</th>
+		</tr>
+		</thead>
+		<tbody>
+				
+				
+				<tr>
+					<td class="tc">
+						<a href="#//HanaBank" title="미국 USD 일일변동내역 보기" onclick="pbk.foreign.rate.pbld.prs.goFluctuation('USD','20261014');" >
+							<u>
+							
+							
+							미국 USD
+							
+							</u>
+						</a>
+					</td>
+					<td class="txtAr">1,366.50</td>
+					<td class="txtAr">1.75</td>
+					<td class="txtAr">1,319.50</td>
+					<td class="txtAr">1.75</td>
+					<td class="txtAr">1,356.10</td>
+					<td class="txtAr">1,329.90</td>
+					
+					<td class="txtAr">1,327.75</td>
+					<td class="txtAr">1,343.00</td>
+					<td class="txtAr">5.77465</td>
+					<td class="txtAr">1.0000</td>
+					
+				</tr>
+				
+				
+				
+		</tbody>
+	</table>
+</div>
+	
+	
+	
+

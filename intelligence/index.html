@@ -244,7 +244,7 @@ function renderRS(){
   $('rsEligible').textContent=rsData.production_eligible?'YES':'NO';
   $('seriesStatus').textContent=seriesData.rs_status||'UNAVAILABLE';
   $('seriesBuilt').textContent='Built '+(seriesData.built_at||'—');
-  $('fxBasis').textContent=rsData.fx_basis||'—';
+  $('fxBasis').textContent=({HANA_FINAL_NOTICE_MIDPOINT:'하나은행 최종 고시 매매기준율',ECB_REFERENCE_NOT_CLOSE:'ECB 참고환율 · 종가 아님'})[rsData.fx_basis]||'환율 기준 미확인';
   const h=Number($('rsHorizon').value);
   const w=(rsData.windows||[]).find(x=>Number(x.calendar_days)===h);
   resetTable('rsTable','<tr><th>자산</th><th>현지통화 수익률</th><th>원화 수익률</th><th>환율 효과</th><th>SPY 대비 상대강도(원화)</th><th>순위</th></tr>');

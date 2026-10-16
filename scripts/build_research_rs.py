@@ -10,7 +10,9 @@ from query_asof import snapshot, timestamp
 from update_daily import ROOT, write_json
 
 
-def calculate(data, instruments, horizons=(7, 30, 60), benchmark='US_LISTED:SPY'):
+def calculate(data, instruments, horizons=(7, 30, 60), benchmark='US_LISTED:SPY', fx_source_id='ECB_REFERENCE'):
+    bases={'ECB_REFERENCE':'ECB_REFERENCE_NOT_CLOSE','HANA_FINAL_NOTICE':'HANA_FINAL_NOTICE_MIDPOINT'}
+    if fx_source_id not in bases: raise ValueError('Unsupported FX policy')
     cutoff = timestamp(data['decision_time_utc'])
     if data['status'] != 'CAPTURE_TIME_FILTER_ONLY':
         raise ValueError('Expected captured vintage snapshot')
@@ -59,8 +61,8 @@ def calculate(data, instruments, horizons=(7, 30, 60), benchmark='US_LISTED:SPY'
             else:
                 prices[key][day] = value
     fx_data = data.get('fx')
-    if fx_data and fx_data['capture']['source_id'] != 'ECB_REFERENCE':
-        raise ValueError('Expected ECB reference FX source')
+    if fx_data and fx_data['capture']['source_id'] != fx_source_id:
+        raise ValueError('FX source does not match explicit policy')
     if fx_data and timestamp(fx_data['capture']['retrieved_at']) > cutoff:
         raise ValueError('FX capture after cutoff')
     fx = observations([r for r in fx_data['observations'] if r['base']=='USD' and r['quote']=='KRW'], 'rate') if fx_data else {}
@@ -87,7 +89,7 @@ def calculate(data, instruments, horizons=(7, 30, 60), benchmark='US_LISTED:SPY'
     }
     result = {'schema_version': 1, 'status': 'EXPLORATORY_PRICE_RS',
               'decision_time_utc': cutoff.isoformat(), 'benchmark': benchmark,
-              'price_field': 'close', 'fx_basis': 'ECB_REFERENCE_NOT_CLOSE',
+              'price_field': 'close', 'fx_basis': bases[fx_source_id],
               'production_eligible': False, 'representative_selection_changed': False,
               'endpoint_rule': 'SAME_DATE_INTERSECTION_ALL_REQUESTED_PRICES_AND_FX',
               'latest_common_date': end,
@@ -102,11 +104,12 @@ def calculate(data, instruments, horizons=(7, 30, 60), benchmark='US_LISTED:SPY'
                            'capture': captured[k]['capture'] if k in captured else None,
                            'latest_price_date': max(prices[k]) if prices[k] else None} for k,c in configs.items()],
               'fx_capture': fx_data['capture'] if fx_data else None,
+              'fx_notices': fx_data.get('notices',[]) if fx_data else [],
               'windows': [],
               'limits': ['Close-price changes, not total returns; distributions are not reinvested.',
                          'Domestic adjustment basis is unconfirmed; provider close corporate-action handling is not independently verified.',
                          'Same date labels are not simultaneous closes; no benchmark T-1 shift is applied.',
-                         'ECB reference rates are not closing or executable rates. No forward fill.',
+                         ('Hana final-notice midpoint by bank reference date; notice may be published the next calendar day. Not an executable or synchronized exchange close. No forward fill.' if fx_source_id=='HANA_FINAL_NOTICE' else 'ECB reference rates are not closing or executable rates. No forward fill.'),
                          'Ranks describe this pilot pool, not the market or approved representatives.',
                          'Historical rows are a captured vintage, not historical publication-time backtests.']}
     for days in horizons:
@@ -164,9 +167,13 @@ if __name__ == '__main__':
     parser.add_argument('--db', default=str(ROOT/'var/research.sqlite'))
     parser.add_argument('--cutoff', help='Timezone-aware timestamp; defaults to current UTC time')
     parser.add_argument('--output', default=str(ROOT/'data/research/rs.json'))
+    parser.add_argument('--fx-source',choices=['ECB_REFERENCE','HANA_FINAL_NOTICE'])
     args=parser.parse_args()
     instruments=json.loads((ROOT/'data/series_sources.json').read_text())['price_instruments']+json.loads((ROOT/'data/overseas_sources.json').read_text())['instruments']
-    result=calculate(snapshot(args.db,args.cutoff or dt.datetime.now(dt.timezone.utc).isoformat()),instruments)
+    policy_path=ROOT/'data/fx_policy.json'
+    policy=json.loads(policy_path.read_text()) if policy_path.exists() else {'source_id':'ECB_REFERENCE'}
+    source=args.fx_source or policy['source_id']
+    result=calculate(snapshot(args.db,args.cutoff or dt.datetime.now(dt.timezone.utc).isoformat(),source),instruments,fx_source_id=source)
     write_json(Path(args.output),result)
     print(json.dumps({'status':result['status'],'end':result['latest_common_date'],
                       'windows':[{'days':w['calendar_days'],'status':w['status'],'rows':len(w['rows'])} for w in result['windows']]}))

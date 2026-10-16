@@ -5,6 +5,8 @@ on:
     paths:
       - scripts/build_research_rs.py
       - .github/workflows/series_update.yml
+      - scripts/collect_hana_fx.py
+      - data/fx_policy.json
   schedule:
     # 08:15 KST Mon-Sat: recapture the previous Korean session on a new local date.
     - cron: '15 23 * * 0-5'
@@ -37,7 +39,7 @@ jobs:
           python -m unittest
           tests.test_pipeline tests.test_series tests.test_overseas tests.test_asof
           tests.test_research_rs tests.test_alignment tests.test_universe
-          tests.test_official_master tests.test_master_changes tests.test_apple_actions tests.test_pipeline_status -v
+          tests.test_official_master tests.test_master_changes tests.test_apple_actions tests.test_pipeline_status tests.test_hana_fx -v
       - name: Collect series
         id: collect
         continue-on-error: true
@@ -46,19 +48,23 @@ jobs:
         id: overseas
         continue-on-error: true
         run: python scripts/collect_overseas.py
+      - name: Collect Hana final-notice midpoint
+        id: hana
+        continue-on-error: true
+        run: python scripts/collect_hana_fx.py
       - name: Rebuild unified database and publish coverage
         id: database
         run: python scripts/build_research_db.py
       - name: Rebuild exposure candidates
         id: universe
         run: python scripts/build_universe.py
-      - name: Publish exploratory price RS with ECB reference FX
+      - name: Publish exploratory price RS with explicit FX policy
         id: rs
         run: python scripts/build_research_rs.py
       - name: Record workflow outcome including preflight failures
         if: always() && steps.checkout.outcome == 'success'
         env:
-          PIPELINE_STAGES: '{"setup":"${{ steps.setup.outcome }}","preflight":"${{ steps.preflight.outcome }}","collect":"${{ steps.collect.outcome }}","overseas":"${{ steps.overseas.outcome }}","database":"${{ steps.database.outcome }}","universe":"${{ steps.universe.outcome }}","rs":"${{ steps.rs.outcome }}"}'
+          PIPELINE_STAGES: '{"setup":"${{ steps.setup.outcome }}","preflight":"${{ steps.preflight.outcome }}","collect":"${{ steps.collect.outcome }}","overseas":"${{ steps.overseas.outcome }}","hana":"${{ steps.hana.outcome }}","database":"${{ steps.database.outcome }}","universe":"${{ steps.universe.outcome }}","rs":"${{ steps.rs.outcome }}"}'
         run: python scripts/record_pipeline_status.py series
       - name: Save captures and failure records
         if: always() && steps.checkout.outcome == 'success'
@@ -72,5 +78,5 @@ jobs:
             git push
           fi
       - name: Report capture failure
-        if: steps.collect.outcome == 'failure' || steps.overseas.outcome == 'failure'
+        if: steps.collect.outcome == 'failure' || steps.overseas.outcome == 'failure' || steps.hana.outcome == 'failure'
         run: exit 1

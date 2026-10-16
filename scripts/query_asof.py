@@ -14,7 +14,7 @@ def timestamp(value):
     return result.astimezone(dt.timezone.utc)
 
 
-def snapshot(db_path, cutoff):
+def snapshot(db_path, cutoff, fx_source_id=None):
     decision_time = timestamp(cutoff)
     connection = sqlite3.connect(Path(db_path).resolve().as_uri() + '?mode=ro', uri=True)
     connection.row_factory = sqlite3.Row
@@ -44,12 +44,15 @@ def snapshot(db_path, cutoff):
             prices.append({'instrument_id': instrument, 'capture': capture, 'prices': rows,
                            'corporate_actions': events, 'rs_eligible': False})
         fx_ids = {r[0] for r in connection.execute('SELECT DISTINCT capture_id FROM fx')}
-        fx_candidates = [(available[cid][0], cid) for cid in fx_ids if cid in available]
+        fx_candidates = [(available[cid][0], cid) for cid in fx_ids if cid in available and (fx_source_id is None or available[cid][1]['source_id']==fx_source_id)]
+        if fx_source_id is None and len({available[cid][1]['source_id'] for _,cid in fx_candidates})>1:
+            raise ValueError('Select an explicit FX source; sources cannot be mixed')
         fx = None
         if fx_candidates:
             _, cid = max(fx_candidates)
             fx = {'capture': available[cid][1], 'observations': [dict(r) for r in connection.execute(
                 'SELECT * FROM fx WHERE capture_id=? ORDER BY observation_date,base,quote', (cid,))]}
+            fx['notices']=[json.loads(r[0]) for r in connection.execute('SELECT notice_json FROM fx_notices WHERE capture_id=? ORDER BY observation_date',(cid,))]
         return {'decision_time_utc': decision_time.isoformat(), 'status': 'CAPTURE_TIME_FILTER_ONLY',
                 'selection_rule': 'LATEST_SUCCESSFUL_NONEMPTY_SNAPSHOT_PER_INSTRUMENT',
                 'prices': prices, 'fx': fx, 'rs_status': 'BLOCKED', 'ranking': None,
@@ -66,5 +69,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--db', default=str(Path(__file__).resolve().parents[1] / 'var/research.sqlite'))
     parser.add_argument('--cutoff', required=True, help='ISO timestamp including timezone offset')
+    parser.add_argument('--fx-source',default='ECB_REFERENCE')
     args = parser.parse_args()
-    print(json.dumps(snapshot(args.db, args.cutoff), ensure_ascii=False))
+    print(json.dumps(snapshot(args.db, args.cutoff,args.fx_source), ensure_ascii=False))
