@@ -2,26 +2,17 @@ name: Regime transition gate
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Signal episode tracker"]
-    types: [completed]
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/build_regime_gate.py'
-      - 'data/regime/channel_registry.json'
-      - '.github/workflows/regime_gate_update.yml'
+  # Automatic execution is owned by intelligence_daily.yml.
 
 permissions:
   contents: write
 
 concurrency:
-  group: regime-gate
+  group: rise-intelligence-daily
   cancel-in-progress: false
 
 jobs:
   build:
-    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

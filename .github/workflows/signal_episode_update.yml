@@ -2,26 +2,17 @@ name: Signal episode tracker
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["GCLRI signal engine"]
-    types: [completed]
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/build_signal_episodes.py'
-      - 'data/episodes/episode_registry.json'
-      - '.github/workflows/signal_episode_update.yml'
+  # Automatic execution is owned by intelligence_daily.yml.
 
 permissions:
   contents: write
 
 concurrency:
-  group: signal-episodes
+  group: rise-intelligence-daily
   cancel-in-progress: false
 
 jobs:
   build:
-    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

@@ -2,22 +2,17 @@ name: Intelligence v1 validation status
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Regime transition gate"]
-    types: [completed]
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/build_validation_status.py'
-      - 'data/intelligence/glossary_ko.json'
-      - '.github/workflows/intelligence_validation_status.yml'
+  # Automatic execution is owned by intelligence_daily.yml.
 
 permissions:
   contents: write
 
+concurrency:
+  group: rise-intelligence-daily
+  cancel-in-progress: false
+
 jobs:
   build:
-    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

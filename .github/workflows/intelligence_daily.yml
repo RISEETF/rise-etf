@@ -1,0 +1,86 @@
+name: RISE Intelligence daily orchestration
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["GCLRI market data update"]
+    types: [completed]
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/run_intelligence_daily.py'
+      - 'scripts/build_gclri_signals.py'
+      - 'scripts/build_signal_episodes.py'
+      - 'scripts/build_regime_gate.py'
+      - 'scripts/build_validation_status.py'
+      - 'data/signals/signal_registry.json'
+      - 'data/episodes/episode_registry.json'
+      - 'data/regime/channel_registry.json'
+      - '.github/workflows/intelligence_daily.yml'
+      - 'intelligence/inbox/**'
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: rise-intelligence-daily
+  cancel-in-progress: false
+jobs:
+  daily:
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      (github.event_name != 'workflow_run' ||
+       (github.event.workflow_run.head_branch == 'main' &&
+        github.event.workflow_run.head_repository.full_name == github.repository))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify engines and publication gates
+        run: python -m unittest discover -s tests -v
+      - name: Run existing engines and gated publisher
+        id: pipeline
+        continue-on-error: true
+        env:
+          UPSTREAM_CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+        run: python scripts/run_intelligence_daily.py
+      - name: Preserve run evidence even when publication is blocked
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: intelligence-run-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            data/operations/intelligence.json
+            data/operations/runs/intelligence-${{ github.run_id }}-${{ github.run_attempt }}.json
+            data/intelligence/daily_input.json
+          if-no-files-found: warn
+      - name: Commit complete publication and execution receipts
+        id: save
+        if: always() && steps.pipeline.outcome != 'skipped'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          test -f data/operations/intelligence.json
+          git add data/operations
+          if jq -e '.status != "FAILED"' data/operations/intelligence.json; then
+            git add data/signals data/episodes data/regime data/validation data/intelligence intelligence
+          fi
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record Intelligence engines and publication outcome'
+            # No rebase: a concurrent data update must invalidate this input vintage.
+            git push origin HEAD:main
+          fi
+      - name: Request Pages build for committed outputs
+        if: steps.save.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh api "repos/$GH_REPO/pages" > "$RUNNER_TEMP/pages.json"
+          jq -e '.build_type == "legacy" and .source.branch == "main" and .source.path == "/"' "$RUNNER_TEMP/pages.json"
+          gh api --method POST "repos/$GH_REPO/pages/builds"
+      - name: Expose blocked or failed publication as unsuccessful run
+        if: always() && steps.pipeline.outcome != 'success'
+        run: exit 1
