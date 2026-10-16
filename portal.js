@@ -417,6 +417,7 @@ async function loadRSTasks() {
       if(affected.length) rows.push([label,affected.join(', '),action]);
     }
     if(rs.fx_basis==='ECB_REFERENCE_NOT_CLOSE') rows.push(['종가 시점 환율','USD 표시 종목의 원화환산','사용할 종가 시각 정의 → 해당 USD/KRW 시계열 확보 → ECB 기준 결과와 비교']);
+    if(rs.fx_basis==='HANA_FINAL_NOTICE_MIDPOINT') rows.push(['환율 고시 시각 정렬','USD 표시 종목의 원화환산','은행 기준일·실제 고시 시각과 한국·미국 가격 마감의 시차 검증 · 당시 이용 가능 자료만 사용']);
     const fragment=document.createDocumentFragment();
     for(const values of rows) {const tr=document.createElement('tr');for(const value of values){const td=document.createElement('td');td.textContent=value;tr.append(td);}fragment.append(tr);}
     el('rsTasks').replaceChildren(fragment);
