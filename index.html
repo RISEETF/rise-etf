@@ -28,6 +28,10 @@
 <div class="table-wrap"><table><thead><tr><th scope="col">종목코드</th><th scope="col">공식 종목명</th><th scope="col">공식 분류</th><th scope="col">상장일</th><th scope="col">출처</th></tr></thead><tbody id="products"></tbody></table></div>
 <p id="empty" hidden>검색 조건에 맞는 종목이 없습니다.</p></section>
 <section class="panel" aria-labelledby="krxTitle"><h2 id="krxTitle">KRX 기준 종목 대조</h2>
+<p id="krxInventoryStatus" role="status">KRX RISE 관측 목록 확인 중</p>
+<p id="krxInventoryDates" class="muted"></p><ul id="krxInventoryChanges"></ul>
+<details><summary>KRX 관측 종목 목록</summary><ul id="krxInventoryProducts"></ul></details>
+<p class="muted">관측 목록은 운용사 상세정보와 별도로 표시합니다. 첫 관측은 신규 상장 확정이 아니며, 관측 누락은 폐지 확정이 아닙니다. 변경 내역은 초기 수집 이후 최근 200건입니다.</p>
 <p id="krxStatus" role="status">거래소 대조 결과 확인 중</p><p id="krxAttempt" class="muted"></p><p id="krxDates" class="muted"></p>
 <div id="krxCounts" class="quality-grid"></div>
 <details><summary>확인이 필요한 종목</summary><ul id="krxIssues"></ul></details>
