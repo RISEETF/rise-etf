@@ -31,7 +31,7 @@ const server = http.createServer((req,res) => {
     assert.equal(await page.locator('#total').textContent(),displayedProducts.length.toLocaleString('ko-KR'));
     await page.waitForFunction(()=>document.getElementById('operationsRows').children.length>0);
     assert.match(await page.locator('#operationsRows').textContent(),/RISE 공식 종목 목록.*KRX ETF 일별 대조.*USD\/KRW 참고환율/);
-    assert.match(await page.locator('#operationsRows').textContent(),/종가 시점 환율 미확보/);
+    assert.match(await page.locator('#operationsRows').textContent(),/하나은행과 혼용하지 않음/);
     await page.waitForFunction(()=>document.getElementById('rsTasks').children.length>0);
     assert.match(await page.locator('#rsTasks').textContent(),/종목 식별 검증.*SPY.*국내 가격 조정 방식.*148020.*종가 시점 환율/);
     assert.ok(await page.locator('#rsWindows li').count()>=3);
@@ -137,6 +137,12 @@ const server = http.createServer((req,res) => {
     await page.locator('#researchHorizon').selectOption('60');
     assert.equal(await page.locator('#researchRows tr').count(),0);
     assert.equal(await page.locator('#researchSummary').textContent(),'');
+    const hanaResearch={...synthetic,fx_basis:'HANA_FINAL_NOTICE_MIDPOINT',fx_notices:[{base_date:'2026-10-14',notice_at:'2026-10-15T07:51:20+09:00',notice_sequence:1206}]};
+    await page.route('**/data/research/rs.json',route=>route.fulfill({contentType:'application/json',body:JSON.stringify(hanaResearch)}));
+    await page.reload();
+    await page.waitForFunction(()=>document.getElementById('researchSources').textContent.includes('1206회차'));
+    assert.match(await page.locator('#researchSources').textContent(),/하나은행 최종 고시 매매기준율/);
+    assert.match(await page.locator('#researchSources').textContent(),/은행 기준일 2026-10-14/);
     await page.unroute('**/data/research/rs.json');
     await page.route('**/data/research/rs.json',route=>route.fulfill({status:404,body:'missing'}));
     await page.reload();

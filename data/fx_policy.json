@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "source_id": "ECB_REFERENCE",
+  "target_source_id": "HANA_FINAL_NOTICE",
+  "activation_status": "AWAITING_LIVE_CAPTURE_VALIDATION",
+  "pair": "USD/KRW",
+  "rate_field": "매매기준율",
+  "date_basis": "BANK_REFERENCE_DATE",
+  "finality_rule": "BASE_DATE_BEFORE_OBSERVED_CURRENT_BANK_DATE",
+  "fallback_source": null,
+  "note": "은행 기준일과 실제 고시 시각을 분리한다. 다음 은행 기준일 확인 후 과거 최종회차를 수집한다. ECB와 혼용하거나 누락일을 자동 보간하지 않는다."
+}

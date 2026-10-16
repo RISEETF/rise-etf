@@ -10,6 +10,7 @@ import sqlite3
 import tempfile
 from collect_series import parse_naver, parse_ecb
 from collect_overseas import parse_yahoo, audit_adjustments
+from collect_hana_fx import parse_bundle as parse_hana_bundle
 from update_daily import ROOT, write_json
 
 SCHEMA = """
@@ -46,6 +47,9 @@ CREATE TABLE fx (
  capture_id TEXT REFERENCES captures(capture_id), observation_date TEXT NOT NULL,
  base TEXT NOT NULL, quote TEXT NOT NULL, rate REAL NOT NULL CHECK(rate>0), kind TEXT NOT NULL,
  PRIMARY KEY(capture_id,observation_date,base,quote));
+CREATE TABLE fx_notices (
+ capture_id TEXT REFERENCES captures(capture_id), observation_date TEXT NOT NULL,
+ notice_json TEXT NOT NULL, PRIMARY KEY(capture_id,observation_date));
 CREATE INDEX price_dates ON prices(instrument_id,observation_date);
 CREATE VIEW latest_prices AS
  SELECT * FROM (
@@ -54,8 +58,8 @@ CREATE VIEW latest_prices AS
  FROM prices p JOIN captures c USING(capture_id)) WHERE vintage_rank=1;
 CREATE VIEW latest_fx AS
  SELECT * FROM (
- SELECT f.*, c.retrieved_at,c.source_url,
- ROW_NUMBER() OVER(PARTITION BY f.observation_date,f.base,f.quote ORDER BY c.retrieved_at DESC,c.capture_id DESC) AS vintage_rank
+ SELECT f.*, c.retrieved_at,c.source_url,c.source_id,
+ ROW_NUMBER() OVER(PARTITION BY c.source_id,f.observation_date,f.base,f.quote ORDER BY c.retrieved_at DESC,c.capture_id DESC) AS vintage_rank
  FROM fx f JOIN captures c USING(capture_id)) WHERE vintage_rank=1;
 """
 
@@ -91,7 +95,9 @@ def verify_capture(data_dir, record):
         if record["price_basis"]!="PROVIDER_CLOSE_AND_ADJUSTED_CLOSE" or record["currency"]!="USD" or record["quality"]!="QUARANTINED":
             raise ValueError("Unapproved overseas metadata promotion")
     elif record["kind"] == "FX":
-        expected = parse_ecb(raw, captured.date())
+        if record['source_id']=='HANA_FINAL_NOTICE': expected=parse_hana_bundle(raw,captured)
+        elif record['source_id']=='ECB_REFERENCE': expected=parse_ecb(raw,captured.date())
+        else: raise ValueError('Unknown FX source')
         if record["quality"] != "REFERENCE_ONLY":
             raise ValueError("Unapproved FX metadata promotion")
     else:
@@ -154,6 +160,8 @@ def build(data_dir, db_path):
                         record["capture_id"], market+":"+record["instrument_code"], row["date"],row["open"],row["high"],row["low"],row["close"],row["volume"],record["price_basis"],row.get("adjusted_close")))
                 else:
                     connection.execute("INSERT INTO fx VALUES (?,?,?,?,?,?)", (record["capture_id"],row["date"],row["base"],row["quote"],row["rate"],row["kind"]))
+                    if record['source_id']=='HANA_FINAL_NOTICE':
+                        connection.execute('INSERT INTO fx_notices VALUES (?,?,?)',(record['capture_id'],row['date'],json.dumps(row)))
             for event in record.get("events",[]):
                 connection.execute("INSERT INTO corporate_actions VALUES (?,?,?,?,?,?,?,?)", (
                     record["capture_id"],"US_LISTED:"+record["instrument_code"],event["event_id"],event["date"],event["kind"],event.get("amount"),event.get("numerator"),event.get("denominator")))
@@ -177,12 +185,22 @@ def build(data_dir, db_path):
                 "last_attempt_status":latest.get("status","NOT_ATTEMPTED"),"retrieved_at":latest.get("retrieved_at"),
                 "error":latest.get("error"),"rs_eligible":False,"blockers":reasons,
                 "adjustment_audit":latest.get("adjustment_audit"),"missing_dates":latest.get("missing_dates",[])})
-        count, first, last = connection.execute("SELECT COUNT(*),MIN(observation_date),MAX(observation_date) FROM latest_fx WHERE base='USD' AND quote='KRW'").fetchone()
-        fx_attempts = [r for r in records if r["kind"] == "FX"]
+        count, first, last = connection.execute("SELECT COUNT(*),MIN(observation_date),MAX(observation_date) FROM latest_fx WHERE source_id='ECB_REFERENCE' AND base='USD' AND quote='KRW'").fetchone()
+        fx_attempts = [r for r in records if r["kind"] == "FX" and r['source_id']=='ECB_REFERENCE']
         latest = max(fx_attempts,key=lambda r:r["retrieved_at"]) if fx_attempts else {}
         summary["fx"] = {"pair":"USD/KRW", "unit":"KRW per USD", "observations":count,"first_date":first,"last_date":last,
                          "last_attempt_status":latest.get("status","NOT_ATTEMPTED"),"retrieved_at":latest.get("retrieved_at"),
                          "kind":"ECB_DERIVED_REFERENCE_ONLY","rs_eligible":False,"error":latest.get("error")}
+        hana_attempts=[r for r in records if r['source_id']=='HANA_FINAL_NOTICE']
+        if hana_attempts:
+            attempt=max(hana_attempts,key=lambda r:r['retrieved_at'])
+            good=[r for r in hana_attempts if r['status']=='CAPTURED']
+            latest_good=max(good,key=lambda r:r['retrieved_at']) if good else {}
+            rows=latest_good.get('observations',[])
+            summary['hana_fx']={'source_id':'HANA_FINAL_NOTICE','last_attempt_status':attempt['status'],
+                'retrieved_at':attempt['retrieved_at'],'error':attempt.get('error'),'observations':len(rows),
+                'first_date':rows[0]['date'] if rows else None,'last_date':rows[-1]['date'] if rows else None,
+                'latest_notice':rows[-1] if rows else None,'rs_eligible':False}
         connection.commit()
         if connection.execute("PRAGMA integrity_check").fetchone()[0] != "ok":
             raise ValueError("SQLite integrity check failed")

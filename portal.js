@@ -299,7 +299,9 @@ async function loadUniverse() {
 async function loadResearchRS() {
   try {
     const data=await readJSON('data/research/rs.json');
-    if(data.status!=='EXPLORATORY_PRICE_RS' || data.production_eligible!==false || data.fx_basis!=='ECB_REFERENCE_NOT_CLOSE' || !Array.isArray(data.windows)) throw new Error('연구용 RS 형식 오류');
+    const fxLabels={ECB_REFERENCE_NOT_CLOSE:'ECB 참고환율 · 종가 아님',HANA_FINAL_NOTICE_MIDPOINT:'하나은행 최종 고시 매매기준율'};
+    if(data.status!=='EXPLORATORY_PRICE_RS' || data.production_eligible!==false || !fxLabels[data.fx_basis] || !Array.isArray(data.windows)) throw new Error('연구용 RS 형식 오류');
+    const fxLabel=fxLabels[data.fx_basis];
     const selector=el('researchHorizon');
     const basisSelector=el('researchBasis');
     const pct=value=>`${value>=0?'+':''}${value.toFixed(2)}%`;
@@ -310,7 +312,11 @@ async function loadResearchRS() {
       sources.append(li);
     }
     const fxLine=document.createElement('li');
-    fxLine.textContent=`ECB 기준환율 수집 ${localTime(data.fx_capture?.retrieved_at)} · 종가 환율 아님`;
+    fxLine.textContent=`${fxLabel} · 수집 ${localTime(data.fx_capture?.retrieved_at)}`;
+    if(data.fx_basis==='HANA_FINAL_NOTICE_MIDPOINT' && data.fx_notices?.length) {
+      const last=data.fx_notices[data.fx_notices.length-1];
+      fxLine.textContent+=` · 은행 기준일 ${last.base_date} · 실제 고시 ${localTime(last.notice_at)} · ${last.notice_sequence}회차`;
+    }
     sources.append(fxLine);
     const render=()=>{
       el('researchRows').replaceChildren();
@@ -332,7 +338,7 @@ async function loadResearchRS() {
         return;
       }
       if(!validDate(w.start_date) || !validDate(w.end_date) || !Array.isArray(w.rows) || w.rows.some(r=>['krw_rank','local_rank','local_return_pct','krw_return_pct','fx_return_pct','krw_rs_vs_spy_pct','local_rs_vs_spy_pct'].some(k=>!Number.isFinite(r[k])))) throw new Error('계산값 오류');
-      el('researchStatus').textContent=`연구용 ${w.rows.length}종목 · ${w.start_date} → ${w.end_date} (${w.actual_calendar_days}일) · ECB 기준환율`;
+      el('researchStatus').textContent=`연구용 ${w.rows.length}종목 · ${w.start_date} → ${w.end_date} (${w.actual_calendar_days}일) · ${fxLabel}`;
       const rows=[...w.rows].sort((a,b)=>a[basis+'_rank']-b[basis+'_rank'] || a.instrument_id.localeCompare(b.instrument_id));
       const positive=rows.filter(r=>r[basis+'_return_pct']>0).length;
       const changed=rows.filter(r=>r.krw_rank!==r.local_rank).length;
@@ -366,13 +372,17 @@ async function loadOperations() {
   if(Array.isArray(series?.series) && series.series.length) {
     for(const row of series.series) add(`가격 · ${row.code}`,row.last_attempt_status,row.last_date,row.retrieved_at,'배당·분할·거래일 정합성 검증 대기');
   } else add('가격 시계열',null,null,null,'가격 수집 현황 파일 확인 필요');
-  add('USD/KRW 참고환율',series?.fx?.last_attempt_status,series?.fx?.last_date,series?.fx?.retrieved_at,'ECB 참고환율 · 종가 시점 환율 미확보');
+  add('USD/KRW 참고환율',series?.fx?.last_attempt_status,series?.fx?.last_date,series?.fx?.retrieved_at,'ECB 참고환율 · 하나은행과 혼용하지 않음');
+  if(series?.hana_fx) {
+    const h=series.hana_fx,n=h.latest_notice;
+    add('USD/KRW 하나은행 최종 고시',h.last_attempt_status,h.last_date,h.retrieved_at,n?`실제 고시 ${localTime(n.notice_at)} · ${n.notice_sequence}회차 · 다음 은행 기준일 확인`:'확정 환율 미확보 · ECB 자동 대체 없음');
+  }
   const pipelineResults=await Promise.allSettled(['master','series'].map(name=>readJSON(`data/operations/${name}.json`)));
   for(let i=0;i<pipelineResults.length;i++) {
     const result=pipelineResults[i];
     if(result.status!=='fulfilled') continue;
     const receipt=result.value;
-    const stages={setup:'실행 환경 준비',preflight:'수집 전 검증',collect:'원천 수집',overseas:'해외 가격 수집',database:'DB 구성',universe:'대표자산 후보 구성',rs:'RS 계산'};
+    const stages={setup:'실행 환경 준비',preflight:'수집 전 검증',collect:'원천 수집',overseas:'해외 가격 수집',hana:'하나은행 환율 수집',database:'DB 구성',universe:'대표자산 후보 구성',rs:'RS 계산'};
     const label=i===0?'종목 목록 자동화':'가격·환율 자동화';
     const status=receipt.status==='SUCCESS'?'처리 단계 완료':receipt.status==='FAILED'?'실패':'완료 확인 불가';
     rows.push([label,status,'실행 상태',localTime(receipt.finished_at),receipt.failed_stage?`${stages[receipt.failed_stage]||receipt.failed_stage} 실패 · 기존 자료의 기준일을 확인하세요`:'원천 자료 기준일·수집 결과는 위 행 확인']);
