@@ -20,6 +20,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from reconcile_krx_master import reconcile
+from krx_inventory import build_inventory
 from collect_kind_notices import refresh as refresh_kind_notices
 
 
@@ -282,8 +283,12 @@ def collect(args):
             raise error
     if 'lifecycle_notices' in previous:
         report['lifecycle_notices'] = previous['lifecycle_notices']
+    inventory_path = previous_path.parent / 'krx_rise_inventory.json'
+    prior_inventory = json.loads(inventory_path.read_text()) if inventory_path.exists() else None
+    inventory = build_inventory(result['snapshot'], receipt, prior_inventory)
     # Validate identity and date ordering before changing the historical database.
     receipt['delta'] = accumulate(Path(args.db), result['snapshot'], raw_hash, retrieved_at)
+    write_json_atomic(inventory_path, inventory)
     write_json_atomic(args.reconciliation, report)
     (output / "receipt.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2))
     print(json.dumps(receipt, ensure_ascii=False))

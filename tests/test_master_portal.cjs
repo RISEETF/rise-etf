@@ -53,7 +53,7 @@ const server = http.createServer((req,res) => {
     await page.route('**/data/quality/krx_master_reconciliation.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify(krxFixture)}));
     await page.route('**/data/krx_collection_status.json',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({status:'FAILED',attempted_at:'2026-09-23T00:00:00+00:00',reason:'KRX_PUBLIC_REPORT_DATE_REGRESSION',rejected_observed_on:'2026-09-18',retained_observed_on:'2026-09-23'})}));
     await page.reload();
-    await page.waitForFunction(()=>document.getElementById('krxStatus').textContent.includes('KRX 기준'));
+    await page.waitForFunction(()=>document.getElementById('krxStatus').textContent.includes('운용사 목록'));
     assert.match(await page.locator('#krxDates').textContent(),/달력일.*수집 성공은 최신 거래일 확보를 뜻하지 않습니다/);
     assert.equal(await page.locator('#krxIssues li').count(),1);
     assert.match(await page.locator('#krxIssues').textContent(),/폐지 확정 아님/);
@@ -154,6 +154,10 @@ const server = http.createServer((req,res) => {
     await page.unroute('**/data/research/rs.json');
     page.on('request', r=>{if(r.url().endsWith('/data/latest.json'))legacyRequests++;});
     await page.route('**/data/master/latest.json', route=>route.fulfill({status:404,body:'missing'}));
+    await page.route('**/data/quality/krx_rise_inventory.json', route=>route.fulfill({contentType:'application/json',body:JSON.stringify({
+      schema_version:1,source_id:'KRX_OPEN_API_ETF_DAILY',observed_on:'2026-10-14',baseline_on:'2026-10-14',
+      retrieved_at:'2026-10-15T00:00:00Z',observed_count:1,
+      products:[{code:'123456',name:'RISE independent fixture',status:'OBSERVED'}],recent_changes:[]})}));
     await page.reload();
     await page.waitForFunction(()=>document.getElementById('masterStatus').textContent.includes('표시할 수 없습니다'));
     await page.waitForFunction(()=>document.getElementById('operationsStatus').textContent.includes('상태 파일 확인 불가'));
@@ -162,6 +166,9 @@ const server = http.createServer((req,res) => {
     assert.equal(await page.locator('#search').isDisabled(),true);
     assert.equal(legacyRequests,0);
     await page.unroute('**/data/master/latest.json');
+    await page.waitForFunction(()=>document.getElementById('krxInventoryStatus').textContent.includes('RISE 1개'));
+    assert.match(await page.locator('#krxInventoryProducts').textContent(),/123456 RISE independent fixture/);
+    await page.unroute('**/data/quality/krx_rise_inventory.json');
     await page.route('**/data/operations/master.json',route=>route.fulfill({contentType:'application/json',body:JSON.stringify({status:'FAILED',finished_at:'2099-01-01T00:00:00Z',failed_stage:'preflight'})}));
     await page.reload();
     await page.waitForFunction(()=>document.getElementById('operationsRows').textContent.includes('수집 전 검증 실패'));

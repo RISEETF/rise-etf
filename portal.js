@@ -106,7 +106,7 @@ async function loadKrxComparison(master) {
     }
     if(Object.keys(report.counts || {}).length!==Object.keys(counts).length || Object.entries(counts).some(([key,n])=>report.counts[key]!==n)) throw new Error('대조 집계 오류');
     const freshness=krxFreshness(report.observed_on,report.retrieved_at);
-    el('krxStatus').textContent=`KRX 기준 ${report.issuer_product_count}개 상품 대조 · 코드·명칭 일치 ${counts.MATCHED_CODE_NAME || 0}개${freshness.needsReview?' · 자료 최신성 확인 필요':''}`;
+    el('krxStatus').textContent=`운용사 목록 ${report.issuer_product_count}개를 KRX와 대조 · 코드·명칭 일치 ${counts.MATCHED_CODE_NAME || 0}개${freshness.needsReview?' · 자료 최신성 확인 필요':''}`;
     el('krxDates').textContent=`거래소 관측일 ${report.observed_on} · 한국 날짜 기준 ${freshness.calendarDays}일 전(달력일) · 대조 당시 운용사 기준일 ${report.issuer_effective_date} · KRX 수집 ${localTime(report.retrieved_at)} · 수집 성공은 최신 거래일 확보를 뜻하지 않습니다. 휴장일 미반영으로 지연 여부는 별도 확인이 필요합니다.`;
     el('krxCounts').replaceChildren(); el('krxIssues').replaceChildren();
     for(const [key,n] of Object.entries(counts)) {
@@ -451,4 +451,40 @@ async function loadRSTasks() {
     el('rsReadiness').textContent='데이터 보완 항목 확인 불가 · 검증 완료로 해석하지 마세요.';
   }
 }
-Promise.allSettled([loadMaster(), loadCapture(), loadQuality(), loadMasterAttempt(), loadSeries(), loadIssuerChecks(), loadUniverse(), loadResearchRS(), loadOperations(), loadRSTasks()]);
+async function loadKrxInventory() {
+  try {
+    const data=await readJSON('data/quality/krx_rise_inventory.json');
+    if(data.schema_version!==1 || data.source_id!=='KRX_OPEN_API_ETF_DAILY' ||
+       !validDate(data.observed_on) || !validDate(data.baseline_on) ||
+       !Array.isArray(data.products) || !Array.isArray(data.recent_changes)) throw new Error('관측 목록 형식 오류');
+    const codes=new Set();
+    for(const row of data.products) {
+      if(!/^[0-9A-Z]{6}$/.test(row.code) || codes.has(row.code) || typeof row.name!=='string' ||
+         !['OBSERVED','NOT_OBSERVED'].includes(row.status)) throw new Error('종목 식별 오류');
+      codes.add(row.code);
+    }
+    const observed=data.products.filter(p=>p.status==='OBSERVED');
+    if(observed.length!==data.observed_count) throw new Error('관측 집계 오류');
+    const freshness=krxFreshness(data.observed_on,data.retrieved_at);
+    const labels={FIRST_OBSERVED:'첫 관측',REOBSERVED:'재관측',NAME_CHANGED:'명칭 변경',NOT_OBSERVED:'관측 누락 · 폐지 확정 아님'};
+    for(const event of data.recent_changes) {
+      if(!labels[event.type] || !validDate(event.observed_on) || !codes.has(event.code)) throw new Error('변경 이력 오류');
+    }
+    el('krxInventoryStatus').textContent=`KRX 관측 RISE ${data.observed_count}개${freshness.needsReview?' · 자료 최신성 확인 필요':''}`;
+    el('krxInventoryDates').textContent=`관측일 ${data.observed_on} · 수집 ${localTime(data.retrieved_at)} · 변경 추적 시작 ${data.baseline_on}`;
+    for(const row of data.products) {
+      const li=document.createElement('li');li.textContent=`${row.code} ${row.name} · ${row.status==='OBSERVED'?'관측됨':'관측 누락 · 폐지 확정 아님'}`;
+      el('krxInventoryProducts').append(li);
+    }
+    for(const event of data.recent_changes.slice(-10).reverse()) {
+      const li=document.createElement('li');li.textContent=`${event.observed_on} ${event.code} ${event.name}: ${labels[event.type]}${event.type==='NAME_CHANGED'?` (이전: ${event.previous_name})`:''}`;
+      el('krxInventoryChanges').append(li);
+    }
+    if(!data.recent_changes.length) el('krxInventoryChanges').textContent='기록된 변경 없음 · 초기 수집은 비교 기준으로 저장합니다.';
+  } catch(error) {
+    el('krxInventoryStatus').textContent=`KRX 관측 목록 확인 대기 · ${error.message}`;
+    el('krxInventoryDates').textContent='';
+    el('krxInventoryChanges').replaceChildren();el('krxInventoryProducts').replaceChildren();
+  }
+}
+Promise.allSettled([loadKrxInventory(), loadMaster(), loadCapture(), loadQuality(), loadMasterAttempt(), loadSeries(), loadIssuerChecks(), loadUniverse(), loadResearchRS(), loadOperations(), loadRSTasks()]);
