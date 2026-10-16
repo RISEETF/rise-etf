@@ -39,3 +39,21 @@
 
 ## 변경 통제
 이번 문서는 설계·감사 기록이며 자동화 배포 완료를 뜻하지 않는다. `.github/workflows`, `scripts`, `data` 변경은 별도 구현·테스트 후 수행한다. 운영 중인 수집기·레짐·검증 규칙을 임의 수정하지 않는다.
+
+## P0 구현·운영 경계 (2026-10-16)
+
+게시기는 기존 portal을 임시 디렉터리에 복사하고 보고서·daily/latest·archive·framework history·vintage를 모두 만든 다음 전체 보관 링크와 latest 정합성을 검증한다. 검증 전에는 기존 portal을 수정하지 않는다. 작업 디렉터리 교체 중 예외는 이전 디렉터리로 rollback한다. 과거 날짜 보완 시 latest는 최신 날짜를 유지한다.
+
+동일 날짜 snapshot 또는 HTML 수정은 `--revision-reason '수정 이유'`가 필요하다. 이전 JSON·HTML·수정 이유는 `data/vintages/<date>/<UTC timestamp + UUID>/`에 함께 보존한다. 기존 vintage 형식도 삭제하지 않는다. 동일 입력 재실행은 신규 vintage를 생성하지 않는다. FULL만 정기 게시하며 빈 본문은 차단한다. 과거의 명시적 SUMMARY_ONLY/pending 기록은 그대로 허용한다.
+
+**원자성 경계:** 이 스크립트는 Git checkout용이다. 두 번의 디렉터리 rename 사이에는 짧은 공백이 있으므로 live HTTP 디렉터리를 직접 대상으로 사용하지 않는다. 검증된 전체 변경을 한 Git 커밋으로 push하고 Pages가 그 커밋을 배포해야 공개 게시가 일관된다. P0는 자동 commit/push나 Pages 배포 성공을 보장하지 않는다.
+
+**강제 종료 복구:** 일반 예외는 rollback하지만 SIGKILL/전원 중단은 보장하지 않는다. 형제 경로 `.intelligence.publish.lock`가 남으면 재실행을 차단한다. 실행 중인 프로세스가 없는지 먼저 확인하고 `.intelligence.backup-*`와 `.intelligence-stage-*`를 검사한다. portal이 없으면 정상 backup을 intelligence로 복구하고 전체 검증을 실행한다. portal이 존재하면 전체 검증 및 Git diff로 정상 여부를 확인한다. 검증 전에는 commit/push하지 않는다. 원본 보존 후 잔여 lock를 제거한다. 백업과 임시 데이터는 자동으로 연구 원본 대신 사용하지 않는다.
+
+재검증:
+```bash
+python -m unittest tests.test_intelligence_portal tests.test_intelligence_publish -v
+python -m unittest discover -s tests -v
+```
+
+P1에서는 수집·분석·FULL 보고서 생성 및 신선도/외부 근거 관문을 연결하고, 성공한 게시 전체를 한 커밋으로 저장해야 한다. 현재 P0의 문서/HTML 검사만으로 분석 근거·프레임워크 승격의 타당성이 검증된 것으로 취급하지 않는다. 기존 신호·GCLRI·RS 및 연구 규칙은 변경하지 않았다. 저장소에서 별도 00~07 전체 헌법 원문 묶음은 확인되지 않았으며 운영 문서·레지스트리·테스트에 구현된 기준을 확인했다.
