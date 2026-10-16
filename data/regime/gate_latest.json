@@ -1,44 +1,44 @@
 {
   "schema_version": "0.9",
-  "built_at_utc": "2026-10-15T00:20:35.100117+00:00",
-  "source_episode_built_at_utc": "2026-10-15T00:20:22.356113+00:00",
+  "built_at_utc": "2026-10-16T00:08:55.177487+00:00",
+  "source_episode_built_at_utc": "2026-10-16T00:08:43.659424+00:00",
   "gate_state": "CHALLENGE",
-  "independent_persistent_channel_count": 0,
-  "watch_channel_count": 1,
+  "independent_persistent_channel_count": 1,
+  "watch_channel_count": 0,
   "extreme_event_override": false,
   "production_eligible": false,
   "regime_change_authorized": false,
   "channels": [
     {
       "channel_id": "RATES",
-      "channel_state": "WATCH",
-      "counts_as_independent_confirmation": false,
+      "channel_state": "PERSISTENT_ACTIVE",
+      "counts_as_independent_confirmation": true,
       "evidence": [
         {
           "signal_id": "SIG-RATE-001",
           "signal_state": "WATCH",
           "episode_status": "WATCH",
-          "persistence_runs": 1,
+          "persistence_runs": 2,
           "peak_zscore": -1.8016317046908523,
-          "latest_zscore": -1.8016317046908523,
+          "latest_zscore": -1.5223808210593783,
           "confirmation_eligible": true,
           "confidence": "MODERATE",
           "primary_series": "DGS10"
         },
         {
           "signal_id": "SIG-RATE-002",
-          "signal_state": "WATCH",
-          "episode_status": "WATCH",
-          "persistence_runs": 1,
-          "peak_zscore": -1.8016317046908523,
-          "latest_zscore": -1.8016317046908523,
+          "signal_state": "ACTIVE_CANDIDATE",
+          "episode_status": "STRENGTHENING",
+          "persistence_runs": 2,
+          "peak_zscore": -2.4061594207273465,
+          "latest_zscore": -2.4061594207273465,
           "confirmation_eligible": true,
           "confidence": "HIGH",
           "primary_series": "DGS10"
         }
       ],
-      "fresh_persistent_signal_count": 0,
-      "fresh_watch_signal_count": 2,
+      "fresh_persistent_signal_count": 1,
+      "fresh_watch_signal_count": 1,
       "nonconfirming_or_stale_count": 0
     },
     {
