@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "started_at_utc": "2026-10-16T06:40:05.293292+00:00",
+  "run_id": "38862492133",
+  "run_attempt": "1",
+  "status": "BLOCKED",
+  "stages": {
+    "build_gclri_signals.py": "SUCCESS",
+    "build_signal_episodes.py": "SUCCESS",
+    "build_regime_gate.py": "SUCCESS",
+    "build_validation_status.py": "SUCCESS",
+    "publication": "BLOCKED"
+  },
+  "note": "Checkout execution only. Git push and Pages deployment are separate outcomes.",
+  "blockers": [
+    "STALE_OR_UNAVAILABLE:DTWEXBGS",
+    "FULL_INPUT_PACKAGE_MISSING"
+  ],
+  "finished_at_utc": "2026-10-16T06:40:05.431739+00:00"
+}
