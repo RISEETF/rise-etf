@@ -1,7 +1,7 @@
 {
   "schema_version": "0.9",
-  "built_at_utc": "2026-10-16T06:40:05.396707+00:00",
-  "source_episode_built_at_utc": "2026-10-16T06:40:05.366509+00:00",
+  "built_at_utc": "2026-10-18T23:59:16.194624+00:00",
+  "source_episode_built_at_utc": "2026-10-18T23:59:16.165035+00:00",
   "gate_state": "CHALLENGE",
   "independent_persistent_channel_count": 1,
   "watch_channel_count": 0,
@@ -16,11 +16,11 @@
       "evidence": [
         {
           "signal_id": "SIG-RATE-001",
-          "signal_state": "WATCH",
-          "episode_status": "WATCH",
-          "persistence_runs": 3,
-          "peak_zscore": -1.8016317046908523,
-          "latest_zscore": -1.5223808210593783,
+          "signal_state": "ACTIVE_CANDIDATE",
+          "episode_status": "STRENGTHENING",
+          "persistence_runs": 4,
+          "peak_zscore": -2.5977966919987474,
+          "latest_zscore": -2.5977966919987474,
           "confirmation_eligible": true,
           "confidence": "MODERATE",
           "primary_series": "DGS10"
@@ -29,16 +29,16 @@
           "signal_id": "SIG-RATE-002",
           "signal_state": "ACTIVE_CANDIDATE",
           "episode_status": "STRENGTHENING",
-          "persistence_runs": 3,
-          "peak_zscore": -2.4061594207273465,
-          "latest_zscore": -2.4061594207273465,
+          "persistence_runs": 4,
+          "peak_zscore": -2.5977966919987474,
+          "latest_zscore": -2.5977966919987474,
           "confirmation_eligible": true,
           "confidence": "HIGH",
           "primary_series": "DGS10"
         }
       ],
-      "fresh_persistent_signal_count": 1,
-      "fresh_watch_signal_count": 1,
+      "fresh_persistent_signal_count": 2,
+      "fresh_watch_signal_count": 0,
       "nonconfirming_or_stale_count": 0
     },
     {

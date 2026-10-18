@@ -1,19 +1,19 @@
 {
   "schema_version": "1.0",
-  "asof_date": "2026-10-16",
-  "prepared_at_utc": "2026-10-16T06:40:05.293292+00:00",
+  "asof_date": "2026-10-19",
+  "prepared_at_utc": "2026-10-18T23:59:16.090175+00:00",
   "publication_blockers": [
     "STALE_OR_UNAVAILABLE:DTWEXBGS"
   ],
   "source_hashes": {
-    "data/gclri/latest.json": "2d378ed0a8774c3904a61e511c2c62a759399bac5906e721d5c8f08802bc47ae",
+    "data/gclri/latest.json": "413466781e540c71f64a90002756abe645b64970a223da7fffc5906621c5da2d",
     "data/signals/signal_registry.json": "3705fdc6ab7b3a1cf4091845b35bd9d56df27cc404d5e4de84ad345893494852",
     "data/episodes/episode_registry.json": "27cde9ae423fd744d8fdd8001421ca629f28451478b6eab300fc0dd6d9292008",
     "data/regime/channel_registry.json": "62406bcede5624d02c6a4886c49dfa395932159f0dc7f3e32158bc4e9023bdd0"
   },
   "market": {
     "schema_version": "0.6",
-    "built_at_utc": "2026-10-16T00:08:15.311122+00:00",
+    "built_at_utc": "2026-10-18T23:59:01.822667+00:00",
     "status": "SUCCESS",
     "series": {
       "DGS10": {
@@ -26,12 +26,12 @@
         "gclri_layer": "Fiscal Capacity / Rates",
         "role": "long_yield",
         "stale_after_days": 5,
-        "observation_date": "2026-10-14",
-        "value": 5.19,
-        "prior_observation_date": "2026-10-13",
-        "prior_value": 5.21,
-        "change_1obs": -0.019999999999999574,
-        "age_calendar_days": 2,
+        "observation_date": "2026-10-15",
+        "value": 5.1,
+        "prior_observation_date": "2026-10-14",
+        "prior_value": 5.19,
+        "change_1obs": -0.09000000000000075,
+        "age_calendar_days": 3,
         "data_state": "CURRENT"
       },
       "DGS2": {
@@ -44,12 +44,12 @@
         "gclri_layer": "Policy / Rates",
         "role": "front_yield",
         "stale_after_days": 5,
-        "observation_date": "2026-10-14",
-        "value": 4.82,
-        "prior_observation_date": "2026-10-13",
-        "prior_value": 4.79,
-        "change_1obs": 0.03000000000000025,
-        "age_calendar_days": 2,
+        "observation_date": "2026-10-15",
+        "value": 4.77,
+        "prior_observation_date": "2026-10-14",
+        "prior_value": 4.82,
+        "change_1obs": -0.05000000000000071,
+        "age_calendar_days": 3,
         "data_state": "CURRENT"
       },
       "T10Y2Y": {
@@ -62,12 +62,12 @@
         "gclri_layer": "Cross-Asset / Curve",
         "role": "curve",
         "stale_after_days": 5,
-        "observation_date": "2026-10-15",
-        "value": 0.33,
-        "prior_observation_date": "2026-10-14",
-        "prior_value": 0.37,
-        "change_1obs": -0.03999999999999998,
-        "age_calendar_days": 1,
+        "observation_date": "2026-10-16",
+        "value": 0.35,
+        "prior_observation_date": "2026-10-15",
+        "prior_value": 0.33,
+        "change_1obs": 0.019999999999999962,
+        "age_calendar_days": 2,
         "data_state": "CURRENT"
       },
       "SOFR": {
@@ -80,12 +80,12 @@
         "gclri_layer": "Funding Liquidity",
         "role": "secured_funding",
         "stale_after_days": 5,
-        "observation_date": "2026-10-14",
-        "value": 3.88,
-        "prior_observation_date": "2026-10-13",
-        "prior_value": 3.89,
-        "change_1obs": -0.010000000000000231,
-        "age_calendar_days": 2,
+        "observation_date": "2026-10-15",
+        "value": 3.89,
+        "prior_observation_date": "2026-10-14",
+        "prior_value": 3.88,
+        "change_1obs": 0.010000000000000231,
+        "age_calendar_days": 3,
         "data_state": "CURRENT"
       },
       "WRESBAL": {
@@ -103,7 +103,7 @@
         "prior_observation_date": "2026-10-07",
         "prior_value": 3029659.0,
         "change_1obs": -7519.0,
-        "age_calendar_days": 2,
+        "age_calendar_days": 4,
         "data_state": "CURRENT"
       },
       "BAMLC0A0CM": {
@@ -116,12 +116,12 @@
         "gclri_layer": "Credit Creation & Stress",
         "role": "ig_credit_spread",
         "stale_after_days": 5,
-        "observation_date": "2026-10-14",
+        "observation_date": "2026-10-15",
         "value": 0.84,
-        "prior_observation_date": "2026-10-13",
-        "prior_value": 0.83,
-        "change_1obs": 0.010000000000000009,
-        "age_calendar_days": 2,
+        "prior_observation_date": "2026-10-14",
+        "prior_value": 0.84,
+        "change_1obs": 0.0,
+        "age_calendar_days": 3,
         "data_state": "CURRENT"
       },
       "BAMLH0A0HYM2": {
@@ -134,12 +134,12 @@
         "gclri_layer": "Credit Creation & Stress",
         "role": "hy_credit_spread",
         "stale_after_days": 5,
-        "observation_date": "2026-10-14",
-        "value": 3.25,
-        "prior_observation_date": "2026-10-13",
-        "prior_value": 3.16,
-        "change_1obs": 0.08999999999999986,
-        "age_calendar_days": 2,
+        "observation_date": "2026-10-15",
+        "value": 3.23,
+        "prior_observation_date": "2026-10-14",
+        "prior_value": 3.25,
+        "change_1obs": -0.020000000000000018,
+        "age_calendar_days": 3,
         "data_state": "CURRENT"
       },
       "DTWEXBGS": {
@@ -157,7 +157,7 @@
         "prior_observation_date": "2026-10-08",
         "prior_value": 121.4469,
         "change_1obs": 0.1554000000000002,
-        "age_calendar_days": 7,
+        "age_calendar_days": 9,
         "data_state": "STALE"
       },
       "DCOILBRENTEU": {
@@ -175,7 +175,7 @@
         "prior_observation_date": "2026-10-13",
         "prior_value": 125.78,
         "change_1obs": 0.769999999999996,
-        "age_calendar_days": 2,
+        "age_calendar_days": 4,
         "data_state": "CURRENT"
       },
       "DCOILWTICO": {
@@ -193,7 +193,7 @@
         "prior_observation_date": "2026-10-13",
         "prior_value": 100.86,
         "change_1obs": 1.0499999999999972,
-        "age_calendar_days": 2,
+        "age_calendar_days": 4,
         "data_state": "CURRENT"
       },
       "VIXCLS": {
@@ -206,12 +206,12 @@
         "gclri_layer": "Market Liquidity / Risk",
         "role": "volatility",
         "stale_after_days": 5,
-        "observation_date": "2026-10-14",
-        "value": 16.87,
-        "prior_observation_date": "2026-10-13",
-        "prior_value": 15.27,
-        "change_1obs": 1.6000000000000014,
-        "age_calendar_days": 2,
+        "observation_date": "2026-10-15",
+        "value": 16.46,
+        "prior_observation_date": "2026-10-14",
+        "prior_value": 16.87,
+        "change_1obs": -0.41000000000000014,
+        "age_calendar_days": 3,
         "data_state": "CURRENT"
       }
     },
@@ -225,8 +225,8 @@
   },
   "signals": {
     "schema_version": "0.7",
-    "built_at_utc": "2026-10-16T06:40:05.327536+00:00",
-    "source_gclri_built_at_utc": "2026-10-16T00:08:15.311122+00:00",
+    "built_at_utc": "2026-10-18T23:59:16.124422+00:00",
+    "source_gclri_built_at_utc": "2026-10-18T23:59:01.822667+00:00",
     "production_eligible": false,
     "regime_change_authorized": false,
     "signals": [
@@ -234,20 +234,20 @@
         "signal_id": "SIG-RATE-001",
         "name": "US Treasury Long Yield Shock",
         "status": "SHADOW_READY",
-        "signal_state": "WATCH",
+        "signal_state": "ACTIVE_CANDIDATE",
         "direction": "DOWN",
         "strongest_series": "DGS10",
-        "strongest_zscore": -1.5223808210593783,
+        "strongest_zscore": -2.5977966919987474,
         "confidence": "MODERATE",
         "confirmation_count": 0,
         "details": [
           {
             "series_id": "DGS10",
-            "observation_date": "2026-10-14",
-            "latest_value": 5.19,
+            "observation_date": "2026-10-15",
+            "latest_value": 5.1,
             "horizon_observations": 5,
-            "horizon_move": -0.07999999999999918,
-            "zscore": -1.5223808210593783,
+            "horizon_move": -0.1800000000000006,
+            "zscore": -2.5977966919987474,
             "data_state": "CURRENT"
           }
         ],
@@ -259,36 +259,36 @@
         "status": "SHADOW",
         "signal_state": "ACTIVE_CANDIDATE",
         "direction": "DOWN",
-        "strongest_series": "T10Y2Y",
-        "strongest_zscore": -2.4061594207273465,
+        "strongest_series": "DGS10",
+        "strongest_zscore": -2.5977966919987474,
         "confidence": "HIGH",
-        "confirmation_count": 1,
+        "confirmation_count": 0,
         "details": [
           {
             "series_id": "T10Y2Y",
-            "observation_date": "2026-10-15",
-            "latest_value": 0.33,
+            "observation_date": "2026-10-16",
+            "latest_value": 0.35,
             "horizon_observations": 5,
-            "horizon_move": -0.18,
-            "zscore": -2.4061594207273465,
+            "horizon_move": -0.12,
+            "zscore": -1.5189042485430138,
             "data_state": "CURRENT"
           },
           {
             "series_id": "DGS10",
-            "observation_date": "2026-10-14",
-            "latest_value": 5.19,
+            "observation_date": "2026-10-15",
+            "latest_value": 5.1,
             "horizon_observations": 5,
-            "horizon_move": -0.07999999999999918,
-            "zscore": -1.5223808210593783,
+            "horizon_move": -0.1800000000000006,
+            "zscore": -2.5977966919987474,
             "data_state": "CURRENT"
           },
           {
             "series_id": "DGS2",
-            "observation_date": "2026-10-14",
-            "latest_value": 4.82,
+            "observation_date": "2026-10-15",
+            "latest_value": 4.77,
             "horizon_observations": 5,
-            "horizon_move": 0.03000000000000025,
-            "zscore": -0.17881923140050598,
+            "horizon_move": 0.0,
+            "zscore": -0.46437872665239494,
             "data_state": "CURRENT"
           }
         ],
@@ -300,27 +300,27 @@
         "status": "CANDIDATE",
         "signal_state": "NORMAL",
         "direction": "UP",
-        "strongest_series": "BAMLH0A0HYM2",
-        "strongest_zscore": 0.997933730533222,
+        "strongest_series": "BAMLC0A0CM",
+        "strongest_zscore": 0.6117752903214991,
         "confidence": "HIGH",
         "confirmation_count": 2,
         "details": [
           {
             "series_id": "BAMLC0A0CM",
-            "observation_date": "2026-10-14",
+            "observation_date": "2026-10-15",
             "latest_value": 0.84,
             "horizon_observations": 5,
             "horizon_move": 0.020000000000000018,
-            "zscore": 0.6314705335847383,
+            "zscore": 0.6117752903214991,
             "data_state": "CURRENT"
           },
           {
             "series_id": "BAMLH0A0HYM2",
-            "observation_date": "2026-10-14",
-            "latest_value": 3.25,
+            "observation_date": "2026-10-15",
+            "latest_value": 3.23,
             "horizon_observations": 5,
-            "horizon_move": 0.16000000000000014,
-            "zscore": 0.997933730533222,
+            "horizon_move": 0.08000000000000007,
+            "zscore": 0.3329490711808158,
             "data_state": "CURRENT"
           }
         ],
@@ -331,19 +331,19 @@
         "name": "Funding Liquidity Stress",
         "status": "CANDIDATE",
         "signal_state": "NORMAL",
-        "direction": "DOWN",
-        "strongest_series": "SOFR",
-        "strongest_zscore": -0.6178989355449661,
+        "direction": "UP",
+        "strongest_series": "WRESBAL",
+        "strongest_zscore": 0.5454158220540336,
         "confidence": "HIGH",
-        "confirmation_count": 1,
+        "confirmation_count": 2,
         "details": [
           {
             "series_id": "SOFR",
-            "observation_date": "2026-10-14",
-            "latest_value": 3.88,
+            "observation_date": "2026-10-15",
+            "latest_value": 3.89,
             "horizon_observations": 5,
-            "horizon_move": -0.020000000000000018,
-            "zscore": -0.6178989355449661,
+            "horizon_move": 0.010000000000000231,
+            "zscore": -0.1810357259468136,
             "data_state": "CURRENT"
           },
           {
@@ -420,17 +420,17 @@
         "signal_state": "NORMAL",
         "direction": "UP",
         "strongest_series": "VIXCLS",
-        "strongest_zscore": 1.3691196294477297,
+        "strongest_zscore": 0.7988903818127605,
         "confidence": "MODERATE",
         "confirmation_count": 1,
         "details": [
           {
             "series_id": "VIXCLS",
-            "observation_date": "2026-10-14",
-            "latest_value": 16.87,
+            "observation_date": "2026-10-15",
+            "latest_value": 16.46,
             "horizon_observations": 5,
-            "horizon_move": 0.11870026525198951,
-            "zscore": 1.3691196294477297,
+            "horizon_move": 0.0681375730045426,
+            "zscore": 0.7988903818127605,
             "data_state": "CURRENT"
           }
         ],
@@ -445,8 +445,8 @@
   },
   "episodes": {
     "schema_version": "0.8",
-    "built_at_utc": "2026-10-16T06:40:05.366509+00:00",
-    "source_signal_built_at_utc": "2026-10-16T06:40:05.327536+00:00",
+    "built_at_utc": "2026-10-18T23:59:16.165035+00:00",
+    "source_signal_built_at_utc": "2026-10-18T23:59:16.124422+00:00",
     "production_eligible": false,
     "regime_change_authorized": false,
     "active_episode_count": 2,
@@ -922,27 +922,27 @@
         "signal_id": "SIG-RATE-001",
         "signal_name": "US Treasury Long Yield Shock",
         "signal_governance_status": "SHADOW_READY",
-        "episode_status": "WATCH",
+        "episode_status": "STRENGTHENING",
         "initial_trigger_date": "2026-10-15",
         "initial_observation_date": "2026-10-13",
         "initial_direction": "DOWN",
         "primary_series": "DGS10",
         "move_basis": "diff",
         "initial_zscore": -1.8016317046908523,
-        "peak_magnitude_date": "2026-10-13",
-        "peak_abs_zscore": 1.8016317046908523,
-        "peak_signed_zscore": -1.8016317046908523,
-        "cumulative_episode_move": -0.019999999999999574,
-        "persistence_runs": 3,
+        "peak_magnitude_date": "2026-10-15",
+        "peak_abs_zscore": 2.5977966919987474,
+        "peak_signed_zscore": -2.5977966919987474,
+        "cumulative_episode_move": -0.11000000000000032,
+        "persistence_runs": 4,
         "normal_confirmation_runs": 0,
         "stress_scope": "UNRESOLVED",
         "policy_intervention_effect": "UNRESOLVED",
         "confirmation_eligible": true,
         "confidence": "MODERATE",
-        "latest_signal_state": "WATCH",
+        "latest_signal_state": "ACTIVE_CANDIDATE",
         "latest_direction": "DOWN",
-        "latest_observation_date": "2026-10-14",
-        "latest_zscore": -1.5223808210593783,
+        "latest_observation_date": "2026-10-15",
+        "latest_zscore": -2.5977966919987474,
         "falsification_status": "NOT_TESTED",
         "evidence": [
           {
@@ -962,10 +962,16 @@
             "evidence_role": "CONFIRMATION",
             "signal_state": "WATCH",
             "zscore": -1.5223808210593783
+          },
+          {
+            "date": "2026-10-15",
+            "evidence_role": "CONFIRMATION",
+            "signal_state": "ACTIVE_CANDIDATE",
+            "zscore": -2.5977966919987474
           }
         ],
         "opened_at_utc": "2026-10-15T00:20:08.018940+00:00",
-        "last_updated_utc": "2026-10-16T06:40:05.327536+00:00",
+        "last_updated_utc": "2026-10-18T23:59:16.124422+00:00",
         "closed_at_utc": null
       },
       {
@@ -980,11 +986,11 @@
         "primary_series": "DGS10",
         "move_basis": "diff",
         "initial_zscore": -1.8016317046908523,
-        "peak_magnitude_date": "2026-10-15",
-        "peak_abs_zscore": 2.4061594207273465,
-        "peak_signed_zscore": -2.4061594207273465,
-        "cumulative_episode_move": 0.0,
-        "persistence_runs": 3,
+        "peak_magnitude_date": "2026-10-16",
+        "peak_abs_zscore": 2.5977966919987474,
+        "peak_signed_zscore": -2.5977966919987474,
+        "cumulative_episode_move": -0.09000000000000075,
+        "persistence_runs": 4,
         "normal_confirmation_runs": 0,
         "stress_scope": "UNRESOLVED",
         "policy_intervention_effect": "UNRESOLVED",
@@ -992,8 +998,8 @@
         "confidence": "HIGH",
         "latest_signal_state": "ACTIVE_CANDIDATE",
         "latest_direction": "DOWN",
-        "latest_observation_date": "2026-10-15",
-        "latest_zscore": -2.4061594207273465,
+        "latest_observation_date": "2026-10-16",
+        "latest_zscore": -2.5977966919987474,
         "falsification_status": "NOT_TESTED",
         "evidence": [
           {
@@ -1013,10 +1019,16 @@
             "evidence_role": "CONFIRMATION",
             "signal_state": "ACTIVE_CANDIDATE",
             "zscore": -2.4061594207273465
+          },
+          {
+            "date": "2026-10-16",
+            "evidence_role": "CONFIRMATION",
+            "signal_state": "ACTIVE_CANDIDATE",
+            "zscore": -2.5977966919987474
           }
         ],
         "opened_at_utc": "2026-10-15T00:20:08.018940+00:00",
-        "last_updated_utc": "2026-10-16T06:40:05.327536+00:00",
+        "last_updated_utc": "2026-10-18T23:59:16.124422+00:00",
         "closed_at_utc": null
       }
     ],
@@ -1029,8 +1041,8 @@
   },
   "regime_gate": {
     "schema_version": "0.9",
-    "built_at_utc": "2026-10-16T06:40:05.396707+00:00",
-    "source_episode_built_at_utc": "2026-10-16T06:40:05.366509+00:00",
+    "built_at_utc": "2026-10-18T23:59:16.194624+00:00",
+    "source_episode_built_at_utc": "2026-10-18T23:59:16.165035+00:00",
     "gate_state": "CHALLENGE",
     "independent_persistent_channel_count": 1,
     "watch_channel_count": 0,
@@ -1045,11 +1057,11 @@
         "evidence": [
           {
             "signal_id": "SIG-RATE-001",
-            "signal_state": "WATCH",
-            "episode_status": "WATCH",
-            "persistence_runs": 3,
-            "peak_zscore": -1.8016317046908523,
-            "latest_zscore": -1.5223808210593783,
+            "signal_state": "ACTIVE_CANDIDATE",
+            "episode_status": "STRENGTHENING",
+            "persistence_runs": 4,
+            "peak_zscore": -2.5977966919987474,
+            "latest_zscore": -2.5977966919987474,
             "confirmation_eligible": true,
             "confidence": "MODERATE",
             "primary_series": "DGS10"
@@ -1058,16 +1070,16 @@
             "signal_id": "SIG-RATE-002",
             "signal_state": "ACTIVE_CANDIDATE",
             "episode_status": "STRENGTHENING",
-            "persistence_runs": 3,
-            "peak_zscore": -2.4061594207273465,
-            "latest_zscore": -2.4061594207273465,
+            "persistence_runs": 4,
+            "peak_zscore": -2.5977966919987474,
+            "latest_zscore": -2.5977966919987474,
             "confirmation_eligible": true,
             "confidence": "HIGH",
             "primary_series": "DGS10"
           }
         ],
-        "fresh_persistent_signal_count": 1,
-        "fresh_watch_signal_count": 1,
+        "fresh_persistent_signal_count": 2,
+        "fresh_watch_signal_count": 0,
         "nonconfirming_or_stale_count": 0
       },
       {
@@ -1125,26 +1137,26 @@
   },
   "validation": {
     "schema_version": "1.0",
-    "built_at_utc": "2026-10-16T06:40:05.425153+00:00",
+    "built_at_utc": "2026-10-18T23:59:16.222287+00:00",
     "validation_state": "INSUFFICIENT_HISTORY",
     "production_eligible": false,
     "framework_promotion_authorized": false,
     "checks": [
       {
         "name": "Signal history depth",
-        "value": 16,
+        "value": 17,
         "required": 60,
         "status": "INSUFFICIENT_HISTORY"
       },
       {
         "name": "Episode history depth",
-        "value": 16,
+        "value": 17,
         "required": 40,
         "status": "INSUFFICIENT_HISTORY"
       },
       {
         "name": "Gate history depth",
-        "value": 16,
+        "value": 17,
         "required": 40,
         "status": "INSUFFICIENT_HISTORY"
       }

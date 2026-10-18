@@ -1,7 +1,7 @@
 {
   "schema_version": "0.8",
-  "built_at_utc": "2026-10-16T06:40:05.366509+00:00",
-  "source_signal_built_at_utc": "2026-10-16T06:40:05.327536+00:00",
+  "built_at_utc": "2026-10-18T23:59:16.165035+00:00",
+  "source_signal_built_at_utc": "2026-10-18T23:59:16.124422+00:00",
   "production_eligible": false,
   "regime_change_authorized": false,
   "active_episode_count": 2,
@@ -477,27 +477,27 @@
       "signal_id": "SIG-RATE-001",
       "signal_name": "US Treasury Long Yield Shock",
       "signal_governance_status": "SHADOW_READY",
-      "episode_status": "WATCH",
+      "episode_status": "STRENGTHENING",
       "initial_trigger_date": "2026-10-15",
       "initial_observation_date": "2026-10-13",
       "initial_direction": "DOWN",
       "primary_series": "DGS10",
       "move_basis": "diff",
       "initial_zscore": -1.8016317046908523,
-      "peak_magnitude_date": "2026-10-13",
-      "peak_abs_zscore": 1.8016317046908523,
-      "peak_signed_zscore": -1.8016317046908523,
-      "cumulative_episode_move": -0.019999999999999574,
-      "persistence_runs": 3,
+      "peak_magnitude_date": "2026-10-15",
+      "peak_abs_zscore": 2.5977966919987474,
+      "peak_signed_zscore": -2.5977966919987474,
+      "cumulative_episode_move": -0.11000000000000032,
+      "persistence_runs": 4,
       "normal_confirmation_runs": 0,
       "stress_scope": "UNRESOLVED",
       "policy_intervention_effect": "UNRESOLVED",
       "confirmation_eligible": true,
       "confidence": "MODERATE",
-      "latest_signal_state": "WATCH",
+      "latest_signal_state": "ACTIVE_CANDIDATE",
       "latest_direction": "DOWN",
-      "latest_observation_date": "2026-10-14",
-      "latest_zscore": -1.5223808210593783,
+      "latest_observation_date": "2026-10-15",
+      "latest_zscore": -2.5977966919987474,
       "falsification_status": "NOT_TESTED",
       "evidence": [
         {
@@ -517,10 +517,16 @@
           "evidence_role": "CONFIRMATION",
           "signal_state": "WATCH",
           "zscore": -1.5223808210593783
+        },
+        {
+          "date": "2026-10-15",
+          "evidence_role": "CONFIRMATION",
+          "signal_state": "ACTIVE_CANDIDATE",
+          "zscore": -2.5977966919987474
         }
       ],
       "opened_at_utc": "2026-10-15T00:20:08.018940+00:00",
-      "last_updated_utc": "2026-10-16T06:40:05.327536+00:00",
+      "last_updated_utc": "2026-10-18T23:59:16.124422+00:00",
       "closed_at_utc": null
     },
     {
@@ -535,11 +541,11 @@
       "primary_series": "DGS10",
       "move_basis": "diff",
       "initial_zscore": -1.8016317046908523,
-      "peak_magnitude_date": "2026-10-15",
-      "peak_abs_zscore": 2.4061594207273465,
-      "peak_signed_zscore": -2.4061594207273465,
-      "cumulative_episode_move": 0.0,
-      "persistence_runs": 3,
+      "peak_magnitude_date": "2026-10-16",
+      "peak_abs_zscore": 2.5977966919987474,
+      "peak_signed_zscore": -2.5977966919987474,
+      "cumulative_episode_move": -0.09000000000000075,
+      "persistence_runs": 4,
       "normal_confirmation_runs": 0,
       "stress_scope": "UNRESOLVED",
       "policy_intervention_effect": "UNRESOLVED",
@@ -547,8 +553,8 @@
       "confidence": "HIGH",
       "latest_signal_state": "ACTIVE_CANDIDATE",
       "latest_direction": "DOWN",
-      "latest_observation_date": "2026-10-15",
-      "latest_zscore": -2.4061594207273465,
+      "latest_observation_date": "2026-10-16",
+      "latest_zscore": -2.5977966919987474,
       "falsification_status": "NOT_TESTED",
       "evidence": [
         {
@@ -568,10 +574,16 @@
           "evidence_role": "CONFIRMATION",
           "signal_state": "ACTIVE_CANDIDATE",
           "zscore": -2.4061594207273465
+        },
+        {
+          "date": "2026-10-16",
+          "evidence_role": "CONFIRMATION",
+          "signal_state": "ACTIVE_CANDIDATE",
+          "zscore": -2.5977966919987474
         }
       ],
       "opened_at_utc": "2026-10-15T00:20:08.018940+00:00",
-      "last_updated_utc": "2026-10-16T06:40:05.327536+00:00",
+      "last_updated_utc": "2026-10-18T23:59:16.124422+00:00",
       "closed_at_utc": null
     }
   ],
