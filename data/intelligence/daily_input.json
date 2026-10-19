@@ -1,9 +1,10 @@
 {
   "schema_version": "1.0",
   "asof_date": "2026-10-20",
-  "prepared_at_utc": "2026-10-19T23:49:43.788493+00:00",
+  "prepared_at_utc": "2026-10-19T23:50:00.417831+00:00",
   "publication_blockers": [
-    "STALE_OR_UNAVAILABLE:DTWEXBGS"
+    "STALE_OR_UNAVAILABLE:DTWEXBGS",
+    "UPSTREAM_COLLECTION_FAILED"
   ],
   "source_hashes": {
     "data/gclri/latest.json": "413466781e540c71f64a90002756abe645b64970a223da7fffc5906621c5da2d",
@@ -11,15 +12,15 @@
     "data/episodes/episode_registry.json": "27cde9ae423fd744d8fdd8001421ca629f28451478b6eab300fc0dd6d9292008",
     "data/regime/channel_registry.json": "62406bcede5624d02c6a4886c49dfa395932159f0dc7f3e32158bc4e9023bdd0",
     "data/gclri/series_registry.json": "f5f40592694346c87561a7a0f6dd96efe62b7e8bc764bcc1e7b2e16af36113aa",
-    "data/signals/latest.json": "027ff4e2526982d150aaa7ff34966f9f427790cea0237daf8cc76c0389b1c871",
-    "data/episodes/latest.json": "6eed17e11c7f63d0acd06d75435a8be46f7912383810422ce33b84e4d34aee24",
-    "data/regime/gate_latest.json": "4e10327e1dfc8b13f976e65a70f5bf1b1a66ad9cb08e8b96bdca741d27e79702",
-    "data/validation/v1_status.json": "b0b925125ab75cd83b70c1a42e318744c898c4f53638eea168e587037f047e25",
+    "data/signals/latest.json": "d0ef76f8cf2aa11c33a9f51f5bc467f7f3ccc44be6c9549b941ee38f0a689dd9",
+    "data/episodes/latest.json": "8f48ac5b26da67522cf46419a1d39adc6e9e19b36690259df666a4731f72a814",
+    "data/regime/gate_latest.json": "7a9e19c76a7993effcf49c2f9d024ea1c0cd9a6bb7bda7790df2c4886e2efe85",
+    "data/validation/v1_status.json": "235b477a7e23b198a110287c7c11c745731d343791cd830a04fa6087bcbf3a53",
     "data/quality/krx_rise_inventory.json": "18c4420cd08408168964957d1bd212da72b67ee571ea574cb0b83dc1ab812760",
     "data/gclri/history.json": "71d64c1cc75a6cbd34e5a8d6d6d563c787b69b27a8f6f44125490afe9cc99fbf",
-    "data/signals/history.json": "64fcf26904f92fc87927d98fb387625ba1892b5d1efd740c9a74c492cee86e6d",
-    "data/episodes/history.json": "f10261b732b9e72bb094c0dc8f6a353e60a6d4790edae9e47c6dd0e16522f0fa",
-    "data/regime/gate_history.json": "205b43897efaf60101475c52817408c37722f82671593b2e74d7b3320c509ddd"
+    "data/signals/history.json": "54a6f46b8100f6bb655e7a0bfadca0d2b9ea0e73c06783f39865f3c72765a15d",
+    "data/episodes/history.json": "e93012084b52ded2acbdfb17e6a9a788297f4cdaf57524b23a3375dc4ffdc223",
+    "data/regime/gate_history.json": "7369cbfde6f3ea0f837f6a44e20a91ef9672dc46f3736656cd17d0eb58a42de2"
   },
   "market": {
     "schema_version": "0.6",
@@ -235,7 +236,7 @@
   },
   "signals": {
     "schema_version": "0.7",
-    "built_at_utc": "2026-10-19T23:49:43.825412+00:00",
+    "built_at_utc": "2026-10-19T23:50:00.445272+00:00",
     "source_gclri_built_at_utc": "2026-10-18T23:59:01.822667+00:00",
     "production_eligible": false,
     "regime_change_authorized": false,
@@ -455,8 +456,8 @@
   },
   "episodes": {
     "schema_version": "0.8",
-    "built_at_utc": "2026-10-19T23:49:43.869238+00:00",
-    "source_signal_built_at_utc": "2026-10-19T23:49:43.825412+00:00",
+    "built_at_utc": "2026-10-19T23:50:00.478192+00:00",
+    "source_signal_built_at_utc": "2026-10-19T23:50:00.445272+00:00",
     "production_eligible": false,
     "regime_change_authorized": false,
     "active_episode_count": 2,
@@ -1051,8 +1052,8 @@
   },
   "regime_gate": {
     "schema_version": "0.9",
-    "built_at_utc": "2026-10-19T23:49:43.900840+00:00",
-    "source_episode_built_at_utc": "2026-10-19T23:49:43.869238+00:00",
+    "built_at_utc": "2026-10-19T23:50:00.502147+00:00",
+    "source_episode_built_at_utc": "2026-10-19T23:50:00.478192+00:00",
     "gate_state": "CHALLENGE",
     "independent_persistent_channel_count": 1,
     "watch_channel_count": 0,
@@ -37407,26 +37408,26 @@
   },
   "validation": {
     "schema_version": "1.0",
-    "built_at_utc": "2026-10-19T23:49:43.931444+00:00",
+    "built_at_utc": "2026-10-19T23:50:00.525103+00:00",
     "validation_state": "INSUFFICIENT_HISTORY",
     "production_eligible": false,
     "framework_promotion_authorized": false,
     "checks": [
       {
         "name": "Signal history depth",
-        "value": 21,
+        "value": 22,
         "required": 60,
         "status": "INSUFFICIENT_HISTORY"
       },
       {
         "name": "Episode history depth",
-        "value": 21,
+        "value": 22,
         "required": 40,
         "status": "INSUFFICIENT_HISTORY"
       },
       {
         "name": "Gate history depth",
-        "value": 21,
+        "value": 22,
         "required": 40,
         "status": "INSUFFICIENT_HISTORY"
       }

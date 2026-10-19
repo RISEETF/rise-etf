@@ -1,0 +1,211 @@
+{
+  "schema_version": "1.0",
+  "document_type": "RESEARCH_DRAFT",
+  "asof_date": "2026-10-20",
+  "production_eligible": false,
+  "publication_eligible": false,
+  "source_hashes": {
+    "data/gclri/latest.json": "413466781e540c71f64a90002756abe645b64970a223da7fffc5906621c5da2d",
+    "data/signals/signal_registry.json": "3705fdc6ab7b3a1cf4091845b35bd9d56df27cc404d5e4de84ad345893494852",
+    "data/episodes/episode_registry.json": "27cde9ae423fd744d8fdd8001421ca629f28451478b6eab300fc0dd6d9292008",
+    "data/regime/channel_registry.json": "62406bcede5624d02c6a4886c49dfa395932159f0dc7f3e32158bc4e9023bdd0",
+    "data/gclri/series_registry.json": "f5f40592694346c87561a7a0f6dd96efe62b7e8bc764bcc1e7b2e16af36113aa",
+    "data/signals/latest.json": "d0ef76f8cf2aa11c33a9f51f5bc467f7f3ccc44be6c9549b941ee38f0a689dd9",
+    "data/episodes/latest.json": "8f48ac5b26da67522cf46419a1d39adc6e9e19b36690259df666a4731f72a814",
+    "data/regime/gate_latest.json": "7a9e19c76a7993effcf49c2f9d024ea1c0cd9a6bb7bda7790df2c4886e2efe85",
+    "data/validation/v1_status.json": "235b477a7e23b198a110287c7c11c745731d343791cd830a04fa6087bcbf3a53",
+    "data/quality/krx_rise_inventory.json": "18c4420cd08408168964957d1bd212da72b67ee571ea574cb0b83dc1ab812760",
+    "data/gclri/history.json": "71d64c1cc75a6cbd34e5a8d6d6d563c787b69b27a8f6f44125490afe9cc99fbf",
+    "data/signals/history.json": "54a6f46b8100f6bb655e7a0bfadca0d2b9ea0e73c06783f39865f3c72765a15d",
+    "data/episodes/history.json": "e93012084b52ded2acbdfb17e6a9a788297f4cdaf57524b23a3375dc4ffdc223",
+    "data/regime/gate_history.json": "7369cbfde6f3ea0f837f6a44e20a91ef9672dc46f3736656cd17d0eb58a42de2"
+  },
+  "publication_blockers": [
+    "STALE_OR_UNAVAILABLE:DTWEXBGS",
+    "UPSTREAM_COLLECTION_FAILED"
+  ],
+  "observations": [
+    {
+      "series_id": "BAMLC0A0CM",
+      "name": "US Corporate Master OAS",
+      "observation_date": "2026-10-15",
+      "value": 0.84,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLC0A0CM"
+    },
+    {
+      "series_id": "BAMLH0A0HYM2",
+      "name": "US High Yield OAS",
+      "observation_date": "2026-10-15",
+      "value": 3.23,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2"
+    },
+    {
+      "series_id": "DCOILBRENTEU",
+      "name": "Brent Crude Oil Price",
+      "observation_date": "2026-10-14",
+      "value": 126.55,
+      "unit": "USD/bbl",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILBRENTEU"
+    },
+    {
+      "series_id": "DCOILWTICO",
+      "name": "WTI Crude Oil Price",
+      "observation_date": "2026-10-14",
+      "value": 101.91,
+      "unit": "USD/bbl",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILWTICO"
+    },
+    {
+      "series_id": "DGS10",
+      "name": "US Treasury 10Y",
+      "observation_date": "2026-10-15",
+      "value": 5.1,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10"
+    },
+    {
+      "series_id": "DGS2",
+      "name": "US Treasury 2Y",
+      "observation_date": "2026-10-15",
+      "value": 4.77,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2"
+    },
+    {
+      "series_id": "DTWEXBGS",
+      "name": "Nominal Broad US Dollar Index",
+      "observation_date": "2026-10-09",
+      "value": 121.6023,
+      "unit": "Index",
+      "fresh_for_report": false,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DTWEXBGS"
+    },
+    {
+      "series_id": "SOFR",
+      "name": "Secured Overnight Financing Rate",
+      "observation_date": "2026-10-15",
+      "value": 3.89,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=SOFR"
+    },
+    {
+      "series_id": "T10Y2Y",
+      "name": "10Y-2Y Treasury Spread",
+      "observation_date": "2026-10-16",
+      "value": 0.35,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=T10Y2Y"
+    },
+    {
+      "series_id": "VIXCLS",
+      "name": "CBOE VIX",
+      "observation_date": "2026-10-15",
+      "value": 16.46,
+      "unit": "Index",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS"
+    },
+    {
+      "series_id": "WRESBAL",
+      "name": "Reserve Balances with Federal Reserve Banks",
+      "observation_date": "2026-10-14",
+      "value": 3022140.0,
+      "unit": "Millions USD",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WRESBAL"
+    }
+  ],
+  "signals": [
+    {
+      "signal_id": "SIG-RATE-001",
+      "state": "ACTIVE_CANDIDATE",
+      "direction": "DOWN",
+      "strongest_series": "DGS10",
+      "usable_for_research": false,
+      "production_eligible": false
+    },
+    {
+      "signal_id": "SIG-RATE-002",
+      "state": "ACTIVE_CANDIDATE",
+      "direction": "DOWN",
+      "strongest_series": "DGS10",
+      "usable_for_research": false,
+      "production_eligible": false
+    },
+    {
+      "signal_id": "SIG-CREDIT-001",
+      "state": "NORMAL",
+      "direction": "UP",
+      "strongest_series": "BAMLC0A0CM",
+      "usable_for_research": false,
+      "production_eligible": false
+    },
+    {
+      "signal_id": "SIG-LIQ-001",
+      "state": "NORMAL",
+      "direction": "UP",
+      "strongest_series": "WRESBAL",
+      "usable_for_research": false,
+      "production_eligible": false
+    },
+    {
+      "signal_id": "SIG-FX-001",
+      "state": "NORMAL",
+      "direction": "UP",
+      "strongest_series": "DTWEXBGS",
+      "usable_for_research": false,
+      "production_eligible": false
+    },
+    {
+      "signal_id": "SIG-ENERGY-001",
+      "state": "NORMAL",
+      "direction": "UP",
+      "strongest_series": "DCOILWTICO",
+      "usable_for_research": false,
+      "production_eligible": false
+    },
+    {
+      "signal_id": "SIG-MKT-001",
+      "state": "NORMAL",
+      "direction": "UP",
+      "strongest_series": "VIXCLS",
+      "usable_for_research": false,
+      "production_eligible": false
+    }
+  ],
+  "gate_observation": {
+    "state": "CHALLENGE",
+    "independent_persistent_channels": 1,
+    "usable": false
+  },
+  "validation_state": "INSUFFICIENT_HISTORY",
+  "rise_inventory_current": true,
+  "rise_research_candidates": [],
+  "unresolved": [
+    "레짐 신뢰도·흡수력 점수: 승인된 산출 근거가 없어 미산정",
+    "투자자 수급: 투자자 유형별 원천·시장폭·집중도·지속성 검증 필요",
+    "경쟁상품: 동일 노출의 보수·유동성·추적오차·자금유입 비교 미완료",
+    "신상품: 기존 상품 중복·수요·지수 구현·거래비용 검증 전 점수 및 출시 판단 보류",
+    "정식 FULL 보고서: 외부 근거와 반론을 검토한 최종 판단 패키지 필요"
+  ],
+  "counterchecks": [
+    "같은 원천 시계열을 공유하는 신호는 독립된 시장 확인으로 합산하지 않는다.",
+    "금리 하락만으로 성장 둔화와 인플레이션 완화를 구분할 수 없다. 신용·수급 등 독립 근거가 필요하다.",
+    "관측 지연·수정과 서로 다른 관측일은 동일 시점 시장 움직임으로 해석하지 않는다."
+  ],
+  "next_actions": [
+    "차단 원천의 새 관측값을 수집하고 전체 체인을 다시 실행",
+    "후보 ETF 공식 투자설명서의 실제 노출·환헤지·듀레이션 확인",
+    "FULL 패키지의 수치·외부 근거·반론 검토 후 기존 게시 검증 실행"
+  ]
+}
