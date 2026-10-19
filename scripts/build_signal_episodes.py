@@ -89,6 +89,15 @@ def make_episode(sig,run_time):
 def update_episode(ep,sig,run_time,gclri_hist,close_n):
     obs=observed_date(sig) or run_time[:10]
     z=sig.get("strongest_zscore")
+    # Re-reading the same observation is not another confirmation or contradiction.
+    same_observation = obs == ep.get("latest_observation_date")
+    same_value = (sig.get("signal_state") == ep.get("latest_signal_state")
+                  and z == ep.get("latest_zscore")
+                  and sig.get("direction") == ep.get("latest_direction"))
+    if same_observation and same_value:
+        ep["confirmation_eligible"] = eligible_for_regime(sig)
+        ep["confidence"] = sig.get("confidence")
+        return ep
     ep["last_updated_utc"]=run_time
     ep["latest_signal_state"]=sig.get("signal_state")
     ep["latest_direction"]=sig.get("direction")
@@ -96,7 +105,7 @@ def update_episode(ep,sig,run_time,gclri_hist,close_n):
     ep["latest_zscore"]=z
     ep["confidence"]=sig.get("confidence")
     ep["confirmation_eligible"]=eligible_for_regime(sig)
-    ep["persistence_runs"]=int(ep.get("persistence_runs",0))+1
+    ep["persistence_runs"]=int(ep.get("persistence_runs",0)) + (0 if same_observation else 1)
     if z is not None and (ep.get("peak_abs_zscore") is None or abs(z)>ep["peak_abs_zscore"]):
         ep["peak_abs_zscore"]=abs(z); ep["peak_signed_zscore"]=z; ep["peak_magnitude_date"]=obs
     ep["cumulative_episode_move"]=cumulative_move(ep,sig,gclri_hist)
@@ -113,7 +122,7 @@ def update_episode(ep,sig,run_time,gclri_hist,close_n):
             ep["episode_status"]="WATCH" if prev=="WATCH" else "WEAKENING"
         ep["evidence"].append({"date":obs,"evidence_role":"CONFIRMATION","signal_state":state,"zscore":z})
     elif state=="NORMAL":
-        ep["normal_confirmation_runs"]=int(ep.get("normal_confirmation_runs",0))+1
+        ep["normal_confirmation_runs"]=int(ep.get("normal_confirmation_runs",0)) + (0 if same_observation else 1)
         ep["episode_status"]="WEAKENING"
         ep["evidence"].append({"date":obs,"evidence_role":"CONTRADICTION","signal_state":state,"zscore":z})
         if ep["normal_confirmation_runs"]>=close_n:

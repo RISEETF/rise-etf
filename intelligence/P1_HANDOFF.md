@@ -44,3 +44,11 @@ python scripts/run_intelligence_daily.py
 1. 달러 원천 지연의 원인 확인(공식 발표 주기 vs 수집 지연), 값을 추정해 메우지 않음.
 2. 외부 근거와 반론·반증을 포함한 FULL 보고서 작성 단계 연결. 기존 레짐 신뢰도 임의 복사/합성 금지.
 3. ETF 마스터·수급·경쟁상품 근거를 별도 검증 후 P2에 연결.
+
+## 첫 운영 실행과 후속 결함 수정
+- P1 PR #48 병합 후 실행: https://github.com/RISEETF/rise-etf/actions/runs/38862492133
+- 4개 엔진·결과 커밋(`a81e240`)·Pages 요청 성공. 보고서 BLOCKED(달러 지연/FULL 없음); workflow 최종 failure는 의도된 게시 상태 표시.
+- 사후 비교에서 기존 에피소드 엔진이 동일 관측일 재실행을 새 확인으로 누적하는 결함 발견. 기존 evidence와 persistence_runs 이력은 삭제하지 않는다.
+- 후속 `fix/intelligence-observation-persistence`: 동일 관측/값 재실행 시 확인을 추가하지 않고, 같은 날짜 수정으로 정상 확인 횟수를 늘리지 않는다. Gate는 evidence의 서로 다른 관측일을 계산하고 2일 이상만 persistent로 인정한다. 이전 실행 횟수는 보조 진단값이며 지속성 근거로 사용하지 않는다.
+- 후속 검증: Python 117개 PASS. 실제 데이터 복사본에서 2회 실행해 episode evidence가 변하지 않음. Gate CHALLENGE 및 독립 지속 채널 1 유지: 현재 RATE-002에는 서로 다른 관측일 근거가 2개 존재한다. 동일 날짜 99회 합성 테스트에서는 독립 지속 채널로 인정하지 않는다. 과거 10월 15일 Daily와 현재 관측 vintage는 구분한다.
+- 전체 역사 기간의 재보정·독립 관측 수 기반 calibration 표본수 재설계는 별도 연구 과제이며 현재 production 권한은 계속 False.
