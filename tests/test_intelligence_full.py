@@ -11,7 +11,18 @@ NOW = fixtures.NOW
 
 
 class AutomaticFullTests(unittest.TestCase):
-    setUp = fixtures.DailyTests.setUp
+    def setUp(self):
+        fixtures.DailyTests.setUp(self)
+        # Tests use a fixed observation scenario, not the changing live signal dates/states.
+        path=self.root/'data/signals/latest.json'
+        payload=daily.read_json(path)
+        source=self.market['series']['DGS10']
+        payload['signals']=[{'signal_id':'SIG-RATE-001','signal_state':'ACTIVE_CANDIDATE',
+            'direction':'DOWN','strongest_series':'DGS10','strongest_zscore':-2.5,'confidence':'HIGH',
+            'production_eligible':False,'details':[{'series_id':'DGS10',
+            'observation_date':source['observation_date'],'latest_value':source['value'],
+            'horizon_observations':5,'horizon_move':-0.2,'zscore':-2.5,'data_state':'CURRENT'}]}]
+        daily.write_json(path,payload)
     assert_preserved = fixtures.DailyTests.assert_preserved
 
     def inputs(self):
@@ -27,8 +38,7 @@ class AutomaticFullTests(unittest.TestCase):
         self.assertEqual(daily.run(self.root,NOW,lambda _:None,auto_report=True)['status'],'UNCHANGED')
 
     def test_optional_delay_is_excluded_not_fresh(self):
-        self.market['series']['DTWEXBGS'].update(observation_date='2026-10-09',data_state='STALE')
-        daily.write_json(self.root/daily.INPUTS[0],self.market)
+        self.set_dated_series('DTWEXBGS','2026-10-09')
         result=daily.run(self.root,NOW,lambda _:None,auto_report=True)
         self.assertEqual(result['status'],'PUBLISHED',result)
         snapshot=daily.read_json(self.root/'intelligence/data/daily/2026-10-16.json')
