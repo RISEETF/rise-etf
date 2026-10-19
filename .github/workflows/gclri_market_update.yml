@@ -8,6 +8,7 @@ on:
     branches: [main]
     paths:
       - 'scripts/collect_gclri_market.py'
+      - 'scripts/push_gclri_commit.sh'
       - 'data/gclri/series_registry.json'
       - '.github/workflows/gclri_market_update.yml'
 
@@ -15,7 +16,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: gclri-market-data
+  group: rise-intelligence-daily
   cancel-in-progress: false
 
 jobs:
@@ -23,21 +24,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - name: Unit test collector
-        run: python -m unittest tests.test_gclri_market -v
+        run: python -m unittest tests.test_gclri_market tests.test_gclri_push -v
       - name: Collect official/market GCLRI series
         run: python scripts/collect_gclri_market.py
       - name: Commit changed GCLRI data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          collection_base=$(git rev-parse HEAD)
           git add data/gclri/latest.json data/gclri/history.json
           if git diff --cached --quiet; then
             echo "No GCLRI data changes"
           else
             git commit -m "Update GCLRI market data"
-            git push
+            bash scripts/push_gclri_commit.sh "$collection_base"
           fi
