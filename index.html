@@ -1,63 +1,21 @@
-<!doctype html>
-<html lang="ko">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RISE ETF Research · 공식 종목 마스터</title>
-<meta name="description" content="공식 RISE ETF 종목 마스터와 데이터 수집 현황을 확인하는 연구 포털">
-<link rel="stylesheet" href="portal.css"><script src="portal.js" defer></script>
-</head>
-<body>
-<header><a class="brand" href="index.html"><span class="logo">R</span> RISE ETF <span>Research</span></a><span><a href="intelligence/" style="margin-right:12px">Market Intelligence ↗</a><span class="badge">연구용 · 구축 중</span></span></header>
-<main>
-<div class="eyebrow">DATA FOUNDATION</div><h1>시장을 읽기 위한<br>정확한 종목 기준부터.</h1>
-<p class="intro">공식 RISE 종목을 조회하고, 수집된 데이터의 기준일과 검증 범위를 확인합니다.</p>
-<div id="masterStatus" class="notice" role="status" aria-live="polite">공식 마스터를 불러오는 중입니다.</div>
-<p id="masterAttempt" class="muted" role="status">마스터 수집 이력 확인 중</p>
-<p class="muted">종목 수는 최근 성공한 공식 목록에서 자동 집계합니다. 평일 07:17 및 09:17~18:47 KST에 30분 간격으로 확인합니다. 공식 사이트 반영·예약 실행·배포 지연이 있어 실시간은 아닙니다. 수집 실패 시 마지막 성공 목록을 유지합니다.</p>
-<details><summary>종목 추가·제외·명칭 변경</summary><p id="masterChangesStatus">변동 이력 확인 중</p><ul id="masterChanges"></ul><p class="muted">목록 제외는 상장폐지 확정이 아닙니다. 거래소 공시와의 별도 대조가 필요합니다. 새 종목의 가격 수집·RS 편입은 별도 검토합니다.</p></details>
-<section class="metrics" aria-label="데이터 현황">
-<article><span>공식 목록 상품 수</span><strong id="total">—</strong><small id="identityCounts">종목코드 확인·대기 상태를 구분합니다.</small></article>
-<article><span>공식 페이지 기준일</span><strong id="effective">—</strong><small id="retrieved">수집 시각 확인 중</small></article>
-<article><span>가격 데이터 상태</span><strong class="small" id="captureState">확인 중</strong><small id="captureTime">수집 시각과 시장 기준일은 별도입니다.</small></article>
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>RISE Intelligence · 대시보드</title><meta name="description" content="시장 변화, RISE ETF와 연구 현황을 한눈에 확인하는 대시보드"><link rel="stylesheet" href="dashboard.css"><script src="dashboard.js" defer></script></head><body>
+<a class="skip" href="#main">본문으로 이동</a>
+<header><a class="brand" href="index.html"><span class="mark">R</span><span>RISE <b>Intelligence</b></span></a><nav aria-label="주 메뉴"><a class="selected" href="index.html" aria-current="page">대시보드</a><a href="intelligence/index.html#daily">시장 분석</a><a href="research.html#listTitle">ETF 탐색</a><a href="intelligence/index.html#product">상품 연구</a></nav><span class="trial">연구용 · 시험운영</span></header>
+<main id="main"><div class="heading"><div><p class="eyebrow">RISE ETF · RESEARCH WORKSPACE</p><h1>오늘의 시장, 한눈에.</h1><p class="lead">핵심 현황을 확인하고, 필요한 분석으로 이동하세요.</p></div><p class="today" id="today"></p></div>
+<section class="metrics" aria-label="핵심 현황">
+<a class="metric" href="intelligence/index.html#daily"><span>최근 보고서</span><strong id="reportDate">—</strong><small id="reportType">불러오는 중</small><i aria-hidden="true">↗</i></a>
+<a class="metric" href="intelligence/index.html#signals"><span>관찰 신호</span><strong id="signalCount">—</strong><small id="signalDate">신호 기준일 확인 중</small><i aria-hidden="true">↗</i></a>
+<a class="metric" href="research.html#krxTitle"><span>KRX 관측 RISE ETF</span><strong id="etfCount">—</strong><small id="etfDate">거래소 관측일 확인 중</small><i aria-hidden="true">↗</i></a>
+<a class="metric" href="research.html#operationsTitle"><span>보고서 발행 상태</span><strong class="status" id="publishState">—</strong><small id="runDate">최근 실행 확인 중</small><i aria-hidden="true">↗</i></a>
 </section>
-<section class="panel" aria-labelledby="operationsTitle"><h2 id="operationsTitle">데이터 운영 현황</h2><p id="operationsStatus" role="status">수집별 상태 확인 중</p><p class="muted">수집 결과와 실제 데이터 기준일을 구분합니다. 날짜 차이는 시장별 휴장·발표 시차를 반영하지 않으며, 수집 성공만으로 분석 검증이 완료되지는 않습니다.</p><div class="table-wrap"><table><thead><tr><th scope="col">데이터</th><th scope="col">최근 수집 결과</th><th scope="col">자료 기준일</th><th scope="col">최근 시도 (KST)</th><th scope="col">분석 전 확인사항</th></tr></thead><tbody id="operationsRows"></tbody></table></div></section>
-<section class="panel" aria-labelledby="listTitle">
-<div class="section-head"><div><h2 id="listTitle">공식 종목 탐색기</h2><p>코드·명칭·공식 분류·상장일 · 가격 및 수익률 미표시</p></div><a href="https://kbam.co.kr/find" target="_blank" rel="noopener noreferrer">RISE 공식 출처 ↗</a></div>
-<div class="filters"><label>종목 검색<input id="search" type="search" placeholder="종목명 또는 6자리 코드" disabled></label><label>공식 분류<select id="category" disabled><option value="">전체 분류</option></select></label><button id="reset" type="button" disabled>초기화</button></div>
-<p id="resultCount" role="status" aria-live="polite">목록 확인 중</p>
-<div class="table-wrap"><table><thead><tr><th scope="col">종목코드</th><th scope="col">공식 종목명</th><th scope="col">공식 분류</th><th scope="col">상장일</th><th scope="col">출처</th></tr></thead><tbody id="products"></tbody></table></div>
-<p id="empty" hidden>검색 조건에 맞는 종목이 없습니다.</p></section>
-<section class="panel" aria-labelledby="krxTitle"><h2 id="krxTitle">KRX 기준 종목 대조</h2>
-<p id="krxInventoryStatus" role="status">KRX RISE 관측 목록 확인 중</p>
-<p id="krxInventoryDates" class="muted"></p><ul id="krxInventoryChanges"></ul>
-<details><summary>KRX 관측 종목 목록</summary><ul id="krxInventoryProducts"></ul></details>
-<p class="muted">관측 목록은 운용사 상세정보와 별도로 표시합니다. 첫 관측은 신규 상장 확정이 아니며, 관측 누락은 폐지 확정이 아닙니다. 변경 내역은 초기 수집 이후 최근 200건입니다.</p>
-<p id="krxStatus" role="status">거래소 대조 결과 확인 중</p><p id="krxAttempt" class="muted"></p><p id="krxDates" class="muted"></p>
-<div id="krxCounts" class="quality-grid"></div>
-<details><summary>확인이 필요한 종목</summary><ul id="krxIssues"></ul></details>
-<p class="muted">KRX 일별매매정보를 기본 관측 자료로, 운용사 목록을 상품 상세정보로 대조합니다. 평일 08:00·18:30 KST 확인 예정이며 게시·실행 지연이 있을 수 있습니다. 명칭만 일치하는 코드는 후보이며 자동 확정하지 않습니다. 관측되지 않았다는 사실은 상장폐지가 아닙니다. 관련 공시는 아래에서 별도로 확인합니다.</p>
-<a href="data/quality/krx_master_reconciliation.json">대조 결과(JSON) ↗</a> · <a href="https://kind.krx.co.kr/disclosure/disclosurebystocktype.do?method=searchDisclosureByStockTypeEtf" target="_blank" rel="noopener noreferrer">KRX ETF 공시 ↗</a></section>
-<section class="panel" aria-labelledby="kindTitle"><h2 id="kindTitle">RISE 상장·폐지 관련 공시</h2>
-<p id="kindStatus" role="status">KIND 공시 수집 결과 확인 중</p><p id="kindWindow" class="muted"></p>
-<div class="table-wrap"><table><thead><tr><th>종목·코드</th><th>공시 구분</th><th>공시 시각</th><th>공시 기재 효력일</th><th>확인 상태</th><th>출처</th></tr></thead><tbody id="kindRows"></tbody></table></div>
-<p class="muted">최근 30일 구간에서 RISE 명칭과 신규상장·상장폐지 제목을 검색하고 이전 수집 이력을 보관합니다. 본문 코드·날짜 확인은 해당 공시의 기재 사실 확인이며 현재 법적 상태의 자동 확정이 아닙니다. 정정·철회와 복수 문서 이력은 검토 대상으로 남깁니다. 검색 구간 밖 공시·브랜드 변경·제목이 다른 공시까지 포괄하지 않으며, 검색 결과 없음은 사건 없음의 증거가 아닙니다.</p></section>
-<section class="panel" aria-labelledby="qualityTitle"><h2 id="qualityTitle">기존 자료 대조 결과</h2><p id="qualityStatus">대조 보고서를 불러오는 중입니다.</p><div id="qualityCounts" class="quality-grid"></div><p class="muted">공식 목록에 없는 코드는 해당 수집본과의 차이입니다. 상장폐지를 뜻하지 않습니다.</p><a href="data/quality/official_master_reconciliation.json">종목별 대조 내역(JSON) ↗</a></section>
-<section class="panel" aria-labelledby="researchTitle"><h2 id="researchTitle">연구용 통합 RS · 종가 기준</h2>
-<p class="muted">6개 시범 종목의 가격 변화 비교입니다. 배당 재투자 없는 수집 종가를 사용하며 국내 가격 조정 방식은 미확인입니다. 공식 지수 복제·매매신호가 아닙니다. 순위는 이 표 안에서만 비교합니다.</p>
-<label for="researchHorizon">비교 기간 </label><select id="researchHorizon" disabled><option value="7">7일</option><option value="30" selected>30일</option><option value="60">60일</option></select>
-<label for="researchBasis">순위·RS 기준 </label><select id="researchBasis" disabled><option value="krw">원화환산</option><option value="local">현지통화 가격 변화</option></select>
-<p id="researchStatus" role="status">연구용 RS 확인 중</p><p id="researchDates" class="muted"></p>
-<p id="researchSummary"></p><p id="researchFreshness" class="notice" hidden></p>
-<div class="table-wrap"><table><thead><tr><th id="researchRankHeading">원화 순위</th><th>시범 종목</th><th>현지통화 수익률</th><th>원화환산 수익률</th><th>환율 변화</th><th>환산에 따른 수익률 차이</th><th id="researchRSHeading">SPY 대비 RS · 원화</th><th>현지 → 원화 순위</th></tr></thead><tbody id="researchRows"></tbody></table></div>
-<p class="muted">환산 차이(%p)는 원화 수익률−현지통화 수익률이며 가격·환율의 교차효과를 포함합니다. 현지통화 비교는 서로 다른 표시통화의 가격 변화를 비교합니다. KRW 상품의 별도 환산이 없다는 것이 환노출이 없다는 뜻은 아닙니다.</p>
-<details><summary>종목별 데이터 관측일·수집 시각</summary><ul id="researchSources"></ul></details>
-<details open><summary>RS 데이터 보완 작업</summary><p id="rsReadiness" role="status">검증 항목 확인 중</p><ul id="rsWindows"></ul><div class="table-wrap"><table><thead><tr><th scope="col">검증 항목</th><th scope="col">대상 종목</th><th scope="col">다음 작업</th></tr></thead><tbody id="rsTasks"></tbody></table></div><p class="muted">아래 순서는 데이터 의존성에 따른 작업 순서입니다. 투자 우선순위나 완료 예상일을 뜻하지 않습니다. 계산 가능 기간과 투자 신호 검증 완료는 별개입니다.</p></details>
-<p class="muted" id="seriesSchedule">가격·환율 재수집 예약(KST): 월~토 08:15, 화~토 14:15, 월~금 17:15. 아침에는 전일 국내 가격을, 14:15에는 뉴욕 현지 날짜가 바뀐 뒤 미국 가격을 다시 확인합니다. 토요일에도 미국 금요일 자료를 수집합니다. 예약 실행·제공처 반영·배포는 지연될 수 있으며, 휴장일에는 관측일이 갱신되지 않을 수 있습니다.</p>
-<p class="muted">계산에 적용한 환율 출처는 위 수집 근거에 표시됩니다. 하나은행 최종 고시는 은행 기준일과 실제 고시 시각이 다를 수 있습니다. 모든 종목과 환율의 공통 관측일을 시작·종료일로 사용하며 전일 값으로 채우지 않습니다. 날짜가 같아도 시장 마감 시각은 다릅니다. 원화 수익률 = (1+현지 수익률)×(1+환율 변화)−1. RS = (1+원화 수익률)/(1+SPY 원화 수익률)−1.</p>
-<a href="data/research/rs.json">계산값·가격·환율·수집 근거(JSON) ↗</a></section>
-<section class="panel" aria-labelledby="seriesTitle"><h2 id="seriesTitle">통합 가격·환율 데이터 적재 현황</h2><p id="seriesStatus" role="status">시계열 수집 현황 확인 중</p><p class="muted">국내 ETF·해외 ETF·해외주식을 같은 구조로 적재합니다. 시범 종목은 최종 대표자산 선정 결과가 아닙니다. 가격 조정·배당·거래일 정합성 확인 전으로 검증된 투자 신호는 보류합니다. 위 연구용 RS는 별도 탐색 결과입니다.</p><div class="table-wrap"><table><thead><tr><th scope="col">시범 종목·통화</th><th scope="col">고유 관측일 수</th><th scope="col">수집된 기간</th><th scope="col">최근 수집</th><th scope="col">배당·분할 점검</th><th scope="col">RS</th></tr></thead><tbody id="seriesRows"></tbody></table></div><p id="fxCoverage" class="muted"></p><p class="muted">하나은행 최종 고시 매매기준율과 ECB 참고환율을 출처별로 보존합니다. 다음 은행 기준일 확인 후 확정한 고시만 사용하며, 한국·미국 종가와 동시점 환율은 아닙니다. 결측일을 다른 출처나 전일 값으로 보충하지 않습니다. 해외 수정종가와 이벤트는 제공처 내부 대조이며 독립 검증 완료를 뜻하지 않습니다.</p><a href="data/series/status.json">수집·검증 상세(JSON) ↗</a> · <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html" target="_blank" rel="noopener noreferrer">ECB 출처 ↗</a> · <a href="https://help.yahoo.com/kb/SLN28256.html" target="_blank" rel="noopener noreferrer">수정종가 설명 ↗</a></section>
-<section class="panel roadmap"><h2>연구 기능 구축 현황</h2><dl><div><dt>종목 식별</dt><dd>공식 마스터 연결</dd></div><div><dt>가격·수익률·환율</dt><dd>시범 적재 · 수정주가·배당 검증 대기</dd></div><div><dt>뉴스 → 시장 변화</dt><dd>출처·발행시각 수집 구축 예정</dd></div><div><dt>통합 RS → RISE 연결 → 상품 기획</dt><dd>검증된 시계열과 노출 분류 확보 후 구축</dd></div></dl><p class="muted">연금 적격성, 보수 해석, 투자 신호 및 마케팅 문구는 아직 검증되지 않았습니다.</p></section>
-<section class="panel" aria-labelledby="issuerTitle"><h2 id="issuerTitle">발행사 공식 자료 대조 · AAPL</h2><p id="issuerStatus" role="status">공식 배당·분할 대조 결과 확인 중</p><p id="issuerSplit"></p><p id="issuerScope" class="muted"></p><p class="muted">배당금액 일치와 배당락일 검증은 별개입니다. 공식 표는 기준일을 제공하므로 배당락일은 아직 독립 검증되지 않았습니다. 공식 사실은 페이지 조회 결과에서 수동 추출했으며 자동 갱신 자료가 아닙니다. RS 계산 승인을 뜻하지 않습니다.</p><a href="https://investor.apple.com/dividend-history/default.aspx" target="_blank" rel="noopener noreferrer">Apple 공식 배당·분할 이력 ↗</a> · <a href="data/quality/apple_issuer_validation.json">대조 근거(JSON) ↗</a></section>
-<section class="panel" aria-labelledby="universeTitle"><h2 id="universeTitle">통합 RS · 관찰 노출 설계</h2><p id="universeStatus" role="status">대표자산 후보 확인 중</p><p class="muted">관찰할 시장·섹터·금리·신용 노출을 먼저 정의하고 관측수단, 투자상품, RISE 연결을 구분합니다. 한 종목을 여러 노출에 연결할 수 있지만 그룹 수를 합산해 시장 강도로 해석하지 않습니다. 현재 후보의 노출 관계는 미검증이며, 후보 미확보는 상품 공백을 뜻하지 않습니다.</p><div class="table-wrap"><table><thead><tr><th>노출 후보군</th><th>분석 범위</th><th>후보 종목</th><th>선정 상태</th></tr></thead><tbody id="universeRows"></tbody></table></div><p class="muted">선정 절차: 관찰 목적 정의 → 노출·구조·비교 가능성 확인 → 유동성·추적 품질·자료 신뢰성 비교 → 대체상품·통화·기간 변경 시 결론의 민감도 검증. 총수익률·위험조정 강도·상승 참여도는 별도로 평가하며 통합 점수는 아직 계산하지 않습니다.</p><a href="data/universe/status.json">후보별 미확인 항목(JSON) ↗</a></section>
-<footer><span>RISE ETF 연구 포털 · 공식 운용사 웹사이트와 구분되는 연구 도구</span><a href="legacy.html">검증 대기 기존 자료</a><a href="https://github.com/RISEETF/rise-etf/pulls?q=is%3Apr">개발 내역 ↗</a></footer>
-</main></body></html>
+<div class="focus-grid"><section class="brief"><div class="section-label"><span class="dot"></span> 최근 보고서의 핵심 변화 <span id="briefAsOf"></span></div><h2 id="topChange">시장 요약을 불러오는 중입니다.</h2><p id="topRisk"></p><a class="primary" href="intelligence/index.html#daily">분석 자세히 보기 <span aria-hidden="true">→</span></a></section><section class="attention"><p class="eyebrow">확인이 필요한 항목</p><h2>발행·데이터 상태</h2><ul id="blockers"><li>실행 기록 확인 중</li></ul><p id="runStamp" class="note"></p><a href="data/operations/intelligence.json">실행 기록 확인 →</a></section></div>
+<div class="section-heading"><h2>연구 바로가기</h2><p>세부 데이터와 판단 근거는 각 화면에서 확인하세요.</p></div>
+<section class="modules" aria-label="상세 페이지">
+<a href="intelligence/index.html#gclri"><span class="module-number">01 / MARKET</span><h3>시장·금리·신용 <span>↗</span></h3><p>GCLRI 원시 지표와 관측일, 신호의 근거</p></a>
+<a href="research.html#listTitle"><span class="module-number">02 / RISE ETF</span><h3>RISE ETF 탐색 <span>↗</span></h3><p>종목 검색, 공식 정보와 거래소 대조</p></a>
+<a href="research.html#researchTitle"><span class="module-number">03 / RELATIVE STRENGTH</span><h3>상대강도 비교 <span>↗</span></h3><p>시범 자산의 가격 변화와 원화환산 비교</p></a>
+<a href="intelligence/index.html#flow"><span class="module-number">04 / FLOW</span><h3>투자자 자금흐름 <span>↗</span></h3><p>수급 판단과 미확인 근거 · 구축 중</p></a>
+<a href="intelligence/index.html#product"><span class="module-number">05 / PRODUCT LAB</span><h3>신상품 기회 <span>↗</span></h3><p>연구 후보와 상품 공백 검토</p></a>
+<a href="intelligence/index.html#archive"><span class="module-number">06 / ARCHIVE</span><h3>보고서 보관함 <span>↗</span></h3><p>일자별 보고서와 이전 판단의 기록</p></a>
+</section><p id="loadError" role="status" class="note"></p>
+<footer><span>RISE Intelligence · 기관마케팅 및 상품 연구</span><span>보고서 날짜 · 관측일 · 실행 시각은 서로 다를 수 있습니다.</span><a href="research.html">데이터 운영 상세 →</a></footer></main></body></html>
