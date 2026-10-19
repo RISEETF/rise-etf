@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "started_at_utc": "2026-10-19T06:42:13.317229+00:00",
+  "run_id": "39211426809",
+  "run_attempt": "1",
+  "status": "PUBLISHED",
+  "stages": {
+    "build_gclri_signals.py": "SUCCESS",
+    "build_signal_episodes.py": "SUCCESS",
+    "build_regime_gate.py": "SUCCESS",
+    "build_validation_status.py": "SUCCESS",
+    "research_draft": "SUCCESS",
+    "full_report": "SUCCESS",
+    "publication": "SUCCESS"
+  },
+  "note": "Checkout execution only. Git push and Pages deployment are separate outcomes.",
+  "research_draft": {
+    "status": "RESEARCH_DRAFT",
+    "path": "data/intelligence/research/2026-10-19/16fc35583618d8dd1aa550b619482d5d5441da7a0c1ddf7089aacf9fae3b0ee3",
+    "sha256": "16fc35583618d8dd1aa550b619482d5d5441da7a0c1ddf7089aacf9fae3b0ee3"
+  },
+  "coverage_exclusions": [
+    {
+      "series_id": "DTWEXBGS",
+      "observation_date": "2026-10-09",
+      "reason": "관측 지연: 최신 달러 판단 및 교차확인에서 제외"
+    }
+  ],
+  "generated_package": "data/intelligence/generated/2026-10-19/456814905e4937df7c19aac879dcb735e7191979320a40513dc85f97ba984963",
+  "blockers": [],
+  "publication": {
+    "status": "SUCCESS",
+    "asof_date": "2026-10-19",
+    "archive_count": 14,
+    "content_changed": true
+  },
+  "finished_at_utc": "2026-10-19T06:42:13.443140+00:00"
+}

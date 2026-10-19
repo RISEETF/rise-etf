@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "asof_date": "2026-10-19",
-  "prepared_at_utc": "2026-10-19T06:16:01.203671+00:00",
+  "prepared_at_utc": "2026-10-19T06:42:13.317229+00:00",
   "publication_blockers": [
     "STALE_OR_UNAVAILABLE:DTWEXBGS"
   ],
@@ -11,15 +11,15 @@
     "data/episodes/episode_registry.json": "27cde9ae423fd744d8fdd8001421ca629f28451478b6eab300fc0dd6d9292008",
     "data/regime/channel_registry.json": "62406bcede5624d02c6a4886c49dfa395932159f0dc7f3e32158bc4e9023bdd0",
     "data/gclri/series_registry.json": "f5f40592694346c87561a7a0f6dd96efe62b7e8bc764bcc1e7b2e16af36113aa",
-    "data/signals/latest.json": "86bb44df1f0823f2608555cd80a9624929539b2d37e4b1a6f142c9a802f8ee19",
-    "data/episodes/latest.json": "6fd44b68672bdd6155ef6999572bb9618eef00191a4c5e8d5f383f51bddabb70",
-    "data/regime/gate_latest.json": "c05433db8d15dd0f06b2762cd2373b5e6f92bece6edecf8d51a9e9a3809445e0",
-    "data/validation/v1_status.json": "d61977c6b6a10eead281a84f9ba32419bdc86a99b407f48d5bb27d09300908ae",
+    "data/signals/latest.json": "13cd3a4fe72ba9ece84aa4b845611b1c19ebe660b395c46bf10c3127d7ca1433",
+    "data/episodes/latest.json": "ecdadf94502c0f3c73a9c92e18d4876608699a872e14c0f2ab1cf73b8f378485",
+    "data/regime/gate_latest.json": "a6c98d5b47ac35e4e8ef1eb363083fd4c2b1d54bc0b39bb7cf34f5f76d69e2ae",
+    "data/validation/v1_status.json": "e8876308480c2a7d4916c844c5aa0f39304f9fd93a754e2f0c61cb653865c346",
     "data/quality/krx_rise_inventory.json": "18c4420cd08408168964957d1bd212da72b67ee571ea574cb0b83dc1ab812760",
     "data/gclri/history.json": "71d64c1cc75a6cbd34e5a8d6d6d563c787b69b27a8f6f44125490afe9cc99fbf",
-    "data/signals/history.json": "fa25ca68f7d4cd13aab28453bf7c5f9e301d042f01d9971d474214d7d7cc7e67",
-    "data/episodes/history.json": "270c9bd25382a40b8acb376ca40cd354a3aa4699caa685fc27f3a41d4c81ca20",
-    "data/regime/gate_history.json": "da33f5db5c5081f3f28f0fff0afffc5f04a3adfbacac620ae173d81617ef082a"
+    "data/signals/history.json": "221612cc38bb31f3cde349e79f601b6883cd86f01cea8d3c045c961adb231368",
+    "data/episodes/history.json": "c1619a6e31e00a81c0caeb139b04db96296274bfe67cee35da22b672e0e34a62",
+    "data/regime/gate_history.json": "47b40842be122302019fad7ff7c49b956b050b1690543bd35dac5d1ed9dfd9d4"
   },
   "market": {
     "schema_version": "0.6",
@@ -235,7 +235,7 @@
   },
   "signals": {
     "schema_version": "0.7",
-    "built_at_utc": "2026-10-19T06:16:01.238318+00:00",
+    "built_at_utc": "2026-10-19T06:42:13.344615+00:00",
     "source_gclri_built_at_utc": "2026-10-18T23:59:01.822667+00:00",
     "production_eligible": false,
     "regime_change_authorized": false,
@@ -455,8 +455,8 @@
   },
   "episodes": {
     "schema_version": "0.8",
-    "built_at_utc": "2026-10-19T06:16:01.280504+00:00",
-    "source_signal_built_at_utc": "2026-10-19T06:16:01.238318+00:00",
+    "built_at_utc": "2026-10-19T06:42:13.377201+00:00",
+    "source_signal_built_at_utc": "2026-10-19T06:42:13.344615+00:00",
     "production_eligible": false,
     "regime_change_authorized": false,
     "active_episode_count": 2,
@@ -1051,8 +1051,8 @@
   },
   "regime_gate": {
     "schema_version": "0.9",
-    "built_at_utc": "2026-10-19T06:16:01.309709+00:00",
-    "source_episode_built_at_utc": "2026-10-19T06:16:01.280504+00:00",
+    "built_at_utc": "2026-10-19T06:42:13.401214+00:00",
+    "source_episode_built_at_utc": "2026-10-19T06:42:13.377201+00:00",
     "gate_state": "CHALLENGE",
     "independent_persistent_channel_count": 1,
     "watch_channel_count": 0,
@@ -2296,26 +2296,26 @@
   },
   "validation": {
     "schema_version": "1.0",
-    "built_at_utc": "2026-10-19T06:16:01.337998+00:00",
+    "built_at_utc": "2026-10-19T06:42:13.423929+00:00",
     "validation_state": "INSUFFICIENT_HISTORY",
     "production_eligible": false,
     "framework_promotion_authorized": false,
     "checks": [
       {
         "name": "Signal history depth",
-        "value": 19,
+        "value": 20,
         "required": 60,
         "status": "INSUFFICIENT_HISTORY"
       },
       {
         "name": "Episode history depth",
-        "value": 19,
+        "value": 20,
         "required": 40,
         "status": "INSUFFICIENT_HISTORY"
       },
       {
         "name": "Gate history depth",
-        "value": 19,
+        "value": 20,
         "required": 40,
         "status": "INSUFFICIENT_HISTORY"
       }
