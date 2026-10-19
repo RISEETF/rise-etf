@@ -1,0 +1,445 @@
+{
+  "schema_version": "1.2",
+  "snapshot_type": "FULL",
+  "report_mode": "DATED_OBSERVATIONS_V1",
+  "asof_date": "2026-10-20",
+  "current_regime": "GLOBAL TIGHTENING / HIGH ENERGY STRESS / HIGH MACRO ABSORPTION",
+  "regime_reference_date": "2026-10-15",
+  "regime_assessment": "CARRIED_FORWARD_NOT_RECONFIRMED",
+  "regime_confidence": null,
+  "regime_confidence_reason": "승인된 최신 확률 산출 모형 없음. 과거 점수를 이월하지 않음.",
+  "regime_change_candidate": "신규 레짐 판정 보류",
+  "regime_change_status": "WATCH",
+  "top_change": "DGS10 2026-10-15: 5관측 변화 -18.00bp, Z=-2.60",
+  "top_risk": "자료별 기준일이 다르므로 당일 변화·동시점 교차확인과 구분. 레짐·투자자 수급 판단은 별도 검증 필요.",
+  "macro_absorption_level": "UNRESOLVED",
+  "macro_absorption_headroom": "UNRESOLVED",
+  "corporate_absorption_level": "UNRESOLVED",
+  "corporate_headroom": "UNRESOLVED",
+  "fiscal_stress": "UNRESOLVED",
+  "credit_stress_current": "UNRESOLVED",
+  "credit_stress_forward": "UNRESOLVED",
+  "market_liquidity": "UNRESOLVED",
+  "funding_liquidity": "UNRESOLVED",
+  "energy_stress": "UNRESOLVED",
+  "energy_reliability": "UNRESOLVED",
+  "energy_adaptation": "UNRESOLVED",
+  "flow_state": "UNRESOLVED",
+  "assessment_gaps": {
+    "macro_absorption_level": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "macro_absorption_headroom": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "corporate_absorption_level": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "corporate_headroom": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "fiscal_stress": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "credit_stress_current": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "credit_stress_forward": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "market_liquidity": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "funding_liquidity": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "energy_stress": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "energy_reliability": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "energy_adaptation": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "flow_state": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정"
+  },
+  "top_rise_matches": [
+    {
+      "name": "RISE 테슬라미국채타겟커버드콜혼합(합성)",
+      "code": "0013R0",
+      "priority": "조사 후보 · 추천 아님",
+      "angle": "장기 금리 변화에 따른 듀레이션 민감도 설명 준비",
+      "counter": "듀레이션·환헤지·파생 구조를 공식 자료로 확인",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "inventory_asof": "2026-10-16",
+      "signal_id": "SIG-RATE-001"
+    },
+    {
+      "name": "RISE 미국우주&로봇TOP2미국채혼합50",
+      "code": "0218J0",
+      "priority": "조사 후보 · 추천 아님",
+      "angle": "장기 금리 변화에 따른 듀레이션 민감도 설명 준비",
+      "counter": "듀레이션·환헤지·파생 구조를 공식 자료로 확인",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "inventory_asof": "2026-10-16",
+      "signal_id": "SIG-RATE-001"
+    },
+    {
+      "name": "RISE 테슬라미국채타겟커버드콜혼합(합성)",
+      "code": "0013R0",
+      "priority": "조사 후보 · 추천 아님",
+      "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "inventory_asof": "2026-10-16",
+      "signal_id": "SIG-RATE-002"
+    },
+    {
+      "name": "RISE 미국우주&로봇TOP2미국채혼합50",
+      "code": "0218J0",
+      "priority": "조사 후보 · 추천 아님",
+      "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "inventory_asof": "2026-10-16",
+      "signal_id": "SIG-RATE-002"
+    },
+    {
+      "name": "RISE 미국장기국채선물(H)",
+      "code": "267440",
+      "priority": "조사 후보 · 추천 아님",
+      "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "inventory_asof": "2026-10-16",
+      "signal_id": "SIG-RATE-002"
+    },
+    {
+      "name": "RISE 미국장기국채선물인버스(H)",
+      "code": "267450",
+      "priority": "조사 후보 · 추천 아님",
+      "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "inventory_asof": "2026-10-16",
+      "signal_id": "SIG-RATE-002"
+    },
+    {
+      "name": "RISE 미국장기국채선물레버리지(합성 H)",
+      "code": "267490",
+      "priority": "조사 후보 · 추천 아님",
+      "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "inventory_asof": "2026-10-16",
+      "signal_id": "SIG-RATE-002"
+    },
+    {
+      "name": "RISE 국채선물10년",
+      "code": "295000",
+      "priority": "조사 후보 · 추천 아님",
+      "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "inventory_asof": "2026-10-16",
+      "signal_id": "SIG-RATE-002"
+    },
+    {
+      "name": "RISE 국채선물10년인버스",
+      "code": "295020",
+      "priority": "조사 후보 · 추천 아님",
+      "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "inventory_asof": "2026-10-16",
+      "signal_id": "SIG-RATE-002"
+    },
+    {
+      "name": "RISE 국채선물3년",
+      "code": "432600",
+      "priority": "조사 후보 · 추천 아님",
+      "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "inventory_asof": "2026-10-16",
+      "signal_id": "SIG-RATE-002"
+    },
+    {
+      "name": "RISE 국채30년레버리지(합성)",
+      "code": "451670",
+      "priority": "조사 후보 · 추천 아님",
+      "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "inventory_asof": "2026-10-16",
+      "signal_id": "SIG-RATE-002"
+    },
+    {
+      "name": "RISE 미국30년국채커버드콜(합성)",
+      "code": "472830",
+      "priority": "조사 후보 · 추천 아님",
+      "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "inventory_asof": "2026-10-16",
+      "signal_id": "SIG-RATE-002"
+    },
+    {
+      "name": "RISE 미국30년국채엔화노출(합성 H)",
+      "code": "472870",
+      "priority": "조사 후보 · 추천 아님",
+      "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "inventory_asof": "2026-10-16",
+      "signal_id": "SIG-RATE-002"
+    },
+    {
+      "name": "RISE 미국30년국채액티브",
+      "code": "481340",
+      "priority": "조사 후보 · 추천 아님",
+      "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "inventory_asof": "2026-10-16",
+      "signal_id": "SIG-RATE-002"
+    }
+  ],
+  "rise_match_status": "NAME_ONLY_RESEARCH",
+  "product_candidates": [],
+  "product_assessment": "수요·경쟁상품 중복·편입 실현가능성 미검증: 신규 제안 및 출시 점수 보류",
+  "framework_updates": [],
+  "production_eligible": false,
+  "regime_history_update": {
+    "prior_state": "GLOBAL TIGHTENING / HIGH ENERGY STRESS / HIGH MACRO ABSORPTION",
+    "today_state": "GLOBAL TIGHTENING / HIGH ENERGY STRESS / HIGH MACRO ABSORPTION",
+    "transition_gate_crossed": false
+  },
+  "key_triggers": [
+    "원천별 새 관측을 확인하고 기준일·변화량 갱신",
+    "후보 ETF 공식 투자설명서의 실제 노출·환헤지·듀레이션 확인",
+    "새 관측일의 지속성, 신용·자금조달·변동성 채널의 독립 확인"
+  ],
+  "no_action": [
+    "기준일이 지난 자료를 오늘의 변화나 동시점 교차확인으로 해석하지 않음",
+    "레짐·프레임워크·매매 권한 승격 금지",
+    "상품명 일치만으로 투자 권유 또는 신상품 출시 결정 금지"
+  ],
+  "coverage": {
+    "policy": "DATED_OBSERVATIONS_V1",
+    "state": "DATED_INPUTS",
+    "excluded": [],
+    "dated_context": [
+      {
+        "series_id": "DTWEXBGS",
+        "observation_date": "2026-10-09",
+        "reason": "기준일 관측 수준·과거 변화 설명에 사용; 오늘의 신호·동시점 교차확인에는 미사용",
+        "value": 121.6023,
+        "unit": "Index",
+        "asof_label": "2026-10-09 관측값 기준",
+        "age_calendar_days": 11,
+        "use": "DATED_CONTEXT_ONLY",
+        "prior_change": {
+          "prior_observation_date": "2026-10-08",
+          "prior_value": 121.4469,
+          "change": 0.1554000000000002,
+          "unit": "Index"
+        }
+      }
+    ],
+    "blockers": []
+  },
+  "observations": [
+    {
+      "series_id": "BAMLC0A0CM",
+      "name": "US Corporate Master OAS",
+      "observation_date": "2026-10-15",
+      "value": 0.84,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLC0A0CM",
+      "asof_label": "2026-10-15 관측값 기준",
+      "use": "FRESH_RESEARCH"
+    },
+    {
+      "series_id": "BAMLH0A0HYM2",
+      "name": "US High Yield OAS",
+      "observation_date": "2026-10-15",
+      "value": 3.23,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2",
+      "asof_label": "2026-10-15 관측값 기준",
+      "use": "FRESH_RESEARCH"
+    },
+    {
+      "series_id": "DCOILBRENTEU",
+      "name": "Brent Crude Oil Price",
+      "observation_date": "2026-10-14",
+      "value": 126.55,
+      "unit": "USD/bbl",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILBRENTEU",
+      "asof_label": "2026-10-14 관측값 기준",
+      "use": "FRESH_RESEARCH"
+    },
+    {
+      "series_id": "DCOILWTICO",
+      "name": "WTI Crude Oil Price",
+      "observation_date": "2026-10-14",
+      "value": 101.91,
+      "unit": "USD/bbl",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILWTICO",
+      "asof_label": "2026-10-14 관측값 기준",
+      "use": "FRESH_RESEARCH"
+    },
+    {
+      "series_id": "DGS10",
+      "name": "US Treasury 10Y",
+      "observation_date": "2026-10-15",
+      "value": 5.1,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10",
+      "asof_label": "2026-10-15 관측값 기준",
+      "use": "FRESH_RESEARCH"
+    },
+    {
+      "series_id": "DGS2",
+      "name": "US Treasury 2Y",
+      "observation_date": "2026-10-15",
+      "value": 4.77,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2",
+      "asof_label": "2026-10-15 관측값 기준",
+      "use": "FRESH_RESEARCH"
+    },
+    {
+      "series_id": "DTWEXBGS",
+      "name": "Nominal Broad US Dollar Index",
+      "observation_date": "2026-10-09",
+      "value": 121.6023,
+      "unit": "Index",
+      "fresh_for_report": false,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DTWEXBGS",
+      "asof_label": "2026-10-09 관측값 기준",
+      "use": "DATED_CONTEXT_ONLY"
+    },
+    {
+      "series_id": "SOFR",
+      "name": "Secured Overnight Financing Rate",
+      "observation_date": "2026-10-15",
+      "value": 3.89,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=SOFR",
+      "asof_label": "2026-10-15 관측값 기준",
+      "use": "FRESH_RESEARCH"
+    },
+    {
+      "series_id": "T10Y2Y",
+      "name": "10Y-2Y Treasury Spread",
+      "observation_date": "2026-10-16",
+      "value": 0.35,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=T10Y2Y",
+      "asof_label": "2026-10-16 관측값 기준",
+      "use": "FRESH_RESEARCH"
+    },
+    {
+      "series_id": "VIXCLS",
+      "name": "CBOE VIX",
+      "observation_date": "2026-10-15",
+      "value": 16.46,
+      "unit": "Index",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS",
+      "asof_label": "2026-10-15 종가 기준",
+      "use": "FRESH_RESEARCH"
+    },
+    {
+      "series_id": "WRESBAL",
+      "name": "Reserve Balances with Federal Reserve Banks",
+      "observation_date": "2026-10-14",
+      "value": 3022140.0,
+      "unit": "Millions USD",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WRESBAL",
+      "asof_label": "2026-10-14 관측값 기준",
+      "use": "FRESH_RESEARCH"
+    }
+  ],
+  "decision_board": [
+    {
+      "signal_id": "SIG-RATE-001",
+      "status": "ACTIVE_CANDIDATE",
+      "series_ids": [
+        "DGS10"
+      ],
+      "what_changed": "DGS10 2026-10-15: 5관측 변화 -18.00bp, Z=-2.60",
+      "confidence": "기존 신호 품질 MODERATE · 전망 확률 아님",
+      "transmission": "금리 변화에 대한 만기·듀레이션 노출을 우선 점검",
+      "counterargument": "단일 채널 변화는 거시 원인을 식별하지 못한다. 같은 원천을 공유하는 신호는 독립 확인이 아니다.",
+      "falsification": "다음 신규 관측에서 같은 방향의 변화가 유지되는지, 반대 방향 변화와 독립 채널의 반증이 나타나는지 확인",
+      "routing": "03 매크로 검증 → 04 투자자 수급 → 05 ETF 노출 확인"
+    },
+    {
+      "signal_id": "SIG-RATE-002",
+      "status": "ACTIVE_CANDIDATE",
+      "series_ids": [
+        "T10Y2Y",
+        "DGS10",
+        "DGS2"
+      ],
+      "what_changed": "T10Y2Y 2026-10-16: 5관측 변화 -12.00bp, Z=-1.52; DGS10 2026-10-15: 5관측 변화 -18.00bp, Z=-2.60; DGS2 2026-10-15: 5관측 변화 +0.00bp, Z=-0.46",
+      "confidence": "기존 신호 품질 HIGH · 전망 확률 아님",
+      "transmission": "금리 변화에 대한 만기·듀레이션 노출을 우선 점검",
+      "counterargument": "단일 채널 변화는 거시 원인을 식별하지 못한다. 같은 원천을 공유하는 신호는 독립 확인이 아니다.",
+      "falsification": "다음 신규 관측에서 같은 방향의 변화가 유지되는지, 반대 방향 변화와 독립 채널의 반증이 나타나는지 확인",
+      "routing": "03 매크로 검증 → 04 투자자 수급 → 05 ETF 노출 확인"
+    },
+    {
+      "signal_id": "SIG-CREDIT-001",
+      "status": "NORMAL",
+      "series_ids": [
+        "BAMLC0A0CM",
+        "BAMLH0A0HYM2"
+      ],
+      "what_changed": "BAMLC0A0CM 2026-10-15: 5관측 변화 +2.00bp, Z=0.61; BAMLH0A0HYM2 2026-10-15: 5관측 변화 +8.00bp, Z=0.33",
+      "confidence": "기존 신호 품질 HIGH · 전망 확률 아님",
+      "transmission": "해당 채널의 독립 확인 자료와 실제 ETF 노출을 추가 점검",
+      "counterargument": "단일 채널 변화는 거시 원인을 식별하지 못한다. 같은 원천을 공유하는 신호는 독립 확인이 아니다.",
+      "falsification": "다음 신규 관측에서 같은 방향의 변화가 유지되는지, 반대 방향 변화와 독립 채널의 반증이 나타나는지 확인",
+      "routing": "03 매크로 검증 → 04 투자자 수급 → 05 ETF 노출 확인"
+    },
+    {
+      "signal_id": "SIG-LIQ-001",
+      "status": "NORMAL",
+      "series_ids": [
+        "SOFR",
+        "WRESBAL"
+      ],
+      "what_changed": "SOFR 2026-10-15: 5관측 변화 +1.00bp, Z=-0.18; WRESBAL 2026-10-14: 5관측 변화 +30830 (엔진 정의 변화량), Z=0.55",
+      "confidence": "기존 신호 품질 HIGH · 전망 확률 아님",
+      "transmission": "해당 채널의 독립 확인 자료와 실제 ETF 노출을 추가 점검",
+      "counterargument": "단일 채널 변화는 거시 원인을 식별하지 못한다. 같은 원천을 공유하는 신호는 독립 확인이 아니다.",
+      "falsification": "다음 신규 관측에서 같은 방향의 변화가 유지되는지, 반대 방향 변화와 독립 채널의 반증이 나타나는지 확인",
+      "routing": "03 매크로 검증 → 04 투자자 수급 → 05 ETF 노출 확인"
+    },
+    {
+      "signal_id": "SIG-ENERGY-001",
+      "status": "NORMAL",
+      "series_ids": [
+        "DCOILBRENTEU",
+        "DCOILWTICO"
+      ],
+      "what_changed": "DCOILBRENTEU 2026-10-14: 5관측 변화 +0.00436508 (엔진 정의 변화량), Z=-0.39; DCOILWTICO 2026-10-14: 5관측 변화 +0.0725111 (엔진 정의 변화량), Z=0.77",
+      "confidence": "기존 신호 품질 HIGH · 전망 확률 아님",
+      "transmission": "해당 채널의 독립 확인 자료와 실제 ETF 노출을 추가 점검",
+      "counterargument": "단일 채널 변화는 거시 원인을 식별하지 못한다. 같은 원천을 공유하는 신호는 독립 확인이 아니다.",
+      "falsification": "다음 신규 관측에서 같은 방향의 변화가 유지되는지, 반대 방향 변화와 독립 채널의 반증이 나타나는지 확인",
+      "routing": "03 매크로 검증 → 04 투자자 수급 → 05 ETF 노출 확인"
+    },
+    {
+      "signal_id": "SIG-MKT-001",
+      "status": "NORMAL",
+      "series_ids": [
+        "VIXCLS"
+      ],
+      "what_changed": "VIXCLS 2026-10-15: 5관측 변화 +0.0681376 (엔진 정의 변화량), Z=0.80",
+      "confidence": "기존 신호 품질 MODERATE · 전망 확률 아님",
+      "transmission": "해당 채널의 독립 확인 자료와 실제 ETF 노출을 추가 점검",
+      "counterargument": "단일 채널 변화는 거시 원인을 식별하지 못한다. 같은 원천을 공유하는 신호는 독립 확인이 아니다.",
+      "falsification": "다음 신규 관측에서 같은 방향의 변화가 유지되는지, 반대 방향 변화와 독립 채널의 반증이 나타나는지 확인",
+      "routing": "03 매크로 검증 → 04 투자자 수급 → 05 ETF 노출 확인"
+    }
+  ],
+  "rise_inventory_evidence": {
+    "source_id": "KRX_OPEN_API_ETF_DAILY",
+    "observed_on": "2026-10-16",
+    "raw_sha256": "5b614c913a5fc187e37a26dc795b2e7df5efaa91b07253b8f0ac8ad21fb40b36"
+  },
+  "strongest_counterevidence": "현재 변화탐지 기준 NORMAL: SIG-CREDIT-001, SIG-LIQ-001, SIG-ENERGY-001, SIG-MKT-001. 동반 급변 신호가 없다는 뜻이며 위험 부재를 뜻하지 않는다.",
+  "full_report_path": "reports/2026-10-20.html",
+  "report_status": "PUBLISHED"
+}
