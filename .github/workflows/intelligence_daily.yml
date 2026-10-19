@@ -15,6 +15,7 @@ on:
       - 'scripts/run_intelligence_daily.py'
       - 'scripts/build_intelligence_research.py'
       - 'scripts/build_intelligence_full.py'
+      - 'tests/test_intelligence*.py'
       - 'scripts/validate_intelligence_snapshot.py'
       - 'data/gclri/series_registry.json'
       - 'scripts/build_gclri_signals.py'
