@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "asof_date": "2026-10-19",
-  "prepared_at_utc": "2026-10-18T23:59:16.090175+00:00",
+  "prepared_at_utc": "2026-10-19T00:28:14.506217+00:00",
   "publication_blockers": [
     "STALE_OR_UNAVAILABLE:DTWEXBGS"
   ],
@@ -225,7 +225,7 @@
   },
   "signals": {
     "schema_version": "0.7",
-    "built_at_utc": "2026-10-18T23:59:16.124422+00:00",
+    "built_at_utc": "2026-10-19T00:28:14.537093+00:00",
     "source_gclri_built_at_utc": "2026-10-18T23:59:01.822667+00:00",
     "production_eligible": false,
     "regime_change_authorized": false,
@@ -445,8 +445,8 @@
   },
   "episodes": {
     "schema_version": "0.8",
-    "built_at_utc": "2026-10-18T23:59:16.165035+00:00",
-    "source_signal_built_at_utc": "2026-10-18T23:59:16.124422+00:00",
+    "built_at_utc": "2026-10-19T00:28:14.574229+00:00",
+    "source_signal_built_at_utc": "2026-10-19T00:28:14.537093+00:00",
     "production_eligible": false,
     "regime_change_authorized": false,
     "active_episode_count": 2,
@@ -1041,8 +1041,8 @@
   },
   "regime_gate": {
     "schema_version": "0.9",
-    "built_at_utc": "2026-10-18T23:59:16.194624+00:00",
-    "source_episode_built_at_utc": "2026-10-18T23:59:16.165035+00:00",
+    "built_at_utc": "2026-10-19T00:28:14.605171+00:00",
+    "source_episode_built_at_utc": "2026-10-19T00:28:14.574229+00:00",
     "gate_state": "CHALLENGE",
     "independent_persistent_channel_count": 1,
     "watch_channel_count": 0,
@@ -1060,6 +1060,7 @@
             "signal_state": "ACTIVE_CANDIDATE",
             "episode_status": "STRENGTHENING",
             "persistence_runs": 4,
+            "distinct_trigger_observations": 3,
             "peak_zscore": -2.5977966919987474,
             "latest_zscore": -2.5977966919987474,
             "confirmation_eligible": true,
@@ -1071,6 +1072,7 @@
             "signal_state": "ACTIVE_CANDIDATE",
             "episode_status": "STRENGTHENING",
             "persistence_runs": 4,
+            "distinct_trigger_observations": 3,
             "peak_zscore": -2.5977966919987474,
             "latest_zscore": -2.5977966919987474,
             "confirmation_eligible": true,
@@ -1132,31 +1134,32 @@
       "shared_signal_channels_deduplicated": true,
       "stale_or_low_confidence_not_counted": true,
       "policy_response_not_independent_confirmation": true,
+      "persistence_requires_distinct_observation_dates": true,
       "final_regime_decision_reserved_for_daily_intelligence": true
     }
   },
   "validation": {
     "schema_version": "1.0",
-    "built_at_utc": "2026-10-18T23:59:16.222287+00:00",
+    "built_at_utc": "2026-10-19T00:28:14.632444+00:00",
     "validation_state": "INSUFFICIENT_HISTORY",
     "production_eligible": false,
     "framework_promotion_authorized": false,
     "checks": [
       {
         "name": "Signal history depth",
-        "value": 17,
+        "value": 18,
         "required": 60,
         "status": "INSUFFICIENT_HISTORY"
       },
       {
         "name": "Episode history depth",
-        "value": 17,
+        "value": 18,
         "required": 40,
         "status": "INSUFFICIENT_HISTORY"
       },
       {
         "name": "Gate history depth",
-        "value": 17,
+        "value": 18,
         "required": 40,
         "status": "INSUFFICIENT_HISTORY"
       }

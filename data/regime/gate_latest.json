@@ -1,7 +1,7 @@
 {
   "schema_version": "0.9",
-  "built_at_utc": "2026-10-18T23:59:16.194624+00:00",
-  "source_episode_built_at_utc": "2026-10-18T23:59:16.165035+00:00",
+  "built_at_utc": "2026-10-19T00:28:14.605171+00:00",
+  "source_episode_built_at_utc": "2026-10-19T00:28:14.574229+00:00",
   "gate_state": "CHALLENGE",
   "independent_persistent_channel_count": 1,
   "watch_channel_count": 0,
@@ -19,6 +19,7 @@
           "signal_state": "ACTIVE_CANDIDATE",
           "episode_status": "STRENGTHENING",
           "persistence_runs": 4,
+          "distinct_trigger_observations": 3,
           "peak_zscore": -2.5977966919987474,
           "latest_zscore": -2.5977966919987474,
           "confirmation_eligible": true,
@@ -30,6 +31,7 @@
           "signal_state": "ACTIVE_CANDIDATE",
           "episode_status": "STRENGTHENING",
           "persistence_runs": 4,
+          "distinct_trigger_observations": 3,
           "peak_zscore": -2.5977966919987474,
           "latest_zscore": -2.5977966919987474,
           "confirmation_eligible": true,
@@ -91,6 +93,7 @@
     "shared_signal_channels_deduplicated": true,
     "stale_or_low_confidence_not_counted": true,
     "policy_response_not_independent_confirmation": true,
+    "persistence_requires_distinct_observation_dates": true,
     "final_regime_decision_reserved_for_daily_intelligence": true
   }
 }
