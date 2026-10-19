@@ -4,6 +4,7 @@ import argparse
 from datetime import datetime, timezone, date
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import subprocess
@@ -17,7 +18,12 @@ from validate_intelligence_snapshot import validate
 ENGINES = ('build_gclri_signals.py', 'build_signal_episodes.py',
            'build_regime_gate.py', 'build_validation_status.py')
 INPUTS = ('data/gclri/latest.json', 'data/signals/signal_registry.json',
-          'data/episodes/episode_registry.json', 'data/regime/channel_registry.json')
+          'data/episodes/episode_registry.json', 'data/regime/channel_registry.json',
+          'data/gclri/series_registry.json', 'data/signals/latest.json',
+          'data/episodes/latest.json', 'data/regime/gate_latest.json',
+          'data/validation/v1_status.json', 'data/quality/krx_rise_inventory.json',
+          'data/gclri/history.json', 'data/signals/history.json',
+          'data/episodes/history.json', 'data/regime/gate_history.json')
 
 
 def digest(path):
@@ -33,20 +39,38 @@ def prepare_input(root, now):
         gaps.append('MARKET_BUILD_NOT_CURRENT')
     if market.get('status') != 'SUCCESS' or not market.get('series'):
         gaps.append('MARKET_COLLECTION_INCOMPLETE')
+    registry = {row['id']: row for row in read_json(root / 'data/gclri/series_registry.json')['series']}
+    for key in sorted(set(registry) - set(market.get('series', {}))):
+        gaps.append('REQUIRED_SERIES_MISSING:' + key)
     for key, row in market.get('series', {}).items():
         try:
             age = (today - date.fromisoformat(row['observation_date'])).days
-            if row.get('data_state') != 'CURRENT' or not 0 <= age <= row['stale_after_days']:
+            if row.get('data_state') != 'CURRENT' or not 0 <= age <= registry[key]['stale_after_days']:
                 gaps.append('STALE_OR_UNAVAILABLE:' + key)
+            value = row.get('value')
+            if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
+                gaps.append('INVALID_VALUE:' + key)
         except (KeyError, TypeError, ValueError):
             gaps.append('INVALID_OBSERVATION:' + key)
+    signals = read_json(root / 'data/signals/latest.json')
+    episodes = read_json(root / 'data/episodes/latest.json')
+    gate = read_json(root / 'data/regime/gate_latest.json')
+    for name, source, upstream in (
+        ('SIGNALS', signals.get('source_gclri_built_at_utc'), market.get('built_at_utc')),
+        ('EPISODES', episodes.get('source_signal_built_at_utc'), signals.get('built_at_utc')),
+        ('GATE', gate.get('source_episode_built_at_utc'), episodes.get('built_at_utc')),
+    ):
+        if not source or source != upstream:
+            gaps.append('DERIVED_VINTAGE_MISMATCH:' + name)
     return {'schema_version': '1.0', 'asof_date': today.isoformat(),
             'prepared_at_utc': now.isoformat(), 'publication_blockers': gaps,
             'source_hashes': {p: digest(root / p) for p in INPUTS},
             'market': market,
-            'signals': read_json(root / 'data/signals/latest.json'),
-            'episodes': read_json(root / 'data/episodes/latest.json'),
-            'regime_gate': read_json(root / 'data/regime/gate_latest.json'),
+            'signals': signals,
+            'episodes': episodes,
+            'regime_gate': gate,
+            'series_registry': registry,
+            'rise_inventory': read_json(root / 'data/quality/krx_rise_inventory.json'),
             'validation': read_json(root / 'data/validation/v1_status.json'),
             'note': 'Research inputs only. No new regime, confidence, ETF recommendation or FULL report is inferred.'}
 
@@ -97,7 +121,7 @@ def check_package(package, inputs, root):
     return errors
 
 
-def run(root, now=None, engine_runner=None):
+def run(root, now=None, engine_runner=None, publish_prepared=False):
     root = Path(root).resolve()
     now = now or datetime.now(timezone.utc)
     run_key = os.environ.get('GITHUB_RUN_ID', 'local-' + uuid4().hex)
@@ -109,6 +133,9 @@ def run(root, now=None, engine_runner=None):
                'note': 'Checkout execution only. Git push and Pages deployment are separate outcomes.'}
     try:
         for script in ENGINES:
+            if publish_prepared:
+                receipt['stages'][script] = 'REUSED_FOR_REVIEWED_PACKAGE'
+                continue
             receipt['stages'][script] = 'RUNNING'
             if engine_runner:
                 engine_runner(script)
@@ -116,11 +143,15 @@ def run(root, now=None, engine_runner=None):
                 subprocess.run([sys.executable, str(root / 'scripts' / script)], cwd=root, check=True)
             receipt['stages'][script] = 'SUCCESS'
         inputs = prepare_input(root, now)
+        if os.environ.get('UPSTREAM_CONCLUSION', '') not in {'', 'success'}:
+            inputs['publication_blockers'].append('UPSTREAM_COLLECTION_FAILED')
         write_json(root / 'data/intelligence/daily_input.json', inputs)
+        from build_intelligence_research import build, save
+        receipt['stages']['research_draft'] = 'RUNNING'
+        receipt['research_draft'] = save(root, build(inputs))
+        receipt['stages']['research_draft'] = 'SUCCESS'
         package = root / 'intelligence/inbox' / inputs['asof_date']
         blockers = check_package(package, inputs, root)
-        if os.environ.get('UPSTREAM_CONCLUSION', '') not in {'', 'success'}:
-            blockers.append('UPSTREAM_COLLECTION_FAILED')
         receipt['blockers'] = blockers
         if blockers:
             receipt['status'] = 'BLOCKED'
@@ -145,7 +176,9 @@ def run(root, now=None, engine_runner=None):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--root', default=str(Path(__file__).resolve().parents[1]))
+    parser.add_argument('--publish-prepared', action='store_true',
+                        help='Validate and publish an already computed/reviewed vintage without rerunning engines')
     args = parser.parse_args()
-    result = run(args.root)
+    result = run(args.root, publish_prepared=args.publish_prepared)
     print(json.dumps(result, ensure_ascii=False))
     sys.exit(0 if result['status'] in {'PUBLISHED', 'UNCHANGED'} else 2)

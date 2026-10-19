@@ -29,6 +29,14 @@ class DailyTests(unittest.TestCase):
         for row in self.market['series'].values():
             row.update(observation_date='2026-10-15', data_state='CURRENT')
         daily.write_json(self.root / daily.INPUTS[0], self.market)
+        upstream = self.market['built_at_utc']
+        for path, field in (('data/signals/latest.json', 'source_gclri_built_at_utc'),
+                            ('data/episodes/latest.json', 'source_signal_built_at_utc'),
+                            ('data/regime/gate_latest.json', 'source_episode_built_at_utc')):
+            row = daily.read_json(self.root / path)
+            row[field] = upstream
+            daily.write_json(self.root / path, row)
+            upstream = row['built_at_utc']
         self.before = {str(p.relative_to(self.root)): p.read_bytes()
                        for p in (self.root / 'intelligence').rglob('*') if p.is_file()}
 
@@ -109,6 +117,117 @@ class DailyTests(unittest.TestCase):
             result = daily.run(self.root, NOW, lambda _: None)
         self.assertEqual(result['status'], 'BLOCKED')
         self.assertIn('UPSTREAM_COLLECTION_FAILED', result['blockers'])
+        self.assert_preserved()
+
+    def test_required_series_cannot_disappear(self):
+        del self.market['series']['DGS10']
+        daily.write_json(self.root / daily.INPUTS[0], self.market)
+        self.assertIn('REQUIRED_SERIES_MISSING:DGS10', daily.prepare_input(self.root, NOW)['publication_blockers'])
+
+    def test_payload_cannot_relax_registry_freshness(self):
+        self.market['series']['DGS10'].update(observation_date='2026-09-01', stale_after_days=999)
+        daily.write_json(self.root / daily.INPUTS[0], self.market)
+        self.assertIn('STALE_OR_UNAVAILABLE:DGS10', daily.prepare_input(self.root, NOW)['publication_blockers'])
+
+    def test_invalid_values_fail_closed(self):
+        for value in (None, True, float('nan'), float('inf'), '5.1'):
+            with self.subTest(value=value):
+                self.market['series']['DGS10']['value'] = value
+                daily.write_json(self.root / daily.INPUTS[0], self.market)
+                self.assertIn('INVALID_VALUE:DGS10', daily.prepare_input(self.root, NOW)['publication_blockers'])
+
+    def test_derived_results_are_bound_to_reviewed_package(self):
+        package, _ = self.package()
+        path = self.root / 'data/signals/latest.json'
+        signal = daily.read_json(path)
+        signal['signals'][0]['direction'] = 'CHANGED'
+        daily.write_json(path, signal)
+        self.assertIn('SOURCE_VINTAGE_MISMATCH', daily.check_package(package, daily.prepare_input(self.root, NOW), self.root))
+
+    def test_mixed_engine_vintages_block(self):
+        path = self.root / 'data/signals/latest.json'
+        signal = daily.read_json(path)
+        signal['source_gclri_built_at_utc'] = '2026-09-01T00:00:00+00:00'
+        daily.write_json(path, signal)
+        self.assertIn('DERIVED_VINTAGE_MISMATCH:SIGNALS', daily.prepare_input(self.root, NOW)['publication_blockers'])
+
+    def research_input(self):
+        inputs = daily.prepare_input(self.root, NOW)
+        row = inputs['market']['series']['DGS10']
+        inputs['signals']['signals'] = [{
+            'signal_id': 'SIG-RATE-001', 'signal_state': 'ACTIVE_CANDIDATE', 'direction': 'DOWN',
+            'strongest_series': 'DGS10', 'details': [{'series_id': 'DGS10',
+                'observation_date': row['observation_date'], 'latest_value': row['value']}]}]
+        inputs['rise_inventory'] = {'observed_on': '2026-10-15', 'products': [
+            {'code': 'TEST01', 'name': 'RISE 미국채 테스트', 'status': 'OBSERVED', 'last_observed_on': '2026-10-15'}]}
+        return inputs
+
+    def test_research_is_distinct_from_full_and_repeatable(self):
+        from build_intelligence_research import build, save
+        inputs = self.research_input()
+        draft = build(inputs)
+        self.assertFalse(draft['publication_eligible'])
+        self.assertFalse(draft['production_eligible'])
+        self.assertNotIn('regime_confidence', draft)
+        self.assertEqual(draft['rise_research_candidates'][0]['basis'], 'NAME_ONLY_UNVERIFIED_EXPOSURE')
+        first = save(self.root, draft)
+        self.assertEqual(first, save(self.root, build(inputs)))
+        inputs['market']['series']['DGS10']['value'] += 0.1
+        second = save(self.root, build(inputs))
+        self.assertNotEqual(first['path'], second['path'])
+        self.assertTrue((self.root / first['path'] / 'report.md').exists())
+        self.assert_preserved()
+
+    def test_stale_research_never_creates_marketing_candidates(self):
+        from build_intelligence_research import build
+        inputs = self.research_input()
+        inputs['publication_blockers'] = ['STALE_OR_UNAVAILABLE:DTWEXBGS']
+        draft = build(inputs)
+        self.assertFalse(draft['rise_research_candidates'])
+        self.assertFalse(draft['gate_observation']['usable'])
+        self.assertTrue(all(not s['usable_for_research'] for s in draft['signals']))
+
+    def test_stale_or_mismatched_signal_detail_is_not_usable(self):
+        from build_intelligence_research import build
+        inputs = self.research_input()
+        inputs['signals']['signals'][0]['details'][0]['observation_date'] = '2026-09-01'
+        self.assertFalse(build(inputs)['rise_research_candidates'])
+        inputs = self.research_input()
+        inputs['market']['series']['DGS10']['observation_date'] = '2026-09-01'
+        self.assertFalse(next(r for r in build(inputs)['observations'] if r['series_id']=='DGS10')['fresh_for_report'])
+        self.assertFalse(build(inputs)['rise_research_candidates'])
+
+    def test_stale_inventory_is_not_a_current_candidate(self):
+        from build_intelligence_research import build
+        inputs = self.research_input()
+        inputs['rise_inventory']['observed_on'] = '2026-09-01'
+        self.assertFalse(build(inputs)['rise_research_candidates'])
+
+    def test_blocked_run_still_produces_reviewable_draft(self):
+        result = daily.run(self.root, NOW, lambda _: None)
+        self.assertEqual(result['status'], 'BLOCKED')
+        self.assertEqual(result['stages']['research_draft'], 'SUCCESS')
+        report = self.root / result['research_draft']['path'] / 'report.md'
+        self.assertIn('정식 보고서 아님', report.read_text())
+        self.assert_preserved()
+
+    def test_prepared_publication_reuses_exact_reviewed_vintage(self):
+        self.package()
+        def fail(_):
+            raise AssertionError('must not recompute reviewed outputs')
+        result = daily.run(self.root, NOW, fail, publish_prepared=True)
+        self.assertEqual(result['status'], 'PUBLISHED')
+        self.assertEqual(result['stages'][daily.ENGINES[0]], 'REUSED_FOR_REVIEWED_PACKAGE')
+
+    def test_prepared_publication_still_rejects_changed_outputs(self):
+        self.package()
+        path = self.root / 'data/validation/v1_status.json'
+        value = daily.read_json(path)
+        value['validation_state'] = 'CHANGED'
+        daily.write_json(path, value)
+        result = daily.run(self.root, NOW, publish_prepared=True)
+        self.assertEqual(result['status'], 'BLOCKED')
+        self.assertIn('SOURCE_VINTAGE_MISMATCH', result['blockers'])
         self.assert_preserved()
 
 if __name__ == '__main__':

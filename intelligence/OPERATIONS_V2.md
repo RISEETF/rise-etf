@@ -60,3 +60,12 @@ P1에서는 수집·분석·FULL 보고서 생성 및 신선도/외부 근거 �
 
 ## P1 실행 연결
 `intelligence_daily.yml`이 GCLRI 수집 완료 후 기존 4개 엔진을 순서대로 실행하며, `run_intelligence_daily.py`가 입력 vintage·신선도·FULL 패키지·연구 권한을 점검한다. 각 엔진의 기존 workflow는 수동 복구용이다. 정상 FULL 패키지가 없으면 이전 보고서를 유지하고 BLOCKED를 기록한다. 실제 분석/보고서 작성 자동화가 완료됐다는 의미는 아니다. 실행·복구·입력 계약과 남은 과제는 `P1_HANDOFF.md`를 따른다.
+
+## 자동 연구 초안과 엄격한 정식 게시 경계 (2026-10-19)
+`build_intelligence_research.py`는 일일 엔진 뒤에 원천 관측·신호·반론·미완료 평가를 자동 작성한다. `data/intelligence/research/<date>/<content hash>/`에 JSON/Markdown을 함께 남긴다. 같은 입력과 본문은 같은 경로이며 변경본은 별도 경로에 보존한다. 엔진 결과의 실행 시각까지 입력 hash에 포함되므로 새 계산 실행은 별도 근거본이다. 이것은 `RESEARCH_DRAFT`이며 FULL 보고서를 대신하거나 latest/archive를 갱신하지 않는다. RISE 연결은 관측일을 확인한 KRX 상품명 일치 조사 목록이며 실제 노출·투자자 수급·경쟁상품 검증이나 외부 마케팅 메시지 승인을 뜻하지 않는다. 원천 차단이 있으면 상품 연결도 보류한다.
+
+게시 입력 검증은 등록된 필수 시계열 누락·비유한 수치·등록 기준보다 완화된 payload 신선도·계산 단계의 원천 시각 불일치를 차단한다. 원천/규칙뿐 아니라 신호·에피소드·관문·검증 결과·KRX 목록까지 SHA256으로 입력 패키지에 결속한다.
+
+**검토본 게시:** 엔진을 다시 실행하면 계산 파일의 timestamp/hash가 달라진다. 정식 검토는 자동 실행이 커밋한 `daily_input.json.source_hashes`를 기준으로 수행하고 해당 날짜 inbox 패키지를 커밋한 뒤 `intelligence_daily.yml`을 `publish_prepared=true`로 수동 실행한다. 또는 `python scripts/run_intelligence_daily.py --publish-prepared`. 이 모드는 계산을 재실행하지 않으며 현재 모든 파일의 hash·원천 연결·신선도·FULL 계약을 다시 검증한다. 원천/계산 결과가 바뀌면 차단하므로 새 근거로 재검토해야 한다. inbox push 자체가 계산을 재실행해 검토본을 무효화하던 경로는 제거했다. 수집 후 자동 실행은 계속 네 엔진을 실행한다. 완전한 FULL 최종판단 자동 작성은 아직 미완료다.
+
+실행 workflow는 현재 run_id/attempt와 일치하는 영수증만 저장·업로드한다. 이전 실행의 성공 기록을 이번 실행 결과로 취급하지 않는다.
