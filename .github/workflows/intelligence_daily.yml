@@ -1,6 +1,11 @@
 name: RISE Intelligence daily orchestration
 on:
   workflow_dispatch:
+    inputs:
+      publish_prepared:
+        description: 'Publish reviewed inbox package against existing computed vintage'
+        type: boolean
+        default: false
   workflow_run:
     workflows: ["GCLRI market data update"]
     types: [completed]
@@ -8,6 +13,8 @@ on:
     branches: [main]
     paths:
       - 'scripts/run_intelligence_daily.py'
+      - 'scripts/build_intelligence_research.py'
+      - 'data/gclri/series_registry.json'
       - 'scripts/build_gclri_signals.py'
       - 'scripts/build_signal_episodes.py'
       - 'scripts/build_regime_gate.py'
@@ -16,7 +23,6 @@ on:
       - 'data/episodes/episode_registry.json'
       - 'data/regime/channel_registry.json'
       - '.github/workflows/intelligence_daily.yml'
-      - 'intelligence/inbox/**'
 permissions:
   contents: write
   pages: write
@@ -45,9 +51,21 @@ jobs:
         continue-on-error: true
         env:
           UPSTREAM_CONCLUSION: ${{ github.event.workflow_run.conclusion }}
-        run: python scripts/run_intelligence_daily.py
+          PUBLISH_PREPARED: ${{ inputs.publish_prepared }}
+        run: |
+          if [ "$PUBLISH_PREPARED" = "true" ]; then
+            python scripts/run_intelligence_daily.py --publish-prepared
+          else
+            python scripts/run_intelligence_daily.py
+          fi
+      - name: Verify receipt belongs to this execution
+        id: receipt
+        if: always() && steps.pipeline.outcome != 'skipped'
+        run: |
+          jq -e --arg run "$GITHUB_RUN_ID" --arg attempt "$GITHUB_RUN_ATTEMPT" \
+            '.run_id == $run and .run_attempt == $attempt' data/operations/intelligence.json
       - name: Preserve run evidence even when publication is blocked
-        if: always()
+        if: always() && steps.receipt.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
           name: intelligence-run-${{ github.run_id }}-${{ github.run_attempt }}
@@ -55,10 +73,12 @@ jobs:
             data/operations/intelligence.json
             data/operations/runs/intelligence-${{ github.run_id }}-${{ github.run_attempt }}.json
             data/intelligence/daily_input.json
+            data/intelligence/research_latest.json
+            data/intelligence/research/**
           if-no-files-found: warn
       - name: Commit complete publication and execution receipts
         id: save
-        if: always() && steps.pipeline.outcome != 'skipped'
+        if: always() && steps.receipt.outcome == 'success'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
