@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "started_at_utc": "2026-10-19T06:42:13.317229+00:00",
-  "run_id": "39211426809",
+  "started_at_utc": "2026-10-19T23:49:43.788493+00:00",
+  "run_id": "39343936276",
   "run_attempt": "1",
   "status": "PUBLISHED",
   "stages": {
@@ -16,23 +16,23 @@
   "note": "Checkout execution only. Git push and Pages deployment are separate outcomes.",
   "research_draft": {
     "status": "RESEARCH_DRAFT",
-    "path": "data/intelligence/research/2026-10-19/16fc35583618d8dd1aa550b619482d5d5441da7a0c1ddf7089aacf9fae3b0ee3",
-    "sha256": "16fc35583618d8dd1aa550b619482d5d5441da7a0c1ddf7089aacf9fae3b0ee3"
+    "path": "data/intelligence/research/2026-10-20/71d0e9939aa0f61bf3e134ce7f6bc04d04eb1a0842ec362f8d12f853a9792a8b",
+    "sha256": "71d0e9939aa0f61bf3e134ce7f6bc04d04eb1a0842ec362f8d12f853a9792a8b"
   },
-  "coverage_exclusions": [
+  "dated_context": [
     {
       "series_id": "DTWEXBGS",
       "observation_date": "2026-10-09",
-      "reason": "관측 지연: 최신 달러 판단 및 교차확인에서 제외"
+      "reason": "기준일 관측 수준·과거 변화 설명에 사용; 오늘의 신호·동시점 교차확인에는 미사용"
     }
   ],
-  "generated_package": "data/intelligence/generated/2026-10-19/456814905e4937df7c19aac879dcb735e7191979320a40513dc85f97ba984963",
+  "generated_package": "data/intelligence/generated/2026-10-20/64e50e873e918223bea86e207332507305b72ce61646918465912bede16b3c0f",
   "blockers": [],
   "publication": {
     "status": "SUCCESS",
-    "asof_date": "2026-10-19",
-    "archive_count": 14,
+    "asof_date": "2026-10-20",
+    "archive_count": 15,
     "content_changed": true
   },
-  "finished_at_utc": "2026-10-19T06:42:13.443140+00:00"
+  "finished_at_utc": "2026-10-19T23:49:44.030341+00:00"
 }
