@@ -60,10 +60,71 @@ def validate_summary(d):
             if key=='framework_updates' and row.get('status') not in FRAMEWORK|{'RESEARCH_REQUIRED'}: errors.append(f'{key}[{i}].status invalid')
     return errors
 
+def validate_bounded(d):
+    # 1.0 remains unchanged. 1.1 explicitly represents unassessed judgments.
+    errors=[]
+    if d.get('snapshot_type') != 'FULL' or d.get('report_mode') != 'BOUNDED_RESEARCH_V1':
+        errors.append('1.1 requires bounded FULL research report')
+    if d.get('regime_confidence') is not None or not d.get('regime_confidence_reason'):
+        errors.append('bounded confidence must be null with reason')
+    if d.get('production_eligible') is not False or d.get('regime_assessment') != 'CARRIED_FORWARD_NOT_RECONFIRMED':
+        errors.append('bounded report cannot promote or reconfirm regime')
+    try:
+        if date.fromisoformat(d['regime_reference_date']) > date.fromisoformat(d['asof_date']): raise ValueError()
+    except (KeyError, TypeError, ValueError): errors.append('invalid regime reference date')
+    for field in REQ[7:20]:
+        gaps=d.get('assessment_gaps')
+        if d.get(field) != 'UNRESOLVED' or not isinstance(gaps,dict) or not isinstance(gaps.get(field),str) or not gaps[field].strip():
+            errors.append('bounded unassessed field requires reason: '+field)
+    if d.get('framework_updates') != [] or d.get('product_candidates') != [] or not d.get('product_assessment'):
+        errors.append('bounded report cannot invent framework/product judgments')
+    gate=d.get('regime_history_update',{})
+    if (not isinstance(gate,dict) or gate.get('transition_gate_crossed') is not False or
+        gate.get('prior_state') != d.get('current_regime') or gate.get('today_state') != d.get('current_regime') or
+        d.get('regime_change_status') not in {'NONE','WATCH'}):
+        errors.append('bounded regime transition prohibited')
+    coverage=d.get('coverage',{})
+    if (not isinstance(coverage,dict) or coverage.get('policy') != 'BOUNDED_RESEARCH_V1' or
+        coverage.get('state') not in {'PARTIAL','CURRENT_INPUTS'} or coverage.get('blockers') != [] or
+        not isinstance(coverage.get('excluded'),list)):
+        errors.append('invalid report coverage')
+        coverage={'excluded':[]}
+    excluded=set()
+    for row in coverage.get('excluded',[]):
+        if not isinstance(row,dict) or row.get('series_id') != 'DTWEXBGS' or not row.get('reason'):
+            errors.append('invalid coverage exclusion')
+        else: excluded.add(row['series_id'])
+    if coverage.get('state') in {'PARTIAL','CURRENT_INPUTS'} and bool(excluded)!=(coverage['state']=='PARTIAL'):
+        errors.append('coverage label mismatch')
+    observations=d.get('observations')
+    if not isinstance(observations,list) or not observations:
+        errors.append('bounded report requires observations')
+    else:
+        for row in observations:
+            if not isinstance(row,dict) or row.get('series_id') in excluded and row.get('fresh_for_report') is not False:
+                errors.append('excluded observation cannot be fresh')
+    decisions=d.get('decision_board')
+    if not isinstance(decisions,list) or not decisions:
+        errors.append('bounded report requires decision board')
+    else:
+        for row in decisions:
+            if not isinstance(row,dict) or not isinstance(row.get('series_ids'),list):
+                errors.append('invalid decision row'); continue
+            if excluded.intersection(row['series_ids']): errors.append('excluded series in decision')
+            for key in ('signal_id','what_changed','confidence','transmission','counterargument','falsification','routing'):
+                if not isinstance(row.get(key),str) or not row[key].strip(): errors.append('decision field missing: '+key)
+    for key in ('strongest_counterevidence','rise_match_status'):
+        if not isinstance(d.get(key),str) or not d[key].strip(): errors.append(key+' missing')
+    for row in d.get('top_rise_matches',[]) if isinstance(d.get('top_rise_matches'),list) else []:
+        if not isinstance(row,dict) or row.get('basis') != 'NAME_ONLY_UNVERIFIED_EXPOSURE': errors.append('unverified ETF exposure must be explicit')
+    return errors
+
 def validate(d):
     errors=[]
     if not isinstance(d,dict): return ['snapshot must be object']
-    if d.get('schema_version','1.0') != '1.0': errors.append('unsupported schema_version')
+    version = d.get('schema_version', '1.0')
+    if version not in {'1.0', '1.1'}: errors.append('unsupported schema_version')
+    if version == '1.1': errors.extend(validate_bounded(d))
     if d.get('snapshot_type') == 'SUMMARY_ONLY':
         return errors+validate_summary(d)
     if d.get('snapshot_type') not in (None,'FULL'): errors.append('unknown snapshot_type')
@@ -72,9 +133,9 @@ def validate(d):
     try: date.fromisoformat(str(d.get("asof_date","")))
     except Exception: errors.append("asof_date must be YYYY-MM-DD")
     c=d.get("regime_confidence")
-    if not isinstance(c,(int,float)) or isinstance(c,bool) or not 0 <= c <= 100: errors.append("regime_confidence must be numeric 0..100")
+    if version != '1.1' and (not isinstance(c,(int,float)) or isinstance(c,bool) or not 0 <= c <= 100): errors.append("regime_confidence must be numeric 0..100")
     if d.get("regime_change_status") not in REGIME_CHANGE: errors.append("regime_change_status invalid")
-    if not isinstance(d.get("top_rise_matches"),list) or not d.get("top_rise_matches"): errors.append("top_rise_matches must be non-empty list")
+    if not isinstance(d.get("top_rise_matches"),list) or (version != "1.1" and not d.get("top_rise_matches")): errors.append("top_rise_matches must be non-empty list")
     if not isinstance(d.get("product_candidates"),list): errors.append("product_candidates must be list")
     if not isinstance(d.get("framework_updates"),list): errors.append("framework_updates must be list")
     else:

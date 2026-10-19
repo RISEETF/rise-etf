@@ -1,6 +1,66 @@
 {
   "schema_version": "0.4",
-  "required": ["asof_date","current_regime","regime_confidence","regime_change_candidate","regime_change_status","top_change","top_risk","macro_absorption_level","macro_absorption_headroom","corporate_absorption_level","corporate_headroom","fiscal_stress","credit_stress_current","credit_stress_forward","market_liquidity","funding_liquidity","energy_stress","energy_reliability","energy_adaptation","flow_state","top_rise_matches","product_candidates","framework_updates","key_triggers","no_action","regime_history_update"],
-  "enum_rules": {"regime_change_status":["NONE","WATCH","ACTIVE"],"framework_status":["CANDIDATE","SHADOW","VALIDATED","FROZEN"],"data_state":["UNAVAILABLE","STALE","UNRESOLVED"]},
-  "numeric_rules": {"regime_confidence":{"min":0,"max":100}}
+  "required": [
+    "asof_date",
+    "current_regime",
+    "regime_confidence",
+    "regime_change_candidate",
+    "regime_change_status",
+    "top_change",
+    "top_risk",
+    "macro_absorption_level",
+    "macro_absorption_headroom",
+    "corporate_absorption_level",
+    "corporate_headroom",
+    "fiscal_stress",
+    "credit_stress_current",
+    "credit_stress_forward",
+    "market_liquidity",
+    "funding_liquidity",
+    "energy_stress",
+    "energy_reliability",
+    "energy_adaptation",
+    "flow_state",
+    "top_rise_matches",
+    "product_candidates",
+    "framework_updates",
+    "key_triggers",
+    "no_action",
+    "regime_history_update"
+  ],
+  "enum_rules": {
+    "regime_change_status": [
+      "NONE",
+      "WATCH",
+      "ACTIVE"
+    ],
+    "framework_status": [
+      "CANDIDATE",
+      "SHADOW",
+      "VALIDATED",
+      "FROZEN"
+    ],
+    "data_state": [
+      "UNAVAILABLE",
+      "STALE",
+      "UNRESOLVED"
+    ]
+  },
+  "numeric_rules": {
+    "regime_confidence": {
+      "min": 0,
+      "max": 100
+    }
+  },
+  "versioned_contracts": {
+    "1.0": "Historical/manual FULL: numeric regime confidence; unchanged.",
+    "1.1": {
+      "mode": "BOUNDED_RESEARCH_V1",
+      "confidence": "null with reason",
+      "regime": "prior record explicitly not reconfirmed",
+      "unassessed_fields": "UNRESOLVED with assessment_gaps",
+      "coverage": "PARTIAL with explicit exclusions, or CURRENT_INPUTS",
+      "authority": "scripts/validate_intelligence_snapshot.py; daily package also regenerated from hashed input for evidence validation"
+    }
+  }
 }

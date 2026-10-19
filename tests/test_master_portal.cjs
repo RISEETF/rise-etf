@@ -32,6 +32,20 @@ const server = http.createServer((req,res) => {
     await page.locator('.modules a[href$="#gclri"]').click();
     await page.waitForSelector('#gclri.active');
     assert.equal(await page.locator('#daily').isVisible(),false);
+    const automaticReport=JSON.parse(require('node:child_process').execFileSync('python',['-c',`import sys,json
+from pathlib import Path
+from datetime import datetime,timezone
+sys.path.insert(0,'scripts')
+from run_intelligence_daily import prepare_input
+from build_intelligence_full import compose
+from update_intelligence_portal import read_json
+root=Path.cwd()
+print(json.dumps(compose(prepare_input(root,datetime.now(timezone.utc)),read_json(root/'intelligence/data/latest.json'))[0]))`],{cwd:root,encoding:'utf8'}));
+    await page.evaluate(d=>render(d),automaticReport);
+    assert.match(await page.locator('#regimeConf').textContent(),/신뢰도 미산정/);
+    assert.match(await page.locator('#regime').textContent(),/오늘 재확정 아님/);
+    assert.match(await page.locator('#macroAbs').textContent(),/미산정/);
+    assert.equal((await page.locator('#regimeConf').textContent()).includes('null%'),false);
     await page.goBack();
     assert.equal(await page.locator('h1').textContent(),'오늘의 시장, 한눈에.');
     await page.setViewportSize({width:390,height:844});

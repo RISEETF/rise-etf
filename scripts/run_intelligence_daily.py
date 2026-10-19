@@ -81,6 +81,14 @@ def check_package(package, inputs, root):
         return errors + ['FULL_INPUT_PACKAGE_MISSING']
     snapshot = read_json(package / 'snapshot.json')
     evidence = read_json(package / 'evidence.json')
+    if snapshot.get('schema_version') == '1.1':
+        from build_intelligence_full import coverage, compose
+        errors = coverage(inputs)[0]
+        expected, narrative, refs = compose(inputs, read_json(root / 'intelligence/data/latest.json'))
+        if snapshot != expected or (package / 'report.txt').read_text(encoding='utf-8') != narrative:
+            errors.append('AUTOMATIC_REPORT_EVIDENCE_MISMATCH')
+        if evidence.get('external_evidence') != refs:
+            errors.append('AUTOMATIC_REPORT_REFERENCES_MISMATCH')
     errors.extend(validate(snapshot))
     if snapshot.get('snapshot_type') != 'FULL':
         errors.append('EXPLICIT_FULL_SNAPSHOT_REQUIRED')
@@ -121,7 +129,7 @@ def check_package(package, inputs, root):
     return errors
 
 
-def run(root, now=None, engine_runner=None, publish_prepared=False):
+def run(root, now=None, engine_runner=None, publish_prepared=False, auto_report=False):
     root = Path(root).resolve()
     now = now or datetime.now(timezone.utc)
     run_key = os.environ.get('GITHUB_RUN_ID', 'local-' + uuid4().hex)
@@ -151,6 +159,15 @@ def run(root, now=None, engine_runner=None, publish_prepared=False):
         receipt['research_draft'] = save(root, build(inputs))
         receipt['stages']['research_draft'] = 'SUCCESS'
         package = root / 'intelligence/inbox' / inputs['asof_date']
+        if auto_report and not publish_prepared and not package.exists():
+            from build_intelligence_full import coverage, generate
+            hard_blockers, exclusions = coverage(inputs)
+            receipt['coverage_exclusions'] = exclusions
+            if not hard_blockers:
+                receipt['stages']['full_report'] = 'RUNNING'
+                package = generate(root, inputs)
+                receipt['generated_package'] = str(package.relative_to(root))
+                receipt['stages']['full_report'] = 'SUCCESS'
         blockers = check_package(package, inputs, root)
         receipt['blockers'] = blockers
         if blockers:
@@ -179,6 +196,6 @@ if __name__ == '__main__':
     parser.add_argument('--publish-prepared', action='store_true',
                         help='Validate and publish an already computed/reviewed vintage without rerunning engines')
     args = parser.parse_args()
-    result = run(args.root, publish_prepared=args.publish_prepared)
+    result = run(args.root, publish_prepared=args.publish_prepared, auto_report=True)
     print(json.dumps(result, ensure_ascii=False))
     sys.exit(0 if result['status'] in {'PUBLISHED', 'UNCHANGED'} else 2)
