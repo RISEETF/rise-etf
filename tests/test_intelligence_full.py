@@ -20,8 +20,8 @@ class AutomaticFullTests(unittest.TestCase):
     def test_current_input_publishes_full_and_repeat_is_unchanged(self):
         result=daily.run(self.root,NOW,lambda _:None,auto_report=True)
         self.assertEqual(result['status'],'PUBLISHED',result)
-        snapshot=daily.read_json(self.root/'intelligence/data/latest.json')
-        self.assertEqual(snapshot['schema_version'],'1.1')
+        snapshot=daily.read_json(self.root/'intelligence/data/daily/2026-10-16.json')
+        self.assertEqual(snapshot['schema_version'],'1.2')
         self.assertIsNone(snapshot['regime_confidence'])
         self.assertEqual(validate(snapshot),[])
         self.assertEqual(daily.run(self.root,NOW,lambda _:None,auto_report=True)['status'],'UNCHANGED')
@@ -31,20 +31,20 @@ class AutomaticFullTests(unittest.TestCase):
         daily.write_json(self.root/daily.INPUTS[0],self.market)
         result=daily.run(self.root,NOW,lambda _:None,auto_report=True)
         self.assertEqual(result['status'],'PUBLISHED',result)
-        snapshot=daily.read_json(self.root/'intelligence/data/latest.json')
-        self.assertEqual(snapshot['coverage']['state'],'PARTIAL')
+        snapshot=daily.read_json(self.root/'intelligence/data/daily/2026-10-16.json')
+        self.assertEqual(snapshot['coverage']['state'],'DATED_INPUTS')
         self.assertTrue(all('DTWEXBGS' not in r['series_ids'] for r in snapshot['decision_board']))
         self.assertFalse(next(r for r in snapshot['observations'] if r['series_id']=='DTWEXBGS')['fresh_for_report'])
         self.assertEqual(snapshot['regime_history_update']['transition_gate_crossed'],False)
 
-    def test_critical_stale_remains_blocking(self):
+    def test_stale_value_not_matching_fetched_history_remains_blocking(self):
         self.market['series']['DGS10'].update(observation_date='2026-09-01')
         daily.write_json(self.root/daily.INPUTS[0],self.market)
         result=daily.run(self.root,NOW,lambda _:None,auto_report=True)
         self.assertEqual(result['status'],'BLOCKED')
         self.assert_preserved()
 
-    def test_optional_missing_invalid_future_or_too_old_cannot_be_waived(self):
+    def test_invalid_or_nonmatching_history_cannot_be_waived(self):
         for update in ({'value':None},{'observation_date':'2026-10-17'},
                        {'observation_date':'2026-09-01'},{'data_state':'ERROR'}):
             with self.subTest(update=update):
@@ -108,6 +108,84 @@ class AutomaticFullTests(unittest.TestCase):
         inputs['signals']['built_at_utc']='new execution'
         inputs['source_hashes']={'changed':'execution metadata'}
         self.assertEqual(a,compose(inputs,prior))
+
+    def set_dated_series(self, key, observed):
+        from datetime import date, timedelta
+        row=self.market['series'][key]
+        row.update(observation_date=observed,data_state='STALE')
+        daily.write_json(self.root/daily.INPUTS[0],self.market)
+        path=self.root/'data/gclri/history.json'
+        hist=daily.read_json(path)
+        hist['series'][key]=[
+            {'date':(date.fromisoformat(observed)-timedelta(days=1)).isoformat(),'value':row['value']-1},
+            {'date':observed,'value':row['value']}]
+        daily.write_json(path,hist)
+
+    def test_dated_rates_are_published_with_value_date_and_prior_change(self):
+        self.set_dated_series('DGS10','2026-09-01')
+        result=daily.run(self.root,NOW,lambda _:None,auto_report=True)
+        self.assertEqual(result['status'],'PUBLISHED',result)
+        d=daily.read_json(self.root/'intelligence/data/daily/2026-10-16.json')
+        context=d['coverage']['dated_context'][0]
+        self.assertEqual(context['series_id'],'DGS10')
+        self.assertEqual(context['asof_label'],'2026-09-01 관측값 기준')
+        self.assertAlmostEqual(context['prior_change']['change'],1)
+        self.assertTrue(all('DGS10' not in r['series_ids'] for r in d['decision_board']))
+        body=(self.root/'intelligence/reports/2026-10-16.html').read_text()
+        self.assertIn('2026-09-01 관측값 기준',body)
+        self.assertIn('직전 2026-08-31 관측 대비 +100.00bp',body)
+
+    def test_all_delayed_is_a_dated_report_not_a_market_call(self):
+        for key in self.market['series']: self.set_dated_series(key,'2026-09-01')
+        result=daily.run(self.root,NOW,lambda _:None,auto_report=True)
+        self.assertEqual(result['status'],'PUBLISHED',result)
+        d=daily.read_json(self.root/'intelligence/data/daily/2026-10-16.json')
+        self.assertEqual(d['decision_board'],[])
+        self.assertEqual(d['top_rise_matches'],[])
+        self.assertIn('오늘의 신호 판단은 보류',d['top_change'])
+        self.assertEqual(len(d['coverage']['dated_context']),len(self.market['series']))
+
+    def test_dated_context_cannot_hide_collection_failure(self):
+        self.set_dated_series('DGS10','2026-09-01')
+        self.market['status']='PARTIAL'
+        self.market['errors']=[{'series_id':'DGS10','error':'network failed'}]
+        daily.write_json(self.root/daily.INPUTS[0],self.market)
+        result=daily.run(self.root,NOW,lambda _:None,auto_report=True)
+        self.assertEqual(result['status'],'BLOCKED')
+        self.assert_preserved()
+
+    def test_old_collection_is_not_a_successful_latest_fetch(self):
+        self.set_dated_series('DGS10','2026-09-01')
+        self.market['built_at_utc']='2026-09-01T00:00:00+00:00'
+        daily.write_json(self.root/daily.INPUTS[0],self.market)
+        result=daily.run(self.root,NOW,lambda _:None,auto_report=True)
+        self.assertEqual(result['status'],'BLOCKED')
+        self.assertIn('MARKET_BUILD_NOT_CURRENT',result['blockers'])
+        self.assert_preserved()
+
+    def test_close_label_is_only_used_for_verified_close_series(self):
+        d,_,_=compose(self.inputs(),daily.read_json(self.root/'intelligence/data/latest.json'))
+        for r in d['observations']:
+            self.assertIn('종가 기준' if r['series_id']=='VIXCLS' else '관측값 기준',r['asof_label'])
+
+    def test_mislabeled_dated_context_and_false_same_day_signal_rejected(self):
+        self.set_dated_series('DTWEXBGS','2026-09-01')
+        d,_,_=compose(self.inputs(),daily.read_json(self.root/'intelligence/data/latest.json'))
+        self.assertEqual(validate(d),[])
+        from copy import deepcopy
+        for mutation in ('date','value','use','change','decision'):
+            copy=deepcopy(d); c=copy['coverage']['dated_context'][0]
+            if mutation=='date': c['observation_date']='2026-10-16'
+            elif mutation=='value': c['value']+=1
+            elif mutation=='use': c['use']='FRESH_RESEARCH'
+            elif mutation=='change': c['prior_change']['change']=999
+            else: copy['decision_board'][0]['series_ids'].append('DTWEXBGS')
+            with self.subTest(mutation=mutation): self.assertTrue(validate(copy))
+
+    def test_historical_version_11_keeps_its_original_contract(self):
+        self.set_dated_series('DGS10','2026-09-01')
+        self.assertTrue(coverage(self.inputs(),version='1.1')[0])
+        self.assertEqual(coverage(self.inputs(),version='1.2')[0],[])
 
 
 if __name__=='__main__': unittest.main()

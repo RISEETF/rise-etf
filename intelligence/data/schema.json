@@ -61,6 +61,15 @@
       "unassessed_fields": "UNRESOLVED with assessment_gaps",
       "coverage": "PARTIAL with explicit exclusions, or CURRENT_INPUTS",
       "authority": "scripts/validate_intelligence_snapshot.py; daily package also regenerated from hashed input for evidence validation"
+    },
+    "1.2": {
+      "mode": "DATED_OBSERVATIONS_V1",
+      "inherits": "1.1 unresolved-confidence and no-promotion constraints",
+      "coverage": "DATED_INPUTS or CURRENT_INPUTS; explicit dated_context with value, observation date, label, age and optional prior-observation delta",
+      "latest_signal_use": "Dated context cannot be used in current decision board; freshness not relabeled",
+      "publication": "Successful recent collection and exact fetched-history tail match required for stale contextual observations; missing/invalid/future/error data still blocks",
+      "close_label": "VIXCLS only (FRED metadata: Daily, Close). Other GCLRI series labeled observation values.",
+      "authority": "scripts/validate_intelligence_snapshot.py and input-bound regeneration in run_intelligence_daily.py"
     }
   }
 }

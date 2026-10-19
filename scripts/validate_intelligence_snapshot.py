@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import argparse, json
+import argparse, json, math
 from pathlib import Path
 from datetime import date, datetime
 
@@ -60,10 +60,64 @@ def validate_summary(d):
             if key=='framework_updates' and row.get('status') not in FRAMEWORK|{'RESEARCH_REQUIRED'}: errors.append(f'{key}[{i}].status invalid')
     return errors
 
+def validate_dated_coverage(d):
+    errors=[]
+    coverage=d.get('coverage',{})
+    if (not isinstance(coverage,dict) or coverage.get('policy')!='DATED_OBSERVATIONS_V1' or
+        coverage.get('state') not in {'DATED_INPUTS','CURRENT_INPUTS'} or coverage.get('blockers')!=[] or
+        coverage.get('excluded')!=[] or not isinstance(coverage.get('dated_context'),list)):
+        return ['invalid dated-data coverage'],set()
+    rows=d.get('observations',[])
+    if not isinstance(rows,list): return ['invalid observation list'],set()
+    observed={}
+    for row in rows:
+        if not isinstance(row,dict) or not isinstance(row.get('series_id'),str):
+            errors.append('invalid dated observation'); continue
+        key=row['series_id']
+        if key in observed: errors.append('duplicate observation')
+        observed[key]=row
+        try:
+            ds=date.fromisoformat(row['observation_date'])
+            if ds>date.fromisoformat(d['asof_date']): raise ValueError()
+            value=row['value']
+            if isinstance(value,bool) or not isinstance(value,(int,float)) or not math.isfinite(value): raise ValueError()
+            label=f"{row['observation_date']} {'종가' if key=='VIXCLS' else '관측값'} 기준"
+            if row.get('asof_label')!=label: raise ValueError()
+            if row.get('fresh_for_report') not in (True,False) or type(row.get('fresh_for_report')) is not bool: raise ValueError()
+            if row.get('use')!=('FRESH_RESEARCH' if row['fresh_for_report'] else 'DATED_CONTEXT_ONLY'): raise ValueError()
+        except (KeyError,TypeError,ValueError): errors.append('invalid dated observation: '+key)
+    contextual=set()
+    for row in coverage['dated_context']:
+        if not isinstance(row,dict) or row.get('series_id') not in observed:
+            errors.append('unknown context observation'); continue
+        key=row['series_id']; original=observed[key]
+        if key in contextual: errors.append('duplicate dated context')
+        contextual.add(key)
+        if (original.get('fresh_for_report') is not False or row.get('use')!='DATED_CONTEXT_ONLY' or
+            not row.get('reason') or any(row.get(k)!=original.get(k) for k in ('value','unit','observation_date','asof_label'))):
+            errors.append('context differs from observation')
+        try:
+            age=(date.fromisoformat(d['asof_date'])-date.fromisoformat(row['observation_date'])).days
+            if type(row.get('age_calendar_days')) is not int or row['age_calendar_days']!=age or age<0: raise ValueError()
+            previous=row.get('prior_change')
+            if previous is not None:
+                if not isinstance(previous,dict) or previous.get('unit')!=row['unit']: raise ValueError()
+                if date.fromisoformat(previous['prior_observation_date'])>=date.fromisoformat(row['observation_date']): raise ValueError()
+                for value in (previous['prior_value'],previous['change']):
+                    if isinstance(value,bool) or not isinstance(value,(int,float)) or not math.isfinite(value): raise ValueError()
+                if not math.isclose(row['value']-previous['prior_value'],previous['change'],rel_tol=1e-12,abs_tol=1e-12): raise ValueError()
+        except (KeyError,TypeError,ValueError): errors.append('invalid dated context change/age')
+    if contextual!={k for k,r in observed.items() if r.get('fresh_for_report') is False}:
+        errors.append('dated observations must be explicitly covered')
+    if bool(contextual)!=(coverage['state']=='DATED_INPUTS'): errors.append('dated coverage label mismatch')
+    return errors,contextual
+
+
 def validate_bounded(d):
     # 1.0 remains unchanged. 1.1 explicitly represents unassessed judgments.
     errors=[]
-    if d.get('snapshot_type') != 'FULL' or d.get('report_mode') != 'BOUNDED_RESEARCH_V1':
+    dated = d.get('schema_version') == '1.2'
+    if d.get('snapshot_type') != 'FULL' or d.get('report_mode') != ('DATED_OBSERVATIONS_V1' if dated else 'BOUNDED_RESEARCH_V1'):
         errors.append('1.1 requires bounded FULL research report')
     if d.get('regime_confidence') is not None or not d.get('regime_confidence_reason'):
         errors.append('bounded confidence must be null with reason')
@@ -83,19 +137,23 @@ def validate_bounded(d):
         gate.get('prior_state') != d.get('current_regime') or gate.get('today_state') != d.get('current_regime') or
         d.get('regime_change_status') not in {'NONE','WATCH'}):
         errors.append('bounded regime transition prohibited')
-    coverage=d.get('coverage',{})
-    if (not isinstance(coverage,dict) or coverage.get('policy') != 'BOUNDED_RESEARCH_V1' or
-        coverage.get('state') not in {'PARTIAL','CURRENT_INPUTS'} or coverage.get('blockers') != [] or
-        not isinstance(coverage.get('excluded'),list)):
-        errors.append('invalid report coverage')
-        coverage={'excluded':[]}
-    excluded=set()
-    for row in coverage.get('excluded',[]):
-        if not isinstance(row,dict) or row.get('series_id') != 'DTWEXBGS' or not row.get('reason'):
-            errors.append('invalid coverage exclusion')
-        else: excluded.add(row['series_id'])
-    if coverage.get('state') in {'PARTIAL','CURRENT_INPUTS'} and bool(excluded)!=(coverage['state']=='PARTIAL'):
-        errors.append('coverage label mismatch')
+    if dated:
+        dated_errors, excluded = validate_dated_coverage(d)
+        errors.extend(dated_errors)
+    else:
+        coverage=d.get('coverage',{})
+        if (not isinstance(coverage,dict) or coverage.get('policy') != 'BOUNDED_RESEARCH_V1' or
+            coverage.get('state') not in {'PARTIAL','CURRENT_INPUTS'} or coverage.get('blockers') != [] or
+            not isinstance(coverage.get('excluded'),list)):
+            errors.append('invalid report coverage')
+            coverage={'excluded':[]}
+        excluded=set()
+        for row in coverage.get('excluded',[]):
+            if not isinstance(row,dict) or row.get('series_id') != 'DTWEXBGS' or not row.get('reason'):
+                errors.append('invalid coverage exclusion')
+            else: excluded.add(row['series_id'])
+        if coverage.get('state') in {'PARTIAL','CURRENT_INPUTS'} and bool(excluded)!=(coverage['state']=='PARTIAL'):
+            errors.append('coverage label mismatch')
     observations=d.get('observations')
     if not isinstance(observations,list) or not observations:
         errors.append('bounded report requires observations')
@@ -104,7 +162,7 @@ def validate_bounded(d):
             if not isinstance(row,dict) or row.get('series_id') in excluded and row.get('fresh_for_report') is not False:
                 errors.append('excluded observation cannot be fresh')
     decisions=d.get('decision_board')
-    if not isinstance(decisions,list) or not decisions:
+    if not isinstance(decisions,list) or (not dated and not decisions):
         errors.append('bounded report requires decision board')
     else:
         for row in decisions:
@@ -123,8 +181,8 @@ def validate(d):
     errors=[]
     if not isinstance(d,dict): return ['snapshot must be object']
     version = d.get('schema_version', '1.0')
-    if version not in {'1.0', '1.1'}: errors.append('unsupported schema_version')
-    if version == '1.1': errors.extend(validate_bounded(d))
+    if version not in {'1.0', '1.1', '1.2'}: errors.append('unsupported schema_version')
+    if version in {'1.1', '1.2'}: errors.extend(validate_bounded(d))
     if d.get('snapshot_type') == 'SUMMARY_ONLY':
         return errors+validate_summary(d)
     if d.get('snapshot_type') not in (None,'FULL'): errors.append('unknown snapshot_type')
@@ -133,9 +191,9 @@ def validate(d):
     try: date.fromisoformat(str(d.get("asof_date","")))
     except Exception: errors.append("asof_date must be YYYY-MM-DD")
     c=d.get("regime_confidence")
-    if version != '1.1' and (not isinstance(c,(int,float)) or isinstance(c,bool) or not 0 <= c <= 100): errors.append("regime_confidence must be numeric 0..100")
+    if version not in {'1.1', '1.2'} and (not isinstance(c,(int,float)) or isinstance(c,bool) or not 0 <= c <= 100): errors.append("regime_confidence must be numeric 0..100")
     if d.get("regime_change_status") not in REGIME_CHANGE: errors.append("regime_change_status invalid")
-    if not isinstance(d.get("top_rise_matches"),list) or (version != "1.1" and not d.get("top_rise_matches")): errors.append("top_rise_matches must be non-empty list")
+    if not isinstance(d.get("top_rise_matches"),list) or (version not in {"1.1", "1.2"} and not d.get("top_rise_matches")): errors.append("top_rise_matches must be non-empty list")
     if not isinstance(d.get("product_candidates"),list): errors.append("product_candidates must be list")
     if not isinstance(d.get("framework_updates"),list): errors.append("framework_updates must be list")
     else:
