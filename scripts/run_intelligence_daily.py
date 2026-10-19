@@ -70,6 +70,7 @@ def prepare_input(root, now):
             'episodes': episodes,
             'regime_gate': gate,
             'series_registry': registry,
+            'market_history': read_json(root / 'data/gclri/history.json'),
             'rise_inventory': read_json(root / 'data/quality/krx_rise_inventory.json'),
             'validation': read_json(root / 'data/validation/v1_status.json'),
             'note': 'Research inputs only. No new regime, confidence, ETF recommendation or FULL report is inferred.'}
@@ -81,10 +82,10 @@ def check_package(package, inputs, root):
         return errors + ['FULL_INPUT_PACKAGE_MISSING']
     snapshot = read_json(package / 'snapshot.json')
     evidence = read_json(package / 'evidence.json')
-    if snapshot.get('schema_version') == '1.1':
+    if snapshot.get('schema_version') in {'1.1', '1.2'}:
         from build_intelligence_full import coverage, compose
-        errors = coverage(inputs)[0]
-        expected, narrative, refs = compose(inputs, read_json(root / 'intelligence/data/latest.json'))
+        errors = coverage(inputs, snapshot['schema_version'])[0]
+        expected, narrative, refs = compose(inputs, read_json(root / 'intelligence/data/latest.json'), snapshot['schema_version'])
         if snapshot != expected or (package / 'report.txt').read_text(encoding='utf-8') != narrative:
             errors.append('AUTOMATIC_REPORT_EVIDENCE_MISMATCH')
         if evidence.get('external_evidence') != refs:
@@ -162,7 +163,7 @@ def run(root, now=None, engine_runner=None, publish_prepared=False, auto_report=
         if auto_report and not publish_prepared and not package.exists():
             from build_intelligence_full import coverage, generate
             hard_blockers, exclusions = coverage(inputs)
-            receipt['coverage_exclusions'] = exclusions
+            receipt['dated_context'] = exclusions
             if not hard_blockers:
                 receipt['stages']['full_report'] = 'RUNNING'
                 package = generate(root, inputs)

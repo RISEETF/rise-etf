@@ -9,8 +9,9 @@ from build_intelligence_research import build as research, finite
 from update_intelligence_portal import read_json, write_json
 
 POLICY = 'BOUNDED_RESEARCH_V1'
+DATED_POLICY = 'DATED_OBSERVATIONS_V1'
 # This is a publication coverage rule, not a modification of source freshness.
-# Only a dated, finite dollar observation may be excluded; no missing/invalid data waiver.
+# Legacy 1.1 excluded only the dollar. 1.2 displays all valid fetched observations with their dates.
 OPTIONAL_CONTEXT = {'DTWEXBGS'}
 UNASSESSED = ('macro_absorption_level', 'macro_absorption_headroom',
               'corporate_absorption_level', 'corporate_headroom', 'fiscal_stress',
@@ -18,7 +19,43 @@ UNASSESSED = ('macro_absorption_level', 'macro_absorption_headroom',
               'funding_liquidity', 'energy_stress', 'energy_reliability', 'energy_adaptation', 'flow_state')
 
 
-def coverage(inputs):
+def valid_dated_value(row, asof):
+    try:
+        observed = date.fromisoformat(row['observation_date'])
+        return (observed <= date.fromisoformat(asof) and finite(row.get('value')) and
+                row.get('data_state') in {'CURRENT', 'STALE'})
+    except (KeyError, TypeError, ValueError):
+        return False
+
+
+def basis(series_id):
+    # FRED VIXCLS metadata: Daily, Close. Rates, spot oil and macro series are observations.
+    return '종가' if series_id == 'VIXCLS' else '관측값'
+
+
+def dated_context(inputs, rows):
+    result=[]
+    for item in rows:
+        key=item['series_id']; row=inputs['market']['series'][key]
+        history=inputs['market_history']['series'][key]
+        previous=history[-2] if len(history)>1 else None
+        change=None
+        if (previous and finite(previous.get('value')) and
+                previous.get('date','') < row['observation_date']):
+            try:
+                date.fromisoformat(previous['date'])
+                change={'prior_observation_date': previous['date'], 'prior_value': previous['value'],
+                        'change': row['value']-previous['value'], 'unit': row['unit']}
+            except ValueError:
+                pass
+        result.append({**item, 'value': row['value'], 'unit': row['unit'],
+                       'asof_label': f"{row['observation_date']} {basis(key)} 기준",
+                       'age_calendar_days': (date.fromisoformat(inputs['asof_date'])-date.fromisoformat(row['observation_date'])).days,
+                       'use': 'DATED_CONTEXT_ONLY', 'prior_change': change})
+    return result
+
+
+def coverage(inputs, version='1.2'):
     blockers, excluded = [], []
     for error in inputs['publication_blockers']:
         key = error.partition(':')[2]
@@ -30,16 +67,26 @@ def coverage(inputs):
                          row.get('data_state') in {'CURRENT', 'STALE'})
         except (KeyError, ValueError, TypeError):
             permitted = False
+        if version == '1.2':
+            history = inputs.get('market_history', {}).get('series', {}).get(key, [])
+            last = history[-1] if history else {}
+            permitted = (error == 'STALE_OR_UNAVAILABLE:' + key and
+                         key in inputs['series_registry'] and
+                         inputs['market'].get('status') == 'SUCCESS' and not inputs['market'].get('errors') and
+                         valid_dated_value(row, inputs['asof_date']) and
+                         last.get('date') == row.get('observation_date') and
+                         last.get('value') == row.get('value'))
         if permitted:
             excluded.append({'series_id': key, 'observation_date': row['observation_date'],
-                             'reason': '관측 지연: 최신 달러 판단 및 교차확인에서 제외'})
+                             'reason': ('관측 지연: 최신 달러 판단 및 교차확인에서 제외' if version == '1.1' else
+                                        '기준일 관측 수준·과거 변화 설명에 사용; 오늘의 신호·동시점 교차확인에는 미사용')})
         else:
             blockers.append(error)
     return blockers, excluded
 
 
-def compose(inputs, prior):
-    blockers, excluded = coverage(inputs)
+def compose(inputs, prior, version='1.2'):
+    blockers, excluded = coverage(inputs, version)
     scoped = deepcopy(inputs)
     scoped['publication_blockers'] = blockers
     draft = research(scoped)
@@ -82,7 +129,7 @@ def compose(inputs, prior):
     } for r in draft['rise_research_candidates']]
     reference = prior.get('regime_reference_date', prior['asof_date'])
     snapshot = {
-        'schema_version': '1.1', 'snapshot_type': 'FULL', 'report_mode': POLICY,
+        'schema_version': version, 'snapshot_type': 'FULL', 'report_mode': POLICY if version == '1.1' else DATED_POLICY,
         'asof_date': inputs['asof_date'], 'current_regime': prior['current_regime'],
         'regime_reference_date': reference, 'regime_assessment': 'CARRIED_FORWARD_NOT_RECONFIRMED',
         'regime_confidence': None, 'regime_confidence_reason': '승인된 최신 확률 산출 모형 없음. 과거 점수를 이월하지 않음.',
@@ -103,10 +150,23 @@ def compose(inputs, prior):
         'strongest_counterevidence': counter,
         'full_report_path': f"reports/{inputs['asof_date']}.html", 'report_status': 'PUBLISHED',
     }
+    if version == '1.2':
+        contexts = dated_context(inputs, excluded)
+        snapshot['coverage'] = {'policy': DATED_POLICY, 'state': 'DATED_INPUTS' if contexts else 'CURRENT_INPUTS',
+                                'excluded': [], 'dated_context': contexts, 'blockers': blockers}
+        snapshot['top_risk'] = '자료별 기준일이 다르므로 당일 변화·동시점 교차확인과 구분. 레짐·투자자 수급 판단은 별도 검증 필요.'
+        if not active:
+            snapshot['top_change'] = ('신선도 기준을 충족한 관측의 WATCH/ACTIVE_CANDIDATE 없음. 기준일 자료와 구분하며 시장 불변을 뜻하지 않음.'
+                                      if decisions else '자료별 기준일 관측 수준을 보고합니다. 오늘의 신호 판단은 보류합니다.')
+        snapshot['no_action'][0] = '기준일이 지난 자료를 오늘의 변화나 동시점 교차확인으로 해석하지 않음'
+        snapshot['key_triggers'][0] = '원천별 새 관측을 확인하고 기준일·변화량 갱신'
+        for row in snapshot['observations']:
+            row['asof_label'] = f"{row['observation_date']} {basis(row['series_id'])} 기준"
+            row['use'] = 'FRESH_RESEARCH' if row['fresh_for_report'] else 'DATED_CONTEXT_ONLY'
     text = render(snapshot)
     references = [{'url': r['source_url'], 'observation_date': r['observation_date'],
                    'claim': f"{r['series_id']} 관측값 {r['value']} {r['unit']}"}
-                  for r in snapshot['observations'] if r['fresh_for_report'] and r['series_id'] not in excluded_ids]
+                  for r in snapshot['observations'] if (r['fresh_for_report'] and r['series_id'] not in excluded_ids) or version == '1.2']
     if matches:
         references.append({'url': 'https://data-dbg.krx.co.kr/svc/apis/etp/etf_bydd_trd',
                            'observation_date': inputs['rise_inventory']['observed_on'],
@@ -131,6 +191,23 @@ def render(s):
              '10. 원천 관측 감사표\n' + '\n'.join(
                  f"{r['series_id']} | {r['observation_date']} | {r['value']} {r['unit']} | "
                  f"{'신선도 통과' if r['fresh_for_report'] else '최신 판단 제외'} | {r['source_url']}" for r in s['observations'])]
+    if s['schema_version'] == '1.2':
+        context_lines=[]
+        for row in s['coverage']['dated_context']:
+            line=f"{row['series_id']} — {row['asof_label']}: {row['value']} {row['unit']} (보고일 대비 {row['age_calendar_days']}일 전)"
+            previous=row['prior_change']
+            if previous:
+                delta=(f"{previous['change']*100:+.2f}bp" if row['unit']=='Percent' else
+                       f"{previous['change']:+.6g} {row['unit']}")
+                line+=f" / 직전 {previous['prior_observation_date']} 관측 대비 {delta}"
+            context_lines.append(line+'\n'+row['reason'])
+        parts[1]='1. 기준일 자료와 현재 확인 가능한 변화\n'+s['top_change']+'\n'+s['top_risk']
+        parts[2]='2. 자료 기준일\n지연 자료도 표시된 기준일의 수준과 과거 변화 설명에 활용합니다. 오늘의 변화로 간주하지 않습니다.\n'+('\n\n'.join(context_lines) or '등록 자료의 신선도 기준 충족. 각 관측일은 아래 감사표에 명시합니다.')
+        if not s['decision_board']:
+            parts[4]='4. 최신 신호 판단\n신선도와 원천 정합성을 함께 충족하는 판단 자료 없음. 기준일 관측 수준은 위에 제시합니다.'
+        parts[-1]='10. 원천 관측 감사표\n'+'\n'.join(
+            f"{r['series_id']} | {r['asof_label']} | {r['value']} {r['unit']} | "
+            f"{'신선도 기준 충족' if r['fresh_for_report'] else '기준일 자료로 활용'} | {r['source_url']}" for r in s['observations'])
     return '\n\n'.join(parts) + '\n'
 
 

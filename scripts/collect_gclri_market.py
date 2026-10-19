@@ -45,6 +45,9 @@ def main():
             prev=rows[-2] if len(rows)>1 else None
             age=(today-date.fromisoformat(last["date"])).days
             latest[sid]={**meta,
+                "retrieved_at_utc":datetime.now(timezone.utc).isoformat(),
+                "collection_status":"SUCCESS",
+                "source_url":f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={sid}",
                 "observation_date":last["date"],"value":last["value"],
                 "prior_observation_date":prev["date"] if prev else None,
                 "prior_value":prev["value"] if prev else None,

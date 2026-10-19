@@ -43,6 +43,7 @@ root=Path.cwd()
 print(json.dumps(compose(prepare_input(root,datetime.now(timezone.utc)),read_json(root/'intelligence/data/latest.json'))[0]))`],{cwd:root,encoding:'utf8'}));
     await page.evaluate(d=>render(d),automaticReport);
     assert.match(await page.locator('#regimeConf').textContent(),/신뢰도 미산정/);
+    assert.match(await page.locator('#date').textContent(),/자료별 기준일 명시/);
     assert.match(await page.locator('#regime').textContent(),/오늘 재확정 아님/);
     assert.match(await page.locator('#macroAbs').textContent(),/미산정/);
     assert.equal((await page.locator('#regimeConf').textContent()).includes('null%'),false);

@@ -10,10 +10,10 @@ def render_report(snapshot, narrative_text):
     d=dict(snapshot)
     d.setdefault('regime_confidence','미제공')
     d.setdefault('regime_change_candidate','미제공')
-    if d.get('schema_version') == '1.1':
+    if d.get('schema_version') in {'1.1', '1.2'}:
         d['regime_confidence'] = '미산정 · ' + d['regime_confidence_reason']
         d['current_regime'] += ' (' + d['regime_reference_date'] + ' 기록 유지 · 오늘 재확정 아님)'
-        narrative_text = '자동 연구 보고서 · 분석 범위: ' + d['coverage']['state'] + '\n미확인 종합평가와 상품 노출은 보류합니다.\n\n' + narrative_text
+        narrative_text = '자동 연구 보고서 · ' + ('자료별 기준일 명시' if d.get('schema_version') == '1.2' else '분석 범위: ' + d['coverage']['state']) + '\n미확인 종합평가와 상품 노출은 보류합니다.\n\n' + narrative_text
     body = "".join("<p>" + html.escape(x) + "</p>" for x in narrative_text.split("\n\n") if x.strip())
     return f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>RISE Daily Intelligence — {html.escape(d['asof_date'])}</title><style>body{{font-family:system-ui,'Noto Sans KR';max-width:980px;margin:40px auto;padding:0 20px;background:#0b1020;color:#eef3ff;line-height:1.7}}a{{color:#9fc0ff}}p{{white-space:pre-line;overflow-wrap:anywhere}}.meta{{background:#121a2d;border:1px solid #253451;padding:16px;border-radius:14px}}</style></head><body><p><a href="../index.html">← RISE Intelligence Portal</a></p><h1>RISE Daily Intelligence — {html.escape(d['asof_date'])}</h1><div class="meta"><b>Current Regime:</b> {html.escape(d['current_regime'])}<br><b>Confidence:</b> {html.escape(str(d['regime_confidence']))}{'%' if isinstance(d['regime_confidence'], (int,float)) else ''}<br><b>Regime Change:</b> {html.escape(d['regime_change_status'])} · {html.escape(d['regime_change_candidate'])}<br><b>Top Change:</b> {html.escape(d['top_change'])}</div><hr>{body}</body></html>'''
 
