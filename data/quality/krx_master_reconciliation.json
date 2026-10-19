@@ -1461,10 +1461,10 @@
   "note": "Presence is an exchange observation. Absence is not delisting. Name-only codes require identity review.",
   "lifecycle_notices": {
     "status": "SUCCESS",
-    "attempted_at": "2026-10-19T00:53:35.256956+00:00",
-    "last_success_at": "2026-10-19T00:53:35.256956+00:00",
-    "window_start": "2026-09-19",
-    "window_end": "2026-10-19",
+    "attempted_at": "2026-10-19T16:34:07.340392+00:00",
+    "last_success_at": "2026-10-19T16:34:07.340392+00:00",
+    "window_start": "2026-09-20",
+    "window_end": "2026-10-20",
     "scope": "RISE_TITLE_SEARCH_ROLLING_30_DAYS_NOT_FULL_LIFECYCLE",
     "current_legal_status": "NOT_AUTOMATICALLY_ASSIGNED",
     "search_sources": [
@@ -1475,14 +1475,14 @@
           "forward": "disclosurebystocktype_etf_sub",
           "currentPageSize": "100",
           "pageIndex": "1",
-          "fromDate": "2026-09-19",
-          "toDate": "2026-10-19",
+          "fromDate": "2026-09-20",
+          "toDate": "2026-10-20",
           "etfIsuSrtNm": "RISE",
           "reportNm": "신규상장",
           "orderMode": "",
           "orderStat": ""
         },
-        "sha256": "3c765190aedecdc2a7731127045f4ebefc40e5b7c706894cb3076b0130b578d7"
+        "sha256": "1eba0f8b9dc0134ebbcba3ace4088e956babcdd5e74dee44650bd5faf8e1fabb"
       },
       {
         "url": "https://kind.krx.co.kr/disclosure/disclosurebystocktype.do",
@@ -1491,8 +1491,8 @@
           "forward": "disclosurebystocktype_etf_sub",
           "currentPageSize": "100",
           "pageIndex": "1",
-          "fromDate": "2026-09-19",
-          "toDate": "2026-10-19",
+          "fromDate": "2026-09-20",
+          "toDate": "2026-10-20",
           "etfIsuSrtNm": "RISE",
           "reportNm": "상장폐지",
           "orderMode": "",
@@ -1510,7 +1510,7 @@
         "title": "신규상장(KB RISE 반도체소부장액티브증권상장지수투자신탁(주식), 상장일 2026.10.20)",
         "publisher": "유가증권시장본부",
         "kind": "LISTING_NOTICE",
-        "search_sha256": "3c765190aedecdc2a7731127045f4ebefc40e5b7c706894cb3076b0130b578d7",
+        "search_sha256": "1eba0f8b9dc0134ebbcba3ace4088e956babcdd5e74dee44650bd5faf8e1fabb",
         "event_id": "20261016000464:0254H",
         "code": "0254H0",
         "effective_date": "2026-10-20",
@@ -1534,7 +1534,7 @@
           }
         ],
         "first_seen_at": "2026-10-16T14:04:52.760393+00:00",
-        "last_checked_at": "2026-10-19T00:53:35.256956+00:00",
+        "last_checked_at": "2026-10-19T16:34:07.340392+00:00",
         "versions": [],
         "in_latest_search": true
       },
