@@ -1,27 +1,27 @@
 {
   "schema_version": "1.0",
   "asof_date": "2026-10-20",
-  "prepared_at_utc": "2026-10-19T23:56:32.448621+00:00",
+  "prepared_at_utc": "2026-10-20T00:57:37.279561+00:00",
   "publication_blockers": [],
   "source_hashes": {
-    "data/gclri/latest.json": "d2a995f76d9be9940a7d695044a62d3ff079a1d1c8298eb511486df9368c05da",
+    "data/gclri/latest.json": "3d02a1e8946134020f4928ef4fb5f5e16051d0c7e1f888580ebf13112b76307c",
     "data/signals/signal_registry.json": "3705fdc6ab7b3a1cf4091845b35bd9d56df27cc404d5e4de84ad345893494852",
     "data/episodes/episode_registry.json": "27cde9ae423fd744d8fdd8001421ca629f28451478b6eab300fc0dd6d9292008",
     "data/regime/channel_registry.json": "62406bcede5624d02c6a4886c49dfa395932159f0dc7f3e32158bc4e9023bdd0",
     "data/gclri/series_registry.json": "f5f40592694346c87561a7a0f6dd96efe62b7e8bc764bcc1e7b2e16af36113aa",
-    "data/signals/latest.json": "41cfe945dd707955f18b32d085fdf6847d537242862d4372cd9476897d1ec1b9",
-    "data/episodes/latest.json": "11e120540098ef38cd50369d31c471fbf0ff4a7a0c6dadd77effc3a9838e9965",
-    "data/regime/gate_latest.json": "8de3077b7df97ce51c2df77a0c7786170738d2225aca15afa650dfdf6002f0ee",
-    "data/validation/v1_status.json": "96a306e4ce9317e2155b21ac5c70b3279300c302ba8469279d71b172280bd755",
+    "data/signals/latest.json": "387e9b951967681b9246370cdbc805dd9ce14e446acfa38d92963af9259d5c5d",
+    "data/episodes/latest.json": "645e2bd2c0516a4895cb7aafe4421ab6e83699c74f05ac4dcb5df5acb9798a2b",
+    "data/regime/gate_latest.json": "0d70f0fcf0b98f6295c27d7dc93b94855b66908b76e2c99dd0a8488e0bf7cc56",
+    "data/validation/v1_status.json": "2b8dc4212e370f2db5ae812ceb8f002cf99abab46fa0ef5d783bf2cdfd59bed7",
     "data/quality/krx_rise_inventory.json": "18c4420cd08408168964957d1bd212da72b67ee571ea574cb0b83dc1ab812760",
     "data/gclri/history.json": "7346fcad14a663674c725b4d8461ab57e9bb834861a05f237dedb15a41461984",
-    "data/signals/history.json": "51895428e7a37ea3fbcbbc7a9865879ed2c29de7bea7fbc21b09d5fac8bbbbad",
-    "data/episodes/history.json": "4293d8b112604dc3e9783880fed426e7e2090d4385a49b2f02d634cb55882717",
-    "data/regime/gate_history.json": "dbb246f960754da9c76b733613795ab6d6ca9d61c8b6ae0fba4d2fcc37d592c3"
+    "data/signals/history.json": "4b77d8cf6ab35bca043709fad4374c32274b58ab5cc9c1762a4f2e7e8f2d193a",
+    "data/episodes/history.json": "c13b8b4a32747d0c333a7ab4bfeb210781fb877e19273ec779a8b3b6b8e1c218",
+    "data/regime/gate_history.json": "05cfc636561b5a96ea27b12607fbde1540441901dc2be2df362fc8bc384032ab"
   },
   "market": {
     "schema_version": "0.6",
-    "built_at_utc": "2026-10-19T23:53:09.726264+00:00",
+    "built_at_utc": "2026-10-20T00:57:21.198503+00:00",
     "status": "SUCCESS",
     "series": {
       "DGS10": {
@@ -34,7 +34,7 @@
         "gclri_layer": "Fiscal Capacity / Rates",
         "role": "long_yield",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-10-19T23:53:08.954190+00:00",
+        "retrieved_at_utc": "2026-10-20T00:57:19.770223+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10",
         "observation_date": "2026-10-16",
@@ -42,7 +42,7 @@
         "prior_observation_date": "2026-10-15",
         "prior_value": 5.1,
         "change_1obs": -0.009999999999999787,
-        "age_calendar_days": 3,
+        "age_calendar_days": 4,
         "data_state": "CURRENT"
       },
       "DGS2": {
@@ -55,7 +55,7 @@
         "gclri_layer": "Policy / Rates",
         "role": "front_yield",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-10-19T23:53:09.020633+00:00",
+        "retrieved_at_utc": "2026-10-20T00:57:19.839364+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2",
         "observation_date": "2026-10-16",
@@ -63,7 +63,7 @@
         "prior_observation_date": "2026-10-15",
         "prior_value": 4.77,
         "change_1obs": -0.02999999999999936,
-        "age_calendar_days": 3,
+        "age_calendar_days": 4,
         "data_state": "CURRENT"
       },
       "T10Y2Y": {
@@ -76,7 +76,7 @@
         "gclri_layer": "Cross-Asset / Curve",
         "role": "curve",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-10-19T23:53:09.187630+00:00",
+        "retrieved_at_utc": "2026-10-20T00:57:19.911667+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=T10Y2Y",
         "observation_date": "2026-10-19",
@@ -84,7 +84,7 @@
         "prior_observation_date": "2026-10-16",
         "prior_value": 0.35,
         "change_1obs": 0.030000000000000027,
-        "age_calendar_days": 0,
+        "age_calendar_days": 1,
         "data_state": "CURRENT"
       },
       "SOFR": {
@@ -97,7 +97,7 @@
         "gclri_layer": "Funding Liquidity",
         "role": "secured_funding",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-10-19T23:53:09.249021+00:00",
+        "retrieved_at_utc": "2026-10-20T00:57:19.957822+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=SOFR",
         "observation_date": "2026-10-16",
@@ -105,7 +105,7 @@
         "prior_observation_date": "2026-10-15",
         "prior_value": 3.89,
         "change_1obs": -0.010000000000000231,
-        "age_calendar_days": 3,
+        "age_calendar_days": 4,
         "data_state": "CURRENT"
       },
       "WRESBAL": {
@@ -118,7 +118,7 @@
         "gclri_layer": "Funding Liquidity",
         "role": "bank_reserves",
         "stale_after_days": 10,
-        "retrieved_at_utc": "2026-10-19T23:53:09.296726+00:00",
+        "retrieved_at_utc": "2026-10-20T00:57:20.345856+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WRESBAL",
         "observation_date": "2026-10-14",
@@ -126,7 +126,7 @@
         "prior_observation_date": "2026-10-07",
         "prior_value": 3029659.0,
         "change_1obs": -7519.0,
-        "age_calendar_days": 5,
+        "age_calendar_days": 6,
         "data_state": "CURRENT"
       },
       "BAMLC0A0CM": {
@@ -139,7 +139,7 @@
         "gclri_layer": "Credit Creation & Stress",
         "role": "ig_credit_spread",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-10-19T23:53:09.338421+00:00",
+        "retrieved_at_utc": "2026-10-20T00:57:20.485156+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLC0A0CM",
         "observation_date": "2026-10-16",
@@ -147,7 +147,7 @@
         "prior_observation_date": "2026-10-15",
         "prior_value": 0.84,
         "change_1obs": 0.010000000000000009,
-        "age_calendar_days": 3,
+        "age_calendar_days": 4,
         "data_state": "CURRENT"
       },
       "BAMLH0A0HYM2": {
@@ -160,7 +160,7 @@
         "gclri_layer": "Credit Creation & Stress",
         "role": "hy_credit_spread",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-10-19T23:53:09.377694+00:00",
+        "retrieved_at_utc": "2026-10-20T00:57:20.529244+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2",
         "observation_date": "2026-10-16",
@@ -168,7 +168,7 @@
         "prior_observation_date": "2026-10-15",
         "prior_value": 3.23,
         "change_1obs": 0.08000000000000007,
-        "age_calendar_days": 3,
+        "age_calendar_days": 4,
         "data_state": "CURRENT"
       },
       "DTWEXBGS": {
@@ -181,7 +181,7 @@
         "gclri_layer": "FX / Dollar",
         "role": "dollar",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-10-19T23:53:09.426194+00:00",
+        "retrieved_at_utc": "2026-10-20T00:57:20.580976+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DTWEXBGS",
         "observation_date": "2026-10-16",
@@ -189,7 +189,7 @@
         "prior_observation_date": "2026-10-15",
         "prior_value": 121.5693,
         "change_1obs": -0.16450000000000387,
-        "age_calendar_days": 3,
+        "age_calendar_days": 4,
         "data_state": "CURRENT"
       },
       "DCOILBRENTEU": {
@@ -202,7 +202,7 @@
         "gclri_layer": "Cross-Asset / Energy",
         "role": "brent",
         "stale_after_days": 7,
-        "retrieved_at_utc": "2026-10-19T23:53:09.585388+00:00",
+        "retrieved_at_utc": "2026-10-20T00:57:21.057901+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILBRENTEU",
         "observation_date": "2026-10-14",
@@ -210,7 +210,7 @@
         "prior_observation_date": "2026-10-13",
         "prior_value": 125.78,
         "change_1obs": 0.769999999999996,
-        "age_calendar_days": 5,
+        "age_calendar_days": 6,
         "data_state": "CURRENT"
       },
       "DCOILWTICO": {
@@ -223,7 +223,7 @@
         "gclri_layer": "Cross-Asset / Energy",
         "role": "wti",
         "stale_after_days": 7,
-        "retrieved_at_utc": "2026-10-19T23:53:09.666911+00:00",
+        "retrieved_at_utc": "2026-10-20T00:57:21.131571+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILWTICO",
         "observation_date": "2026-10-14",
@@ -231,7 +231,7 @@
         "prior_observation_date": "2026-10-13",
         "prior_value": 100.86,
         "change_1obs": 1.0499999999999972,
-        "age_calendar_days": 5,
+        "age_calendar_days": 6,
         "data_state": "CURRENT"
       },
       "VIXCLS": {
@@ -244,7 +244,7 @@
         "gclri_layer": "Market Liquidity / Risk",
         "role": "volatility",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-10-19T23:53:09.726248+00:00",
+        "retrieved_at_utc": "2026-10-20T00:57:21.198491+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS",
         "observation_date": "2026-10-16",
@@ -252,7 +252,7 @@
         "prior_observation_date": "2026-10-15",
         "prior_value": 16.46,
         "change_1obs": 3.5299999999999976,
-        "age_calendar_days": 3,
+        "age_calendar_days": 4,
         "data_state": "CURRENT"
       }
     },
@@ -266,8 +266,8 @@
   },
   "signals": {
     "schema_version": "0.7",
-    "built_at_utc": "2026-10-19T23:56:32.483636+00:00",
-    "source_gclri_built_at_utc": "2026-10-19T23:53:09.726264+00:00",
+    "built_at_utc": "2026-10-20T00:57:37.313958+00:00",
+    "source_gclri_built_at_utc": "2026-10-20T00:57:21.198503+00:00",
     "production_eligible": false,
     "regime_change_authorized": false,
     "signals": [
@@ -486,8 +486,8 @@
   },
   "episodes": {
     "schema_version": "0.8",
-    "built_at_utc": "2026-10-19T23:56:32.526450+00:00",
-    "source_signal_built_at_utc": "2026-10-19T23:56:32.483636+00:00",
+    "built_at_utc": "2026-10-20T00:57:37.355885+00:00",
+    "source_signal_built_at_utc": "2026-10-20T00:57:37.313958+00:00",
     "production_eligible": false,
     "regime_change_authorized": false,
     "active_episode_count": 3,
@@ -1133,8 +1133,8 @@
   },
   "regime_gate": {
     "schema_version": "0.9",
-    "built_at_utc": "2026-10-19T23:56:32.557968+00:00",
-    "source_episode_built_at_utc": "2026-10-19T23:56:32.526450+00:00",
+    "built_at_utc": "2026-10-20T00:57:37.385726+00:00",
+    "source_episode_built_at_utc": "2026-10-20T00:57:37.355885+00:00",
     "gate_state": "CHALLENGE",
     "independent_persistent_channel_count": 0,
     "watch_channel_count": 1,
@@ -37486,26 +37486,26 @@
   },
   "validation": {
     "schema_version": "1.0",
-    "built_at_utc": "2026-10-19T23:56:32.588408+00:00",
+    "built_at_utc": "2026-10-20T00:57:37.414791+00:00",
     "validation_state": "INSUFFICIENT_HISTORY",
     "production_eligible": false,
     "framework_promotion_authorized": false,
     "checks": [
       {
         "name": "Signal history depth",
-        "value": 23,
+        "value": 24,
         "required": 60,
         "status": "INSUFFICIENT_HISTORY"
       },
       {
         "name": "Episode history depth",
-        "value": 23,
+        "value": 24,
         "required": 40,
         "status": "INSUFFICIENT_HISTORY"
       },
       {
         "name": "Gate history depth",
-        "value": 23,
+        "value": 24,
         "required": 40,
         "status": "INSUFFICIENT_HISTORY"
       }

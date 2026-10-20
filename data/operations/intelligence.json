@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
-  "started_at_utc": "2026-10-19T23:56:32.448621+00:00",
-  "run_id": "39344617605",
+  "started_at_utc": "2026-10-20T00:57:37.279561+00:00",
+  "run_id": "39350688392",
   "run_attempt": "1",
-  "status": "PUBLISHED",
+  "status": "UNCHANGED",
   "stages": {
     "build_gclri_signals.py": "SUCCESS",
     "build_signal_episodes.py": "SUCCESS",
@@ -16,8 +16,8 @@
   "note": "Checkout execution only. Git push and Pages deployment are separate outcomes.",
   "research_draft": {
     "status": "RESEARCH_DRAFT",
-    "path": "data/intelligence/research/2026-10-20/321ca179f416a3223f597479b67ab081d8889cb47ee83b61abfcd3ef327aa32a",
-    "sha256": "321ca179f416a3223f597479b67ab081d8889cb47ee83b61abfcd3ef327aa32a"
+    "path": "data/intelligence/research/2026-10-20/56353940f0958dc539720b8552308f65032e96f4bc9766ad649c73b8bdf724f8",
+    "sha256": "56353940f0958dc539720b8552308f65032e96f4bc9766ad649c73b8bdf724f8"
   },
   "dated_context": [],
   "generated_package": "data/intelligence/generated/2026-10-20/acffe07763ce7e4c4ee19330a12d42b0dfb751e214e0d117dc4fc30e04acb6d7",
@@ -26,7 +26,7 @@
     "status": "SUCCESS",
     "asof_date": "2026-10-20",
     "archive_count": 15,
-    "content_changed": true
+    "content_changed": false
   },
-  "finished_at_utc": "2026-10-19T23:56:32.689980+00:00"
+  "finished_at_utc": "2026-10-20T00:57:37.515069+00:00"
 }
