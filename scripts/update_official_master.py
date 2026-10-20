@@ -9,6 +9,8 @@ import json
 import re
 from pathlib import Path
 import urllib.request
+import urllib.error
+import time
 from concurrent.futures import ThreadPoolExecutor
 
 from update_daily import ROOT, write_json
@@ -144,24 +146,78 @@ def fetch_text(url, data=None):
         headers["Content-Type"] = "application/x-www-form-urlencoded"
         headers["Referer"] = FINDER_URL
     request = urllib.request.Request(url, data=data, headers=headers)
-    with urllib.request.urlopen(request, timeout=45) as response:
-        return response.read().decode("utf-8")
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(request, timeout=45) as response:
+                return response.read().decode("utf-8")
+        except (urllib.error.URLError, TimeoutError, ConnectionError) as exc:
+            if isinstance(exc, urllib.error.HTTPError) and exc.code not in (408, 429, 500, 502, 503, 504):
+                raise
+            if attempt == 2:
+                raise
+            time.sleep(2 ** attempt)
+
+
+
+class PartialCollectionError(ValueError):
+    """A validated API capture is available, but no dated master can be published."""
+    def __init__(self, listing, cause):
+        super().__init__(f'API captured; Finder verification unavailable: {cause}')
+        self.listing = listing
+
+
+def fetch_api_listing():
+    first = fetch_text(LIST_URL+'?page=1')
+    info = json.loads(first)['page_info']
+    if not 1 <= info['total_page'] <= 100:
+        raise ValueError('Invalid API page count')
+    def capture(number):
+        url = LIST_URL+f'?page={number}'
+        return {'url': url, 'body': first if number == 1 else fetch_text(url)}
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        pages = list(pool.map(capture, range(1, info['total_page']+1)))
+    listing = json.dumps({'format': 'KBAM_ETF_API_V1', 'pages': pages}, ensure_ascii=False)
+    parse_catalog(listing)  # reject incomplete, duplicate or invalid identities
+    return listing, info['total_count']
 
 
 def fetch_official_pages():
-    overview = fetch_text(FINDER_URL)
-    total, effective_date = extract_overview(overview)
-    first=fetch_text(LIST_URL+'?page=1')
-    info=json.loads(first)['page_info']
-    if info['total_count']!=total or not 1<=info['total_page']<=100:
+    # Neither endpoint depends on the other being reachable.
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        overview_future = pool.submit(fetch_text, FINDER_URL)
+        listing_future = pool.submit(fetch_api_listing)
+        listing, api_total = listing_future.result()
+        try:
+            overview = overview_future.result()
+            total, effective_date = extract_overview(overview)
+        except Exception as exc:
+            raise PartialCollectionError(listing, f'{type(exc).__name__}: {exc}') from exc
+    if total != api_total:
         raise ValueError('Finder and API count disagree')
-    def capture(number):
-        url=LIST_URL+f'?page={number}'
-        return {'url':url,'body':first if number==1 else fetch_text(url)}
-    with ThreadPoolExecutor(max_workers=4) as pool:
-        pages=list(pool.map(capture,range(1,info['total_page']+1)))
-    listing=json.dumps({'format':'KBAM_ETF_API_V1','pages':pages},ensure_ascii=False)
     return overview, listing, total, effective_date
+
+
+def persist_partial_capture(listing, retrieved_at):
+    products, pending = parse_catalog(listing)
+    raw = listing.encode('utf-8')
+    digest = hashlib.sha256(raw).hexdigest()
+    path = ROOT / 'data/raw/rise_finder' / f'{digest}.json'
+    if not path.exists():
+        write_json(path, {
+            'source_url': LIST_URL, 'retrieved_at': retrieved_at,
+            'effective_date_from_page': None, 'sha256_uncompressed': digest,
+            'content_encoding': 'gzip+base64',
+            'content': base64.b64encode(gzip.compress(raw, mtime=0)).decode('ascii'),
+        })
+    # Keep this separate from the dated canonical master and its consumers.
+    capture = {'status': 'API_ONLY_UNDATED', 'source_url': LIST_URL,
+               'retrieved_at': retrieved_at, 'effective_date': None,
+               'source_sha256': digest, 'instrument_count': len(products),
+               'products': products, 'pending_products': pending,
+               'note': 'Collection time is not the issuer effective date; dated master unchanged.'}
+    stamp = dt.datetime.fromisoformat(retrieved_at).strftime('%Y%m%dT%H%M%S%fZ')
+    write_json(ROOT / 'data/master/api_captures' / f'{stamp}-{digest}.json', capture)
+    return digest
 
 
 def reconcile_legacy(products, legacy_rows):
@@ -338,6 +394,11 @@ def run():
     try:
         main()
         status["status"] = "SUCCESS"
+    except PartialCollectionError as exc:
+        digest = persist_partial_capture(exc.listing, now.isoformat())
+        status.update(status="PARTIAL", reason=str(exc), api_status="SUCCESS",
+                      overview_status="FAILED", api_source_sha256=digest,
+                      master_updated=False)
     except Exception as exc:
         status.update(status="FAILED", reason=f"{type(exc).__name__}: {exc}")
     write_json(ROOT / "data/master_runs" / f"{now.strftime('%Y%m%dT%H%M%S%fZ')}.json", status)

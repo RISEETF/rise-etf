@@ -17,6 +17,48 @@ spec.loader.exec_module(master)
 
 
 class OfficialMasterTests(unittest.TestCase):
+    def api_fixture(self):
+        return json.dumps({'page_items': [{'fund_cd': 'A1', 'krx_cd': '123456',
+            'name': 'RISE 테스트', 'listing_dt': '2026-10-01'}],
+            'page_info': {'current_page': 1, 'total_page': 1, 'total_count': 1}})
+
+    def test_api_survives_finder_timeout_without_replacing_master(self):
+        def fetch(url):
+            if url == master.FINDER_URL:
+                raise TimeoutError('source timeout')
+            return self.api_fixture()
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d); latest = root/'data/master/latest.json'
+            latest.parent.mkdir(parents=True); latest.write_text('old master')
+            with patch.object(master, 'ROOT', root), patch.object(master, 'fetch_text', side_effect=fetch):
+                self.assertEqual(master.run(), 1)
+            self.assertEqual(latest.read_text(), 'old master')
+            status = json.loads((root/'data/master_collection_status.json').read_text())
+            self.assertEqual(status['status'], 'PARTIAL')
+            capture = json.loads(next((root/'data/master/api_captures').glob('*.json')).read_text())
+            self.assertIsNone(capture['effective_date'])
+            self.assertEqual(capture['instrument_count'], 1)
+
+    def test_independent_collection_still_checks_counts(self):
+        page = '<span class="filtergroup_count_value">2</span><time dateTime="2026-10-20">'
+        with patch.object(master, 'fetch_text', side_effect=lambda url: page if url == master.FINDER_URL else self.api_fixture()):
+            with self.assertRaisesRegex(ValueError, 'count disagree'):
+                master.fetch_official_pages()
+
+    def test_retry_transient_but_not_http_forbidden(self):
+        from unittest.mock import MagicMock
+        response = MagicMock(); response.__enter__.return_value.read.return_value = b'ok'
+        with patch.object(master.urllib.request, 'urlopen', side_effect=[TimeoutError(), response]) as request, patch.object(master.time, 'sleep'):
+            self.assertEqual(master.fetch_text(master.FINDER_URL), 'ok')
+            self.assertEqual(request.call_count, 2)
+        forbidden = master.urllib.error.HTTPError(master.FINDER_URL, 403, 'Forbidden', {}, None)
+        with patch.object(master.urllib.request, 'urlopen', side_effect=forbidden) as request:
+            with self.assertRaises(master.urllib.error.HTTPError): master.fetch_text(master.FINDER_URL)
+            self.assertEqual(request.call_count, 1)
+        with patch.object(master.urllib.request, 'urlopen', side_effect=TimeoutError()) as request, patch.object(master.time, 'sleep'):
+            with self.assertRaises(TimeoutError): master.fetch_text(master.FINDER_URL)
+            self.assertEqual(request.call_count, 3)
+
     def test_failed_collection_preserves_last_good_membership(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d); path=root/'data/master/latest.json';path.parent.mkdir(parents=True)
