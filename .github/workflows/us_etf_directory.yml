@@ -1,0 +1,46 @@
+name: US ETF directory collection
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/us_etf_directory.yml, scripts/collect_us_etf_directory.py]
+  schedule:
+    - cron: '23 2 * * 2-6'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: us-etf-directory
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Parser and preservation tests
+        run: python -m unittest tests.test_us_etf_directory -v
+      - name: Restore last successful history
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          previous=$(gh run list --workflow us_etf_directory.yml --branch main --status success --limit 1 --json databaseId --jq '.[0].databaseId // empty')
+          if [ -n "$previous" ]; then
+            gh run download "$previous" --name us-etf-state --dir var/us_etf_directory
+          fi
+      - name: Collect and validate both directories
+        run: python scripts/collect_us_etf_directory.py
+      - name: Preserve history and failure receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: us-etf-state
+          path: var/us_etf_directory/
+          if-no-files-found: warn
+          retention-days: 90
