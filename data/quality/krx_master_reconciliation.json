@@ -3,10 +3,10 @@
   "status": "KRX_DAILY_IDENTITY_COMPARISON",
   "source_role": "PRIMARY_EXCHANGE_OBSERVATION",
   "source_url": "https://data-dbg.krx.co.kr/svc/apis/etp/etf_bydd_trd",
-  "observed_on": "2026-10-19",
-  "retrieved_at": "2026-10-20T14:24:39.674364+00:00",
-  "raw_sha256": "7535cd1a446d7a44643a2c1fcda81650ac031142e7049f7527f4816e75e05305",
-  "krx_market_count": 1176,
+  "observed_on": "2026-10-20",
+  "retrieved_at": "2026-10-21T01:22:02.822751+00:00",
+  "raw_sha256": "d19245d73098af26d0f02ae77ad387aef539236e1a40fc8c2cd36abce06d1b41",
+  "krx_market_count": 1183,
   "issuer_effective_date": "2026-10-04",
   "issuer_source_sha256": "03b85088a26600243470440c642fdd5f275c2e69468fff99af721ec6034e29c3",
   "issuer_product_count": 144,
@@ -1456,15 +1456,20 @@
       "status": "MATCHED_CODE_NAME"
     }
   ],
-  "krx_rise_without_confirmed_issuer_code": [],
+  "krx_rise_without_confirmed_issuer_code": [
+    {
+      "code": "0254H0",
+      "name": "RISE 반도체소부장액티브"
+    }
+  ],
   "legal_lifecycle_status": "NOTICE_MONITORING_ONLY_CURRENT_STATUS_NOT_ASSIGNED",
   "note": "Presence is an exchange observation. Absence is not delisting. Name-only codes require identity review.",
   "lifecycle_notices": {
     "status": "SUCCESS",
-    "attempted_at": "2026-10-20T14:24:42.112901+00:00",
-    "last_success_at": "2026-10-20T14:24:42.112901+00:00",
-    "window_start": "2026-09-20",
-    "window_end": "2026-10-20",
+    "attempted_at": "2026-10-21T01:22:05.383024+00:00",
+    "last_success_at": "2026-10-21T01:22:05.383024+00:00",
+    "window_start": "2026-09-21",
+    "window_end": "2026-10-21",
     "scope": "RISE_TITLE_SEARCH_ROLLING_30_DAYS_NOT_FULL_LIFECYCLE",
     "current_legal_status": "NOT_AUTOMATICALLY_ASSIGNED",
     "search_sources": [
@@ -1475,8 +1480,8 @@
           "forward": "disclosurebystocktype_etf_sub",
           "currentPageSize": "100",
           "pageIndex": "1",
-          "fromDate": "2026-09-20",
-          "toDate": "2026-10-20",
+          "fromDate": "2026-09-21",
+          "toDate": "2026-10-21",
           "etfIsuSrtNm": "RISE",
           "reportNm": "신규상장",
           "orderMode": "",
@@ -1491,8 +1496,8 @@
           "forward": "disclosurebystocktype_etf_sub",
           "currentPageSize": "100",
           "pageIndex": "1",
-          "fromDate": "2026-09-20",
-          "toDate": "2026-10-20",
+          "fromDate": "2026-09-21",
+          "toDate": "2026-10-21",
           "etfIsuSrtNm": "RISE",
           "reportNm": "상장폐지",
           "orderMode": "",
@@ -1534,7 +1539,7 @@
           }
         ],
         "first_seen_at": "2026-10-16T14:04:52.760393+00:00",
-        "last_checked_at": "2026-10-20T14:24:42.112901+00:00",
+        "last_checked_at": "2026-10-21T01:22:05.383024+00:00",
         "versions": [],
         "in_latest_search": true
       },
