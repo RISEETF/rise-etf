@@ -150,13 +150,14 @@ def render_private(db, output):
     reports = [json.loads(r[0]) for r in db.execute('SELECT payload FROM reconciliations WHERE digest=?',(digest,))]
     report = max(reports, key=lambda r:r['krx_observation_date'])
     change = db.execute('SELECT payload FROM changes WHERE digest=?',(digest,)).fetchone()
-    document = {'metadata':json.loads(row[0]), 'sha256':digest, 'reconciliation':report,
+    document = {'schema':'RISE_PRIVATE_PROVIDER_V1', 'metadata':json.loads(row[0]), 'sha256':digest, 'reconciliation':report,
                 'records':list(payloads(db,digest).values()),
                 'changes':json.loads(change[0]) if change else None,
                 'capture_count':db.execute('SELECT count(*) FROM captures').fetchone()[0]}
     encoded = json.dumps(document, ensure_ascii=False, allow_nan=False).replace('<','\\u003c').replace('>','\\u003e').replace('&','\\u0026')
     page = (REPO/'templates/provider_private.html').read_text().replace('__PROVIDER_DATA__',encoded)
     atomic(output/'index.html',page)
+    atomic(output/'portal.json',encoded+'\n')
     return True
 
 

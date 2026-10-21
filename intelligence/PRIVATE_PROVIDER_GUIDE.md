@@ -42,3 +42,6 @@ KRX 비교는 `data/quality/krx_rise_inventory.json`의 최신 관측 RISE 목�
 로컬 165 Python 테스트 통과: DB 롤백, 중복, 과거파일 최신유지, 실패 시 정상화면유지, 날짜충돌, 공개출력차단, 렌더링 주입방지. 브라우저 상호작용은 CI의 합성자료로 검증한다. 실데이터 HTML을 Cloud Browser에서 열려던 시도는 file 프로토콜 정책으로 차단됐으며 우회하지 않았다. 실데이터 화면의 클라우드 시각검수는 미완료다.
 
 남은 사항: 무인 FunETF 로그인/정기 다운로드는 미설정; 현재는 사용자 다운로드+실행 중인 로컬 폴더 감시 방식. 미국 다운로드/공식 유니버스 연결, 전체시장 KRX 대조, 거래소 공시 기반 상장폐지 확정, 공개 포털 수치 연동은 미완료. 개인 자료를 공개 GitHub Pages로 배포하지 않는다.
+
+## 포털 ETF 탐색 연결
+수집기 실행 후 생성되는 `var/provider_private/portal.json`을 공개 포털 `etf.html`의 개인용 데이터 연결에서 선택합니다. 미국 목록은 `var/us_etf_directory/latest.json` 또는 GitHub Actions `us-etf-state` 보관파일의 `latest.json`을 선택합니다. 원본 XLSX를 직접 선택하는 기능은 아닙니다. 파일은 브라우저 메모리에서만 사용하고 새로고침 시 해제됩니다. 현재 KRX RISE 목록을 기본으로 유지하며 미수록 종목을 삭제하지 않습니다. 미국 자료는 종목 식별 목록만 표시합니다.
