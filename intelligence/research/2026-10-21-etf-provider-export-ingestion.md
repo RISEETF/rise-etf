@@ -27,3 +27,9 @@
 ## 출처
 - https://www.etfcheck.co.kr/mobile/main
 - https://www.etfcheck.co.kr/?redirect=%2Fmobile%2Fscreener%2Fresult%2F%EA%B8%B0%EB%B3%B8%EC%A0%95%EB%B3%B4
+
+## 기준 소스 확정 (사용자 결정)
+- KRX Open API 관측값을 국내 ETF 상장 유니버스·종목코드·종목 수·거래 가격의 authoritative source로 사용한다.
+- FunETF/ETFcheck는 보조 속성 및 경쟁상품 비교용. 종목 마스터를 추가·삭제하거나 KRX 값을 덮어쓰지 않는다.
+- 동일 관측일/코드 기준 불일치 항목은 별도 discrepancy로 남긴다. 관측일이 다르면 우선 vintage mismatch로 분류한다.
+- 2026-10-20 KRX RISE 관측 145개와 FunETF 파일 144개는 KRX를 우선하며 FunETF의 누락 항목은 보조자료 미수록으로 표시한다. 이 숫자를 코드에 고정하지 않는다.
