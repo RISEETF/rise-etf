@@ -27,7 +27,8 @@ const server = http.createServer((req,res) => {
     const inventory=JSON.parse(fs.readFileSync(path.join(root,'data/quality/krx_rise_inventory.json')));
     assert.equal(await page.locator('#etfCount').textContent(),`${inventory.observed_count}개`);
     assert.equal(await page.locator('.metric').count(),4);
-    assert.equal(await page.locator('.modules > a').count(),6);
+    assert.equal(await page.locator('.modules > a').count(),7);
+    assert.equal(await page.locator('.modules a[href="corporate.html"]').count(),1);
     assert.equal(await page.locator('table').count(),0,'Landing page should not contain detailed tables');
     await page.locator('.modules a[href$="#gclri"]').click();
     await page.waitForSelector('#gclri.active');
