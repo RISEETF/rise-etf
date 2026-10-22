@@ -44,4 +44,4 @@ KRX 비교는 `data/quality/krx_rise_inventory.json`의 최신 관측 RISE 목�
 남은 사항: 무인 FunETF 로그인/정기 다운로드는 미설정; 현재는 사용자 다운로드+실행 중인 로컬 폴더 감시 방식. 미국 다운로드/공식 유니버스 연결, 전체시장 KRX 대조, 거래소 공시 기반 상장폐지 확정, 공개 포털 수치 연동은 미완료. 개인 자료를 공개 GitHub Pages로 배포하지 않는다.
 
 ## 포털 ETF 탐색 연결
-수집기 실행 후 생성되는 `var/provider_private/portal.json`을 공개 포털 `etf.html`의 개인용 데이터 연결에서 선택합니다. 미국 목록은 `var/us_etf_directory/latest.json` 또는 GitHub Actions `us-etf-state` 보관파일의 `latest.json`을 선택합니다. 원본 XLSX를 직접 선택하는 기능은 아닙니다. 파일은 브라우저 메모리에서만 사용하고 새로고침 시 해제됩니다. 현재 KRX RISE 목록을 기본으로 유지하며 미수록 종목을 삭제하지 않습니다. 미국 자료는 종목 식별 목록만 표시합니다.
+수집기 실행 후 생성되는 `var/provider_private/portal.json`을 공개 포털 `etf.html`의 개인용 데이터 연결에서 선택합니다. 미국 목록은 `var/us_etf_directory/latest.json` 또는 GitHub Actions `us-etf-state` 보관파일의 `latest.json`을 선택합니다. 원본 XLSX를 직접 선택하는 기능은 아닙니다. 기본은 브라우저 메모리이며 새로고침 시 해제됩니다. 개인 PC에서는 “이 브라우저에 자료 보관”을 선택하면 IndexedDB에 보관되어 재접속 시 복원됩니다. 서버 업로드·다른 PC 동기화·자동 수집은 아닙니다. 옵션을 끄면 저장본을 삭제하고, “개인용 자료·저장본 삭제”는 현재 자료도 해제합니다. 현재 KRX RISE 목록을 기본으로 유지하며 미수록 종목을 삭제하지 않습니다. 미국 자료는 종목 식별 목록만 표시합니다.
