@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "pipeline": "master",
+  "finished_at": "2026-10-22T14:44:51.950958+00:00",
+  "status": "FAILED",
+  "failed_stage": "collect",
+  "stages": {
+    "setup": "success",
+    "preflight": "success",
+    "collect": "failure"
+  },
+  "run_id": "39797679869",
+  "run_attempt": "1",
+  "run_url": "https://github.com/RISEETF/rise-etf/actions/runs/39797679869",
+  "note": "Workflow execution only; consult source status and snapshot effective date separately."
+}
