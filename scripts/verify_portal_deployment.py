@@ -16,7 +16,7 @@ import urllib.request
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 REPO = os.environ.get("GITHUB_REPOSITORY", "RISEETF/rise-etf")
 TOKEN = os.environ.get("GH_TOKEN", "")
-FILES = ("index.html", "dashboard.js", "intelligence/data/latest.json",
+FILES = ("etf.html", "etf.js", "etf.css", "index.html", "dashboard.js", "intelligence/data/latest.json",
          "data/operations/intelligence.json", "data/quality/krx_rise_inventory.json")
 TIMEOUT = 20
 ATTEMPTS = int(os.environ.get("PORTAL_VERIFY_ATTEMPTS", "12"))

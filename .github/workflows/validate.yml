@@ -27,3 +27,4 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: node tests/test_master_portal.cjs
       - run: node tests/test_provider_private.cjs
+      - run: node tests/test_etf_explorer.cjs
