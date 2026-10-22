@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "capture_id": "20261022T134456291156Z-YAHOO_CHART_CANDIDATE-SPY",
+  "source_id": "YAHOO_CHART_CANDIDATE",
+  "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPY?range=2y&interval=1d&events=div%2Csplits%2CcapitalGains&includeAdjustedClose=true",
+  "retrieved_at": "2026-10-22T13:44:56.291156+00:00",
+  "kind": "US_PRICE",
+  "instrument_code": "SPY",
+  "market": "US_LISTED",
+  "currency": "USD",
+  "instrument_contract": {
+    "code": "SPY",
+    "name": "SPY · 미국 주식시장 ETF 시범",
+    "market": "US_LISTED",
+    "currency": "USD",
+    "instrument_type": "ETF",
+    "timezone": "America/New_York"
+  },
+  "publication_time": null,
+  "price_basis": "PROVIDER_CLOSE_AND_ADJUSTED_CLOSE",
+  "rs_eligible": false,
+  "observations": [],
+  "events": [],
+  "source_sha256": "8640a5f0267e83ba9004cc487fb2379491eef6a7f7ee14d7e06d1db67880bb0b",
+  "status": "FAILED",
+  "quality": "UNUSABLE",
+  "error": "ValueError: Invalid OHLCV"
+}
