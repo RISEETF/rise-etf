@@ -4,8 +4,8 @@
   "source_role": "PRIMARY_EXCHANGE_OBSERVATION",
   "source_url": "https://data-dbg.krx.co.kr/svc/apis/etp/etf_bydd_trd",
   "observed_on": "2026-10-22",
-  "retrieved_at": "2026-10-23T01:17:39.188965+00:00",
-  "raw_sha256": "e5221555069625df522151bac6e4fdec9fc3101232e663124c5152936e028efc",
+  "retrieved_at": "2026-10-23T14:19:18.418757+00:00",
+  "raw_sha256": "531e6cf13299b94217b12574f13f26d653be286d730be9bfeb5d9a8ac3704784",
   "krx_market_count": 1183,
   "issuer_effective_date": "2026-10-04",
   "issuer_source_sha256": "03b85088a26600243470440c642fdd5f275c2e69468fff99af721ec6034e29c3",
@@ -1466,8 +1466,8 @@
   "note": "Presence is an exchange observation. Absence is not delisting. Name-only codes require identity review.",
   "lifecycle_notices": {
     "status": "SUCCESS",
-    "attempted_at": "2026-10-23T01:17:41.890371+00:00",
-    "last_success_at": "2026-10-23T01:17:41.890371+00:00",
+    "attempted_at": "2026-10-23T14:19:20.756135+00:00",
+    "last_success_at": "2026-10-23T14:19:20.756135+00:00",
     "window_start": "2026-09-23",
     "window_end": "2026-10-23",
     "scope": "RISE_TITLE_SEARCH_ROLLING_30_DAYS_NOT_FULL_LIFECYCLE",
@@ -1503,10 +1503,46 @@
           "orderMode": "",
           "orderStat": ""
         },
-        "sha256": "fbf2bc5e75093db7cad32530aa9a7d6b1b7064b45cfbcfbd878e7568ee294af8"
+        "sha256": "fdc0e5aefb18e419780668c41d9f0beb5eb486e31187fc0300b7b27f38432d2d"
       }
     ],
     "events": [
+      {
+        "receipt_id": "20261023000727",
+        "kind_stock_id": "0122W",
+        "published_at": "2026-10-23T17:02:00+09:00",
+        "name": "RISE 26-11 회사채(AA-이상)액티브",
+        "title": "ETF 상장폐지 사유 발생(운용사 공시)",
+        "publisher": "KB자산운용",
+        "kind": "DELISTING_REVIEW",
+        "search_sha256": "fdc0e5aefb18e419780668c41d9f0beb5eb486e31187fc0300b7b27f38432d2d",
+        "event_id": "20261023000727:0122W",
+        "code": "0122W0",
+        "effective_date": null,
+        "verification": "NOTICE_REVIEW_REQUIRED",
+        "viewer_url": "https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20261023000727",
+        "sources": [
+          {
+            "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20261023000727",
+            "request": null,
+            "sha256": "011c8d3ae52ee6ab8d0a6e53cff9e4f6e36a65e23a4765a7b74b6b9e64a7d0be"
+          },
+          {
+            "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=searchContents&docNo=20261023001401",
+            "request": null,
+            "sha256": "cb88efd5592f0de0adcf7f171136e0a78dc2041a0c4bce9ff6cd5ea270397a7b"
+          },
+          {
+            "url": "https://kind.krx.co.kr/external/2026/10/23/000727/20261023001401/68616.htm",
+            "request": null,
+            "sha256": "34358cfcc53d03cc966ed75c6cf710d3aafd28801c88185cecc680b9a991d10a"
+          }
+        ],
+        "first_seen_at": "2026-10-23T14:19:20.756135+00:00",
+        "last_checked_at": "2026-10-23T14:19:20.756135+00:00",
+        "versions": [],
+        "in_latest_search": true
+      },
       {
         "receipt_id": "20261016000464",
         "kind_stock_id": "0254H",
@@ -1539,7 +1575,7 @@
           }
         ],
         "first_seen_at": "2026-10-16T14:04:52.760393+00:00",
-        "last_checked_at": "2026-10-23T01:17:41.890371+00:00",
+        "last_checked_at": "2026-10-23T14:19:20.756135+00:00",
         "versions": [],
         "in_latest_search": true
       },
