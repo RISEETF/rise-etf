@@ -1,21 +1,21 @@
 {
   "schema_version": 1,
   "pipeline": "series",
-  "finished_at": "2026-10-22T13:45:13.554337+00:00",
-  "status": "FAILED",
-  "failed_stage": "overseas",
+  "finished_at": "2026-10-23T01:33:15.809309+00:00",
+  "status": "SUCCESS",
+  "failed_stage": null,
   "stages": {
     "setup": "success",
     "preflight": "success",
     "collect": "success",
-    "overseas": "failure",
+    "overseas": "success",
     "hana": "success",
     "database": "success",
     "universe": "success",
     "rs": "success"
   },
-  "run_id": "39789558982",
+  "run_id": "39884605201",
   "run_attempt": "1",
-  "run_url": "https://github.com/RISEETF/rise-etf/actions/runs/39789558982",
+  "run_url": "https://github.com/RISEETF/rise-etf/actions/runs/39884605201",
   "note": "Workflow execution only; consult source status and snapshot effective date separately."
 }
