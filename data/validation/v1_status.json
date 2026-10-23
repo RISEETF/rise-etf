@@ -1,25 +1,25 @@
 {
   "schema_version": "1.0",
-  "built_at_utc": "2026-10-22T00:29:12.994379+00:00",
+  "built_at_utc": "2026-10-23T00:27:39.146172+00:00",
   "validation_state": "INSUFFICIENT_HISTORY",
   "production_eligible": false,
   "framework_promotion_authorized": false,
   "checks": [
     {
       "name": "Signal history depth",
-      "value": 26,
+      "value": 27,
       "required": 60,
       "status": "INSUFFICIENT_HISTORY"
     },
     {
       "name": "Episode history depth",
-      "value": 26,
+      "value": 27,
       "required": 40,
       "status": "INSUFFICIENT_HISTORY"
     },
     {
       "name": "Gate history depth",
-      "value": 26,
+      "value": 27,
       "required": 40,
       "status": "INSUFFICIENT_HISTORY"
     }
