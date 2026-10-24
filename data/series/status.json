@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-10-24T01:37:29.435040+00:00",
+  "built_at": "2026-10-24T09:29:13.023115+00:00",
   "storage": "REBUILDABLE_SQLITE_FROM_GIT_CAPTURES",
   "rs_status": "BLOCKED",
   "ranking": null,
@@ -14,7 +14,7 @@
       "first_date": "2025-06-27",
       "last_date": "2026-10-23",
       "last_attempt_status": "CAPTURED",
-      "retrieved_at": "2026-10-24T01:37:08.959110+00:00",
+      "retrieved_at": "2026-10-24T09:28:50.058064+00:00",
       "error": null,
       "rs_eligible": false,
       "blockers": [
@@ -36,7 +36,7 @@
       "first_date": "2025-06-27",
       "last_date": "2026-10-23",
       "last_attempt_status": "CAPTURED",
-      "retrieved_at": "2026-10-24T01:37:10.116775+00:00",
+      "retrieved_at": "2026-10-24T09:28:51.211062+00:00",
       "error": null,
       "rs_eligible": false,
       "blockers": [
@@ -58,7 +58,7 @@
       "first_date": "2025-06-27",
       "last_date": "2026-10-23",
       "last_attempt_status": "CAPTURED",
-      "retrieved_at": "2026-10-24T01:37:10.942091+00:00",
+      "retrieved_at": "2026-10-24T09:28:52.038828+00:00",
       "error": null,
       "rs_eligible": false,
       "blockers": [
@@ -81,7 +81,7 @@
       "first_date": "2024-09-16",
       "last_date": "2026-10-23",
       "last_attempt_status": "CAPTURED",
-      "retrieved_at": "2026-10-24T01:37:12.948613+00:00",
+      "retrieved_at": "2026-10-24T09:28:53.907120+00:00",
       "error": null,
       "rs_eligible": false,
       "blockers": [
@@ -100,12 +100,12 @@
         "factor_changes": [
           {
             "date": "2024-12-20",
-            "factor_ratio": 0.9966456425757115,
+            "factor_ratio": 0.9966455376523241,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9966456234739909,
-            "cash_residual": 1.9101720649672416e-08,
+            "cash_residual": -8.582166677317815e-08,
             "requires_review": false
           },
           {
@@ -120,22 +120,22 @@
           },
           {
             "date": "2025-06-20",
-            "factor_ratio": 0.9970524820383022,
+            "factor_ratio": 0.9970523784886811,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.997052423686389,
-            "cash_residual": 5.8351913190257676e-08,
+            "cash_residual": -4.519770790967215e-08,
             "requires_review": false
           },
           {
             "date": "2025-09-19",
-            "factor_ratio": 0.9972350469585736,
+            "factor_ratio": 0.9972351401147974,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9972352248769362,
-            "cash_residual": -1.7791836259828386e-07,
+            "cash_residual": -8.476213875230343e-08,
             "requires_review": false
           },
           {
@@ -194,7 +194,7 @@
       "first_date": "2024-09-16",
       "last_date": "2026-10-23",
       "last_attempt_status": "CAPTURED",
-      "retrieved_at": "2026-10-24T01:37:13.207016+00:00",
+      "retrieved_at": "2026-10-24T09:28:54.165966+00:00",
       "error": null,
       "rs_eligible": false,
       "blockers": [
@@ -213,152 +213,152 @@
         "factor_changes": [
           {
             "date": "2024-11-01",
-            "factor_ratio": 0.9969105217982537,
+            "factor_ratio": 0.9969106082101562,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9969107066190166,
-            "cash_residual": -1.8482076291626015e-07,
+            "cash_residual": -9.840886039391705e-08,
             "requires_review": false
           },
           {
             "date": "2024-12-02",
-            "factor_ratio": 0.9969326224572844,
+            "factor_ratio": 0.9969327085103895,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.996932450966374,
-            "cash_residual": 1.71490910472194e-07,
+            "cash_residual": 2.5754401555833084e-07,
             "requires_review": false
           },
           {
             "date": "2024-12-18",
-            "factor_ratio": 0.9967136378394119,
+            "factor_ratio": 0.9967138120706448,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9967136150662793,
-            "cash_residual": 2.2773132601905388e-08,
+            "cash_residual": 1.9700436548752975e-07,
             "requires_review": false
           },
           {
             "date": "2025-02-03",
-            "factor_ratio": 0.9968179876541047,
+            "factor_ratio": 0.9968178127948312,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.996817888511265,
-            "cash_residual": 9.914283971568238e-08,
+            "cash_residual": -7.571643378945225e-08,
             "requires_review": false
           },
           {
             "date": "2025-03-03",
-            "factor_ratio": 0.9971152148797103,
+            "factor_ratio": 0.9971152145718221,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9971149811070034,
-            "cash_residual": 2.3377270697011454e-07,
+            "cash_residual": 2.3346481869968017e-07,
             "requires_review": false
           },
           {
             "date": "2025-04-01",
-            "factor_ratio": 0.9968125625389792,
+            "factor_ratio": 0.9968125622420387,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9968124148972943,
-            "cash_residual": 1.4764168487779727e-07,
+            "cash_residual": 1.4734474440558643e-07,
             "requires_review": false
           },
           {
             "date": "2025-05-01",
-            "factor_ratio": 0.9967418347900737,
+            "factor_ratio": 0.9967417504967997,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9967419589778883,
-            "cash_residual": -1.2418781458745087e-07,
+            "cash_residual": -2.084810886149313e-07,
             "requires_review": false
           },
           {
             "date": "2025-06-02",
-            "factor_ratio": 0.9967220331701925,
+            "factor_ratio": 0.9967221178586442,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9967220048535438,
-            "cash_residual": 2.831664869251682e-08,
+            "cash_residual": 1.1300510038836364e-07,
             "requires_review": false
           },
           {
             "date": "2025-07-01",
-            "factor_ratio": 0.9968362317794183,
+            "factor_ratio": 0.9968362316240423,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9968361698797038,
-            "cash_residual": 6.189971446524112e-08,
+            "cash_residual": 6.174433853090022e-08,
             "requires_review": false
           },
           {
             "date": "2025-08-01",
-            "factor_ratio": 0.9967439473068017,
+            "factor_ratio": 0.9967437809428304,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9967439410428699,
-            "cash_residual": 6.26393181768492e-09,
+            "cash_residual": -1.6010003944799678e-07,
             "requires_review": false
           },
           {
             "date": "2025-09-02",
-            "factor_ratio": 0.9967341046798125,
+            "factor_ratio": 0.9967343537467961,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9967342694226012,
-            "cash_residual": -1.6474278874412107e-07,
+            "cash_residual": 8.432419484893927e-08,
             "requires_review": false
           },
           {
             "date": "2025-10-01",
-            "factor_ratio": 0.9969521931812587,
+            "factor_ratio": 0.9969522754383525,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9969521044703459,
-            "cash_residual": 8.87109128377972e-08,
+            "cash_residual": 1.709680066408481e-07,
             "requires_review": false
           },
           {
             "date": "2025-11-03",
-            "factor_ratio": 0.9968609199190062,
+            "factor_ratio": 0.9968610015876883,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9968611254022762,
-            "cash_residual": -2.054832700659759e-07,
+            "cash_residual": -1.2381458791566047e-07,
             "requires_review": false
           },
           {
             "date": "2025-12-01",
-            "factor_ratio": 0.9970462469464063,
+            "factor_ratio": 0.9970463278310179,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9970461538461538,
-            "cash_residual": 9.310025250730547e-08,
+            "cash_residual": 1.7398486407138591e-07,
             "requires_review": false
           },
           {
             "date": "2025-12-19",
-            "factor_ratio": 0.9967656578487321,
+            "factor_ratio": 0.9967654952032,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9967655263939453,
-            "cash_residual": 1.314547867226068e-07,
+            "cash_residual": -3.1190745319875646e-08,
             "requires_review": false
           },
           {
@@ -373,72 +373,72 @@
           },
           {
             "date": "2026-03-02",
-            "factor_ratio": 0.9971117985378439,
+            "factor_ratio": 0.9971117980559785,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.997111950136039,
-            "cash_residual": -1.5159819510834893e-07,
+            "cash_residual": -1.5208006054479029e-07,
             "requires_review": false
           },
           {
             "date": "2026-04-01",
-            "factor_ratio": 0.9966784165161594,
+            "factor_ratio": 0.9966786613464474,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9966785415770015,
-            "cash_residual": -1.2506084212660085e-07,
+            "cash_residual": 1.1976944591651772e-07,
             "requires_review": false
           },
           {
             "date": "2026-05-01",
-            "factor_ratio": 0.9967152140809512,
+            "factor_ratio": 0.9967149690065337,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9967150980314509,
-            "cash_residual": 1.1604950034271866e-07,
+            "cash_residual": -1.290249171947977e-07,
             "requires_review": false
           },
           {
             "date": "2026-06-01",
-            "factor_ratio": 0.9966508679937983,
+            "factor_ratio": 0.9966509498577089,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.996650818860121,
-            "cash_residual": 4.91336773489337e-08,
+            "cash_residual": 1.3099758788825966e-07,
             "requires_review": false
           },
           {
             "date": "2026-07-01",
-            "factor_ratio": 0.9967113999258771,
+            "factor_ratio": 0.996711481448473,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9967114306756519,
-            "cash_residual": -3.074977483752406e-08,
+            "cash_residual": 5.0772821058586715e-08,
             "requires_review": false
           },
           {
             "date": "2026-08-03",
-            "factor_ratio": 0.9965788285596487,
+            "factor_ratio": 0.9965787460674038,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9965788056972495,
-            "cash_residual": 2.2862399196021954e-08,
+            "cash_residual": -5.962984572782659e-08,
             "requires_review": false
           },
           {
             "date": "2026-09-01",
-            "factor_ratio": 0.9964200722314255,
+            "factor_ratio": 0.9964201547816826,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9964200991196086,
-            "cash_residual": -2.6888183124462728e-08,
+            "cash_residual": 5.566207395002465e-08,
             "requires_review": false
           },
           {
@@ -467,7 +467,7 @@
       "first_date": "2024-09-16",
       "last_date": "2026-10-23",
       "last_attempt_status": "CAPTURED",
-      "retrieved_at": "2026-10-24T01:37:13.477772+00:00",
+      "retrieved_at": "2026-10-24T09:28:54.411069+00:00",
       "error": null,
       "rs_eligible": false,
       "blockers": [
@@ -486,62 +486,62 @@
         "factor_changes": [
           {
             "date": "2024-11-08",
-            "factor_ratio": 0.9989010346874997,
+            "factor_ratio": 0.9989009671232211,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9989010022652742,
-            "cash_residual": 3.242222545996043e-08,
+            "cash_residual": -3.514205315635621e-08,
             "requires_review": false
           },
           {
             "date": "2025-02-10",
-            "factor_ratio": 0.9989018500984751,
+            "factor_ratio": 0.9989017152872554,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9989017265095228,
-            "cash_residual": 1.2358895229436229e-07,
+            "cash_residual": -1.1222267448651735e-08,
             "requires_review": false
           },
           {
             "date": "2025-05-12",
-            "factor_ratio": 0.9986903603797378,
+            "factor_ratio": 0.9986905102532583,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9986903742426905,
-            "cash_residual": -1.3862952674692508e-08,
+            "cash_residual": 1.360105678083201e-07,
             "requires_review": false
           },
           {
             "date": "2025-08-11",
-            "factor_ratio": 0.9988662979416312,
+            "factor_ratio": 0.9988663647179731,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9988663614864581,
-            "cash_residual": -6.354482695591912e-08,
+            "cash_residual": 3.2315149445238944e-09,
             "requires_review": false
           },
           {
             "date": "2025-11-10",
-            "factor_ratio": 0.9990316809521459,
+            "factor_ratio": 0.9990315674866257,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9990315491532842,
-            "cash_residual": 1.317988617133281e-07,
+            "cash_residual": 1.8333341511578283e-08,
             "requires_review": false
           },
           {
             "date": "2026-02-09",
-            "factor_ratio": 0.999065130158774,
+            "factor_ratio": 0.9990650202348619,
             "event_kinds": [
               "DIVIDEND"
             ],
             "cash_factor_candidate": 0.9990651517166522,
-            "cash_residual": -2.1557878260303198e-08,
+            "cash_residual": -1.3148179034416785e-07,
             "requires_review": false
           },
           {
@@ -577,16 +577,16 @@
     "first_date": "2026-06-18",
     "last_date": "2026-10-23",
     "last_attempt_status": "CAPTURED",
-    "retrieved_at": "2026-10-24T01:37:11.868958+00:00",
+    "retrieved_at": "2026-10-24T09:28:52.868919+00:00",
     "kind": "ECB_DERIVED_REFERENCE_ONLY",
     "rs_eligible": false,
     "error": null
   },
-  "capture_count": 544,
+  "capture_count": 552,
   "hana_fx": {
     "source_id": "HANA_FINAL_NOTICE",
     "last_attempt_status": "CAPTURED",
-    "retrieved_at": "2026-10-24T01:37:26.264107+00:00",
+    "retrieved_at": "2026-10-24T09:29:07.027355+00:00",
     "error": null,
     "observations": 65,
     "first_date": "2026-07-16",
@@ -601,7 +601,7 @@
       "notice_at": "2026-10-23T08:05:39+09:00",
       "notice_sequence": 905,
       "requested_date": "2026-10-22",
-      "retrieved_at": "2026-10-24T01:37:25.963522+00:00"
+      "retrieved_at": "2026-10-24T09:29:06.726339+00:00"
     },
     "rs_eligible": false
   }
