@@ -1,0 +1,3692 @@
+{
+  "schema_version": 1,
+  "collected_at": "20261026T010354Z",
+  "period": "2026-06-30",
+  "comparison_period": "2025-12-31",
+  "scope": "OFS",
+  "pilot": true,
+  "companies": [
+    {
+      "code": "005930",
+      "name": "삼성전자",
+      "corp_code": "00126380",
+      "scope": "별도",
+      "industry": "반도체",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260310002820",
+          "cash": {
+            "value": 12581632000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 12332721000000,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 358902051000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 24914353000000,
+          "ratio": 0.06941825194529189,
+          "clues": [
+            "기타포괄손익-공정가치금융자산",
+            "기타포괄손익-공정가치금융자산의 처분",
+            "기타포괄손익-공정가치금융자산의 취득",
+            "기타포괄손익-공정가치금융자산평가손익",
+            "당기손익-공정가치금융자산",
+            "당기손익-공정가치금융자산의 처분"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/005930_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814003699",
+          "cash": {
+            "value": 15762232000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 25695072000000,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 465862647000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 41457304000000,
+          "ratio": 0.08899040149917836,
+          "clues": [
+            "기타포괄손익-공정가치금융자산",
+            "기타포괄손익-공정가치금융자산의 처분",
+            "기타포괄손익-공정가치금융자산평가손익"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/005930_2026-06-30.json"
+        }
+      },
+      "change": 16542951000000
+    },
+    {
+      "code": "000660",
+      "name": "SK하이닉스",
+      "corp_code": "00164779",
+      "scope": "별도",
+      "industry": "반도체",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260317000635",
+          "cash": {
+            "value": 2403922000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 14072500000000,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 168903929000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 16476422000000,
+          "ratio": 0.09754907477611134,
+          "clues": [],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/000660_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814003509",
+          "cash": {
+            "value": 4537067000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 22350600000000,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 332416772000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 26887667000000,
+          "ratio": 0.08088541031858645,
+          "clues": [],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/000660_2026-06-30.json"
+        }
+      },
+      "change": 10411245000000
+    },
+    {
+      "code": "042700",
+      "name": "한미반도체",
+      "corp_code": "00161383",
+      "scope": "별도",
+      "industry": "반도체",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260312001230",
+          "cash": {
+            "value": 258332330553,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 798623033690,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/042700_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814003665",
+          "cash": {
+            "value": 82439080787,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 868138656629,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "당기손익-공정가치 측정 금융자산의 처분",
+            "당기손익-공정가치 측정 금융자산의 취득"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/042700_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "240810",
+      "name": "원익IPS",
+      "corp_code": "01135941",
+      "scope": "별도",
+      "industry": "반도체",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260316001453",
+          "cash": {
+            "value": 102742038214,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 1162171225595,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "당기손익-공정가치측정금융상품처분이익 조정",
+            "당기손익-공정가치측정금융자산의 처분",
+            "당기손익-공정가치측정금융자산의 취득",
+            "사외적립자산의공정가치의 감소(증가)"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/240810_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814001845",
+          "cash": {
+            "value": 122719138400,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 1490425221466,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "당기손익-공정가치 측정 금융자산의 취득",
+            "당기손익-공정가치측정금융상품처분이익 조정",
+            "당기손익-공정가치측정금융자산의 처분",
+            "사외적립자산의공정가치의 감소(증가)"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/240810_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "095340",
+      "name": "ISC",
+      "corp_code": "00572905",
+      "scope": "별도",
+      "industry": "반도체",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260318000018",
+          "cash": {
+            "value": 49717408905,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 262260000000,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 616311133355,
+            "account": "자산 총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 311977408905,
+          "ratio": 0.5062011572088518,
+          "clues": [
+            "기타포괄손익-공정가치측정금융자산 평가손익",
+            "기타포괄손익-공정가치측정금융자산의 처분",
+            "당기손익-공정가치측정금융자산의 처분"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/095340_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814000114",
+          "cash": {
+            "value": 58251475939,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 280000000000,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 638926645507,
+            "account": "자산 총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 338251475939,
+          "ratio": 0.5294058063122273,
+          "clues": [
+            "기타포괄손익-공정가치측정금융자산 평가손익",
+            "기타포괄손익-공정가치측정금융자산의 처분",
+            "당기손익-공정가치측정금융자산의 처분"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/095340_2026-06-30.json"
+        }
+      },
+      "change": 26274067034
+    },
+    {
+      "code": "058470",
+      "name": "리노공업",
+      "corp_code": "00369657",
+      "scope": "별도",
+      "industry": "반도체",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260318000182",
+          "cash": {
+            "value": 85202812409,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 791928165325,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/058470_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814000445",
+          "cash": {
+            "value": 86771663199,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 856864674888,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/058470_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "039030",
+      "name": "이오테크닉스",
+      "corp_code": "00246417",
+      "scope": "별도",
+      "industry": "반도체",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260323001573",
+          "cash": {
+            "value": 205798927947,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 748838437667,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 측정 금융자산처분손익",
+            "기타포괄손익-공정가치 측정 금융자산평가손익",
+            "기타포괄손익-공정가치측정금융자산의처분",
+            "기타포괄손익-공정가치측정금융자산의취득",
+            "당기손익-공정가치측정금융자산의 처분",
+            "당기손익-공정가치측정금융자산의 취득"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/039030_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814001118",
+          "cash": {
+            "value": 199577259244,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 794412567858,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 측정 금융자산평가손익",
+            "기타포괄손익-공정가치측정금융자산의처분",
+            "기타포괄손익-공정가치측정금융자산의취득",
+            "당기손익-공정가치측정금융자산의 처분",
+            "당기손익-공정가치측정금융자산의 취득"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/039030_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "036930",
+      "name": "주성엔지니어링",
+      "corp_code": "00252135",
+      "scope": "별도",
+      "industry": "반도체",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260318000323",
+          "cash": {
+            "value": 161262829434,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 0,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 886709680621,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 161262829434,
+          "ratio": 0.18186654883598527,
+          "clues": [
+            "공정가치측정금융자산",
+            "기타포괄손익-공정가치측정금융자산의처분",
+            "기타포괄손익-공정가치측정금융자산의취득",
+            "기타포괄손익-공정가치측정지분상품평가손익",
+            "사외적립자산의공정가치의 감소(증가)"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/036930_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814002613",
+          "cash": {
+            "value": 117832737418,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 5338843879,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 864735296765,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 123171581297,
+          "ratio": 0.14243848002711174,
+          "clues": [
+            "공정가치측정금융자산",
+            "투자활동으로 분류하는 기타포괄손익-공정가치 측정 금융자산의 취득"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/036930_2026-06-30.json"
+        }
+      },
+      "change": -38091248137
+    },
+    {
+      "code": "084370",
+      "name": "유진테크",
+      "corp_code": "00531014",
+      "scope": "별도",
+      "industry": "반도체",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260319000837",
+          "cash": {
+            "value": 22235459744,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 601430024101,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/084370_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814003622",
+          "cash": {
+            "value": 74110132076,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 697529770129,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/084370_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "403870",
+      "name": "HPSP",
+      "corp_code": "01288827",
+      "scope": "별도",
+      "industry": "반도체",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260319000776",
+          "cash": {
+            "value": 93941091316,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 369707189477,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/403870_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814004015",
+          "cash": {
+            "value": 67766290320,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 407024427037,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 측정 금융자산의 취득",
+            "기타포괄손익-공정가치 측정 금융자산평가손익"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/403870_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "131970",
+      "name": "두산테스나",
+      "corp_code": "00563545",
+      "scope": "별도",
+      "industry": "반도체",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260323001118",
+          "cash": {
+            "value": 109546970000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 5000000,
+            "account": "유동 금융기관예치금",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 703775464000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 109551970000,
+          "ratio": 0.15566324147952962,
+          "clues": [
+            "기타포괄손익-공정가치측정금융자산의처분",
+            "세후기타포괄손익, 기타포괄손익-공정가치로 측정되는 금융자산"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/131970_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814002891",
+          "cash": {
+            "value": 84953650000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 5000000,
+            "account": "유동 금융기관예치금",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 732214266000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 84958650000,
+          "ratio": 0.11602976607396502,
+          "clues": [
+            "투자활동으로 분류하는 당기손익-공정가치로 측정하는 금융자산의 매도 또는 만기 도래로 수취하는 대가"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/131970_2026-06-30.json"
+        }
+      },
+      "change": -24593320000
+    },
+    {
+      "code": "089030",
+      "name": "테크윙",
+      "corp_code": "00535676",
+      "scope": "별도",
+      "industry": "반도체",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260623000173",
+          "cash": {
+            "value": 40940989377,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 629787638482,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 금융자산",
+            "기타포괄손익-공정가치측정 채무금융자산 평가손익(세후기타포괄손익)",
+            "세후기타포괄손익, 기타포괄손익-공정가치로 측정되는 금융자산"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/089030_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814001211",
+          "cash": {
+            "value": 60394127794,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 649573361263,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 금융자산",
+            "기타포괄손익-공정가치측정 금융자산 평가손익(세후기타포괄손익)",
+            "세후기타포괄손익, 기타포괄손익-공정가치로 측정되는 금융자산"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/089030_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "140860",
+      "name": "파크시스템스",
+      "corp_code": "00244747",
+      "scope": "별도",
+      "industry": "반도체",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260319000022",
+          "cash": {
+            "value": 44698820660,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 324795645861,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/140860_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814004158",
+          "cash": {
+            "value": 87879609745,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 450683871100,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/140860_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "357780",
+      "name": "솔브레인",
+      "corp_code": "01489648",
+      "scope": "별도",
+      "industry": "반도체",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260316001567",
+          "cash": {
+            "value": 70316572978,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 1123522652928,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/357780_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814003813",
+          "cash": {
+            "value": 79252751618,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 1179406581348,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/357780_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "000990",
+      "name": "DB하이텍",
+      "corp_code": "00160843",
+      "scope": "별도",
+      "industry": "반도체",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260601001661",
+          "cash": {
+            "value": 194704102306,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 5719281686,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 2514222338447,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 200423383992,
+          "ratio": 0.07971585524763046,
+          "clues": [
+            "기타포괄손익-공정가치측정금융자산",
+            "기타포괄손익-공정가치측정금융자산의취득"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/000990_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814003091",
+          "cash": {
+            "value": 97814677050,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 5326971124,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 2707214934994,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 103141648174,
+          "ratio": 0.03809880288438516,
+          "clues": [
+            "기타포괄손익-공정가치 측정 금융자산의 취득",
+            "기타포괄손익-공정가치측정금융자산",
+            "세후기타포괄손익, 기타포괄손익-공정가치로 측정되는 금융자산"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/000990_2026-06-30.json"
+        }
+      },
+      "change": -97281735818
+    },
+    {
+      "code": "005380",
+      "name": "현대자동차",
+      "corp_code": "00164742",
+      "scope": "별도",
+      "industry": "자동차·부품",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260318001394",
+          "cash": {
+            "value": 6398436000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 1347649000000,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 98580388000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 7746085000000,
+          "ratio": 0.07857632899558074,
+          "clues": [
+            "기타포괄손익-공정가치측정금융자산관련손익"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/005380_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814003521",
+          "cash": {
+            "value": 4555515000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 1018428000000,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 100707830000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 5573943000000,
+          "ratio": 0.05534766263953855,
+          "clues": [
+            "기타포괄손익-공정가치측정금융자산관련손익"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/005380_2026-06-30.json"
+        }
+      },
+      "change": -2172142000000
+    },
+    {
+      "code": "000270",
+      "name": "기아",
+      "corp_code": "00106641",
+      "scope": "별도",
+      "industry": "자동차·부품",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260312001224",
+          "cash": {
+            "value": 3073115000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 7088718000000,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 60213129000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 10161833000000,
+          "ratio": 0.16876440684555688,
+          "clues": [
+            "기타포괄손익-공정가치측정금융자산평가손익"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/000270_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260916000427",
+          "cash": {
+            "value": 2353650000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 6909690000000,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 61498438000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 9263340000000,
+          "ratio": 0.15062724032112815,
+          "clues": [
+            "기타포괄손익-공정가치측정금융자산평가손익"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/000270_2026-06-30.json"
+        }
+      },
+      "change": -898493000000
+    },
+    {
+      "code": "012330",
+      "name": "현대모비스",
+      "corp_code": "00164788",
+      "scope": "별도",
+      "industry": "자동차·부품",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260309001878",
+          "cash": {
+            "value": 900210000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 38537000000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치측정금융자산의처분",
+            "기타포괄손익-공정가치측정금융자산의취득",
+            "기타포괄손익-공정가치측정금융자산평가손익",
+            "당기손익-공정가치측정금융자산의 처분",
+            "당기손익-공정가치측정금융자산의 취득"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/012330_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814004065",
+          "cash": {
+            "value": 414842000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 39625203000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 측정 금융자산의 처분",
+            "기타포괄손익-공정가치측정금융자산평가손익",
+            "기타포괄손익-공정가치측정지분상품평가손익",
+            "당기손익-공정가치측정금융자산의 처분",
+            "당기손익-공정가치측정금융자산의 취득"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/012330_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "011210",
+      "name": "현대위아",
+      "corp_code": "00106623",
+      "scope": "별도",
+      "industry": "자동차·부품",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260317000785",
+          "cash": {
+            "value": 532985000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 5575653000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 측정 금융자산처분손익",
+            "기타포괄손익-공정가치 측정 금융자산평가손익",
+            "기타포괄손익-공정가치측정금융자산처분손익",
+            "기타포괄손익-공정가치측정금융자산평가손익"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/011210_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814002618",
+          "cash": {
+            "value": 229175000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 5650474000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "세전기타포괄손익, 기타포괄손익-공정가치로 측정되는 금융자산"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/011210_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "018880",
+      "name": "한온시스템",
+      "corp_code": "00161125",
+      "scope": "별도",
+      "industry": "자동차·부품",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260318000645",
+          "cash": {
+            "value": 100132618722,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 7151927488858,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/018880_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260813001074",
+          "cash": {
+            "value": 217774129,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 7413609980534,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/018880_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "161390",
+      "name": "한국타이어앤테크놀로지",
+      "corp_code": "00937324",
+      "scope": "별도",
+      "industry": "자동차·부품",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260318000959",
+          "cash": {
+            "value": 20588855508,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 8857117175008,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 측정 금융자산",
+            "기타포괄손익-공정가치 측정 금융자산의 처분",
+            "기타포괄손익-공정가치 측정 금융자산의 취득",
+            "기타포괄손익-공정가치측정금융자산",
+            "당기손익-공정가치 측정 금융자산",
+            "당기손익-공정가치 측정 금융자산의 처분",
+            "당기손익-공정가치 측정 금융자산의 취득"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/161390_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814003878",
+          "cash": {
+            "value": 99716567088,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 9228877512062,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 측정 금융자산",
+            "기타포괄손익-공정가치 측정 지분상품 평가손익",
+            "당기손익-공정가치 측정 금융자산",
+            "당기손익-공정가치 측정 금융자산의 처분",
+            "당기손익-공정가치 측정 금융자산의 취득"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/161390_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "009540",
+      "name": "HD한국조선해양",
+      "corp_code": "00164830",
+      "scope": "별도",
+      "industry": "조선·기자재",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260320001032",
+          "cash": {
+            "value": 523688180000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 12901125689000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치측정금융자산평가손익"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/009540_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814002569",
+          "cash": {
+            "value": 3145868987000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 15518285541000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치측정금융자산평가손익"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/009540_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "329180",
+      "name": "HD현대중공업",
+      "corp_code": "01390344",
+      "scope": "별도",
+      "industry": "조선·기자재",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260320000859",
+          "cash": {
+            "value": 1842183302000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 26199062006000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치측정금융자산평가손익"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/329180_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814002879",
+          "cash": {
+            "value": 4513006162000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 29390008996000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/329180_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "010140",
+      "name": "삼성중공업",
+      "corp_code": "00126478",
+      "scope": "별도",
+      "industry": "조선·기자재",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260312001037",
+          "cash": {
+            "value": 685976424991,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 287050929202,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 14774688371138,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 973027354193,
+          "ratio": 0.0658577243560538,
+          "clues": [
+            "기타포괄-공정가치 금융자산의 처분",
+            "기타포괄-공정가치 금융자산의 취득",
+            "기타포괄손익-공정가치 금융자산",
+            "기타포괄손익-공정가치 금융자산 평가손익",
+            "기타포괄손익-공정가치 금융자산평가손익 재분류",
+            "당기손익-공정가치 금융자산의 처분",
+            "당기손익-공정가치 금융자산의 취득",
+            "당기손익-공정가치금융자산"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/010140_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814003496",
+          "cash": {
+            "value": 758888147534,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 716570935967,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 17798191101998,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 1475459083501,
+          "ratio": 0.08289938427143684,
+          "clues": [
+            "기타포괄손익-공정가치 금융자산",
+            "기타포괄손익-공정가치 금융자산 평가손익",
+            "기타포괄손익-공정가치 금융자산의 취득",
+            "당기손익-공정가치 금융자산의 취득",
+            "당기손익-공정가치금융자산"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/010140_2026-06-30.json"
+        }
+      },
+      "change": 502431729308
+    },
+    {
+      "code": "042660",
+      "name": "한화오션",
+      "corp_code": "00111704",
+      "scope": "별도",
+      "industry": "조선·기자재",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260317000644",
+          "cash": {
+            "value": 602024385058,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 19724646034029,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치측정금융자산의처분",
+            "기타포괄손익-공정가치측정금융자산평가손익",
+            "당기손익-공정가치금융자산의처분 - 투자활동",
+            "당기손익-공정가치측정금융자산의 취득"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/042660_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260812000829",
+          "cash": {
+            "value": 1231282707565,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 19564154500394,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치측정금융자산평가손익",
+            "당기손익-공정가치측정금융자산의 취득"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/042660_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "267250",
+      "name": "HD현대",
+      "corp_code": "01205709",
+      "scope": "별도",
+      "industry": "조선·기자재",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260320000872",
+          "cash": {
+            "value": 37860253000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 0,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 8993051579000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 37860253000,
+          "ratio": 0.00420994505229002,
+          "clues": [],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/267250_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814003420",
+          "cash": {
+            "value": 14869728000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 8873239307000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/267250_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "012450",
+      "name": "한화에어로스페이스",
+      "corp_code": "00126566",
+      "scope": "별도",
+      "industry": "방산·항공",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260316001112",
+          "cash": {
+            "value": 4217420484000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 24651333392000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치측정 금융자산의 취득",
+            "기타포괄손익-공정가치측정 금융자산평가손익",
+            "기타포괄손익-공정가치측정금융자산의처분",
+            "당기손익-공정가치측정 금융자산의 취득"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/012450_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814003198",
+          "cash": {
+            "value": 3180651134000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 27692452121000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치측정 금융자산의 취득",
+            "기타포괄손익-공정가치측정 금융자산평가이익",
+            "당기손익-공정가치 측정 금융자산의 취득 - 투자활동",
+            "당기손익-공정가치측정금융자산의 처분"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/012450_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "047810",
+      "name": "한국항공우주",
+      "corp_code": "00309503",
+      "scope": "별도",
+      "industry": "방산·항공",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260318001461",
+          "cash": {
+            "value": 13096364822,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 200000,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 10197273764281,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 13096564822,
+          "ratio": 0.0012843202138864442,
+          "clues": [
+            "비유동당기손익-공정가치 측정 금융상품",
+            "유동당기손익-공정가치 측정 금융상품"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/047810_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814003309",
+          "cash": {
+            "value": 116078512341,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 200000,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 11409684324455,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 116078712341,
+          "ratio": 0.010173700607316729,
+          "clues": [
+            "당기손익-공정가치 측정 금융자산의 취득",
+            "비유동당기손익-공정가치 측정 금융상품",
+            "유동당기손익-공정가치 측정 금융상품",
+            "투자활동으로 분류하는 당기손익-공정가치로 측정하는 금융자산의 매도 또는 만기 도래로 수취하는 대가"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/047810_2026-06-30.json"
+        }
+      },
+      "change": 102982147519
+    },
+    {
+      "code": "079550",
+      "name": "LIG디펜스앤에어로스페이스",
+      "corp_code": "00503668",
+      "scope": "별도",
+      "industry": "방산·항공",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260323001211",
+          "cash": {
+            "value": 97730689951,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 7832920569033,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 측정 금융자산 평가손익 적립금"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/079550_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260825000158",
+          "cash": {
+            "value": 16374302343,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 8539620068102,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 측정 금융자산 평가손익 적립금"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/079550_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "064350",
+      "name": "현대로템",
+      "corp_code": "00302926",
+      "scope": "별도",
+      "industry": "방산·항공",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260319001275",
+          "cash": {
+            "value": 837638283000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 9051011501000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치로 측정되는 금융자산의 세후차손익",
+            "기타포괄손익-공정가치측정금융자산의처분",
+            "당기손익-공정가치 금융자산의 처분",
+            "당기손익-공정가치 금융자산의 취득"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/064350_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814002977",
+          "cash": {
+            "value": 2462468094000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 8798078538000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 측정 금융자산 평가손익 적립금",
+            "당기손익-공정가치 측정 금융자산의 처분 - 투자활동",
+            "당기손익-공정가치 측정 금융자산의 취득"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/064350_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "267260",
+      "name": "HD현대일렉트릭",
+      "corp_code": "01205851",
+      "scope": "별도",
+      "industry": "전력기기",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260316000940",
+          "cash": {
+            "value": 542549877600,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 3503823710082,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치측정금융자산평가손익"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/267260_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814003228",
+          "cash": {
+            "value": 420870056400,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 3814936129676,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/267260_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "298040",
+      "name": "효성중공업",
+      "corp_code": "01316245",
+      "scope": "별도",
+      "industry": "전력기기",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260323001004",
+          "cash": {
+            "value": 42608942263,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 5101455864948,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치측정금융자산의 취득",
+            "기타포괄손익-공정가치측정금융자산의처분",
+            "기타포괄손익-공정가치측정지분상품평가손익",
+            "당기손익-공정가치측정금융자산의 처분",
+            "당기손익-공정가치측정금융자산의 취득"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/298040_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260813001554",
+          "cash": {
+            "value": 34690712305,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 5794781851765,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 측정 금융자산의 취득",
+            "기타포괄손익-공정가치측정금융자산의 처분",
+            "당기손익-공정가치 측정 금융자산의 취득",
+            "당기손익-공정가치측정금융자산의 처분"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/298040_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "010120",
+      "name": "엘에스일렉트릭",
+      "corp_code": "00105855",
+      "scope": "별도",
+      "industry": "전력기기",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260318001243",
+          "cash": {
+            "value": 417961515604,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 8959389761,
+            "account": "금융기관예치금",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 3999949042698,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 426920905365,
+          "ratio": 0.10673158602966556,
+          "clues": [
+            "기타포괄손익-공정가치측정금융자산",
+            "기타포괄손익-공정가치측정금융자산 처분손실",
+            "기타포괄손익-공정가치측정금융자산의 처분",
+            "기타포괄손익-공정가치측정금융자산의 취득",
+            "기타포괄손익-공정가치측정금융자산처분손익",
+            "기타포괄손익-공정가치측정금융자산평가손익",
+            "기타포괄손익-공정가치측정지분상품 평가손익",
+            "당기손익-공정가치측정금융자산",
+            "당기손익-공정가치측정금융자산의 처분",
+            "당기손익-공정가치측정금융자산의 취득",
+            "당기손익-공정가치측정금융자산처분손실",
+            "당기손익-공정가치측정금융자산평가손실",
+            "당기손익-공정가치측정금융자산평가이익",
+            "유동성당기손익-공정가치측정금융자산",
+            "유동성당기손익-공정가치측정금융자산의 취득"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/010120_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814003088",
+          "cash": {
+            "value": 295138972772,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 13094785567,
+            "account": "금융기관예치금",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 4484588231462,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 308233758339,
+          "ratio": 0.06873178593667989,
+          "clues": [
+            "기타포괄손익-공정가치측정금융자산",
+            "기타포괄손익-공정가치측정금융자산의 취득",
+            "기타포괄손익-공정가치측정금융자산처분손실",
+            "기타포괄손익-공정가치측정금융자산평가손익",
+            "기타포괄손익-공정가치측정지분상품 평가손익",
+            "당기손익-공정가치측정금융자산",
+            "당기손익-공정가치측정금융자산의 처분",
+            "당기손익-공정가치측정금융자산의 취득",
+            "당기손익-공정가치측정금융자산처분손실",
+            "당기손익-공정가치측정금융자산처분이익",
+            "당기손익-공정가치측정금융자산평가손실",
+            "당기손익-공정가치측정금융자산평가이익",
+            "유동성당기손익-공정가치측정금융자산",
+            "유동성당기손익-공정가치측정금융자산의 처분"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/010120_2026-06-30.json"
+        }
+      },
+      "change": -118687147026
+    },
+    {
+      "code": "066570",
+      "name": "LG전자",
+      "corp_code": "00401731",
+      "scope": "별도",
+      "industry": "전기전자",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260706000276",
+          "cash": {
+            "value": 1035432000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 0,
+            "account": "금융기관예치금",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 35091143000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 1035432000000,
+          "ratio": 0.029506932846274057,
+          "clues": [
+            "기타포괄손익-공정가치 측정 금융자산"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/066570_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814001997",
+          "cash": {
+            "value": 1088442000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 415000000,
+            "account": "금융기관예치금",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 37192827000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 1088857000000,
+          "ratio": 0.029275994535182818,
+          "clues": [
+            "기타포괄손익-공정가치 측정 금융자산"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/066570_2026-06-30.json"
+        }
+      },
+      "change": 53425000000
+    },
+    {
+      "code": "009150",
+      "name": "삼성전기",
+      "corp_code": "00126371",
+      "scope": "별도",
+      "industry": "전기전자",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260310003071",
+          "cash": {
+            "value": 2442722519837,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 10093973921384,
+            "account": "자산 총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "공정가치측정금융자산",
+            "공정가치측정금융자산의 처분",
+            "공정가치측정금융자산의 취득",
+            "기타포괄손익-공정가치측정금융자산 처분손익",
+            "기타포괄손익-공정가치측정금융자산 평가손익"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/009150_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814003805",
+          "cash": {
+            "value": 3037433705528,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 11292561084271,
+            "account": "자산 총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "공정가치측정금융자산",
+            "공정가치측정금융자산의 취득",
+            "기타포괄손익-공정가치측정금융자산 평가손익"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/009150_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "011070",
+      "name": "LG이노텍",
+      "corp_code": "00105961",
+      "scope": "별도",
+      "industry": "전기전자",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260312001270",
+          "cash": {
+            "value": 1115370000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 10190414000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 금융자산의 평가",
+            "기타포괄손익-공정가치 측정 금융상품 평가손익의 이익잉여금 대체"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/011070_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814001879",
+          "cash": {
+            "value": 965853000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 9906804000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 측정 금융자산의 평가"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/011070_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "034220",
+      "name": "LG디스플레이",
+      "corp_code": "00105873",
+      "scope": "별도",
+      "industry": "전기전자",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260311003822",
+          "cash": {
+            "value": 248729000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 0,
+            "account": "금융기관예치금",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 24811122000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 248729000000,
+          "ratio": 0.010024899317330348,
+          "clues": [
+            "기타포괄손익-공정가치 측정 금융자산의 처분",
+            "기타포괄손익-공정가치 측정 금융자산의 취득",
+            "당기손익-공정가치 측정 금융자산의 처분"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/034220_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814001005",
+          "cash": {
+            "value": 320203000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 25361952000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "당기손익-공정가치 측정 금융자산의 처분",
+            "당기손익-공정가치 측정 금융자산의 취득"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/034220_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "006400",
+      "name": "삼성SDI",
+      "corp_code": "00126362",
+      "scope": "별도",
+      "industry": "배터리·소재",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260310002954",
+          "cash": {
+            "value": 568160519553,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 22103874635370,
+            "account": "자산 합계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치측정금융자산평가손익"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/006400_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814003578",
+          "cash": {
+            "value": 382455881418,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 22514519107437,
+            "account": "자산 합계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치측정 금융자산평가손익",
+            "기타포괄손익-공정가치측정금융자산평가손익"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/006400_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "373220",
+      "name": "LG에너지솔루션",
+      "corp_code": "01515323",
+      "scope": "별도",
+      "industry": "배터리·소재",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260312000217",
+          "cash": {
+            "value": 968920000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 31167774000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 금융자산 손익",
+            "기타포괄손익-공정가치 측정 금융자산 손익",
+            "기타포괄손익-공정가치측정금융자산의처분"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/373220_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260813000255",
+          "cash": {
+            "value": 1823433000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 34309264000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 금융자산 손익",
+            "기타포괄손익-공정가치 측정 금융자산 손익",
+            "기타포괄손익-공정가치 측정 금융자산 평가손익 적립금"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/373220_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "051910",
+      "name": "LG화학",
+      "corp_code": "00356361",
+      "scope": "별도",
+      "industry": "배터리·소재",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260313001195",
+          "cash": {
+            "value": 3990941000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 34424144000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 금융자산 손익",
+            "기타포괄손익-공정가치측정 금융자산 손익"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/051910_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814002655",
+          "cash": {
+            "value": 2417081000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 34012643000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 금융자산 손익",
+            "기타포괄손익-공정가치측정 금융자산 손익"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/051910_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "003670",
+      "name": "포스코퓨처엠",
+      "corp_code": "00155276",
+      "scope": "별도",
+      "industry": "배터리·소재",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260312000826",
+          "cash": {
+            "value": 193126474451,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 7828095562850,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치측정금융자산의처분",
+            "기타포괄손익-공정가치측정금융자산처분손익 조정",
+            "기타포괄손익-공정가치측정금융자산평가손익",
+            "기타포괄손익-공정가치측정지분상품평가손익"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/003670_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260902000346",
+          "cash": {
+            "value": 415202366561,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 7969423573770,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "당기손익-공정가치 측정 금융자산의 취득",
+            "투자활동으로 분류하는 당기손익-공정가치로 측정하는 금융자산의 매도 또는 만기 도래로 수취하는 대가"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/003670_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "247540",
+      "name": "에코프로비엠",
+      "corp_code": "01160363",
+      "scope": "별도",
+      "industry": "배터리·소재",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260318001622",
+          "cash": {
+            "value": 143405827034,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 2813374558582,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "당기손익-공정가치 측정 금융자산",
+            "당기손익-공정가치 측정 금융자산의 처분",
+            "당기손익-공정가치금융자산의취득"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/247540_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814002535",
+          "cash": {
+            "value": 144707488337,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 2928477481048,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "당기손익-공정가치 측정 금융자산",
+            "당기손익-공정가치측정금융자산의 처분",
+            "당기손익-공정가치측정금융자산의 취득"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/247540_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "207940",
+      "name": "삼성바이오로직스",
+      "corp_code": "00877059",
+      "scope": "별도",
+      "industry": "바이오",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260515001658",
+          "cash": {
+            "value": 141484622864,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 1300000000000,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 11023968735616,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 1441484622864,
+          "ratio": 0.13075913561028912,
+          "clues": [
+            "당기손익-공정가치측정금융자산의 감소"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/207940_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814003375",
+          "cash": {
+            "value": 268313147943,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 1900000000000,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 12213457284866,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 2168313147943,
+          "ratio": 0.17753475509590647,
+          "clues": [],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/207940_2026-06-30.json"
+        }
+      },
+      "change": 726828525079
+    },
+    {
+      "code": "068270",
+      "name": "셀트리온",
+      "corp_code": "00413046",
+      "scope": "별도",
+      "industry": "바이오",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260316001415",
+          "cash": {
+            "value": 633669425901,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 52362785555,
+            "account": "단기금융자산",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 21813010247799,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 686032211456,
+          "ratio": 0.031450597769981006,
+          "clues": [
+            "기타포괄손익-공정가치측정 금융자산 평가손익",
+            "기타포괄손익-공정가치측정금융자산평가손익"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/068270_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814003751",
+          "cash": {
+            "value": 524918579594,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 21899213754025,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치측정 금융자산 평가 및 처분손익",
+            "기타포괄손익-공정가치측정 금융자산 평가손익"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/068270_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "033780",
+      "name": "케이티앤지",
+      "corp_code": "00244455",
+      "scope": "별도",
+      "industry": "소비재·수출",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260318001422",
+          "cash": {
+            "value": 134151000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 11364292000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 금융자산 평가손익",
+            "기타포괄손익-공정가치금융자산",
+            "기타포괄손익-공정가치금융자산 처분손익 이익잉여금 대체",
+            "기타포괄손익-공정가치금융자산의 감소",
+            "기타포괄손익-공정가치측정금융자산의 증가",
+            "당기손익-공정가치금융자산",
+            "당기손익-공정가치금융자산의 감소",
+            "당기손익-공정가치금융자산의 증가",
+            "장기당기손익-공정가치금융자산",
+            "장기당기손익-공정가치금융자산의 감소",
+            "장기당기손익-공정가치금융자산의 증가"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/033780_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814004174",
+          "cash": {
+            "value": 198504000000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 11929193000000,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 금융자산 처분손익 이익잉여금 대체",
+            "기타포괄손익-공정가치 금융자산 평가손익",
+            "기타포괄손익-공정가치금융자산",
+            "기타포괄손익-공정가치금융자산의 감소",
+            "당기손익-공정가치금융자산",
+            "당기손익-공정가치금융자산의 감소",
+            "당기손익-공정가치금융자산의 증가",
+            "장기당기손익-공정가치금융자산",
+            "장기당기손익-공정가치금융자산의 감소",
+            "장기당기손익-공정가치금융자산의 증가"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/033780_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "090430",
+      "name": "아모레퍼시픽",
+      "corp_code": "00583424",
+      "scope": "별도",
+      "industry": "소비재·수출",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260318000785",
+          "cash": {
+            "value": 162108994546,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 69250000000,
+            "account": "금융기관예치금",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 5625244226847,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 231358994546,
+          "ratio": 0.04112870218893212,
+          "clues": [
+            "기타포괄손익-공정가치측정 금융자산의 처분에 따른 대체",
+            "기타포괄손익-공정가치측정금융자산",
+            "기타포괄손익-공정가치측정금융자산의처분",
+            "기타포괄손익-공정가치측정자산평가손익",
+            "당기손익-공정가치측정금융자산",
+            "유동성 당기손익-공정가치측정 금융자산의 순감소",
+            "유동성 당기손익-공정가치측정 금융자산의 순증가"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/090430_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814002449",
+          "cash": {
+            "value": 164345994087,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 44850000000,
+            "account": "금융기관예치금",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 5685828585678,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 209195994087,
+          "ratio": 0.0367925256512204,
+          "clues": [
+            "기타포괄손익-공정가치금융자산의 처분",
+            "기타포괄손익-공정가치측정금융자산",
+            "기타포괄손익-공정가치측정금융자산 처분에 따른 대체",
+            "기타포괄손익-공정가치측정금융자산 평가손익",
+            "당기손익-공정가치측정금융자산",
+            "유동성 당기손익-공정가치측정 금융자산의 순증가"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/090430_2026-06-30.json"
+        }
+      },
+      "change": -22163000459
+    },
+    {
+      "code": "051900",
+      "name": "LG생활건강",
+      "corp_code": "00356370",
+      "scope": "별도",
+      "industry": "소비재·수출",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260316000985",
+          "cash": {
+            "value": 476743068712,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 16400000000,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 4931297372939,
+            "account": "자산 총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 493143068712,
+          "ratio": 0.10000270343017097,
+          "clues": [
+            "기타포괄손익-공정가치 측정 금융자산 평가손익",
+            "당기손익-공정가치 측정 금융부채 평가손실",
+            "당기손익-공정가치 측정 금융부채 평가이익",
+            "당기손익-공정가치 측정 금융자산 평가손실",
+            "당기손익-공정가치 측정 금융자산의 감소",
+            "당기손익-공정가치 측정 금융자산의 증가"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/051900_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814002412",
+          "cash": {
+            "value": 593775997769,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 16400000000,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 5127164422157,
+            "account": "자산 총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 610175997769,
+          "ratio": 0.11900847086786008,
+          "clues": [
+            "기타포괄손익-공정가치 측정 금융자산 평가손익",
+            "당기손익-공정가치 측정 금융자산의 증가",
+            "당기손익-공정가치 측정 금융자산의 처분 - 투자활동"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/051900_2026-06-30.json"
+        }
+      },
+      "change": 117032929057
+    },
+    {
+      "code": "271560",
+      "name": "오리온",
+      "corp_code": "01238169",
+      "scope": "별도",
+      "industry": "소비재·수출",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260318001320",
+          "cash": {
+            "value": 161635751470,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 1945313729634,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "사외적립자산의공정가치의 감소(증가)"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/271560_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260818000305",
+          "cash": {
+            "value": 254143639226,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 2043064255088,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "사외적립자산의공정가치의 감소(증가)"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/271560_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "047050",
+      "name": "포스코인터내셔널",
+      "corp_code": "00124504",
+      "scope": "별도",
+      "industry": "종합상사",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260318001494",
+          "cash": {
+            "value": 410278216000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 13725391826000,
+            "account": "총자산",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 측정 금융자산의 처분",
+            "기타포괄손익-공정가치 측정 금융자산의 취득",
+            "기타포괄손익-공정가치측정 금융자산 처분으로 인한 재분류",
+            "기타포괄손익-공정가치측정금융자산평가이익",
+            "당기손익-공정가치금융자산의처분 - 투자활동"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/047050_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814001968",
+          "cash": {
+            "value": 306870119000,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": null,
+            "status": "unmapped"
+          },
+          "assets": {
+            "value": 15400625224000,
+            "account": "자산 총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": null,
+          "ratio": null,
+          "clues": [
+            "기타포괄손익-공정가치 측정 금융자산의 처분",
+            "기타포괄손익-공정가치 측정 지분상품 처분으로 인한 재분류",
+            "기타포괄손익-공정가치측정지분상품평가이익"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/047050_2026-06-30.json"
+        }
+      },
+      "change": null
+    },
+    {
+      "code": "028260",
+      "name": "삼성물산",
+      "corp_code": "00149655",
+      "scope": "별도",
+      "industry": "종합상사",
+      "periods": {
+        "2025-12-31": {
+          "status": "ok",
+          "receipt": "20260312000856",
+          "cash": {
+            "value": 970917885881,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 77918922685,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 63998504361884,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 1048836808566,
+          "ratio": 0.016388458121384824,
+          "clues": [
+            "기타포괄손익 - 공정가치 측정 금융자산 평가손익",
+            "기타포괄손익-공정가치 측정 금융자산 처분으로 인한 재분류",
+            "기타포괄손익-공정가치 측정 금융자산 평가손익",
+            "기타포괄손익-공정가치 측정 금융자산의 처분",
+            "당기손익-공정가치 측정 금융자산",
+            "비유동 기타포괄손익-공정가치 측정 금융자산",
+            "비유동 당기손익-공정가치 측정 금융자산",
+            "비유동성 당기손익-공정가치측정 금융자산의 처분",
+            "비유동성 당기손익-공정가치측정 금융자산의 취득",
+            "유동성 당기손익-공정가치측정 금융자산의 순감소",
+            "유동성 당기손익-공정가치측정 금융자산의 순증가"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/028260_2025-12-31.json"
+        },
+        "2026-06-30": {
+          "status": "ok",
+          "receipt": "20260814002969",
+          "cash": {
+            "value": 2130041280768,
+            "account": "현금및현금성자산",
+            "account_id": "ifrs-full_CashAndCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "short": {
+            "value": 78139188556,
+            "account": "단기금융상품",
+            "account_id": "ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "assets": {
+            "value": 139109425955964,
+            "account": "자산총계",
+            "account_id": "ifrs-full_Assets",
+            "currency": "KRW",
+            "status": "mapped"
+          },
+          "cash_plus_short": 2208180469324,
+          "ratio": 0.01587369406601544,
+          "clues": [
+            "기타포괄손익 - 공정가치 측정 금융자산 평가손익",
+            "기타포괄손익-공정가치 측정 금융자산 처분으로 인한 재분류",
+            "기타포괄손익-공정가치 측정 금융자산 평가손익",
+            "기타포괄손익-공정가치 측정 금융자산의 취득 (주10)",
+            "당기손익-공정가치 측정 금융자산",
+            "비유동 기타포괄손익-공정가치 측정 금융자산",
+            "비유동 당기손익-공정가치 측정 금융자산",
+            "비유동성 당기손익-공정가치측정 금융자산의 처분",
+            "비유동성 당기손익-공정가치측정 금융자산의 취득",
+            "유동성 당기손익-공정가치측정 금융자산의 순감소"
+          ],
+          "fund_evidence": "미확인 · 주석 미분석",
+          "raw": "data/corporate/captures/20261026T010354Z/028260_2026-06-30.json"
+        }
+      },
+      "change": 1159343660758
+    }
+  ]
+}
