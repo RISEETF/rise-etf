@@ -23,7 +23,7 @@ function render(){
   if(c.marketing){
    const lead=document.createElement('p');lead.className='marketing-lead';lead.textContent=c.marketing.angle;cell.append(lead);
    const badge=document.createElement('small');badge.textContent=c.marketing.status;cell.append(badge);
-   for(const e of c.marketing.evidence){const box=document.createElement('p');box.textContent=`[${e.type}] ${e.date} · ${e.scope} — ${e.fact} `;const a=document.createElement('a');a.href=e.url;a.target='_blank';a.rel='noopener';a.textContent=e.source+' 원문';box.append(a);details.append(box);}
+   for(const e of c.marketing.evidence){const box=document.createElement('p');box.textContent=`[${e.type}] ${e.date} · ${e.scope} — ${e.fact} `;const a=document.createElement('a');a.href=e.url;a.target='_blank';a.rel='noopener';a.textContent=e.source+' 원문';box.append(a);details.append(box);if(e.excerpt){const quote=document.createElement('blockquote');quote.textContent=e.excerpt;details.append(quote);}}
   }
   if(c.pension){const n=c.pension,box=document.createElement('p');box.textContent=`DB 사외적립자산 ${money(n.plan_assets_krw)}억원 / 확정급여채무 ${money(n.obligation_krw)}억원. ${n.as_of} ${n.scope} · ${n.section}. ${n.provider_status}. ${n.selection_status}. ${n.composition_clue||''}`;details.append(box);const quote=document.createElement('blockquote');quote.textContent=n.excerpt;details.append(quote);const q=document.createElement('p');q.textContent='회계상 사외적립자산으로, 회사 현금 합계에서 제외. 법정 적립비율이나 신규 투자 여력을 의미하지 않음.';details.append(q);}
   cell.append(details);row.append(cell);body.append(row);
