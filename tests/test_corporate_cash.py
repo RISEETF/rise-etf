@@ -16,3 +16,7 @@ class CashPilotTests(unittest.TestCase):
         cash=row('ifrs-full_CashAndCashEquivalents',100)
         data=normalize({'status':'000','list':[cash,cash]})
         self.assertEqual(data['cash']['status'],'ambiguous')
+
+    def test_short_term_deposits_use_standard_id(self):
+        data=normalize({"status":"000","list":[row("ifrs-full_CashAndCashEquivalents",100),row("ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents",200,"유동 금융기관예치금")]})
+        self.assertEqual(data["cash_plus_short"],300)
