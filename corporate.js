@@ -11,22 +11,22 @@ function render(){
  document.querySelectorAll('th[data-key]').forEach(th=>{const active=th.dataset.key===sortKey;th.setAttribute('aria-sort',active?(direction===1?'ascending':'descending'):'none');th.querySelector('span').textContent=active?(direction===1?' ▲':' ▼'):' ↕';});
  const body=document.querySelector('#rows');body.replaceChildren();
  for(const c of items){
-  const d=c.periods[period]||{},row=document.createElement('tr');
+  const d=c.periods[period]||{},row=document.createElement('tr');row.className='company-row';
   const fields=[c.name+' ('+c.code+')',c.industry||'미분류',money(d.cash?.value),money(d.short?.value),money(d.cash_plus_short),money(c.change),d.ratio==null?'미확인':(100*d.ratio).toFixed(1)+'%',money(c.pension?.plan_assets_krw)];
-  for(const v of fields){const cell=document.createElement('td');cell.textContent=v;row.append(cell);}
-  const cell=document.createElement('td'),details=document.createElement('details'),summary=document.createElement('summary');summary.textContent=value(c,'evidence');details.append(summary);
+  for(const [i,v] of fields.entries()){const cell=document.createElement('td');cell.dataset.label=['기업','업종','현금','단기금융상품','합계','전년말 대비','총자산 대비','DB 적립금'][i];if(i===0){const name=document.createElement('span');name.className='company-name';name.textContent=c.name;const code=document.createElement('span');code.className='company-code';code.textContent=c.code;cell.append(name,code);}else cell.textContent=v;row.append(cell);}
+  const cell=document.createElement('td'),details=document.createElement('div'),summary=document.createElement('button');details.className='evidence-panel';details.id='evidence-'+c.code;summary.type='button';summary.className='evidence-toggle';summary.textContent=value(c,'evidence')+' ＋';summary.setAttribute('aria-expanded','false');summary.setAttribute('aria-controls',details.id);summary.setAttribute('aria-label',c.name+' '+value(c,'evidence')+' 상세');
   if(d.cash_plus_short==null){const missing=document.createElement('p');missing.textContent='합계 미확인: '+[['현금',d.cash],['단기금융상품',d.short]].filter(([name,v])=>v?.value==null).map(([name,v])=>name+' '+(v?.status==='ambiguous'?'복수 계정 확인 필요':'계정 식별 필요')).join(' / ')+'. 미확인은 잔액 0원을 의미하지 않습니다.';details.append(missing);}
   const p=document.createElement('p');p.textContent=(d.clues||[]).join(' / ')||'식별된 금융자산 계정 없음';details.append(p);
   if(c.note_review){const note=document.createElement('p');note.textContent=c.note_review.summary+" 검토범위: "+c.note_review.coverage;details.append(note);}
   for(const [date,f] of Object.entries(c.periods)){if(!/^\d{14}$/.test(f.receipt||''))continue;const a=document.createElement('a');a.href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo='+f.receipt;a.target='_blank';a.rel='noopener';a.textContent=date+' 공시 ↗';details.append(a,document.createElement('br'));}
-  if(!c.marketing){const lead=document.createElement('p');lead.className='marketing-lead';lead.textContent=d.clues?.length?'금융자산 관련 계정 단서가 있습니다. 상품·펀드명과 DB 적립금은 주석 확인 전입니다.':'재무제표 관측 대상입니다. 펀드 보유 및 DB 관련 주석은 아직 검토하지 않았습니다.';cell.append(lead);}
+  if(!c.marketing){const lead=document.createElement('p');lead.className='marketing-lead';lead.textContent=d.clues?.length?'금융자산 관련 계정 단서가 있습니다. 상품·펀드명과 DB 적립금은 주석 확인 전입니다.':'재무제표 관측 대상입니다. 펀드 보유 및 DB 관련 주석은 아직 검토하지 않았습니다.';details.prepend(lead);}
   if(c.marketing){
-   const lead=document.createElement('p');lead.className='marketing-lead';lead.textContent=c.marketing.angle;cell.append(lead);
-   const badge=document.createElement('small');badge.textContent=c.marketing.status;cell.append(badge);
+   const lead=document.createElement('p');lead.className='marketing-lead';lead.textContent=c.marketing.angle;details.prepend(lead);
+   const badge=document.createElement('small');badge.textContent=c.marketing.status;details.append(badge);
    for(const e of c.marketing.evidence){const box=document.createElement('p');box.textContent=`[${e.type}] ${e.date} · ${e.scope} — ${e.fact} `;const a=document.createElement('a');a.href=e.url;a.target='_blank';a.rel='noopener';a.textContent=e.source+' 원문';box.append(a);details.append(box);if(e.excerpt){const quote=document.createElement('blockquote');quote.textContent=e.excerpt;details.append(quote);}}
   }
   if(c.pension){const n=c.pension,box=document.createElement('p');box.textContent=`DB 사외적립자산 ${money(n.plan_assets_krw)}억원 / 확정급여채무 ${money(n.obligation_krw)}억원. ${n.as_of} ${n.scope} · ${n.section}. ${n.provider_status}. ${n.selection_status}. ${n.composition_clue||''}`;details.append(box);const quote=document.createElement('blockquote');quote.textContent=n.excerpt;details.append(quote);const q=document.createElement('p');q.textContent='회계상 사외적립자산으로, 회사 현금 합계에서 제외. 법정 적립비율이나 신규 투자 여력을 의미하지 않음.';details.append(q);}
-  cell.append(details);row.append(cell);body.append(row);
+  cell.append(summary);row.append(cell);const detailRow=document.createElement('tr'),detailCell=document.createElement('td');detailRow.className='detail-row';detailRow.hidden=true;detailCell.colSpan=9;detailCell.append(details);detailRow.append(detailCell);summary.addEventListener('click',()=>{detailRow.hidden=!detailRow.hidden;summary.setAttribute('aria-expanded',String(!detailRow.hidden));summary.textContent=value(c,'evidence')+(detailRow.hidden?' ＋':' −');});body.append(row,detailRow);
  }
  if(!items.length){const row=body.insertRow(),cell=row.insertCell();cell.colSpan=9;cell.textContent='검색 결과가 없습니다.';}
  document.querySelector('#count').textContent=`${items.length} / ${companies.length}개사`;
