@@ -43,6 +43,7 @@ def normalize(data):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--key-file")
+    parser.add_argument("--only-new", action="store_true", help="Keep existing same-period companies; collect newly added codes only")
     args = parser.parse_args()
     key = Path(args.key_file).read_text().strip() if args.key_file else os.environ.get("DART_API_KEY", "")
     if not key:
@@ -54,10 +55,19 @@ def main():
     with zipfile.ZipFile(io.BytesIO(raw)) as z:
         tree = ET.fromstring(z.read("CORPCODE.xml"))
     master = {x.findtext("stock_code", "").strip(): (x.findtext("corp_code"), x.findtext("corp_name")) for x in tree.findall("list")}
+    previous = {}
+    latest = ROOT / "data/corporate/latest.json"
+    if args.only_new and latest.exists():
+        old = json.loads(latest.read_text())
+        if (old["period"], old["comparison_period"], old["scope"]) != ("2026-06-30", "2025-12-31", "OFS"):
+            raise SystemExit("Existing snapshot period/scope mismatch")
+        previous = {c["code"]: dict(c, collected_at=c.get("collected_at", old["collected_at"])) for c in old["companies"]}
     def collect(company):
         code = company["code"]
+        if code in previous:
+            return previous[code]
         corp, name = master[code]
-        item = {"code": code, "name": name, "corp_code": corp, "scope": "별도", "industry": company["industry"], "periods": {}}
+        item = {"code": code, "name": name, "corp_code": corp, "scope": "별도", "collected_at": stamp, "industry": company["industry"], "periods": {}}
         for period, year, report in [("2025-12-31", "2025", "11011"), ("2026-06-30", "2026", "11012")]:
             try:
                 payload = json.loads(request("fnlttSinglAcntAll.json", key, corp_code=corp, bsns_year=year, reprt_code=report, fs_div="OFS"))
