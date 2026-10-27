@@ -38,6 +38,19 @@ class KrxEtfTest(unittest.TestCase):
             self.assertEqual(raised.exception.date_evidence,{
                 'rejected_observed_on':'2026-09-18','retained_observed_on':'2026-09-23'})
 
+    def test_coverage_failure_records_all_fields_without_mutation(self):
+        records = [{'ticker':str(i), 'close':1, 'nav':None, 'volume':1,
+                    'listed_shares':None} for i in range(500)]
+        with tempfile.TemporaryDirectory() as d:
+            path=Path(d)/'db.sqlite'
+            with self.assertRaisesRegex(ValueError,'KRX_FIELD_COVERAGE_LOW') as raised:
+                MODULE.validate_completeness(path,{'page_date':'2026-10-26','records':records},dt.date(2026,10,27))
+            quality=raised.exception.quality_evidence
+            self.assertEqual(quality['failed_fields'],['nav','listed_shares'])
+            self.assertEqual(quality['field_coverage']['close'],1)
+            self.assertEqual(quality['field_coverage']['nav'],0)
+            self.assertFalse(path.exists())
+
     def fixture(self):
         return {"OutBlock_1": [
             {"BAS_DD": "20260918", "ISU_SRT_CD": "123456", "ISU_NM": "TEST ETF",

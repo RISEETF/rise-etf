@@ -74,6 +74,7 @@ jobs:
           name: krx-etf-${{ github.run_id }}
           path: |
             var/krx-output/receipt.json
+            var/krx-output/validation_failure.json
             var/krx_etf.sqlite
             var/kind-raw/
           if-no-files-found: error
