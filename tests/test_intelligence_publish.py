@@ -93,6 +93,49 @@ class TestPublication(unittest.TestCase):
         self.run_publish('Second correction')
         self.assertEqual(len(list((self.portal / 'data/vintages/2026-09-22').iterdir())), 2)
 
+    def test_snapshot_repair_preserves_report_and_vintage(self):
+        import shutil
+        shutil.rmtree(self.portal)
+        shutil.copytree(ROOT / 'intelligence', self.portal)
+        day = '2026-10-27'
+        # Replay the actual broken snapshot, kept as a revision vintage.
+        originals = list((self.portal / 'data/vintages' / day).glob('*/snapshot.json'))
+        original = next(p for p in originals if json.loads(p.read_text()).get('product_candidates'))
+        data = json.loads(original.read_text())
+        (self.portal / f'data/daily/{day}.json').write_bytes(original.read_bytes())
+        (self.portal / 'data/latest.json').write_bytes(original.read_bytes())
+        before = self.contents()
+        repaired = publisher.canonical_repair_metadata(data)
+        self.snapshot.write_text(json.dumps(repaired))
+        result = publisher.publish(self.snapshot, None, self.portal, 'Schema repair',
+                                   preserve_existing_report=True)
+        self.assertTrue(result['content_changed'])
+        self.assertEqual(before[f'reports/{day}.html'], (self.portal / f'reports/{day}.html').read_bytes())
+        new_paths = set(self.contents()) - set(before)
+        archived = next(p for p in new_paths if p.endswith('/snapshot.json'))
+        self.assertEqual(before[f'data/daily/{day}.json'], self.contents()[archived])
+        self.assertEqual(repaired['research_candidates'], data['product_candidates'])
+        self.assertEqual(repaired['research_gaps'], data['coverage']['blockers'])
+        self.assertFalse(publisher.publish(self.snapshot, None, self.portal, 'Schema repair',
+                                          preserve_existing_report=True)['content_changed'])
+        stable = self.contents()
+        repaired['observations'][0]['value'] += 1
+        self.snapshot.write_text(json.dumps(repaired))
+        with self.assertRaises(ValueError):
+            publisher.publish(self.snapshot, None, self.portal, 'Repair', preserve_existing_report=True)
+        self.assertEqual(stable, self.contents())
+
+    def test_snapshot_repair_requires_existing_report_and_reason(self):
+        before = self.contents()
+        with self.assertRaises(ValueError):
+            publisher.publish(self.snapshot, None, self.portal, preserve_existing_report=True)
+        self.assertEqual(before, self.contents())
+        self.data['asof_date'] = '2026-09-23'
+        self.snapshot.write_text(json.dumps(self.data))
+        with self.assertRaises(ValueError):
+            publisher.publish(self.snapshot, None, self.portal, 'Repair', preserve_existing_report=True)
+        self.assertEqual(before, self.contents())
+
     def test_backfill_does_not_rewind_latest(self):
         latest = (self.portal / 'data/latest.json').read_bytes()
         self.data['asof_date'] = '2026-09-21'

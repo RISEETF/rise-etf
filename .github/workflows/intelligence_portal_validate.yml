@@ -2,6 +2,14 @@ name: RISE Intelligence Portal Validate
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'intelligence/**'
+      - 'scripts/validate_intelligence_snapshot.py'
+      - 'scripts/update_intelligence_portal.py'
+      - 'tests/test_intelligence_publish.py'
+      - '.github/workflows/intelligence_portal_validate.yml'
   pull_request:
     paths:
       - 'intelligence/**'

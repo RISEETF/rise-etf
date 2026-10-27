@@ -138,13 +138,16 @@ def validate_completeness(db_path: Path, snapshot: dict, asof: dt.date) -> dict:
         raise ValueError(f"KRX_SNAPSHOT_STALE_OR_FUTURE:{lag_days}")
     if current_count < 500:
         raise ValueError(f"KRX_UNIVERSE_TOO_SMALL:{current_count}")
-    coverage = {}
-    for field in ("close", "nav", "volume", "listed_shares"):
-        present = sum(item.get(field) is not None for item in records)
-        ratio = present / current_count
-        coverage[field] = ratio
-        if ratio < 0.95:
-            raise ValueError(f"KRX_FIELD_COVERAGE_LOW:{field}:{ratio:.4f}")
+    coverage = {field: sum(item.get(field) is not None for item in records) / current_count
+                for field in FIELDS}
+    required = ("close", "nav", "volume", "listed_shares")
+    failed = [field for field in required if coverage[field] < 0.95]
+    if failed:
+        error = ValueError(f"KRX_FIELD_COVERAGE_LOW:{failed[0]}:{coverage[failed[0]]:.4f}")
+        error.quality_evidence = {"observation_date": observed.isoformat(),
+                                  "record_count": current_count, "field_coverage": coverage,
+                                  "failed_fields": failed, "required_ratio": 0.95}
+        raise error
     prior_count = None
     if db_path.is_file():
         with sqlite3.connect(f"file:{db_path.resolve()}?mode=ro", uri=True) as connection:
@@ -234,8 +237,10 @@ def main() -> int:
         # Public status contains a stable reason only, never request headers or secrets.
         write_json_atomic(args.status, {'status':'FAILED', 'attempted_at':attempted_at,
                                       'reason':safe_reason(exc), 'last_success_preserved':True,
-                                      **getattr(exc, 'date_evidence', {})})
-        print(json.dumps({'status':'FAILED', 'reason':safe_reason(exc)}))
+                                      **getattr(exc, 'date_evidence', {}),
+                                      **({'quality':exc.quality_evidence} if hasattr(exc,'quality_evidence') else {})})
+        print(json.dumps({'status':'FAILED', 'reason':safe_reason(exc),
+                          **({'quality':exc.quality_evidence} if hasattr(exc,'quality_evidence') else {})}))
         refresh_notice_report(args)
         return 1
     refresh_notice_report(args)
@@ -253,9 +258,19 @@ def collect(args):
     retrieved_at = dt.datetime.now(dt.timezone.utc).isoformat()
     payload, result = fetch_latest(auth_key, asof)
     raw_hash = hashlib.sha256(payload).hexdigest()
-    raw_path = output / f"krx_etf_{result['snapshot']['page_date'].replace('-', '')}.json"
+    raw_path = output / f"krx_etf_{result['snapshot']['page_date'].replace('-', '')}_{raw_hash}.json"
     raw_path.write_bytes(payload)
-    quality = validate_completeness(Path(args.db), result["snapshot"], asof)
+    try:
+        quality = validate_completeness(Path(args.db), result["snapshot"], asof)
+    except ValueError as exc:
+        if hasattr(exc, 'quality_evidence'):
+            # Only allowlisted source field names/counts; never headers or arbitrary response text.
+            rows = json.loads(payload).get('OutBlock_1', [])
+            exc.quality_evidence['source_field_present_rows'] = {
+                source: sum(source in row for row in rows) for source, _ in FIELDS.values()}
+            exc.quality_evidence['raw_sha256'] = raw_hash
+            write_json_atomic(output/'validation_failure.json', exc.quality_evidence)
+        raise
     receipt = {
         "status": "SUCCESS",
         "source": "KRX_OPEN_API_ETF_DAILY",
