@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import argparse, json, shutil, html, tempfile, os
+import argparse, json, shutil, html, tempfile, os, copy
 from uuid import uuid4
 from datetime import date
 from pathlib import Path
@@ -54,7 +54,32 @@ def validate_portal(portal):
         raise ValueError("latest differs from chronological latest daily snapshot")
 
 
-def publish(snapshot_path, narrative_path, portal, revision_reason=None):
+def canonical_repair_metadata(snapshot):
+    """Only repair known 1.2 metadata mismatches, without changing research evidence."""
+    d = copy.deepcopy(snapshot)
+    if d.get('schema_version') != '1.2':
+        raise ValueError('metadata repair supports schema 1.2 only')
+    for source, target in (('product_candidates', 'research_candidates'),):
+        if d.get(source):
+            if target in d:
+                raise ValueError('repair destination already exists')
+            d[target] = d[source]
+            d[source] = []
+    if d['coverage'].get('blockers'):
+        if 'research_gaps' in d:
+            raise ValueError('repair destination already exists')
+        # Caller must review that these are research gaps, not collection failures.
+        d['research_gaps'] = d['coverage']['blockers']
+        d['coverage']['blockers'] = []
+    for row in d.get('top_rise_matches', []):
+        if row.get('basis') == 'KRX_INVENTORY_NAME_ONLY_EXPOSURE_UNVERIFIED':
+            row['basis'] = 'NAME_ONLY_UNVERIFIED_EXPOSURE'
+    for row in d.get('observations', []) + d['coverage'].get('dated_context', []):
+        row['asof_label'] = f"{row['observation_date']} {'종가' if row['series_id']=='VIXCLS' else '관측값'} 기준"
+    return d
+
+
+def publish(snapshot_path, narrative_path, portal, revision_reason=None, *, preserve_existing_report=False):
     portal = Path(portal).resolve()
     d = read_json(Path(snapshot_path))
     errors = validate(d)
@@ -66,12 +91,17 @@ def publish(snapshot_path, narrative_path, portal, revision_reason=None):
     asof = d["asof_date"]
     if date.fromisoformat(asof).isoformat() != asof:
         raise ValueError("asof_date must be canonical YYYY-MM-DD")
-    narrative = Path(narrative_path).read_text(encoding="utf-8")
-    if not narrative.strip():
-        raise ValueError("narrative must not be empty")
+    if preserve_existing_report:
+        if narrative_path is not None or not revision_reason or not revision_reason.strip():
+            raise ValueError("snapshot repair requires a revision reason and no narrative")
+        narrative = None
+    else:
+        narrative = Path(narrative_path).read_text(encoding="utf-8")
+        if not narrative.strip():
+            raise ValueError("narrative must not be empty")
     d["full_report_path"] = f"reports/{asof}.html"
     d["report_status"] = "PUBLISHED"
-    report = render_report(d, narrative)
+    report = None if preserve_existing_report else render_report(d, narrative)
     portal.parent.mkdir(parents=True, exist_ok=True)
     lock = portal.parent / ("." + portal.name + ".publish.lock")
     # Exclusive lock also blocks retries after abrupt termination until reviewed.
@@ -88,6 +118,12 @@ def publish(snapshot_path, narrative_path, portal, revision_reason=None):
             report_path = stage / d["full_report_path"]
             old = read_json(daily) if daily.exists() else None
             old_report = report_path.read_text(encoding="utf-8") if report_path.exists() else None
+            if preserve_existing_report:
+                if old is None or old_report is None:
+                    raise ValueError("snapshot repair requires an existing same-date snapshot and report")
+                if d != canonical_repair_metadata(old):
+                    raise ValueError("preserved HTML requires metadata-only repair; evidence or judgment changed")
+                report = old_report
             changed = old != d or old_report != report
             if old is not None and changed:
                 if not revision_reason or not revision_reason.strip():
@@ -142,11 +178,14 @@ def publish(snapshot_path, narrative_path, portal, revision_reason=None):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--snapshot", required=True)
-    ap.add_argument("--narrative", required=True)
+    mode = ap.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--narrative")
+    mode.add_argument("--preserve-existing-report", action="store_true",
+                      help="Repair snapshot metadata; preserve the existing same-date HTML and archive both originals")
     ap.add_argument("--portal-dir", default="intelligence")
     ap.add_argument("--revision-reason")
     args = ap.parse_args()
-    print(json.dumps(publish(args.snapshot, args.narrative, args.portal_dir, args.revision_reason), ensure_ascii=False))
+    print(json.dumps(publish(args.snapshot, args.narrative, args.portal_dir, args.revision_reason, preserve_existing_report=args.preserve_existing_report), ensure_ascii=False))
 
 
 if __name__ == "__main__":
