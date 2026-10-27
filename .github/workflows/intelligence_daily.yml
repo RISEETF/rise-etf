@@ -30,7 +30,7 @@ permissions:
   contents: write
   pages: write
 concurrency:
-  group: rise-intelligence-daily
+  group: rise-data-writer-${{ github.ref }}
   cancel-in-progress: false
 jobs:
   daily:
