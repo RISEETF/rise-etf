@@ -104,7 +104,8 @@
         "unit": "Index",
         "age_calendar_days": 6,
         "reason": "2026-10-29 기준 허용 신선도 초과; 오늘의 독립 확인 제외",
-        "use": "DATED_CONTEXT_ONLY"
+        "use": "DATED_CONTEXT_ONLY",
+        "asof_label": "2026-10-23 관측값 기준"
       },
       {
         "series_id": "DCOILBRENTEU",
@@ -113,7 +114,8 @@
         "unit": "USD/bbl",
         "age_calendar_days": 9,
         "reason": "2026-10-29 기준 허용 신선도 초과; 오늘의 독립 확인 제외",
-        "use": "DATED_CONTEXT_ONLY"
+        "use": "DATED_CONTEXT_ONLY",
+        "asof_label": "2026-10-20 관측값 기준"
       },
       {
         "series_id": "DCOILWTICO",
@@ -122,14 +124,11 @@
         "unit": "USD/bbl",
         "age_calendar_days": 9,
         "reason": "2026-10-29 기준 허용 신선도 초과; 오늘의 독립 확인 제외",
-        "use": "DATED_CONTEXT_ONLY"
+        "use": "DATED_CONTEXT_ONLY",
+        "asof_label": "2026-10-20 관측값 기준"
       }
     ],
-    "blockers": [
-      "GCLRI 원천 생성 2026-10-28, 10/29 신규 관측 미반영",
-      "2026-10-29 기준 DTWEXBGS 및 원유 2종 지연",
-      "미국·한국·환율의 공통 종가 및 ETF 분배 조정 미검증"
-    ]
+    "blockers": []
   },
   "observations": [
     {
@@ -261,7 +260,7 @@
       "fresh_for_report": true,
       "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS",
       "source_tier": "TIER2_MARKET",
-      "asof_label": "2026-10-26 관측값 기준",
+      "asof_label": "2026-10-26 종가 기준",
       "use": "FRESH_RESEARCH"
     }
   ],
@@ -273,5 +272,10 @@
   },
   "strongest_counterevidence": "MS FCF +186억달러, Alphabet 클라우드 고성장, 10/26 고수익 OAS -0.08%p, 10/21 주식형 ETF 순설정 +353.64억달러: AI 수요 및 금융 전파 반대증거. 서로 다른 기준일 주의.",
   "full_report_path": "reports/2026-10-29.html",
-  "report_status": "PUBLISHED"
+  "report_status": "PUBLISHED",
+  "research_gaps": [
+    "GCLRI 원천 생성 2026-10-28, 10/29 신규 관측 미반영",
+    "2026-10-29 기준 DTWEXBGS 및 원유 2종 지연",
+    "미국·한국·환율의 공통 종가 및 ETF 분배 조정 미검증"
+  ]
 }
