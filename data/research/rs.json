@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "status": "EXPLORATORY_PRICE_RS",
-  "decision_time_utc": "2026-10-27T14:27:27.411065+00:00",
+  "decision_time_utc": "2026-10-28T02:18:18.051614+00:00",
   "benchmark": "US_LISTED:SPY",
   "price_field": "close",
   "fx_basis": "HANA_FINAL_NOTICE_MIDPOINT",
@@ -11,12 +11,20 @@
   "latest_common_date": "2026-10-26",
   "alignment_audit": {
     "rule": "OBSERVED_DATE_UNION_NOT_TRADING_CALENDAR",
-    "common_date_count": 66,
-    "first_common_date": "2026-07-16",
-    "latest_available_date": "2026-10-26",
+    "common_date_count": 65,
+    "first_common_date": "2026-07-20",
+    "latest_available_date": "2026-10-27",
     "latest_common_date": "2026-10-26",
     "recent_dates_checked": 30,
     "excluded_recent_dates": [
+      {
+        "date": "2026-10-27",
+        "missing_sources": [
+          "US_LISTED:SPY",
+          "US_LISTED:IEF",
+          "US_LISTED:AAPL"
+        ]
+      },
       {
         "date": "2026-10-09",
         "missing_sources": [
@@ -61,22 +69,22 @@
     "excluded_observations": [
       {
         "instrument_id": "XKRX:148020",
-        "observation_date": "2026-10-27",
-        "capture_local_date": "2026-10-27",
+        "observation_date": "2026-10-28",
+        "capture_local_date": "2026-10-28",
         "timezone": "Asia/Seoul",
         "reason": "NOT_BEFORE_CAPTURE_LOCAL_DATE"
       },
       {
         "instrument_id": "XKRX:379780",
-        "observation_date": "2026-10-27",
-        "capture_local_date": "2026-10-27",
+        "observation_date": "2026-10-28",
+        "capture_local_date": "2026-10-28",
         "timezone": "Asia/Seoul",
         "reason": "NOT_BEFORE_CAPTURE_LOCAL_DATE"
       },
       {
         "instrument_id": "XKRX:114100",
-        "observation_date": "2026-10-27",
-        "capture_local_date": "2026-10-27",
+        "observation_date": "2026-10-28",
+        "capture_local_date": "2026-10-28",
         "timezone": "Asia/Seoul",
         "reason": "NOT_BEFORE_CAPTURE_LOCAL_DATE"
       },
@@ -104,69 +112,69 @@
     ],
     "note": "Conservative full-calendar-day buffer, including after-close captures. Not independent confirmation of official close or exchange calendar."
   },
-  "source_age_calendar_days": 1,
+  "source_age_calendar_days": 2,
   "sources": [
     {
       "instrument_id": "XKRX:148020",
       "name": "RISE 200",
       "currency": "KRW",
       "capture": {
-        "capture_id": "20261027T142705486765Z-NAVER_CHART_CANDIDATE-148020",
+        "capture_id": "20261028T021754728478Z-NAVER_CHART_CANDIDATE-148020",
         "source_id": "NAVER_CHART_CANDIDATE",
         "source_url": "https://fchart.stock.naver.com/sise.nhn?symbol=148020&timeframe=day&count=300&requestType=0",
-        "retrieved_at": "2026-10-27T14:27:05.486765+00:00",
-        "source_sha256": "3ec7cf6b750835a2092d9c4a9a4ceb890c7effe553e4a875c531296fd40554fa",
+        "retrieved_at": "2026-10-28T02:17:54.728478+00:00",
+        "source_sha256": "9ae3f7036747d86200655bcc1f4e4ed3457702527f4ff2759d6ed3b80b3dc0e8",
         "kind": "PRICE",
         "status": "CAPTURED",
         "quality": "QUARANTINED",
         "error": null
       },
-      "latest_price_date": "2026-10-26"
+      "latest_price_date": "2026-10-27"
     },
     {
       "instrument_id": "XKRX:379780",
       "name": "RISE 미국S&P500",
       "currency": "KRW",
       "capture": {
-        "capture_id": "20261027T142706470969Z-NAVER_CHART_CANDIDATE-379780",
+        "capture_id": "20261028T021755718333Z-NAVER_CHART_CANDIDATE-379780",
         "source_id": "NAVER_CHART_CANDIDATE",
         "source_url": "https://fchart.stock.naver.com/sise.nhn?symbol=379780&timeframe=day&count=300&requestType=0",
-        "retrieved_at": "2026-10-27T14:27:06.470969+00:00",
-        "source_sha256": "b53af7bae32e615cb455436103bb8c85a76503b86fcf38e7529515a3e6d03bb7",
+        "retrieved_at": "2026-10-28T02:17:55.718333+00:00",
+        "source_sha256": "ec0d518cbdfa1edd6844e6c13a1cc33f8122602f0db4fe33e16ad92dfaf11b40",
         "kind": "PRICE",
         "status": "CAPTURED",
         "quality": "QUARANTINED",
         "error": null
       },
-      "latest_price_date": "2026-10-26"
+      "latest_price_date": "2026-10-27"
     },
     {
       "instrument_id": "XKRX:114100",
       "name": "RISE 국고채3년",
       "currency": "KRW",
       "capture": {
-        "capture_id": "20261027T142707161064Z-NAVER_CHART_CANDIDATE-114100",
+        "capture_id": "20261028T021756446078Z-NAVER_CHART_CANDIDATE-114100",
         "source_id": "NAVER_CHART_CANDIDATE",
         "source_url": "https://fchart.stock.naver.com/sise.nhn?symbol=114100&timeframe=day&count=300&requestType=0",
-        "retrieved_at": "2026-10-27T14:27:07.161064+00:00",
-        "source_sha256": "3280feff649147b51edab7135819c08d8156a737dca7a0c852cdc2700a52072d",
+        "retrieved_at": "2026-10-28T02:17:56.446078+00:00",
+        "source_sha256": "8b4cce31e35cf532d1675f53eb15415868437fa0f7ed413cdeb5931a38279847",
         "kind": "PRICE",
         "status": "CAPTURED",
         "quality": "QUARANTINED",
         "error": null
       },
-      "latest_price_date": "2026-10-26"
+      "latest_price_date": "2026-10-27"
     },
     {
       "instrument_id": "US_LISTED:SPY",
       "name": "SPY · 미국 주식시장 ETF 시범",
       "currency": "USD",
       "capture": {
-        "capture_id": "20261027T142709411371Z-YAHOO_CHART_CANDIDATE-SPY",
+        "capture_id": "20261028T021758259079Z-YAHOO_CHART_CANDIDATE-SPY",
         "source_id": "YAHOO_CHART_CANDIDATE",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPY?range=2y&interval=1d&events=div%2Csplits%2CcapitalGains&includeAdjustedClose=true",
-        "retrieved_at": "2026-10-27T14:27:09.411371+00:00",
-        "source_sha256": "bbf343898eee3051b90608ce42e37cfafd8866d9d8a353d9a2763c41e844fae5",
+        "retrieved_at": "2026-10-28T02:17:58.259079+00:00",
+        "source_sha256": "bcc27a3b3c5d8e8c53bf4997172ac8339c7bf6025421ccf1dc009deb379156f2",
         "kind": "US_PRICE",
         "status": "CAPTURED",
         "quality": "QUARANTINED",
@@ -179,11 +187,11 @@
       "name": "IEF · 미국 국채 ETF 시범",
       "currency": "USD",
       "capture": {
-        "capture_id": "20261027T142709668847Z-YAHOO_CHART_CANDIDATE-IEF",
+        "capture_id": "20261028T021758518104Z-YAHOO_CHART_CANDIDATE-IEF",
         "source_id": "YAHOO_CHART_CANDIDATE",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/IEF?range=2y&interval=1d&events=div%2Csplits%2CcapitalGains&includeAdjustedClose=true",
-        "retrieved_at": "2026-10-27T14:27:09.668847+00:00",
-        "source_sha256": "43810504d86047fd1c9e010f5f26329709efedefd053f19134e63dd8286f7ac1",
+        "retrieved_at": "2026-10-28T02:17:58.518104+00:00",
+        "source_sha256": "ec100944161c1903429d2df60412a010fdb33a56becf874cc490e40f070ac247",
         "kind": "US_PRICE",
         "status": "CAPTURED",
         "quality": "QUARANTINED",
@@ -196,11 +204,11 @@
       "name": "AAPL · 해외 개별주식 시범",
       "currency": "USD",
       "capture": {
-        "capture_id": "20261027T142709852169Z-YAHOO_CHART_CANDIDATE-AAPL",
+        "capture_id": "20261028T021758814114Z-YAHOO_CHART_CANDIDATE-AAPL",
         "source_id": "YAHOO_CHART_CANDIDATE",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AAPL?range=2y&interval=1d&events=div%2Csplits%2CcapitalGains&includeAdjustedClose=true",
-        "retrieved_at": "2026-10-27T14:27:09.852169+00:00",
-        "source_sha256": "61322b04733da863bc0a501cae685ccb26e0a6e127647eb44695085735517cf6",
+        "retrieved_at": "2026-10-28T02:17:58.814114+00:00",
+        "source_sha256": "ede3a8dc7ce539e913df4969b1172db40b2354791d7d4f17b6059b8a962a0d0f",
         "kind": "US_PRICE",
         "status": "CAPTURED",
         "quality": "QUARANTINED",
@@ -210,29 +218,17 @@
     }
   ],
   "fx_capture": {
-    "capture_id": "20261027T142710202441Z-HANA_FINAL_NOTICE",
+    "capture_id": "20261028T021759191254Z-HANA_FINAL_NOTICE",
     "source_id": "HANA_FINAL_NOTICE",
     "source_url": "https://www.kebhana.com/cms/rate/wpfxd651_01i_01.do",
-    "retrieved_at": "2026-10-27T14:27:20.506779+00:00",
-    "source_sha256": "0405645c78713b9ef91bea5b310600d386fd1ee360ec70b3abee9810560fce8e",
+    "retrieved_at": "2026-10-28T02:18:09.432513+00:00",
+    "source_sha256": "c218d659f192bef569845e639bdc33e637486d40204b37d00c523c3b3e57aa68",
     "kind": "FX",
     "status": "CAPTURED",
     "quality": "REFERENCE_ONLY",
     "error": null
   },
   "fx_notices": [
-    {
-      "date": "2026-07-16",
-      "base": "USD",
-      "quote": "KRW",
-      "rate": 1491.0,
-      "kind": "HANA_FINAL_NOTICE",
-      "base_date": "2026-07-16",
-      "notice_at": "2026-07-20T07:58:27+09:00",
-      "notice_sequence": 1409,
-      "requested_date": "2026-07-19",
-      "retrieved_at": "2026-10-16T00:07:41.095000+00:00"
-    },
     {
       "date": "2026-07-20",
       "base": "USD",
@@ -987,7 +983,7 @@
       "notice_at": "2026-10-22T07:34:04+09:00",
       "notice_sequence": 764,
       "requested_date": "2026-10-21",
-      "retrieved_at": "2026-10-27T14:27:14.065392+00:00"
+      "retrieved_at": "2026-10-28T02:18:01.584221+00:00"
     },
     {
       "date": "2026-10-22",
@@ -999,7 +995,7 @@
       "notice_at": "2026-10-23T08:05:39+09:00",
       "notice_sequence": 905,
       "requested_date": "2026-10-22",
-      "retrieved_at": "2026-10-27T14:27:15.150093+00:00"
+      "retrieved_at": "2026-10-28T02:18:02.664796+00:00"
     },
     {
       "date": "2026-10-23",
@@ -1011,7 +1007,7 @@
       "notice_at": "2026-10-26T07:38:39+09:00",
       "notice_sequence": 805,
       "requested_date": "2026-10-25",
-      "retrieved_at": "2026-10-27T14:27:19.142506+00:00"
+      "retrieved_at": "2026-10-28T02:18:06.617703+00:00"
     },
     {
       "date": "2026-10-26",
@@ -1023,7 +1019,19 @@
       "notice_at": "2026-10-27T07:51:22+09:00",
       "notice_sequence": 1043,
       "requested_date": "2026-10-26",
-      "retrieved_at": "2026-10-27T14:27:20.205953+00:00"
+      "retrieved_at": "2026-10-28T02:18:07.692842+00:00"
+    },
+    {
+      "date": "2026-10-27",
+      "base": "USD",
+      "quote": "KRW",
+      "rate": 1327.0,
+      "kind": "HANA_FINAL_NOTICE",
+      "base_date": "2026-10-27",
+      "notice_at": "2026-10-28T08:18:32+09:00",
+      "notice_sequence": 1277,
+      "requested_date": "2026-10-27",
+      "retrieved_at": "2026-10-28T02:18:09.131498+00:00"
     }
   ],
   "windows": [
