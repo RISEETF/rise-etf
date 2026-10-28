@@ -1,0 +1,22 @@
+{
+  "schema": "KRX_PDF_RECEIPTS_V1",
+  "items": [
+    {
+      "ticker": "0164G0",
+      "name": "RISE 차이나AI반도체TOP4Plus",
+      "observation_date": "2026-10-27",
+      "retrieved_at": "2026-10-28T23:51:58.486727+00:00",
+      "source": "KRX_PDF",
+      "source_url": "https://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201030108",
+      "sha256": "c2ab1f68f63fd2ec4fccf64f14268a25a1fa46fc30935d244c0a93472fb3e1c5",
+      "date_basis": "BROWSER_OBSERVED_QUERY",
+      "row_count": 17,
+      "security_count": 15,
+      "cash_related_rows": 2,
+      "missing_security_weights": 15,
+      "state": "PDF_ACQUIRED_PARTIAL",
+      "attribution_verified": false,
+      "limitation": "구성내역 확보 · 비중 누락으로 기여도 분석 보류"
+    }
+  ]
+}
