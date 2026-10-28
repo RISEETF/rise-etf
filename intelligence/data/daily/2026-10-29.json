@@ -1,0 +1,277 @@
+{
+  "schema_version": "1.2",
+  "snapshot_type": "FULL",
+  "report_mode": "DATED_OBSERVATIONS_V1",
+  "asof_date": "2026-10-29",
+  "current_regime": "GLOBAL TIGHTENING / HIGH ENERGY STRESS / HIGH MACRO ABSORPTION",
+  "regime_reference_date": "2026-10-15",
+  "regime_assessment": "CARRIED_FORWARD_NOT_RECONFIRMED",
+  "regime_confidence": null,
+  "regime_confidence_reason": "기계 관문 KEEP, 독립 지속 확인 0개, 관찰 0개. 승인된 확률모형 없음. 검증 이력 부족.",
+  "regime_change_candidate": "기계 유지(KEEP), 신규 레짐 전환 요건 미충족",
+  "regime_change_status": "WATCH",
+  "top_change": "연준 10/28 3.75~4.00% 동결(10대2); Microsoft FCF +186억달러 vs Alphabet -90.7억달러; KOSPI 10/28 +6.63%",
+  "top_risk": "AI 설비투자와 현금창출 양극화, 고유가·운송 위험, 10/29 PCE·GDP 발표; 내부 기계 관문 10/28 생성본",
+  "macro_absorption_level": "UNRESOLVED",
+  "macro_absorption_headroom": "UNRESOLVED",
+  "corporate_absorption_level": "UNRESOLVED",
+  "corporate_headroom": "UNRESOLVED",
+  "fiscal_stress": "UNRESOLVED",
+  "credit_stress_current": "UNRESOLVED",
+  "credit_stress_forward": "UNRESOLVED",
+  "market_liquidity": "UNRESOLVED",
+  "funding_liquidity": "UNRESOLVED",
+  "energy_stress": "UNRESOLVED",
+  "energy_reliability": "UNRESOLVED",
+  "energy_adaptation": "UNRESOLVED",
+  "flow_state": "UNRESOLVED",
+  "assessment_gaps": {
+    "macro_absorption_level": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "macro_absorption_headroom": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "corporate_absorption_level": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "corporate_headroom": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "fiscal_stress": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "credit_stress_current": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "credit_stress_forward": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "market_liquidity": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "funding_liquidity": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "energy_stress": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "energy_reliability": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "energy_adaptation": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정",
+    "flow_state": "해당 종합판단의 승인된 최신 산출 근거가 없어 미산정"
+  },
+  "top_rise_matches": [
+    {
+      "name": "RISE 200",
+      "code": "148020",
+      "priority": "조사 후보 · 추천 아님",
+      "angle": "국내 반도체 상승의 집중도·시장 폭·지수 편입 노출 점검",
+      "counter": "공식 PDF 편입종목·가중치 확인",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "inventory_asof": "2026-10-27",
+      "signal_id": null
+    },
+    {
+      "name": "RISE 미국S&P500",
+      "code": "379780",
+      "priority": "조사 후보 · 추천 아님",
+      "angle": "미국 대형주 내 AI 기업 비중과 FCF 차별화 설명",
+      "counter": "공식 PDF 및 환헤지·총수익 노출 확인",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "inventory_asof": "2026-10-27",
+      "signal_id": null
+    },
+    {
+      "name": "RISE 국고채3년",
+      "code": "114100",
+      "priority": "조사 후보 · 추천 아님",
+      "angle": "금리 동결 이후 단기 듀레이션 위험 설명",
+      "counter": "미국 금리 신호와 한국 국채 노출을 동일시하지 않음",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "inventory_asof": "2026-10-27",
+      "signal_id": null
+    }
+  ],
+  "rise_match_status": "NAME_ONLY_RESEARCH",
+  "product_candidates": [],
+  "product_assessment": "지속가능 자본생산성 연구 후보 유지. 증분 ROIC-WACC·FCF 전환·차환비용·중복상품·구조적 수요 미검증으로 출시 보류.",
+  "framework_updates": [],
+  "production_eligible": false,
+  "regime_history_update": {
+    "prior_state": "GLOBAL TIGHTENING / HIGH ENERGY STRESS / HIGH MACRO ABSORPTION",
+    "today_state": "GLOBAL TIGHTENING / HIGH ENERGY STRESS / HIGH MACRO ABSORPTION",
+    "transition_gate_crossed": false
+  },
+  "key_triggers": [
+    "10/29 PCE·GDP 및 10/28 FOMC 후 금리·달러·신용스프레드 동반 확인",
+    "MS/Alphabet 이후 AI 기업 FCF·CAPEX·차입·CDS·한계조달비용",
+    "원유 실제 인도량·재고·보험료·우회운송 마찰비용"
+  ],
+  "no_action": [
+    "기계 Gate KEEP와 10/29 신규 시장정보를 혼동하지 않음",
+    "레짐·신호·프레임워크의 운영 승격 금지(검증 이력 부족)",
+    "상품명만으로 투자 권유·신상품 출시 승인 금지"
+  ],
+  "coverage": {
+    "policy": "DATED_OBSERVATIONS_V1",
+    "state": "DATED_INPUTS",
+    "excluded": [],
+    "dated_context": [
+      {
+        "series_id": "DTWEXBGS",
+        "observation_date": "2026-10-23",
+        "value": 121.3202,
+        "unit": "Index",
+        "age_calendar_days": 6,
+        "reason": "2026-10-29 기준 허용 신선도 초과; 오늘의 독립 확인 제외",
+        "use": "DATED_CONTEXT_ONLY"
+      },
+      {
+        "series_id": "DCOILBRENTEU",
+        "observation_date": "2026-10-20",
+        "value": 115.22,
+        "unit": "USD/bbl",
+        "age_calendar_days": 9,
+        "reason": "2026-10-29 기준 허용 신선도 초과; 오늘의 독립 확인 제외",
+        "use": "DATED_CONTEXT_ONLY"
+      },
+      {
+        "series_id": "DCOILWTICO",
+        "observation_date": "2026-10-20",
+        "value": 107.89,
+        "unit": "USD/bbl",
+        "age_calendar_days": 9,
+        "reason": "2026-10-29 기준 허용 신선도 초과; 오늘의 독립 확인 제외",
+        "use": "DATED_CONTEXT_ONLY"
+      }
+    ],
+    "blockers": [
+      "GCLRI 원천 생성 2026-10-28, 10/29 신규 관측 미반영",
+      "2026-10-29 기준 DTWEXBGS 및 원유 2종 지연",
+      "미국·한국·환율의 공통 종가 및 ETF 분배 조정 미검증"
+    ]
+  },
+  "observations": [
+    {
+      "series_id": "DGS10",
+      "name": "US Treasury 10Y",
+      "observation_date": "2026-10-26",
+      "value": 5,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10",
+      "source_tier": "TIER1_OFFICIAL",
+      "asof_label": "2026-10-26 관측값 기준",
+      "use": "FRESH_RESEARCH"
+    },
+    {
+      "series_id": "DGS2",
+      "name": "US Treasury 2Y",
+      "observation_date": "2026-10-26",
+      "value": 4.68,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2",
+      "source_tier": "TIER1_OFFICIAL",
+      "asof_label": "2026-10-26 관측값 기준",
+      "use": "FRESH_RESEARCH"
+    },
+    {
+      "series_id": "T10Y2Y",
+      "name": "10Y-2Y Treasury Spread",
+      "observation_date": "2026-10-27",
+      "value": 0.29,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=T10Y2Y",
+      "source_tier": "TIER1_OFFICIAL",
+      "asof_label": "2026-10-27 관측값 기준",
+      "use": "FRESH_RESEARCH"
+    },
+    {
+      "series_id": "SOFR",
+      "name": "Secured Overnight Financing Rate",
+      "observation_date": "2026-10-26",
+      "value": 3.93,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=SOFR",
+      "source_tier": "TIER1_OFFICIAL",
+      "asof_label": "2026-10-26 관측값 기준",
+      "use": "FRESH_RESEARCH"
+    },
+    {
+      "series_id": "WRESBAL",
+      "name": "Reserve Balances with Federal Reserve Banks",
+      "observation_date": "2026-10-21",
+      "value": 2962607,
+      "unit": "Millions USD",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WRESBAL",
+      "source_tier": "TIER1_OFFICIAL",
+      "asof_label": "2026-10-21 관측값 기준",
+      "use": "FRESH_RESEARCH"
+    },
+    {
+      "series_id": "BAMLC0A0CM",
+      "name": "US Corporate Master OAS",
+      "observation_date": "2026-10-26",
+      "value": 0.9,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLC0A0CM",
+      "source_tier": "TIER2_MARKET",
+      "asof_label": "2026-10-26 관측값 기준",
+      "use": "FRESH_RESEARCH"
+    },
+    {
+      "series_id": "BAMLH0A0HYM2",
+      "name": "US High Yield OAS",
+      "observation_date": "2026-10-26",
+      "value": 3.3,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2",
+      "source_tier": "TIER2_MARKET",
+      "asof_label": "2026-10-26 관측값 기준",
+      "use": "FRESH_RESEARCH"
+    },
+    {
+      "series_id": "DTWEXBGS",
+      "name": "Nominal Broad US Dollar Index",
+      "observation_date": "2026-10-23",
+      "value": 121.3202,
+      "unit": "Index",
+      "fresh_for_report": false,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DTWEXBGS",
+      "source_tier": "TIER1_OFFICIAL",
+      "asof_label": "2026-10-23 관측값 기준",
+      "use": "DATED_CONTEXT_ONLY"
+    },
+    {
+      "series_id": "DCOILBRENTEU",
+      "name": "Brent Crude Oil Price",
+      "observation_date": "2026-10-20",
+      "value": 115.22,
+      "unit": "USD/bbl",
+      "fresh_for_report": false,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILBRENTEU",
+      "source_tier": "TIER1_OFFICIAL",
+      "asof_label": "2026-10-20 관측값 기준",
+      "use": "DATED_CONTEXT_ONLY"
+    },
+    {
+      "series_id": "DCOILWTICO",
+      "name": "WTI Crude Oil Price",
+      "observation_date": "2026-10-20",
+      "value": 107.89,
+      "unit": "USD/bbl",
+      "fresh_for_report": false,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILWTICO",
+      "source_tier": "TIER1_OFFICIAL",
+      "asof_label": "2026-10-20 관측값 기준",
+      "use": "DATED_CONTEXT_ONLY"
+    },
+    {
+      "series_id": "VIXCLS",
+      "name": "CBOE VIX",
+      "observation_date": "2026-10-26",
+      "value": 18.39,
+      "unit": "Index",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS",
+      "source_tier": "TIER2_MARKET",
+      "asof_label": "2026-10-26 관측값 기준",
+      "use": "FRESH_RESEARCH"
+    }
+  ],
+  "decision_board": [],
+  "rise_inventory_evidence": {
+    "source_id": "KRX_OPEN_API_ETF_DAILY",
+    "observed_on": "2026-10-27",
+    "raw_sha256": "140a1e73d0d63ba6ac2240713f45a8f9594ea806d5ef372963626fd1ff2f53ab"
+  },
+  "strongest_counterevidence": "MS FCF +186억달러, Alphabet 클라우드 고성장, 10/26 고수익 OAS -0.08%p, 10/21 주식형 ETF 순설정 +353.64억달러: AI 수요 및 금융 전파 반대증거. 서로 다른 기준일 주의.",
+  "full_report_path": "reports/2026-10-29.html",
+  "report_status": "PUBLISHED"
+}
