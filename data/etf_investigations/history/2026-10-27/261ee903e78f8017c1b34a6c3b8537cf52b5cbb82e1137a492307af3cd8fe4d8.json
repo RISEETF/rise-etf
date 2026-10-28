@@ -1,0 +1,151 @@
+{
+  "schema": "ETF_INVESTIGATION_QUEUE_V1",
+  "rules": {
+    "version": "ETF_TRIAGE_RESEARCH_V1",
+    "price_abs_pct": 5,
+    "nav_gap_abs_pct": 2,
+    "volume_multiple": 3,
+    "baseline_sessions": 20,
+    "daily_limit": 5,
+    "status": "UNCALIBRATED_RESEARCH_ONLY"
+  },
+  "source": "KRX_OPEN_API_ETF_DAILY",
+  "observation_date": "2026-10-27",
+  "source_retrieved_at": "2026-10-28T06:49:58.944140+00:00",
+  "source_raw_sha256": "08db7bdc0c2c0120645d15d769918c71a06d7fee5610845d52ce54284335fefb",
+  "screened_count": 1186,
+  "metric_coverage": {
+    "price": 1183,
+    "nav_gap": 1186,
+    "volume": 1170
+  },
+  "candidate_count": 108,
+  "deferred_count": 103,
+  "items": [
+    {
+      "ticker": "488290",
+      "name": "MIDAS 일본테크액티브",
+      "observation_date": "2026-10-27",
+      "signals": [
+        {
+          "kind": "NAV_GAP",
+          "value": 3.9722,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 5.2306,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "488290",
+        "requested_date": "2026-10-27",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "414780",
+      "name": "TIGER 차이나과창판STAR50(합성)",
+      "observation_date": "2026-10-27",
+      "signals": [
+        {
+          "kind": "NAV_GAP",
+          "value": -3.6401,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 5.4439,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "414780",
+        "requested_date": "2026-10-27",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "0164G0",
+      "name": "RISE 차이나AI반도체TOP4Plus",
+      "observation_date": "2026-10-27",
+      "signals": [
+        {
+          "kind": "NAV_GAP",
+          "value": -3.1775,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 4.3466,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "0164G0",
+        "requested_date": "2026-10-27",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "265690",
+      "name": "ACE 러시아MSCI(합성)",
+      "observation_date": "2026-10-27",
+      "signals": [
+        {
+          "kind": "NAV_GAP",
+          "value": 17483.4363,
+          "unit": "%"
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "265690",
+        "requested_date": "2026-10-27",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "434960",
+      "name": "DAISHIN K200",
+      "observation_date": "2026-10-27",
+      "signals": [
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 23.0142,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "434960",
+        "requested_date": "2026-10-27",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    }
+  ],
+  "limitations": [
+    "조사 우선순위용 임시 기준이며 검증된 매매신호가 아닙니다.",
+    "가격은 비조정 종가입니다. 분배·분할·병합·레버리지 및 시장 전체 변동을 먼저 확인하세요.",
+    "해외자산 NAV와 국내 종가의 시차는 괴리의 원인이 될 수 있습니다.",
+    "거래량 증가를 투자자 순유입으로 해석하지 않습니다. PDF 확보 전 구성자산 원인은 미확인입니다."
+  ]
+}
