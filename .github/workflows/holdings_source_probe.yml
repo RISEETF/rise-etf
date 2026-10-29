@@ -1,0 +1,25 @@
+name: Targeted holdings source experiment
+on:
+  pull_request:
+    paths:
+      - 'scripts/probe_etf_holdings.py'
+      - '.github/workflows/holdings_source_probe.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python scripts/probe_etf_holdings.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: targeted-holdings-source-${{ github.run_id }}
+          path: var/holdings-probe/
+          retention-days: 14
