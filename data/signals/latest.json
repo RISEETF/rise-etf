@@ -1,7 +1,7 @@
 {
   "schema_version": "0.7",
-  "built_at_utc": "2026-10-28T06:43:57.157587+00:00",
-  "source_gclri_built_at_utc": "2026-10-28T01:01:43.506301+00:00",
+  "built_at_utc": "2026-10-29T01:38:49.013843+00:00",
+  "source_gclri_built_at_utc": "2026-10-29T01:38:26.767846+00:00",
   "production_eligible": false,
   "regime_change_authorized": false,
   "signals": [
@@ -12,17 +12,17 @@
       "signal_state": "WATCH",
       "direction": "DOWN",
       "strongest_series": "DGS10",
-      "strongest_zscore": -1.7802112743205845,
+      "strongest_zscore": -1.5322644757393502,
       "confidence": "MODERATE",
       "confirmation_count": 0,
       "details": [
         {
           "series_id": "DGS10",
-          "observation_date": "2026-10-26",
-          "latest_value": 5.0,
+          "observation_date": "2026-10-27",
+          "latest_value": 4.99,
           "horizon_observations": 5,
-          "horizon_move": -0.15000000000000036,
-          "zscore": -1.7802112743205845,
+          "horizon_move": -0.1299999999999999,
+          "zscore": -1.5322644757393502,
           "data_state": "CURRENT"
         }
       ],
@@ -35,35 +35,35 @@
       "signal_state": "WATCH",
       "direction": "DOWN",
       "strongest_series": "DGS10",
-      "strongest_zscore": -1.7802112743205845,
+      "strongest_zscore": -1.5322644757393502,
       "confidence": "HIGH",
-      "confirmation_count": 0,
+      "confirmation_count": 1,
       "details": [
         {
           "series_id": "T10Y2Y",
-          "observation_date": "2026-10-27",
-          "latest_value": 0.29,
+          "observation_date": "2026-10-28",
+          "latest_value": 0.38,
           "horizon_observations": 5,
-          "horizon_move": -0.040000000000000036,
-          "zscore": -0.42597731915403036,
+          "horizon_move": 0.06,
+          "zscore": 0.8728121426478616,
           "data_state": "CURRENT"
         },
         {
           "series_id": "DGS10",
-          "observation_date": "2026-10-26",
-          "latest_value": 5.0,
+          "observation_date": "2026-10-27",
+          "latest_value": 4.99,
           "horizon_observations": 5,
-          "horizon_move": -0.15000000000000036,
-          "zscore": -1.7802112743205845,
+          "horizon_move": -0.1299999999999999,
+          "zscore": -1.5322644757393502,
           "data_state": "CURRENT"
         },
         {
           "series_id": "DGS2",
-          "observation_date": "2026-10-26",
-          "latest_value": 4.68,
+          "observation_date": "2026-10-27",
+          "latest_value": 4.7,
           "horizon_observations": 5,
           "horizon_move": -0.08999999999999986,
-          "zscore": -1.1775929394808387,
+          "zscore": -1.1984799274085725,
           "data_state": "CURRENT"
         }
       ],
@@ -74,28 +74,28 @@
       "name": "Credit Spread Widening Impulse",
       "status": "CANDIDATE",
       "signal_state": "NORMAL",
-      "direction": "UP",
-      "strongest_series": "BAMLC0A0CM",
-      "strongest_zscore": 0.8255313962720484,
+      "direction": "DOWN",
+      "strongest_series": "BAMLH0A0HYM2",
+      "strongest_zscore": -1.4923993721582662,
       "confidence": "HIGH",
-      "confirmation_count": 2,
+      "confirmation_count": 1,
       "details": [
         {
           "series_id": "BAMLC0A0CM",
-          "observation_date": "2026-10-26",
-          "latest_value": 0.9,
+          "observation_date": "2026-10-27",
+          "latest_value": 0.88,
           "horizon_observations": 5,
-          "horizon_move": 0.030000000000000027,
-          "zscore": 0.8255313962720484,
+          "horizon_move": 0.010000000000000009,
+          "zscore": 0.08330382331670909,
           "data_state": "CURRENT"
         },
         {
           "series_id": "BAMLH0A0HYM2",
-          "observation_date": "2026-10-26",
-          "latest_value": 3.3,
+          "observation_date": "2026-10-27",
+          "latest_value": 3.18,
           "horizon_observations": 5,
-          "horizon_move": 0.009999999999999787,
-          "zscore": -0.2408801058430275,
+          "horizon_move": -0.1499999999999999,
+          "zscore": -1.4923993721582662,
           "data_state": "CURRENT"
         }
       ],
@@ -108,17 +108,17 @@
       "signal_state": "NORMAL",
       "direction": "UP",
       "strongest_series": "SOFR",
-      "strongest_zscore": 0.5844267509399159,
+      "strongest_zscore": 0.7182103830305652,
       "confidence": "HIGH",
       "confirmation_count": 1,
       "details": [
         {
           "series_id": "SOFR",
-          "observation_date": "2026-10-26",
-          "latest_value": 3.93,
+          "observation_date": "2026-10-27",
+          "latest_value": 3.95,
           "horizon_observations": 5,
-          "horizon_move": 0.06000000000000005,
-          "zscore": 0.5844267509399159,
+          "horizon_move": 0.07000000000000028,
+          "zscore": 0.7182103830305652,
           "data_state": "CURRENT"
         },
         {
@@ -141,7 +141,7 @@
       "direction": "DOWN",
       "strongest_series": "DTWEXBGS",
       "strongest_zscore": -0.18001890097141315,
-      "confidence": "MODERATE",
+      "confidence": "LOW",
       "confirmation_count": 0,
       "details": [
         {
@@ -151,7 +151,7 @@
           "horizon_observations": 5,
           "horizon_move": -0.0006968422994807488,
           "zscore": -0.18001890097141315,
-          "data_state": "CURRENT"
+          "data_state": "STALE"
         }
       ],
       "production_eligible": false
@@ -160,30 +160,30 @@
       "signal_id": "SIG-ENERGY-001",
       "name": "Oil Price Shock",
       "status": "CANDIDATE",
-      "signal_state": "WATCH",
-      "direction": "UP",
+      "signal_state": "NORMAL",
+      "direction": "DOWN",
       "strongest_series": "DCOILWTICO",
-      "strongest_zscore": 1.654119217925949,
-      "confidence": "LOW",
+      "strongest_zscore": -0.9115723787341522,
+      "confidence": "HIGH",
       "confirmation_count": 1,
       "details": [
         {
           "series_id": "DCOILBRENTEU",
-          "observation_date": "2026-10-20",
-          "latest_value": 115.22,
+          "observation_date": "2026-10-27",
+          "latest_value": 123.1,
           "horizon_observations": 5,
-          "horizon_move": -0.08395611384957868,
-          "zscore": -1.2804795978237382,
-          "data_state": "STALE"
+          "horizon_move": 0.06839090435688244,
+          "zscore": 0.4847067231219349,
+          "data_state": "CURRENT"
         },
         {
           "series_id": "DCOILWTICO",
-          "observation_date": "2026-10-20",
-          "latest_value": 107.89,
+          "observation_date": "2026-10-27",
+          "latest_value": 103.37,
           "horizon_observations": 5,
-          "horizon_move": 0.13104098962155364,
-          "zscore": 1.654119217925949,
-          "data_state": "STALE"
+          "horizon_move": -0.04189452219853551,
+          "zscore": -0.9115723787341522,
+          "data_state": "CURRENT"
         }
       ],
       "production_eligible": false
@@ -193,19 +193,19 @@
       "name": "Equity Volatility Shock",
       "status": "CANDIDATE",
       "signal_state": "NORMAL",
-      "direction": "DOWN",
+      "direction": "UP",
       "strongest_series": "VIXCLS",
-      "strongest_zscore": -0.08047158286928977,
+      "strongest_zscore": 0.0416055508328727,
       "confidence": "MODERATE",
-      "confirmation_count": 0,
+      "confirmation_count": 1,
       "details": [
         {
           "series_id": "VIXCLS",
-          "observation_date": "2026-10-26",
-          "latest_value": 18.39,
+          "observation_date": "2026-10-27",
+          "latest_value": 17.52,
           "horizon_observations": 5,
-          "horizon_move": -0.0027114967462039674,
-          "zscore": -0.08047158286928977,
+          "horizon_move": 0.012131715771230622,
+          "zscore": 0.0416055508328727,
           "data_state": "CURRENT"
         }
       ],

@@ -1,7 +1,7 @@
 {
   "schema_version": "0.9",
-  "built_at_utc": "2026-10-28T06:43:57.235823+00:00",
-  "source_episode_built_at_utc": "2026-10-28T06:43:57.202950+00:00",
+  "built_at_utc": "2026-10-29T01:38:49.080490+00:00",
+  "source_episode_built_at_utc": "2026-10-29T01:38:49.052846+00:00",
   "gate_state": "KEEP",
   "independent_persistent_channel_count": 0,
   "watch_channel_count": 0,
@@ -18,10 +18,10 @@
           "signal_id": "SIG-RATE-001",
           "signal_state": "WATCH",
           "episode_status": "WEAKENING",
-          "persistence_runs": 3,
-          "distinct_trigger_observations": 2,
+          "persistence_runs": 4,
+          "distinct_trigger_observations": 3,
           "peak_zscore": -1.7802112743205845,
-          "latest_zscore": -1.7802112743205845,
+          "latest_zscore": -1.5322644757393502,
           "confirmation_eligible": true,
           "confidence": "MODERATE",
           "primary_series": "DGS10"
@@ -30,10 +30,10 @@
           "signal_id": "SIG-RATE-002",
           "signal_state": "WATCH",
           "episode_status": "WEAKENING",
-          "persistence_runs": 3,
-          "distinct_trigger_observations": 2,
+          "persistence_runs": 4,
+          "distinct_trigger_observations": 3,
           "peak_zscore": -1.7802112743205845,
-          "latest_zscore": -1.7802112743205845,
+          "latest_zscore": -1.5322644757393502,
           "confirmation_eligible": true,
           "confidence": "HIGH",
           "primary_series": "DGS10"
@@ -45,25 +45,12 @@
     },
     {
       "channel_id": "CREDIT",
-      "channel_state": "NON_CONFIRMING",
+      "channel_state": "NO_EPISODE",
       "counts_as_independent_confirmation": false,
-      "evidence": [
-        {
-          "signal_id": "SIG-CREDIT-001",
-          "signal_state": "NORMAL",
-          "episode_status": "WEAKENING",
-          "persistence_runs": 3,
-          "distinct_trigger_observations": 2,
-          "peak_zscore": 1.9837865499727887,
-          "latest_zscore": 0.8255313962720484,
-          "confirmation_eligible": false,
-          "confidence": "HIGH",
-          "primary_series": "BAMLC0A0CM"
-        }
-      ],
+      "evidence": [],
       "fresh_persistent_signal_count": 0,
       "fresh_watch_signal_count": 0,
-      "nonconfirming_or_stale_count": 1
+      "nonconfirming_or_stale_count": 0
     },
     {
       "channel_id": "FUNDING",
@@ -90,14 +77,14 @@
       "evidence": [
         {
           "signal_id": "SIG-ENERGY-001",
-          "signal_state": "WATCH",
-          "episode_status": "WATCH",
-          "persistence_runs": 1,
+          "signal_state": "NORMAL",
+          "episode_status": "WEAKENING",
+          "persistence_runs": 2,
           "distinct_trigger_observations": 1,
           "peak_zscore": 1.654119217925949,
-          "latest_zscore": 1.654119217925949,
+          "latest_zscore": -0.9115723787341522,
           "confirmation_eligible": false,
-          "confidence": "LOW",
+          "confidence": "HIGH",
           "primary_series": "DCOILWTICO"
         }
       ],
