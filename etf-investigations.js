@@ -10,7 +10,7 @@
   if(item.name.startsWith('RISE '))link('② RISE 운용사','https://www.riseetf.co.kr/');
   link('자료 부족 시 KRX PDF','https://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201030108');
   box.append(links,node('p',`조사 기준일 ${day}. 먼저 화면의 자료 기준일·전체/상위 종목 여부·비중을 확인하세요. 자료가 부족하거나 날짜가 다르면 운용사 또는 KRX에서 보완하세요.`));
-  const field=(title,control)=>{const label=node('label',title+' ');label.append(control);box.append(label);return control;};
+  const field=(title,control)=>{control.setAttribute('aria-label',title);const label=node('label',title+' ');label.append(control);box.append(label);return control;};
   const select=values=>{const s=node('select','');for(const [value,label] of values){const o=node('option',label);o.value=value;s.append(o);}return s;};
   const source=field('확인 출처',select([['NAVER','네이버 화면'],['ISSUER','운용사'],['KRX','KRX']]));
   const date=field('자료 기준일',node('input',''));date.type='date';
