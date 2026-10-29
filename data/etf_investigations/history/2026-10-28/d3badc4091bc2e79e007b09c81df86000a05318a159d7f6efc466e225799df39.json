@@ -1,0 +1,165 @@
+{
+  "schema": "ETF_INVESTIGATION_QUEUE_V1",
+  "rules": {
+    "version": "ETF_TRIAGE_RESEARCH_V1",
+    "price_abs_pct": 5,
+    "nav_gap_abs_pct": 2,
+    "volume_multiple": 3,
+    "baseline_sessions": 20,
+    "daily_limit": 5,
+    "status": "UNCALIBRATED_RESEARCH_ONLY"
+  },
+  "source": "KRX_OPEN_API_ETF_DAILY",
+  "observation_date": "2026-10-28",
+  "source_retrieved_at": "2026-10-29T02:11:13.547144+00:00",
+  "source_raw_sha256": "f4bf927f9c5f1a05986cfea5927b9a2ebdb6289161625393666bb15ffe81aa5e",
+  "screened_count": 1186,
+  "metric_coverage": {
+    "price": 1186,
+    "nav_gap": 1186,
+    "volume": 1170
+  },
+  "candidate_count": 381,
+  "deferred_count": 376,
+  "items": [
+    {
+      "ticker": "433250",
+      "name": "UNICORN R&D 액티브",
+      "observation_date": "2026-10-28",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 6.3002,
+          "unit": "%",
+          "prior_date": "2026-10-27"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 286.7308,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "433250",
+        "requested_date": "2026-10-28",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "256450",
+      "name": "PLUS 심천차이넥스트(합성)",
+      "observation_date": "2026-10-28",
+      "signals": [
+        {
+          "kind": "NAV_GAP",
+          "value": 2.1025,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 31.5998,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "256450",
+        "requested_date": "2026-10-28",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "302450",
+      "name": "RISE 코스피",
+      "observation_date": "2026-10-28",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 6.6672,
+          "unit": "%",
+          "prior_date": "2026-10-27"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 19.3387,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "302450",
+        "requested_date": "2026-10-28",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "332930",
+      "name": "HANARO 200TR",
+      "observation_date": "2026-10-28",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 7.5828,
+          "unit": "%",
+          "prior_date": "2026-10-27"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 11.456,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "332930",
+        "requested_date": "2026-10-28",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "0048K0",
+      "name": "KODEX 차이나휴머노이드로봇",
+      "observation_date": "2026-10-28",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 5.4445,
+          "unit": "%",
+          "prior_date": "2026-10-27"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": 5.9821,
+          "unit": "%"
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "0048K0",
+        "requested_date": "2026-10-28",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    }
+  ],
+  "limitations": [
+    "조사 우선순위용 임시 기준이며 검증된 매매신호가 아닙니다.",
+    "가격은 비조정 종가입니다. 분배·분할·병합·레버리지 및 시장 전체 변동을 먼저 확인하세요.",
+    "해외자산 NAV와 국내 종가의 시차는 괴리의 원인이 될 수 있습니다.",
+    "거래량 증가를 투자자 순유입으로 해석하지 않습니다. PDF 확보 전 구성자산 원인은 미확인입니다."
+  ]
+}
