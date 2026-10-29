@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "status": "EXPLORATORY_PRICE_RS",
-  "decision_time_utc": "2026-10-28T15:05:21.264464+00:00",
+  "decision_time_utc": "2026-10-29T02:28:22.892024+00:00",
   "benchmark": "US_LISTED:SPY",
   "price_field": "close",
   "fx_basis": "HANA_FINAL_NOTICE_MIDPOINT",
@@ -11,8 +11,8 @@
   "latest_common_date": "2026-10-27",
   "alignment_audit": {
     "rule": "OBSERVED_DATE_UNION_NOT_TRADING_CALENDAR",
-    "common_date_count": 66,
-    "first_common_date": "2026-07-20",
+    "common_date_count": 65,
+    "first_common_date": "2026-07-21",
     "latest_available_date": "2026-10-28",
     "latest_common_date": "2026-10-27",
     "recent_dates_checked": 30,
@@ -22,8 +22,7 @@
         "missing_sources": [
           "US_LISTED:SPY",
           "US_LISTED:IEF",
-          "US_LISTED:AAPL",
-          "FX:USD/KRW"
+          "US_LISTED:AAPL"
         ]
       },
       {
@@ -69,6 +68,27 @@
     "rule": "PRICE_DATE_STRICTLY_BEFORE_CAPTURE_LOCAL_DATE",
     "excluded_observations": [
       {
+        "instrument_id": "XKRX:148020",
+        "observation_date": "2026-10-29",
+        "capture_local_date": "2026-10-29",
+        "timezone": "Asia/Seoul",
+        "reason": "NOT_BEFORE_CAPTURE_LOCAL_DATE"
+      },
+      {
+        "instrument_id": "XKRX:379780",
+        "observation_date": "2026-10-29",
+        "capture_local_date": "2026-10-29",
+        "timezone": "Asia/Seoul",
+        "reason": "NOT_BEFORE_CAPTURE_LOCAL_DATE"
+      },
+      {
+        "instrument_id": "XKRX:114100",
+        "observation_date": "2026-10-29",
+        "capture_local_date": "2026-10-29",
+        "timezone": "Asia/Seoul",
+        "reason": "NOT_BEFORE_CAPTURE_LOCAL_DATE"
+      },
+      {
         "instrument_id": "US_LISTED:SPY",
         "observation_date": "2026-10-28",
         "capture_local_date": "2026-10-28",
@@ -92,18 +112,18 @@
     ],
     "note": "Conservative full-calendar-day buffer, including after-close captures. Not independent confirmation of official close or exchange calendar."
   },
-  "source_age_calendar_days": 1,
+  "source_age_calendar_days": 2,
   "sources": [
     {
       "instrument_id": "XKRX:148020",
       "name": "RISE 200",
       "currency": "KRW",
       "capture": {
-        "capture_id": "20261028T150457974870Z-NAVER_CHART_CANDIDATE-148020",
+        "capture_id": "20261029T022758711383Z-NAVER_CHART_CANDIDATE-148020",
         "source_id": "NAVER_CHART_CANDIDATE",
         "source_url": "https://fchart.stock.naver.com/sise.nhn?symbol=148020&timeframe=day&count=300&requestType=0",
-        "retrieved_at": "2026-10-28T15:04:57.974870+00:00",
-        "source_sha256": "72fc6207c789d21d78e2653ac759ddb81429eed7d0913f0a0cac5e6baa27b983",
+        "retrieved_at": "2026-10-29T02:27:58.711383+00:00",
+        "source_sha256": "43332276db8da2c080fb71132a955eabfc97f33e9415f176edc67bc84eb38f27",
         "kind": "PRICE",
         "status": "CAPTURED",
         "quality": "QUARANTINED",
@@ -116,11 +136,11 @@
       "name": "RISE 미국S&P500",
       "currency": "KRW",
       "capture": {
-        "capture_id": "20261028T150459144792Z-NAVER_CHART_CANDIDATE-379780",
+        "capture_id": "20261029T022759894510Z-NAVER_CHART_CANDIDATE-379780",
         "source_id": "NAVER_CHART_CANDIDATE",
         "source_url": "https://fchart.stock.naver.com/sise.nhn?symbol=379780&timeframe=day&count=300&requestType=0",
-        "retrieved_at": "2026-10-28T15:04:59.144792+00:00",
-        "source_sha256": "e9e11ed5e12c1083027b34a52288715aa2e845323b7cb681353dc44e6807831a",
+        "retrieved_at": "2026-10-29T02:27:59.894510+00:00",
+        "source_sha256": "bf486438050714da68f13d119761e632149ad28357655fabbabb74376f76c5c5",
         "kind": "PRICE",
         "status": "CAPTURED",
         "quality": "QUARANTINED",
@@ -133,11 +153,11 @@
       "name": "RISE 국고채3년",
       "currency": "KRW",
       "capture": {
-        "capture_id": "20261028T150459813094Z-NAVER_CHART_CANDIDATE-114100",
+        "capture_id": "20261029T022800732775Z-NAVER_CHART_CANDIDATE-114100",
         "source_id": "NAVER_CHART_CANDIDATE",
         "source_url": "https://fchart.stock.naver.com/sise.nhn?symbol=114100&timeframe=day&count=300&requestType=0",
-        "retrieved_at": "2026-10-28T15:04:59.813094+00:00",
-        "source_sha256": "05300dd22be3ebaf7e3a5765572649b401bd5d8ab9494a2087484206835b3cfc",
+        "retrieved_at": "2026-10-29T02:28:00.732775+00:00",
+        "source_sha256": "4045dfa459b271ed615eead2e90ef11c892188e21a73e2744ceb6333e06e0383",
         "kind": "PRICE",
         "status": "CAPTURED",
         "quality": "QUARANTINED",
@@ -150,11 +170,11 @@
       "name": "SPY · 미국 주식시장 ETF 시범",
       "currency": "USD",
       "capture": {
-        "capture_id": "20261028T150501536657Z-YAHOO_CHART_CANDIDATE-SPY",
+        "capture_id": "20261029T022802661378Z-YAHOO_CHART_CANDIDATE-SPY",
         "source_id": "YAHOO_CHART_CANDIDATE",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPY?range=2y&interval=1d&events=div%2Csplits%2CcapitalGains&includeAdjustedClose=true",
-        "retrieved_at": "2026-10-28T15:05:01.536657+00:00",
-        "source_sha256": "abc8b66cf10530e80fea3b16610c303a66fb12b3ba4fd579b022f81ed6890f6b",
+        "retrieved_at": "2026-10-29T02:28:02.661378+00:00",
+        "source_sha256": "d317f4946165c737d7dd2919d9e2e7cac268b1cabd05015865da69975f4a67cc",
         "kind": "US_PRICE",
         "status": "CAPTURED",
         "quality": "QUARANTINED",
@@ -167,11 +187,11 @@
       "name": "IEF · 미국 국채 ETF 시범",
       "currency": "USD",
       "capture": {
-        "capture_id": "20261028T150501821870Z-YAHOO_CHART_CANDIDATE-IEF",
+        "capture_id": "20261029T022802901302Z-YAHOO_CHART_CANDIDATE-IEF",
         "source_id": "YAHOO_CHART_CANDIDATE",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/IEF?range=2y&interval=1d&events=div%2Csplits%2CcapitalGains&includeAdjustedClose=true",
-        "retrieved_at": "2026-10-28T15:05:01.821870+00:00",
-        "source_sha256": "50e73aa2d37399252559ccc99bc4d48f34d9b4cfc3e3e364c1a0bfa967421033",
+        "retrieved_at": "2026-10-29T02:28:02.901302+00:00",
+        "source_sha256": "106bffc8c64f72d62498bf0ceed771bc47204c8bf2a9b9e2bae7686b4ee868e6",
         "kind": "US_PRICE",
         "status": "CAPTURED",
         "quality": "QUARANTINED",
@@ -184,11 +204,11 @@
       "name": "AAPL · 해외 개별주식 시범",
       "currency": "USD",
       "capture": {
-        "capture_id": "20261028T150502071457Z-YAHOO_CHART_CANDIDATE-AAPL",
+        "capture_id": "20261029T022803106351Z-YAHOO_CHART_CANDIDATE-AAPL",
         "source_id": "YAHOO_CHART_CANDIDATE",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AAPL?range=2y&interval=1d&events=div%2Csplits%2CcapitalGains&includeAdjustedClose=true",
-        "retrieved_at": "2026-10-28T15:05:02.071457+00:00",
-        "source_sha256": "5ada6a462d392e24c4fbab32fe0a030e1e9437502b4b2d8179605d4f81392244",
+        "retrieved_at": "2026-10-29T02:28:03.106351+00:00",
+        "source_sha256": "96809ba5dbe388314fe30425a13834de99c7b8736160ea84addb3fd602184d0d",
         "kind": "US_PRICE",
         "status": "CAPTURED",
         "quality": "QUARANTINED",
@@ -198,29 +218,17 @@
     }
   ],
   "fx_capture": {
-    "capture_id": "20261028T150502380233Z-HANA_FINAL_NOTICE",
+    "capture_id": "20261029T022803358892Z-HANA_FINAL_NOTICE",
     "source_id": "HANA_FINAL_NOTICE",
     "source_url": "https://www.kebhana.com/cms/rate/wpfxd651_01i_01.do",
-    "retrieved_at": "2026-10-28T15:05:14.392807+00:00",
-    "source_sha256": "8beb3f95e4319f51f96ec50562057f3b7612aadb025cba90f8a081ec6fd85ae9",
+    "retrieved_at": "2026-10-29T02:28:16.899532+00:00",
+    "source_sha256": "b68e296c45705445d65c6c821d212cc8304a8590d7d4b68b2304da22bce5342a",
     "kind": "FX",
     "status": "CAPTURED",
     "quality": "REFERENCE_ONLY",
     "error": null
   },
   "fx_notices": [
-    {
-      "date": "2026-07-20",
-      "base": "USD",
-      "quote": "KRW",
-      "rate": 1478.5,
-      "kind": "HANA_FINAL_NOTICE",
-      "base_date": "2026-07-20",
-      "notice_at": "2026-07-21T06:10:29+09:00",
-      "notice_sequence": 827,
-      "requested_date": "2026-07-20",
-      "retrieved_at": "2026-10-16T00:07:42.503029+00:00"
-    },
     {
       "date": "2026-07-21",
       "base": "USD",
@@ -975,7 +983,7 @@
       "notice_at": "2026-10-23T08:05:39+09:00",
       "notice_sequence": 905,
       "requested_date": "2026-10-22",
-      "retrieved_at": "2026-10-28T15:05:06.735475+00:00"
+      "retrieved_at": "2026-10-29T02:28:06.288202+00:00"
     },
     {
       "date": "2026-10-23",
@@ -987,7 +995,7 @@
       "notice_at": "2026-10-26T07:38:39+09:00",
       "notice_sequence": 805,
       "requested_date": "2026-10-25",
-      "retrieved_at": "2026-10-28T15:05:11.541458+00:00"
+      "retrieved_at": "2026-10-29T02:28:11.435254+00:00"
     },
     {
       "date": "2026-10-26",
@@ -999,7 +1007,7 @@
       "notice_at": "2026-10-27T07:51:22+09:00",
       "notice_sequence": 1043,
       "requested_date": "2026-10-26",
-      "retrieved_at": "2026-10-28T15:05:12.898182+00:00"
+      "retrieved_at": "2026-10-29T02:28:13.321200+00:00"
     },
     {
       "date": "2026-10-27",
@@ -1011,7 +1019,19 @@
       "notice_at": "2026-10-28T08:18:32+09:00",
       "notice_sequence": 1277,
       "requested_date": "2026-10-27",
-      "retrieved_at": "2026-10-28T15:05:14.092018+00:00"
+      "retrieved_at": "2026-10-29T02:28:14.686995+00:00"
+    },
+    {
+      "date": "2026-10-28",
+      "base": "USD",
+      "quote": "KRW",
+      "rate": 1342.0,
+      "kind": "HANA_FINAL_NOTICE",
+      "base_date": "2026-10-28",
+      "notice_at": "2026-10-29T08:19:13+09:00",
+      "notice_sequence": 1455,
+      "requested_date": "2026-10-28",
+      "retrieved_at": "2026-10-29T02:28:16.598697+00:00"
     }
   ],
   "windows": [
@@ -1024,13 +1044,13 @@
           "instrument_id": "XKRX:148020",
           "name": "RISE 200",
           "currency": "KRW",
-          "local_return_pct": 2.4931381518755735,
-          "krw_return_pct": 2.4931381518755735,
+          "local_return_pct": 2.4938430731695993,
+          "krw_return_pct": 2.4938430731695993,
           "fx_return_pct": 0.0,
-          "local_rs_vs_spy_pct": 2.4119083684779774,
-          "krw_rs_vs_spy_pct": 2.3347328535055167,
-          "start_close": 87440.0,
-          "end_close": 89620.0,
+          "local_rs_vs_spy_pct": 2.4126127310945655,
+          "krw_rs_vs_spy_pct": 2.3354366853288733,
+          "start_close": 86894.0,
+          "end_close": 89061.0,
           "start_fx": 1,
           "end_fx": 1,
           "local_rank": 1,
@@ -1214,13 +1234,13 @@
           "instrument_id": "XKRX:148020",
           "name": "RISE 200",
           "currency": "KRW",
-          "local_return_pct": -21.34801878099083,
-          "krw_return_pct": -21.34801878099083,
+          "local_return_pct": -21.348522983176576,
+          "krw_return_pct": -21.348522983176576,
           "fx_return_pct": 0.0,
-          "local_rs_vs_spy_pct": -21.537068816224327,
-          "krw_rs_vs_spy_pct": -19.64497100320185,
-          "start_close": 113945.0,
-          "end_close": 89620.0,
+          "local_rs_vs_spy_pct": -21.537571806496025,
+          "krw_rs_vs_spy_pct": -19.645486122854628,
+          "start_close": 113235.0,
+          "end_close": 89061.0,
           "start_fx": 1,
           "end_fx": 1,
           "local_rank": 6,
@@ -1367,13 +1387,13 @@
           "instrument_id": "XKRX:148020",
           "name": "RISE 200",
           "currency": "KRW",
-          "local_return_pct": -17.033882614330675,
-          "krw_return_pct": -17.033882614330675,
+          "local_return_pct": -17.03447697653404,
+          "krw_return_pct": -17.03447697653404,
           "fx_return_pct": 0.0,
-          "local_rs_vs_spy_pct": -17.067299051111817,
-          "krw_rs_vs_spy_pct": -13.723742532072237,
-          "start_close": 108020.0,
-          "end_close": 89620.0,
+          "local_rs_vs_spy_pct": -17.067893173922677,
+          "krw_rs_vs_spy_pct": -13.724360607837415,
+          "start_close": 107347.0,
+          "end_close": 89061.0,
           "start_fx": 1,
           "end_fx": 1,
           "local_rank": 6,
