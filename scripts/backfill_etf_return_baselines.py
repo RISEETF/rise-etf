@@ -38,7 +38,11 @@ def backfill(db_path, receipt, auth_key, output):
             results.append(dict(result, status='ALREADY_CAPTURED'))
             continue
         try:
-            raw, fetched = fetch_latest(auth_key, target)
+            # A closed-market date can return identities with all prices empty.
+            # Keep the collector's eight-date bound and validate before accepting a date.
+            with tempfile.TemporaryDirectory() as tmp:
+                raw, fetched = fetch_latest(auth_key, target, snapshot_validator=lambda snapshot, requested:
+                    validate_completeness(Path(tmp)/'no_prior.sqlite', snapshot, requested))
             snapshot = fetched['snapshot']
             if not 0 <= (target-dt.date.fromisoformat(snapshot['page_date'])).days <= 7:
                 raise ValueError('BASELINE_DATE_INVALID')
