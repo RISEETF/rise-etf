@@ -1,0 +1,38 @@
+{
+  "status": "PARTIAL",
+  "attempted_at": "2026-10-30T00:04:27.622452+00:00",
+  "current_observation_date": "2026-10-29",
+  "items": [
+    {
+      "period": "1W",
+      "target_date": "2026-10-22",
+      "status": "ALREADY_CAPTURED"
+    },
+    {
+      "period": "1M",
+      "target_date": "2026-09-29",
+      "status": "ALREADY_CAPTURED"
+    },
+    {
+      "period": "3M",
+      "target_date": "2026-07-29",
+      "status": "SUCCESS",
+      "observation_date": "2026-07-29",
+      "raw_sha256": "c12d3af77163f708d347ad75c0495a328e3ca9ab72a3f953b5710db117dfbd5b",
+      "record_count": 1155,
+      "delta": {
+        "new": 8085,
+        "revisions": 0,
+        "unchanged": 0,
+        "total": 221000
+      }
+    },
+    {
+      "period": "YTD",
+      "target_date": "2025-12-31",
+      "status": "FAILED",
+      "reason": "ValueError"
+    }
+  ],
+  "scope": "RETURN_ENDPOINTS_ONLY_NOT_CONTINUOUS_HISTORY"
+}
