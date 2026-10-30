@@ -6,6 +6,10 @@ on:
     paths:
       - 'scripts/collect_krx_etf.py'
       - 'scripts/build_etf_investigations.py'
+      - 'scripts/build_etf_market_metrics.py'
+      - 'scripts/backfill_etf_return_baselines.py'
+      - 'tests/test_etf_return_baselines.py'
+      - 'tests/test_etf_market_metrics.py'
       - 'tests/test_etf_investigations.py'
       - 'scripts/reconcile_krx_master.py'
       - 'scripts/krx_inventory.py'
@@ -39,7 +43,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Verify parser and accumulation rules
-        run: python -m unittest tests.test_krx_etf tests.test_kind_notices tests.test_krx_inventory tests.test_etf_investigations -v
+        run: python -m unittest tests.test_krx_etf tests.test_kind_notices tests.test_krx_inventory tests.test_etf_investigations tests.test_etf_market_metrics tests.test_etf_return_baselines -v
       - name: Restore cumulative KRX database
         uses: actions/cache/restore@v4
         with:
@@ -50,6 +54,12 @@ jobs:
         env:
           KRX_AUTH_KEY: ${{ secrets.KRX_AUTH_KEY }}
         run: python scripts/collect_krx_etf.py
+      - name: Backfill missing return endpoints
+        env:
+          KRX_AUTH_KEY: ${{ secrets.KRX_AUTH_KEY }}
+        run: python scripts/backfill_etf_return_baselines.py
+      - name: Build dated RISE market metrics
+        run: python scripts/build_etf_market_metrics.py
       - name: Build bounded ETF investigation queue
         run: python scripts/build_etf_investigations.py
       - name: Publish collection summary
@@ -79,6 +89,7 @@ jobs:
           path: |
             var/krx-output/receipt.json
             var/krx-output/validation_failure.json
+            var/krx-output/baselines/
             var/krx_etf.sqlite
             var/kind-raw/
           if-no-files-found: error
@@ -88,7 +99,7 @@ jobs:
         run: |
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           git config user.name 'github-actions[bot]'
-          for path in data/quality/krx_master_reconciliation.json data/quality/krx_rise_inventory.json data/krx_collection_status.json data/etf_investigations; do
+          for path in data/quality/krx_master_reconciliation.json data/quality/krx_rise_inventory.json data/krx_collection_status.json data/etf_investigations data/etf_market; do
             if [ -e "$path" ]; then git add "$path"; fi
           done
           if ! git diff --cached --quiet; then
