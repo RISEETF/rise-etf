@@ -2,7 +2,7 @@
   "schema_version": "1.2",
   "snapshot_type": "FULL",
   "report_mode": "DATED_OBSERVATIONS_V1",
-  "asof_date": "2026-10-29",
+  "asof_date": "2026-10-30",
   "current_regime": "GLOBAL TIGHTENING / HIGH ENERGY STRESS / HIGH MACRO ABSORPTION",
   "regime_reference_date": "2026-10-15",
   "regime_assessment": "CARRIED_FORWARD_NOT_RECONFIRMED",
@@ -10,7 +10,7 @@
   "regime_confidence_reason": "승인된 최신 확률 산출 모형 없음. 과거 점수를 이월하지 않음.",
   "regime_change_candidate": "신규 레짐 판정 보류",
   "regime_change_status": "WATCH",
-  "top_change": "DGS10 2026-10-27: 5관측 변화 -13.00bp, Z=-1.53",
+  "top_change": "T10Y2Y 2026-10-29: 5관측 변화 +6.00bp, Z=0.89; DGS10 2026-10-28: 5관측 변화 -8.00bp, Z=-1.01; DGS2 2026-10-28: 5관측 변화 -14.00bp, Z=-1.65",
   "top_risk": "자료별 기준일이 다르므로 당일 변화·동시점 교차확인과 구분. 레짐·투자자 수급 판단은 별도 검증 필요.",
   "macro_absorption_level": "UNRESOLVED",
   "macro_absorption_headroom": "UNRESOLVED",
@@ -45,30 +45,10 @@
       "name": "RISE 테슬라미국채타겟커버드콜혼합(합성)",
       "code": "0013R0",
       "priority": "조사 후보 · 추천 아님",
-      "angle": "장기 금리 변화에 따른 듀레이션 민감도 설명 준비",
-      "counter": "듀레이션·환헤지·파생 구조를 공식 자료로 확인",
-      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
-      "inventory_asof": "2026-10-27",
-      "signal_id": "SIG-RATE-001"
-    },
-    {
-      "name": "RISE 미국우주&로봇TOP2미국채혼합50",
-      "code": "0218J0",
-      "priority": "조사 후보 · 추천 아님",
-      "angle": "장기 금리 변화에 따른 듀레이션 민감도 설명 준비",
-      "counter": "듀레이션·환헤지·파생 구조를 공식 자료로 확인",
-      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
-      "inventory_asof": "2026-10-27",
-      "signal_id": "SIG-RATE-001"
-    },
-    {
-      "name": "RISE 테슬라미국채타겟커버드콜혼합(합성)",
-      "code": "0013R0",
-      "priority": "조사 후보 · 추천 아님",
       "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
       "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
       "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
-      "inventory_asof": "2026-10-27",
+      "inventory_asof": "2026-10-29",
       "signal_id": "SIG-RATE-002"
     },
     {
@@ -78,7 +58,7 @@
       "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
       "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
       "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
-      "inventory_asof": "2026-10-27",
+      "inventory_asof": "2026-10-29",
       "signal_id": "SIG-RATE-002"
     },
     {
@@ -88,7 +68,7 @@
       "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
       "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
       "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
-      "inventory_asof": "2026-10-27",
+      "inventory_asof": "2026-10-29",
       "signal_id": "SIG-RATE-002"
     },
     {
@@ -98,7 +78,7 @@
       "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
       "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
       "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
-      "inventory_asof": "2026-10-27",
+      "inventory_asof": "2026-10-29",
       "signal_id": "SIG-RATE-002"
     },
     {
@@ -108,7 +88,7 @@
       "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
       "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
       "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
-      "inventory_asof": "2026-10-27",
+      "inventory_asof": "2026-10-29",
       "signal_id": "SIG-RATE-002"
     },
     {
@@ -118,7 +98,7 @@
       "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
       "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
       "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
-      "inventory_asof": "2026-10-27",
+      "inventory_asof": "2026-10-29",
       "signal_id": "SIG-RATE-002"
     },
     {
@@ -128,7 +108,7 @@
       "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
       "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
       "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
-      "inventory_asof": "2026-10-27",
+      "inventory_asof": "2026-10-29",
       "signal_id": "SIG-RATE-002"
     },
     {
@@ -138,7 +118,7 @@
       "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
       "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
       "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
-      "inventory_asof": "2026-10-27",
+      "inventory_asof": "2026-10-29",
       "signal_id": "SIG-RATE-002"
     },
     {
@@ -148,7 +128,7 @@
       "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
       "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
       "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
-      "inventory_asof": "2026-10-27",
+      "inventory_asof": "2026-10-29",
       "signal_id": "SIG-RATE-002"
     },
     {
@@ -158,7 +138,7 @@
       "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
       "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
       "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
-      "inventory_asof": "2026-10-27",
+      "inventory_asof": "2026-10-29",
       "signal_id": "SIG-RATE-002"
     },
     {
@@ -168,7 +148,7 @@
       "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
       "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
       "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
-      "inventory_asof": "2026-10-27",
+      "inventory_asof": "2026-10-29",
       "signal_id": "SIG-RATE-002"
     },
     {
@@ -178,7 +158,7 @@
       "angle": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
       "counter": "국가·만기·통화가 해당 신호와 일치하는지 확인",
       "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
-      "inventory_asof": "2026-10-27",
+      "inventory_asof": "2026-10-29",
       "signal_id": "SIG-RATE-002"
     }
   ],
@@ -214,7 +194,7 @@
         "value": 121.3202,
         "unit": "Index",
         "asof_label": "2026-10-23 관측값 기준",
-        "age_calendar_days": 6,
+        "age_calendar_days": 7,
         "use": "DATED_CONTEXT_ONLY",
         "prior_change": {
           "prior_observation_date": "2026-10-22",
@@ -230,23 +210,23 @@
     {
       "series_id": "BAMLC0A0CM",
       "name": "US Corporate Master OAS",
-      "observation_date": "2026-10-27",
-      "value": 0.88,
+      "observation_date": "2026-10-28",
+      "value": 0.86,
       "unit": "Percent",
       "fresh_for_report": true,
       "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLC0A0CM",
-      "asof_label": "2026-10-27 관측값 기준",
+      "asof_label": "2026-10-28 관측값 기준",
       "use": "FRESH_RESEARCH"
     },
     {
       "series_id": "BAMLH0A0HYM2",
       "name": "US High Yield OAS",
-      "observation_date": "2026-10-27",
-      "value": 3.18,
+      "observation_date": "2026-10-28",
+      "value": 3.14,
       "unit": "Percent",
       "fresh_for_report": true,
       "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2",
-      "asof_label": "2026-10-27 관측값 기준",
+      "asof_label": "2026-10-28 관측값 기준",
       "use": "FRESH_RESEARCH"
     },
     {
@@ -274,23 +254,23 @@
     {
       "series_id": "DGS10",
       "name": "US Treasury 10Y",
-      "observation_date": "2026-10-27",
-      "value": 4.99,
+      "observation_date": "2026-10-28",
+      "value": 5.05,
       "unit": "Percent",
       "fresh_for_report": true,
       "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10",
-      "asof_label": "2026-10-27 관측값 기준",
+      "asof_label": "2026-10-28 관측값 기준",
       "use": "FRESH_RESEARCH"
     },
     {
       "series_id": "DGS2",
       "name": "US Treasury 2Y",
-      "observation_date": "2026-10-27",
-      "value": 4.7,
+      "observation_date": "2026-10-28",
+      "value": 4.67,
       "unit": "Percent",
       "fresh_for_report": true,
       "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2",
-      "asof_label": "2026-10-27 관측값 기준",
+      "asof_label": "2026-10-28 관측값 기준",
       "use": "FRESH_RESEARCH"
     },
     {
@@ -307,56 +287,56 @@
     {
       "series_id": "SOFR",
       "name": "Secured Overnight Financing Rate",
-      "observation_date": "2026-10-27",
-      "value": 3.95,
+      "observation_date": "2026-10-28",
+      "value": 3.94,
       "unit": "Percent",
       "fresh_for_report": true,
       "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=SOFR",
-      "asof_label": "2026-10-27 관측값 기준",
+      "asof_label": "2026-10-28 관측값 기준",
       "use": "FRESH_RESEARCH"
     },
     {
       "series_id": "T10Y2Y",
       "name": "10Y-2Y Treasury Spread",
-      "observation_date": "2026-10-28",
-      "value": 0.38,
+      "observation_date": "2026-10-29",
+      "value": 0.37,
       "unit": "Percent",
       "fresh_for_report": true,
       "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=T10Y2Y",
-      "asof_label": "2026-10-28 관측값 기준",
+      "asof_label": "2026-10-29 관측값 기준",
       "use": "FRESH_RESEARCH"
     },
     {
       "series_id": "VIXCLS",
       "name": "CBOE VIX",
-      "observation_date": "2026-10-27",
-      "value": 17.52,
+      "observation_date": "2026-10-28",
+      "value": 16.91,
       "unit": "Index",
       "fresh_for_report": true,
       "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS",
-      "asof_label": "2026-10-27 종가 기준",
+      "asof_label": "2026-10-28 종가 기준",
       "use": "FRESH_RESEARCH"
     },
     {
       "series_id": "WRESBAL",
       "name": "Reserve Balances with Federal Reserve Banks",
-      "observation_date": "2026-10-21",
-      "value": 2962607.0,
+      "observation_date": "2026-10-28",
+      "value": 2893770.0,
       "unit": "Millions USD",
       "fresh_for_report": true,
       "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WRESBAL",
-      "asof_label": "2026-10-21 관측값 기준",
+      "asof_label": "2026-10-28 관측값 기준",
       "use": "FRESH_RESEARCH"
     }
   ],
   "decision_board": [
     {
       "signal_id": "SIG-RATE-001",
-      "status": "WATCH",
+      "status": "NORMAL",
       "series_ids": [
         "DGS10"
       ],
-      "what_changed": "DGS10 2026-10-27: 5관측 변화 -13.00bp, Z=-1.53",
+      "what_changed": "DGS10 2026-10-28: 5관측 변화 -8.00bp, Z=-1.01",
       "confidence": "기존 신호 품질 MODERATE · 전망 확률 아님",
       "transmission": "금리 변화에 대한 만기·듀레이션 노출을 우선 점검",
       "counterargument": "단일 채널 변화는 거시 원인을 식별하지 못한다. 같은 원천을 공유하는 신호는 독립 확인이 아니다.",
@@ -371,7 +351,7 @@
         "DGS10",
         "DGS2"
       ],
-      "what_changed": "T10Y2Y 2026-10-28: 5관측 변화 +6.00bp, Z=0.87; DGS10 2026-10-27: 5관측 변화 -13.00bp, Z=-1.53; DGS2 2026-10-27: 5관측 변화 -9.00bp, Z=-1.20",
+      "what_changed": "T10Y2Y 2026-10-29: 5관측 변화 +6.00bp, Z=0.89; DGS10 2026-10-28: 5관측 변화 -8.00bp, Z=-1.01; DGS2 2026-10-28: 5관측 변화 -14.00bp, Z=-1.65",
       "confidence": "기존 신호 품질 HIGH · 전망 확률 아님",
       "transmission": "금리 변화에 대한 만기·듀레이션 노출을 우선 점검",
       "counterargument": "단일 채널 변화는 거시 원인을 식별하지 못한다. 같은 원천을 공유하는 신호는 독립 확인이 아니다.",
@@ -385,7 +365,7 @@
         "BAMLC0A0CM",
         "BAMLH0A0HYM2"
       ],
-      "what_changed": "BAMLC0A0CM 2026-10-27: 5관측 변화 +1.00bp, Z=0.08; BAMLH0A0HYM2 2026-10-27: 5관측 변화 -15.00bp, Z=-1.49",
+      "what_changed": "BAMLC0A0CM 2026-10-28: 5관측 변화 -2.00bp, Z=-1.03; BAMLH0A0HYM2 2026-10-28: 5관측 변화 -13.00bp, Z=-1.32",
       "confidence": "기존 신호 품질 HIGH · 전망 확률 아님",
       "transmission": "해당 채널의 독립 확인 자료와 실제 ETF 노출을 추가 점검",
       "counterargument": "단일 채널 변화는 거시 원인을 식별하지 못한다. 같은 원천을 공유하는 신호는 독립 확인이 아니다.",
@@ -399,7 +379,7 @@
         "SOFR",
         "WRESBAL"
       ],
-      "what_changed": "SOFR 2026-10-27: 5관측 변화 +7.00bp, Z=0.72; WRESBAL 2026-10-21: 5관측 변화 -51187 (엔진 정의 변화량), Z=-0.20",
+      "what_changed": "SOFR 2026-10-28: 5관측 변화 +6.00bp, Z=0.56; WRESBAL 2026-10-28: 5관측 변화 -36423 (엔진 정의 변화량), Z=-0.08",
       "confidence": "기존 신호 품질 HIGH · 전망 확률 아님",
       "transmission": "해당 채널의 독립 확인 자료와 실제 ETF 노출을 추가 점검",
       "counterargument": "단일 채널 변화는 거시 원인을 식별하지 못한다. 같은 원천을 공유하는 신호는 독립 확인이 아니다.",
@@ -426,7 +406,7 @@
       "series_ids": [
         "VIXCLS"
       ],
-      "what_changed": "VIXCLS 2026-10-27: 5관측 변화 +0.0121317 (엔진 정의 변화량), Z=0.04",
+      "what_changed": "VIXCLS 2026-10-28: 5관측 변화 +0.013789 (엔진 정의 변화량), Z=0.04",
       "confidence": "기존 신호 품질 MODERATE · 전망 확률 아님",
       "transmission": "해당 채널의 독립 확인 자료와 실제 ETF 노출을 추가 점검",
       "counterargument": "단일 채널 변화는 거시 원인을 식별하지 못한다. 같은 원천을 공유하는 신호는 독립 확인이 아니다.",
@@ -436,10 +416,10 @@
   ],
   "rise_inventory_evidence": {
     "source_id": "KRX_OPEN_API_ETF_DAILY",
-    "observed_on": "2026-10-27",
-    "raw_sha256": "08db7bdc0c2c0120645d15d769918c71a06d7fee5610845d52ce54284335fefb"
+    "observed_on": "2026-10-29",
+    "raw_sha256": "426cdbe0cc876f18df1dbeed024cdfc212cca61540a191cc7416a0ccb34955cf"
   },
-  "strongest_counterevidence": "현재 변화탐지 기준 NORMAL: SIG-CREDIT-001, SIG-LIQ-001, SIG-ENERGY-001, SIG-MKT-001. 동반 급변 신호가 없다는 뜻이며 위험 부재를 뜻하지 않는다.",
-  "full_report_path": "reports/2026-10-29.html",
+  "strongest_counterevidence": "현재 변화탐지 기준 NORMAL: SIG-RATE-001, SIG-CREDIT-001, SIG-LIQ-001, SIG-ENERGY-001, SIG-MKT-001. 동반 급변 신호가 없다는 뜻이며 위험 부재를 뜻하지 않는다.",
+  "full_report_path": "reports/2026-10-30.html",
   "report_status": "PUBLISHED"
 }
