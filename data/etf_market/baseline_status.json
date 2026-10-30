@@ -1,6 +1,6 @@
 {
-  "status": "PARTIAL",
-  "attempted_at": "2026-10-30T00:07:31.322647+00:00",
+  "status": "SUCCESS",
+  "attempted_at": "2026-10-30T00:11:50.546714+00:00",
   "current_observation_date": "2026-10-29",
   "items": [
     {
@@ -21,26 +21,15 @@
     {
       "period": "YTD",
       "target_date": "2025-12-31",
-      "status": "FAILED",
-      "reason": "KRX_FIELD_COVERAGE_LOW",
-      "quality": {
-        "observation_date": "2025-12-31",
-        "record_count": 1058,
-        "field_coverage": {
-          "close": 0.0,
-          "nav": 0.0,
-          "volume": 0.0,
-          "trading_value": 0.0,
-          "market_cap": 0.0,
-          "net_assets": 0.0,
-          "listed_shares": 1.0
-        },
-        "failed_fields": [
-          "close",
-          "nav",
-          "volume"
-        ],
-        "required_ratio": 0.95
+      "status": "SUCCESS",
+      "observation_date": "2025-12-30",
+      "raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+      "record_count": 1058,
+      "delta": {
+        "new": 7406,
+        "revisions": 0,
+        "unchanged": 0,
+        "total": 228406
       }
     }
   ],

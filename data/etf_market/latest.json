@@ -3,11 +3,11 @@
   "source": "KRX_OPEN_API_ETF_DAILY",
   "source_url": "https://openapi.krx.co.kr/contents/OPP/INFO/service/OPPINFO004.cmd",
   "observation_date": "2026-10-29",
-  "source_retrieved_at": "2026-10-30T00:07:24.943539+00:00",
+  "source_retrieved_at": "2026-10-30T00:11:45.122283+00:00",
   "source_raw_sha256": "426cdbe0cc876f18df1dbeed024cdfc212cca61540a191cc7416a0ccb34955cf",
   "count": 145,
-  "history_start": "2026-07-29",
-  "history_observation_count": 26,
+  "history_start": "2025-12-30",
+  "history_observation_count": 27,
   "return_basis": "UNADJUSTED_CLOSE_EXCLUDING_DISTRIBUTIONS",
   "products": [
     {
@@ -53,12 +53,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -52.6333,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -112,12 +112,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 0.7299,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -171,12 +171,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -8.3367,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -230,12 +230,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -22.3858,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -289,12 +289,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 1.221,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -348,12 +348,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 21.9174,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -407,12 +407,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 20.8452,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -466,12 +466,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 2.5406,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -525,12 +525,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 7.5779,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -584,12 +584,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 2.4074,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -643,12 +643,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 81.3446,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -702,12 +702,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 7.8423,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -761,12 +761,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -40.7921,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -820,12 +820,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 12.6217,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -879,12 +879,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 30.0816,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -938,12 +938,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -5.989,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -997,12 +997,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 4.6742,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -1056,12 +1056,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 2.3876,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -1115,12 +1115,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 26.5119,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -1174,12 +1174,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -1.0294,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -1233,12 +1233,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -7.0955,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -1294,7 +1294,7 @@
         "YTD": {
           "pct": null,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
           "base_raw_sha256": null,
           "status": "INSUFFICIENT_HISTORY"
@@ -1353,7 +1353,7 @@
         "YTD": {
           "pct": null,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
           "base_raw_sha256": null,
           "status": "INSUFFICIENT_HISTORY"
@@ -1412,7 +1412,7 @@
         "YTD": {
           "pct": null,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
           "base_raw_sha256": null,
           "status": "INSUFFICIENT_HISTORY"
@@ -1471,7 +1471,7 @@
         "YTD": {
           "pct": null,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
           "base_raw_sha256": null,
           "status": "INSUFFICIENT_HISTORY"
@@ -1530,7 +1530,7 @@
         "YTD": {
           "pct": null,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
           "base_raw_sha256": null,
           "status": "INSUFFICIENT_HISTORY"
@@ -1589,7 +1589,7 @@
         "YTD": {
           "pct": null,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
           "base_raw_sha256": null,
           "status": "INSUFFICIENT_HISTORY"
@@ -1648,7 +1648,7 @@
         "YTD": {
           "pct": null,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
           "base_raw_sha256": null,
           "status": "INSUFFICIENT_HISTORY"
@@ -1707,7 +1707,7 @@
         "YTD": {
           "pct": null,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
           "base_raw_sha256": null,
           "status": "INSUFFICIENT_HISTORY"
@@ -1766,7 +1766,7 @@
         "YTD": {
           "pct": null,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
           "base_raw_sha256": null,
           "status": "INSUFFICIENT_HISTORY"
@@ -1825,7 +1825,7 @@
         "YTD": {
           "pct": null,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
           "base_raw_sha256": null,
           "status": "INSUFFICIENT_HISTORY"
@@ -1884,7 +1884,7 @@
         "YTD": {
           "pct": null,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
           "base_raw_sha256": null,
           "status": "INSUFFICIENT_HISTORY"
@@ -1943,7 +1943,7 @@
         "YTD": {
           "pct": null,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
           "base_raw_sha256": null,
           "status": "INSUFFICIENT_HISTORY"
@@ -2002,7 +2002,7 @@
         "YTD": {
           "pct": null,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
           "base_raw_sha256": null,
           "status": "INSUFFICIENT_HISTORY"
@@ -2059,12 +2059,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 48.2884,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -2118,12 +2118,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -0.8423,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -2177,12 +2177,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -1.3956,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -2236,12 +2236,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 19.8835,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -2295,12 +2295,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 20.9753,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -2354,12 +2354,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 54.202,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -2413,12 +2413,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -15.0223,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -2472,12 +2472,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 22.4865,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -2531,12 +2531,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 41.6367,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -2590,12 +2590,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 1.9359,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -2649,12 +2649,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 50.5737,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -2708,12 +2708,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 21.7783,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -2767,12 +2767,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 8.1178,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -2826,12 +2826,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -12.0208,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -2885,12 +2885,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 65.9822,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -2944,12 +2944,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -52.9167,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -3003,12 +3003,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -84.5161,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -3062,12 +3062,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -32.8296,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -3121,12 +3121,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -10.3381,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -3180,12 +3180,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 39.9619,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -3239,12 +3239,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -5.6213,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -3298,12 +3298,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 5.4307,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -3357,12 +3357,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -13.5518,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -3416,12 +3416,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 12.5373,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -3475,12 +3475,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -19.2232,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -3534,12 +3534,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 2.082,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -3593,12 +3593,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 0.2108,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -3652,12 +3652,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -8.9983,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -3711,12 +3711,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 18.1596,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -3770,12 +3770,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -54.3765,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -3829,12 +3829,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 7.8532,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -3888,12 +3888,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 2.219,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -3947,12 +3947,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 17.3583,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -4006,12 +4006,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -21.0795,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -4065,12 +4065,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 70.7186,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -4124,12 +4124,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 10.3127,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -4183,12 +4183,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 48.6157,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -4242,12 +4242,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -1.6036,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -4301,12 +4301,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 4.801,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -4360,12 +4360,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -18.7162,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -4419,12 +4419,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 40.7437,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -4478,12 +4478,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -20.8885,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -4537,12 +4537,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 70.8354,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -4596,12 +4596,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -6.749,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -4655,12 +4655,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 60.1593,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -4714,12 +4714,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -43.985,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -4773,12 +4773,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 39.0805,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -4832,12 +4832,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -1.6965,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -4891,12 +4891,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -15.279,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -4950,12 +4950,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 56.2936,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -5009,12 +5009,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 124.4312,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -5068,12 +5068,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -3.764,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -5127,12 +5127,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 7.3234,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -5186,12 +5186,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -38.2133,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -5245,12 +5245,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -5.2467,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -5304,12 +5304,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 3.7837,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -5363,12 +5363,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 6.0413,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -5422,12 +5422,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -4.4638,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -5481,12 +5481,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 2.3505,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -5540,12 +5540,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -22.4386,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -5599,12 +5599,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -18.5448,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -5658,12 +5658,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 52.7692,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -5717,12 +5717,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -9.5852,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -5776,12 +5776,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 26.2706,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -5835,12 +5835,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 20.8039,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -5894,12 +5894,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -8.5283,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -5953,12 +5953,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -33.7282,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -6012,12 +6012,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 1.2972,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -6071,12 +6071,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -6.7407,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -6130,12 +6130,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 1.8163,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -6189,12 +6189,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -21.9678,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -6248,12 +6248,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 4.3822,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -6307,12 +6307,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 7.2027,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -6366,12 +6366,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 8.4136,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -6425,12 +6425,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -14.4539,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -6484,12 +6484,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 26.5737,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -6543,12 +6543,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -0.9074,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -6602,12 +6602,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -31.3847,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -6661,12 +6661,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 10.6861,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -6720,12 +6720,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 2.6972,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -6779,12 +6779,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -4.143,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -6838,12 +6838,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 2.9279,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -6897,12 +6897,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 3.991,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -6956,12 +6956,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -1.5317,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -7015,12 +7015,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -15.1629,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -7074,12 +7074,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 5.0968,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -7133,12 +7133,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -33.4952,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -7192,12 +7192,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 63.479,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -7251,12 +7251,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 54.4639,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -7310,12 +7310,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -27.5927,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -7369,12 +7369,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 7.59,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -7428,12 +7428,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -17.9121,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -7487,12 +7487,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -17.7278,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -7546,12 +7546,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 1.9718,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -7605,12 +7605,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -6.2531,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -7664,12 +7664,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -2.4908,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -7723,12 +7723,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -7.8663,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -7782,12 +7782,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 2.384,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -7841,12 +7841,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 2.2283,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -7900,12 +7900,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -16.9888,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -7959,12 +7959,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -2.0183,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -8018,12 +8018,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 20.6484,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -8077,12 +8077,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 6.2712,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -8136,12 +8136,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -0.5778,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -8195,12 +8195,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 1.7796,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -8254,12 +8254,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -9.2244,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -8313,12 +8313,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -54.0948,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -8372,12 +8372,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 55.4274,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -8431,12 +8431,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": 31.945,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -8490,12 +8490,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -25.474,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
@@ -8549,12 +8549,12 @@
           "status": "PRICE_RETURN_UNADJUSTED"
         },
         "YTD": {
-          "pct": null,
+          "pct": -0.7995,
           "target_date": "2025-12-31",
-          "base_date": null,
+          "base_date": "2025-12-30",
           "end_date": "2026-10-29",
-          "base_raw_sha256": null,
-          "status": "INSUFFICIENT_HISTORY"
+          "base_raw_sha256": "5d7ef340bbe057aa81f1ce1c34242d6d7de2a995a3c72099495f46c4d2e4d1a5",
+          "status": "PRICE_RETURN_UNADJUSTED"
         }
       },
       "investor_flows": {
