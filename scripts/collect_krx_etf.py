@@ -89,7 +89,7 @@ def parse_snapshot(payload: bytes, asof: dt.date) -> dict:
     return {"page_date": observed.isoformat(), "records": records}
 
 
-def fetch_latest(auth_key: str, asof: dt.date) -> tuple[bytes, dict]:
+def fetch_latest(auth_key: str, asof: dt.date, snapshot_validator=None) -> tuple[bytes, dict]:
     attempts = []
     for offset in range(8):
         requested = asof - dt.timedelta(days=offset)
@@ -104,6 +104,8 @@ def fetch_latest(auth_key: str, asof: dt.date) -> tuple[bytes, dict]:
             snapshot = parse_snapshot(payload, asof)
             if snapshot['page_date'] != requested.isoformat():
                 raise ValueError('KRX_REQUESTED_DATE_MISMATCH')
+            if snapshot_validator is not None:
+                snapshot_validator(snapshot, requested)
             return payload, {"requested_date": requested.isoformat(), "snapshot": snapshot}
         except Exception as exc:  # keep bounded attempts in the receipt
             attempts.append({"date": requested.isoformat(), "error": str(exc)[:160]})

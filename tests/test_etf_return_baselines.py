@@ -17,7 +17,7 @@ class BaselineTests(unittest.TestCase):
         self.rows=[{'ticker':f'{i:06d}','name':f'ETF {i}','close':100,'nav':100,'volume':1,'listed_shares':100} for i in range(500)]
         accumulate(self.db,{'page_date':'2026-10-28','records':self.rows},'current','2026-10-29T00:00:00Z')
         self.receipt={'status':'SUCCESS','observation_date':'2026-10-28'}
-    def fetch(self,key,target):
+    def fetch(self,key,target,**kwargs):
         snapshot={'page_date':target.isoformat(),'records':self.rows}
         return json.dumps(snapshot).encode(),{'snapshot':snapshot}
     def test_bounded_idempotent_preserves_current(self):
@@ -40,7 +40,7 @@ class BaselineTests(unittest.TestCase):
 
     def test_rejected_response_retained_with_safe_diagnostics(self):
         rows=[dict(r,nav=None) for r in self.rows]
-        def missing_nav(key,target):
+        def missing_nav(key,target,**kwargs):
             doc={'page_date':target.isoformat(),'records':rows}
             return json.dumps(doc).encode(),{'snapshot':doc}
         with patch('backfill_etf_return_baselines.fetch_latest',side_effect=missing_nav):
@@ -49,3 +49,20 @@ class BaselineTests(unittest.TestCase):
         self.assertEqual(r['items'][0]['quality']['failed_fields'],['nav'])
         self.assertEqual(len(list(self.out.glob('*/*.json'))),4)
         with sqlite3.connect(self.db) as db:self.assertEqual(db.execute('select count(*) from snapshots').fetchone()[0],2000)
+
+    def test_empty_calendar_date_uses_prior_valid_session_within_bound(self):
+        from collect_krx_etf import fetch_latest, validate_completeness
+        from unittest.mock import MagicMock
+        import urllib.parse
+        def response(request,timeout):
+            day=urllib.parse.parse_qs(urllib.parse.urlparse(request.full_url).query)['basDd'][0]
+            blank=day=='20251231'
+            rows=[{'BAS_DD':day,'ISU_SRT_CD':f'{i:06d}','ISU_NM':f'ETF {i}',
+                   'TDD_CLSPRC':'' if blank else '100','NAV':'' if blank else '100',
+                   'ACC_TRDVOL':'' if blank else '1','LIST_SHRS':'100'} for i in range(500)]
+            mock=MagicMock();mock.__enter__.return_value.read.return_value=json.dumps({'OutBlock_1':rows}).encode();return mock
+        with patch('collect_krx_etf.urllib.request.urlopen',side_effect=response) as request:
+            raw,result=fetch_latest('test',dt.date(2025,12,31),snapshot_validator=lambda snapshot,day:validate_completeness(Path(self.tmp.name)/'empty.sqlite',snapshot,day))
+        self.assertEqual(request.call_count,2)
+        self.assertEqual(result['snapshot']['page_date'],'2025-12-30')
+        self.assertEqual(result['snapshot']['records'][0]['close'],100)
