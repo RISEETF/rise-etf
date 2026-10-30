@@ -37,3 +37,15 @@ class BaselineTests(unittest.TestCase):
         with patch('backfill_etf_return_baselines.fetch_latest',return_value=(b'{}',{'snapshot':{'page_date':'2099-01-01','records':self.rows}})):
             r=backfill(self.db,self.receipt,'test',self.out)
         self.assertTrue(all(x['status']=='FAILED' for x in r['items']))
+
+    def test_rejected_response_retained_with_safe_diagnostics(self):
+        rows=[dict(r,nav=None) for r in self.rows]
+        def missing_nav(key,target):
+            doc={'page_date':target.isoformat(),'records':rows}
+            return json.dumps(doc).encode(),{'snapshot':doc}
+        with patch('backfill_etf_return_baselines.fetch_latest',side_effect=missing_nav):
+            r=backfill(self.db,self.receipt,'test',self.out)
+        self.assertTrue(all(x['reason']=='KRX_FIELD_COVERAGE_LOW' for x in r['items']))
+        self.assertEqual(r['items'][0]['quality']['failed_fields'],['nav'])
+        self.assertEqual(len(list(self.out.glob('*/*.json'))),4)
+        with sqlite3.connect(self.db) as db:self.assertEqual(db.execute('select count(*) from snapshots').fetchone()[0],2000)

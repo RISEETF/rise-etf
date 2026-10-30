@@ -11,7 +11,7 @@ import os
 import sqlite3
 import tempfile
 from pathlib import Path
-from collect_krx_etf import fetch_latest, validate_completeness, accumulate, write_json_atomic
+from collect_krx_etf import fetch_latest, validate_completeness, accumulate, write_json_atomic, safe_reason
 from build_etf_market_metrics import target_date
 
 
@@ -42,13 +42,14 @@ def backfill(db_path, receipt, auth_key, output):
             snapshot = fetched['snapshot']
             if not 0 <= (target-dt.date.fromisoformat(snapshot['page_date'])).days <= 7:
                 raise ValueError('BASELINE_DATE_INVALID')
-            # Historical universe size must not be compared with today's larger universe.
-            with tempfile.TemporaryDirectory() as tmp:
-                validate_completeness(Path(tmp)/'no_prior.sqlite', snapshot, target)
             digest = hashlib.sha256(raw).hexdigest()
             raw_path = output/snapshot['page_date']/f'{digest}.json'
             raw_path.parent.mkdir(parents=True, exist_ok=True)
             if not raw_path.exists():raw_path.write_bytes(raw)
+            # Retain even rejected raw responses for diagnosis, never in the price view.
+            # Historical universe size must not be compared with today's larger universe.
+            with tempfile.TemporaryDirectory() as tmp:
+                validate_completeness(Path(tmp)/'no_prior.sqlite', snapshot, target)
             delta = accumulate(Path(db_path), snapshot, digest, stamp)
             with sqlite3.connect(db_path) as db:
                 db.execute('insert or replace into return_baseline_requests values(?,?,?,?)',
@@ -57,7 +58,8 @@ def backfill(db_path, receipt, auth_key, output):
                                 raw_sha256=digest, record_count=len(snapshot['records']), delta=delta))
         except Exception as exc:
             # Never publish raw exception strings, URLs with keys, or request headers.
-            results.append(dict(result, status='FAILED', reason=type(exc).__name__))
+            results.append(dict(result, status='FAILED', reason=safe_reason(exc),
+                                **({'quality': exc.quality_evidence} if hasattr(exc, 'quality_evidence') else {})))
     return {'status': 'PARTIAL' if any(r['status']=='FAILED' for r in results) else 'SUCCESS',
             'attempted_at': stamp, 'current_observation_date': day.isoformat(), 'items': results,
             'scope': 'RETURN_ENDPOINTS_ONLY_NOT_CONTINUOUS_HISTORY'}
