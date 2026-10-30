@@ -4,8 +4,8 @@
   "source_role": "PRIMARY_EXCHANGE_OBSERVATION",
   "source_url": "https://data-dbg.krx.co.kr/svc/apis/etp/etf_bydd_trd",
   "observed_on": "2026-10-29",
-  "retrieved_at": "2026-10-30T02:26:11.162739+00:00",
-  "raw_sha256": "12f0baa018771a83f75854f589254bf59d5f9abb234873d2e4d3048faa9338db",
+  "retrieved_at": "2026-10-30T16:05:41.902397+00:00",
+  "raw_sha256": "e4d1ec6dbec79b3bb827f38f5c1931d73af01d990b153cdfb722a7e918181a64",
   "krx_market_count": 1183,
   "issuer_effective_date": "2026-10-04",
   "issuer_source_sha256": "03b85088a26600243470440c642fdd5f275c2e69468fff99af721ec6034e29c3",
@@ -1466,10 +1466,10 @@
   "note": "Presence is an exchange observation. Absence is not delisting. Name-only codes require identity review.",
   "lifecycle_notices": {
     "status": "SUCCESS",
-    "attempted_at": "2026-10-30T02:26:13.282040+00:00",
-    "last_success_at": "2026-10-30T02:26:13.282040+00:00",
-    "window_start": "2026-09-30",
-    "window_end": "2026-10-30",
+    "attempted_at": "2026-10-30T16:05:44.046214+00:00",
+    "last_success_at": "2026-10-30T16:05:44.046214+00:00",
+    "window_start": "2026-10-01",
+    "window_end": "2026-10-31",
     "scope": "RISE_TITLE_SEARCH_ROLLING_30_DAYS_NOT_FULL_LIFECYCLE",
     "current_legal_status": "NOT_AUTOMATICALLY_ASSIGNED",
     "search_sources": [
@@ -1480,8 +1480,8 @@
           "forward": "disclosurebystocktype_etf_sub",
           "currentPageSize": "100",
           "pageIndex": "1",
-          "fromDate": "2026-09-30",
-          "toDate": "2026-10-30",
+          "fromDate": "2026-10-01",
+          "toDate": "2026-10-31",
           "etfIsuSrtNm": "RISE",
           "reportNm": "신규상장",
           "orderMode": "",
@@ -1496,17 +1496,53 @@
           "forward": "disclosurebystocktype_etf_sub",
           "currentPageSize": "100",
           "pageIndex": "1",
-          "fromDate": "2026-09-30",
-          "toDate": "2026-10-30",
+          "fromDate": "2026-10-01",
+          "toDate": "2026-10-31",
           "etfIsuSrtNm": "RISE",
           "reportNm": "상장폐지",
           "orderMode": "",
           "orderStat": ""
         },
-        "sha256": "fdc0e5aefb18e419780668c41d9f0beb5eb486e31187fc0300b7b27f38432d2d"
+        "sha256": "db7862d179c81310f28f54317007aed2ac9aaef7aa385c17f236b58319da8158"
       }
     ],
     "events": [
+      {
+        "receipt_id": "20261030000166",
+        "kind_stock_id": "0122W",
+        "published_at": "2026-10-30T12:17:00+09:00",
+        "name": "RISE 26-11 회사채(AA-이상)액티브",
+        "title": "ETF 상장폐지 사유 발생(운용사 공시)",
+        "publisher": "KB자산운용",
+        "kind": "DELISTING_REVIEW",
+        "search_sha256": "db7862d179c81310f28f54317007aed2ac9aaef7aa385c17f236b58319da8158",
+        "event_id": "20261030000166:0122W",
+        "code": "0122W0",
+        "effective_date": null,
+        "verification": "NOTICE_REVIEW_REQUIRED",
+        "viewer_url": "https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20261030000166",
+        "sources": [
+          {
+            "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20261030000166",
+            "request": null,
+            "sha256": "49c7a5cd08d7f63b5d9936412d68144c8c944efd544846416b7896a4133c2a93"
+          },
+          {
+            "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=searchContents&docNo=20261030000226",
+            "request": null,
+            "sha256": "79f23a7c55292d2becd6ee7fc9c768943b3006fd91f7e45a59d3d0b12a0ef896"
+          },
+          {
+            "url": "https://kind.krx.co.kr/external/2026/10/30/000166/20261030000226/68616.htm",
+            "request": null,
+            "sha256": "34358cfcc53d03cc966ed75c6cf710d3aafd28801c88185cecc680b9a991d10a"
+          }
+        ],
+        "first_seen_at": "2026-10-30T16:05:44.046214+00:00",
+        "last_checked_at": "2026-10-30T16:05:44.046214+00:00",
+        "versions": [],
+        "in_latest_search": true
+      },
       {
         "receipt_id": "20261023000727",
         "kind_stock_id": "0122W",
@@ -1515,7 +1551,7 @@
         "title": "ETF 상장폐지 사유 발생(운용사 공시)",
         "publisher": "KB자산운용",
         "kind": "DELISTING_REVIEW",
-        "search_sha256": "fdc0e5aefb18e419780668c41d9f0beb5eb486e31187fc0300b7b27f38432d2d",
+        "search_sha256": "db7862d179c81310f28f54317007aed2ac9aaef7aa385c17f236b58319da8158",
         "event_id": "20261023000727:0122W",
         "code": "0122W0",
         "effective_date": null,
@@ -1539,7 +1575,7 @@
           }
         ],
         "first_seen_at": "2026-10-23T14:19:20.756135+00:00",
-        "last_checked_at": "2026-10-30T02:26:13.282040+00:00",
+        "last_checked_at": "2026-10-30T16:05:44.046214+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1575,7 +1611,7 @@
           }
         ],
         "first_seen_at": "2026-10-16T14:04:52.760393+00:00",
-        "last_checked_at": "2026-10-30T02:26:13.282040+00:00",
+        "last_checked_at": "2026-10-30T16:05:44.046214+00:00",
         "versions": [],
         "in_latest_search": true
       },
