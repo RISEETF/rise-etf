@@ -1,6 +1,6 @@
 {
   "status": "PARTIAL",
-  "attempted_at": "2026-10-30T00:04:27.622452+00:00",
+  "attempted_at": "2026-10-30T00:07:31.322647+00:00",
   "current_observation_date": "2026-10-29",
   "items": [
     {
@@ -16,22 +16,32 @@
     {
       "period": "3M",
       "target_date": "2026-07-29",
-      "status": "SUCCESS",
-      "observation_date": "2026-07-29",
-      "raw_sha256": "c12d3af77163f708d347ad75c0495a328e3ca9ab72a3f953b5710db117dfbd5b",
-      "record_count": 1155,
-      "delta": {
-        "new": 8085,
-        "revisions": 0,
-        "unchanged": 0,
-        "total": 221000
-      }
+      "status": "ALREADY_CAPTURED"
     },
     {
       "period": "YTD",
       "target_date": "2025-12-31",
       "status": "FAILED",
-      "reason": "ValueError"
+      "reason": "KRX_FIELD_COVERAGE_LOW",
+      "quality": {
+        "observation_date": "2025-12-31",
+        "record_count": 1058,
+        "field_coverage": {
+          "close": 0.0,
+          "nav": 0.0,
+          "volume": 0.0,
+          "trading_value": 0.0,
+          "market_cap": 0.0,
+          "net_assets": 0.0,
+          "listed_shares": 1.0
+        },
+        "failed_fields": [
+          "close",
+          "nav",
+          "volume"
+        ],
+        "required_ratio": 0.95
+      }
     }
   ],
   "scope": "RETURN_ENDPOINTS_ONLY_NOT_CONTINUOUS_HISTORY"
