@@ -33,7 +33,7 @@ def period_return(history, day, period, market_dates):
     candidates = [d for d in market_dates if d <= target.isoformat()]
     base = max(candidates) if candidates else None
     result = {'pct': None, 'target_date': target.isoformat(), 'base_date': base,
-              'end_date': day.isoformat(), 'status': 'INSUFFICIENT_HISTORY'}
+              'end_date': day.isoformat(), 'base_raw_sha256': history.get(base, {}).get('_close_hash'), 'status': 'INSUFFICIENT_HISTORY'}
     # 1D never silently bridges an absent weekday. Other periods expose both endpoints.
     tolerance = 0 if period == '1D' else 7
     if not base or (target-dt.date.fromisoformat(base)).days > tolerance:
@@ -74,6 +74,8 @@ def build(db_path, receipt, inventory, today):
         if not isinstance(value, (int, float)) or not math.isfinite(value) or value < 0:
             raise ValueError('INVALID_DATABASE_VALUE')
         series.setdefault(row['ticker'], {}).setdefault(row['observation_date'], {})[row['field']] = value
+        if row['field'] == 'close':
+            series[row['ticker']][row['observation_date']]['_close_hash'] = row['raw_sha256']
         if row['observation_date'] == day.isoformat():
             names[row['ticker']] = row['name']
     products = []

@@ -24,3 +24,8 @@ Investor flow: needs separate actual KRX export/API or a documented provider fee
 
 ## Continuation
 Branch `feat/etf-market-metrics`; final PR records commit/CI/Pages/probe outcomes. Commands: `python -m unittest tests.test_etf_market_metrics tests.test_krx_etf tests.test_etf_investigations -v`; `python scripts/build_etf_market_metrics.py`; `node tests/test_etf_explorer.cjs`. Next inspect the probe artifact, then decide whether the issuer response can support a validated targeted adapter. Source-blocked features are not marked completed.
+
+### Endpoint backfill and actual source probe result
+`backfill_etf_return_baselines.py` now reuses `fetch_latest`, completeness checks and append-only accumulation for at most four missing target dates (1W/1M/3M/YTD; at most eight calendar-date attempts each). It preserves historical raw responses under `var/krx-output/baselines` and caches successfully resolved target dates in SQLite. No current master/receipt is changed. Old universe completeness is not compared to today's larger universe. Failed targets remain PARTIAL without leaking exception text; available current prices still build. Return rows also retain the base close's raw hash. Baseline acquisition must be verified in the actual authenticated workflow before reporting 3M/YTD coverage as complete.
+
+GitHub runner experiment 40976626720 completed, but the RISE 302450 holdings endpoint returned URLError. Other four shortlisted issuers have no verified adapters. Thus experiment execution succeeded; actual holdings acquisition did not. Artifact 12943230910 contains the failure receipt only. This does not establish production automation capability.
