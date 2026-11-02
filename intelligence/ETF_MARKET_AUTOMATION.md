@@ -69,3 +69,33 @@ in its PR. Run `python -m unittest tests.test_holdings_probe -v`, then
 Next required input: whether an existing KIS API or company Koscom data
 entitlement is available. Do not request raw credentials in chat. Keep existing
 KRX prices running independently; holdings and investor flows remain incomplete.
+
+## Download inbox fallback (2026-11-02)
+The user has no KIS/Koscom entitlement. Do not block existing KRX price jobs on
+new credentials. Official KIWOOM 459790 product page was found, but direct
+retrieval failed; neither cached search snippets nor index holdings were imported.
+No additional live holdings acquisition succeeded in this session.
+
+`scripts/import_krx_pdf_inbox.py` reuses the validated KRX CSV importer. Put each
+locally downloaded export in a separate directory under `var/etf-pdf-inbox/`:
+- `original.csv`: unchanged KRX export.
+- `receipt.json`: the existing importer receipt, including browser-observed
+  ticker/name/date, retrieval time, units, row count and SHA256. Do not infer
+  observation date from the filename or download date.
+- `queue.json`: the original maximum-five investigation shortlist for that date.
+
+Run `python scripts/import_krx_pdf_inbox.py --inbox var/etf-pdf-inbox --output var/etf-pdf --public-receipts data/etf_investigations/pdf_receipts.json`.
+Confirm the existing portal receipt path before publication; see etf-investigations.js.
+The command handles at most five changed bundles per invocation, leaves all input
+files intact, skips successful unchanged bundles and records pending/failed states
+in private `inbox_status.json`. One bad export does not stop others. Existing raw
+archive, SQLite idempotence and same-date revisions are reused. Only metadata is
+eligible for publication; constituent rows remain private. A complete receipt is
+still a human/browser assertion, not independent proof of its date.
+
+This is a batch ingestion command, not an installed background watcher or an
+automatic KRX download service. To schedule on a persistent workstation, run the
+same command from its scheduler after downloads; ephemeral GitHub runners cannot
+see local folders. No scheduler was installed in this session.
+Continuation branch: feat/krx-pdf-inbox. Tests: python -m unittest
+ tests.test_krx_pdf_inbox tests.test_krx_pdf -v. Final CI/merge results are in the PR.
