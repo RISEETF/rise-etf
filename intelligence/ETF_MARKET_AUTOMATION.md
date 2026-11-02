@@ -29,3 +29,43 @@ Branch `feat/etf-market-metrics`; final PR records commit/CI/Pages/probe outcome
 `backfill_etf_return_baselines.py` now reuses `fetch_latest`, completeness checks and append-only accumulation for at most four missing target dates (1W/1M/3M/YTD; at most eight calendar-date attempts each). It preserves historical raw responses under `var/krx-output/baselines` and caches successfully resolved target dates in SQLite. No current master/receipt is changed. Old universe completeness is not compared to today's larger universe. Failed targets remain PARTIAL without leaking exception text; available current prices still build. Return rows also retain the base close's raw hash. Baseline acquisition must be verified in the actual authenticated workflow before reporting 3M/YTD coverage as complete.
 
 GitHub runner experiment 40976626720 completed, but the RISE 302450 holdings endpoint returned URLError. Other four shortlisted issuers have no verified adapters. Thus experiment execution succeeded; actual holdings acquisition did not. Artifact 12943230910 contains the failure receipt only. This does not establish production automation capability.
+
+## 2026-11-02 continuation: source access and diagnostics
+Main checkpoint before this change: cb38c21f28213d154e67c63d994a89fede7b46d8.
+KRX run 41376130907 and Pages run 41397660208 succeeded. Latest verified
+observation is 2026-10-30: 145 RISE price/1D/1W, 144 1M, 141 3M, 132 YTD;
+YTD baseline is 2025-12-30. These are measured coverage, not fixed targets.
+
+Official source candidates inspected:
+- KIS official example: https://github.com/koreainvestment/open-trading-api/blob/main/examples_llm/etfetn/inquire_component_stock_price/inquire_component_stock_price.py
+  GET `/uapi/etfetn/v1/quotations/inquire-component-stock-price`, transaction
+  `FHKST121600C0`, market `J`, screen `11216`, input ETF code. It returns
+  output1/object and output2/list. Authentication is required. The adjacent
+  example's display mapping contains inconsistent labels (e.g. stck_prpr
+  labelled a date), so do not infer observation dates or units from that mapping.
+  ETF coverage for overseas/synthetic assets, completeness, dates and weights
+  must be verified with an entitled real response before any production import.
+- KIS investor example: https://github.com/koreainvestment/open-trading-api/blob/main/examples_llm/domestic_stock/inquire_investor/inquire_investor.py
+  GET `/uapi/domestic-stock/v1/quotations/inquire-investor`, transaction
+  `FHKST01010900`. Official notes say today's information is provided after
+  close and foreign includes other foreign investors. ETF coverage and amount
+  units remain unverified. No API credentials were requested in chat or stored.
+- Koscom https://koscom.gitbook.io/open-api/api/marketv3 lists
+  `/v3/market/extra/stocks/kospi/{issuecode}/pdf`. Its terms explicitly require
+  a market-data licence for processing/accumulation, including sandbox data.
+  https://datamall.koscom.co.kr/kor/main.do also lists daily ETF PDF and investor
+  trading data products. Existing company entitlement needs confirmation;
+  no subscription or agreement has been made on the user's behalf.
+
+The current source experiment still does not enable production collection.
+Connection errors are now categorized without recording exception messages
+(DNS, timeout, TLS, connection, invalid JSON, oversized or unknown). HTTP
+status remains separate. Three new tests cover safe diagnostics, no promotion
+of received JSON, and the maximum-five request gate.
+
+Resume on `fix/holdings-source-diagnostics`; final commit and CI are recorded
+in its PR. Run `python -m unittest tests.test_holdings_probe -v`, then
+`python scripts/probe_etf_holdings.py --output var/holdings-probe`.
+Next required input: whether an existing KIS API or company Koscom data
+entitlement is available. Do not request raw credentials in chat. Keep existing
+KRX prices running independently; holdings and investor flows remain incomplete.
