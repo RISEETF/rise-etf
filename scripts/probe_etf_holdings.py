@@ -8,10 +8,30 @@ import datetime as dt
 import hashlib
 import json
 import re
+import socket
+import ssl
 import urllib.error
 import urllib.request
 from pathlib import Path
 from collect_krx_etf import write_json_atomic
+
+
+def failure_reason(exc):
+    """Classify connection failures without recording URLs, tokens or messages."""
+    reason = exc.reason if isinstance(exc, urllib.error.URLError) else exc
+    if isinstance(reason, (TimeoutError, socket.timeout)):
+        return 'CONNECTION_TIMEOUT'
+    if isinstance(reason, socket.gaierror):
+        return 'DNS_FAILURE'
+    if isinstance(reason, ssl.SSLError):
+        return 'TLS_FAILURE'
+    if isinstance(reason, ConnectionError):
+        return 'CONNECTION_FAILURE'
+    if isinstance(exc, (json.JSONDecodeError, UnicodeDecodeError)):
+        return 'INVALID_JSON'
+    if isinstance(exc, ValueError) and exc.args == ('RESPONSE_TOO_LARGE',):
+        return 'RESPONSE_TOO_LARGE'
+    return 'UNCLASSIFIED_FETCH_FAILURE'
 
 
 def probe(queue, master, output):
@@ -42,7 +62,7 @@ def probe(queue, master, output):
             except urllib.error.HTTPError as exc:
                 result.update(status='HTTP_ERROR', http_status=exc.code)
             except Exception as exc:
-                result.update(status='FETCH_FAILED', reason=type(exc).__name__)
+                result.update(status='FETCH_FAILED', reason=failure_reason(exc))
         results.append(result)
     report = {'schema': 'TARGETED_HOLDINGS_PROBE_V1', 'attempted_at': dt.datetime.now(dt.timezone.utc).isoformat(),
         'queue_observation_date': queue['observation_date'], 'items': results,
