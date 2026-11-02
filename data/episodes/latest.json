@@ -1,11 +1,11 @@
 {
   "schema_version": "0.8",
-  "built_at_utc": "2026-10-30T01:42:05.686547+00:00",
-  "source_signal_built_at_utc": "2026-10-30T01:42:05.644157+00:00",
+  "built_at_utc": "2026-11-02T01:21:02.432008+00:00",
+  "source_signal_built_at_utc": "2026-11-02T01:21:02.397388+00:00",
   "production_eligible": false,
   "regime_change_authorized": false,
-  "active_episode_count": 3,
-  "confirmation_eligible_episode_count": 1,
+  "active_episode_count": 2,
+  "confirmation_eligible_episode_count": 0,
   "episodes": [
     {
       "episode_id": "SIG-RATE-001::2026-09-24::UP",
@@ -741,7 +741,7 @@
       "signal_id": "SIG-RATE-001",
       "signal_name": "US Treasury Long Yield Shock",
       "signal_governance_status": "SHADOW_READY",
-      "episode_status": "WEAKENING",
+      "episode_status": "CLOSED",
       "initial_trigger_date": "2026-10-25",
       "initial_observation_date": "2026-10-22",
       "initial_direction": "DOWN",
@@ -751,18 +751,18 @@
       "peak_magnitude_date": "2026-10-26",
       "peak_abs_zscore": 1.7802112743205845,
       "peak_signed_zscore": -1.7802112743205845,
-      "cumulative_episode_move": 0.08999999999999986,
-      "persistence_runs": 5,
-      "normal_confirmation_runs": 1,
+      "cumulative_episode_move": 0.020000000000000462,
+      "persistence_runs": 6,
+      "normal_confirmation_runs": 2,
       "stress_scope": "UNRESOLVED",
       "policy_intervention_effect": "UNRESOLVED",
       "confirmation_eligible": false,
       "confidence": "MODERATE",
       "latest_signal_state": "NORMAL",
-      "latest_direction": "DOWN",
-      "latest_observation_date": "2026-10-28",
-      "latest_zscore": -1.010329500280718,
-      "falsification_status": "NOT_TESTED",
+      "latest_direction": "UP",
+      "latest_observation_date": "2026-10-29",
+      "latest_zscore": -0.059957512627684506,
+      "falsification_status": "NOT_FALSIFIED",
       "evidence": [
         {
           "date": "2026-10-22",
@@ -793,11 +793,17 @@
           "evidence_role": "CONTRADICTION",
           "signal_state": "NORMAL",
           "zscore": -1.010329500280718
+        },
+        {
+          "date": "2026-10-29",
+          "evidence_role": "CONTRADICTION",
+          "signal_state": "NORMAL",
+          "zscore": -0.059957512627684506
         }
       ],
       "opened_at_utc": "2026-10-25T23:56:30.810878+00:00",
-      "last_updated_utc": "2026-10-30T01:42:05.644157+00:00",
-      "closed_at_utc": null
+      "last_updated_utc": "2026-11-02T01:21:02.397388+00:00",
+      "closed_at_utc": "2026-11-02T01:21:02.397388+00:00"
     },
     {
       "episode_id": "SIG-RATE-002::2026-10-23::DOWN",
@@ -814,17 +820,17 @@
       "peak_magnitude_date": "2026-10-27",
       "peak_abs_zscore": 1.7802112743205845,
       "peak_signed_zscore": -1.7802112743205845,
-      "cumulative_episode_move": 0.04999999999999982,
-      "persistence_runs": 5,
-      "normal_confirmation_runs": 0,
+      "cumulative_episode_move": -0.019999999999999574,
+      "persistence_runs": 6,
+      "normal_confirmation_runs": 1,
       "stress_scope": "UNRESOLVED",
       "policy_intervention_effect": "UNRESOLVED",
-      "confirmation_eligible": true,
+      "confirmation_eligible": false,
       "confidence": "HIGH",
-      "latest_signal_state": "WATCH",
-      "latest_direction": "DOWN",
-      "latest_observation_date": "2026-10-29",
-      "latest_zscore": -1.650631067932628,
+      "latest_signal_state": "NORMAL",
+      "latest_direction": "UP",
+      "latest_observation_date": "2026-10-30",
+      "latest_zscore": 1.0328142430284544,
       "falsification_status": "NOT_TESTED",
       "evidence": [
         {
@@ -856,10 +862,16 @@
           "evidence_role": "CONFIRMATION",
           "signal_state": "WATCH",
           "zscore": -1.650631067932628
+        },
+        {
+          "date": "2026-10-30",
+          "evidence_role": "CONTRADICTION",
+          "signal_state": "NORMAL",
+          "zscore": 1.0328142430284544
         }
       ],
       "opened_at_utc": "2026-10-25T23:56:30.810878+00:00",
-      "last_updated_utc": "2026-10-30T01:42:05.644157+00:00",
+      "last_updated_utc": "2026-11-02T01:21:02.397388+00:00",
       "closed_at_utc": null
     },
     {
