@@ -10,37 +10,109 @@
     "status": "UNCALIBRATED_RESEARCH_ONLY"
   },
   "source": "KRX_OPEN_API_ETF_DAILY",
-  "observation_date": "2026-10-30",
-  "source_retrieved_at": "2026-11-02T02:09:03.291179+00:00",
-  "source_raw_sha256": "7daa0bcdf1c443670ad783f9b5280bb0a43e8337c14b073ddf282ae778988dc3",
+  "observation_date": "2026-11-02",
+  "source_retrieved_at": "2026-11-03T03:51:22.352424+00:00",
+  "source_raw_sha256": "c0c48d99343dd9563f103eff1e634595ebeedc16f38b78264e80a82d9d43e182",
   "screened_count": 1183,
   "metric_coverage": {
     "price": 1183,
     "nav_gap": 1183,
     "volume": 1167
   },
-  "candidate_count": 350,
-  "deferred_count": 345,
+  "candidate_count": 187,
+  "deferred_count": 182,
   "items": [
     {
-      "ticker": "414780",
-      "name": "TIGER 차이나과창판STAR50(합성)",
-      "observation_date": "2026-10-30",
+      "ticker": "0133E0",
+      "name": "TIGER 차이나증권",
+      "observation_date": "2026-11-02",
       "signals": [
         {
           "kind": "PRICE_MOVE",
-          "value": -5.6324,
+          "value": 5.9192,
           "unit": "%",
-          "prior_date": "2026-10-29"
+          "prior_date": "2026-10-30"
         },
         {
           "kind": "NAV_GAP",
-          "value": -5.6453,
+          "value": 5.4602,
+          "unit": "%"
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "0133E0",
+        "requested_date": "2026-11-02",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "456680",
+      "name": "TIGER 차이나전기차레버리지(합성)",
+      "observation_date": "2026-11-02",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 5.148,
+          "unit": "%",
+          "prior_date": "2026-10-30"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": 4.2901,
+          "unit": "%"
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "456680",
+        "requested_date": "2026-11-02",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "0094X0",
+      "name": "1Q 샤오미밸류체인액티브",
+      "observation_date": "2026-11-02",
+      "signals": [
+        {
+          "kind": "NAV_GAP",
+          "value": 4.1434,
           "unit": "%"
         },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 9.7857,
+          "value": 3.5406,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "0094X0",
+        "requested_date": "2026-11-02",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "414780",
+      "name": "TIGER 차이나과창판STAR50(합성)",
+      "observation_date": "2026-11-02",
+      "signals": [
+        {
+          "kind": "NAV_GAP",
+          "value": 2.0912,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 5.573,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -49,30 +121,24 @@
       "holdings_verified": false,
       "pdf_request": {
         "ticker": "414780",
-        "requested_date": "2026-10-30",
+        "requested_date": "2026-11-02",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
     },
     {
-      "ticker": "0164G0",
-      "name": "RISE 차이나AI반도체TOP4Plus",
-      "observation_date": "2026-10-30",
+      "ticker": "130680",
+      "name": "TIGER 원유선물Enhanced(H)",
+      "observation_date": "2026-11-02",
       "signals": [
         {
-          "kind": "PRICE_MOVE",
-          "value": -5.5879,
-          "unit": "%",
-          "prior_date": "2026-10-29"
-        },
-        {
           "kind": "NAV_GAP",
-          "value": -5.101,
+          "value": -3.4968,
           "unit": "%"
         },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 3.1275,
+          "value": 3.8552,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -80,86 +146,8 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "0164G0",
-        "requested_date": "2026-10-30",
-        "source": "KRX",
-        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
-      }
-    },
-    {
-      "ticker": "459790",
-      "name": "KIWOOM 미국성장기업30액티브",
-      "observation_date": "2026-10-30",
-      "signals": [
-        {
-          "kind": "NAV_GAP",
-          "value": -2.669,
-          "unit": "%"
-        },
-        {
-          "kind": "VOLUME_SPIKE",
-          "value": 16.8529,
-          "unit": "x",
-          "baseline_sessions": 20
-        }
-      ],
-      "state": "PDF_PENDING",
-      "holdings_verified": false,
-      "pdf_request": {
-        "ticker": "459790",
-        "requested_date": "2026-10-30",
-        "source": "KRX",
-        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
-      }
-    },
-    {
-      "ticker": "0252V0",
-      "name": "ACE 미국CPU반도체TOP3+",
-      "observation_date": "2026-10-30",
-      "signals": [
-        {
-          "kind": "PRICE_MOVE",
-          "value": -9.0997,
-          "unit": "%",
-          "prior_date": "2026-10-29"
-        },
-        {
-          "kind": "NAV_GAP",
-          "value": -8.7392,
-          "unit": "%"
-        }
-      ],
-      "state": "PDF_PENDING",
-      "holdings_verified": false,
-      "pdf_request": {
-        "ticker": "0252V0",
-        "requested_date": "2026-10-30",
-        "source": "KRX",
-        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
-      }
-    },
-    {
-      "ticker": "0224D0",
-      "name": "KIWOOM 미국CPU반도체TOP4+",
-      "observation_date": "2026-10-30",
-      "signals": [
-        {
-          "kind": "PRICE_MOVE",
-          "value": -7.4074,
-          "unit": "%",
-          "prior_date": "2026-10-29"
-        },
-        {
-          "kind": "NAV_GAP",
-          "value": -7.9502,
-          "unit": "%"
-        }
-      ],
-      "state": "PDF_PENDING",
-      "holdings_verified": false,
-      "pdf_request": {
-        "ticker": "0224D0",
-        "requested_date": "2026-10-30",
+        "ticker": "130680",
+        "requested_date": "2026-11-02",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }

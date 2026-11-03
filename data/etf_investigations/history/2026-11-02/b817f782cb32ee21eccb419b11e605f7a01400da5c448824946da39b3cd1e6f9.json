@@ -1,0 +1,162 @@
+{
+  "schema": "ETF_INVESTIGATION_QUEUE_V1",
+  "rules": {
+    "version": "ETF_TRIAGE_RESEARCH_V1",
+    "price_abs_pct": 5,
+    "nav_gap_abs_pct": 2,
+    "volume_multiple": 3,
+    "baseline_sessions": 20,
+    "daily_limit": 5,
+    "status": "UNCALIBRATED_RESEARCH_ONLY"
+  },
+  "source": "KRX_OPEN_API_ETF_DAILY",
+  "observation_date": "2026-11-02",
+  "source_retrieved_at": "2026-11-03T03:51:22.352424+00:00",
+  "source_raw_sha256": "c0c48d99343dd9563f103eff1e634595ebeedc16f38b78264e80a82d9d43e182",
+  "screened_count": 1183,
+  "metric_coverage": {
+    "price": 1183,
+    "nav_gap": 1183,
+    "volume": 1167
+  },
+  "candidate_count": 187,
+  "deferred_count": 182,
+  "items": [
+    {
+      "ticker": "0133E0",
+      "name": "TIGER 차이나증권",
+      "observation_date": "2026-11-02",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 5.9192,
+          "unit": "%",
+          "prior_date": "2026-10-30"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": 5.4602,
+          "unit": "%"
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "0133E0",
+        "requested_date": "2026-11-02",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "456680",
+      "name": "TIGER 차이나전기차레버리지(합성)",
+      "observation_date": "2026-11-02",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 5.148,
+          "unit": "%",
+          "prior_date": "2026-10-30"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": 4.2901,
+          "unit": "%"
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "456680",
+        "requested_date": "2026-11-02",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "0094X0",
+      "name": "1Q 샤오미밸류체인액티브",
+      "observation_date": "2026-11-02",
+      "signals": [
+        {
+          "kind": "NAV_GAP",
+          "value": 4.1434,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 3.5406,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "0094X0",
+        "requested_date": "2026-11-02",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "414780",
+      "name": "TIGER 차이나과창판STAR50(합성)",
+      "observation_date": "2026-11-02",
+      "signals": [
+        {
+          "kind": "NAV_GAP",
+          "value": 2.0912,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 5.573,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "414780",
+        "requested_date": "2026-11-02",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "130680",
+      "name": "TIGER 원유선물Enhanced(H)",
+      "observation_date": "2026-11-02",
+      "signals": [
+        {
+          "kind": "NAV_GAP",
+          "value": -3.4968,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 3.8552,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "130680",
+        "requested_date": "2026-11-02",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    }
+  ],
+  "limitations": [
+    "조사 우선순위용 임시 기준이며 검증된 매매신호가 아닙니다.",
+    "가격은 비조정 종가입니다. 분배·분할·병합·레버리지 및 시장 전체 변동을 먼저 확인하세요.",
+    "해외자산 NAV와 국내 종가의 시차는 괴리의 원인이 될 수 있습니다.",
+    "거래량 증가를 투자자 순유입으로 해석하지 않습니다. PDF 확보 전 구성자산 원인은 미확인입니다."
+  ]
+}

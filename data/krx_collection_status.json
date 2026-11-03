@@ -1,35 +1,4 @@
 {
-  "status": "FAILED",
-  "attempted_at": "2026-11-02T19:38:31.705066+00:00",
-  "reason": "KRX_FIELD_COVERAGE_LOW",
-  "last_success_preserved": true,
-  "quality": {
-    "observation_date": "2026-11-01",
-    "record_count": 1183,
-    "field_coverage": {
-      "close": 0.0,
-      "nav": 0.0,
-      "volume": 0.0,
-      "trading_value": 0.0,
-      "market_cap": 0.0,
-      "net_assets": 0.0,
-      "listed_shares": 1.0
-    },
-    "failed_fields": [
-      "close",
-      "nav",
-      "volume"
-    ],
-    "required_ratio": 0.95,
-    "source_field_present_rows": {
-      "TDD_CLSPRC": 1183,
-      "NAV": 1183,
-      "ACC_TRDVOL": 1183,
-      "ACC_TRDVAL": 1183,
-      "MKTCAP": 1183,
-      "INVSTASST_NETASST_TOTAMT": 1183,
-      "LIST_SHRS": 1183
-    },
-    "raw_sha256": "3382a469a69e8705d98c34e15c239e170e4cbb2865e72bc625a94002f5c2aad3"
-  }
+  "status": "SUCCESS",
+  "attempted_at": "2026-11-03T03:51:22.352243+00:00"
 }
