@@ -1,0 +1,329 @@
+{
+  "schema_version": "1.0",
+  "document_type": "RESEARCH_DRAFT",
+  "asof_date": "2026-11-03",
+  "production_eligible": false,
+  "publication_eligible": false,
+  "source_hashes": {
+    "data/gclri/latest.json": "968c1465e680d9a9d4487a464d2e3ebfde168b0435cd5e0edbb922eba952caec",
+    "data/signals/signal_registry.json": "3705fdc6ab7b3a1cf4091845b35bd9d56df27cc404d5e4de84ad345893494852",
+    "data/episodes/episode_registry.json": "27cde9ae423fd744d8fdd8001421ca629f28451478b6eab300fc0dd6d9292008",
+    "data/regime/channel_registry.json": "62406bcede5624d02c6a4886c49dfa395932159f0dc7f3e32158bc4e9023bdd0",
+    "data/gclri/series_registry.json": "f5f40592694346c87561a7a0f6dd96efe62b7e8bc764bcc1e7b2e16af36113aa",
+    "data/signals/latest.json": "affa0e08a2cd8fb3dd6fe09be2ef7382ec19c287f01462f40849250093488520",
+    "data/episodes/latest.json": "03dd318cd07afe364f3eae1af0fecc9c54dc7826a762bdcb00936a778ae76483",
+    "data/regime/gate_latest.json": "4a33677af5a0284d40360ba409260afe7511999aae97809cf153c604233120b1",
+    "data/validation/v1_status.json": "b8cca851d9db37478aacdc2d18a1f0bf9329415c621dd86a2d129a3965b34454",
+    "data/quality/krx_rise_inventory.json": "4e0653ce0b80d700175febb618de895a63462a2f324d389d7aeb4bef7b90381d",
+    "data/gclri/history.json": "32d2ab785966a29610867bd5f67d3d43d8c43f717db49a766c73440e721de254",
+    "data/signals/history.json": "9c7e1e3c210fb06e614d527bda85614f0164e2b1075a4d98a6d79c449fd25958",
+    "data/episodes/history.json": "daa5d50601638762c16976465b4cc6bd499a62185367e864a2998270db1e3d11",
+    "data/regime/gate_history.json": "7eb8230231e5c245f973dedf1d08326bc5b22fcb535694f13ab4f31ff42c468f"
+  },
+  "publication_blockers": [],
+  "observations": [
+    {
+      "series_id": "BAMLC0A0CM",
+      "name": "US Corporate Master OAS",
+      "observation_date": "2026-10-30",
+      "value": 0.94,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLC0A0CM"
+    },
+    {
+      "series_id": "BAMLH0A0HYM2",
+      "name": "US High Yield OAS",
+      "observation_date": "2026-10-30",
+      "value": 3.44,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2"
+    },
+    {
+      "series_id": "DCOILBRENTEU",
+      "name": "Brent Crude Oil Price",
+      "observation_date": "2026-10-27",
+      "value": 123.1,
+      "unit": "USD/bbl",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILBRENTEU"
+    },
+    {
+      "series_id": "DCOILWTICO",
+      "name": "WTI Crude Oil Price",
+      "observation_date": "2026-10-27",
+      "value": 103.37,
+      "unit": "USD/bbl",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILWTICO"
+    },
+    {
+      "series_id": "DGS10",
+      "name": "US Treasury 10Y",
+      "observation_date": "2026-10-30",
+      "value": 4.94,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10"
+    },
+    {
+      "series_id": "DGS2",
+      "name": "US Treasury 2Y",
+      "observation_date": "2026-10-30",
+      "value": 4.56,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2"
+    },
+    {
+      "series_id": "DTWEXBGS",
+      "name": "Nominal Broad US Dollar Index",
+      "observation_date": "2026-10-30",
+      "value": 121.6656,
+      "unit": "Index",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DTWEXBGS"
+    },
+    {
+      "series_id": "SOFR",
+      "name": "Secured Overnight Financing Rate",
+      "observation_date": "2026-10-30",
+      "value": 3.95,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=SOFR"
+    },
+    {
+      "series_id": "T10Y2Y",
+      "name": "10Y-2Y Treasury Spread",
+      "observation_date": "2026-11-02",
+      "value": 0.32,
+      "unit": "Percent",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=T10Y2Y"
+    },
+    {
+      "series_id": "VIXCLS",
+      "name": "CBOE VIX",
+      "observation_date": "2026-10-30",
+      "value": 19.42,
+      "unit": "Index",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS"
+    },
+    {
+      "series_id": "WRESBAL",
+      "name": "Reserve Balances with Federal Reserve Banks",
+      "observation_date": "2026-10-28",
+      "value": 2893770.0,
+      "unit": "Millions USD",
+      "fresh_for_report": true,
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WRESBAL"
+    }
+  ],
+  "signals": [
+    {
+      "signal_id": "SIG-RATE-001",
+      "state": "NORMAL",
+      "direction": "DOWN",
+      "strongest_series": "DGS10",
+      "usable_for_research": true,
+      "production_eligible": false
+    },
+    {
+      "signal_id": "SIG-RATE-002",
+      "state": "WATCH",
+      "direction": "DOWN",
+      "strongest_series": "DGS2",
+      "usable_for_research": true,
+      "production_eligible": false
+    },
+    {
+      "signal_id": "SIG-CREDIT-001",
+      "state": "NORMAL",
+      "direction": "UP",
+      "strongest_series": "BAMLC0A0CM",
+      "usable_for_research": true,
+      "production_eligible": false
+    },
+    {
+      "signal_id": "SIG-LIQ-001",
+      "state": "NORMAL",
+      "direction": "UP",
+      "strongest_series": "SOFR",
+      "usable_for_research": true,
+      "production_eligible": false
+    },
+    {
+      "signal_id": "SIG-FX-001",
+      "state": "NORMAL",
+      "direction": "UP",
+      "strongest_series": "DTWEXBGS",
+      "usable_for_research": true,
+      "production_eligible": false
+    },
+    {
+      "signal_id": "SIG-ENERGY-001",
+      "state": "NORMAL",
+      "direction": "DOWN",
+      "strongest_series": "DCOILWTICO",
+      "usable_for_research": true,
+      "production_eligible": false
+    },
+    {
+      "signal_id": "SIG-MKT-001",
+      "state": "NORMAL",
+      "direction": "DOWN",
+      "strongest_series": "VIXCLS",
+      "usable_for_research": true,
+      "production_eligible": false
+    }
+  ],
+  "gate_observation": {
+    "state": "KEEP",
+    "independent_persistent_channels": 0,
+    "usable": true
+  },
+  "validation_state": "INSUFFICIENT_HISTORY",
+  "rise_inventory_current": true,
+  "rise_research_candidates": [
+    {
+      "code": "0013R0",
+      "name": "RISE 테슬라미국채타겟커버드콜혼합(합성)",
+      "inventory_asof": "2026-10-30",
+      "signal_id": "SIG-RATE-002",
+      "matched_name_token": "국채",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "internal_discussion_topic": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "required_check": "국가·만기·통화가 해당 신호와 일치하는지 확인"
+    },
+    {
+      "code": "0218J0",
+      "name": "RISE 미국우주&로봇TOP2미국채혼합50",
+      "inventory_asof": "2026-10-30",
+      "signal_id": "SIG-RATE-002",
+      "matched_name_token": "국채",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "internal_discussion_topic": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "required_check": "국가·만기·통화가 해당 신호와 일치하는지 확인"
+    },
+    {
+      "code": "267440",
+      "name": "RISE 미국장기국채선물(H)",
+      "inventory_asof": "2026-10-30",
+      "signal_id": "SIG-RATE-002",
+      "matched_name_token": "국채",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "internal_discussion_topic": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "required_check": "국가·만기·통화가 해당 신호와 일치하는지 확인"
+    },
+    {
+      "code": "267450",
+      "name": "RISE 미국장기국채선물인버스(H)",
+      "inventory_asof": "2026-10-30",
+      "signal_id": "SIG-RATE-002",
+      "matched_name_token": "국채",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "internal_discussion_topic": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "required_check": "국가·만기·통화가 해당 신호와 일치하는지 확인"
+    },
+    {
+      "code": "267490",
+      "name": "RISE 미국장기국채선물레버리지(합성 H)",
+      "inventory_asof": "2026-10-30",
+      "signal_id": "SIG-RATE-002",
+      "matched_name_token": "국채",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "internal_discussion_topic": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "required_check": "국가·만기·통화가 해당 신호와 일치하는지 확인"
+    },
+    {
+      "code": "295000",
+      "name": "RISE 국채선물10년",
+      "inventory_asof": "2026-10-30",
+      "signal_id": "SIG-RATE-002",
+      "matched_name_token": "국채",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "internal_discussion_topic": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "required_check": "국가·만기·통화가 해당 신호와 일치하는지 확인"
+    },
+    {
+      "code": "295020",
+      "name": "RISE 국채선물10년인버스",
+      "inventory_asof": "2026-10-30",
+      "signal_id": "SIG-RATE-002",
+      "matched_name_token": "국채",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "internal_discussion_topic": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "required_check": "국가·만기·통화가 해당 신호와 일치하는지 확인"
+    },
+    {
+      "code": "432600",
+      "name": "RISE 국채선물3년",
+      "inventory_asof": "2026-10-30",
+      "signal_id": "SIG-RATE-002",
+      "matched_name_token": "국채",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "internal_discussion_topic": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "required_check": "국가·만기·통화가 해당 신호와 일치하는지 확인"
+    },
+    {
+      "code": "451670",
+      "name": "RISE 국채30년레버리지(합성)",
+      "inventory_asof": "2026-10-30",
+      "signal_id": "SIG-RATE-002",
+      "matched_name_token": "국채",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "internal_discussion_topic": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "required_check": "국가·만기·통화가 해당 신호와 일치하는지 확인"
+    },
+    {
+      "code": "472830",
+      "name": "RISE 미국30년국채커버드콜(합성)",
+      "inventory_asof": "2026-10-30",
+      "signal_id": "SIG-RATE-002",
+      "matched_name_token": "국채",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "internal_discussion_topic": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "required_check": "국가·만기·통화가 해당 신호와 일치하는지 확인"
+    },
+    {
+      "code": "472870",
+      "name": "RISE 미국30년국채엔화노출(합성 H)",
+      "inventory_asof": "2026-10-30",
+      "signal_id": "SIG-RATE-002",
+      "matched_name_token": "국채",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "internal_discussion_topic": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "required_check": "국가·만기·통화가 해당 신호와 일치하는지 확인"
+    },
+    {
+      "code": "481340",
+      "name": "RISE 미국30년국채액티브",
+      "inventory_asof": "2026-10-30",
+      "signal_id": "SIG-RATE-002",
+      "matched_name_token": "국채",
+      "basis": "NAME_ONLY_UNVERIFIED_EXPOSURE",
+      "internal_discussion_topic": "수익률곡선 변화에 따른 만기별 위험 설명 준비",
+      "required_check": "국가·만기·통화가 해당 신호와 일치하는지 확인"
+    }
+  ],
+  "unresolved": [
+    "레짐 신뢰도·흡수력 점수: 승인된 산출 근거가 없어 미산정",
+    "투자자 수급: 투자자 유형별 원천·시장폭·집중도·지속성 검증 필요",
+    "경쟁상품: 동일 노출의 보수·유동성·추적오차·자금유입 비교 미완료",
+    "신상품: 기존 상품 중복·수요·지수 구현·거래비용 검증 전 점수 및 출시 판단 보류",
+    "정식 FULL 보고서: 외부 근거와 반론을 검토한 최종 판단 패키지 필요"
+  ],
+  "counterchecks": [
+    "같은 원천 시계열을 공유하는 신호는 독립된 시장 확인으로 합산하지 않는다.",
+    "금리 하락만으로 성장 둔화와 인플레이션 완화를 구분할 수 없다. 신용·수급 등 독립 근거가 필요하다.",
+    "관측 지연·수정과 서로 다른 관측일은 동일 시점 시장 움직임으로 해석하지 않는다."
+  ],
+  "next_actions": [
+    "차단 원천의 새 관측값을 수집하고 전체 체인을 다시 실행",
+    "후보 ETF 공식 투자설명서의 실제 노출·환헤지·듀레이션 확인",
+    "FULL 패키지의 수치·외부 근거·반론 검토 후 기존 게시 검증 실행"
+  ]
+}
