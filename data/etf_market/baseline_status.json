@@ -1,6 +1,6 @@
 {
   "status": "SUCCESS",
-  "attempted_at": "2026-11-03T03:51:28.331711+00:00",
+  "attempted_at": "2026-11-03T17:11:32.508818+00:00",
   "current_observation_date": "2026-11-02",
   "items": [
     {
@@ -16,16 +16,7 @@
     {
       "period": "3M",
       "target_date": "2026-08-02",
-      "status": "SUCCESS",
-      "observation_date": "2026-07-31",
-      "raw_sha256": "e761b0b60c50ebc56535732e3f9e3c561fe9674a991429a3c45aaf10f8abda61",
-      "record_count": 1155,
-      "delta": {
-        "new": 8085,
-        "revisions": 0,
-        "unchanged": 0,
-        "total": 261138
-      }
+      "status": "ALREADY_CAPTURED"
     },
     {
       "period": "YTD",
