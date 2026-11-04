@@ -1,0 +1,170 @@
+{
+  "schema": "ETF_INVESTIGATION_QUEUE_V1",
+  "rules": {
+    "version": "ETF_TRIAGE_RESEARCH_V1",
+    "price_abs_pct": 5,
+    "nav_gap_abs_pct": 2,
+    "volume_multiple": 3,
+    "baseline_sessions": 20,
+    "daily_limit": 5,
+    "status": "UNCALIBRATED_RESEARCH_ONLY"
+  },
+  "source": "KRX_OPEN_API_ETF_DAILY",
+  "observation_date": "2026-11-03",
+  "source_retrieved_at": "2026-11-04T02:56:07.069904+00:00",
+  "source_raw_sha256": "0ae9f0eb6b9b82cbba2e17fe40fe3d112a1e2465f985452130ad018c7f0d39a0",
+  "screened_count": 1185,
+  "metric_coverage": {
+    "price": 1183,
+    "nav_gap": 1185,
+    "volume": 1167
+  },
+  "candidate_count": 282,
+  "deferred_count": 277,
+  "items": [
+    {
+      "ticker": "415760",
+      "name": "SOL 차이나육성산업액티브(합성)",
+      "observation_date": "2026-11-03",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": -5.3439,
+          "unit": "%",
+          "prior_date": "2026-11-02"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": -4.8254,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 3.7969,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "415760",
+        "requested_date": "2026-11-03",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "0222F0",
+      "name": "마이티 AI데이터센터밸류체인",
+      "observation_date": "2026-11-03",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": -5.1402,
+          "unit": "%",
+          "prior_date": "2026-11-02"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 27.8136,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "0222F0",
+        "requested_date": "2026-11-03",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "266390",
+      "name": "KODEX 경기소비재",
+      "observation_date": "2026-11-03",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 6.9031,
+          "unit": "%",
+          "prior_date": "2026-11-02"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 24.426,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "266390",
+        "requested_date": "2026-11-03",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "0162L0",
+      "name": "KODEX 차이나AI반도체TOP10",
+      "observation_date": "2026-11-03",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": -8.8952,
+          "unit": "%",
+          "prior_date": "2026-11-02"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": -8.0682,
+          "unit": "%"
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "0162L0",
+        "requested_date": "2026-11-03",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "0164G0",
+      "name": "RISE 차이나AI반도체TOP4Plus",
+      "observation_date": "2026-11-03",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": -7.9365,
+          "unit": "%",
+          "prior_date": "2026-11-02"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": -7.6641,
+          "unit": "%"
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "0164G0",
+        "requested_date": "2026-11-03",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    }
+  ],
+  "limitations": [
+    "조사 우선순위용 임시 기준이며 검증된 매매신호가 아닙니다.",
+    "가격은 비조정 종가입니다. 분배·분할·병합·레버리지 및 시장 전체 변동을 먼저 확인하세요.",
+    "해외자산 NAV와 국내 종가의 시차는 괴리의 원인이 될 수 있습니다.",
+    "거래량 증가를 투자자 순유입으로 해석하지 않습니다. PDF 확보 전 구성자산 원인은 미확인입니다."
+  ]
+}
