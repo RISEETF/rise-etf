@@ -1,0 +1,162 @@
+{
+  "schema": "ETF_INVESTIGATION_QUEUE_V1",
+  "rules": {
+    "version": "ETF_TRIAGE_RESEARCH_V1",
+    "price_abs_pct": 5,
+    "nav_gap_abs_pct": 2,
+    "volume_multiple": 3,
+    "baseline_sessions": 20,
+    "daily_limit": 5,
+    "status": "UNCALIBRATED_RESEARCH_ONLY"
+  },
+  "source": "KRX_OPEN_API_ETF_DAILY",
+  "observation_date": "2026-11-04",
+  "source_retrieved_at": "2026-11-05T03:16:14.221915+00:00",
+  "source_raw_sha256": "c73c5990cd98cd501e744fd2bc3b013a77ce503a4db04d117e11383747a09f4c",
+  "screened_count": 1184,
+  "metric_coverage": {
+    "price": 1184,
+    "nav_gap": 1184,
+    "volume": 1166
+  },
+  "candidate_count": 181,
+  "deferred_count": 176,
+  "items": [
+    {
+      "ticker": "413220",
+      "name": "SOL 차이나태양광CSI(합성)",
+      "observation_date": "2026-11-04",
+      "signals": [
+        {
+          "kind": "NAV_GAP",
+          "value": 3.5888,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 23.1963,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "413220",
+        "requested_date": "2026-11-04",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "391670",
+      "name": "HK 베스트일레븐액티브",
+      "observation_date": "2026-11-04",
+      "signals": [
+        {
+          "kind": "NAV_GAP",
+          "value": -4.2541,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 18.5906,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "391670",
+        "requested_date": "2026-11-04",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "0162L0",
+      "name": "KODEX 차이나AI반도체TOP10",
+      "observation_date": "2026-11-04",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 10.9453,
+          "unit": "%",
+          "prior_date": "2026-11-03"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": 11.3857,
+          "unit": "%"
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "0162L0",
+        "requested_date": "2026-11-04",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "396520",
+      "name": "TIGER 차이나반도체FACTSET",
+      "observation_date": "2026-11-04",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 10.7383,
+          "unit": "%",
+          "prior_date": "2026-11-03"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": 10.6645,
+          "unit": "%"
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "396520",
+        "requested_date": "2026-11-04",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "0164G0",
+      "name": "RISE 차이나AI반도체TOP4Plus",
+      "observation_date": "2026-11-04",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 10.809,
+          "unit": "%",
+          "prior_date": "2026-11-03"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": 10.3477,
+          "unit": "%"
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "0164G0",
+        "requested_date": "2026-11-04",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    }
+  ],
+  "limitations": [
+    "조사 우선순위용 임시 기준이며 검증된 매매신호가 아닙니다.",
+    "가격은 비조정 종가입니다. 분배·분할·병합·레버리지 및 시장 전체 변동을 먼저 확인하세요.",
+    "해외자산 NAV와 국내 종가의 시차는 괴리의 원인이 될 수 있습니다.",
+    "거래량 증가를 투자자 순유입으로 해석하지 않습니다. PDF 확보 전 구성자산 원인은 미확인입니다."
+  ]
+}
