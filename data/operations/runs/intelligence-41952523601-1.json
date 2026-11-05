@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "started_at_utc": "2026-11-05T02:02:39.401086+00:00",
+  "run_id": "41952523601",
+  "run_attempt": "1",
+  "status": "PUBLISHED",
+  "stages": {
+    "build_gclri_signals.py": "SUCCESS",
+    "build_signal_episodes.py": "SUCCESS",
+    "build_regime_gate.py": "SUCCESS",
+    "build_validation_status.py": "SUCCESS",
+    "research_draft": "SUCCESS",
+    "full_report": "SUCCESS",
+    "publication": "SUCCESS"
+  },
+  "note": "Checkout execution only. Git push and Pages deployment are separate outcomes.",
+  "research_draft": {
+    "status": "RESEARCH_DRAFT",
+    "path": "data/intelligence/research/2026-11-05/63151b405cbe260eb27e6adc92ba3198a018fb29e3d3405d1e0a4f8b8db14b11",
+    "sha256": "63151b405cbe260eb27e6adc92ba3198a018fb29e3d3405d1e0a4f8b8db14b11"
+  },
+  "dated_context": [
+    {
+      "series_id": "DTWEXBGS",
+      "observation_date": "2026-10-30",
+      "reason": "기준일 관측 수준·과거 변화 설명에 사용; 오늘의 신호·동시점 교차확인에는 미사용"
+    }
+  ],
+  "generated_package": "data/intelligence/generated/2026-11-05/13bf5594b5228f414c600daba9bb563d3d7639ef68fa79ed58222be971348a57",
+  "blockers": [],
+  "publication": {
+    "status": "SUCCESS",
+    "asof_date": "2026-11-05",
+    "archive_count": 26,
+    "content_changed": true
+  },
+  "finished_at_utc": "2026-11-05T02:02:39.652735+00:00"
+}
