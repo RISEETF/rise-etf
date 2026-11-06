@@ -39,6 +39,22 @@ class OfficialMasterTests(unittest.TestCase):
             self.assertIsNone(capture['effective_date'])
             self.assertEqual(capture['instrument_count'], 1)
 
+    def test_failed_listing_retains_independent_overview_evidence(self):
+        for finder_up in (True, False):
+            def fetch(url):
+                if finder_up and url == master.FINDER_URL:
+                    return '<span class="filtergroup_count_value">2</span><time dateTime="2026-10-20">'
+                raise TimeoutError('timeout')
+            with tempfile.TemporaryDirectory() as d:
+                root = Path(d)
+                with patch.object(master, 'ROOT', root), patch.object(master, 'fetch_text', side_effect=fetch):
+                    self.assertEqual(master.run(), 1)
+                status = json.loads((root/'data/master_collection_status.json').read_text())
+                self.assertEqual(status['api_status'], 'FAILED')
+                self.assertEqual(status['overview_status'], 'SUCCESS' if finder_up else 'FAILED')
+                self.assertEqual(status.get('overview_product_count'), 2 if finder_up else None)
+                self.assertFalse((root/'data/master/latest.json').exists())
+
     def test_independent_collection_still_checks_counts(self):
         page = '<span class="filtergroup_count_value">2</span><time dateTime="2026-10-20">'
         with patch.object(master, 'fetch_text', side_effect=lambda url: page if url == master.FINDER_URL else self.api_fixture()):
