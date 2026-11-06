@@ -7,6 +7,8 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    env:
+      RISE_TEST_BROWSER_CHANNEL: chrome
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -24,7 +26,7 @@ jobs:
       - run: node tests/test_portal.cjs
       - run: node --check portal.js
       - run: npm install --no-save --package-lock=false playwright@1.58.2
-      - run: npx playwright install --with-deps chromium
+      - run: google-chrome --version
       - run: node tests/test_master_portal.cjs
       - run: node tests/test_provider_private.cjs
       - run: node tests/test_etf_explorer.cjs
