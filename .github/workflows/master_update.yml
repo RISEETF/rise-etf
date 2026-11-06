@@ -1,17 +1,7 @@
 name: RISE official instrument master
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - .github/workflows/master_update.yml
-      - scripts/update_official_master.py
-      - scripts/record_pipeline_status.py
-  schedule:
-    # Weekdays 09:17-18:47 KST, plus 07:17 KST pre-open check.
-    # GitHub scheduling and source publication can be delayed; not real-time.
-    - cron: '17,47 0-9 * * 1-5'
-    - cron: '17 22 * * 0-4'
+  # Supplementary issuer metadata: request only when needed.
   workflow_dispatch:
 
 permissions:
