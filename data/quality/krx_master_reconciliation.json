@@ -4,8 +4,8 @@
   "source_role": "PRIMARY_EXCHANGE_OBSERVATION",
   "source_url": "https://data-dbg.krx.co.kr/svc/apis/etp/etf_bydd_trd",
   "observed_on": "2026-11-05",
-  "retrieved_at": "2026-11-06T03:16:01.493115+00:00",
-  "raw_sha256": "3e239573901ef94afc0b39eae2aa7fef65eba338e4f014e1288813e40d7f22e5",
+  "retrieved_at": "2026-11-06T07:52:36.974299+00:00",
+  "raw_sha256": "497490f2888d51fd60909b69d2835abfdbafe0699ca2cdb91b22fed5bc3a0c7e",
   "krx_market_count": 1184,
   "issuer_effective_date": "2026-10-04",
   "issuer_source_sha256": "03b85088a26600243470440c642fdd5f275c2e69468fff99af721ec6034e29c3",
@@ -1466,8 +1466,8 @@
   "note": "Presence is an exchange observation. Absence is not delisting. Name-only codes require identity review.",
   "lifecycle_notices": {
     "status": "SUCCESS",
-    "attempted_at": "2026-11-06T03:16:05.275303+00:00",
-    "last_success_at": "2026-11-06T03:16:05.275303+00:00",
+    "attempted_at": "2026-11-06T07:52:39.968951+00:00",
+    "last_success_at": "2026-11-06T07:52:39.968951+00:00",
     "window_start": "2026-10-07",
     "window_end": "2026-11-06",
     "scope": "RISE_TITLE_SEARCH_ROLLING_30_DAYS_NOT_FULL_LIFECYCLE",
@@ -1503,10 +1503,46 @@
           "orderMode": "",
           "orderStat": ""
         },
-        "sha256": "db7862d179c81310f28f54317007aed2ac9aaef7aa385c17f236b58319da8158"
+        "sha256": "04621f16fc4c1fad4cd2f2f23fb451332944ea0b18153d1e8b7c2a56f1ab95a3"
       }
     ],
     "events": [
+      {
+        "receipt_id": "20261106000096",
+        "kind_stock_id": "0122W",
+        "published_at": "2026-11-06T13:14:00+09:00",
+        "name": "RISE 26-11 회사채(AA-이상)액티브",
+        "title": "ETF 상장폐지 사유 발생(운용사 공시)",
+        "publisher": "KB자산운용",
+        "kind": "DELISTING_REVIEW",
+        "search_sha256": "04621f16fc4c1fad4cd2f2f23fb451332944ea0b18153d1e8b7c2a56f1ab95a3",
+        "event_id": "20261106000096:0122W",
+        "code": "0122W0",
+        "effective_date": null,
+        "verification": "NOTICE_REVIEW_REQUIRED",
+        "viewer_url": "https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20261106000096",
+        "sources": [
+          {
+            "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20261106000096",
+            "request": null,
+            "sha256": "b3ed15f30f98a3f4ce6d8c85c689ac37a715247c01107c3023264460f96a719a"
+          },
+          {
+            "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=searchContents&docNo=20261106000141",
+            "request": null,
+            "sha256": "0b01f85347e98671e4292c48b1f11ab9f2f0fdcf8d7542d2ac5449deafe7dc55"
+          },
+          {
+            "url": "https://kind.krx.co.kr/external/2026/11/06/000096/20261106000141/68616.htm",
+            "request": null,
+            "sha256": "34358cfcc53d03cc966ed75c6cf710d3aafd28801c88185cecc680b9a991d10a"
+          }
+        ],
+        "first_seen_at": "2026-11-06T07:52:39.968951+00:00",
+        "last_checked_at": "2026-11-06T07:52:39.968951+00:00",
+        "versions": [],
+        "in_latest_search": true
+      },
       {
         "receipt_id": "20261030000166",
         "kind_stock_id": "0122W",
@@ -1515,7 +1551,7 @@
         "title": "ETF 상장폐지 사유 발생(운용사 공시)",
         "publisher": "KB자산운용",
         "kind": "DELISTING_REVIEW",
-        "search_sha256": "db7862d179c81310f28f54317007aed2ac9aaef7aa385c17f236b58319da8158",
+        "search_sha256": "04621f16fc4c1fad4cd2f2f23fb451332944ea0b18153d1e8b7c2a56f1ab95a3",
         "event_id": "20261030000166:0122W",
         "code": "0122W0",
         "effective_date": null,
@@ -1539,7 +1575,7 @@
           }
         ],
         "first_seen_at": "2026-10-30T16:05:44.046214+00:00",
-        "last_checked_at": "2026-11-06T03:16:05.275303+00:00",
+        "last_checked_at": "2026-11-06T07:52:39.968951+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1551,7 +1587,7 @@
         "title": "ETF 상장폐지 사유 발생(운용사 공시)",
         "publisher": "KB자산운용",
         "kind": "DELISTING_REVIEW",
-        "search_sha256": "db7862d179c81310f28f54317007aed2ac9aaef7aa385c17f236b58319da8158",
+        "search_sha256": "04621f16fc4c1fad4cd2f2f23fb451332944ea0b18153d1e8b7c2a56f1ab95a3",
         "event_id": "20261023000727:0122W",
         "code": "0122W0",
         "effective_date": null,
@@ -1575,7 +1611,7 @@
           }
         ],
         "first_seen_at": "2026-10-23T14:19:20.756135+00:00",
-        "last_checked_at": "2026-11-06T03:16:05.275303+00:00",
+        "last_checked_at": "2026-11-06T07:52:39.968951+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1611,7 +1647,7 @@
           }
         ],
         "first_seen_at": "2026-10-16T14:04:52.760393+00:00",
-        "last_checked_at": "2026-11-06T03:16:05.275303+00:00",
+        "last_checked_at": "2026-11-06T07:52:39.968951+00:00",
         "versions": [],
         "in_latest_search": true
       },
