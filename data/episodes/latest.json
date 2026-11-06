@@ -1,11 +1,11 @@
 {
   "schema_version": "0.8",
-  "built_at_utc": "2026-11-05T02:02:39.482212+00:00",
-  "source_signal_built_at_utc": "2026-11-05T02:02:39.435350+00:00",
+  "built_at_utc": "2026-11-06T02:04:10.029944+00:00",
+  "source_signal_built_at_utc": "2026-11-06T02:04:10.001157+00:00",
   "production_eligible": false,
   "regime_change_authorized": false,
-  "active_episode_count": 2,
-  "confirmation_eligible_episode_count": 2,
+  "active_episode_count": 4,
+  "confirmation_eligible_episode_count": 3,
   "episodes": [
     {
       "episode_id": "SIG-RATE-001::2026-09-24::UP",
@@ -960,7 +960,7 @@
       "signal_id": "SIG-MKT-001",
       "signal_name": "Equity Volatility Shock",
       "signal_governance_status": "CANDIDATE",
-      "episode_status": "WATCH",
+      "episode_status": "WEAKENING",
       "initial_trigger_date": "2026-11-05",
       "initial_observation_date": "2026-11-03",
       "initial_direction": "UP",
@@ -970,6 +970,51 @@
       "peak_magnitude_date": "2026-11-03",
       "peak_abs_zscore": 1.8083309949876245,
       "peak_signed_zscore": 1.8083309949876245,
+      "cumulative_episode_move": -0.2025924147863658,
+      "persistence_runs": 2,
+      "normal_confirmation_runs": 1,
+      "stress_scope": "UNRESOLVED",
+      "policy_intervention_effect": "UNRESOLVED",
+      "confirmation_eligible": false,
+      "confidence": "MODERATE",
+      "latest_signal_state": "NORMAL",
+      "latest_direction": "DOWN",
+      "latest_observation_date": "2026-11-04",
+      "latest_zscore": -0.41949644899796673,
+      "falsification_status": "NOT_TESTED",
+      "evidence": [
+        {
+          "date": "2026-11-03",
+          "evidence_role": "PRIMARY_OBSERVATION",
+          "signal_state": "WATCH",
+          "zscore": 1.8083309949876245
+        },
+        {
+          "date": "2026-11-04",
+          "evidence_role": "CONTRADICTION",
+          "signal_state": "NORMAL",
+          "zscore": -0.41949644899796673
+        }
+      ],
+      "opened_at_utc": "2026-11-05T02:02:39.435350+00:00",
+      "last_updated_utc": "2026-11-06T02:04:10.001157+00:00",
+      "closed_at_utc": null
+    },
+    {
+      "episode_id": "SIG-RATE-001::2026-11-04::DOWN",
+      "signal_id": "SIG-RATE-001",
+      "signal_name": "US Treasury Long Yield Shock",
+      "signal_governance_status": "SHADOW_READY",
+      "episode_status": "WATCH",
+      "initial_trigger_date": "2026-11-06",
+      "initial_observation_date": "2026-11-04",
+      "initial_direction": "DOWN",
+      "primary_series": "DGS10",
+      "move_basis": "diff",
+      "initial_zscore": -1.613462017807166,
+      "peak_magnitude_date": "2026-11-04",
+      "peak_abs_zscore": 1.613462017807166,
+      "peak_signed_zscore": -1.613462017807166,
       "cumulative_episode_move": 0.0,
       "persistence_runs": 1,
       "normal_confirmation_runs": 0,
@@ -978,20 +1023,59 @@
       "confirmation_eligible": true,
       "confidence": "MODERATE",
       "latest_signal_state": "WATCH",
-      "latest_direction": "UP",
-      "latest_observation_date": "2026-11-03",
-      "latest_zscore": 1.8083309949876245,
+      "latest_direction": "DOWN",
+      "latest_observation_date": "2026-11-04",
+      "latest_zscore": -1.613462017807166,
       "falsification_status": "NOT_TESTED",
       "evidence": [
         {
-          "date": "2026-11-03",
+          "date": "2026-11-04",
           "evidence_role": "PRIMARY_OBSERVATION",
           "signal_state": "WATCH",
-          "zscore": 1.8083309949876245
+          "zscore": -1.613462017807166
         }
       ],
-      "opened_at_utc": "2026-11-05T02:02:39.435350+00:00",
-      "last_updated_utc": "2026-11-05T02:02:39.435350+00:00",
+      "opened_at_utc": "2026-11-06T02:04:10.001157+00:00",
+      "last_updated_utc": "2026-11-06T02:04:10.001157+00:00",
+      "closed_at_utc": null
+    },
+    {
+      "episode_id": "SIG-RATE-002::2026-11-05::DOWN",
+      "signal_id": "SIG-RATE-002",
+      "signal_name": "Yield Curve Regime Shift",
+      "signal_governance_status": "SHADOW",
+      "episode_status": "WATCH",
+      "initial_trigger_date": "2026-11-06",
+      "initial_observation_date": "2026-11-05",
+      "initial_direction": "DOWN",
+      "primary_series": "DGS10",
+      "move_basis": "diff",
+      "initial_zscore": -1.613462017807166,
+      "peak_magnitude_date": "2026-11-05",
+      "peak_abs_zscore": 1.613462017807166,
+      "peak_signed_zscore": -1.613462017807166,
+      "cumulative_episode_move": 0.0,
+      "persistence_runs": 1,
+      "normal_confirmation_runs": 0,
+      "stress_scope": "UNRESOLVED",
+      "policy_intervention_effect": "UNRESOLVED",
+      "confirmation_eligible": true,
+      "confidence": "HIGH",
+      "latest_signal_state": "WATCH",
+      "latest_direction": "DOWN",
+      "latest_observation_date": "2026-11-05",
+      "latest_zscore": -1.613462017807166,
+      "falsification_status": "NOT_TESTED",
+      "evidence": [
+        {
+          "date": "2026-11-05",
+          "evidence_role": "PRIMARY_OBSERVATION",
+          "signal_state": "WATCH",
+          "zscore": -1.613462017807166
+        }
+      ],
+      "opened_at_utc": "2026-11-06T02:04:10.001157+00:00",
+      "last_updated_utc": "2026-11-06T02:04:10.001157+00:00",
       "closed_at_utc": null
     }
   ],
