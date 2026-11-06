@@ -1,0 +1,11 @@
+html[data-rise-entry] body > :not(#rise-entry):not(noscript){display:none!important}
+html[data-rise-entry],html[data-rise-entry] body{background:#0e1c30!important}
+#rise-entry{position:fixed;inset:0;z-index:2147483647;display:grid;place-items:center;padding:20px;background:#0e1c30;color:#172438;font:16px/1.5 system-ui,sans-serif}
+#rise-entry form{box-sizing:border-box;width:min(100%,380px);padding:32px;border-radius:18px;background:white}
+#rise-entry small{color:#496076;font-weight:700}
+#rise-entry h1{color:#172438;font-size:24px;margin:8px 0 20px}
+#rise-entry label{display:block;font-weight:600}
+#rise-entry input,#rise-entry button{box-sizing:border-box;display:block;width:100%;font:inherit;padding:10px 12px;border-radius:8px;margin-top:7px}
+#rise-entry input{color:#172438;background:white;border:1px solid #8090a0}
+#rise-entry button{background:#163953;color:white;border:0;cursor:pointer}
+#rise-entry [role=alert]{color:#942d20;min-height:1.5em;margin:8px 0}
