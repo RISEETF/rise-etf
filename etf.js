@@ -34,7 +34,7 @@ function validateMarket(d){
 }
 function draw(){
  const isUS=$('market').value==='US';$('rise').disabled=isUS;
- const needle=$('search').value.trim().toLowerCase();current=records().filter(r=>(isUS||!$('rise').checked||r.krx||r.name.startsWith('RISE '))&&`${r.code} ${r.name}`.toLowerCase().includes(needle));
+ const needle=$('search').value.trim().toLowerCase();current=records().filter(r=>(isUS||!$('rise').checked||r.krx)&&`${r.code} ${r.name}`.toLowerCase().includes(needle));
  $('basis').textContent=isUS?(us?`Nasdaq Trader 목록 생성일 ${ageLabel(us.directory_date)} · 입수 ${us.retrieved_at_utc} · 가격·수익률 자료 없음`:'미국 목록 파일을 연결하면 표시됩니다.'):`KRX ${inventory?ageLabel(inventory.observed_on):'불러오기 실패'} 기준 · 국내 ETF 보조자료 수치 관측일 ${provider?.metadata.observation_date||'미확인'} · 화면 기준일 ${provider?ageLabel(provider.metadata.screen_date):'미확인'} · 파일 입수 ${provider?.metadata.retrieved_at_utc||'없음'}`;
  const view=$('metricView').value,columns=marketColumns[view];
  $('metricNote').textContent=isUS?'미국 목록의 가격·수급은 아직 연결하지 않았습니다.':view==='flows'?'투자자별 순매수 원천은 아직 연결되지 않았습니다. 거래량·순자산 증가를 투자자 순매수로 대체하지 않습니다.':view==='returns'?'분배금·분할 미조정 종가 등락률입니다. —는 기준 가격 이력 부족입니다. 1W=7일 전, 1M·3M=달력 월, YTD=전년 말. 실제 비교일은 상세에서 확인하세요.':'종가와 NAV는 아래 표시된 KRX 관측일 기준입니다. 괴리율=(종가/NAV−1)×100. 해외 ETF는 평가시차를 확인하세요.';
