@@ -1,4 +1,5 @@
 import datetime as dt
+import hashlib
 import json
 from pathlib import Path
 import sqlite3
@@ -29,6 +30,20 @@ class MarketMetricsTests(unittest.TestCase):
     def test_latest_revision_and_zero_nav(self):
         accumulate(self.db,{'page_date':'2026-10-28','records':[{'ticker':'0254H0','name':'RISE 테스트','close':120,'nav':0}]},'revision','2026-10-28T11:00:00Z')
         r=self.result()['products'][0];self.assertEqual(r['returns']['1D']['pct'],0);self.assertIsNone(r['nav_gap_pct'])
+    def test_same_day_withdrawal_uses_verified_raw_even_when_ledger_has_values(self):
+        raw = json.dumps({'OutBlock_1':[dict(BAS_DD='20261028', ISU_SRT_CD='0254H0',
+            ISU_NM='RISE 테스트', NAV='130', ACC_TRDVOL='0')]}).encode()
+        digest = hashlib.sha256(raw).hexdigest()
+        self.inventory['raw_sha256'] = self.receipt['raw_sha256'] = digest
+        def from_raw(payload):
+            return build(self.db,self.receipt,self.inventory,self.today,raw_payload=payload)
+        row = from_raw(raw)['products'][0]
+        self.assertIsNone(row['close'])
+        self.assertIsNone(row['nav_gap_pct'])
+        self.assertTrue(all(v['pct'] is None for v in row['returns'].values()))
+        self.assertEqual((row['nav'],row['volume']), (130,0))
+        with self.assertRaisesRegex(ValueError,'RAW_RECEIPT_HASH_MISMATCH'):
+            from_raw(raw+b' ')
     def test_missing_base_not_forward_filled(self):
         with sqlite3.connect(self.db) as db:db.execute("delete from snapshots where observation_date='2026-10-27'")
         self.assertIsNone(self.result()['products'][0]['returns']['1D']['pct'])

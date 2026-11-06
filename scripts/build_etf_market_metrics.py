@@ -8,7 +8,7 @@ import math
 import sqlite3
 from pathlib import Path
 from zoneinfo import ZoneInfo
-from collect_krx_etf import write_json_atomic
+from collect_krx_etf import parse_snapshot, write_json_atomic
 
 PERIODS = ('1D', '1W', '1M', '3M', 'YTD')
 
@@ -46,7 +46,7 @@ def period_return(history, day, period, market_dates):
     return result
 
 
-def build(db_path, receipt, inventory, today):
+def build(db_path, receipt, inventory, today, *, raw_payload=None):
     day = dt.date.fromisoformat(receipt['observation_date'])
     if receipt.get('status') != 'SUCCESS' or not 0 <= (today-day).days <= 7:
         raise ValueError('INVALID_COLLECTION_RECEIPT')
@@ -57,6 +57,14 @@ def build(db_path, receipt, inventory, today):
     codes = [r['code'] for r in observed]
     if len(set(codes)) != len(codes) or len(codes) != inventory['observed_count']:
         raise ValueError('INVENTORY_COUNT_MISMATCH')
+    current_rows = None
+    if raw_payload is not None:
+        if hashlib.sha256(raw_payload).hexdigest() != receipt['raw_sha256']:
+            raise ValueError('RAW_RECEIPT_HASH_MISMATCH')
+        capture = parse_snapshot(raw_payload, today)
+        if capture['page_date'] != day.isoformat() or len(capture['records']) != receipt['record_count']:
+            raise ValueError('RAW_RECEIPT_SCOPE_MISMATCH')
+        current_rows = {r['ticker']: r for r in capture['records']}
     with sqlite3.connect(f'file:{Path(db_path).resolve()}?mode=ro', uri=True) as db:
         db.row_factory = sqlite3.Row
         if db.execute('select max(observation_date) from snapshots').fetchone()[0] != day.isoformat():
@@ -81,9 +89,14 @@ def build(db_path, receipt, inventory, today):
     products = []
     for product in observed:
         code = product['code']
-        if names.get(code) != product['name']:
+        current_name = names.get(code) if current_rows is None else current_rows.get(code, {}).get('name')
+        if current_name != product['name']:
             raise ValueError('DATABASE_INVENTORY_IDENTITY_MISMATCH')
-        history = series[code]
+        history = series.get(code, {})
+        if current_rows is not None:
+            # The ledger deduplicates unchanged values and skips missing fields.
+            # A newer same-day response can withdraw a previously available value.
+            history[day.isoformat()] = dict(current_rows[code], _close_hash=receipt['raw_sha256'])
         values = history[day.isoformat()]
         close, nav = values.get('close'), values.get('nav')
         products.append({'code': code, 'name': product['name'],
@@ -128,8 +141,15 @@ def main():
     stamp = dt.datetime.now(dt.timezone.utc).isoformat()
     prior = json.loads(status.read_text()) if status.exists() else {}
     try:
-        doc = build(args.db, json.loads(Path(args.receipt).read_text()),
-                    json.loads(Path(args.inventory).read_text()), dt.datetime.now(ZoneInfo('Asia/Seoul')).date())
+        receipt_path = Path(args.receipt)
+        receipt = json.loads(receipt_path.read_text())
+        day = dt.date.fromisoformat(receipt['observation_date'])
+        digest = receipt['raw_sha256']
+        if len(digest) != 64 or any(c not in '0123456789abcdef' for c in digest):
+            raise ValueError('INVALID_RAW_DIGEST')
+        raw = receipt_path.with_name(f'krx_etf_{day:%Y%m%d}_{digest}.json').read_bytes()
+        doc = build(args.db, receipt, json.loads(Path(args.inventory).read_text()),
+                    dt.datetime.now(ZoneInfo('Asia/Seoul')).date(), raw_payload=raw)
         publish(doc, args.output)
         write_json_atomic(status, {'status': 'SUCCESS', 'last_success_at': stamp,
             'attempted_at': stamp, 'observation_date': doc['observation_date']})
