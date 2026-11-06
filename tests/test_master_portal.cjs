@@ -22,6 +22,14 @@ const server = http.createServer((req,res) => {
     const page = await browser.newPage({viewport:{width:1280,height:900}});
     const errors=[]; page.on('pageerror', e=>errors.push(e.message));
     const url=`http://127.0.0.1:${server.address().port}`;
+    await page.goto(url+'/research.html');
+    await page.getByLabel('비밀번호',{exact:true}).fill('incorrect');
+    await page.getByRole('button',{name:'입장하기'}).click();
+    await page.getByText('비밀번호를 다시 확인해 주세요.').waitFor();
+    assert.equal(await page.locator('header').first().isVisible(),false);
+    await page.getByLabel('비밀번호',{exact:true}).fill('rise');
+    await page.getByRole('button',{name:'입장하기'}).click();
+    await page.locator('#rise-entry').waitFor({state:'detached'});
     await page.goto(url);
     await page.waitForFunction(()=>document.getElementById('etfCount').textContent!=='—');
     const inventory=JSON.parse(fs.readFileSync(path.join(root,'data/quality/krx_rise_inventory.json')));
