@@ -1,0 +1,26 @@
+name: Verify portable issuer recovery
+on:
+  push:
+    branches: [diagnostics/issuer-windows-recovery-nov06]
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Capture official issuer sources
+        shell: powershell
+        run: ./scripts/export_issuer_capture.ps1
+      - name: Verify captured sources
+        shell: powershell
+        run: python scripts/verify_portable_issuer.py (Get-ChildItem RISE-issuer-*.json).FullName
+      - uses: actions/upload-artifact@v4
+        with:
+          name: validated-public-issuer-source
+          path: RISE-issuer-*.json
+          retention-days: 7
