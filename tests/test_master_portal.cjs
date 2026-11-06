@@ -200,10 +200,12 @@ print(json.dumps(compose(prepare_input(root,datetime.now(timezone.utc)),read_jso
     await page.waitForFunction(()=>document.getElementById('krxInventoryStatus').textContent.includes('RISE 1개'));
     assert.match(await page.locator('#krxInventoryProducts').textContent(),/123456 RISE independent fixture/);
     await page.unroute('**/data/quality/krx_rise_inventory.json');
+    await page.route('**/data/master_collection_status.json',route=>route.fulfill({contentType:'application/json',body:JSON.stringify({status:'FAILED',attempted_at:'2026-10-20T00:00:00Z',api_status:'FAILED',overview_status:'SUCCESS',overview_effective_date:'2026-10-19',overview_product_count:7})}));
     await page.route('**/data/operations/master.json',route=>route.fulfill({contentType:'application/json',body:JSON.stringify({status:'FAILED',finished_at:'2099-01-01T00:00:00Z',failed_stage:'preflight'})}));
     await page.reload();
     await page.waitForFunction(()=>document.getElementById('operationsRows').textContent.includes('수집 전 검증 실패'));
-    assert.match(await page.locator('#masterAttempt').textContent(),/수집 전 검증 실패/);
+    assert.match(await page.locator('#masterAttempt').textContent(),/수집 전 검증 실패.*상품 목록 API 실패.*상품 검색 페이지 확인.*2026-10-19, 7개 · 종목별 검증 전/);
+    await page.unroute('**/data/master_collection_status.json');
     await page.unroute('**/data/operations/master.json');
     await page.route('**/data/master/latest.json', route=>route.fulfill({contentType:'application/json',body:JSON.stringify({...master,products:[master.products[0],master.products[0]],instrument_count:2})}));
     await page.reload();

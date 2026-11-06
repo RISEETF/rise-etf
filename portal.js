@@ -188,13 +188,19 @@ async function loadMasterAttempt() {
   try {
     const data = await readJSON('data/master_collection_status.json');
     const pipeline=await readJSON('data/operations/master.json').catch(()=>null);
+    const channel={SUCCESS:'확인',FAILED:'실패'};
+    const evidence=channel[data.api_status] && channel[data.overview_status]
+      ? ` · ${localTime(data.attempted_at)} 시도: 상품 목록 API ${channel[data.api_status]} / 상품 검색 페이지 ${channel[data.overview_status]}`
+        +(data.overview_status==='SUCCESS' && validDate(data.overview_effective_date) && Number.isInteger(data.overview_product_count) && data.overview_product_count>0
+          ? ` (검색 페이지 기준 ${data.overview_effective_date}, ${data.overview_product_count}개 · 종목별 검증 전)`:'')
+      : '';
     if(pipeline && pipeline.status!=='SUCCESS' && Date.parse(pipeline.finished_at)>Date.parse(data.attempted_at||'1970-01-01')) {
       const phase={setup:'실행 환경 준비',preflight:'수집 전 검증',collect:'원천 수집'}[pipeline.failed_stage]||'처리';
-      el('masterAttempt').textContent=`최근 마스터 자동화 ${localTime(pipeline.finished_at)} · ${phase} 실패 · 마지막 성공 자료 유지`;
+      el('masterAttempt').textContent=`최근 마스터 자동화 ${localTime(pipeline.finished_at)} · ${phase} 실패 · 마지막 성공 자료 유지${evidence}`;
       return;
     }
-    const label = data.status === 'SUCCESS' ? '성공' : data.status === 'FAILED' ? '실패 · 마지막 성공 자료 유지' : '상태 확인 필요';
-    el('masterAttempt').textContent = `최근 마스터 수집 시도 ${localTime(data.attempted_at)} · ${label}`;
+    const label = data.status === 'SUCCESS' ? '성공' : data.status === 'FAILED' ? '실패 · 마지막 성공 자료 유지' : data.status === 'PARTIAL' ? '일부 수집 · 마지막 성공 자료 유지' : '상태 확인 필요';
+    el('masterAttempt').textContent = `최근 마스터 수집 시도 ${localTime(data.attempted_at)} · ${label}${evidence}`;
   } catch (_) { el('masterAttempt').textContent = '마스터 수집 시도 이력이 없습니다.'; }
 }
 async function loadQuality() {
