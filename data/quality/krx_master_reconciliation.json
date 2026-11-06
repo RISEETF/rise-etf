@@ -3,9 +3,9 @@
   "status": "KRX_DAILY_IDENTITY_COMPARISON",
   "source_role": "PRIMARY_EXCHANGE_OBSERVATION",
   "source_url": "https://data-dbg.krx.co.kr/svc/apis/etp/etf_bydd_trd",
-  "observed_on": "2026-11-04",
-  "retrieved_at": "2026-11-05T17:29:57.088247+00:00",
-  "raw_sha256": "c73c5990cd98cd501e744fd2bc3b013a77ce503a4db04d117e11383747a09f4c",
+  "observed_on": "2026-11-05",
+  "retrieved_at": "2026-11-06T03:16:01.493115+00:00",
+  "raw_sha256": "3e239573901ef94afc0b39eae2aa7fef65eba338e4f014e1288813e40d7f22e5",
   "krx_market_count": 1184,
   "issuer_effective_date": "2026-10-04",
   "issuer_source_sha256": "03b85088a26600243470440c642fdd5f275c2e69468fff99af721ec6034e29c3",
@@ -1466,8 +1466,8 @@
   "note": "Presence is an exchange observation. Absence is not delisting. Name-only codes require identity review.",
   "lifecycle_notices": {
     "status": "SUCCESS",
-    "attempted_at": "2026-11-05T17:29:59.115948+00:00",
-    "last_success_at": "2026-11-05T17:29:59.115948+00:00",
+    "attempted_at": "2026-11-06T03:16:05.275303+00:00",
+    "last_success_at": "2026-11-06T03:16:05.275303+00:00",
     "window_start": "2026-10-07",
     "window_end": "2026-11-06",
     "scope": "RISE_TITLE_SEARCH_ROLLING_30_DAYS_NOT_FULL_LIFECYCLE",
@@ -1539,7 +1539,7 @@
           }
         ],
         "first_seen_at": "2026-10-30T16:05:44.046214+00:00",
-        "last_checked_at": "2026-11-05T17:29:59.115948+00:00",
+        "last_checked_at": "2026-11-06T03:16:05.275303+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1575,7 +1575,7 @@
           }
         ],
         "first_seen_at": "2026-10-23T14:19:20.756135+00:00",
-        "last_checked_at": "2026-11-05T17:29:59.115948+00:00",
+        "last_checked_at": "2026-11-06T03:16:05.275303+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1611,7 +1611,7 @@
           }
         ],
         "first_seen_at": "2026-10-16T14:04:52.760393+00:00",
-        "last_checked_at": "2026-11-05T17:29:59.115948+00:00",
+        "last_checked_at": "2026-11-06T03:16:05.275303+00:00",
         "versions": [],
         "in_latest_search": true
       },
