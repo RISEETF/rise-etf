@@ -166,6 +166,18 @@ class PartialCollectionError(ValueError):
         self.listing = listing
 
 
+class ListingUnavailable(ValueError):
+    """Record independent overview evidence even if the listing fails."""
+    def __init__(self, api_error, overview, overview_error):
+        super().__init__(f'Listing unavailable: {type(api_error).__name__}: {api_error}')
+        self.evidence = {'api_status': 'FAILED', 'master_updated': False,
+                         'overview_status': 'FAILED' if overview_error else 'SUCCESS'}
+        if overview_error:
+            self.evidence['overview_reason'] = f'{type(overview_error).__name__}: {overview_error}'
+        else:
+            self.evidence['overview_product_count'], self.evidence['overview_effective_date'] = overview
+
+
 def fetch_api_listing():
     first = fetch_text(LIST_URL+'?page=1')
     info = json.loads(first)['page_info']
@@ -186,7 +198,14 @@ def fetch_official_pages():
     with ThreadPoolExecutor(max_workers=2) as pool:
         overview_future = pool.submit(fetch_text, FINDER_URL)
         listing_future = pool.submit(fetch_api_listing)
-        listing, api_total = listing_future.result()
+        try:
+            listing, api_total = listing_future.result()
+        except Exception as api_error:
+            try:
+                evidence = extract_overview(overview_future.result())
+            except Exception as overview_error:
+                raise ListingUnavailable(api_error, None, overview_error) from api_error
+            raise ListingUnavailable(api_error, evidence, None) from api_error
         try:
             overview = overview_future.result()
             total, effective_date = extract_overview(overview)
@@ -394,6 +413,8 @@ def run():
     try:
         main()
         status["status"] = "SUCCESS"
+    except ListingUnavailable as exc:
+        status.update(status='FAILED', reason=str(exc), **exc.evidence)
     except PartialCollectionError as exc:
         digest = persist_partial_capture(exc.listing, now.isoformat())
         status.update(status="PARTIAL", reason=str(exc), api_status="SUCCESS",
