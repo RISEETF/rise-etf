@@ -8,7 +8,7 @@ const assert = require('node:assert/strict');
 const root=fs.mkdtempSync(path.join(os.tmpdir(),'provider-ui-'));
 const code=`import sys\nsys.path.insert(0,'tests')\nfrom test_provider_inbox import InboxTests\nfrom pathlib import Path\nt=InboxTests();t.setUp();t.sample();t.run_inbox();Path(sys.argv[1]).write_bytes((t.out/'index.html').read_bytes())\nt.doCleanups()\n`;
 const result=spawnSync('python',['-c',code,path.join(root,'index.html')],{encoding:'utf8'});assert.equal(result.status,0,result.stderr);
-const browser=await chromium.launch({headless:true});try{
+const browser=await chromium.launch({headless:true,channel:process.env.RISE_TEST_BROWSER_CHANNEL||undefined});try{
 const page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(String(e)));
 await page.goto('file://'+path.join(root,'index.html'));
 assert.equal(await page.locator('#rows tr').count(),1);
