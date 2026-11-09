@@ -17,6 +17,20 @@ SPEC.loader.exec_module(MODULE)
 
 
 class KrxEtfTest(unittest.TestCase):
+    def test_success_receipt_reports_observation_lag_without_claiming_freshness(self):
+        with tempfile.TemporaryDirectory() as d:
+            status=Path(d)/'status.json'
+            receipt={'asof':'2026-11-09','observation_date':'2026-11-05',
+                     'retrieved_at':'2026-11-09T00:00:00Z','raw_sha256':'hash'}
+            with patch.object(sys,'argv',['collect','--status',str(status)]), \
+                 patch.object(MODULE,'collect',return_value=receipt), \
+                 patch.object(MODULE,'refresh_notice_report'):
+                self.assertEqual(MODULE.main(),0)
+            result=json.loads(status.read_text())
+            self.assertEqual(result['status'],'SUCCESS')
+            self.assertEqual(result['lag_calendar_days'],4)
+            self.assertEqual(result['observation_date'],'2026-11-05')
+
     def test_date_regression_is_rejected_before_database_mutation(self):
         snapshot = MODULE.parse_snapshot(json.dumps(self.fixture()).encode(), dt.date(2026,9,18))
         with tempfile.TemporaryDirectory() as d:
