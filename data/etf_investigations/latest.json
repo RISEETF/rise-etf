@@ -10,37 +10,37 @@
     "status": "UNCALIBRATED_RESEARCH_ONLY"
   },
   "source": "KRX_OPEN_API_ETF_DAILY",
-  "observation_date": "2026-11-05",
-  "source_retrieved_at": "2026-11-06T16:51:32.884596+00:00",
-  "source_raw_sha256": "497490f2888d51fd60909b69d2835abfdbafe0699ca2cdb91b22fed5bc3a0c7e",
+  "observation_date": "2026-11-06",
+  "source_retrieved_at": "2026-11-09T01:40:56.174427+00:00",
+  "source_raw_sha256": "01f4a09ea52fc3a220a1a40ab34d8d66f0ee736e426000af61907deb0ef21da6",
   "screened_count": 1184,
   "metric_coverage": {
     "price": 1184,
     "nav_gap": 1184,
     "volume": 1167
   },
-  "candidate_count": 432,
-  "deferred_count": 427,
+  "candidate_count": 513,
+  "deferred_count": 508,
   "items": [
     {
-      "ticker": "236350",
-      "name": "TIGER 인도니프티50레버리지(합성)",
-      "observation_date": "2026-11-05",
+      "ticker": "196030",
+      "name": "ACE 일본TOPIX레버리지(H)",
+      "observation_date": "2026-11-06",
       "signals": [
         {
           "kind": "PRICE_MOVE",
-          "value": 6.4581,
+          "value": -11.527,
           "unit": "%",
-          "prior_date": "2026-11-04"
+          "prior_date": "2026-11-05"
         },
         {
           "kind": "NAV_GAP",
-          "value": 2.8945,
+          "value": -11.979,
           "unit": "%"
         },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 20.7738,
+          "value": 9.529,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -48,31 +48,31 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "236350",
-        "requested_date": "2026-11-05",
+        "ticker": "196030",
+        "requested_date": "2026-11-06",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
     },
     {
-      "ticker": "438320",
-      "name": "TIGER 차이나항셍테크레버리지(합성 H)",
-      "observation_date": "2026-11-05",
+      "ticker": "488480",
+      "name": "RISE 일본섹터TOP4Plus",
+      "observation_date": "2026-11-06",
       "signals": [
         {
           "kind": "PRICE_MOVE",
-          "value": 11.5176,
+          "value": -5.8626,
           "unit": "%",
-          "prior_date": "2026-11-04"
+          "prior_date": "2026-11-05"
         },
         {
           "kind": "NAV_GAP",
-          "value": 9.7907,
+          "value": -7.3329,
           "unit": "%"
         },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 4.4516,
+          "value": 4.585,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -80,31 +80,31 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "438320",
-        "requested_date": "2026-11-05",
+        "ticker": "488480",
+        "requested_date": "2026-11-06",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
     },
     {
-      "ticker": "491010",
-      "name": "TIGER 글로벌AI전력인프라액티브",
-      "observation_date": "2026-11-05",
+      "ticker": "205720",
+      "name": "ACE 일본TOPIX인버스(합성 H)",
+      "observation_date": "2026-11-06",
       "signals": [
         {
           "kind": "PRICE_MOVE",
-          "value": -9.1405,
+          "value": 5.3091,
           "unit": "%",
-          "prior_date": "2026-11-04"
+          "prior_date": "2026-11-05"
         },
         {
           "kind": "NAV_GAP",
-          "value": -2.8562,
+          "value": 5.0388,
           "unit": "%"
         },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 10.8632,
+          "value": 9.7458,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -112,31 +112,31 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "491010",
-        "requested_date": "2026-11-05",
+        "ticker": "205720",
+        "requested_date": "2026-11-06",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
     },
     {
-      "ticker": "371150",
-      "name": "RISE 차이나항셍테크",
-      "observation_date": "2026-11-05",
+      "ticker": "423920",
+      "name": "TIGER 미국필라델피아반도체레버리지(합성)",
+      "observation_date": "2026-11-06",
       "signals": [
         {
           "kind": "PRICE_MOVE",
-          "value": 6.0769,
+          "value": -13.9253,
           "unit": "%",
-          "prior_date": "2026-11-04"
+          "prior_date": "2026-11-05"
         },
         {
           "kind": "NAV_GAP",
-          "value": 5.4037,
+          "value": 5.9258,
           "unit": "%"
         },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 3.3438,
+          "value": 3.3444,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -144,31 +144,31 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "371150",
-        "requested_date": "2026-11-05",
+        "ticker": "423920",
+        "requested_date": "2026-11-06",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
     },
     {
-      "ticker": "371870",
-      "name": "ACE 차이나항셍테크",
-      "observation_date": "2026-11-05",
+      "ticker": "0127R0",
+      "name": "RISE 미국AI클라우드인프라",
+      "observation_date": "2026-11-06",
       "signals": [
         {
           "kind": "PRICE_MOVE",
-          "value": 5.7881,
+          "value": -7.7903,
           "unit": "%",
-          "prior_date": "2026-11-04"
+          "prior_date": "2026-11-05"
         },
         {
           "kind": "NAV_GAP",
-          "value": 5.1627,
+          "value": 2.9735,
           "unit": "%"
         },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 6.1915,
+          "value": 7.5771,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -176,8 +176,8 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "371870",
-        "requested_date": "2026-11-05",
+        "ticker": "0127R0",
+        "requested_date": "2026-11-06",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
