@@ -234,7 +234,7 @@ def main() -> int:
     args = parser.parse_args()
     attempted_at = dt.datetime.now(dt.timezone.utc).isoformat()
     try:
-        collect(args)
+        receipt = collect(args)
     except Exception as exc:
         # Public status contains a stable reason only, never request headers or secrets.
         write_json_atomic(args.status, {'status':'FAILED', 'attempted_at':attempted_at,
@@ -246,7 +246,11 @@ def main() -> int:
         refresh_notice_report(args)
         return 1
     refresh_notice_report(args)
-    write_json_atomic(args.status, {'status':'SUCCESS', 'attempted_at':attempted_at})
+    write_json_atomic(args.status, {'status':'SUCCESS', 'attempted_at':attempted_at,
+        'requested_asof':receipt['asof'], 'observation_date':receipt['observation_date'],
+        'lag_calendar_days':(dt.date.fromisoformat(receipt['asof'])-dt.date.fromisoformat(receipt['observation_date'])).days,
+        'source_retrieved_at':receipt['retrieved_at'], 'raw_sha256':receipt['raw_sha256'],
+        'note':'Collection succeeded; this does not certify the latest trading date. Calendar lag includes holidays.'})
     return 0
 
 
@@ -309,7 +313,7 @@ def collect(args):
     write_json_atomic(args.reconciliation, report)
     (output / "receipt.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2))
     print(json.dumps(receipt, ensure_ascii=False))
-    return 0
+    return receipt
 
 
 if __name__ == "__main__":
