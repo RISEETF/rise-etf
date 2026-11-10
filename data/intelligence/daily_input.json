@@ -1,29 +1,27 @@
 {
   "schema_version": "1.0",
-  "asof_date": "2026-11-09",
-  "prepared_at_utc": "2026-11-09T01:30:28.385951+00:00",
-  "publication_blockers": [
-    "STALE_OR_UNAVAILABLE:DTWEXBGS"
-  ],
+  "asof_date": "2026-11-10",
+  "prepared_at_utc": "2026-11-10T03:59:29.298248+00:00",
+  "publication_blockers": [],
   "source_hashes": {
-    "data/gclri/latest.json": "db87f0d704406d1074ec12df959e05f795da148262ca56373ec431273d36673e",
+    "data/gclri/latest.json": "a7471255d9f4b1ad44ec05fe473c677eba4bcb82d5ab6aa0400ca9a8928f325b",
     "data/signals/signal_registry.json": "3705fdc6ab7b3a1cf4091845b35bd9d56df27cc404d5e4de84ad345893494852",
     "data/episodes/episode_registry.json": "27cde9ae423fd744d8fdd8001421ca629f28451478b6eab300fc0dd6d9292008",
     "data/regime/channel_registry.json": "62406bcede5624d02c6a4886c49dfa395932159f0dc7f3e32158bc4e9023bdd0",
     "data/gclri/series_registry.json": "f5f40592694346c87561a7a0f6dd96efe62b7e8bc764bcc1e7b2e16af36113aa",
-    "data/signals/latest.json": "f04598e0178e9e5b5e08f343f1d182e0ea384b6cd395833d6b139250b6bf42ba",
-    "data/episodes/latest.json": "b47143dac6e8f59a5d2169ec0ed893d716743c477ffa739ebf787dda575decbd",
-    "data/regime/gate_latest.json": "7b431a039973cde329a250e0eda71e3df16e1f5c8847f597c71b836441a7f9d2",
-    "data/validation/v1_status.json": "ff1d6a19829304c0492fb0e0e666dc1fffa6b26a2a7402820d6767f4569389dd",
-    "data/quality/krx_rise_inventory.json": "b3d9340e4a20bb5275e75292350858fc0e18ce800dc92150af0fd92b2bb80515",
-    "data/gclri/history.json": "2e2940b81694cfdaf34320220794797e991505498e639d99fccea4bdd10779aa",
-    "data/signals/history.json": "8142481784c84bdd8ad5f098b585bc38b294216f99f1abdc7f410857e568b20f",
-    "data/episodes/history.json": "ac5357920910d6b7bce6d5de8ea56034f648f45cc78d48b991c824b25704b0ad",
-    "data/regime/gate_history.json": "9fb8f93fcee2309290e8fd855802c587f2f7fd2928ebe741df9d47f0de53b3c9"
+    "data/signals/latest.json": "ec2367db88473d157e97472d2c821ae8c811fed2a5b2ad08936776e0b8690757",
+    "data/episodes/latest.json": "4d317fa7ddf8d80d9cb1ec8756ff5fc82db22b5d518e97eb6ebe903a719818e3",
+    "data/regime/gate_latest.json": "1740c0be58e6bc2f095523a02224e6a0352ffe6067107be5d907a164f718a5e9",
+    "data/validation/v1_status.json": "1db7afd3ef53f5c63005cc730e41c597aea692588676355c10c6b62b2cf1da00",
+    "data/quality/krx_rise_inventory.json": "16c08553199d6ed2ccdb10ce23bd0c557323c3cf984ccf9915626efdaebcaced",
+    "data/gclri/history.json": "1ef70dc0c75546c06b8c013250e8fbfa4b1e66871126b2141fd40622aede6d56",
+    "data/signals/history.json": "d0e2671ad32882fb36f57d1b94d5168b024cdb2b2f493d5b866676b4dc2e4659",
+    "data/episodes/history.json": "0b57b9da82dddac299bd126d651818ef0f88fe1752772f96557c542b392ccad5",
+    "data/regime/gate_history.json": "d91455e82efeabb630498ceb12dd768fa22d68175c3bccf9ee97e70fa452ea4b"
   },
   "market": {
     "schema_version": "0.6",
-    "built_at_utc": "2026-11-09T01:30:07.522799+00:00",
+    "built_at_utc": "2026-11-10T03:59:09.116599+00:00",
     "status": "SUCCESS",
     "series": {
       "DGS10": {
@@ -36,14 +34,14 @@
         "gclri_layer": "Fiscal Capacity / Rates",
         "role": "long_yield",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-11-09T01:30:06.885680+00:00",
+        "retrieved_at_utc": "2026-11-10T03:59:08.099833+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10",
-        "observation_date": "2026-11-05",
-        "value": 4.84,
-        "prior_observation_date": "2026-11-04",
-        "prior_value": 4.9,
-        "change_1obs": -0.0600000000000005,
+        "observation_date": "2026-11-06",
+        "value": 4.86,
+        "prior_observation_date": "2026-11-05",
+        "prior_value": 4.84,
+        "change_1obs": 0.020000000000000462,
         "age_calendar_days": 4,
         "data_state": "CURRENT"
       },
@@ -57,14 +55,14 @@
         "gclri_layer": "Policy / Rates",
         "role": "front_yield",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-11-09T01:30:06.953830+00:00",
+        "retrieved_at_utc": "2026-11-10T03:59:08.283275+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2",
-        "observation_date": "2026-11-05",
-        "value": 4.46,
-        "prior_observation_date": "2026-11-04",
-        "prior_value": 4.58,
-        "change_1obs": -0.1200000000000001,
+        "observation_date": "2026-11-06",
+        "value": 4.51,
+        "prior_observation_date": "2026-11-05",
+        "prior_value": 4.46,
+        "change_1obs": 0.04999999999999982,
         "age_calendar_days": 4,
         "data_state": "CURRENT"
       },
@@ -78,15 +76,15 @@
         "gclri_layer": "Cross-Asset / Curve",
         "role": "curve",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-11-09T01:30:07.017018+00:00",
+        "retrieved_at_utc": "2026-11-10T03:59:08.377301+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=T10Y2Y",
-        "observation_date": "2026-11-06",
-        "value": 0.35,
-        "prior_observation_date": "2026-11-05",
-        "prior_value": 0.38,
-        "change_1obs": -0.030000000000000027,
-        "age_calendar_days": 3,
+        "observation_date": "2026-11-09",
+        "value": 0.32,
+        "prior_observation_date": "2026-11-06",
+        "prior_value": 0.35,
+        "change_1obs": -0.02999999999999997,
+        "age_calendar_days": 1,
         "data_state": "CURRENT"
       },
       "SOFR": {
@@ -99,14 +97,14 @@
         "gclri_layer": "Funding Liquidity",
         "role": "secured_funding",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-11-09T01:30:07.060566+00:00",
+        "retrieved_at_utc": "2026-11-10T03:59:08.462296+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=SOFR",
-        "observation_date": "2026-11-05",
-        "value": 3.92,
-        "prior_observation_date": "2026-11-04",
-        "prior_value": 3.94,
-        "change_1obs": -0.020000000000000018,
+        "observation_date": "2026-11-06",
+        "value": 3.89,
+        "prior_observation_date": "2026-11-05",
+        "prior_value": 3.92,
+        "change_1obs": -0.029999999999999805,
         "age_calendar_days": 4,
         "data_state": "CURRENT"
       },
@@ -120,7 +118,7 @@
         "gclri_layer": "Funding Liquidity",
         "role": "bank_reserves",
         "stale_after_days": 10,
-        "retrieved_at_utc": "2026-11-09T01:30:07.117266+00:00",
+        "retrieved_at_utc": "2026-11-10T03:59:08.566243+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WRESBAL",
         "observation_date": "2026-11-04",
@@ -128,7 +126,7 @@
         "prior_observation_date": "2026-10-28",
         "prior_value": 2893770.0,
         "change_1obs": 36318.0,
-        "age_calendar_days": 5,
+        "age_calendar_days": 6,
         "data_state": "CURRENT"
       },
       "BAMLC0A0CM": {
@@ -141,14 +139,14 @@
         "gclri_layer": "Credit Creation & Stress",
         "role": "ig_credit_spread",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-11-09T01:30:07.167740+00:00",
+        "retrieved_at_utc": "2026-11-10T03:59:08.615824+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLC0A0CM",
-        "observation_date": "2026-11-05",
+        "observation_date": "2026-11-06",
         "value": 0.93,
-        "prior_observation_date": "2026-11-04",
-        "prior_value": 0.91,
-        "change_1obs": 0.020000000000000018,
+        "prior_observation_date": "2026-11-05",
+        "prior_value": 0.93,
+        "change_1obs": 0.0,
         "age_calendar_days": 4,
         "data_state": "CURRENT"
       },
@@ -162,14 +160,14 @@
         "gclri_layer": "Credit Creation & Stress",
         "role": "hy_credit_spread",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-11-09T01:30:07.211145+00:00",
+        "retrieved_at_utc": "2026-11-10T03:59:08.676120+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2",
-        "observation_date": "2026-11-05",
-        "value": 3.48,
-        "prior_observation_date": "2026-11-04",
-        "prior_value": 3.32,
-        "change_1obs": 0.16000000000000014,
+        "observation_date": "2026-11-06",
+        "value": 3.42,
+        "prior_observation_date": "2026-11-05",
+        "prior_value": 3.48,
+        "change_1obs": -0.06000000000000005,
         "age_calendar_days": 4,
         "data_state": "CURRENT"
       },
@@ -183,16 +181,16 @@
         "gclri_layer": "FX / Dollar",
         "role": "dollar",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-11-09T01:30:07.258913+00:00",
+        "retrieved_at_utc": "2026-11-10T03:59:08.749244+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DTWEXBGS",
-        "observation_date": "2026-10-30",
-        "value": 121.6656,
-        "prior_observation_date": "2026-10-29",
-        "prior_value": 121.7361,
-        "change_1obs": -0.07049999999999557,
-        "age_calendar_days": 10,
-        "data_state": "STALE"
+        "observation_date": "2026-11-06",
+        "value": 121.8803,
+        "prior_observation_date": "2026-11-05",
+        "prior_value": 121.5061,
+        "change_1obs": 0.37420000000000186,
+        "age_calendar_days": 4,
+        "data_state": "CURRENT"
       },
       "DCOILBRENTEU": {
         "id": "DCOILBRENTEU",
@@ -204,7 +202,7 @@
         "gclri_layer": "Cross-Asset / Energy",
         "role": "brent",
         "stale_after_days": 7,
-        "retrieved_at_utc": "2026-11-09T01:30:07.326525+00:00",
+        "retrieved_at_utc": "2026-11-10T03:59:08.897935+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILBRENTEU",
         "observation_date": "2026-11-03",
@@ -212,7 +210,7 @@
         "prior_observation_date": "2026-11-02",
         "prior_value": 107.39,
         "change_1obs": -0.35999999999999943,
-        "age_calendar_days": 6,
+        "age_calendar_days": 7,
         "data_state": "CURRENT"
       },
       "DCOILWTICO": {
@@ -225,7 +223,7 @@
         "gclri_layer": "Cross-Asset / Energy",
         "role": "wti",
         "stale_after_days": 7,
-        "retrieved_at_utc": "2026-11-09T01:30:07.418179+00:00",
+        "retrieved_at_utc": "2026-11-10T03:59:09.019687+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILWTICO",
         "observation_date": "2026-11-03",
@@ -233,7 +231,7 @@
         "prior_observation_date": "2026-11-02",
         "prior_value": 100.06,
         "change_1obs": -0.4200000000000017,
-        "age_calendar_days": 6,
+        "age_calendar_days": 7,
         "data_state": "CURRENT"
       },
       "VIXCLS": {
@@ -246,14 +244,14 @@
         "gclri_layer": "Market Liquidity / Risk",
         "role": "volatility",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-11-09T01:30:07.522783+00:00",
+        "retrieved_at_utc": "2026-11-10T03:59:09.116578+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS",
-        "observation_date": "2026-11-05",
-        "value": 28.18,
-        "prior_observation_date": "2026-11-04",
-        "prior_value": 16.61,
-        "change_1obs": 11.57,
+        "observation_date": "2026-11-06",
+        "value": 25.64,
+        "prior_observation_date": "2026-11-05",
+        "prior_value": 28.18,
+        "change_1obs": -2.539999999999999,
         "age_calendar_days": 4,
         "data_state": "CURRENT"
       }
@@ -268,8 +266,8 @@
   },
   "signals": {
     "schema_version": "0.7",
-    "built_at_utc": "2026-11-09T01:30:28.420029+00:00",
-    "source_gclri_built_at_utc": "2026-11-09T01:30:07.522799+00:00",
+    "built_at_utc": "2026-11-10T03:59:29.332117+00:00",
+    "source_gclri_built_at_utc": "2026-11-10T03:59:09.116599+00:00",
     "production_eligible": false,
     "regime_change_authorized": false,
     "signals": [
@@ -280,17 +278,17 @@
         "signal_state": "NORMAL",
         "direction": "DOWN",
         "strongest_series": "DGS10",
-        "strongest_zscore": -1.4645610343348134,
+        "strongest_zscore": -0.8790059055851068,
         "confidence": "MODERATE",
         "confirmation_count": 0,
         "details": [
           {
             "series_id": "DGS10",
-            "observation_date": "2026-11-05",
-            "latest_value": 4.84,
+            "observation_date": "2026-11-06",
+            "latest_value": 4.86,
             "horizon_observations": 5,
-            "horizon_move": -0.14000000000000057,
-            "zscore": -1.4645610343348134,
+            "horizon_move": -0.08000000000000007,
+            "zscore": -0.8790059055851068,
             "data_state": "CURRENT"
           }
         ],
@@ -300,38 +298,38 @@
         "signal_id": "SIG-RATE-002",
         "name": "Yield Curve Regime Shift",
         "status": "SHADOW",
-        "signal_state": "WATCH",
+        "signal_state": "NORMAL",
         "direction": "DOWN",
-        "strongest_series": "DGS2",
-        "strongest_zscore": -1.6108781062817996,
+        "strongest_series": "DGS10",
+        "strongest_zscore": -0.8790059055851068,
         "confidence": "HIGH",
         "confirmation_count": 0,
         "details": [
           {
             "series_id": "T10Y2Y",
-            "observation_date": "2026-11-06",
-            "latest_value": 0.35,
+            "observation_date": "2026-11-09",
+            "latest_value": 0.32,
             "horizon_observations": 5,
-            "horizon_move": -0.030000000000000027,
-            "zscore": -0.264836375947278,
+            "horizon_move": 0.0,
+            "zscore": 0.13263253442836845,
             "data_state": "CURRENT"
           },
           {
             "series_id": "DGS10",
-            "observation_date": "2026-11-05",
-            "latest_value": 4.84,
+            "observation_date": "2026-11-06",
+            "latest_value": 4.86,
             "horizon_observations": 5,
-            "horizon_move": -0.14000000000000057,
-            "zscore": -1.4645610343348134,
+            "horizon_move": -0.08000000000000007,
+            "zscore": -0.8790059055851068,
             "data_state": "CURRENT"
           },
           {
             "series_id": "DGS2",
-            "observation_date": "2026-11-05",
-            "latest_value": 4.46,
+            "observation_date": "2026-11-06",
+            "latest_value": 4.51,
             "horizon_observations": 5,
-            "horizon_move": -0.15000000000000036,
-            "zscore": -1.6108781062817996,
+            "horizon_move": -0.04999999999999982,
+            "zscore": -0.6830112184777329,
             "data_state": "CURRENT"
           }
         ],
@@ -342,28 +340,28 @@
         "name": "Credit Spread Widening Impulse",
         "status": "CANDIDATE",
         "signal_state": "NORMAL",
-        "direction": "UP",
-        "strongest_series": "BAMLH0A0HYM2",
-        "strongest_zscore": 1.2783935684181778,
+        "direction": "DOWN",
+        "strongest_series": "BAMLC0A0CM",
+        "strongest_zscore": -0.7701540462154017,
         "confidence": "HIGH",
-        "confirmation_count": 2,
+        "confirmation_count": 0,
         "details": [
           {
             "series_id": "BAMLC0A0CM",
-            "observation_date": "2026-11-05",
+            "observation_date": "2026-11-06",
             "latest_value": 0.93,
             "horizon_observations": 5,
-            "horizon_move": 0.040000000000000036,
-            "zscore": 1.0058997562016954,
+            "horizon_move": -0.009999999999999898,
+            "zscore": -0.7701540462154017,
             "data_state": "CURRENT"
           },
           {
             "series_id": "BAMLH0A0HYM2",
-            "observation_date": "2026-11-05",
-            "latest_value": 3.48,
+            "observation_date": "2026-11-06",
+            "latest_value": 3.42,
             "horizon_observations": 5,
-            "horizon_move": 0.2200000000000002,
-            "zscore": 1.2783935684181778,
+            "horizon_move": -0.020000000000000018,
+            "zscore": -0.6043816708613875,
             "data_state": "CURRENT"
           }
         ],
@@ -376,17 +374,17 @@
         "signal_state": "NORMAL",
         "direction": "DOWN",
         "strongest_series": "SOFR",
-        "strongest_zscore": -0.6809037775829286,
+        "strongest_zscore": -1.275147074382576,
         "confidence": "HIGH",
         "confirmation_count": 0,
         "details": [
           {
             "series_id": "SOFR",
-            "observation_date": "2026-11-05",
-            "latest_value": 3.92,
+            "observation_date": "2026-11-06",
+            "latest_value": 3.89,
             "horizon_observations": 5,
-            "horizon_move": -0.020000000000000018,
-            "zscore": -0.6809037775829286,
+            "horizon_move": -0.06000000000000005,
+            "zscore": -1.275147074382576,
             "data_state": "CURRENT"
           },
           {
@@ -408,18 +406,18 @@
         "signal_state": "NORMAL",
         "direction": "UP",
         "strongest_series": "DTWEXBGS",
-        "strongest_zscore": 0.2832305583531088,
-        "confidence": "LOW",
+        "strongest_zscore": 0.029447680124700535,
+        "confidence": "MODERATE",
         "confirmation_count": 1,
         "details": [
           {
             "series_id": "DTWEXBGS",
-            "observation_date": "2026-10-30",
-            "latest_value": 121.6656,
+            "observation_date": "2026-11-06",
+            "latest_value": 121.8803,
             "horizon_observations": 5,
-            "horizon_move": 0.002847011462229654,
-            "zscore": 0.2832305583531088,
-            "data_state": "STALE"
+            "horizon_move": 0.001764673005352435,
+            "zscore": 0.029447680124700535,
+            "data_state": "CURRENT"
           }
         ],
         "production_eligible": false
@@ -463,17 +461,17 @@
         "signal_state": "ACTIVE_CANDIDATE",
         "direction": "UP",
         "strongest_series": "VIXCLS",
-        "strongest_zscore": 6.447832975122086,
+        "strongest_zscore": 2.314842333040364,
         "confidence": "MODERATE",
         "confirmation_count": 1,
         "details": [
           {
             "series_id": "VIXCLS",
-            "observation_date": "2026-11-05",
-            "latest_value": 28.18,
+            "observation_date": "2026-11-06",
+            "latest_value": 25.64,
             "horizon_observations": 5,
-            "horizon_move": 0.6383720930232559,
-            "zscore": 6.447832975122086,
+            "horizon_move": 0.3202883625128732,
+            "zscore": 2.314842333040364,
             "data_state": "CURRENT"
           }
         ],
@@ -488,12 +486,12 @@
   },
   "episodes": {
     "schema_version": "0.8",
-    "built_at_utc": "2026-11-09T01:30:28.465625+00:00",
-    "source_signal_built_at_utc": "2026-11-09T01:30:28.420029+00:00",
+    "built_at_utc": "2026-11-10T03:59:29.378679+00:00",
+    "source_signal_built_at_utc": "2026-11-10T03:59:29.332117+00:00",
     "production_eligible": false,
     "regime_change_authorized": false,
-    "active_episode_count": 4,
-    "confirmation_eligible_episode_count": 3,
+    "active_episode_count": 3,
+    "confirmation_eligible_episode_count": 2,
     "episodes": [
       {
         "episode_id": "SIG-RATE-001::2026-09-24::UP",
@@ -1458,8 +1456,8 @@
         "peak_magnitude_date": "2026-11-05",
         "peak_abs_zscore": 6.447832975122086,
         "peak_signed_zscore": 6.447832975122086,
-        "cumulative_episode_move": 0.3528564570331254,
-        "persistence_runs": 3,
+        "cumulative_episode_move": 0.230916946711474,
+        "persistence_runs": 4,
         "normal_confirmation_runs": 0,
         "stress_scope": "UNRESOLVED",
         "policy_intervention_effect": "UNRESOLVED",
@@ -1467,8 +1465,8 @@
         "confidence": "MODERATE",
         "latest_signal_state": "ACTIVE_CANDIDATE",
         "latest_direction": "UP",
-        "latest_observation_date": "2026-11-05",
-        "latest_zscore": 6.447832975122086,
+        "latest_observation_date": "2026-11-06",
+        "latest_zscore": 2.314842333040364,
         "falsification_status": "NOT_TESTED",
         "evidence": [
           {
@@ -1488,10 +1486,16 @@
             "evidence_role": "CONFIRMATION",
             "signal_state": "ACTIVE_CANDIDATE",
             "zscore": 6.447832975122086
+          },
+          {
+            "date": "2026-11-06",
+            "evidence_role": "CONFIRMATION",
+            "signal_state": "ACTIVE_CANDIDATE",
+            "zscore": 2.314842333040364
           }
         ],
         "opened_at_utc": "2026-11-05T02:02:39.435350+00:00",
-        "last_updated_utc": "2026-11-09T01:30:28.420029+00:00",
+        "last_updated_utc": "2026-11-10T03:59:29.332117+00:00",
         "closed_at_utc": null
       },
       {
@@ -1499,7 +1503,7 @@
         "signal_id": "SIG-RATE-001",
         "signal_name": "US Treasury Long Yield Shock",
         "signal_governance_status": "SHADOW_READY",
-        "episode_status": "WEAKENING",
+        "episode_status": "CLOSED",
         "initial_trigger_date": "2026-11-06",
         "initial_observation_date": "2026-11-04",
         "initial_direction": "DOWN",
@@ -1509,18 +1513,18 @@
         "peak_magnitude_date": "2026-11-04",
         "peak_abs_zscore": 1.613462017807166,
         "peak_signed_zscore": -1.613462017807166,
-        "cumulative_episode_move": -0.0600000000000005,
-        "persistence_runs": 2,
-        "normal_confirmation_runs": 1,
+        "cumulative_episode_move": -0.040000000000000036,
+        "persistence_runs": 3,
+        "normal_confirmation_runs": 2,
         "stress_scope": "UNRESOLVED",
         "policy_intervention_effect": "UNRESOLVED",
         "confirmation_eligible": false,
         "confidence": "MODERATE",
         "latest_signal_state": "NORMAL",
         "latest_direction": "DOWN",
-        "latest_observation_date": "2026-11-05",
-        "latest_zscore": -1.4645610343348134,
-        "falsification_status": "NOT_TESTED",
+        "latest_observation_date": "2026-11-06",
+        "latest_zscore": -0.8790059055851068,
+        "falsification_status": "NOT_FALSIFIED",
         "evidence": [
           {
             "date": "2026-11-04",
@@ -1533,18 +1537,24 @@
             "evidence_role": "CONTRADICTION",
             "signal_state": "NORMAL",
             "zscore": -1.4645610343348134
+          },
+          {
+            "date": "2026-11-06",
+            "evidence_role": "CONTRADICTION",
+            "signal_state": "NORMAL",
+            "zscore": -0.8790059055851068
           }
         ],
         "opened_at_utc": "2026-11-06T02:04:10.001157+00:00",
-        "last_updated_utc": "2026-11-09T01:30:28.420029+00:00",
-        "closed_at_utc": null
+        "last_updated_utc": "2026-11-10T03:59:29.332117+00:00",
+        "closed_at_utc": "2026-11-10T03:59:29.332117+00:00"
       },
       {
         "episode_id": "SIG-RATE-002::2026-11-05::DOWN",
         "signal_id": "SIG-RATE-002",
         "signal_name": "Yield Curve Regime Shift",
         "signal_governance_status": "SHADOW",
-        "episode_status": "WATCH",
+        "episode_status": "WEAKENING",
         "initial_trigger_date": "2026-11-06",
         "initial_observation_date": "2026-11-05",
         "initial_direction": "DOWN",
@@ -1554,17 +1564,17 @@
         "peak_magnitude_date": "2026-11-05",
         "peak_abs_zscore": 1.613462017807166,
         "peak_signed_zscore": -1.613462017807166,
-        "cumulative_episode_move": 0.0,
-        "persistence_runs": 2,
-        "normal_confirmation_runs": 0,
+        "cumulative_episode_move": 0.020000000000000462,
+        "persistence_runs": 3,
+        "normal_confirmation_runs": 1,
         "stress_scope": "UNRESOLVED",
         "policy_intervention_effect": "UNRESOLVED",
-        "confirmation_eligible": true,
+        "confirmation_eligible": false,
         "confidence": "HIGH",
-        "latest_signal_state": "WATCH",
+        "latest_signal_state": "NORMAL",
         "latest_direction": "DOWN",
-        "latest_observation_date": "2026-11-06",
-        "latest_zscore": -1.6108781062817996,
+        "latest_observation_date": "2026-11-09",
+        "latest_zscore": -0.8790059055851068,
         "falsification_status": "NOT_TESTED",
         "evidence": [
           {
@@ -1578,10 +1588,16 @@
             "evidence_role": "CONFIRMATION",
             "signal_state": "WATCH",
             "zscore": -1.6108781062817996
+          },
+          {
+            "date": "2026-11-09",
+            "evidence_role": "CONTRADICTION",
+            "signal_state": "NORMAL",
+            "zscore": -0.8790059055851068
           }
         ],
         "opened_at_utc": "2026-11-06T02:04:10.001157+00:00",
-        "last_updated_utc": "2026-11-09T01:30:28.420029+00:00",
+        "last_updated_utc": "2026-11-10T03:59:29.332117+00:00",
         "closed_at_utc": null
       }
     ],
@@ -1594,47 +1610,35 @@
   },
   "regime_gate": {
     "schema_version": "0.9",
-    "built_at_utc": "2026-11-09T01:30:28.497072+00:00",
-    "source_episode_built_at_utc": "2026-11-09T01:30:28.465625+00:00",
+    "built_at_utc": "2026-11-10T03:59:29.410142+00:00",
+    "source_episode_built_at_utc": "2026-11-10T03:59:29.378679+00:00",
     "gate_state": "CHALLENGE",
     "independent_persistent_channel_count": 1,
-    "watch_channel_count": 1,
+    "watch_channel_count": 0,
     "extreme_event_override": false,
     "production_eligible": false,
     "regime_change_authorized": false,
     "channels": [
       {
         "channel_id": "RATES",
-        "channel_state": "WATCH",
+        "channel_state": "NON_CONFIRMING",
         "counts_as_independent_confirmation": false,
         "evidence": [
           {
-            "signal_id": "SIG-RATE-001",
+            "signal_id": "SIG-RATE-002",
             "signal_state": "NORMAL",
             "episode_status": "WEAKENING",
-            "persistence_runs": 2,
-            "distinct_trigger_observations": 1,
-            "peak_zscore": -1.613462017807166,
-            "latest_zscore": -1.4645610343348134,
-            "confirmation_eligible": false,
-            "confidence": "MODERATE",
-            "primary_series": "DGS10"
-          },
-          {
-            "signal_id": "SIG-RATE-002",
-            "signal_state": "WATCH",
-            "episode_status": "WATCH",
-            "persistence_runs": 2,
+            "persistence_runs": 3,
             "distinct_trigger_observations": 2,
             "peak_zscore": -1.613462017807166,
-            "latest_zscore": -1.6108781062817996,
-            "confirmation_eligible": true,
+            "latest_zscore": -0.8790059055851068,
+            "confirmation_eligible": false,
             "confidence": "HIGH",
             "primary_series": "DGS10"
           }
         ],
         "fresh_persistent_signal_count": 0,
-        "fresh_watch_signal_count": 1,
+        "fresh_watch_signal_count": 0,
         "nonconfirming_or_stale_count": 1
       },
       {
@@ -1695,10 +1699,10 @@
             "signal_id": "SIG-MKT-001",
             "signal_state": "ACTIVE_CANDIDATE",
             "episode_status": "STRENGTHENING",
-            "persistence_runs": 3,
-            "distinct_trigger_observations": 2,
+            "persistence_runs": 4,
+            "distinct_trigger_observations": 3,
             "peak_zscore": 6.447832975122086,
-            "latest_zscore": 6.447832975122086,
+            "latest_zscore": 2.314842333040364,
             "confirmation_eligible": true,
             "confidence": "MODERATE",
             "primary_series": "VIXCLS"
@@ -1844,10 +1848,6 @@
     "schema_version": "0.6",
     "series": {
       "DGS10": [
-        {
-          "date": "2023-08-24",
-          "value": 4.23
-        },
         {
           "date": "2023-08-25",
           "value": 4.25
@@ -5043,13 +5043,13 @@
         {
           "date": "2026-11-05",
           "value": 4.84
+        },
+        {
+          "date": "2026-11-06",
+          "value": 4.86
         }
       ],
       "DGS2": [
-        {
-          "date": "2023-08-24",
-          "value": 4.98
-        },
         {
           "date": "2023-08-25",
           "value": 5.03
@@ -8245,13 +8245,13 @@
         {
           "date": "2026-11-05",
           "value": 4.46
+        },
+        {
+          "date": "2026-11-06",
+          "value": 4.51
         }
       ],
       "T10Y2Y": [
-        {
-          "date": "2023-08-25",
-          "value": -0.78
-        },
         {
           "date": "2023-08-28",
           "value": -0.78
@@ -11447,13 +11447,13 @@
         {
           "date": "2026-11-06",
           "value": 0.35
+        },
+        {
+          "date": "2026-11-09",
+          "value": 0.32
         }
       ],
       "SOFR": [
-        {
-          "date": "2023-08-23",
-          "value": 5.3
-        },
         {
           "date": "2023-08-24",
           "value": 5.3
@@ -14649,6 +14649,10 @@
         {
           "date": "2026-11-05",
           "value": 3.92
+        },
+        {
+          "date": "2026-11-06",
+          "value": 3.89
         }
       ],
       "WRESBAL": [
@@ -17855,18 +17859,6 @@
       ],
       "BAMLC0A0CM": [
         {
-          "date": "2023-11-07",
-          "value": 1.29
-        },
-        {
-          "date": "2023-11-08",
-          "value": 1.28
-        },
-        {
-          "date": "2023-11-09",
-          "value": 1.27
-        },
-        {
           "date": "2023-11-10",
           "value": 1.26
         },
@@ -20993,21 +20985,13 @@
         {
           "date": "2026-11-05",
           "value": 0.93
+        },
+        {
+          "date": "2026-11-06",
+          "value": 0.93
         }
       ],
       "BAMLH0A0HYM2": [
-        {
-          "date": "2023-11-07",
-          "value": 4.08
-        },
-        {
-          "date": "2023-11-08",
-          "value": 4.08
-        },
-        {
-          "date": "2023-11-09",
-          "value": 4.04
-        },
         {
           "date": "2023-11-10",
           "value": 4.03
@@ -24139,29 +24123,13 @@
         {
           "date": "2026-11-05",
           "value": 3.48
+        },
+        {
+          "date": "2026-11-06",
+          "value": 3.42
         }
       ],
       "DTWEXBGS": [
-        {
-          "date": "2023-08-21",
-          "value": 120.4627
-        },
-        {
-          "date": "2023-08-22",
-          "value": 120.3554
-        },
-        {
-          "date": "2023-08-23",
-          "value": 120.0307
-        },
-        {
-          "date": "2023-08-24",
-          "value": 120.2354
-        },
-        {
-          "date": "2023-08-25",
-          "value": 120.5137
-        },
         {
           "date": "2023-08-28",
           "value": 120.3155
@@ -27341,6 +27309,26 @@
         {
           "date": "2026-10-30",
           "value": 121.6656
+        },
+        {
+          "date": "2026-11-02",
+          "value": 121.3702
+        },
+        {
+          "date": "2026-11-03",
+          "value": 121.8084
+        },
+        {
+          "date": "2026-11-04",
+          "value": 121.3983
+        },
+        {
+          "date": "2026-11-05",
+          "value": 121.5061
+        },
+        {
+          "date": "2026-11-06",
+          "value": 121.8803
         }
       ],
       "DCOILBRENTEU": [
@@ -33749,10 +33737,6 @@
       ],
       "VIXCLS": [
         {
-          "date": "2023-10-02",
-          "value": 17.61
-        },
-        {
           "date": "2023-10-03",
           "value": 19.78
         },
@@ -36947,6 +36931,10 @@
         {
           "date": "2026-11-05",
           "value": 28.18
+        },
+        {
+          "date": "2026-11-06",
+          "value": 25.64
         }
       ]
     }
@@ -36954,9 +36942,9 @@
   "rise_inventory": {
     "schema_version": 1,
     "source_id": "KRX_OPEN_API_ETF_DAILY",
-    "observed_on": "2026-11-05",
-    "retrieved_at": "2026-11-06T16:51:32.884596+00:00",
-    "raw_sha256": "497490f2888d51fd60909b69d2835abfdbafe0699ca2cdb91b22fed5bc3a0c7e",
+    "observed_on": "2026-11-06",
+    "retrieved_at": "2026-11-09T02:25:53.110154+00:00",
+    "raw_sha256": "0b62a5f4db660ec879a3c92b8565ef250c40d62ffdfb9af7f4228f474182f598",
     "observed_count": 145,
     "baseline_on": "2026-10-15",
     "products": [
@@ -36965,1015 +36953,1015 @@
         "name": "RISE 바이오TOP10액티브",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0005C0",
         "name": "RISE 미국S&P500엔화노출(합성 H)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0013P0",
         "name": "RISE 미국은행TOP10",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0013R0",
         "name": "RISE 테슬라미국채타겟커버드콜혼합(합성)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0018Z0",
         "name": "RISE 미국양자컴퓨팅",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0036R0",
         "name": "RISE 미국휴머노이드로봇",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0036Z0",
         "name": "RISE 미국천연가스밸류체인",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0047P0",
         "name": "RISE 테슬라고정테크100",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0047R0",
         "name": "RISE 팔란티어고정테크100",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0061Z0",
         "name": "RISE 단기특수은행채액티브",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0093A0",
         "name": "RISE AI반도체TOP10",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0093B0",
         "name": "RISE 엔비디아고정테크100",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0094L0",
         "name": "RISE 차이나테크TOP10위클리타겟커버드콜",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0094M0",
         "name": "RISE 코리아밸류업위클리고정커버드콜",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0101N0",
         "name": "RISE AI전력인프라",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0114X0",
         "name": "RISE 글로벌게임테크TOP3Plus",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0115C0",
         "name": "RISE 미국고배당다우존스TOP10",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0122W0",
         "name": "RISE 26-11 회사채(AA-이상)액티브",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0127R0",
         "name": "RISE 미국AI클라우드인프라",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0138D0",
         "name": "RISE 동학개미",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0138T0",
         "name": "RISE 미국S&P500데일리고정커버드콜",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0151P0",
         "name": "RISE 코리아전략산업액티브",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0162Z0",
         "name": "RISE 삼성전자SK하이닉스채권혼합50",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0164G0",
         "name": "RISE 차이나AI반도체TOP4Plus",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0176E0",
         "name": "RISE 미국AI전력인프라액티브",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0190C0",
         "name": "RISE 현대차고정피지컬AI",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0192L0",
         "name": "RISE SK하이닉스단일종목레버리지",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0192M0",
         "name": "RISE 삼성전자단일종목레버리지",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0218J0",
         "name": "RISE 미국우주&로봇TOP2미국채혼합50",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0223A0",
         "name": "RISE 코스닥커버드콜액티브",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0227K0",
         "name": "RISE 미국우주위성통신",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0233N0",
         "name": "RISE 글로벌AI낸드메모리반도체",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0240J0",
         "name": "RISE 삼성SK그룹",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "0254H0",
         "name": "RISE 반도체소부장액티브",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-20",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "105780",
         "name": "RISE 5대그룹주",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "114100",
         "name": "RISE 국고채3년",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "136340",
         "name": "RISE 중기우량회사채",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "140570",
         "name": "RISE 수출주",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "140580",
         "name": "RISE 우량업종대표주",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "148020",
         "name": "RISE 200",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "174360",
         "name": "RISE 중국본토대형주CSI100",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "183700",
         "name": "RISE 200채권혼합50",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "183710",
         "name": "RISE 주식혼합",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "196230",
         "name": "RISE 단기통안채",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "219390",
         "name": "RISE 미국S&P원유생산기업(합성 H)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "234310",
         "name": "RISE V&S셀렉트밸류",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "241390",
         "name": "RISE V&S셀렉트밸류채권혼합",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "250730",
         "name": "RISE 차이나HSCEI(H)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "252400",
         "name": "RISE 200선물레버리지",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "252410",
         "name": "RISE 200선물인버스",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "252420",
         "name": "RISE 200선물인버스2X",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "253280",
         "name": "RISE 헬스케어",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "253290",
         "name": "RISE 헬스케어채권혼합",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "266160",
         "name": "RISE 고배당",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "267440",
         "name": "RISE 미국장기국채선물(H)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "267450",
         "name": "RISE 미국장기국채선물인버스(H)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "267490",
         "name": "RISE 미국장기국채선물레버리지(합성 H)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "270800",
         "name": "RISE KQ고배당",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "270810",
         "name": "RISE 코스닥150",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "272560",
         "name": "RISE 단기국공채액티브",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "272570",
         "name": "RISE 중장기국공채액티브",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "275750",
         "name": "RISE 코스닥150선물인버스",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "276650",
         "name": "RISE 글로벌테크놀로지(합성 H)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "278240",
         "name": "RISE 코스닥150선물레버리지",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "281990",
         "name": "RISE 중소형고배당",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "282000",
         "name": "RISE 국고채3년선물인버스",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "284980",
         "name": "RISE 200금융",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "290080",
         "name": "RISE 200고배당커버드콜ATM",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "290130",
         "name": "RISE ESG사회책임투자",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "291680",
         "name": "RISE 차이나H선물인버스(H)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "292050",
         "name": "RISE KRX300",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "295000",
         "name": "RISE 국채선물10년",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "295020",
         "name": "RISE 국채선물10년인버스",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "300640",
         "name": "RISE 게임테마",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "302450",
         "name": "RISE 코스피",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "310080",
         "name": "RISE 중국MSCI China(H)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "315960",
         "name": "RISE 대형고배당10TR",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "326230",
         "name": "RISE 내수주플러스",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "326240",
         "name": "RISE IT플러스",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "334690",
         "name": "RISE 팔라듐선물(H)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "334700",
         "name": "RISE 팔라듐선물인버스(H)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "336160",
         "name": "RISE 금융채액티브",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "354240",
         "name": "RISE 미국고정배당우선증권",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "361580",
         "name": "RISE 200TR",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "367760",
         "name": "RISE 네트워크인프라",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "367770",
         "name": "RISE 수소경제테마",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "368590",
         "name": "RISE 미국나스닥100",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "371150",
         "name": "RISE 차이나항셍테크",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "375270",
         "name": "RISE 글로벌데이터센터리츠(합성)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "379780",
         "name": "RISE 미국S&P500",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "379790",
         "name": "RISE 유로스탁스50(H)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "385540",
         "name": "RISE 종합채권(A-이상)액티브",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "385550",
         "name": "RISE 단기채권알파액티브",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "385560",
         "name": "RISE KIS국고채30년Enhanced",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "388280",
         "name": "RISE K엔터&여행레저",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "388420",
         "name": "RISE 비메모리반도체액티브",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "399580",
         "name": "RISE 글로벌클린에너지",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "401170",
         "name": "RISE 메타버스",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "417450",
         "name": "RISE 글로벌수소경제",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "422420",
         "name": "RISE 2차전지액티브",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "427120",
         "name": "RISE AI플랫폼",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "432600",
         "name": "RISE 국채선물3년",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "437350",
         "name": "RISE 미국단기투자등급회사채액티브",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "437370",
         "name": "RISE 글로벌농업경제",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "442320",
         "name": "RISE 글로벌원자력",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "442550",
         "name": "RISE TDF2030액티브 적격",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "442560",
         "name": "RISE TDF2040액티브 적격",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "442570",
         "name": "RISE TDF2050액티브 적격",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "446700",
         "name": "RISE 배터리 리사이클링",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "448630",
         "name": "RISE 삼성그룹Top3채권혼합",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "449580",
         "name": "RISE 테슬라애플아마존채권혼합",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "451670",
         "name": "RISE 국채30년레버리지(합성)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "453330",
         "name": "RISE 미국S&P500(H)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "455890",
         "name": "RISE 머니마켓액티브",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "455960",
         "name": "RISE 미국달러SOFR금리액티브(합성)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "459750",
         "name": "RISE 글로벌주식분산액티브",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "460660",
         "name": "RISE 미국S&P배당킹",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "461490",
         "name": "RISE 글로벌자산배분액티브",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "463300",
         "name": "RISE 중국본토CSI300",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "465330",
         "name": "RISE 2차전지TOP10",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "465350",
         "name": "RISE 2차전지TOP10인버스(합성)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "469050",
         "name": "RISE 미국반도체NYSE(H)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "469060",
         "name": "RISE 미국반도체NYSE",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "469070",
         "name": "RISE AI&로봇",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "469530",
         "name": "RISE 미국달러선물인버스",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "472830",
         "name": "RISE 미국30년국채커버드콜(합성)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "472870",
         "name": "RISE 미국30년국채엔화노출(합성 H)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "475350",
         "name": "RISE 버크셔포트폴리오TOP10",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "475380",
         "name": "RISE 글로벌리얼티인컴",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "475720",
         "name": "RISE 200위클리커버드콜",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "476310",
         "name": "RISE 글로벌비만산업TOP2+",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "477080",
         "name": "RISE CD금리액티브(합성)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "479520",
         "name": "RISE KOFR금리액티브(합성)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "481340",
         "name": "RISE 미국30년국채액티브",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "481430",
         "name": "RISE 국고채10년액티브",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "485690",
         "name": "RISE 미국AI밸류체인TOP3Plus",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "488480",
         "name": "RISE 일본섹터TOP4Plus",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "490590",
         "name": "RISE 미국AI밸류체인데일리고정커버드콜",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "490600",
         "name": "RISE 미국배당100데일리고정커버드콜",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "491620",
         "name": "RISE 미국테크100데일리고정커버드콜",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "491630",
         "name": "RISE 미국반도체인버스(합성 H)",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "495050",
         "name": "RISE 코리아밸류업",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "495940",
         "name": "RISE 미국AI테크액티브",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "498610",
         "name": "RISE 인도디지털성장",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       },
       {
         "code": "498860",
         "name": "RISE 코리아금융고배당",
         "status": "OBSERVED",
         "first_observed_on": "2026-10-15",
-        "last_observed_on": "2026-11-05"
+        "last_observed_on": "2026-11-06"
       }
     ],
     "recent_changes": [
@@ -37991,26 +37979,26 @@
   },
   "validation": {
     "schema_version": "1.0",
-    "built_at_utc": "2026-11-09T01:30:28.527166+00:00",
+    "built_at_utc": "2026-11-10T03:59:29.440087+00:00",
     "validation_state": "INSUFFICIENT_HISTORY",
     "production_eligible": false,
     "framework_promotion_authorized": false,
     "checks": [
       {
         "name": "Signal history depth",
-        "value": 40,
+        "value": 41,
         "required": 60,
         "status": "INSUFFICIENT_HISTORY"
       },
       {
         "name": "Episode history depth",
-        "value": 40,
+        "value": 41,
         "required": 40,
         "status": "PASS"
       },
       {
         "name": "Gate history depth",
-        "value": 40,
+        "value": 41,
         "required": 40,
         "status": "PASS"
       }

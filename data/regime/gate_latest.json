@@ -1,46 +1,34 @@
 {
   "schema_version": "0.9",
-  "built_at_utc": "2026-11-09T01:30:28.497072+00:00",
-  "source_episode_built_at_utc": "2026-11-09T01:30:28.465625+00:00",
+  "built_at_utc": "2026-11-10T03:59:29.410142+00:00",
+  "source_episode_built_at_utc": "2026-11-10T03:59:29.378679+00:00",
   "gate_state": "CHALLENGE",
   "independent_persistent_channel_count": 1,
-  "watch_channel_count": 1,
+  "watch_channel_count": 0,
   "extreme_event_override": false,
   "production_eligible": false,
   "regime_change_authorized": false,
   "channels": [
     {
       "channel_id": "RATES",
-      "channel_state": "WATCH",
+      "channel_state": "NON_CONFIRMING",
       "counts_as_independent_confirmation": false,
       "evidence": [
         {
-          "signal_id": "SIG-RATE-001",
+          "signal_id": "SIG-RATE-002",
           "signal_state": "NORMAL",
           "episode_status": "WEAKENING",
-          "persistence_runs": 2,
-          "distinct_trigger_observations": 1,
-          "peak_zscore": -1.613462017807166,
-          "latest_zscore": -1.4645610343348134,
-          "confirmation_eligible": false,
-          "confidence": "MODERATE",
-          "primary_series": "DGS10"
-        },
-        {
-          "signal_id": "SIG-RATE-002",
-          "signal_state": "WATCH",
-          "episode_status": "WATCH",
-          "persistence_runs": 2,
+          "persistence_runs": 3,
           "distinct_trigger_observations": 2,
           "peak_zscore": -1.613462017807166,
-          "latest_zscore": -1.6108781062817996,
-          "confirmation_eligible": true,
+          "latest_zscore": -0.8790059055851068,
+          "confirmation_eligible": false,
           "confidence": "HIGH",
           "primary_series": "DGS10"
         }
       ],
       "fresh_persistent_signal_count": 0,
-      "fresh_watch_signal_count": 1,
+      "fresh_watch_signal_count": 0,
       "nonconfirming_or_stale_count": 1
     },
     {
@@ -101,10 +89,10 @@
           "signal_id": "SIG-MKT-001",
           "signal_state": "ACTIVE_CANDIDATE",
           "episode_status": "STRENGTHENING",
-          "persistence_runs": 3,
-          "distinct_trigger_observations": 2,
+          "persistence_runs": 4,
+          "distinct_trigger_observations": 3,
           "peak_zscore": 6.447832975122086,
-          "latest_zscore": 6.447832975122086,
+          "latest_zscore": 2.314842333040364,
           "confirmation_eligible": true,
           "confidence": "MODERATE",
           "primary_series": "VIXCLS"
