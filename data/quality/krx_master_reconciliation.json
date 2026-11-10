@@ -3,9 +3,9 @@
   "status": "KRX_DAILY_IDENTITY_COMPARISON",
   "source_role": "PRIMARY_EXCHANGE_OBSERVATION",
   "source_url": "https://data-dbg.krx.co.kr/svc/apis/etp/etf_bydd_trd",
-  "observed_on": "2026-11-06",
-  "retrieved_at": "2026-11-09T02:25:53.110154+00:00",
-  "raw_sha256": "0b62a5f4db660ec879a3c92b8565ef250c40d62ffdfb9af7f4228f474182f598",
+  "observed_on": "2026-11-09",
+  "retrieved_at": "2026-11-10T04:30:11.341647+00:00",
+  "raw_sha256": "3d9ebfb84f265807ce48672e49b385002dbae656fe5040bf22a0ee27fd0e1ad8",
   "krx_market_count": 1184,
   "issuer_effective_date": "2026-10-04",
   "issuer_source_sha256": "03b85088a26600243470440c642fdd5f275c2e69468fff99af721ec6034e29c3",
@@ -1466,8 +1466,8 @@
   "note": "Presence is an exchange observation. Absence is not delisting. Name-only codes require identity review.",
   "lifecycle_notices": {
     "status": "SUCCESS",
-    "attempted_at": "2026-11-09T19:56:20.740515+00:00",
-    "last_success_at": "2026-11-09T19:56:20.740515+00:00",
+    "attempted_at": "2026-11-10T04:30:15.317783+00:00",
+    "last_success_at": "2026-11-10T04:30:15.317783+00:00",
     "window_start": "2026-10-11",
     "window_end": "2026-11-10",
     "scope": "RISE_TITLE_SEARCH_ROLLING_30_DAYS_NOT_FULL_LIFECYCLE",
@@ -1539,7 +1539,7 @@
           }
         ],
         "first_seen_at": "2026-11-06T07:52:39.968951+00:00",
-        "last_checked_at": "2026-11-09T19:56:20.740515+00:00",
+        "last_checked_at": "2026-11-10T04:30:15.317783+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1575,7 +1575,7 @@
           }
         ],
         "first_seen_at": "2026-10-30T16:05:44.046214+00:00",
-        "last_checked_at": "2026-11-09T19:56:20.740515+00:00",
+        "last_checked_at": "2026-11-10T04:30:15.317783+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1611,7 +1611,7 @@
           }
         ],
         "first_seen_at": "2026-10-23T14:19:20.756135+00:00",
-        "last_checked_at": "2026-11-09T19:56:20.740515+00:00",
+        "last_checked_at": "2026-11-10T04:30:15.317783+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1647,7 +1647,7 @@
           }
         ],
         "first_seen_at": "2026-10-16T14:04:52.760393+00:00",
-        "last_checked_at": "2026-11-09T19:56:20.740515+00:00",
+        "last_checked_at": "2026-11-10T04:30:15.317783+00:00",
         "versions": [],
         "in_latest_search": true
       },
