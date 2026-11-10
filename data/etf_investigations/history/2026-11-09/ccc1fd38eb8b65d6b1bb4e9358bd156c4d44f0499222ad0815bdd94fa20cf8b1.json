@@ -1,0 +1,163 @@
+{
+  "schema": "ETF_INVESTIGATION_QUEUE_V1",
+  "rules": {
+    "version": "ETF_TRIAGE_RESEARCH_V1",
+    "price_abs_pct": 5,
+    "nav_gap_abs_pct": 2,
+    "volume_multiple": 3,
+    "baseline_sessions": 20,
+    "daily_limit": 5,
+    "status": "UNCALIBRATED_RESEARCH_ONLY"
+  },
+  "source": "KRX_OPEN_API_ETF_DAILY",
+  "observation_date": "2026-11-09",
+  "source_retrieved_at": "2026-11-10T17:10:27.524235+00:00",
+  "source_raw_sha256": "3d9ebfb84f265807ce48672e49b385002dbae656fe5040bf22a0ee27fd0e1ad8",
+  "screened_count": 1184,
+  "metric_coverage": {
+    "price": 1184,
+    "nav_gap": 1184,
+    "volume": 1167
+  },
+  "candidate_count": 103,
+  "deferred_count": 98,
+  "items": [
+    {
+      "ticker": "465350",
+      "name": "RISE 2차전지TOP10인버스(합성)",
+      "observation_date": "2026-11-09",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 18.3432,
+          "unit": "%",
+          "prior_date": "2026-11-06"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": 11.2904,
+          "unit": "%"
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "465350",
+        "requested_date": "2026-11-09",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "196030",
+      "name": "ACE 일본TOPIX레버리지(H)",
+      "observation_date": "2026-11-09",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 7.1293,
+          "unit": "%",
+          "prior_date": "2026-11-06"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": 7.2154,
+          "unit": "%"
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "196030",
+        "requested_date": "2026-11-09",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "0043Y0",
+      "name": "TIME 차이나AI테크액티브",
+      "observation_date": "2026-11-09",
+      "signals": [
+        {
+          "kind": "NAV_GAP",
+          "value": 2.785,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 7.8319,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "0043Y0",
+        "requested_date": "2026-11-09",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "0181L0",
+      "name": "SOL 미국우주항공TOP10",
+      "observation_date": "2026-11-09",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 10.8081,
+          "unit": "%",
+          "prior_date": "2026-11-06"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 3.1299,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "0181L0",
+        "requested_date": "2026-11-09",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "298770",
+      "name": "KODEX 한국대만IT프리미어",
+      "observation_date": "2026-11-09",
+      "signals": [
+        {
+          "kind": "NAV_GAP",
+          "value": 3.7062,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 4.218,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "298770",
+        "requested_date": "2026-11-09",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    }
+  ],
+  "limitations": [
+    "조사 우선순위용 임시 기준이며 검증된 매매신호가 아닙니다.",
+    "가격은 비조정 종가입니다. 분배·분할·병합·레버리지 및 시장 전체 변동을 먼저 확인하세요.",
+    "해외자산 NAV와 국내 종가의 시차는 괴리의 원인이 될 수 있습니다.",
+    "거래량 증가를 투자자 순유입으로 해석하지 않습니다. PDF 확보 전 구성자산 원인은 미확인입니다."
+  ]
+}
