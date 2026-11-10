@@ -17,7 +17,9 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 REPO = os.environ.get("GITHUB_REPOSITORY", "RISEETF/rise-etf")
 TOKEN = os.environ.get("GH_TOKEN", "")
 FILES = ("etf.html", "etf.js", "etf.css", "index.html", "dashboard.js", "intelligence/data/latest.json",
-         "data/operations/intelligence.json", "data/quality/krx_rise_inventory.json")
+         "data/operations/intelligence.json", "data/quality/krx_rise_inventory.json",
+         "data/krx_collection_status.json", "data/etf_market/latest.json", "data/etf_market/status.json",
+         "data/research/rs.json", "data/fx/hana_status.json", "entry.js", "entry.css")
 TIMEOUT = 20
 ATTEMPTS = int(os.environ.get("PORTAL_VERIFY_ATTEMPTS", "12"))
 WAIT = int(os.environ.get("PORTAL_VERIFY_WAIT_SECONDS", "20"))
@@ -58,6 +60,7 @@ def verify():
             if build.get("status") not in ("built",):
                 raise RuntimeError("PAGES_BUILD_NOT_READY")
             checks = []
+            result["files"] = checks
             for path in FILES:
                 local = ROOT / path
                 if not local.is_file():
@@ -72,6 +75,7 @@ def verify():
                 if status != 200 or expected != actual:
                     raise RuntimeError("DEPLOYED_CONTENT_MISMATCH:" + path)
             result["files"] = checks
+            result.pop("reason", None)
             result["status"] = "PASS"
             return result
         except (RuntimeError, urllib.error.URLError, TimeoutError, ValueError) as exc:
