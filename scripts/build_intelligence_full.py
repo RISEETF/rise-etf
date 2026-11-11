@@ -85,6 +85,32 @@ def coverage(inputs, version='1.2'):
     return blockers, excluded
 
 
+def unique_rise_candidates(rows):
+    """One display row per ETF code; preserve every originating signal."""
+    grouped = {}
+    for row in rows:
+        code = row['code']
+        if code not in grouped:
+            grouped[code] = {
+                'name': row['name'], 'code': code, 'priority': '조사 후보 · 추천 아님',
+                'angle': row['internal_discussion_topic'], 'counter': row['required_check'],
+                'basis': row['basis'], 'inventory_asof': row['inventory_asof'],
+                'signal_id': row['signal_id'],
+            }
+        else:
+            old = grouped[code]
+            if (old['name'], old['basis'], old['inventory_asof']) != (
+                    row['name'], row['basis'], row['inventory_asof']):
+                raise ValueError('conflicting RISE inventory metadata for ' + code)
+            for target, source in (('angle', 'internal_discussion_topic'), ('counter', 'required_check')):
+                value = row[source]
+                if value not in old[target].split(' | '):
+                    old[target] += ' | ' + value
+            if row['signal_id'] not in old['signal_id'].split(','):
+                old['signal_id'] += ',' + row['signal_id']
+    return list(grouped.values())
+
+
 def compose(inputs, prior, version='1.2'):
     blockers, excluded = coverage(inputs, version)
     scoped = deepcopy(inputs)
@@ -122,11 +148,7 @@ def compose(inputs, prior, version='1.2'):
     normal = [r['signal_id'] for r in decisions if r['status'] == 'NORMAL']
     counter = ('현재 변화탐지 기준 NORMAL: ' + ', '.join(normal) + '. 동반 급변 신호가 없다는 뜻이며 위험 부재를 뜻하지 않는다.'
                if normal else '독립 정상 채널의 반대증거가 충분하지 않다. 확정적 시장 해석을 보류한다.')
-    matches = [{
-        'name': r['name'], 'code': r['code'], 'priority': '조사 후보 · 추천 아님',
-        'angle': r['internal_discussion_topic'], 'counter': r['required_check'],
-        'basis': r['basis'], 'inventory_asof': r['inventory_asof'], 'signal_id': r['signal_id'],
-    } for r in draft['rise_research_candidates']]
+    matches = unique_rise_candidates(draft['rise_research_candidates'])
     reference = prior.get('regime_reference_date', prior['asof_date'])
     snapshot = {
         'schema_version': version, 'snapshot_type': 'FULL', 'report_mode': POLICY if version == '1.1' else DATED_POLICY,
