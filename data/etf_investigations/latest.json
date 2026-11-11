@@ -10,83 +10,37 @@
     "status": "UNCALIBRATED_RESEARCH_ONLY"
   },
   "source": "KRX_OPEN_API_ETF_DAILY",
-  "observation_date": "2026-11-09",
-  "source_retrieved_at": "2026-11-10T17:10:27.524235+00:00",
-  "source_raw_sha256": "3d9ebfb84f265807ce48672e49b385002dbae656fe5040bf22a0ee27fd0e1ad8",
-  "screened_count": 1184,
+  "observation_date": "2026-11-10",
+  "source_retrieved_at": "2026-11-11T02:34:23.156788+00:00",
+  "source_raw_sha256": "2984b5e37764b21eabf92741486ad0d7edbcaabc701bb030e971352a91afe6bd",
+  "screened_count": 1190,
   "metric_coverage": {
     "price": 1184,
-    "nav_gap": 1184,
-    "volume": 1167
+    "nav_gap": 1190,
+    "volume": 1171
   },
-  "candidate_count": 103,
-  "deferred_count": 98,
+  "candidate_count": 316,
+  "deferred_count": 311,
   "items": [
     {
-      "ticker": "465350",
-      "name": "RISE 2차전지TOP10인버스(합성)",
-      "observation_date": "2026-11-09",
+      "ticker": "465660",
+      "name": "TIGER 일본반도체FACTSET",
+      "observation_date": "2026-11-10",
       "signals": [
         {
           "kind": "PRICE_MOVE",
-          "value": 18.3432,
+          "value": 8.0961,
           "unit": "%",
-          "prior_date": "2026-11-06"
+          "prior_date": "2026-11-09"
         },
         {
           "kind": "NAV_GAP",
-          "value": 11.2904,
-          "unit": "%"
-        }
-      ],
-      "state": "PDF_PENDING",
-      "holdings_verified": false,
-      "pdf_request": {
-        "ticker": "465350",
-        "requested_date": "2026-11-09",
-        "source": "KRX",
-        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
-      }
-    },
-    {
-      "ticker": "196030",
-      "name": "ACE 일본TOPIX레버리지(H)",
-      "observation_date": "2026-11-09",
-      "signals": [
-        {
-          "kind": "PRICE_MOVE",
-          "value": 7.1293,
-          "unit": "%",
-          "prior_date": "2026-11-06"
-        },
-        {
-          "kind": "NAV_GAP",
-          "value": 7.2154,
-          "unit": "%"
-        }
-      ],
-      "state": "PDF_PENDING",
-      "holdings_verified": false,
-      "pdf_request": {
-        "ticker": "196030",
-        "requested_date": "2026-11-09",
-        "source": "KRX",
-        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
-      }
-    },
-    {
-      "ticker": "0043Y0",
-      "name": "TIME 차이나AI테크액티브",
-      "observation_date": "2026-11-09",
-      "signals": [
-        {
-          "kind": "NAV_GAP",
-          "value": 2.785,
+          "value": 7.1581,
           "unit": "%"
         },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 7.8319,
+          "value": 4.4848,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -94,26 +48,26 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "0043Y0",
-        "requested_date": "2026-11-09",
+        "ticker": "465660",
+        "requested_date": "2026-11-10",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
     },
     {
-      "ticker": "0181L0",
-      "name": "SOL 미국우주항공TOP10",
-      "observation_date": "2026-11-09",
+      "ticker": "427120",
+      "name": "RISE AI플랫폼",
+      "observation_date": "2026-11-10",
       "signals": [
         {
           "kind": "PRICE_MOVE",
-          "value": 10.8081,
+          "value": 6.8108,
           "unit": "%",
-          "prior_date": "2026-11-06"
+          "prior_date": "2026-11-09"
         },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 3.1299,
+          "value": 18.6265,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -121,25 +75,26 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "0181L0",
-        "requested_date": "2026-11-09",
+        "ticker": "427120",
+        "requested_date": "2026-11-10",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
     },
     {
-      "ticker": "298770",
-      "name": "KODEX 한국대만IT프리미어",
-      "observation_date": "2026-11-09",
+      "ticker": "391670",
+      "name": "HK 베스트일레븐액티브",
+      "observation_date": "2026-11-10",
       "signals": [
         {
-          "kind": "NAV_GAP",
-          "value": 3.7062,
-          "unit": "%"
+          "kind": "PRICE_MOVE",
+          "value": 5.0636,
+          "unit": "%",
+          "prior_date": "2026-11-09"
         },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 4.218,
+          "value": 13.1386,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -147,8 +102,61 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "298770",
-        "requested_date": "2026-11-09",
+        "ticker": "391670",
+        "requested_date": "2026-11-10",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "469160",
+      "name": "ACE 일본반도체",
+      "observation_date": "2026-11-10",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 5.6763,
+          "unit": "%",
+          "prior_date": "2026-11-09"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": 5.6481,
+          "unit": "%"
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "469160",
+        "requested_date": "2026-11-10",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "140570",
+      "name": "RISE 수출주",
+      "observation_date": "2026-11-10",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 5.1768,
+          "unit": "%",
+          "prior_date": "2026-11-09"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 7.0672,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "140570",
+        "requested_date": "2026-11-10",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
