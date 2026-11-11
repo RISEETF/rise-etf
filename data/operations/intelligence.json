@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "started_at_utc": "2026-11-10T03:59:29.298248+00:00",
-  "run_id": "42752919517",
+  "started_at_utc": "2026-11-11T01:45:03.222751+00:00",
+  "run_id": "42941168439",
   "run_attempt": "1",
   "status": "PUBLISHED",
   "stages": {
@@ -16,17 +16,28 @@
   "note": "Checkout execution only. Git push and Pages deployment are separate outcomes.",
   "research_draft": {
     "status": "RESEARCH_DRAFT",
-    "path": "data/intelligence/research/2026-11-10/0518bfbd686e81658206c962bea8c1daef920ae5b6be0f42eef5522094ca199c",
-    "sha256": "0518bfbd686e81658206c962bea8c1daef920ae5b6be0f42eef5522094ca199c"
+    "path": "data/intelligence/research/2026-11-11/28a23e099c3cbbdb88d5269feb1e92c4a68b948382e97ad2f2b38e0692fd73b8",
+    "sha256": "28a23e099c3cbbdb88d5269feb1e92c4a68b948382e97ad2f2b38e0692fd73b8"
   },
-  "dated_context": [],
-  "generated_package": "data/intelligence/generated/2026-11-10/3dfa45bf731fc1e4f653095cb000876a1f08a289f9d09edee301e93ac682e115",
+  "dated_context": [
+    {
+      "series_id": "DCOILBRENTEU",
+      "observation_date": "2026-11-03",
+      "reason": "기준일 관측 수준·과거 변화 설명에 사용; 오늘의 신호·동시점 교차확인에는 미사용"
+    },
+    {
+      "series_id": "DCOILWTICO",
+      "observation_date": "2026-11-03",
+      "reason": "기준일 관측 수준·과거 변화 설명에 사용; 오늘의 신호·동시점 교차확인에는 미사용"
+    }
+  ],
+  "generated_package": "data/intelligence/generated/2026-11-11/523fc87ad02b3e288ddc5d047b5226a28cfe48276868fc026ea1d742e4c82a66",
   "blockers": [],
   "publication": {
     "status": "SUCCESS",
-    "asof_date": "2026-11-10",
-    "archive_count": 29,
+    "asof_date": "2026-11-11",
+    "archive_count": 30,
     "content_changed": true
   },
-  "finished_at_utc": "2026-11-10T03:59:29.556433+00:00"
+  "finished_at_utc": "2026-11-11T01:45:03.378714+00:00"
 }
