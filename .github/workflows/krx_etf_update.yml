@@ -58,6 +58,29 @@ jobs:
         env:
           KRX_AUTH_KEY: ${{ secrets.KRX_AUTH_KEY }}
         run: python scripts/backfill_etf_return_baselines.py
+      - name: Seal bridge receipt after historical writes
+        env:
+          KRX_AUTH_KEY: ${{ secrets.KRX_AUTH_KEY }}
+        run: |
+          cp var/krx-output/receipt.json var/krx-output/daily_before_backfill.json
+          python scripts/collect_krx_etf.py
+          python - <<'PY'
+          import datetime as dt
+          import json
+          import sqlite3
+          from pathlib import Path
+          out = Path("var/krx-output")
+          daily = json.loads((out / "daily_before_backfill.json").read_text())
+          seal = json.loads((out / "receipt.json").read_text())
+          if daily["observation_date"] != seal["observation_date"]:
+              raise RuntimeError("KRX_SEAL_DATE_CHANGED")
+          with sqlite3.connect("file:var/krx_etf.sqlite?mode=ro", uri=True) as db:
+              count, latest = db.execute("select count(*), max(retrieved_at) from snapshots").fetchone()
+              if db.execute("pragma integrity_check").fetchall() != [("ok",)]:
+                  raise RuntimeError("KRX_SEAL_INTEGRITY_FAILED")
+              if count != seal["delta"]["total"] or dt.datetime.fromisoformat(latest) > dt.datetime.fromisoformat(seal["retrieved_at"]):
+                  raise RuntimeError("KRX_SEAL_LEDGER_MISMATCH")
+          PY
       - name: Build dated RISE market metrics
         run: python scripts/build_etf_market_metrics.py
       - name: Build bounded ETF investigation queue
@@ -83,11 +106,12 @@ jobs:
           key: krx-etf-db-${{ github.run_id }}
       - name: Upload restricted runtime artifacts
         uses: actions/upload-artifact@v4
-        if: always()
+        if: success()
         with:
           name: krx-etf-${{ github.run_id }}
           path: |
             var/krx-output/receipt.json
+            var/krx-output/daily_before_backfill.json
             var/krx-output/validation_failure.json
             var/krx-output/baselines/
             var/krx_etf.sqlite
