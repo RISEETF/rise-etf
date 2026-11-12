@@ -43,7 +43,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Verify parser and accumulation rules
-        run: python -m unittest tests.test_krx_etf tests.test_kind_notices tests.test_krx_inventory tests.test_etf_investigations tests.test_etf_market_metrics tests.test_etf_return_baselines -v
+        run: python -m unittest tests.test_krx_etf tests.test_kind_notices tests.test_krx_inventory -v
       - name: Restore cumulative KRX database
         uses: actions/cache/restore@v4
         with:
@@ -54,14 +54,37 @@ jobs:
         env:
           KRX_AUTH_KEY: ${{ secrets.KRX_AUTH_KEY }}
         run: python scripts/collect_krx_etf.py
-      - name: Backfill missing return endpoints
-        env:
-          KRX_AUTH_KEY: ${{ secrets.KRX_AUTH_KEY }}
-        run: python scripts/backfill_etf_return_baselines.py
-      - name: Build dated RISE market metrics
-        run: python scripts/build_etf_market_metrics.py
-      - name: Build bounded ETF investigation queue
-        run: python scripts/build_etf_investigations.py
+      - name: Freeze and verify daily ledger
+        run: |
+          python - <<'PY'
+          import json, shutil, sqlite3
+          from pathlib import Path
+          stage = Path('var/sealed')
+          (stage/'krx-output').mkdir(parents=True)
+          shutil.copyfile('var/krx-output/receipt.json', stage/'krx-output/receipt.json')
+          r = json.loads((stage/'krx-output/receipt.json').read_text())
+          if (r['status'],r['source'],r['source_role']) != ('SUCCESS','KRX_OPEN_API_ETF_DAILY','PRIMARY'):
+              raise ValueError('invalid source receipt')
+          with sqlite3.connect('file:var/krx_etf.sqlite?mode=ro', uri=True) as src, sqlite3.connect(stage/'krx_etf.sqlite') as dst:
+              src.backup(dst)
+          with sqlite3.connect('file:var/sealed/krx_etf.sqlite?mode=ro&immutable=1', uri=True) as db:
+              if db.execute('pragma integrity_check').fetchall() != [('ok',)]:
+                  raise ValueError('invalid standalone database')
+              n, day, stamp = db.execute('select count(*),max(observation_date),max(julianday(retrieved_at)) from snapshots').fetchone()
+              if n != r['delta']['total'] or day != r['observation_date'] or stamp > db.execute('select julianday(?)',(r['retrieved_at'],)).fetchone()[0]:
+                  raise ValueError('receipt mismatch')
+              coverage = dict(db.execute('select field,count(distinct ticker) from snapshots where observation_date=? group by field',(day,)))
+              required = {'close','nav','volume','trading_value','market_cap','net_assets','listed_shares'}
+              if set(coverage) != required or any(v != r['record_count'] for v in coverage.values()):
+                  raise ValueError('incomplete seven-field snapshot')
+          PY
+      - name: Publish sealed bridge pair
+        uses: actions/upload-artifact@v4
+        with:
+          name: krx-etf-${{ github.run_id }}
+          path: var/sealed/
+          if-no-files-found: error
+          retention-days: 30
       - name: Publish collection summary
         run: |
           python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
@@ -81,25 +104,22 @@ jobs:
         with:
           path: var/krx_etf.sqlite
           key: krx-etf-db-${{ github.run_id }}
-      - name: Upload restricted runtime artifacts
-        uses: actions/upload-artifact@v4
+      - name: Preserve collector diagnostics separately
         if: always()
+        uses: actions/upload-artifact@v4
         with:
-          name: krx-etf-${{ github.run_id }}
+          name: krx-diagnostics-${{ github.run_id }}
           path: |
-            var/krx-output/receipt.json
             var/krx-output/validation_failure.json
-            var/krx-output/baselines/
-            var/krx_etf.sqlite
             var/kind-raw/
-          if-no-files-found: error
+          if-no-files-found: ignore
           retention-days: 30
       - name: Publish identity comparison and attempt status
         if: always()
         run: |
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           git config user.name 'github-actions[bot]'
-          for path in data/quality/krx_master_reconciliation.json data/quality/krx_rise_inventory.json data/krx_collection_status.json data/etf_investigations data/etf_market; do
+          for path in data/quality/krx_master_reconciliation.json data/quality/krx_rise_inventory.json data/krx_collection_status.json; do
             if [ -e "$path" ]; then git add "$path"; fi
           done
           if ! git diff --cached --quiet; then

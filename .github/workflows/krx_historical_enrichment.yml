@@ -1,0 +1,59 @@
+name: KRX historical enrichment
+on:
+  workflow_run:
+    workflows: ["KRX ETF primary ledger"]
+    branches: [main]
+    types: [completed]
+permissions:
+  actions: read
+  contents: write
+concurrency:
+  group: rise-krx-historical-enrichment
+  cancel-in-progress: false
+jobs:
+  enrich:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository && contains(fromJSON('["schedule","push","workflow_dispatch"]'), github.event.workflow_run.event)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest tests.test_etf_investigations tests.test_etf_market_metrics tests.test_etf_return_baselines -v
+      - uses: actions/download-artifact@v4
+        with:
+          name: krx-etf-${{ github.event.workflow_run.id }}
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+          path: var
+      - name: Backfill on private working copy
+        env:
+          KRX_AUTH_KEY: ${{ secrets.KRX_AUTH_KEY }}
+        run: |
+          python scripts/backfill_etf_return_baselines.py --status var/enrichment_receipt.json
+          cp var/enrichment_receipt.json data/etf_market/baseline_status.json
+      - run: python scripts/build_etf_market_metrics.py
+      - run: python scripts/build_etf_investigations.py
+      - name: Archive historical evidence and receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: krx-enrichment-${{ github.event.workflow_run.id }}
+          path: |
+            var/krx-output/baselines/
+            var/enrichment_receipt.json
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Publish derived views
+        run: |
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git config user.name 'github-actions[bot]'
+          git add data/etf_market data/etf_investigations
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update derived ETF metrics and investigations'
+            git push origin HEAD:main
+          fi
+      - name: Flag incomplete historical coverage
+        run: python -c "import json; assert json.load(open('data/etf_market/baseline_status.json'))['status']=='SUCCESS', 'Historical coverage incomplete'"
