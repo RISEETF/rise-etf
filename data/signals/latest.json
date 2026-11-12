@@ -1,7 +1,7 @@
 {
   "schema_version": "0.7",
-  "built_at_utc": "2026-11-11T01:45:03.244551+00:00",
-  "source_gclri_built_at_utc": "2026-11-11T01:44:45.236690+00:00",
+  "built_at_utc": "2026-11-12T02:45:06.361410+00:00",
+  "source_gclri_built_at_utc": "2026-11-12T02:44:44.251223+00:00",
   "production_eligible": false,
   "regime_change_authorized": false,
   "signals": [
@@ -141,7 +141,7 @@
       "direction": "UP",
       "strongest_series": "DTWEXBGS",
       "strongest_zscore": 0.029447680124700535,
-      "confidence": "MODERATE",
+      "confidence": "LOW",
       "confirmation_count": 1,
       "details": [
         {
@@ -151,7 +151,7 @@
           "horizon_observations": 5,
           "horizon_move": 0.001764673005352435,
           "zscore": 0.029447680124700535,
-          "data_state": "CURRENT"
+          "data_state": "STALE"
         }
       ],
       "production_eligible": false
@@ -195,17 +195,17 @@
       "signal_state": "NORMAL",
       "direction": "DOWN",
       "strongest_series": "VIXCLS",
-      "strongest_zscore": -0.7727957295231324,
+      "strongest_zscore": -0.824253271237687,
       "confidence": "MODERATE",
       "confirmation_count": 0,
       "details": [
         {
           "series_id": "VIXCLS",
-          "observation_date": "2026-11-09",
-          "latest_value": 19.92,
+          "observation_date": "2026-11-10",
+          "latest_value": 19.46,
           "horizon_observations": 5,
-          "horizon_move": -0.05815602836879419,
-          "zscore": -0.7727957295231324,
+          "horizon_move": -0.06577052328372524,
+          "zscore": -0.824253271237687,
           "data_state": "CURRENT"
         }
       ],

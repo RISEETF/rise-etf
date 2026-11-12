@@ -1,7 +1,7 @@
 {
   "schema_version": "0.9",
-  "built_at_utc": "2026-11-11T01:45:03.293348+00:00",
-  "source_episode_built_at_utc": "2026-11-11T01:45:03.273806+00:00",
+  "built_at_utc": "2026-11-12T02:45:06.432168+00:00",
+  "source_episode_built_at_utc": "2026-11-12T02:45:06.403342+00:00",
   "gate_state": "KEEP",
   "independent_persistent_channel_count": 0,
   "watch_channel_count": 0,
@@ -69,25 +69,12 @@
     },
     {
       "channel_id": "VOLATILITY",
-      "channel_state": "NON_CONFIRMING",
+      "channel_state": "NO_EPISODE",
       "counts_as_independent_confirmation": false,
-      "evidence": [
-        {
-          "signal_id": "SIG-MKT-001",
-          "signal_state": "NORMAL",
-          "episode_status": "WEAKENING",
-          "persistence_runs": 5,
-          "distinct_trigger_observations": 3,
-          "peak_zscore": 6.447832975122086,
-          "latest_zscore": -0.7727957295231324,
-          "confirmation_eligible": false,
-          "confidence": "MODERATE",
-          "primary_series": "VIXCLS"
-        }
-      ],
+      "evidence": [],
       "fresh_persistent_signal_count": 0,
       "fresh_watch_signal_count": 0,
-      "nonconfirming_or_stale_count": 1
+      "nonconfirming_or_stale_count": 0
     }
   ],
   "governance": {

@@ -1,10 +1,10 @@
 {
   "schema_version": "0.8",
-  "built_at_utc": "2026-11-11T01:45:03.273806+00:00",
-  "source_signal_built_at_utc": "2026-11-11T01:45:03.244551+00:00",
+  "built_at_utc": "2026-11-12T02:45:06.403342+00:00",
+  "source_signal_built_at_utc": "2026-11-12T02:45:06.361410+00:00",
   "production_eligible": false,
   "regime_change_authorized": false,
-  "active_episode_count": 2,
+  "active_episode_count": 1,
   "confirmation_eligible_episode_count": 0,
   "episodes": [
     {
@@ -960,7 +960,7 @@
       "signal_id": "SIG-MKT-001",
       "signal_name": "Equity Volatility Shock",
       "signal_governance_status": "CANDIDATE",
-      "episode_status": "WEAKENING",
+      "episode_status": "CLOSED",
       "initial_trigger_date": "2026-11-05",
       "initial_observation_date": "2026-11-03",
       "initial_direction": "UP",
@@ -970,18 +970,18 @@
       "peak_magnitude_date": "2026-11-05",
       "peak_abs_zscore": 6.447832975122086,
       "peak_signed_zscore": 6.447832975122086,
-      "cumulative_episode_move": -0.04368698991838682,
-      "persistence_runs": 5,
-      "normal_confirmation_runs": 1,
+      "cumulative_episode_move": -0.06577052328372524,
+      "persistence_runs": 6,
+      "normal_confirmation_runs": 2,
       "stress_scope": "UNRESOLVED",
       "policy_intervention_effect": "UNRESOLVED",
       "confirmation_eligible": false,
       "confidence": "MODERATE",
       "latest_signal_state": "NORMAL",
       "latest_direction": "DOWN",
-      "latest_observation_date": "2026-11-09",
-      "latest_zscore": -0.7727957295231324,
-      "falsification_status": "NOT_TESTED",
+      "latest_observation_date": "2026-11-10",
+      "latest_zscore": -0.824253271237687,
+      "falsification_status": "NOT_FALSIFIED",
       "evidence": [
         {
           "date": "2026-11-03",
@@ -1012,11 +1012,17 @@
           "evidence_role": "CONTRADICTION",
           "signal_state": "NORMAL",
           "zscore": -0.7727957295231324
+        },
+        {
+          "date": "2026-11-10",
+          "evidence_role": "CONTRADICTION",
+          "signal_state": "NORMAL",
+          "zscore": -0.824253271237687
         }
       ],
       "opened_at_utc": "2026-11-05T02:02:39.435350+00:00",
-      "last_updated_utc": "2026-11-11T01:45:03.244551+00:00",
-      "closed_at_utc": null
+      "last_updated_utc": "2026-11-12T02:45:06.361410+00:00",
+      "closed_at_utc": "2026-11-12T02:45:06.361410+00:00"
     },
     {
       "episode_id": "SIG-RATE-001::2026-11-04::DOWN",
