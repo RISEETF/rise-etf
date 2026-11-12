@@ -116,12 +116,19 @@ jobs:
           retention-days: 30
       - name: Publish identity comparison and attempt status
         if: always()
+        env:
+          PRIMARY_READY: ${{ job.status == 'success' }}
         run: |
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           git config user.name 'github-actions[bot]'
           for path in data/quality/krx_master_reconciliation.json data/quality/krx_rise_inventory.json data/krx_collection_status.json; do
             if [ -e "$path" ]; then git add "$path"; fi
           done
+          # One data-only portal release per Seoul calendar day; failed jobs never mark readiness.
+          if [ "$PRIMARY_READY" = "true" ]; then
+            TZ=Asia/Seoul date +%F > data/operations/portal-release-day.txt
+            git add data/operations/portal-release-day.txt
+          fi
           if ! git diff --cached --quiet; then
             git commit -m 'Update KRX and RISE identity comparison'
             git pull --rebase origin main
