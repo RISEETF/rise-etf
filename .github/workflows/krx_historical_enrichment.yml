@@ -34,6 +34,25 @@ jobs:
         run: |
           python scripts/backfill_etf_return_baselines.py --status var/enrichment_receipt.json
           cp var/enrichment_receipt.json data/etf_market/baseline_status.json
+      - name: Recover exact daily API payload for derived metrics
+        env:
+          KRX_AUTH_KEY: ${{ secrets.KRX_AUTH_KEY }}
+        run: |
+          PYTHONPATH=scripts python - <<'PY'
+          import datetime as dt, hashlib, json, os, urllib.request
+          from pathlib import Path
+          from collect_krx_etf import API_URL
+          directory = Path("var/krx-output")
+          receipt = json.loads((directory / "receipt.json").read_text())
+          day = dt.date.fromisoformat(receipt["observation_date"]).strftime("%Y%m%d")
+          req = urllib.request.Request(API_URL + "?basDd=" + day, headers={"AUTH_KEY": os.environ["KRX_AUTH_KEY"], "User-Agent": "RISE-Research-Collector/1.0"})
+          with urllib.request.urlopen(req, timeout=30) as response:
+              payload = response.read()
+          digest = hashlib.sha256(payload).hexdigest()
+          if digest != receipt["raw_sha256"]:
+              raise ValueError("ENRICHMENT_RAW_DIGEST_MISMATCH")
+          (directory / f"krx_etf_{day}_{digest}.json").write_bytes(payload)
+          PY
       - run: python scripts/build_etf_market_metrics.py
       - run: python scripts/build_etf_investigations.py
       - name: Archive historical evidence and receipt
