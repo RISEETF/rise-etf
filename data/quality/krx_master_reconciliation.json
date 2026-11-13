@@ -4,7 +4,7 @@
   "source_role": "PRIMARY_EXCHANGE_OBSERVATION",
   "source_url": "https://data-dbg.krx.co.kr/svc/apis/etp/etf_bydd_trd",
   "observed_on": "2026-11-12",
-  "retrieved_at": "2026-11-13T03:13:46.801064+00:00",
+  "retrieved_at": "2026-11-13T17:17:41.054127+00:00",
   "raw_sha256": "15f18954f80bd6d742c30092296027c0188e1235b87d6c0eb652689b08b96586",
   "krx_market_count": 1190,
   "issuer_effective_date": "2026-10-04",
@@ -1465,11 +1465,11 @@
   "legal_lifecycle_status": "NOTICE_MONITORING_ONLY_CURRENT_STATUS_NOT_ASSIGNED",
   "note": "Presence is an exchange observation. Absence is not delisting. Name-only codes require identity review.",
   "lifecycle_notices": {
-    "status": "FAILED",
-    "attempted_at": "2026-11-13T03:13:49.791311+00:00",
-    "last_success_at": "2026-11-12T17:39:52.853498+00:00",
-    "window_start": "2026-10-14",
-    "window_end": "2026-11-13",
+    "status": "SUCCESS",
+    "attempted_at": "2026-11-13T17:17:44.902332+00:00",
+    "last_success_at": "2026-11-13T17:17:44.902332+00:00",
+    "window_start": "2026-10-15",
+    "window_end": "2026-11-14",
     "scope": "RISE_TITLE_SEARCH_ROLLING_30_DAYS_NOT_FULL_LIFECYCLE",
     "current_legal_status": "NOT_AUTOMATICALLY_ASSIGNED",
     "search_sources": [
@@ -1480,14 +1480,14 @@
           "forward": "disclosurebystocktype_etf_sub",
           "currentPageSize": "100",
           "pageIndex": "1",
-          "fromDate": "2026-10-14",
-          "toDate": "2026-11-13",
+          "fromDate": "2026-10-15",
+          "toDate": "2026-11-14",
           "etfIsuSrtNm": "RISE",
           "reportNm": "신규상장",
           "orderMode": "",
           "orderStat": ""
         },
-        "sha256": "37a9f22648672555ccece7061a62f8ecf2a3890bc93b2362e552f2a32b90176c"
+        "sha256": "4d494324006e86d8df6c9dc92a3e1f4c7d9cf2541a94297baef8ef501b337813"
       },
       {
         "url": "https://kind.krx.co.kr/disclosure/disclosurebystocktype.do",
@@ -1496,17 +1496,125 @@
           "forward": "disclosurebystocktype_etf_sub",
           "currentPageSize": "100",
           "pageIndex": "1",
-          "fromDate": "2026-10-14",
-          "toDate": "2026-11-13",
+          "fromDate": "2026-10-15",
+          "toDate": "2026-11-14",
           "etfIsuSrtNm": "RISE",
           "reportNm": "상장폐지",
           "orderMode": "",
           "orderStat": ""
         },
-        "sha256": "04621f16fc4c1fad4cd2f2f23fb451332944ea0b18153d1e8b7c2a56f1ab95a3"
+        "sha256": "28dc06368ffa564a373be4b061811b7a94a664cd46a548555d7416063660e1f4"
       }
     ],
     "events": [
+      {
+        "receipt_id": "20261113000714",
+        "kind_stock_id": "0269M",
+        "published_at": "2026-11-13T15:42:00+09:00",
+        "name": "RISE 27-11 회사채(AA-이상)액티브",
+        "title": "신규상장(KB RISE 27-11 회사채(AA-이상)액티브증권상장지수투자신탁(채권), 상장일 2026.11.17)",
+        "publisher": "유가증권시장본부",
+        "kind": "LISTING_NOTICE",
+        "search_sha256": "4d494324006e86d8df6c9dc92a3e1f4c7d9cf2541a94297baef8ef501b337813",
+        "event_id": "20261113000714:0269M",
+        "code": "0269M0",
+        "effective_date": "2026-11-17",
+        "verification": "NOTICE_CODE_DATE_VERIFIED",
+        "viewer_url": "https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20261113000714",
+        "sources": [
+          {
+            "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20261113000714",
+            "request": null,
+            "sha256": "93074c347033ba9e097dbdcce7602e821ebb03a07a1d55bda632470baa3e4296"
+          },
+          {
+            "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=searchContents&docNo=20261113001483",
+            "request": null,
+            "sha256": "d1c15661a54b151cdf1ce60dbe1a424513f6641de74d18cb19f3437423369991"
+          },
+          {
+            "url": "https://kind.krx.co.kr/external/2026/11/13/000714/20261113001483/68152.htm",
+            "request": null,
+            "sha256": "c3b895e4797f6a83478a3cfc66cbc000fef9ff7e187b9c203d507ccd97e2503c"
+          }
+        ],
+        "first_seen_at": "2026-11-13T17:17:44.902332+00:00",
+        "last_checked_at": "2026-11-13T17:17:44.902332+00:00",
+        "versions": [],
+        "in_latest_search": true
+      },
+      {
+        "receipt_id": "20261113000223",
+        "kind_stock_id": "0269N",
+        "published_at": "2026-11-13T15:40:00+09:00",
+        "name": "RISE 미국초대형주TOP10",
+        "title": "신규상장(KB RISE 미국초대형주TOP10증권상장지수투자신탁(주식), 상장일 2026.11.17)",
+        "publisher": "유가증권시장본부",
+        "kind": "LISTING_NOTICE",
+        "search_sha256": "4d494324006e86d8df6c9dc92a3e1f4c7d9cf2541a94297baef8ef501b337813",
+        "event_id": "20261113000223:0269N",
+        "code": "0269N0",
+        "effective_date": "2026-11-17",
+        "verification": "NOTICE_CODE_DATE_VERIFIED",
+        "viewer_url": "https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20261113000223",
+        "sources": [
+          {
+            "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20261113000223",
+            "request": null,
+            "sha256": "fa738ce815c190039d5b1a3b4052acfe96aa24c2920aba74532166165aae2f37"
+          },
+          {
+            "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=searchContents&docNo=20261113000351",
+            "request": null,
+            "sha256": "7e2001ac8bacb34d6279a54ba8cc3965272be5fa01692e06e086d7bfd359a927"
+          },
+          {
+            "url": "https://kind.krx.co.kr/external/2026/11/13/000223/20261113000351/68152.htm",
+            "request": null,
+            "sha256": "f8fcd364721b31bb917f0eda22a07ff32fff4ecf64b766f653269d50ad4f5899"
+          }
+        ],
+        "first_seen_at": "2026-11-13T17:17:44.902332+00:00",
+        "last_checked_at": "2026-11-13T17:17:44.902332+00:00",
+        "versions": [],
+        "in_latest_search": true
+      },
+      {
+        "receipt_id": "20261113000147",
+        "kind_stock_id": "0122W",
+        "published_at": "2026-11-13T13:26:00+09:00",
+        "name": "RISE 26-11 회사채(AA-이상)액티브",
+        "title": "ETF 상장폐지 사유 발생(운용사 공시)",
+        "publisher": "KB자산운용",
+        "kind": "DELISTING_REVIEW",
+        "search_sha256": "28dc06368ffa564a373be4b061811b7a94a664cd46a548555d7416063660e1f4",
+        "event_id": "20261113000147:0122W",
+        "code": "0122W0",
+        "effective_date": null,
+        "verification": "NOTICE_REVIEW_REQUIRED",
+        "viewer_url": "https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20261113000147",
+        "sources": [
+          {
+            "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20261113000147",
+            "request": null,
+            "sha256": "971299b608861b318b4b87e67af824a3a68517ac291b90eddd92cd636fc2e6b3"
+          },
+          {
+            "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=searchContents&docNo=20261113000186",
+            "request": null,
+            "sha256": "3a42d5c5453328ccdababcc0be565ab609ff7499198b39027619d46702ccfebc"
+          },
+          {
+            "url": "https://kind.krx.co.kr/external/2026/11/13/000147/20261113000186/68616.htm",
+            "request": null,
+            "sha256": "34358cfcc53d03cc966ed75c6cf710d3aafd28801c88185cecc680b9a991d10a"
+          }
+        ],
+        "first_seen_at": "2026-11-13T17:17:44.902332+00:00",
+        "last_checked_at": "2026-11-13T17:17:44.902332+00:00",
+        "versions": [],
+        "in_latest_search": true
+      },
       {
         "receipt_id": "20261106000096",
         "kind_stock_id": "0122W",
@@ -1515,7 +1623,7 @@
         "title": "ETF 상장폐지 사유 발생(운용사 공시)",
         "publisher": "KB자산운용",
         "kind": "DELISTING_REVIEW",
-        "search_sha256": "04621f16fc4c1fad4cd2f2f23fb451332944ea0b18153d1e8b7c2a56f1ab95a3",
+        "search_sha256": "28dc06368ffa564a373be4b061811b7a94a664cd46a548555d7416063660e1f4",
         "event_id": "20261106000096:0122W",
         "code": "0122W0",
         "effective_date": null,
@@ -1539,7 +1647,7 @@
           }
         ],
         "first_seen_at": "2026-11-06T07:52:39.968951+00:00",
-        "last_checked_at": "2026-11-12T17:39:52.853498+00:00",
+        "last_checked_at": "2026-11-13T17:17:44.902332+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1551,7 +1659,7 @@
         "title": "ETF 상장폐지 사유 발생(운용사 공시)",
         "publisher": "KB자산운용",
         "kind": "DELISTING_REVIEW",
-        "search_sha256": "04621f16fc4c1fad4cd2f2f23fb451332944ea0b18153d1e8b7c2a56f1ab95a3",
+        "search_sha256": "28dc06368ffa564a373be4b061811b7a94a664cd46a548555d7416063660e1f4",
         "event_id": "20261030000166:0122W",
         "code": "0122W0",
         "effective_date": null,
@@ -1575,7 +1683,7 @@
           }
         ],
         "first_seen_at": "2026-10-30T16:05:44.046214+00:00",
-        "last_checked_at": "2026-11-12T17:39:52.853498+00:00",
+        "last_checked_at": "2026-11-13T17:17:44.902332+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1587,7 +1695,7 @@
         "title": "ETF 상장폐지 사유 발생(운용사 공시)",
         "publisher": "KB자산운용",
         "kind": "DELISTING_REVIEW",
-        "search_sha256": "04621f16fc4c1fad4cd2f2f23fb451332944ea0b18153d1e8b7c2a56f1ab95a3",
+        "search_sha256": "28dc06368ffa564a373be4b061811b7a94a664cd46a548555d7416063660e1f4",
         "event_id": "20261023000727:0122W",
         "code": "0122W0",
         "effective_date": null,
@@ -1611,7 +1719,7 @@
           }
         ],
         "first_seen_at": "2026-10-23T14:19:20.756135+00:00",
-        "last_checked_at": "2026-11-12T17:39:52.853498+00:00",
+        "last_checked_at": "2026-11-13T17:17:44.902332+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1623,7 +1731,7 @@
         "title": "신규상장(KB RISE 반도체소부장액티브증권상장지수투자신탁(주식), 상장일 2026.10.20)",
         "publisher": "유가증권시장본부",
         "kind": "LISTING_NOTICE",
-        "search_sha256": "37a9f22648672555ccece7061a62f8ecf2a3890bc93b2362e552f2a32b90176c",
+        "search_sha256": "4d494324006e86d8df6c9dc92a3e1f4c7d9cf2541a94297baef8ef501b337813",
         "event_id": "20261016000464:0254H",
         "code": "0254H0",
         "effective_date": "2026-10-20",
@@ -1647,7 +1755,7 @@
           }
         ],
         "first_seen_at": "2026-10-16T14:04:52.760393+00:00",
-        "last_checked_at": "2026-11-12T17:39:52.853498+00:00",
+        "last_checked_at": "2026-11-13T17:17:44.902332+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1723,7 +1831,6 @@
         "versions": [],
         "in_latest_search": false
       }
-    ],
-    "reason": "HTTPError"
+    ]
   }
 }
