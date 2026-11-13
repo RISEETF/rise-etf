@@ -1,31 +1,29 @@
 {
   "schema_version": "1.0",
-  "asof_date": "2026-11-12",
-  "prepared_at_utc": "2026-11-12T02:45:06.331134+00:00",
+  "asof_date": "2026-11-13",
+  "prepared_at_utc": "2026-11-13T02:28:05.685659+00:00",
   "publication_blockers": [
-    "STALE_OR_UNAVAILABLE:DTWEXBGS",
-    "STALE_OR_UNAVAILABLE:DCOILBRENTEU",
-    "STALE_OR_UNAVAILABLE:DCOILWTICO"
+    "STALE_OR_UNAVAILABLE:DTWEXBGS"
   ],
   "source_hashes": {
-    "data/gclri/latest.json": "081a1d3008c4a590161b11917afcf9213f0ba5c2ba75b78b3ec0d508a0f5ddaf",
+    "data/gclri/latest.json": "b435083672ff2de1efa59cacd0c08dd01de5c2cef5bfe59621ea42257fd2a686",
     "data/signals/signal_registry.json": "3705fdc6ab7b3a1cf4091845b35bd9d56df27cc404d5e4de84ad345893494852",
     "data/episodes/episode_registry.json": "27cde9ae423fd744d8fdd8001421ca629f28451478b6eab300fc0dd6d9292008",
     "data/regime/channel_registry.json": "62406bcede5624d02c6a4886c49dfa395932159f0dc7f3e32158bc4e9023bdd0",
     "data/gclri/series_registry.json": "f5f40592694346c87561a7a0f6dd96efe62b7e8bc764bcc1e7b2e16af36113aa",
-    "data/signals/latest.json": "fbdc1d27d36a4fe118f5bb9d2d5f604e5d799c1649ae06313ab4438092761655",
-    "data/episodes/latest.json": "60fb33c624fd5f730ab27b7b8223a12acbd3da450b0f7c0bda6aeb4787917354",
-    "data/regime/gate_latest.json": "e0bf85e8cd60423305bd37b34f76d37a3d76a34e580f10ce7cabcba6d4084b0b",
-    "data/validation/v1_status.json": "65725b75f0f2eff3b79fa25d60aae5ce2c331e3fca087b143de9c9eee062a1af",
-    "data/quality/krx_rise_inventory.json": "ac77aa5bb14c87644ebc1cb70f91717377ccb868c1be9552a1607f577a6c8586",
-    "data/gclri/history.json": "27e02505a1d0dd5b62b858cdfbbfba0ddbb711a523412bafb7ceab8f64b455db",
-    "data/signals/history.json": "961c52295180d375a5d5f770e1b499cad2d2085cc91fa7a3c91f089bd6ef8b89",
-    "data/episodes/history.json": "737a36dc18ce6d47181777849bef116123d3ad878ab71194b5b7cfbcdae74321",
-    "data/regime/gate_history.json": "960275b223f5ac289c7fb9c8b266fccb91227fbe61589c25edc8a38f5fa97b9c"
+    "data/signals/latest.json": "9dee0b039af5a51137511cc7547248024471a3652b84ab2380cee004708d4222",
+    "data/episodes/latest.json": "cae405e9c325da8c2a39987a2473817f760ebe9f8829f5a5f990b1d1fa3a9b26",
+    "data/regime/gate_latest.json": "a9c957777af250405858438ea8b867bd26b4c5afaead9dd0e08ae6dccd10a61a",
+    "data/validation/v1_status.json": "dc45e4b229960cb14f0c3f251b95130e8f19e44924f5476a21731747241b4b39",
+    "data/quality/krx_rise_inventory.json": "75a952e258ecfd7716a045061ecd39d0a7a6aaef3f05e37b6dd1c6cc6f9211a1",
+    "data/gclri/history.json": "c8c8844f45abcbfda83d53d6ab8549715c25fcab07df65d8c079bd8da4c13542",
+    "data/signals/history.json": "97b665086124543a270c2d30f6ce1585b43c9a07cd62cfaba39c0ba374ecf337",
+    "data/episodes/history.json": "9614d17a9bfc62ab994fa1b603fecbfa4b5c5b483f32cf2e0ee12f125a746af6",
+    "data/regime/gate_history.json": "73aa3549d48f88f25646a50b19c0232086f4ed8c745e00f91ea8bc9a8cc9c827"
   },
   "market": {
     "schema_version": "0.6",
-    "built_at_utc": "2026-11-12T02:44:44.251223+00:00",
+    "built_at_utc": "2026-11-13T02:27:44.452255+00:00",
     "status": "SUCCESS",
     "series": {
       "DGS10": {
@@ -38,14 +36,14 @@
         "gclri_layer": "Fiscal Capacity / Rates",
         "role": "long_yield",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-11-12T02:44:43.209460+00:00",
+        "retrieved_at_utc": "2026-11-13T02:27:42.989183+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10",
-        "observation_date": "2026-11-09",
-        "value": 4.88,
-        "prior_observation_date": "2026-11-06",
-        "prior_value": 4.86,
-        "change_1obs": 0.019999999999999574,
+        "observation_date": "2026-11-10",
+        "value": 4.98,
+        "prior_observation_date": "2026-11-09",
+        "prior_value": 4.88,
+        "change_1obs": 0.10000000000000053,
         "age_calendar_days": 3,
         "data_state": "CURRENT"
       },
@@ -59,14 +57,14 @@
         "gclri_layer": "Policy / Rates",
         "role": "front_yield",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-11-12T02:44:43.273297+00:00",
+        "retrieved_at_utc": "2026-11-13T02:27:43.135760+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2",
-        "observation_date": "2026-11-09",
-        "value": 4.56,
-        "prior_observation_date": "2026-11-06",
-        "prior_value": 4.51,
-        "change_1obs": 0.04999999999999982,
+        "observation_date": "2026-11-10",
+        "value": 4.73,
+        "prior_observation_date": "2026-11-09",
+        "prior_value": 4.56,
+        "change_1obs": 0.17000000000000082,
         "age_calendar_days": 3,
         "data_state": "CURRENT"
       },
@@ -80,15 +78,15 @@
         "gclri_layer": "Cross-Asset / Curve",
         "role": "curve",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-11-12T02:44:43.340094+00:00",
+        "retrieved_at_utc": "2026-11-13T02:27:43.296702+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=T10Y2Y",
-        "observation_date": "2026-11-10",
-        "value": 0.25,
-        "prior_observation_date": "2026-11-09",
-        "prior_value": 0.32,
-        "change_1obs": -0.07,
-        "age_calendar_days": 2,
+        "observation_date": "2026-11-12",
+        "value": 0.24,
+        "prior_observation_date": "2026-11-10",
+        "prior_value": 0.25,
+        "change_1obs": -0.010000000000000009,
+        "age_calendar_days": 1,
         "data_state": "CURRENT"
       },
       "SOFR": {
@@ -101,14 +99,14 @@
         "gclri_layer": "Funding Liquidity",
         "role": "secured_funding",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-11-12T02:44:43.644863+00:00",
+        "retrieved_at_utc": "2026-11-13T02:27:43.551421+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=SOFR",
-        "observation_date": "2026-11-09",
-        "value": 3.88,
-        "prior_observation_date": "2026-11-06",
-        "prior_value": 3.89,
-        "change_1obs": -0.010000000000000231,
+        "observation_date": "2026-11-10",
+        "value": 3.89,
+        "prior_observation_date": "2026-11-09",
+        "prior_value": 3.88,
+        "change_1obs": 0.010000000000000231,
         "age_calendar_days": 3,
         "data_state": "CURRENT"
       },
@@ -122,15 +120,15 @@
         "gclri_layer": "Funding Liquidity",
         "role": "bank_reserves",
         "stale_after_days": 10,
-        "retrieved_at_utc": "2026-11-12T02:44:43.892458+00:00",
+        "retrieved_at_utc": "2026-11-13T02:27:43.653079+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WRESBAL",
-        "observation_date": "2026-11-04",
-        "value": 2930088.0,
-        "prior_observation_date": "2026-10-28",
-        "prior_value": 2893770.0,
-        "change_1obs": 36318.0,
-        "age_calendar_days": 8,
+        "observation_date": "2026-11-11",
+        "value": 2960603.0,
+        "prior_observation_date": "2026-11-04",
+        "prior_value": 2930088.0,
+        "change_1obs": 30515.0,
+        "age_calendar_days": 2,
         "data_state": "CURRENT"
       },
       "BAMLC0A0CM": {
@@ -143,15 +141,15 @@
         "gclri_layer": "Credit Creation & Stress",
         "role": "ig_credit_spread",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-11-12T02:44:43.933471+00:00",
+        "retrieved_at_utc": "2026-11-13T02:27:43.736121+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLC0A0CM",
-        "observation_date": "2026-11-09",
-        "value": 0.91,
-        "prior_observation_date": "2026-11-06",
-        "prior_value": 0.93,
-        "change_1obs": -0.020000000000000018,
-        "age_calendar_days": 3,
+        "observation_date": "2026-11-11",
+        "value": 0.9,
+        "prior_observation_date": "2026-11-09",
+        "prior_value": 0.91,
+        "change_1obs": -0.010000000000000009,
+        "age_calendar_days": 2,
         "data_state": "CURRENT"
       },
       "BAMLH0A0HYM2": {
@@ -164,15 +162,15 @@
         "gclri_layer": "Credit Creation & Stress",
         "role": "hy_credit_spread",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-11-12T02:44:43.978769+00:00",
+        "retrieved_at_utc": "2026-11-13T02:27:43.850136+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2",
-        "observation_date": "2026-11-09",
-        "value": 3.34,
-        "prior_observation_date": "2026-11-06",
-        "prior_value": 3.42,
-        "change_1obs": -0.08000000000000007,
-        "age_calendar_days": 3,
+        "observation_date": "2026-11-11",
+        "value": 3.3,
+        "prior_observation_date": "2026-11-09",
+        "prior_value": 3.34,
+        "change_1obs": -0.040000000000000036,
+        "age_calendar_days": 2,
         "data_state": "CURRENT"
       },
       "DTWEXBGS": {
@@ -185,7 +183,7 @@
         "gclri_layer": "FX / Dollar",
         "role": "dollar",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-11-12T02:44:44.037934+00:00",
+        "retrieved_at_utc": "2026-11-13T02:27:43.990563+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DTWEXBGS",
         "observation_date": "2026-11-06",
@@ -193,7 +191,7 @@
         "prior_observation_date": "2026-11-05",
         "prior_value": 121.5061,
         "change_1obs": 0.37420000000000186,
-        "age_calendar_days": 6,
+        "age_calendar_days": 7,
         "data_state": "STALE"
       },
       "DCOILBRENTEU": {
@@ -206,16 +204,16 @@
         "gclri_layer": "Cross-Asset / Energy",
         "role": "brent",
         "stale_after_days": 7,
-        "retrieved_at_utc": "2026-11-12T02:44:44.102874+00:00",
+        "retrieved_at_utc": "2026-11-13T02:27:44.159916+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILBRENTEU",
-        "observation_date": "2026-11-03",
-        "value": 107.03,
-        "prior_observation_date": "2026-11-02",
-        "prior_value": 107.39,
-        "change_1obs": -0.35999999999999943,
-        "age_calendar_days": 9,
-        "data_state": "STALE"
+        "observation_date": "2026-11-11",
+        "value": 92.14,
+        "prior_observation_date": "2026-11-10",
+        "prior_value": 90.16,
+        "change_1obs": 1.980000000000004,
+        "age_calendar_days": 2,
+        "data_state": "CURRENT"
       },
       "DCOILWTICO": {
         "id": "DCOILWTICO",
@@ -227,16 +225,16 @@
         "gclri_layer": "Cross-Asset / Energy",
         "role": "wti",
         "stale_after_days": 7,
-        "retrieved_at_utc": "2026-11-12T02:44:44.168444+00:00",
+        "retrieved_at_utc": "2026-11-13T02:27:44.288178+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILWTICO",
-        "observation_date": "2026-11-03",
-        "value": 99.64,
-        "prior_observation_date": "2026-11-02",
-        "prior_value": 100.06,
-        "change_1obs": -0.4200000000000017,
-        "age_calendar_days": 9,
-        "data_state": "STALE"
+        "observation_date": "2026-11-11",
+        "value": 89.62,
+        "prior_observation_date": "2026-11-10",
+        "prior_value": 89.62,
+        "change_1obs": 0.0,
+        "age_calendar_days": 2,
+        "data_state": "CURRENT"
       },
       "VIXCLS": {
         "id": "VIXCLS",
@@ -248,14 +246,14 @@
         "gclri_layer": "Market Liquidity / Risk",
         "role": "volatility",
         "stale_after_days": 5,
-        "retrieved_at_utc": "2026-11-12T02:44:44.251212+00:00",
+        "retrieved_at_utc": "2026-11-13T02:27:44.452222+00:00",
         "collection_status": "SUCCESS",
         "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS",
-        "observation_date": "2026-11-10",
-        "value": 19.46,
-        "prior_observation_date": "2026-11-09",
-        "prior_value": 19.92,
-        "change_1obs": -0.46000000000000085,
+        "observation_date": "2026-11-11",
+        "value": 17.49,
+        "prior_observation_date": "2026-11-10",
+        "prior_value": 19.46,
+        "change_1obs": -1.9700000000000024,
         "age_calendar_days": 2,
         "data_state": "CURRENT"
       }
@@ -270,8 +268,8 @@
   },
   "signals": {
     "schema_version": "0.7",
-    "built_at_utc": "2026-11-12T02:45:06.361410+00:00",
-    "source_gclri_built_at_utc": "2026-11-12T02:44:44.251223+00:00",
+    "built_at_utc": "2026-11-13T02:28:05.713512+00:00",
+    "source_gclri_built_at_utc": "2026-11-13T02:27:44.452255+00:00",
     "production_eligible": false,
     "regime_change_authorized": false,
     "signals": [
@@ -280,19 +278,19 @@
         "name": "US Treasury Long Yield Shock",
         "status": "SHADOW_READY",
         "signal_state": "NORMAL",
-        "direction": "DOWN",
+        "direction": "UP",
         "strongest_series": "DGS10",
-        "strongest_zscore": -0.41427784912465404,
+        "strongest_zscore": 0.1104476903343202,
         "confidence": "MODERATE",
-        "confirmation_count": 0,
+        "confirmation_count": 1,
         "details": [
           {
             "series_id": "DGS10",
-            "observation_date": "2026-11-09",
-            "latest_value": 4.88,
+            "observation_date": "2026-11-10",
+            "latest_value": 4.98,
             "horizon_observations": 5,
-            "horizon_move": -0.03000000000000025,
-            "zscore": -0.41427784912465404,
+            "horizon_move": 0.03000000000000025,
+            "zscore": 0.1104476903343202,
             "data_state": "CURRENT"
           }
         ],
@@ -305,35 +303,35 @@
         "signal_state": "NORMAL",
         "direction": "DOWN",
         "strongest_series": "T10Y2Y",
-        "strongest_zscore": -1.0174297897207027,
+        "strongest_zscore": -0.8559993768326807,
         "confidence": "HIGH",
-        "confirmation_count": 0,
+        "confirmation_count": 2,
         "details": [
           {
             "series_id": "T10Y2Y",
-            "observation_date": "2026-11-10",
-            "latest_value": 0.25,
+            "observation_date": "2026-11-12",
+            "latest_value": 0.24,
             "horizon_observations": 5,
-            "horizon_move": -0.09000000000000002,
-            "zscore": -1.0174297897207027,
+            "horizon_move": -0.08000000000000002,
+            "zscore": -0.8559993768326807,
             "data_state": "CURRENT"
           },
           {
             "series_id": "DGS10",
-            "observation_date": "2026-11-09",
-            "latest_value": 4.88,
+            "observation_date": "2026-11-10",
+            "latest_value": 4.98,
             "horizon_observations": 5,
-            "horizon_move": -0.03000000000000025,
-            "zscore": -0.41427784912465404,
+            "horizon_move": 0.03000000000000025,
+            "zscore": 0.1104476903343202,
             "data_state": "CURRENT"
           },
           {
             "series_id": "DGS2",
-            "observation_date": "2026-11-09",
-            "latest_value": 4.56,
+            "observation_date": "2026-11-10",
+            "latest_value": 4.73,
             "horizon_observations": 5,
-            "horizon_move": -0.03000000000000025,
-            "zscore": -0.4969645559691745,
+            "horizon_move": 0.1200000000000001,
+            "zscore": 0.7996605225758091,
             "data_state": "CURRENT"
           }
         ],
@@ -346,26 +344,26 @@
         "signal_state": "NORMAL",
         "direction": "DOWN",
         "strongest_series": "BAMLC0A0CM",
-        "strongest_zscore": -1.4468188262155761,
+        "strongest_zscore": -1.393448501895264,
         "confidence": "HIGH",
         "confirmation_count": 0,
         "details": [
           {
             "series_id": "BAMLC0A0CM",
-            "observation_date": "2026-11-09",
-            "latest_value": 0.91,
+            "observation_date": "2026-11-11",
+            "latest_value": 0.9,
             "horizon_observations": 5,
-            "horizon_move": -0.029999999999999916,
-            "zscore": -1.4468188262155761,
+            "horizon_move": -0.030000000000000027,
+            "zscore": -1.393448501895264,
             "data_state": "CURRENT"
           },
           {
             "series_id": "BAMLH0A0HYM2",
-            "observation_date": "2026-11-09",
-            "latest_value": 3.34,
+            "observation_date": "2026-11-11",
+            "latest_value": 3.3,
             "horizon_observations": 5,
-            "horizon_move": -0.0900000000000003,
-            "zscore": -1.1432598975213877,
+            "horizon_move": -0.10000000000000009,
+            "zscore": -1.1976089793165439,
             "data_state": "CURRENT"
           }
         ],
@@ -378,26 +376,26 @@
         "signal_state": "NORMAL",
         "direction": "DOWN",
         "strongest_series": "SOFR",
-        "strongest_zscore": -1.4003723470812401,
+        "strongest_zscore": -1.5213652310705916,
         "confidence": "HIGH",
         "confirmation_count": 0,
         "details": [
           {
             "series_id": "SOFR",
-            "observation_date": "2026-11-09",
-            "latest_value": 3.88,
+            "observation_date": "2026-11-10",
+            "latest_value": 3.89,
             "horizon_observations": 5,
-            "horizon_move": -0.07000000000000028,
-            "zscore": -1.4003723470812401,
+            "horizon_move": -0.08000000000000007,
+            "zscore": -1.5213652310705916,
             "data_state": "CURRENT"
           },
           {
             "series_id": "WRESBAL",
-            "observation_date": "2026-11-04",
-            "latest_value": 2930088.0,
+            "observation_date": "2026-11-11",
+            "latest_value": 2960603.0,
             "horizon_observations": 5,
-            "horizon_move": -18002.0,
-            "zscore": 0.06621034138500426,
+            "horizon_move": -69056.0,
+            "zscore": -0.42405746487305895,
             "data_state": "CURRENT"
           }
         ],
@@ -430,30 +428,30 @@
         "signal_id": "SIG-ENERGY-001",
         "name": "Oil Price Shock",
         "status": "CANDIDATE",
-        "signal_state": "WATCH",
+        "signal_state": "NORMAL",
         "direction": "DOWN",
-        "strongest_series": "DCOILBRENTEU",
-        "strongest_zscore": -1.8385641840477476,
-        "confidence": "LOW",
-        "confirmation_count": 0,
+        "strongest_series": "DCOILWTICO",
+        "strongest_zscore": -0.4417022472257112,
+        "confidence": "HIGH",
+        "confirmation_count": 1,
         "details": [
           {
             "series_id": "DCOILBRENTEU",
-            "observation_date": "2026-11-03",
-            "latest_value": 107.03,
+            "observation_date": "2026-11-11",
+            "latest_value": 92.14,
             "horizon_observations": 5,
-            "horizon_move": -0.1305442729488221,
-            "zscore": -1.8385641840477476,
-            "data_state": "STALE"
+            "horizon_move": 0.003266550522648126,
+            "zscore": -0.03129235033485727,
+            "data_state": "CURRENT"
           },
           {
             "series_id": "DCOILWTICO",
-            "observation_date": "2026-11-03",
-            "latest_value": 99.64,
+            "observation_date": "2026-11-11",
+            "latest_value": 89.62,
             "horizon_observations": 5,
-            "horizon_move": -0.03608397020412113,
-            "zscore": -0.9411918891276381,
-            "data_state": "STALE"
+            "horizon_move": -0.023002289327373804,
+            "zscore": -0.4417022472257112,
+            "data_state": "CURRENT"
           }
         ],
         "production_eligible": false
@@ -463,19 +461,19 @@
         "name": "Equity Volatility Shock",
         "status": "CANDIDATE",
         "signal_state": "NORMAL",
-        "direction": "DOWN",
+        "direction": "UP",
         "strongest_series": "VIXCLS",
-        "strongest_zscore": -0.824253271237687,
+        "strongest_zscore": 0.11196009914784845,
         "confidence": "MODERATE",
-        "confirmation_count": 0,
+        "confirmation_count": 1,
         "details": [
           {
             "series_id": "VIXCLS",
-            "observation_date": "2026-11-10",
-            "latest_value": 19.46,
+            "observation_date": "2026-11-11",
+            "latest_value": 17.49,
             "horizon_observations": 5,
-            "horizon_move": -0.06577052328372524,
-            "zscore": -0.824253271237687,
+            "horizon_move": 0.052980132450331174,
+            "zscore": 0.11196009914784845,
             "data_state": "CURRENT"
           }
         ],
@@ -490,8 +488,8 @@
   },
   "episodes": {
     "schema_version": "0.8",
-    "built_at_utc": "2026-11-12T02:45:06.403342+00:00",
-    "source_signal_built_at_utc": "2026-11-12T02:45:06.361410+00:00",
+    "built_at_utc": "2026-11-13T02:28:05.752555+00:00",
+    "source_signal_built_at_utc": "2026-11-13T02:28:05.713512+00:00",
     "production_eligible": false,
     "regime_change_authorized": false,
     "active_episode_count": 1,
@@ -1196,17 +1194,17 @@
         "peak_magnitude_date": "2026-11-03",
         "peak_abs_zscore": 1.8385641840477476,
         "peak_signed_zscore": -1.8385641840477476,
-        "cumulative_episode_move": -0.07646677171192884,
-        "persistence_runs": 3,
-        "normal_confirmation_runs": 0,
+        "cumulative_episode_move": -0.1693391417184169,
+        "persistence_runs": 4,
+        "normal_confirmation_runs": 1,
         "stress_scope": "UNRESOLVED",
         "policy_intervention_effect": "UNRESOLVED",
         "confirmation_eligible": false,
-        "confidence": "LOW",
-        "latest_signal_state": "WATCH",
+        "confidence": "HIGH",
+        "latest_signal_state": "NORMAL",
         "latest_direction": "DOWN",
-        "latest_observation_date": "2026-11-03",
-        "latest_zscore": -1.8385641840477476,
+        "latest_observation_date": "2026-11-11",
+        "latest_zscore": -0.4417022472257112,
         "falsification_status": "NOT_TESTED",
         "evidence": [
           {
@@ -1226,10 +1224,16 @@
             "evidence_role": "CONFIRMATION",
             "signal_state": "WATCH",
             "zscore": -1.8385641840477476
+          },
+          {
+            "date": "2026-11-11",
+            "evidence_role": "CONTRADICTION",
+            "signal_state": "NORMAL",
+            "zscore": -0.4417022472257112
           }
         ],
         "opened_at_utc": "2026-10-23T00:27:39.078363+00:00",
-        "last_updated_utc": "2026-11-05T02:02:39.435350+00:00",
+        "last_updated_utc": "2026-11-13T02:28:05.713512+00:00",
         "closed_at_utc": null
       },
       {
@@ -1632,8 +1636,8 @@
   },
   "regime_gate": {
     "schema_version": "0.9",
-    "built_at_utc": "2026-11-12T02:45:06.432168+00:00",
-    "source_episode_built_at_utc": "2026-11-12T02:45:06.403342+00:00",
+    "built_at_utc": "2026-11-13T02:28:05.780165+00:00",
+    "source_episode_built_at_utc": "2026-11-13T02:28:05.752555+00:00",
     "gate_state": "KEEP",
     "independent_persistent_channel_count": 0,
     "watch_channel_count": 0,
@@ -1684,14 +1688,14 @@
         "evidence": [
           {
             "signal_id": "SIG-ENERGY-001",
-            "signal_state": "WATCH",
+            "signal_state": "NORMAL",
             "episode_status": "WEAKENING",
-            "persistence_runs": 3,
+            "persistence_runs": 4,
             "distinct_trigger_observations": 2,
             "peak_zscore": -1.8385641840477476,
-            "latest_zscore": -1.8385641840477476,
+            "latest_zscore": -0.4417022472257112,
             "confirmation_eligible": false,
-            "confidence": "LOW",
+            "confidence": "HIGH",
             "primary_series": "DCOILWTICO"
           }
         ],
@@ -1844,10 +1848,6 @@
     "schema_version": "0.6",
     "series": {
       "DGS10": [
-        {
-          "date": "2023-08-28",
-          "value": 4.2
-        },
         {
           "date": "2023-08-29",
           "value": 4.12
@@ -5043,13 +5043,13 @@
         {
           "date": "2026-11-09",
           "value": 4.88
+        },
+        {
+          "date": "2026-11-10",
+          "value": 4.98
         }
       ],
       "DGS2": [
-        {
-          "date": "2023-08-28",
-          "value": 4.98
-        },
         {
           "date": "2023-08-29",
           "value": 4.87
@@ -8245,13 +8245,13 @@
         {
           "date": "2026-11-09",
           "value": 4.56
+        },
+        {
+          "date": "2026-11-10",
+          "value": 4.73
         }
       ],
       "T10Y2Y": [
-        {
-          "date": "2023-08-29",
-          "value": -0.75
-        },
         {
           "date": "2023-08-30",
           "value": -0.78
@@ -11447,13 +11447,13 @@
         {
           "date": "2026-11-10",
           "value": 0.25
+        },
+        {
+          "date": "2026-11-12",
+          "value": 0.24
         }
       ],
       "SOFR": [
-        {
-          "date": "2023-08-25",
-          "value": 5.3
-        },
         {
           "date": "2023-08-28",
           "value": 5.3
@@ -14649,13 +14649,13 @@
         {
           "date": "2026-11-09",
           "value": 3.88
+        },
+        {
+          "date": "2026-11-10",
+          "value": 3.89
         }
       ],
       "WRESBAL": [
-        {
-          "date": "2011-07-13",
-          "value": 1679080.0
-        },
         {
           "date": "2011-07-20",
           "value": 1636929.0
@@ -17851,6 +17851,10 @@
         {
           "date": "2026-11-04",
           "value": 2930088.0
+        },
+        {
+          "date": "2026-11-11",
+          "value": 2960603.0
         }
       ],
       "BAMLC0A0CM": [
@@ -20985,6 +20989,10 @@
         {
           "date": "2026-11-09",
           "value": 0.91
+        },
+        {
+          "date": "2026-11-11",
+          "value": 0.9
         }
       ],
       "BAMLH0A0HYM2": [
@@ -24123,6 +24131,10 @@
         {
           "date": "2026-11-09",
           "value": 3.34
+        },
+        {
+          "date": "2026-11-11",
+          "value": 3.3
         }
       ],
       "DTWEXBGS": [
@@ -27329,30 +27341,6 @@
       ],
       "DCOILBRENTEU": [
         {
-          "date": "2023-09-07",
-          "value": 91.16
-        },
-        {
-          "date": "2023-09-08",
-          "value": 91.85
-        },
-        {
-          "date": "2023-09-11",
-          "value": 91.97
-        },
-        {
-          "date": "2023-09-12",
-          "value": 93.58
-        },
-        {
-          "date": "2023-09-13",
-          "value": 93.04
-        },
-        {
-          "date": "2023-09-14",
-          "value": 95.2
-        },
-        {
           "date": "2023-09-15",
           "value": 95.55
         },
@@ -30527,33 +30515,33 @@
         {
           "date": "2026-11-03",
           "value": 107.03
+        },
+        {
+          "date": "2026-11-04",
+          "value": 91.84
+        },
+        {
+          "date": "2026-11-05",
+          "value": 97.96
+        },
+        {
+          "date": "2026-11-06",
+          "value": 97.83
+        },
+        {
+          "date": "2026-11-09",
+          "value": 91.03
+        },
+        {
+          "date": "2026-11-10",
+          "value": 90.16
+        },
+        {
+          "date": "2026-11-11",
+          "value": 92.14
         }
       ],
       "DCOILWTICO": [
-        {
-          "date": "2023-08-18",
-          "value": 81.25
-        },
-        {
-          "date": "2023-08-21",
-          "value": 80.71
-        },
-        {
-          "date": "2023-08-22",
-          "value": 80.25
-        },
-        {
-          "date": "2023-08-23",
-          "value": 78.91
-        },
-        {
-          "date": "2023-08-24",
-          "value": 79.52
-        },
-        {
-          "date": "2023-08-25",
-          "value": 80.47
-        },
         {
           "date": "2023-08-28",
           "value": 80.65
@@ -33729,13 +33717,33 @@
         {
           "date": "2026-11-03",
           "value": 99.64
+        },
+        {
+          "date": "2026-11-04",
+          "value": 91.73
+        },
+        {
+          "date": "2026-11-05",
+          "value": 94.05
+        },
+        {
+          "date": "2026-11-06",
+          "value": 94.37
+        },
+        {
+          "date": "2026-11-09",
+          "value": 90.4
+        },
+        {
+          "date": "2026-11-10",
+          "value": 89.62
+        },
+        {
+          "date": "2026-11-11",
+          "value": 89.62
         }
       ],
       "VIXCLS": [
-        {
-          "date": "2023-10-05",
-          "value": 18.49
-        },
         {
           "date": "2023-10-06",
           "value": 17.45
@@ -36931,6 +36939,10 @@
         {
           "date": "2026-11-10",
           "value": 19.46
+        },
+        {
+          "date": "2026-11-11",
+          "value": 17.49
         }
       ]
     }
@@ -36939,8 +36951,8 @@
     "schema_version": 1,
     "source_id": "KRX_OPEN_API_ETF_DAILY",
     "observed_on": "2026-11-11",
-    "retrieved_at": "2026-11-12T00:52:20.761487+00:00",
-    "raw_sha256": "b43c87dc6681af6c76d322eecad8d630f215f7ba9e7925f42df7fa24f39a3493",
+    "retrieved_at": "2026-11-12T17:39:49.753710+00:00",
+    "raw_sha256": "5d85bcf3a854066f9ec3dc0ea2d5083b346c0074249aebd8cff3bb5ea5919646",
     "observed_count": 145,
     "baseline_on": "2026-10-15",
     "products": [
@@ -37975,26 +37987,26 @@
   },
   "validation": {
     "schema_version": "1.0",
-    "built_at_utc": "2026-11-12T02:45:06.459554+00:00",
+    "built_at_utc": "2026-11-13T02:28:05.806104+00:00",
     "validation_state": "INSUFFICIENT_HISTORY",
     "production_eligible": false,
     "framework_promotion_authorized": false,
     "checks": [
       {
         "name": "Signal history depth",
-        "value": 43,
+        "value": 44,
         "required": 60,
         "status": "INSUFFICIENT_HISTORY"
       },
       {
         "name": "Episode history depth",
-        "value": 43,
+        "value": 44,
         "required": 40,
         "status": "PASS"
       },
       {
         "name": "Gate history depth",
-        "value": 43,
+        "value": 44,
         "required": 40,
         "status": "PASS"
       }

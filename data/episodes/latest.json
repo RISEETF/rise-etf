@@ -1,7 +1,7 @@
 {
   "schema_version": "0.8",
-  "built_at_utc": "2026-11-12T02:45:06.403342+00:00",
-  "source_signal_built_at_utc": "2026-11-12T02:45:06.361410+00:00",
+  "built_at_utc": "2026-11-13T02:28:05.752555+00:00",
+  "source_signal_built_at_utc": "2026-11-13T02:28:05.713512+00:00",
   "production_eligible": false,
   "regime_change_authorized": false,
   "active_episode_count": 1,
@@ -706,17 +706,17 @@
       "peak_magnitude_date": "2026-11-03",
       "peak_abs_zscore": 1.8385641840477476,
       "peak_signed_zscore": -1.8385641840477476,
-      "cumulative_episode_move": -0.07646677171192884,
-      "persistence_runs": 3,
-      "normal_confirmation_runs": 0,
+      "cumulative_episode_move": -0.1693391417184169,
+      "persistence_runs": 4,
+      "normal_confirmation_runs": 1,
       "stress_scope": "UNRESOLVED",
       "policy_intervention_effect": "UNRESOLVED",
       "confirmation_eligible": false,
-      "confidence": "LOW",
-      "latest_signal_state": "WATCH",
+      "confidence": "HIGH",
+      "latest_signal_state": "NORMAL",
       "latest_direction": "DOWN",
-      "latest_observation_date": "2026-11-03",
-      "latest_zscore": -1.8385641840477476,
+      "latest_observation_date": "2026-11-11",
+      "latest_zscore": -0.4417022472257112,
       "falsification_status": "NOT_TESTED",
       "evidence": [
         {
@@ -736,10 +736,16 @@
           "evidence_role": "CONFIRMATION",
           "signal_state": "WATCH",
           "zscore": -1.8385641840477476
+        },
+        {
+          "date": "2026-11-11",
+          "evidence_role": "CONTRADICTION",
+          "signal_state": "NORMAL",
+          "zscore": -0.4417022472257112
         }
       ],
       "opened_at_utc": "2026-10-23T00:27:39.078363+00:00",
-      "last_updated_utc": "2026-11-05T02:02:39.435350+00:00",
+      "last_updated_utc": "2026-11-13T02:28:05.713512+00:00",
       "closed_at_utc": null
     },
     {

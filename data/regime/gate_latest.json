@@ -1,7 +1,7 @@
 {
   "schema_version": "0.9",
-  "built_at_utc": "2026-11-12T02:45:06.432168+00:00",
-  "source_episode_built_at_utc": "2026-11-12T02:45:06.403342+00:00",
+  "built_at_utc": "2026-11-13T02:28:05.780165+00:00",
+  "source_episode_built_at_utc": "2026-11-13T02:28:05.752555+00:00",
   "gate_state": "KEEP",
   "independent_persistent_channel_count": 0,
   "watch_channel_count": 0,
@@ -52,14 +52,14 @@
       "evidence": [
         {
           "signal_id": "SIG-ENERGY-001",
-          "signal_state": "WATCH",
+          "signal_state": "NORMAL",
           "episode_status": "WEAKENING",
-          "persistence_runs": 3,
+          "persistence_runs": 4,
           "distinct_trigger_observations": 2,
           "peak_zscore": -1.8385641840477476,
-          "latest_zscore": -1.8385641840477476,
+          "latest_zscore": -0.4417022472257112,
           "confirmation_eligible": false,
-          "confidence": "LOW",
+          "confidence": "HIGH",
           "primary_series": "DCOILWTICO"
         }
       ],
