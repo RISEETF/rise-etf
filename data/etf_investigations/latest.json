@@ -10,31 +10,31 @@
     "status": "UNCALIBRATED_RESEARCH_ONLY"
   },
   "source": "KRX_OPEN_API_ETF_DAILY",
-  "observation_date": "2026-11-12",
-  "source_retrieved_at": "2026-11-13T17:17:41.054127+00:00",
-  "source_raw_sha256": "15f18954f80bd6d742c30092296027c0188e1235b87d6c0eb652689b08b96586",
-  "screened_count": 1190,
+  "observation_date": "2026-11-13",
+  "source_retrieved_at": "2026-11-16T02:36:21.754604+00:00",
+  "source_raw_sha256": "036fc92343140452bd2e60e41c75deff5f8d6f9e03b7a859bd90a14cefcf891d",
+  "screened_count": 1188,
   "metric_coverage": {
-    "price": 1190,
-    "nav_gap": 1190,
-    "volume": 1171
+    "price": 1188,
+    "nav_gap": 1188,
+    "volume": 1169
   },
-  "candidate_count": 109,
-  "deferred_count": 104,
+  "candidate_count": 85,
+  "deferred_count": 80,
   "items": [
     {
-      "ticker": "448540",
-      "name": "ACE 엔비디아채권혼합",
-      "observation_date": "2026-11-12",
+      "ticker": "0079X0",
+      "name": "ACE BYD밸류체인액티브",
+      "observation_date": "2026-11-13",
       "signals": [
         {
           "kind": "NAV_GAP",
-          "value": -2.0845,
+          "value": -2.2738,
           "unit": "%"
         },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 10.2765,
+          "value": 12.6212,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -42,77 +42,51 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "448540",
-        "requested_date": "2026-11-12",
+        "ticker": "0079X0",
+        "requested_date": "2026-11-13",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
     },
     {
-      "ticker": "456680",
-      "name": "TIGER 차이나전기차레버리지(합성)",
-      "observation_date": "2026-11-12",
+      "ticker": "438320",
+      "name": "TIGER 차이나항셍테크레버리지(합성 H)",
+      "observation_date": "2026-11-13",
       "signals": [
         {
           "kind": "PRICE_MOVE",
-          "value": -6.0142,
+          "value": -7.0106,
           "unit": "%",
-          "prior_date": "2026-11-11"
+          "prior_date": "2026-11-12"
         },
         {
           "kind": "NAV_GAP",
-          "value": -5.3703,
+          "value": -5.5552,
           "unit": "%"
         }
       ],
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "456680",
-        "requested_date": "2026-11-12",
+        "ticker": "438320",
+        "requested_date": "2026-11-13",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
     },
     {
-      "ticker": "0255E0",
-      "name": "TIGER 글로벌MLCC&기판",
-      "observation_date": "2026-11-12",
-      "signals": [
-        {
-          "kind": "PRICE_MOVE",
-          "value": -5.599,
-          "unit": "%",
-          "prior_date": "2026-11-11"
-        },
-        {
-          "kind": "NAV_GAP",
-          "value": -5.2947,
-          "unit": "%"
-        }
-      ],
-      "state": "PDF_PENDING",
-      "holdings_verified": false,
-      "pdf_request": {
-        "ticker": "0255E0",
-        "requested_date": "2026-11-12",
-        "source": "KRX",
-        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
-      }
-    },
-    {
-      "ticker": "0093B0",
-      "name": "RISE 엔비디아고정테크100",
-      "observation_date": "2026-11-12",
+      "ticker": "371150",
+      "name": "RISE 차이나항셍테크",
+      "observation_date": "2026-11-13",
       "signals": [
         {
           "kind": "NAV_GAP",
-          "value": -2.1633,
+          "value": -3.1546,
           "unit": "%"
         },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 5.9232,
+          "value": 3.4877,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -120,25 +94,40 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "0093B0",
-        "requested_date": "2026-11-12",
+        "ticker": "371150",
+        "requested_date": "2026-11-13",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
     },
     {
-      "ticker": "0088N0",
-      "name": "WON K-글로벌수급상위",
-      "observation_date": "2026-11-12",
+      "ticker": "265690",
+      "name": "ACE 러시아MSCI(합성)",
+      "observation_date": "2026-11-13",
       "signals": [
         {
           "kind": "NAV_GAP",
-          "value": 2.1398,
+          "value": 17465.3427,
           "unit": "%"
-        },
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "265690",
+        "requested_date": "2026-11-13",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "0008E0",
+      "name": "ACE 미국중심중소형제조업",
+      "observation_date": "2026-11-13",
+      "signals": [
         {
           "kind": "VOLUME_SPIKE",
-          "value": 5.1538,
+          "value": 61.5371,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -146,8 +135,8 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "0088N0",
-        "requested_date": "2026-11-12",
+        "ticker": "0008E0",
+        "requested_date": "2026-11-13",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
