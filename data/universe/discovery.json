@@ -1,0 +1,169 @@
+{
+  "as_of": "2026-11-17",
+  "status": "DISCOVERY_ONLY",
+  "sources": {
+    "ssga": "https://www.ssga.com/us/en/intermediary/capabilities/equities/sector-investing/select-sector-etfs",
+    "vanguard": "https://investor.vanguard.com/investment-products/list/etfs",
+    "ishares": "https://www.ishares.com/us/products/etf-investments",
+    "invesco": "https://www.invesco.com/us/en/financial-products/etfs/invesco-sp-500-equal-weight-etf.html",
+    "krx": "data/quality/krx_rise_inventory.json"
+  },
+  "groups": {
+    "US_EQUITY_EQUAL_WEIGHT": [
+      {
+        "name": "RSP",
+        "source": "invesco",
+        "note": "시가총액 가중 SPY와 가중방식 차이 비교"
+      }
+    ],
+    "GLOBAL_EX_US_EQUITY": [
+      {
+        "name": "VXUS",
+        "source": "vanguard",
+        "note": "미국 제외 선진·신흥국 주식"
+      }
+    ],
+    "KR_CASH": [
+      {
+        "name": "455890 RISE 머니마켓액티브",
+        "source": "krx",
+        "note": "현금 대용 후보 · 예금이나 무위험 수익률과 다름"
+      }
+    ],
+    "USD_CASH": [
+      {
+        "name": "SGOV",
+        "source": "ishares",
+        "note": "0~3개월 미국 국채 · 현금 대용 후보"
+      }
+    ],
+    "US_TREASURY_SHORT": [
+      {
+        "name": "SHY",
+        "source": "ishares",
+        "note": "1~3년 국채 · 초단기 현금 대용과 분리"
+      }
+    ],
+    "US_TREASURY_LONG": [
+      {
+        "name": "TLT",
+        "source": "ishares",
+        "note": "20년 초과 국채 · 장기 금리 민감도"
+      }
+    ],
+    "KR_CREDIT_IG": [
+      {
+        "name": "136340 RISE 중기우량회사채",
+        "source": "krx",
+        "note": "등급 분포와 듀레이션 추가 확인"
+      }
+    ],
+    "USD_CREDIT_IG": [
+      {
+        "name": "LQD",
+        "source": "ishares",
+        "note": "투자등급 회사채 · 국채 대비 만기 차이 통제 필요"
+      }
+    ],
+    "USD_CREDIT_HY": [
+      {
+        "name": "HYG",
+        "source": "ishares",
+        "note": "하이일드 회사채 · 가격에는 금리와 신용 영향이 함께 반영"
+      }
+    ],
+    "GOLD": [
+      {
+        "name": "IAU",
+        "source": "ishares",
+        "note": "금 신탁 · 선물형과 분리"
+      }
+    ],
+    "EMERGING_THEMES": [
+      {
+        "name": "0000Z0 RISE 바이오TOP10액티브",
+        "source": "krx",
+        "note": "국내 바이오 관찰 예시 · 신규 수요·상품 공백 근거는 아님"
+      }
+    ],
+    "EQUITY_SECTORS": [
+      {
+        "name": "커뮤니케이션",
+        "primary": "XLC",
+        "peer": "VOX",
+        "source": "ssga",
+        "peer_source": "vanguard"
+      },
+      {
+        "name": "경기소비재",
+        "primary": "XLY",
+        "peer": "VCR",
+        "source": "ssga",
+        "peer_source": "vanguard"
+      },
+      {
+        "name": "필수소비재",
+        "primary": "XLP",
+        "peer": "VDC",
+        "source": "ssga",
+        "peer_source": "vanguard"
+      },
+      {
+        "name": "에너지",
+        "primary": "XLE",
+        "peer": "VDE",
+        "source": "ssga",
+        "peer_source": "vanguard"
+      },
+      {
+        "name": "금융",
+        "primary": "XLF",
+        "peer": "VFH",
+        "source": "ssga",
+        "peer_source": "vanguard"
+      },
+      {
+        "name": "헬스케어",
+        "primary": "XLV",
+        "peer": "VHT",
+        "source": "ssga",
+        "peer_source": "vanguard"
+      },
+      {
+        "name": "산업재",
+        "primary": "XLI",
+        "peer": "VIS",
+        "source": "ssga",
+        "peer_source": "vanguard"
+      },
+      {
+        "name": "소재",
+        "primary": "XLB",
+        "peer": "VAW",
+        "source": "ssga",
+        "peer_source": "vanguard"
+      },
+      {
+        "name": "부동산",
+        "primary": "XLRE",
+        "peer": "VNQ",
+        "source": "ssga",
+        "peer_source": "vanguard"
+      },
+      {
+        "name": "정보기술",
+        "primary": "XLK",
+        "peer": "VGT",
+        "source": "ssga",
+        "peer_source": "vanguard"
+      },
+      {
+        "name": "유틸리티",
+        "primary": "XLU",
+        "peer": "VPU",
+        "source": "ssga",
+        "peer_source": "vanguard"
+      }
+    ]
+  }
+}
