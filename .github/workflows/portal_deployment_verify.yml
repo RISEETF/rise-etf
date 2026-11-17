@@ -1,7 +1,7 @@
 name: RISE Portal public deployment verification
 on:
   workflow_run:
-    workflows: ["RISE Intelligence daily orchestration", "KRX ETF primary ledger", "Capture dated price and FX series"]
+    workflows: ["RISE Intelligence daily orchestration", "KRX ETF primary ledger", "KRX historical enrichment", "Capture dated price and FX series"]
     types: [completed]
   schedule:
     - cron: '15 2,8 * * *'
@@ -44,4 +44,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           PORTAL_VERIFY_ATTEMPTS: '12'
           PORTAL_VERIFY_WAIT_SECONDS: '20'
-        run: python scripts/verify_portal_deployment.py
+        run: |
+          if python scripts/verify_portal_deployment.py; then exit 0; fi
+          # Collection jobs can publish a newer snapshot while Pages catches up.
+          git fetch --no-tags origin refs/heads/main
+          if [ "$(git rev-parse HEAD)" = "$(git rev-parse FETCH_HEAD)" ]; then exit 1; fi
+          git checkout --detach FETCH_HEAD
+          echo "Main advanced during verification; checking the newer snapshot."
+          python scripts/verify_portal_deployment.py
