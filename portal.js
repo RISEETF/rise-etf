@@ -274,10 +274,13 @@ async function loadUniverse() {
       }
     }
     if(seen.size!==data.candidate_count) throw new Error('후보 집계 오류');
-    el('universeStatus').textContent=`고유 후보 ${data.candidate_count}개 · 노출 설계 ${data.groups.length}개 · 후보 미확보 ${data.gap_group_count}개 · 대표자산 확정 0개 · RS 보류`;
+    el('universeStatus').textContent=`고유 후보 ${data.candidate_count}개 · 노출 설계 ${data.groups.length}개 · 수집 표본 없는 노출 ${data.gap_group_count}개 · 대표자산 확정 0개 · RS 보류`;
+    let discovery={};
+    try { const catalog=await readJSON('data/universe/discovery.json'); if(catalog.status==='DISCOVERY_ONLY') discovery=catalog.groups || {}; } catch (_) { /* Retain collected candidates when discovery is unavailable. */ }
     for(const group of data.groups) {
+      const leads=discovery[group.id] || [];
       const tr=document.createElement('tr');
-      for(const value of [group.label,group.scope==='COMPANY'?'기업 관찰':group.scope==='THEME'?'테마 탐색':group.scope==='SECTOR'?'섹터 비교':'시장 비교',group.candidates.map(c=>`${c.name} (${c.currency})`).join(' / ') || '관측수단 조사 필요',group.selection_status==='DATA_GAP'?'후보·데이터 미확보':'노출 관계·근거 검토 중']) {
+      for(const value of [group.label,group.scope==='COMPANY'?'기업 관찰':group.scope==='THEME'?'테마 탐색':group.scope==='SECTOR'?'섹터 비교':'시장 비교',group.candidates.map(c=>`${c.name} (${c.currency})`).join(' / ') || (leads.length ? leads.map(x=>x.primary ? x.name+' '+x.primary+' / '+x.peer : x.name+' · '+x.note).join('； ') : '관측수단 조사 필요'),group.selection_status==='DATA_GAP'?(leads.length?'조사 후보 등록 · 시계열 미편입':'후보·데이터 미확보'):'노출 관계·근거 검토 중']) {
         const td=document.createElement('td');td.textContent=value;tr.append(td);
       }
       el('universeRows').append(tr);
