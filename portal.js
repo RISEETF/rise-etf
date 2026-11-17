@@ -326,6 +326,7 @@ async function loadResearchRS() {
     sources.append(fxLine);
     const render=()=>{
       el('researchRows').replaceChildren();
+      el('sampleRoles').replaceChildren();
       el('researchSummary').textContent='';
       const basis=basisSelector.value;
       if(!['krw','local'].includes(basis)) throw new Error('통화 기준 오류');
@@ -349,7 +350,20 @@ async function loadResearchRS() {
       const positive=rows.filter(r=>r[basis+'_return_pct']>0).length;
       const changed=rows.filter(r=>r.krw_rank!==r.local_rank).length;
       el('researchSummary').textContent=`이 시범 풀의 ${label} 수익률 양수 ${positive}/${rows.length}종목 · 통화 기준에 따라 순위가 다른 종목 ${changed}개 (시간에 따른 순위 변화 아님)`;
+      const sampleRoles = {
+        'XKRX:148020':['대표 후보','한국 대형주 · KOSPI 200 관측. 중소형주 제외'],
+        'US_LISTED:SPY':['대표 후보·기준','미국 대형주 · 현재 RS 기준인 S&P 500 관측'],
+        'XKRX:379780':['중복 비교용','SPY와 같은 S&P 500 노출. 국내 거래시간·원화 가격 비교에 유지'],
+        'US_LISTED:AAPL':['개별주 관찰','기업 고유 요인이 있어 기술 섹터 대표에서 제외'],
+        'XKRX:114100':['대표 후보','한국 국채 3년 · 국내 단기·중기 금리 구간 관측'],
+        'US_LISTED:IEF':['대표 후보','미국 국채 7~10년 · 한국 국채 3년과 만기가 달라 국가 효과만 분리할 수 없음']
+      };
       for(const row of rows) {
+        const roleRow=document.createElement('tr');
+        for(const value of [row.name,...(sampleRoles[row.instrument_id] || ['미분류','노출과 중복 여부 검토 전'])]) {
+          const cell=document.createElement('td'); cell.textContent=value; roleRow.append(cell);
+        }
+        el('sampleRoles').append(roleRow);
         const tr=document.createElement('tr');
         tr.dataset.instrument=row.instrument_id;
         const delta=row.krw_return_pct-row.local_return_pct;
