@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "started_at_utc": "2026-11-17T04:22:24.485698+00:00",
+  "run_id": "44016680947",
+  "run_attempt": "1",
+  "status": "PUBLISHED",
+  "stages": {
+    "build_gclri_signals.py": "SUCCESS",
+    "build_signal_episodes.py": "SUCCESS",
+    "build_regime_gate.py": "SUCCESS",
+    "build_validation_status.py": "SUCCESS",
+    "research_draft": "SUCCESS",
+    "full_report": "SUCCESS",
+    "publication": "SUCCESS"
+  },
+  "note": "Checkout execution only. Git push and Pages deployment are separate outcomes.",
+  "research_draft": {
+    "status": "RESEARCH_DRAFT",
+    "path": "data/intelligence/research/2026-11-17/06e6298d8f731a58073040e56850c440ff34cc95ffd004e0a2c8b7867e7e6bbe",
+    "sha256": "06e6298d8f731a58073040e56850c440ff34cc95ffd004e0a2c8b7867e7e6bbe"
+  },
+  "dated_context": [],
+  "generated_package": "data/intelligence/generated/2026-11-17/e3cee49e6f6401f68be7c9c34c39baa857c02df5ce59741e2f3a2bd9181e2207",
+  "blockers": [],
+  "publication": {
+    "status": "SUCCESS",
+    "asof_date": "2026-11-17",
+    "archive_count": 34,
+    "content_changed": true
+  },
+  "finished_at_utc": "2026-11-17T04:22:24.659754+00:00"
+}

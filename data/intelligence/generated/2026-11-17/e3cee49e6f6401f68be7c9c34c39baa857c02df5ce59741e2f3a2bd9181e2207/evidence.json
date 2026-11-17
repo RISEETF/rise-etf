@@ -1,0 +1,86 @@
+{
+  "asof_date": "2026-11-17",
+  "source_hashes": {
+    "data/gclri/latest.json": "d004411f60bacb490d8b8ad4eb211ba129fa8d71d83a6f6786d8d11678e19d52",
+    "data/signals/signal_registry.json": "3705fdc6ab7b3a1cf4091845b35bd9d56df27cc404d5e4de84ad345893494852",
+    "data/episodes/episode_registry.json": "27cde9ae423fd744d8fdd8001421ca629f28451478b6eab300fc0dd6d9292008",
+    "data/regime/channel_registry.json": "62406bcede5624d02c6a4886c49dfa395932159f0dc7f3e32158bc4e9023bdd0",
+    "data/gclri/series_registry.json": "f5f40592694346c87561a7a0f6dd96efe62b7e8bc764bcc1e7b2e16af36113aa",
+    "data/signals/latest.json": "9e69b4ced0417b3238566d27a4c9d3d7a6e0cc27ec097ba025e65435bdab2e08",
+    "data/episodes/latest.json": "8d97e84eaad9e4d3e3178b740d4bbc5a8d26e1a0c434e07cf5df60aee8183a96",
+    "data/regime/gate_latest.json": "4ec338eff7a97888cf2fcf013f65386b42a581e68dd8b4ffb0d4a67c983f85fd",
+    "data/validation/v1_status.json": "7e1b4328b9a55c69c935d55c76baa6e3f033aa5a8d9e4f84e09faf1e80b63273",
+    "data/quality/krx_rise_inventory.json": "0b17ea9995924b6ec68fcd1c299a10954d3f375fa22c969c0ddb19e773a4f873",
+    "data/gclri/history.json": "d97c769cc8fd879b2a82768689302bf1c465ab5d5ee7596b7b8f8e4d3dd3f599",
+    "data/signals/history.json": "63131cb3758ddbf6756b7162306af75a6897f1499a5abfd08b6cad64ccc4e05f",
+    "data/episodes/history.json": "df052d77c6bf9c2676fd3baabfeb1b4f74442f7f31b4cf2215bdf28c37f52058",
+    "data/regime/gate_history.json": "1db3c0ff07d91fc69b8e698a510b97d5dfef100a583abd11d0734338698e5cde"
+  },
+  "content_hashes": {
+    "snapshot.json": "3b13747aa390ffeee49ede1e828d00b30bccf4dfc14f048be4001b02b0ac2c5b",
+    "report.txt": "da26c742b728db51e76f2ba402d4c123280fcec780cbf16b0ca27b09e65dd107"
+  },
+  "external_evidence": [
+    {
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLC0A0CM",
+      "observation_date": "2026-11-13",
+      "claim": "BAMLC0A0CM 관측값 0.89 Percent"
+    },
+    {
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2",
+      "observation_date": "2026-11-13",
+      "claim": "BAMLH0A0HYM2 관측값 3.23 Percent"
+    },
+    {
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILBRENTEU",
+      "observation_date": "2026-11-11",
+      "claim": "DCOILBRENTEU 관측값 92.14 USD/bbl"
+    },
+    {
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILWTICO",
+      "observation_date": "2026-11-11",
+      "claim": "DCOILWTICO 관측값 89.62 USD/bbl"
+    },
+    {
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10",
+      "observation_date": "2026-11-13",
+      "claim": "DGS10 관측값 5.15 Percent"
+    },
+    {
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2",
+      "observation_date": "2026-11-13",
+      "claim": "DGS2 관측값 4.88 Percent"
+    },
+    {
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DTWEXBGS",
+      "observation_date": "2026-11-13",
+      "claim": "DTWEXBGS 관측값 122.6503 Index"
+    },
+    {
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=SOFR",
+      "observation_date": "2026-11-13",
+      "claim": "SOFR 관측값 3.9 Percent"
+    },
+    {
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=T10Y2Y",
+      "observation_date": "2026-11-16",
+      "claim": "T10Y2Y 관측값 0.29 Percent"
+    },
+    {
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS",
+      "observation_date": "2026-11-13",
+      "claim": "VIXCLS 관측값 19.3 Index"
+    },
+    {
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WRESBAL",
+      "observation_date": "2026-11-11",
+      "claim": "WRESBAL 관측값 2960603.0 Millions USD"
+    },
+    {
+      "url": "https://data-dbg.krx.co.kr/svc/apis/etp/etf_bydd_trd",
+      "observation_date": "2026-11-13",
+      "claim": "KRX 관측 RISE 종목코드와 상품명: 실제 보유자산 검증 아님"
+    }
+  ],
+  "revision_reason": "자동 보고서: 새 관측·신호·자료 범위 또는 작성 규칙 변경 반영; 이전 본문 보존"
+}

@@ -1,27 +1,27 @@
 {
   "schema_version": "0.9",
-  "built_at_utc": "2026-11-16T01:38:33.459021+00:00",
-  "source_episode_built_at_utc": "2026-11-16T01:38:33.429152+00:00",
-  "gate_state": "CHALLENGE",
-  "independent_persistent_channel_count": 0,
-  "watch_channel_count": 2,
+  "built_at_utc": "2026-11-17T04:22:24.566105+00:00",
+  "source_episode_built_at_utc": "2026-11-17T04:22:24.543328+00:00",
+  "gate_state": "TRANSITION_CANDIDATE",
+  "independent_persistent_channel_count": 2,
+  "watch_channel_count": 1,
   "extreme_event_override": false,
   "production_eligible": false,
   "regime_change_authorized": false,
   "channels": [
     {
       "channel_id": "RATES",
-      "channel_state": "WATCH",
-      "counts_as_independent_confirmation": false,
+      "channel_state": "PERSISTENT_ACTIVE",
+      "counts_as_independent_confirmation": true,
       "evidence": [
         {
           "signal_id": "SIG-RATE-001",
-          "signal_state": "WATCH",
-          "episode_status": "WATCH",
-          "persistence_runs": 1,
-          "distinct_trigger_observations": 1,
-          "peak_zscore": 1.6125362788810378,
-          "latest_zscore": 1.6125362788810378,
+          "signal_state": "ACTIVE_CANDIDATE",
+          "episode_status": "STRENGTHENING",
+          "persistence_runs": 2,
+          "distinct_trigger_observations": 2,
+          "peak_zscore": 2.5029144432600208,
+          "latest_zscore": 2.5029144432600208,
           "confirmation_eligible": true,
           "confidence": "MODERATE",
           "primary_series": "DGS10"
@@ -30,26 +30,39 @@
           "signal_id": "SIG-RATE-002",
           "signal_state": "ACTIVE_CANDIDATE",
           "episode_status": "ACTIVE",
-          "persistence_runs": 1,
-          "distinct_trigger_observations": 1,
-          "peak_zscore": 2.169733622883404,
-          "latest_zscore": 2.169733622883404,
+          "persistence_runs": 2,
+          "distinct_trigger_observations": 2,
+          "peak_zscore": 3.235077641841007,
+          "latest_zscore": 3.235077641841007,
           "confirmation_eligible": true,
           "confidence": "HIGH",
           "primary_series": "DGS2"
         }
       ],
-      "fresh_persistent_signal_count": 0,
-      "fresh_watch_signal_count": 2,
+      "fresh_persistent_signal_count": 2,
+      "fresh_watch_signal_count": 0,
       "nonconfirming_or_stale_count": 0
     },
     {
       "channel_id": "CREDIT",
-      "channel_state": "NO_EPISODE",
+      "channel_state": "WATCH",
       "counts_as_independent_confirmation": false,
-      "evidence": [],
+      "evidence": [
+        {
+          "signal_id": "SIG-CREDIT-001",
+          "signal_state": "WATCH",
+          "episode_status": "WATCH",
+          "persistence_runs": 1,
+          "distinct_trigger_observations": 1,
+          "peak_zscore": -1.709543192209564,
+          "latest_zscore": -1.709543192209564,
+          "confirmation_eligible": true,
+          "confidence": "HIGH",
+          "primary_series": "BAMLH0A0HYM2"
+        }
+      ],
       "fresh_persistent_signal_count": 0,
-      "fresh_watch_signal_count": 0,
+      "fresh_watch_signal_count": 1,
       "nonconfirming_or_stale_count": 0
     },
     {
@@ -94,24 +107,24 @@
     },
     {
       "channel_id": "VOLATILITY",
-      "channel_state": "WATCH",
-      "counts_as_independent_confirmation": false,
+      "channel_state": "PERSISTENT_ACTIVE",
+      "counts_as_independent_confirmation": true,
       "evidence": [
         {
           "signal_id": "SIG-MKT-001",
           "signal_state": "ACTIVE_CANDIDATE",
           "episode_status": "ACTIVE",
-          "persistence_runs": 1,
-          "distinct_trigger_observations": 1,
+          "persistence_runs": 2,
+          "distinct_trigger_observations": 2,
           "peak_zscore": -2.903580159305942,
-          "latest_zscore": -2.903580159305942,
+          "latest_zscore": -2.026728187870173,
           "confirmation_eligible": true,
           "confidence": "MODERATE",
           "primary_series": "VIXCLS"
         }
       ],
-      "fresh_persistent_signal_count": 0,
-      "fresh_watch_signal_count": 1,
+      "fresh_persistent_signal_count": 1,
+      "fresh_watch_signal_count": 0,
       "nonconfirming_or_stale_count": 0
     }
   ],
