@@ -19,7 +19,8 @@ TOKEN = os.environ.get("GH_TOKEN", "")
 FILES = ("etf.html", "etf.js", "etf.css", "index.html", "dashboard.js", "intelligence/data/latest.json",
          "data/operations/intelligence.json", "data/quality/krx_rise_inventory.json",
          "data/krx_collection_status.json", "data/etf_market/latest.json", "data/etf_market/status.json",
-         "data/research/rs.json", "data/fx/hana_status.json", "entry.js", "entry.css")
+         "data/research/rs.json", "data/fx/hana_status.json", "entry.js", "entry.css", "workspace.js", "dashboard.css", "sectors.html", "sectors.js",
+         "data/sector_series/latest.json", "research.html", "portal.js", "data/universe/discovery.json")
 TIMEOUT = 20
 ATTEMPTS = int(os.environ.get("PORTAL_VERIFY_ATTEMPTS", "12"))
 WAIT = int(os.environ.get("PORTAL_VERIFY_WAIT_SECONDS", "20"))
