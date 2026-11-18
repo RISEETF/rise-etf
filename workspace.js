@@ -12,7 +12,7 @@ function item(target,title,body,detail){
 function render(){
  const q=el('workSearch').value.trim().toLowerCase();
  const match=x=>JSON.stringify(x).toLowerCase().includes(q);
- for(const [key,id] of [['report','workSignals'],['report','workMatches'],['rs','workRS'],['discovery','workProduct']]){
+ for(const [key,id] of [['report','workSignals'],['report','workMatches'],['rs','workRS'],['discovery','workProduct'],['investigations','workInvestigations']]){
   const t=el(id);t.replaceChildren();if(!state[key]){t.textContent=state[key]===null?'자료를 불러오지 못했습니다. 상세 페이지에서 확인하세요.':'불러오는 중';}
  }
  const d=state.report;
@@ -47,9 +47,24 @@ function render(){
  }
  if(d?.product_assessment)t.append(text('p',d.product_assessment));
  }
+ const inv=state.investigations;
+ if(inv){
+ const target=el('workInvestigations');
+ target.append(text('p',inv.observation_date+' · 전체 '+inv.screened_count+'개 관찰 · 조건 충족 '+inv.candidate_count+'개 · 우선 조사 '+inv.items.length+'개 · 후순위 '+inv.deferred_count+'개'));
+ target.append(text('p','가격 급변·NAV 괴리·거래량 급증 기준의 조사 목록입니다. 투자 추천이나 보유종목 분석 완료를 뜻하지 않습니다.'));
+ const labels={PRICE_MOVE:'가격 변화',NAV_GAP:'NAV 괴리',VOLUME_SPIKE:'거래량 배수'};
+ const rows=inv.items.filter(match);
+ if(!rows.length)target.append(text('p',q?'검색 결과 없음':'우선 조사 항목 없음'));
+ for(const row of rows){
+ const signals=(row.signals||[]).map(s=>(labels[s.kind]||s.kind)+' '+(Number.isFinite(s.value)?s.value.toLocaleString('ko-KR',{maximumFractionDigits:2}):'미확인')+s.unit).join(' / ');
+ const card=item(target,row.name+' · '+row.ticker,signals,(row.pdf_request?.instruction||'동일 기준일 구성내역 확보 필요')+' · 보유종목 확인: '+(row.holdings_verified?'확인됨':'미확인'));
+ if(row.name.startsWith('RISE ')){const link=text('a','RISE 가격·NAV 확인 →');link.href='etf.html?q='+encodeURIComponent(row.ticker);card.append(link);}
+ }
+ }
+
 }
 el('workSearch').addEventListener('input',render);
-for(const [key,path] of [['report','intelligence/data/latest.json'],['rs','data/research/rs.json'],['discovery','data/universe/discovery.json']]){
+for(const [key,path] of [['report','intelligence/data/latest.json'],['rs','data/research/rs.json'],['discovery','data/universe/discovery.json'],['investigations','data/etf_investigations/latest.json']]){
  fetch(path,{cache:'no-store'}).then(r=>{if(!r.ok)throw Error(r.status);return r.json();}).then(d=>{state[key]=d;render();}).catch(()=>{state[key]=null;render();});
 }
 })();
