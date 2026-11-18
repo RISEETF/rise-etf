@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "capture_id": "20261118T143006382842Z-YAHOO_CHART_CANDIDATE-VPU",
+  "source_id": "YAHOO_CHART_CANDIDATE",
+  "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/VPU?range=6mo&interval=1d&events=div%2Csplits%2CcapitalGains&includeAdjustedClose=true",
+  "retrieved_at": "2026-11-18T14:30:06.382842+00:00",
+  "kind": "US_PRICE",
+  "instrument_code": "VPU",
+  "market": "US_LISTED",
+  "currency": "USD",
+  "instrument_contract": {
+    "code": "VPU",
+    "name": "VPU",
+    "market": "US_LISTED",
+    "currency": "USD",
+    "instrument_type": "ETF",
+    "timezone": "America/New_York"
+  },
+  "publication_time": null,
+  "price_basis": "PROVIDER_CLOSE_AND_ADJUSTED_CLOSE",
+  "rs_eligible": false,
+  "observations": [],
+  "events": [],
+  "source_sha256": "d2fa1405aa7b60f027a82cd9fccd23a49ad7c69970adacdb37e3fcc754b57583",
+  "status": "FAILED",
+  "quality": "UNUSABLE",
+  "error": "ValueError: Invalid OHLCV"
+}

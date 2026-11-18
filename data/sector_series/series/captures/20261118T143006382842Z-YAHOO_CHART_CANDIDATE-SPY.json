@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "capture_id": "20261118T143006382842Z-YAHOO_CHART_CANDIDATE-SPY",
+  "source_id": "YAHOO_CHART_CANDIDATE",
+  "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPY?range=6mo&interval=1d&events=div%2Csplits%2CcapitalGains&includeAdjustedClose=true",
+  "retrieved_at": "2026-11-18T14:30:06.382842+00:00",
+  "kind": "US_PRICE",
+  "instrument_code": "SPY",
+  "market": "US_LISTED",
+  "currency": "USD",
+  "instrument_contract": {
+    "code": "SPY",
+    "name": "SPY",
+    "market": "US_LISTED",
+    "currency": "USD",
+    "instrument_type": "ETF",
+    "timezone": "America/New_York"
+  },
+  "publication_time": null,
+  "price_basis": "PROVIDER_CLOSE_AND_ADJUSTED_CLOSE",
+  "rs_eligible": false,
+  "observations": [],
+  "events": [],
+  "source_sha256": "cb154b5c020384d8bf113da7172ba86b73cccb435c8e45345322e17957d68894",
+  "status": "FAILED",
+  "quality": "UNUSABLE",
+  "error": "ValueError: Invalid OHLCV"
+}

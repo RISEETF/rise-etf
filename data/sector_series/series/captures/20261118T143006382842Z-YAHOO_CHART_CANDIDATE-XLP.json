@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "capture_id": "20261118T143006382842Z-YAHOO_CHART_CANDIDATE-XLP",
+  "source_id": "YAHOO_CHART_CANDIDATE",
+  "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/XLP?range=6mo&interval=1d&events=div%2Csplits%2CcapitalGains&includeAdjustedClose=true",
+  "retrieved_at": "2026-11-18T14:30:06.382842+00:00",
+  "kind": "US_PRICE",
+  "instrument_code": "XLP",
+  "market": "US_LISTED",
+  "currency": "USD",
+  "instrument_contract": {
+    "code": "XLP",
+    "name": "XLP",
+    "market": "US_LISTED",
+    "currency": "USD",
+    "instrument_type": "ETF",
+    "timezone": "America/New_York"
+  },
+  "publication_time": null,
+  "price_basis": "PROVIDER_CLOSE_AND_ADJUSTED_CLOSE",
+  "rs_eligible": false,
+  "observations": [],
+  "events": [],
+  "source_sha256": "6bb760199df3984f9e237bac3e09ddc424dc4b8d3d2bacd3b86f1a4eb0911583",
+  "status": "FAILED",
+  "quality": "UNUSABLE",
+  "error": "ValueError: Invalid OHLCV"
+}

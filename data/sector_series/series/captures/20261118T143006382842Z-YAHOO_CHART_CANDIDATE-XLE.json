@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "capture_id": "20261118T143006382842Z-YAHOO_CHART_CANDIDATE-XLE",
+  "source_id": "YAHOO_CHART_CANDIDATE",
+  "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/XLE?range=6mo&interval=1d&events=div%2Csplits%2CcapitalGains&includeAdjustedClose=true",
+  "retrieved_at": "2026-11-18T14:30:06.382842+00:00",
+  "kind": "US_PRICE",
+  "instrument_code": "XLE",
+  "market": "US_LISTED",
+  "currency": "USD",
+  "instrument_contract": {
+    "code": "XLE",
+    "name": "XLE",
+    "market": "US_LISTED",
+    "currency": "USD",
+    "instrument_type": "ETF",
+    "timezone": "America/New_York"
+  },
+  "publication_time": null,
+  "price_basis": "PROVIDER_CLOSE_AND_ADJUSTED_CLOSE",
+  "rs_eligible": false,
+  "observations": [],
+  "events": [],
+  "source_sha256": "115aed85db62b401523062a81076d57830d4fbe571b09c0f747d4f858e9b5b7e",
+  "status": "FAILED",
+  "quality": "UNUSABLE",
+  "error": "ValueError: Invalid OHLCV"
+}

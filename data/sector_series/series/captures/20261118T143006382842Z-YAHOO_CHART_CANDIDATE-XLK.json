@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "capture_id": "20261118T143006382842Z-YAHOO_CHART_CANDIDATE-XLK",
+  "source_id": "YAHOO_CHART_CANDIDATE",
+  "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/XLK?range=6mo&interval=1d&events=div%2Csplits%2CcapitalGains&includeAdjustedClose=true",
+  "retrieved_at": "2026-11-18T14:30:06.382842+00:00",
+  "kind": "US_PRICE",
+  "instrument_code": "XLK",
+  "market": "US_LISTED",
+  "currency": "USD",
+  "instrument_contract": {
+    "code": "XLK",
+    "name": "XLK",
+    "market": "US_LISTED",
+    "currency": "USD",
+    "instrument_type": "ETF",
+    "timezone": "America/New_York"
+  },
+  "publication_time": null,
+  "price_basis": "PROVIDER_CLOSE_AND_ADJUSTED_CLOSE",
+  "rs_eligible": false,
+  "observations": [],
+  "events": [],
+  "source_sha256": "29b3389aa8bd833466b3cbc97c3b08ee1aaaf1e9e19f56f7de6c54831d269645",
+  "status": "FAILED",
+  "quality": "UNUSABLE",
+  "error": "ValueError: Invalid OHLCV"
+}
