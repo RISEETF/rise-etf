@@ -3,10 +3,10 @@
   "status": "KRX_DAILY_IDENTITY_COMPARISON",
   "source_role": "PRIMARY_EXCHANGE_OBSERVATION",
   "source_url": "https://data-dbg.krx.co.kr/svc/apis/etp/etf_bydd_trd",
-  "observed_on": "2026-11-16",
-  "retrieved_at": "2026-11-17T18:41:47.610285+00:00",
-  "raw_sha256": "eea7fecb22ea495aa4fb91d12fd611bf9b4550ee21982622c154fd403ae73583",
-  "krx_market_count": 1188,
+  "observed_on": "2026-11-17",
+  "retrieved_at": "2026-11-18T04:03:18.803094+00:00",
+  "raw_sha256": "9e079d52930109065d9d8829bcbcaf2df4ce16db4ff07018abcfb684ae7ba5b2",
+  "krx_market_count": 1190,
   "issuer_effective_date": "2026-10-04",
   "issuer_source_sha256": "03b85088a26600243470440c642fdd5f275c2e69468fff99af721ec6034e29c3",
   "issuer_product_count": 144,
@@ -1460,13 +1460,21 @@
     {
       "code": "0254H0",
       "name": "RISE 반도체소부장액티브"
+    },
+    {
+      "code": "0269M0",
+      "name": "RISE 27-11 회사채(AA-이상)액티브"
+    },
+    {
+      "code": "0269N0",
+      "name": "RISE 미국초대형주TOP10"
     }
   ],
   "legal_lifecycle_status": "NOTICE_MONITORING_ONLY_CURRENT_STATUS_NOT_ASSIGNED",
   "note": "Presence is an exchange observation. Absence is not delisting. Name-only codes require identity review.",
   "lifecycle_notices": {
     "status": "FAILED",
-    "attempted_at": "2026-11-17T18:41:50.332242+00:00",
+    "attempted_at": "2026-11-18T04:03:22.110826+00:00",
     "last_success_at": "2026-11-17T04:58:26.890127+00:00",
     "window_start": "2026-10-18",
     "window_end": "2026-11-17",
