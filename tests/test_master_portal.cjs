@@ -243,6 +243,14 @@ print(json.dumps(compose(prepare_input(root,datetime.now(timezone.utc)),read_jso
     assert.match(await page.locator('#reportLink').textContent(),/게시 대기/);
     assert.equal(await page.locator('#archiveTable a[href="null"]').count(),0);
     assert.match(await page.locator('#regimeConf').textContent(),/미제공/);
+    await page.goto(url+'/sectors.html?q=XLK');
+    await page.waitForSelector('#sectorRows article');
+    assert.equal(await page.locator('#sectorRows article').count(),1);
+    assert.match(await page.locator('#sectorRows').textContent(),/XLK/);
+    await page.fill('#sectorSearch','NO_SUCH_SECTOR');
+    assert.match(await page.locator('#sectorRows').textContent(),/검색 결과 없음/);
+    await page.goto(url+'/etf.html?q=148020');
+    assert.equal(await page.inputValue('#search'),'148020');
     assert.deepEqual(errors,[]);
     console.log('PASS: official count, search, category, empty state, mobile overflow, missing master, duplicate rejection, no legacy fallback');
   } finally {await browser.close();}

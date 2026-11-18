@@ -7,6 +7,7 @@ function item(target,title,body,detail){
  box.append(text('strong',title),text('p',body));
  if(detail){const d=document.createElement('details');d.append(text('summary','근거·다음 조사'),text('p',detail));box.append(d);}
  target.append(box);
+ return box;
 }
 function render(){
  const q=el('workSearch').value.trim().toLowerCase();
@@ -21,7 +22,8 @@ function render(){
  const codes=new Map();
  for(const r of d.top_rise_matches||[]){const k=r.code||r.name;if(!codes.has(k))codes.set(k,[]);codes.get(k).push(r);}
  for(const rows of codes.values())if(match(rows)){
- const r=rows[0];item(el('workMatches'),r.name+' · '+r.code,[...new Set(rows.map(x=>x.angle))].join(' / '),'상품명 기반 조사 후보 · 노출 미확정. 원장 '+r.inventory_asof+' / 신호 '+[...new Set(rows.map(x=>x.signal_id))].join(', ')+' / '+[...new Set(rows.map(x=>x.counter))].join(' / '));
+ const r=rows[0];const card=item(el('workMatches'),r.name+' · '+r.code,[...new Set(rows.map(x=>x.angle))].join(' / '),'상품명 기반 조사 후보 · 노출 미확정. 원장 '+r.inventory_asof+' / 신호 '+[...new Set(rows.map(x=>x.signal_id))].join(', ')+' / '+[...new Set(rows.map(x=>x.counter))].join(' / '));
+ const link=text('a','이 ETF 가격·NAV·수익률 보기 →');link.href='etf.html?q='+encodeURIComponent(r.code);card.append(link);
  }
  for(const id of ['workSignals','workMatches'])if(!el(id).children.length)el(id).textContent=q?'검색 결과 없음':'이번 보고서에 등록된 항목 없음';
  }
@@ -39,7 +41,10 @@ function render(){
  }
  if(state.discovery){
  const t=el('workProduct');t.append(text('p','관찰 대상 목록 · 상품 공백이나 출시 추천을 뜻하지 않습니다.'));
- for(const [key,rows] of Object.entries(state.discovery.groups||{}))for(const r of rows)if(match(r))item(t,r.name,r.primary?'비교 후보 '+r.primary+' / '+r.peer:r.note,'다음 조사: 국내 경쟁상품 중복 → 투자자 수요 → 편입 가능성 → RISE 기존 상품과 차별성');
+ for(const [key,rows] of Object.entries(state.discovery.groups||{}))for(const r of rows)if(match(r)){
+ const card=item(t,r.name,r.primary?'비교 후보 '+r.primary+' / '+r.peer:r.note,'다음 조사: 국내 경쟁상품 중복 → 투자자 수요 → 편입 가능성 → RISE 기존 상품과 차별성');
+ if(r.primary){const link=text('a','이 섹터 실제 수익률·거래량 비교 →');link.href='sectors.html?q='+encodeURIComponent(r.name);card.append(link);}
+ }
  if(d?.product_assessment)t.append(text('p',d.product_assessment));
  }
 }

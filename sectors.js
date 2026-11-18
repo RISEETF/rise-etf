@@ -3,7 +3,9 @@ let sectorData;
 const renderSectors=()=>{
  const target=document.getElementById('sectorRows');target.replaceChildren();
  const key=document.getElementById('sectorSort').value;
- const rows=[...sectorData.rows].sort((a,b)=>key==='sector'?a.sector.localeCompare(b.sector):((b[key]??-Infinity)-(a[key]??-Infinity))||a.code.localeCompare(b.code));
+ const query=document.getElementById('sectorSearch').value.trim().toLowerCase();
+ const rows=sectorData.rows.filter(r=>(r.sector+' '+r.code).toLowerCase().includes(query)).sort((a,b)=>key==='sector'?a.sector.localeCompare(b.sector):((b[key]??-Infinity)-(a[key]??-Infinity))||a.code.localeCompare(b.code));
+ if(!rows.length){target.textContent='검색 결과 없음';return;}
  const fmt=(v,d=2)=>Number.isFinite(v)?v.toLocaleString('ko-KR',{maximumFractionDigits:d}):'미계산';
  for(const row of rows){
  const card=document.createElement('article');
@@ -12,6 +14,8 @@ const renderSectors=()=>{
  target.append(card);
  }
 };
+document.getElementById('sectorSearch').value=(new URLSearchParams(location.search).get('q')||'').slice(0,120);
+document.getElementById('sectorSearch').addEventListener('input',()=>{if(sectorData)renderSectors();});
 document.getElementById('sectorSort').addEventListener('change',()=>{if(sectorData)renderSectors();});
 fetch('data/sector_series/latest.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error(r.status);return r.json();}).then(d=>{
  if(!Array.isArray(d.rows))throw Error('rows');

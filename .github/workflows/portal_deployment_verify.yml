@@ -1,7 +1,7 @@
 name: RISE Portal public deployment verification
 on:
   workflow_run:
-    workflows: ["RISE Intelligence daily orchestration", "KRX ETF primary ledger", "KRX historical enrichment", "Capture dated price and FX series"]
+    workflows: ["RISE Intelligence daily orchestration", "KRX ETF primary ledger", "KRX historical enrichment", "Capture dated price and FX series", "Collect US sector comparison"]
     types: [completed]
   schedule:
     - cron: '15 2,8 * * *'
