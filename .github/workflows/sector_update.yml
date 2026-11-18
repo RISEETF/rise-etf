@@ -1,0 +1,42 @@
+name: Collect US sector comparison
+on:
+  push:
+    branches: [main]
+    paths: ['scripts/collect_sectors.py', 'data/universe/discovery.json', '.github/workflows/sector_update.yml']
+  schedule:
+    - cron: '35 5 * * 2-6'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: rise-data-writer-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest tests.test_sectors -v
+      - name: Collect sector observations
+        id: sector
+        continue-on-error: true
+        run: python scripts/collect_sectors.py
+      - name: Save observations
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/sector_series/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Capture sector comparison observations'
+            git pull --rebase origin main
+            git push
+          fi
+      - if: steps.sector.outcome == 'failure'
+        run: exit 1
