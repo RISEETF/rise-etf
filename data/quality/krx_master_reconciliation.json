@@ -3,9 +3,9 @@
   "status": "KRX_DAILY_IDENTITY_COMPARISON",
   "source_role": "PRIMARY_EXCHANGE_OBSERVATION",
   "source_url": "https://data-dbg.krx.co.kr/svc/apis/etp/etf_bydd_trd",
-  "observed_on": "2026-11-17",
-  "retrieved_at": "2026-11-18T18:16:17.682774+00:00",
-  "raw_sha256": "9e079d52930109065d9d8829bcbcaf2df4ce16db4ff07018abcfb684ae7ba5b2",
+  "observed_on": "2026-11-18",
+  "retrieved_at": "2026-11-19T03:59:32.149282+00:00",
+  "raw_sha256": "887a5f017df0e525c9f4eeed957961bef069e8a9dcd5fd8b2f39f5d3d0dc5ee2",
   "krx_market_count": 1190,
   "issuer_effective_date": "2026-10-04",
   "issuer_source_sha256": "03b85088a26600243470440c642fdd5f275c2e69468fff99af721ec6034e29c3",
@@ -1473,11 +1473,11 @@
   "legal_lifecycle_status": "NOTICE_MONITORING_ONLY_CURRENT_STATUS_NOT_ASSIGNED",
   "note": "Presence is an exchange observation. Absence is not delisting. Name-only codes require identity review.",
   "lifecycle_notices": {
-    "status": "FAILED",
-    "attempted_at": "2026-11-18T18:16:20.175658+00:00",
-    "last_success_at": "2026-11-17T04:58:26.890127+00:00",
-    "window_start": "2026-10-18",
-    "window_end": "2026-11-17",
+    "status": "SUCCESS",
+    "attempted_at": "2026-11-19T03:59:35.072799+00:00",
+    "last_success_at": "2026-11-19T03:59:35.072799+00:00",
+    "window_start": "2026-10-20",
+    "window_end": "2026-11-19",
     "scope": "RISE_TITLE_SEARCH_ROLLING_30_DAYS_NOT_FULL_LIFECYCLE",
     "current_legal_status": "NOT_AUTOMATICALLY_ASSIGNED",
     "search_sources": [
@@ -1488,14 +1488,14 @@
           "forward": "disclosurebystocktype_etf_sub",
           "currentPageSize": "100",
           "pageIndex": "1",
-          "fromDate": "2026-10-18",
-          "toDate": "2026-11-17",
+          "fromDate": "2026-10-20",
+          "toDate": "2026-11-19",
           "etfIsuSrtNm": "RISE",
           "reportNm": "신규상장",
           "orderMode": "",
           "orderStat": ""
         },
-        "sha256": "6f9ba15f1efa90757153c7f668b88fbd957c76a6ea65b66bb68e7cfcab3ecfdb"
+        "sha256": "1068e53cc4cac4c7eea69fb0a6cba5928c03c0e70ef2b94bb5d015192184f143"
       },
       {
         "url": "https://kind.krx.co.kr/disclosure/disclosurebystocktype.do",
@@ -1504,8 +1504,8 @@
           "forward": "disclosurebystocktype_etf_sub",
           "currentPageSize": "100",
           "pageIndex": "1",
-          "fromDate": "2026-10-18",
-          "toDate": "2026-11-17",
+          "fromDate": "2026-10-20",
+          "toDate": "2026-11-19",
           "etfIsuSrtNm": "RISE",
           "reportNm": "상장폐지",
           "orderMode": "",
@@ -1523,7 +1523,7 @@
         "title": "신규상장(KB RISE 27-11 회사채(AA-이상)액티브증권상장지수투자신탁(채권), 상장일 2026.11.17)",
         "publisher": "유가증권시장본부",
         "kind": "LISTING_NOTICE",
-        "search_sha256": "6f9ba15f1efa90757153c7f668b88fbd957c76a6ea65b66bb68e7cfcab3ecfdb",
+        "search_sha256": "1068e53cc4cac4c7eea69fb0a6cba5928c03c0e70ef2b94bb5d015192184f143",
         "event_id": "20261113000714:0269M",
         "code": "0269M0",
         "effective_date": "2026-11-17",
@@ -1547,7 +1547,7 @@
           }
         ],
         "first_seen_at": "2026-11-13T17:17:44.902332+00:00",
-        "last_checked_at": "2026-11-17T04:58:26.890127+00:00",
+        "last_checked_at": "2026-11-19T03:59:35.072799+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1559,7 +1559,7 @@
         "title": "신규상장(KB RISE 미국초대형주TOP10증권상장지수투자신탁(주식), 상장일 2026.11.17)",
         "publisher": "유가증권시장본부",
         "kind": "LISTING_NOTICE",
-        "search_sha256": "6f9ba15f1efa90757153c7f668b88fbd957c76a6ea65b66bb68e7cfcab3ecfdb",
+        "search_sha256": "1068e53cc4cac4c7eea69fb0a6cba5928c03c0e70ef2b94bb5d015192184f143",
         "event_id": "20261113000223:0269N",
         "code": "0269N0",
         "effective_date": "2026-11-17",
@@ -1583,7 +1583,7 @@
           }
         ],
         "first_seen_at": "2026-11-13T17:17:44.902332+00:00",
-        "last_checked_at": "2026-11-17T04:58:26.890127+00:00",
+        "last_checked_at": "2026-11-19T03:59:35.072799+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1619,7 +1619,7 @@
           }
         ],
         "first_seen_at": "2026-11-13T17:17:44.902332+00:00",
-        "last_checked_at": "2026-11-17T04:58:26.890127+00:00",
+        "last_checked_at": "2026-11-19T03:59:35.072799+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1655,7 +1655,7 @@
           }
         ],
         "first_seen_at": "2026-11-06T07:52:39.968951+00:00",
-        "last_checked_at": "2026-11-17T04:58:26.890127+00:00",
+        "last_checked_at": "2026-11-19T03:59:35.072799+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1691,7 +1691,7 @@
           }
         ],
         "first_seen_at": "2026-10-30T16:05:44.046214+00:00",
-        "last_checked_at": "2026-11-17T04:58:26.890127+00:00",
+        "last_checked_at": "2026-11-19T03:59:35.072799+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1727,7 +1727,7 @@
           }
         ],
         "first_seen_at": "2026-10-23T14:19:20.756135+00:00",
-        "last_checked_at": "2026-11-17T04:58:26.890127+00:00",
+        "last_checked_at": "2026-11-19T03:59:35.072799+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1839,7 +1839,6 @@
         "versions": [],
         "in_latest_search": false
       }
-    ],
-    "reason": "HTTPError"
+    ]
   }
 }
