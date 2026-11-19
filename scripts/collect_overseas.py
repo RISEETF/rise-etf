@@ -41,6 +41,9 @@ def parse_yahoo(raw, instrument, now):
         if date in seen:
             raise ValueError("Duplicate session date")
         seen.add(date)
+        if instrument.get("exclude_current_session") and date >= today.isoformat():
+            missing.append(date)
+            continue
         values = [quote[k][i] for k in ("open","high","low","close","volume")] + [adjusted[i]]
         if any(value is None for value in values):
             missing.append(date)
