@@ -98,3 +98,16 @@ class OverseasTests(unittest.TestCase):
 
 
 if __name__=="__main__":unittest.main()
+
+class ClosedSessionTests(unittest.TestCase):
+    def test_intraday_malformed_bar_is_excluded_only_when_requested(self):
+        p=fixture()
+        p['chart']['result'][0]['indicators']['quote'][0]['high'][1]=90
+        now=dt.datetime(2026,9,15,15,tzinfo=dt.timezone.utc)
+        raw=json.dumps(p).encode()
+        parsed=parse_yahoo(raw,{**ITEM,'exclude_current_session':True},now)
+        self.assertEqual([r['date'] for r in parsed['observations']],['2026-09-14'])
+        with self.assertRaises(ValueError):
+            parse_yahoo(raw,ITEM,now)
+        with self.assertRaises(ValueError):
+            parse_yahoo(raw,{**ITEM,'exclude_current_session':True},dt.datetime(2026,9,16,15,tzinfo=dt.timezone.utc))

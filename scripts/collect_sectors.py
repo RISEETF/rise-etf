@@ -50,6 +50,24 @@ def summarize(records, groups, now):
             'currency':'USD', 'production_eligible':False,
             'note':'모든 후보와 SPY의 동일 날짜 비교. 분배금 미반영 종가 수익률. 종가×거래량은 거래대금 근사치이며 호가 스프레드·추적오차가 아님.'}
 
+def publish_result(result, directory):
+    """Keep a complete comparable snapshot when a later attempt is unusable."""
+    directory.mkdir(parents=True, exist_ok=True)
+    good = (result['captured_count'] == result['requested_count']
+            and result.get('start_date') and result.get('end_date'))
+    write_json(directory/'attempt.json', result)
+    write_json(directory/'status.json', {
+        'status': 'SUCCESS' if good else 'FAILED',
+        'attempted_at': result['built_at'],
+        'captured_count': result['captured_count'],
+        'requested_count': result['requested_count'],
+        'reason': None if good else 'INCOMPLETE_OR_UNALIGNED_CAPTURE',
+        'display_policy': 'LAST_COMPLETE_SNAPSHOT',
+    })
+    if good or not (directory/'latest.json').exists():
+        write_json(directory/'latest.json', result)
+    return bool(good)
+
 def main():
     now=dt.datetime.now(dt.timezone.utc)
     groups=json.loads((ROOT/'data/universe/discovery.json').read_text())['groups']['EQUITY_SECTORS']
@@ -57,15 +75,15 @@ def main():
     config['url_template']=config['url_template'].replace('range=2y','range=6mo')
     records={}
     for code in ['SPY']+[g[k] for g in groups for k in ('primary','peer')]:
-        item={'code':code,'name':code,'market':'US_LISTED','currency':'USD','instrument_type':'ETF','timezone':'America/New_York'}
+        item={'code':code,'name':code,'market':'US_LISTED','currency':'USD','instrument_type':'ETF','timezone':'America/New_York','exclude_current_session':True}
         rec=capture_overseas(ROOT/'data/sector_series',config,item,now=now)
         records[code]=rec
         if rec.get('http_status') in (401,403,429):
             break
         time.sleep(0.5)
     result=summarize(records,groups,now)
-    write_json(ROOT/'data/sector_series/latest.json',result)
+    published = publish_result(result, ROOT/'data/sector_series')
     print(json.dumps({'captured':result['captured_count'],'requested':result['requested_count'],'end':result['end_date']}))
-    return 0 if result['captured_count']==result['requested_count'] else 1
+    return 0 if published else 1
 if __name__=='__main__':
     raise SystemExit(main())

@@ -21,4 +21,8 @@ fetch('data/sector_series/latest.json',{cache:'no-store'}).then(r=>{if(!r.ok)thr
  if(!Array.isArray(d.rows))throw Error('rows');
  sectorData=d;document.getElementById('sectorStatus').textContent='수집 '+d.captured_count+'/'+d.requested_count+' (SPY 포함) · 공통 구간 '+(d.start_date||'미확보')+' → '+(d.end_date||'미확보');
  document.getElementById('sectorNote').textContent=d.note;renderSectors();
+ return fetch('data/sector_series/status.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(s=>{
+ const state=document.getElementById('sectorStatus');
+ state.textContent+=' · 최근 시도 '+s.attempted_at+' · '+(s.status==='SUCCESS'?'갱신 성공':'갱신 실패 '+s.captured_count+'/'+s.requested_count+' · 마지막 완전 수집본 표시');
+ }).catch(()=>{document.getElementById('sectorStatus').textContent+=' · 최근 갱신 상태 확인 불가';});
 }).catch(()=>{document.getElementById('sectorStatus').textContent='첫 수집 대기 또는 자료 불러오기 실패. 수익률은 아직 표시하지 않습니다.';});

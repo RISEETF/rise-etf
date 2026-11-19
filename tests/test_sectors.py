@@ -20,3 +20,20 @@ class SectorTests(unittest.TestCase):
         self.assertAlmostEqual(result['rows'][0]['rs_vs_spy_pct'],100*(1.2/1.1-1))
         records['XLK']['events']=[{'date':'2026-11-01','kind':'SPLIT'}]
         self.assertIsNone(summarize(records,*args)['rows'][0]['return_pct'])
+
+class PublicationTests(unittest.TestCase):
+    def test_failed_capture_retains_complete_snapshot(self):
+        import tempfile
+        import json
+        from collect_sectors import publish_result
+        with tempfile.TemporaryDirectory() as temp:
+            directory=Path(temp)
+            good={'built_at':'2026-11-18T01:00:00Z','captured_count':23,'requested_count':23,
+                  'start_date':'2026-10-16','end_date':'2026-11-16'}
+            bad={**good,'captured_count':5,'start_date':None,'end_date':None}
+            self.assertTrue(publish_result(good,directory))
+            self.assertFalse(publish_result(bad,directory))
+            self.assertEqual(json.loads((directory/'latest.json').read_text()),good)
+            self.assertEqual(json.loads((directory/'status.json').read_text())['status'],'FAILED')
+            self.assertTrue(publish_result(good,directory))
+            self.assertEqual(json.loads((directory/'status.json').read_text())['status'],'SUCCESS')
