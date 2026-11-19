@@ -8,14 +8,14 @@ from zoneinfo import ZoneInfo
 from collect_overseas import capture_overseas
 from update_daily import ROOT, write_json
 
-def summarize(records, groups, now):
+def summarize(records, groups, now, horizon=30):
     today = now.astimezone(ZoneInfo('America/New_York')).date().isoformat()
     prices = {code: {r['date']: r for r in rec.get('observations', []) if r['date'] < today}
               for code, rec in records.items() if rec.get('status') == 'CAPTURED'}
     requested = ['SPY'] + [g[k] for g in groups for k in ('primary', 'peer')]
     common = set.intersection(*(set(prices.get(c, {})) for c in requested))
     end = max(common) if common else None
-    target = (dt.date.fromisoformat(end)-dt.timedelta(days=30)).isoformat() if end else None
+    target = (dt.date.fromisoformat(end)-dt.timedelta(days=horizon)).isoformat() if end else None
     starts = [d for d in common if target and (dt.date.fromisoformat(target)-dt.timedelta(days=7)).isoformat() <= d <= target]
     start = max(starts) if starts else None
     rows = []
@@ -45,7 +45,7 @@ def summarize(records, groups, now):
             else:
                 row['comparison_status']='COMMON_PERIOD_UNAVAILABLE'
             rows.append(row)
-    return {'schema_version':1, 'built_at':now.isoformat(), 'start_date':start,'end_date':end,
+    return {'schema_version':1, 'calendar_days':horizon, 'built_at':now.isoformat(), 'start_date':start,'end_date':end,
             'requested_count':len(requested), 'captured_count':len(prices), 'rows':rows,
             'currency':'USD', 'production_eligible':False,
             'note':'모든 후보와 SPY의 동일 날짜 비교. 분배금 미반영 종가 수익률. 종가×거래량은 거래대금 근사치이며 호가 스프레드·추적오차가 아님.'}
@@ -82,6 +82,7 @@ def main():
             break
         time.sleep(0.5)
     result=summarize(records,groups,now)
+    result["windows"] = [summarize(records,groups,now,horizon) for horizon in (7,30,90)]
     published = publish_result(result, ROOT/'data/sector_series')
     print(json.dumps({'captured':result['captured_count'],'requested':result['requested_count'],'end':result['end_date']}))
     return 0 if published else 1
