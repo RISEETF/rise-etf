@@ -37,3 +37,8 @@ document.querySelector('#query').addEventListener('input',render);
 document.querySelectorAll('th[data-key] button').forEach(button=>button.addEventListener('click',()=>{const key=button.parentElement.dataset.key;direction=key===sortKey?-direction:(['name','industry','evidence'].includes(key)?1:-1);sortKey=key;render();}));
 
 for(const id of ['industry','review','minimum'])document.querySelector('#'+id).addEventListener('change',render);
+
+fetch('data/corporate/status.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(s=>{
+ const p=document.createElement('p');p.className='note';p.textContent='최근 수집 시도 '+s.attempted_at+' · 요청 분기 '+s.requested_period+' · '+(s.status==='SUCCESS'?'갱신 성공':'갱신 실패 · 기존 정상 자료 유지 · '+(s.reason==='DART_API_KEY_MISSING'?'수집 인증키 설정 필요':s.reason||'수집 기록 확인'));
+ document.querySelector('#status').after(p);
+}).catch(()=>{const p=document.createElement('p');p.textContent='자동 수집 상태 미확인';document.querySelector('#status').after(p);});
