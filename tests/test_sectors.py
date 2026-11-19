@@ -37,3 +37,11 @@ class PublicationTests(unittest.TestCase):
             self.assertEqual(json.loads((directory/'status.json').read_text())['status'],'FAILED')
             self.assertTrue(publish_result(good,directory))
             self.assertEqual(json.loads((directory/'status.json').read_text())['status'],'SUCCESS')
+
+class HorizonTests(unittest.TestCase):
+    def test_each_window_uses_its_own_start(self):
+        days=['2026-08-18','2026-10-16','2026-11-09','2026-11-16']
+        records={c:{'status':'CAPTURED','observations':[{'date':d,'close':100+i,'volume':10} for i,d in enumerate(days)],'events':[]} for c in ['SPY','XLK','VGT']}
+        groups=[{'name':'tech','primary':'XLK','peer':'VGT'}]
+        now=dt.datetime(2026,11,18,tzinfo=dt.timezone.utc)
+        self.assertEqual([summarize(records,groups,now,h)['start_date'] for h in (7,30,90)],['2026-11-09','2026-10-16','2026-08-18'])
