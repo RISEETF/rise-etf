@@ -63,6 +63,7 @@ def main():
     stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     dest = ROOT / "data/corporate/captures" / stamp
     dest.mkdir(parents=True, exist_ok=True)
+    status("RUNNING")
     raw = request("corpCode.xml", key)
     with zipfile.ZipFile(io.BytesIO(raw)) as z:
         tree = ET.fromstring(z.read("CORPCODE.xml"))
@@ -80,9 +81,9 @@ def main():
             return previous[code]
         corp, name = master[code]
         item = {"code": code, "name": name, "corp_code": corp, "scope": "별도", "collected_at": stamp, "industry": company["industry"], "periods": {}}
-        for period, year, report in [(comparison, str(int(year)-1), "11011"), (args.period, year, reports[suffix])]:
+        for period, report_year, report in [(comparison, str(int(year)-1), "11011"), (args.period, year, reports[suffix])]:
             try:
-                payload = json.loads(request("fnlttSinglAcntAll.json", key, corp_code=corp, bsns_year=year, reprt_code=report, fs_div="OFS"))
+                payload = json.loads(request("fnlttSinglAcntAll.json", key, corp_code=corp, bsns_year=report_year, reprt_code=report, fs_div="OFS"))
                 filename = code + "_" + period + ".json"
                 (dest / filename).write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")))
                 item["periods"][period] = normalize(payload)
