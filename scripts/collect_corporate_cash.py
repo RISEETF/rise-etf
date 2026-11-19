@@ -40,6 +40,30 @@ def normalize(data):
     clues = sorted(set(r.get("account_nm", "") for r in rows if any(w in r.get("account_nm", "") for w in ["공정가치", "수익증권", "단기매매", "집합투자"])))
     return {"status": "ok", "receipt": rows[0]["rcept_no"], "cash": cash, "short": short, "assets": assets, "cash_plus_short": total, "ratio": total / assets["value"] if total is not None and assets["value"] else None, "clues": clues, "fund_evidence": "미확인 · 주석 미분석"}
 
+
+def merge_companies(incoming, old, period, comparison):
+    prior = {c['code']: c for c in old.get('companies', [])}
+    result = []
+    for fresh in incoming:
+        previous = prior.get(fresh['code'], {})
+        periods = dict(previous.get('periods', {}))
+        periods.update({p:v for p,v in fresh['periods'].items() if v.get('status')=='ok'})
+        available = sorted(p for p,v in periods.items() if v.get('status')=='ok' and p <= period)
+        shown = available[-1] if available else None
+        current_ok = fresh['periods'].get(period, {}).get('status')=='ok'
+        item = {**previous, **fresh, 'periods':periods, 'display_period':shown,
+                'refresh_status':'UPDATED' if current_ok else 'RETAINED' if shown else 'UNAVAILABLE',
+                'attempted_at':fresh.get('collected_at'),
+                'collected_at':fresh.get('collected_at') if current_ok else previous.get('collected_at'),
+                'requested_period':period}
+        baseline = str(int(shown[:4])-1)+'-12-31' if shown else comparison
+        item['comparison_period'] = baseline
+        before = periods.get(baseline, {}).get('cash_plus_short')
+        after = periods.get(shown, {}).get('cash_plus_short')
+        item['change'] = after-before if before is not None and after is not None else None
+        result.append(item)
+    return result
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--key-file")
@@ -98,12 +122,18 @@ def main():
         companies = list(pool.map(collect, json.loads(UNIVERSE.read_text())))
     snapshot = {"schema_version": 1, "collected_at": stamp, "period": args.period, "comparison_period": comparison, "scope": "OFS", "pilot": True, "companies": companies}
     (dest / "snapshot.json").write_text(json.dumps(snapshot, ensure_ascii=False, indent=2))
-    if all(c["periods"][args.period]["status"] == "ok" for c in companies):
-        (ROOT / "data/corporate/latest.json").write_text(json.dumps(snapshot, ensure_ascii=False, indent=2))
-        status("SUCCESS", company_count=len(companies))
-    else:
-        status("FAILED", reason="INCOMPLETE_COLLECTION", successful_count=sum(c["periods"][args.period]["status"]=="ok" for c in companies), requested_count=len(companies))
-        raise SystemExit("Incomplete collection: latest left unchanged")
+    old = json.loads(latest.read_text()) if latest.exists() else {}
+    published = merge_companies(companies, old, args.period, comparison)
+    snapshot['companies'] = published
+    snapshot['period_policy'] = 'PER_COMPANY_DISPLAY_PERIOD'
+    updated = sum(c['refresh_status']=='UPDATED' for c in published)
+    retained = sum(c['refresh_status']=='RETAINED' for c in published)
+    snapshot['coverage'] = {'updated':updated,'retained':retained,'unavailable':len(published)-updated-retained}
+    latest.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2))
+    status('SUCCESS' if updated==len(published) else 'PARTIAL' if updated else 'FAILED',
+           **snapshot['coverage'], requested_count=len(published))
+    if not updated:
+        raise SystemExit("No fresh quarterly statements; prior company observations retained")
 
 if __name__ == "__main__":
     main()
