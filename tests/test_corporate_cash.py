@@ -44,3 +44,17 @@ class QuarterlyExecutionTests(unittest.TestCase):
                 module.main()
             self.assertEqual(sorted(calls),[('2025','11011'),('2026','11014')])
             self.assertEqual(json.loads((root/'data/corporate/latest.json').read_text())['period'],'2026-09-30')
+
+class PartialPublicationTests(unittest.TestCase):
+    def test_mixed_periods_and_changes(self):
+        from scripts.collect_corporate_cash import merge_companies
+        ok=lambda v: {'status':'ok','cash_plus_short':v}
+        old={'companies':[{'code':'B','periods':{'2025-12-31':ok(10),'2026-06-30':ok(20)}}]}
+        fresh=[{'code':'A','periods':{'2025-12-31':ok(30),'2026-09-30':ok(50)}},
+               {'code':'B','periods':{'2026-09-30':{'status':'failed'}}},
+               {'code':'C','periods':{'2026-09-30':{'status':'failed'}}}]
+        result=merge_companies(fresh,old,'2026-09-30','2025-12-31')
+        self.assertEqual([r['refresh_status'] for r in result],['UPDATED','RETAINED','UNAVAILABLE'])
+        self.assertEqual(result[1]['display_period'],'2026-06-30')
+        self.assertEqual(result[1]['change'],10)
+        self.assertIsNone(result[2]['change'])
