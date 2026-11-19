@@ -1,9 +1,9 @@
 {
   "schema_version": "0.9",
-  "built_at_utc": "2026-11-18T03:24:18.695744+00:00",
-  "source_episode_built_at_utc": "2026-11-18T03:24:18.671748+00:00",
-  "gate_state": "CHALLENGE",
-  "independent_persistent_channel_count": 1,
+  "built_at_utc": "2026-11-19T02:58:33.488009+00:00",
+  "source_episode_built_at_utc": "2026-11-19T02:58:33.457812+00:00",
+  "gate_state": "KEEP",
+  "independent_persistent_channel_count": 0,
   "watch_channel_count": 0,
   "extreme_event_override": false,
   "production_eligible": false,
@@ -11,59 +11,46 @@
   "channels": [
     {
       "channel_id": "RATES",
-      "channel_state": "PERSISTENT_ACTIVE",
-      "counts_as_independent_confirmation": true,
+      "channel_state": "NON_CONFIRMING",
+      "counts_as_independent_confirmation": false,
       "evidence": [
         {
           "signal_id": "SIG-RATE-001",
           "signal_state": "WATCH",
           "episode_status": "WEAKENING",
-          "persistence_runs": 3,
-          "distinct_trigger_observations": 3,
+          "persistence_runs": 4,
+          "distinct_trigger_observations": 4,
           "peak_zscore": 2.5029144432600208,
-          "latest_zscore": 1.9304350253320797,
+          "latest_zscore": 1.5181739888390557,
           "confirmation_eligible": true,
           "confidence": "MODERATE",
           "primary_series": "DGS10"
         },
         {
           "signal_id": "SIG-RATE-002",
-          "signal_state": "ACTIVE_CANDIDATE",
-          "episode_status": "ACTIVE",
-          "persistence_runs": 3,
-          "distinct_trigger_observations": 3,
+          "signal_state": "WATCH",
+          "episode_status": "WEAKENING",
+          "persistence_runs": 4,
+          "distinct_trigger_observations": 4,
           "peak_zscore": 3.235077641841007,
-          "latest_zscore": 2.1569083366562602,
+          "latest_zscore": 1.5181739888390557,
           "confirmation_eligible": true,
           "confidence": "HIGH",
           "primary_series": "DGS2"
         }
       ],
-      "fresh_persistent_signal_count": 1,
+      "fresh_persistent_signal_count": 0,
       "fresh_watch_signal_count": 0,
       "nonconfirming_or_stale_count": 0
     },
     {
       "channel_id": "CREDIT",
-      "channel_state": "NON_CONFIRMING",
+      "channel_state": "NO_EPISODE",
       "counts_as_independent_confirmation": false,
-      "evidence": [
-        {
-          "signal_id": "SIG-CREDIT-001",
-          "signal_state": "NORMAL",
-          "episode_status": "WEAKENING",
-          "persistence_runs": 2,
-          "distinct_trigger_observations": 1,
-          "peak_zscore": -1.709543192209564,
-          "latest_zscore": -0.5551683289280119,
-          "confirmation_eligible": false,
-          "confidence": "HIGH",
-          "primary_series": "BAMLH0A0HYM2"
-        }
-      ],
+      "evidence": [],
       "fresh_persistent_signal_count": 0,
       "fresh_watch_signal_count": 0,
-      "nonconfirming_or_stale_count": 1
+      "nonconfirming_or_stale_count": 0
     },
     {
       "channel_id": "FUNDING",
@@ -85,25 +72,12 @@
     },
     {
       "channel_id": "ENERGY",
-      "channel_state": "NON_CONFIRMING",
+      "channel_state": "NO_EPISODE",
       "counts_as_independent_confirmation": false,
-      "evidence": [
-        {
-          "signal_id": "SIG-ENERGY-001",
-          "signal_state": "NORMAL",
-          "episode_status": "WEAKENING",
-          "persistence_runs": 4,
-          "distinct_trigger_observations": 2,
-          "peak_zscore": -1.8385641840477476,
-          "latest_zscore": -0.4417022472257112,
-          "confirmation_eligible": false,
-          "confidence": "HIGH",
-          "primary_series": "DCOILWTICO"
-        }
-      ],
+      "evidence": [],
       "fresh_persistent_signal_count": 0,
       "fresh_watch_signal_count": 0,
-      "nonconfirming_or_stale_count": 1
+      "nonconfirming_or_stale_count": 0
     },
     {
       "channel_id": "VOLATILITY",
@@ -112,20 +86,20 @@
       "evidence": [
         {
           "signal_id": "SIG-MKT-001",
-          "signal_state": "NORMAL",
+          "signal_state": "WATCH",
           "episode_status": "WEAKENING",
-          "persistence_runs": 3,
-          "distinct_trigger_observations": 2,
+          "persistence_runs": 4,
+          "distinct_trigger_observations": 3,
           "peak_zscore": -2.903580159305942,
-          "latest_zscore": 0.8680511327777483,
-          "confirmation_eligible": false,
+          "latest_zscore": 1.95641677972526,
+          "confirmation_eligible": true,
           "confidence": "MODERATE",
           "primary_series": "VIXCLS"
         }
       ],
       "fresh_persistent_signal_count": 0,
       "fresh_watch_signal_count": 0,
-      "nonconfirming_or_stale_count": 1
+      "nonconfirming_or_stale_count": 0
     }
   ],
   "governance": {
