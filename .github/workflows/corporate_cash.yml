@@ -1,0 +1,52 @@
+name: Refresh corporate quarterly cash
+on:
+  push:
+    branches: [main]
+    paths: ['scripts/collect_corporate_cash.py', '.github/workflows/corporate_cash.yml']
+  schedule:
+    - cron: '40 21 * * 0'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: rise-data-writer-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest tests.test_corporate_cash -v
+      - name: Refresh latest due quarter
+        id: collect
+        continue-on-error: true
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: |
+          python - <<'PY'
+          import datetime, subprocess
+          today=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).date()
+          quarters=[datetime.date(y,m,d) for y in (today.year-1,today.year) for m,d in ((3,31),(6,30),(9,30),(12,31))]
+          # Operational collection delay, not a statutory filing deadline.
+          period=max(q for q in quarters if q+datetime.timedelta(days=50 if q.month!=12 else 100)<=today)
+          subprocess.run(['python','scripts/collect_corporate_cash.py','--period',period.isoformat()],check=True)
+          PY
+      - name: Save snapshots and status
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/corporate/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh corporate quarterly cash and collection status'
+            git pull --rebase origin main
+            git push
+          fi
+      - if: steps.collect.outcome == 'failure'
+        run: exit 1

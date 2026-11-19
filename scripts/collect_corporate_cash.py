@@ -43,10 +43,22 @@ def normalize(data):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--key-file")
+    parser.add_argument("--period", default="2026-06-30", help="YYYY-MM-DD quarter end")
     parser.add_argument("--only-new", action="store_true", help="Keep existing same-period companies; collect newly added codes only")
     args = parser.parse_args()
+    year, suffix = args.period[:4], args.period[5:]
+    reports = {"03-31":"11013","06-30":"11012","09-30":"11014","12-31":"11011"}
+    if suffix not in reports or not year.isdigit() or len(year)!=4:
+        raise SystemExit("Unsupported quarter end")
+    datetime.date.fromisoformat(args.period)
+    comparison = str(int(year)-1)+"-12-31"
+    def status(state, **extra):
+        record = {"status":state, "requested_period":args.period,
+                  "attempted_at":datetime.datetime.now(datetime.timezone.utc).isoformat(), **extra}
+        (ROOT/"data/corporate/status.json").write_text(json.dumps(record, ensure_ascii=False, indent=2))
     key = Path(args.key_file).read_text().strip() if args.key_file else os.environ.get("DART_API_KEY", "")
     if not key:
+        status("FAILED", reason="DART_API_KEY_MISSING")
         raise SystemExit("DART_API_KEY or --key-file required")
     stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     dest = ROOT / "data/corporate/captures" / stamp
@@ -59,7 +71,7 @@ def main():
     latest = ROOT / "data/corporate/latest.json"
     if args.only_new and latest.exists():
         old = json.loads(latest.read_text())
-        if (old["period"], old["comparison_period"], old["scope"]) != ("2026-06-30", "2025-12-31", "OFS"):
+        if (old["period"], old["comparison_period"], old["scope"]) != (args.period, comparison, "OFS"):
             raise SystemExit("Existing snapshot period/scope mismatch")
         previous = {c["code"]: dict(c, collected_at=c.get("collected_at", old["collected_at"])) for c in old["companies"]}
     def collect(company):
@@ -68,7 +80,7 @@ def main():
             return previous[code]
         corp, name = master[code]
         item = {"code": code, "name": name, "corp_code": corp, "scope": "별도", "collected_at": stamp, "industry": company["industry"], "periods": {}}
-        for period, year, report in [("2025-12-31", "2025", "11011"), ("2026-06-30", "2026", "11012")]:
+        for period, year, report in [(comparison, str(int(year)-1), "11011"), (args.period, year, reports[suffix])]:
             try:
                 payload = json.loads(request("fnlttSinglAcntAll.json", key, corp_code=corp, bsns_year=year, reprt_code=report, fs_div="OFS"))
                 filename = code + "_" + period + ".json"
@@ -77,18 +89,20 @@ def main():
                 item["periods"][period]["raw"] = str((dest / filename).relative_to(ROOT))
             except Exception as exc:
                 item["periods"][period] = {"status": "failed", "error": type(exc).__name__}
-        before, after = [item["periods"][p].get("cash_plus_short") for p in ["2025-12-31", "2026-06-30"]]
+        before, after = [item["periods"][p].get("cash_plus_short") for p in [comparison, args.period]]
         item["change"] = after - before if before is not None and after is not None else None
         print(name, {p: v["status"] for p, v in item["periods"].items()}, flush=True)
         return item
     with ThreadPoolExecutor(max_workers=5) as pool:
         companies = list(pool.map(collect, json.loads(UNIVERSE.read_text())))
-    snapshot = {"schema_version": 1, "collected_at": stamp, "period": "2026-06-30", "comparison_period": "2025-12-31", "scope": "OFS", "pilot": True, "companies": companies}
+    snapshot = {"schema_version": 1, "collected_at": stamp, "period": args.period, "comparison_period": comparison, "scope": "OFS", "pilot": True, "companies": companies}
     (dest / "snapshot.json").write_text(json.dumps(snapshot, ensure_ascii=False, indent=2))
-    if all(c["periods"]["2026-06-30"]["status"] == "ok" for c in companies):
+    if all(c["periods"][args.period]["status"] == "ok" for c in companies):
         (ROOT / "data/corporate/latest.json").write_text(json.dumps(snapshot, ensure_ascii=False, indent=2))
+        status("SUCCESS", company_count=len(companies))
     else:
-        print("Incomplete collection: latest left unchanged")
+        status("FAILED", reason="INCOMPLETE_COLLECTION", successful_count=sum(c["periods"][args.period]["status"]=="ok" for c in companies), requested_count=len(companies))
+        raise SystemExit("Incomplete collection: latest left unchanged")
 
 if __name__ == "__main__":
     main()
