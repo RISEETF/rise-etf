@@ -26,19 +26,22 @@ function render(){
  if(key==='sectors'&&d)append(row,'small',state.status===undefined?'갱신 상태 확인 중':state.status===null?'최근 갱신 상태 확인 불가':state.status.status==='SUCCESS'?'최근 갱신 성공':'최근 갱신 실패 · 마지막 완전 수집본 표시');
  }
  const target=document.getElementById('sectorOverview');target.replaceChildren();
- const d=state.sectors,status=document.getElementById('sectorOverviewStatus');
- if(!d){status.textContent=d===null?'자료 연결 실패':'자료 확인 중';return;}
+ const days=Number(document.getElementById('sectorOverviewPeriod').value);
+ const source=state.sectors;
+ const d=source?(source.windows||[]).find(w=>w.calendar_days===days)||(days===30?source:null):source,status=document.getElementById('sectorOverviewStatus');
+ if(!d){status.textContent=d===null?'선택 기간 자료 미확보':'자료 확인 중';return;}
  status.textContent=(d.start_date||'미확보')+' → '+(d.end_date||'미확보')+' · USD · 종가 수익률, 분배금 미반영'+(state.status&&state.status.status!=='SUCCESS'?' · 최근 갱신 실패, 과거 자료':'');
  const key=document.getElementById('sectorOverviewSort').value;
  const rows=(d.rows||[]).filter(r=>Number.isFinite(r[key])).sort((a,b)=>b[key]-a[key]||a.code.localeCompare(b.code)).slice(0,5);
  if(!rows.length)append(target,'p','계산 가능한 자료 없음');
  for(const r of rows){
  const row=document.createElement('div');row.className='work-item';target.append(row);
- append(row,'a',r.sector+' · '+r.code+' →').href='sectors.html?q='+encodeURIComponent(r.code);
+ append(row,'a',r.sector+' · '+r.code+' →').href='sectors.html?q='+encodeURIComponent(r.code)+'&days='+days;
  append(row,'p',key==='rs_vs_spy_pct'?'SPY 대비 '+r[key].toFixed(2)+'%':'종가×거래량 중앙값 '+Math.round(r[key]).toLocaleString('ko-KR')+' USD');
  }
  append(target,'small','ETF 상위 5개입니다. 같은 섹터가 중복될 수 있으며 거래대금은 자금 유입액이 아닙니다.');
 }
+document.getElementById('sectorOverviewPeriod').addEventListener('change',render);
 document.getElementById('sectorOverviewSort').addEventListener('change',render);
 for(const [key,label,path] of [...configs,['status','섹터 갱신','data/sector_series/status.json']]){
  fetch(path,{cache:'no-store'}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(d=>{state[key]=d;render();}).catch(()=>{state[key]=null;render();});

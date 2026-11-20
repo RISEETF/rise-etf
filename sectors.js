@@ -19,6 +19,8 @@ const renderSectors=()=>{
  target.append(card);
  }
 };
+const linkedDays=new URLSearchParams(location.search).get('days');
+if(['7','30','90'].includes(linkedDays))document.getElementById('sectorHorizon').value=linkedDays;
 document.getElementById('sectorHorizon').addEventListener('change',()=>{if(sectorData)renderSectors();});
 document.getElementById('sectorSearch').value=(new URLSearchParams(location.search).get('q')||'').slice(0,120);
 document.getElementById('sectorSearch').addEventListener('input',()=>{if(sectorData)renderSectors();});
