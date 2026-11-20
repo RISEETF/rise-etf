@@ -247,6 +247,8 @@ print(json.dumps(compose(prepare_input(root,datetime.now(timezone.utc)),read_jso
     await page.waitForSelector('#sectorRows article');
     assert.equal(await page.locator('#sectorRows article').count(),1);
     assert.match(await page.locator('#sectorRows').textContent(),/XLK/);
+    assert.equal(await page.locator('#sectorMatrix tr').count(),1);
+    assert.equal(await page.locator('#sectorMatrix td').count(),3);
     await page.fill('#sectorSearch','NO_SUCH_SECTOR');
     assert.match(await page.locator('#sectorRows').textContent(),/검색 결과 없음/);
     await page.goto(url+'/etf.html?q=148020');
