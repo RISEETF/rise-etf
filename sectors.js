@@ -9,6 +9,7 @@ const renderSectors=()=>{
  if(!windowData){target.textContent='선택 기간 자료는 다음 수집 후 제공됩니다.';return;}
  const query=document.getElementById('sectorSearch').value.trim().toLowerCase();
  const rows=windowData.rows.filter(r=>(r.sector+' '+r.code).toLowerCase().includes(query)).sort((a,b)=>key==='sector'?a.sector.localeCompare(b.sector):((b[key]??-Infinity)-(a[key]??-Infinity))||a.code.localeCompare(b.code));
+ renderMatrix(query);
  if(!rows.length){target.textContent='검색 결과 없음';return;}
  const fmt=(v,d=2)=>Number.isFinite(v)?v.toLocaleString('ko-KR',{maximumFractionDigits:d}):'미계산';
  for(const row of rows){
@@ -31,3 +32,20 @@ fetch('data/sector_series/latest.json',{cache:'no-store'}).then(r=>{if(!r.ok)thr
  state.textContent+=' · 최근 시도 '+s.attempted_at+' · '+(s.status==='SUCCESS'?'갱신 성공':'갱신 실패 '+s.captured_count+'/'+s.requested_count+' · 마지막 완전 수집본 표시');
  }).catch(()=>{document.getElementById('sectorStatus').textContent+=' · 최근 갱신 상태 확인 불가';});
 }).catch(()=>{document.getElementById('sectorStatus').textContent='첫 수집 대기 또는 자료 불러오기 실패. 수익률은 아직 표시하지 않습니다.';});
+
+function renderMatrix(query){
+ const target=document.getElementById('sectorMatrix');target.replaceChildren();
+ for(const item of sectorData.rows.filter(r=>(r.sector+' '+r.code).toLowerCase().includes(query)).sort((a,b)=>a.sector.localeCompare(b.sector)||a.code.localeCompare(b.code))){
+ const tr=document.createElement('tr'),name=document.createElement('th');name.scope='row';name.textContent=item.sector+' · '+item.code;tr.append(name);
+ for(const days of [7,30,90]){
+ const w=(sectorData.windows||[]).find(w=>w.calendar_days===days)||(days===30?sectorData:null);
+ const row=w?.rows.find(r=>r.code===item.code),v=row?.rs_vs_spy_pct,td=document.createElement('td');
+ td.textContent=Number.isFinite(v)?(v>0?'+':'')+v.toFixed(2)+'%':'미계산';
+ td.style.cssText='text-align:right;padding:10px;border-bottom:1px solid #e0e5e9;white-space:nowrap';
+ if(Number.isFinite(v))td.style.backgroundColor=v>0?'#e5f3eb':v<0?'#fae8e8':'#f1f3f5';
+ td.title=w?((w.start_date||'미확보')+' → '+(w.end_date||'미확보')):'기간 자료 미확보';tr.append(td);
+ }
+ target.append(tr);
+ }
+ if(!target.children.length){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=4;td.textContent='검색 결과 없음';tr.append(td);target.append(tr);}
+}
