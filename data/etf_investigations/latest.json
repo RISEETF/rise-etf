@@ -10,58 +10,37 @@
     "status": "UNCALIBRATED_RESEARCH_ONLY"
   },
   "source": "KRX_OPEN_API_ETF_DAILY",
-  "observation_date": "2026-11-18",
-  "source_retrieved_at": "2026-11-19T18:25:57.099337+00:00",
-  "source_raw_sha256": "887a5f017df0e525c9f4eeed957961bef069e8a9dcd5fd8b2f39f5d3d0dc5ee2",
+  "observation_date": "2026-11-19",
+  "source_retrieved_at": "2026-11-20T03:53:03.639686+00:00",
+  "source_raw_sha256": "66cfd6a4178727bb26a26100c768e75eea18fd451910d9778332cea08013b388",
   "screened_count": 1190,
   "metric_coverage": {
     "price": 1190,
     "nav_gap": 1190,
     "volume": 1176
   },
-  "candidate_count": 85,
-  "deferred_count": 80,
+  "candidate_count": 175,
+  "deferred_count": 170,
   "items": [
     {
-      "ticker": "319640",
-      "name": "TIGER 골드선물(H)",
-      "observation_date": "2026-11-18",
-      "signals": [
-        {
-          "kind": "NAV_GAP",
-          "value": -2.3505,
-          "unit": "%"
-        },
-        {
-          "kind": "VOLUME_SPIKE",
-          "value": 7.568,
-          "unit": "x",
-          "baseline_sessions": 20
-        }
-      ],
-      "state": "PDF_PENDING",
-      "holdings_verified": false,
-      "pdf_request": {
-        "ticker": "319640",
-        "requested_date": "2026-11-18",
-        "source": "KRX",
-        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
-      }
-    },
-    {
-      "ticker": "0155N0",
-      "name": "HANARO K휴머노이드테마TOP10",
-      "observation_date": "2026-11-18",
+      "ticker": "395150",
+      "name": "KODEX 웹툰&드라마",
+      "observation_date": "2026-11-19",
       "signals": [
         {
           "kind": "PRICE_MOVE",
-          "value": 9.0988,
+          "value": 14.3278,
           "unit": "%",
-          "prior_date": "2026-11-17"
+          "prior_date": "2026-11-18"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": 2.051,
+          "unit": "%"
         },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 3.1995,
+          "value": 19.1552,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -69,40 +48,31 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "0155N0",
-        "requested_date": "2026-11-18",
+        "ticker": "395150",
+        "requested_date": "2026-11-19",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
     },
     {
-      "ticker": "265690",
-      "name": "ACE 러시아MSCI(합성)",
-      "observation_date": "2026-11-18",
+      "ticker": "487950",
+      "name": "KODEX 대만테크고배당다우존스",
+      "observation_date": "2026-11-19",
       "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": -5.0235,
+          "unit": "%",
+          "prior_date": "2026-11-18"
+        },
         {
           "kind": "NAV_GAP",
-          "value": 17465.3427,
+          "value": -3.3216,
           "unit": "%"
-        }
-      ],
-      "state": "PDF_PENDING",
-      "holdings_verified": false,
-      "pdf_request": {
-        "ticker": "265690",
-        "requested_date": "2026-11-18",
-        "source": "KRX",
-        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
-      }
-    },
-    {
-      "ticker": "356540",
-      "name": "ACE 종합채권(AA-이상)액티브",
-      "observation_date": "2026-11-18",
-      "signals": [
+        },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 18.6291,
+          "value": 3.2821,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -110,20 +80,26 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "356540",
-        "requested_date": "2026-11-18",
+        "ticker": "487950",
+        "requested_date": "2026-11-19",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
     },
     {
-      "ticker": "0135Y0",
-      "name": "IBK 중기종합채권(AA-이상)액티브",
-      "observation_date": "2026-11-18",
+      "ticker": "388280",
+      "name": "RISE K엔터&여행레저",
+      "observation_date": "2026-11-19",
       "signals": [
         {
+          "kind": "PRICE_MOVE",
+          "value": 5.7522,
+          "unit": "%",
+          "prior_date": "2026-11-18"
+        },
+        {
           "kind": "VOLUME_SPIKE",
-          "value": 16.771,
+          "value": 21.9268,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -131,8 +107,62 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "0135Y0",
-        "requested_date": "2026-11-18",
+        "ticker": "388280",
+        "requested_date": "2026-11-19",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "228800",
+      "name": "TIGER 여행레저",
+      "observation_date": "2026-11-19",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 6.6536,
+          "unit": "%",
+          "prior_date": "2026-11-18"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 19.2795,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "228800",
+        "requested_date": "2026-11-19",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "410870",
+      "name": "TIME K컬처액티브",
+      "observation_date": "2026-11-19",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 7.8576,
+          "unit": "%",
+          "prior_date": "2026-11-18"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 14.9808,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "410870",
+        "requested_date": "2026-11-19",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
