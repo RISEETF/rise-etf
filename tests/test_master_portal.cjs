@@ -35,6 +35,20 @@ const server = http.createServer((req,res) => {
     const inventory=JSON.parse(fs.readFileSync(path.join(root,'data/quality/krx_rise_inventory.json')));
     assert.equal(await page.locator('#etfCount').textContent(),`${inventory.observed_count}개`);
     assert.equal(await page.locator('.metric').count(),4);
+    await page.waitForFunction(()=>document.querySelectorAll('#macroBoard .macro-card').length>0);
+    const homeReport=JSON.parse(fs.readFileSync(path.join(root,'intelligence/data/latest.json')));
+    assert.equal(await page.locator('#macroBoard .macro-card').count(),homeReport.observations.length);
+    assert.equal(await page.locator('nav[aria-label="주 메뉴"]').count(),1);
+    assert.equal(await page.locator('nav[aria-label="전체 서비스"]').count(),0);
+    const sectorHome=JSON.parse(fs.readFileSync(path.join(root,'data/sector_series/latest.json')));
+    for(const days of [7,30,90]){
+      await page.locator('#sectorOverviewPeriod').selectOption(String(days));
+      const window=(sectorHome.windows||[]).find(w=>w.calendar_days===days)||(days===30?sectorHome:null);
+      const expected=(window?.rows||[]).filter(r=>r.role==='primary').length;
+      await page.waitForFunction(n=>document.querySelectorAll('#sectorHeatmap .sector-tile').length===n,expected);
+      if(expected)assert.ok((await page.locator('#sectorHeatmap a').first().getAttribute('href')).endsWith('&days='+days));
+    }
+    await page.locator('#sectorOverviewPeriod').selectOption('30');
     assert.equal(await page.locator('.modules > a').count(),8);
     assert.equal(await page.locator('.modules a[href="sectors.html"]').count(),1);
     assert.equal(await page.locator('.modules a[href="corporate.html"]').count(),1);

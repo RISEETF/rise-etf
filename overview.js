@@ -26,13 +26,21 @@ function render(){
  if(key==='sectors'&&d)append(row,'small',state.status===undefined?'갱신 상태 확인 중':state.status===null?'최근 갱신 상태 확인 불가':state.status.status==='SUCCESS'?'최근 갱신 성공':'최근 갱신 실패 · 마지막 완전 수집본 표시');
  }
  const target=document.getElementById('sectorOverview');target.replaceChildren();
+ const heat=document.getElementById('sectorHeatmap');heat.replaceChildren();
  const days=Number(document.getElementById('sectorOverviewPeriod').value);
  const source=state.sectors;
  const d=source?(source.windows||[]).find(w=>w.calendar_days===days)||(days===30?source:null):source,status=document.getElementById('sectorOverviewStatus');
- if(!d){status.textContent=d===null?'선택 기간 자료 미확보':'자료 확인 중';return;}
+ if(!d){status.textContent=source===undefined?'자료 확인 중':source===null?'섹터 자료 연결 실패':'선택 기간 자료 미확보';return;}
  status.textContent=(d.start_date||'미확보')+' → '+(d.end_date||'미확보')+' · USD · 종가 수익률, 분배금 미반영'+(state.status&&state.status.status!=='SUCCESS'?' · 최근 갱신 실패, 과거 자료':'');
  const key=document.getElementById('sectorOverviewSort').value;
- const rows=(d.rows||[]).filter(r=>Number.isFinite(r[key])).sort((a,b)=>b[key]-a[key]||a.code.localeCompare(b.code)).slice(0,5);
+ for(const r of (d.rows||[]).filter(r=>r.role==='primary').sort((a,b)=>(Number.isFinite(b[key])?b[key]:-Infinity)-(Number.isFinite(a[key])?a[key]:-Infinity))){
+ const a=append(heat,'a',r.sector);a.href='sectors.html?q='+encodeURIComponent(r.code)+'&days='+days;
+ const v=r.rs_vs_spy_pct;a.className='sector-tile'+(Number.isFinite(v)?v>0?' positive':v<0?' negative':'':'');
+ append(a,'strong',Number.isFinite(v)?(v>0?'+':'')+v.toFixed(2)+'%':'미확보');
+ append(a,'small',r.code+' · SPY 대비');
+}
+if(!heat.children.length)append(heat,'p','선택 기간의 섹터 비교 자료가 없습니다.');
+const rows=(d.rows||[]).filter(r=>Number.isFinite(r[key])).sort((a,b)=>b[key]-a[key]||a.code.localeCompare(b.code)).slice(0,5);
  if(!rows.length)append(target,'p','계산 가능한 자료 없음');
  for(const r of rows){
  const row=document.createElement('div');row.className='work-item';target.append(row);
