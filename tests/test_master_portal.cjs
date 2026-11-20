@@ -35,6 +35,20 @@ const server = http.createServer((req,res) => {
     const inventory=JSON.parse(fs.readFileSync(path.join(root,'data/quality/krx_rise_inventory.json')));
     assert.equal(await page.locator('#etfCount').textContent(),`${inventory.observed_count}개`);
     assert.equal(await page.locator('.metric').count(),4);
+    const briefReport=JSON.parse(fs.readFileSync(path.join(root,'intelligence/data/latest.json')));
+    await page.waitForFunction(n=>document.querySelectorAll('#workSignals .issue-card').length===n,briefReport.decision_board.length);
+    if(briefReport.decision_board.some(r=>r.signal_id==='SIG-MKT-001')){
+      await page.locator('#workSearch').fill('미국 주식 변동성');
+      assert.equal(await page.locator('#workSignals .issue-card').count(),1);
+      assert.match(await page.locator('#workSignals').textContent(),/내부 검토용 응대 초안/);
+      assert.match(await page.locator('#workSignals').textContent(),/관련성·편입·수혜가 확인된 상품 목록이 아닙니다/);
+      assert.ok((await page.locator('#workSignals .issue-links a').first().getAttribute('href')).startsWith('etf.html?q='));
+      assert.ok(await page.locator('#workSignals .issue-evidence a').count()>0);
+      await page.locator('#workSearch').fill('NO_MATCH_BRIEF_999');
+      assert.equal(await page.locator('#workSignals').textContent(),'검색 결과 없음');
+      await page.locator('#workSearch').fill('');
+    }
+
     await page.waitForFunction(()=>document.querySelectorAll('#macroBoard .macro-card').length>0);
     const homeReport=JSON.parse(fs.readFileSync(path.join(root,'intelligence/data/latest.json')));
     assert.equal(await page.locator('#macroBoard .macro-card').count(),homeReport.observations.length);
