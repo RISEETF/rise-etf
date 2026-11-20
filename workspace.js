@@ -44,7 +44,25 @@ function briefCard(signal,report,target){
  const detail=text('details','');detail.append(text('summary','원시 신호·계산 근거'),text('p',signal.signal_id+' · '+(signal.what_changed||'변화량 미제공')),text('p',signal.confidence||'신뢰 수준 미제공'));card.append(detail);target.append(card);
 }
 
-function render(){
+function renderConnections(){
+ const root=el('connectionStatus');root.replaceChildren();
+ const receipts=state.receipts,queue=state.investigations;
+ if(receipts===undefined||queue===undefined){root.append(text('p','구성내역 확보 기록 확인 중'));return;}
+ if(!receipts||receipts.schema!=='KRX_PDF_RECEIPTS_V1'||!Array.isArray(receipts.items)||!queue){root.append(text('p','구성내역 확보 상태를 확인할 수 없습니다. 자료 미확보와 구분합니다.'));return;}
+ const acquired=receipts.items.filter(r=>r.source==='KRX_PDF'&&['PDF_ACQUIRED','PDF_ACQUIRED_PARTIAL'].includes(r.state));
+ const current=acquired.filter(r=>r.observation_date===queue.observation_date);
+ const covered=new Set(current.map(r=>r.ticker));
+ root.append(text('p','조사 기준일 '+queue.observation_date+' · 현재 우선 조사 '+queue.items.length+'개 중 같은 날짜 구성내역 확보 '+queue.items.filter(r=>covered.has(r.ticker)).length+'개'));
+ const dates=acquired.map(r=>r.observation_date).filter(Boolean).sort();
+ root.append(text('p','누적 확보 기록 '+acquired.length+'건 · 최근 구성내역 기준일 '+(dates.at(-1)||'없음')+' · 비중 누락 기록 '+acquired.filter(r=>r.missing_security_weights>0).length+'건'));
+ root.append(text('p','확보 기록은 수집 여부를 뜻합니다. 전체 RISE 편입 커버리지나 이상신호 원인 검증 완료를 뜻하지 않습니다.'));
+ const button=text('button','현재 조사 대상 자료요청 목록 다운로드');button.type='button';
+ button.addEventListener('click',()=>{
+ const request={schema:'RISE_DATA_REQUEST_V1',created_at:new Date().toISOString(),observation_date:queue.observation_date,scope:'우선 조사 대상 (전체 RISE 목록 아님)',required_fields:['ETF 코드','ETF 명','자료 기준일','구성종목 코드 또는 ISIN','구성종목명','비중(%)','전체/상위 일부 여부','출처'],items:queue.items.map(r=>({ticker:r.ticker,name:r.name,requested_date:queue.observation_date,receipt_present:covered.has(r.ticker)})),note:'기존 KRX 수입기는 원본 CSV와 화면에서 확인한 조회일·ETF 식별 정보를 필요로 합니다. CHECK 파일은 원본 헤더를 확인한 뒤 별도 매핑합니다.'};
+ const url=URL.createObjectURL(new Blob([JSON.stringify(request,null,2)],{type:'application/json'}));const a=text('a','');a.href=url;a.download='rise-data-request-'+queue.observation_date+'.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ });root.append(button);
+}
+function render(){renderConnections();
  const q=el('workSearch').value.trim().toLowerCase();
  const match=x=>JSON.stringify(x).toLowerCase().includes(q);
  for(const [key,id] of [['report','workSignals'],['report','workMatches'],['rs','workRS'],['discovery','workProduct'],['investigations','workInvestigations']]){
@@ -100,7 +118,7 @@ function render(){
 
 }
 el('workSearch').addEventListener('input',render);
-for(const [key,path] of [['report','intelligence/data/latest.json'],['rs','data/research/rs.json'],['discovery','data/universe/discovery.json'],['investigations','data/etf_investigations/latest.json']]){
+for(const [key,path] of [['report','intelligence/data/latest.json'],['rs','data/research/rs.json'],['discovery','data/universe/discovery.json'],['investigations','data/etf_investigations/latest.json'],['receipts','data/etf_investigations/pdf_receipts.json']]){
  fetch(path,{cache:'no-store'}).then(r=>{if(!r.ok)throw Error(r.status);return r.json();}).then(d=>{state[key]=d;render();}).catch(()=>{state[key]=null;render();});
 }
 })();
