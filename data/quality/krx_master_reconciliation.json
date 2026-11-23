@@ -1473,11 +1473,11 @@
   "legal_lifecycle_status": "NOTICE_MONITORING_ONLY_CURRENT_STATUS_NOT_ASSIGNED",
   "note": "Presence is an exchange observation. Absence is not delisting. Name-only codes require identity review.",
   "lifecycle_notices": {
-    "status": "FAILED",
-    "attempted_at": "2026-11-23T03:33:51.258356+00:00",
-    "last_success_at": "2026-11-20T17:55:16.255514+00:00",
-    "window_start": "2026-10-22",
-    "window_end": "2026-11-21",
+    "status": "SUCCESS",
+    "attempted_at": "2026-11-23T21:35:03.051044+00:00",
+    "last_success_at": "2026-11-23T21:35:03.051044+00:00",
+    "window_start": "2026-10-25",
+    "window_end": "2026-11-24",
     "scope": "RISE_TITLE_SEARCH_ROLLING_30_DAYS_NOT_FULL_LIFECYCLE",
     "current_legal_status": "NOT_AUTOMATICALLY_ASSIGNED",
     "search_sources": [
@@ -1488,8 +1488,8 @@
           "forward": "disclosurebystocktype_etf_sub",
           "currentPageSize": "100",
           "pageIndex": "1",
-          "fromDate": "2026-10-22",
-          "toDate": "2026-11-21",
+          "fromDate": "2026-10-25",
+          "toDate": "2026-11-24",
           "etfIsuSrtNm": "RISE",
           "reportNm": "신규상장",
           "orderMode": "",
@@ -1504,17 +1504,53 @@
           "forward": "disclosurebystocktype_etf_sub",
           "currentPageSize": "100",
           "pageIndex": "1",
-          "fromDate": "2026-10-22",
-          "toDate": "2026-11-21",
+          "fromDate": "2026-10-25",
+          "toDate": "2026-11-24",
           "etfIsuSrtNm": "RISE",
           "reportNm": "상장폐지",
           "orderMode": "",
           "orderStat": ""
         },
-        "sha256": "63b605ae1f2bdeb5014e7f4f17a44c64f8791c345a3074a3c1c610f0a9758323"
+        "sha256": "fab9a6d21ff5ff6740ecb69be4ac0ec53bc730d4e6bf5523deb26f3b1f52fd13"
       }
     ],
     "events": [
+      {
+        "receipt_id": "20261123000339",
+        "kind_stock_id": "0122W",
+        "published_at": "2026-11-23T16:23:00+09:00",
+        "name": "RISE 26-11 회사채(AA-이상)액티브",
+        "title": "상장폐지",
+        "publisher": "유가증권시장본부",
+        "kind": "DELISTING_REVIEW",
+        "search_sha256": "fab9a6d21ff5ff6740ecb69be4ac0ec53bc730d4e6bf5523deb26f3b1f52fd13",
+        "event_id": "20261123000339:0122W",
+        "code": "0122W0",
+        "effective_date": null,
+        "verification": "BODY_IDENTITY_REVIEW",
+        "viewer_url": "https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20261123000339",
+        "sources": [
+          {
+            "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20261123000339",
+            "request": null,
+            "sha256": "19b6d94ea5a1510fc96de69ddc302dbf17c2bb29a2ee1d8e6872aded8596fecd"
+          },
+          {
+            "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=searchContents&docNo=20261123000957",
+            "request": null,
+            "sha256": "b8058f33527841d39e9628eb3816ea055542833886b3646abb45be379efc4ac9"
+          },
+          {
+            "url": "https://kind.krx.co.kr/external/2026/11/23/000339/20261123000957/68051.htm",
+            "request": null,
+            "sha256": "6b3a629bb5796c8e5d39c3609ce42a653fb7a4ace4d63b8bfc32609877ac4c28"
+          }
+        ],
+        "first_seen_at": "2026-11-23T21:35:03.051044+00:00",
+        "last_checked_at": "2026-11-23T21:35:03.051044+00:00",
+        "versions": [],
+        "in_latest_search": true
+      },
       {
         "receipt_id": "20261120000153",
         "kind_stock_id": "0122W",
@@ -1523,7 +1559,7 @@
         "title": "ETF 상장폐지 사유 발생(운용사 공시)",
         "publisher": "KB자산운용",
         "kind": "DELISTING_REVIEW",
-        "search_sha256": "63b605ae1f2bdeb5014e7f4f17a44c64f8791c345a3074a3c1c610f0a9758323",
+        "search_sha256": "fab9a6d21ff5ff6740ecb69be4ac0ec53bc730d4e6bf5523deb26f3b1f52fd13",
         "event_id": "20261120000153:0122W",
         "code": "0122W0",
         "effective_date": null,
@@ -1547,7 +1583,7 @@
           }
         ],
         "first_seen_at": "2026-11-20T03:53:10.339285+00:00",
-        "last_checked_at": "2026-11-20T17:55:16.255514+00:00",
+        "last_checked_at": "2026-11-23T21:35:03.051044+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1583,7 +1619,7 @@
           }
         ],
         "first_seen_at": "2026-11-13T17:17:44.902332+00:00",
-        "last_checked_at": "2026-11-20T17:55:16.255514+00:00",
+        "last_checked_at": "2026-11-23T21:35:03.051044+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1619,7 +1655,7 @@
           }
         ],
         "first_seen_at": "2026-11-13T17:17:44.902332+00:00",
-        "last_checked_at": "2026-11-20T17:55:16.255514+00:00",
+        "last_checked_at": "2026-11-23T21:35:03.051044+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1631,7 +1667,7 @@
         "title": "ETF 상장폐지 사유 발생(운용사 공시)",
         "publisher": "KB자산운용",
         "kind": "DELISTING_REVIEW",
-        "search_sha256": "63b605ae1f2bdeb5014e7f4f17a44c64f8791c345a3074a3c1c610f0a9758323",
+        "search_sha256": "fab9a6d21ff5ff6740ecb69be4ac0ec53bc730d4e6bf5523deb26f3b1f52fd13",
         "event_id": "20261113000147:0122W",
         "code": "0122W0",
         "effective_date": null,
@@ -1655,7 +1691,7 @@
           }
         ],
         "first_seen_at": "2026-11-13T17:17:44.902332+00:00",
-        "last_checked_at": "2026-11-20T17:55:16.255514+00:00",
+        "last_checked_at": "2026-11-23T21:35:03.051044+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1667,7 +1703,7 @@
         "title": "ETF 상장폐지 사유 발생(운용사 공시)",
         "publisher": "KB자산운용",
         "kind": "DELISTING_REVIEW",
-        "search_sha256": "63b605ae1f2bdeb5014e7f4f17a44c64f8791c345a3074a3c1c610f0a9758323",
+        "search_sha256": "fab9a6d21ff5ff6740ecb69be4ac0ec53bc730d4e6bf5523deb26f3b1f52fd13",
         "event_id": "20261106000096:0122W",
         "code": "0122W0",
         "effective_date": null,
@@ -1691,7 +1727,7 @@
           }
         ],
         "first_seen_at": "2026-11-06T07:52:39.968951+00:00",
-        "last_checked_at": "2026-11-20T17:55:16.255514+00:00",
+        "last_checked_at": "2026-11-23T21:35:03.051044+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1703,7 +1739,7 @@
         "title": "ETF 상장폐지 사유 발생(운용사 공시)",
         "publisher": "KB자산운용",
         "kind": "DELISTING_REVIEW",
-        "search_sha256": "63b605ae1f2bdeb5014e7f4f17a44c64f8791c345a3074a3c1c610f0a9758323",
+        "search_sha256": "fab9a6d21ff5ff6740ecb69be4ac0ec53bc730d4e6bf5523deb26f3b1f52fd13",
         "event_id": "20261030000166:0122W",
         "code": "0122W0",
         "effective_date": null,
@@ -1727,7 +1763,7 @@
           }
         ],
         "first_seen_at": "2026-10-30T16:05:44.046214+00:00",
-        "last_checked_at": "2026-11-20T17:55:16.255514+00:00",
+        "last_checked_at": "2026-11-23T21:35:03.051044+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1765,7 +1801,7 @@
         "first_seen_at": "2026-10-23T14:19:20.756135+00:00",
         "last_checked_at": "2026-11-20T17:55:16.255514+00:00",
         "versions": [],
-        "in_latest_search": true
+        "in_latest_search": false
       },
       {
         "receipt_id": "20261016000464",
@@ -1875,7 +1911,6 @@
         "versions": [],
         "in_latest_search": false
       }
-    ],
-    "reason": "HTTPError"
+    ]
   }
 }

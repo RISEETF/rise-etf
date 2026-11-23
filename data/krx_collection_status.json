@@ -1,10 +1,35 @@
 {
-  "status": "SUCCESS",
-  "attempted_at": "2026-11-23T03:33:46.411591+00:00",
-  "requested_asof": "2026-11-23",
-  "observation_date": "2026-11-20",
-  "lag_calendar_days": 3,
-  "source_retrieved_at": "2026-11-23T03:33:46.411747+00:00",
-  "raw_sha256": "0e43b928fdb7afd3cf9e7f745e969492394df60fc798f50cbabb98472440cf9b",
-  "note": "Collection succeeded; this does not certify the latest trading date. Calendar lag includes holidays."
+  "status": "FAILED",
+  "attempted_at": "2026-11-23T21:35:01.618246+00:00",
+  "reason": "KRX_FIELD_COVERAGE_LOW",
+  "last_success_preserved": true,
+  "quality": {
+    "observation_date": "2026-11-22",
+    "record_count": 1190,
+    "field_coverage": {
+      "close": 0.0,
+      "nav": 0.0,
+      "volume": 0.0,
+      "trading_value": 0.0,
+      "market_cap": 0.0,
+      "net_assets": 0.0,
+      "listed_shares": 1.0
+    },
+    "failed_fields": [
+      "close",
+      "nav",
+      "volume"
+    ],
+    "required_ratio": 0.95,
+    "source_field_present_rows": {
+      "TDD_CLSPRC": 1190,
+      "NAV": 1190,
+      "ACC_TRDVOL": 1190,
+      "ACC_TRDVAL": 1190,
+      "MKTCAP": 1190,
+      "INVSTASST_NETASST_TOTAMT": 1190,
+      "LIST_SHRS": 1190
+    },
+    "raw_sha256": "9cced60dca4e7ccd0ca3036a40690dc3f56f1d32ef96f4683ea7edd5dafec290"
+  }
 }
