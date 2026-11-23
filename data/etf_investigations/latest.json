@@ -10,37 +10,37 @@
     "status": "UNCALIBRATED_RESEARCH_ONLY"
   },
   "source": "KRX_OPEN_API_ETF_DAILY",
-  "observation_date": "2026-11-19",
-  "source_retrieved_at": "2026-11-20T17:55:11.826614+00:00",
-  "source_raw_sha256": "66cfd6a4178727bb26a26100c768e75eea18fd451910d9778332cea08013b388",
+  "observation_date": "2026-11-20",
+  "source_retrieved_at": "2026-11-23T03:33:46.411747+00:00",
+  "source_raw_sha256": "0e43b928fdb7afd3cf9e7f745e969492394df60fc798f50cbabb98472440cf9b",
   "screened_count": 1190,
   "metric_coverage": {
     "price": 1190,
     "nav_gap": 1190,
     "volume": 1176
   },
-  "candidate_count": 175,
-  "deferred_count": 170,
+  "candidate_count": 500,
+  "deferred_count": 495,
   "items": [
     {
-      "ticker": "395150",
-      "name": "KODEX 웹툰&드라마",
-      "observation_date": "2026-11-19",
+      "ticker": "225130",
+      "name": "ACE 골드선물 레버리지(합성 H)",
+      "observation_date": "2026-11-20",
       "signals": [
         {
           "kind": "PRICE_MOVE",
-          "value": 14.3278,
+          "value": -9.8843,
           "unit": "%",
-          "prior_date": "2026-11-18"
+          "prior_date": "2026-11-19"
         },
         {
           "kind": "NAV_GAP",
-          "value": 2.051,
+          "value": -7.2815,
           "unit": "%"
         },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 19.1552,
+          "value": 6.0114,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -48,31 +48,31 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "395150",
-        "requested_date": "2026-11-19",
+        "ticker": "225130",
+        "requested_date": "2026-11-20",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
     },
     {
-      "ticker": "487950",
-      "name": "KODEX 대만테크고배당다우존스",
-      "observation_date": "2026-11-19",
+      "ticker": "280940",
+      "name": "KODEX 골드선물인버스(H)",
+      "observation_date": "2026-11-20",
       "signals": [
         {
           "kind": "PRICE_MOVE",
-          "value": -5.0235,
+          "value": 5.4523,
           "unit": "%",
-          "prior_date": "2026-11-18"
+          "prior_date": "2026-11-19"
         },
         {
           "kind": "NAV_GAP",
-          "value": -3.3216,
+          "value": 3.8463,
           "unit": "%"
         },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 3.2821,
+          "value": 8.7079,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -80,26 +80,31 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "487950",
-        "requested_date": "2026-11-19",
+        "ticker": "280940",
+        "requested_date": "2026-11-20",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
     },
     {
-      "ticker": "388280",
-      "name": "RISE K엔터&여행레저",
-      "observation_date": "2026-11-19",
+      "ticker": "0093D0",
+      "name": "KoAct 팔란티어밸류체인액티브",
+      "observation_date": "2026-11-20",
       "signals": [
         {
           "kind": "PRICE_MOVE",
-          "value": 5.7522,
+          "value": -6.5106,
           "unit": "%",
-          "prior_date": "2026-11-18"
+          "prior_date": "2026-11-19"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": -2.8589,
+          "unit": "%"
         },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 21.9268,
+          "value": 3.7815,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -107,26 +112,26 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "388280",
-        "requested_date": "2026-11-19",
+        "ticker": "0093D0",
+        "requested_date": "2026-11-20",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
     },
     {
-      "ticker": "228800",
-      "name": "TIGER 여행레저",
-      "observation_date": "2026-11-19",
+      "ticker": "337120",
+      "name": "KODEX 멀티팩터",
+      "observation_date": "2026-11-20",
       "signals": [
         {
           "kind": "PRICE_MOVE",
-          "value": 6.6536,
+          "value": -5.0987,
           "unit": "%",
-          "prior_date": "2026-11-18"
+          "prior_date": "2026-11-19"
         },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 19.2795,
+          "value": 26.6121,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -134,26 +139,26 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "228800",
-        "requested_date": "2026-11-19",
+        "ticker": "337120",
+        "requested_date": "2026-11-20",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
     },
     {
-      "ticker": "410870",
-      "name": "TIME K컬처액티브",
-      "observation_date": "2026-11-19",
+      "ticker": "442320",
+      "name": "RISE 글로벌원자력",
+      "observation_date": "2026-11-20",
       "signals": [
         {
           "kind": "PRICE_MOVE",
-          "value": 7.8576,
+          "value": -5.5195,
           "unit": "%",
-          "prior_date": "2026-11-18"
+          "prior_date": "2026-11-19"
         },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 14.9808,
+          "value": 17.0472,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -161,8 +166,8 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "410870",
-        "requested_date": "2026-11-19",
+        "ticker": "442320",
+        "requested_date": "2026-11-20",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
