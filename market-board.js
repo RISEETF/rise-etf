@@ -39,3 +39,16 @@ if(!rows.length)root.textContent='선택 기준으로 계산된 값 없음';
 for(const id of ['moverPeriod','moverSort'])el(id).addEventListener('change',()=>{if(data)render();});
 fetch('data/etf_market/latest.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(d=>{if(!Array.isArray(d.products))throw Error();data=d;render();}).catch(()=>{el('moverBoard').textContent='RISE 가격 자료 연결 실패';});
 })();
+(()=>{
+ const el=id=>document.getElementById(id),add=(p,t,v)=>{const n=document.createElement(t);n.textContent=v;p.append(n);return n;};let data,attempt;
+ function render(){
+ const root=el('naverFlows');root.replaceChildren();
+ const dates=data.flows.map(r=>r.observation_date).sort(),day=dates.at(-1),field=el('naverInvestor').value;
+ const rows=data.flows.filter(r=>r.observation_date===day&&Number.isFinite(r[field])).sort((a,b)=>b[field]-a[field]);
+ el('naverStatus').textContent='수급 기준 '+(day||'미확인')+' · 해당일 '+rows.length+'개 · 수집 '+data.retrieved_at+(attempt?.status!=='SUCCESS'?' · 최근 수집 미완료, 이전 성공본':'');
+ for(const r of rows.slice(0,10)){const card=add(root,'div','');card.className='work-item';const a=add(card,'a',r.name);a.href='etf.html?q='+encodeURIComponent(r.code);add(card,'p',(r[field]>0?'+':'')+r[field].toLocaleString('ko-KR')+'주');}
+ if(!rows.length)add(root,'p','선택 투자자의 비교 가능한 수급 없음');
+ }
+ el('naverInvestor').addEventListener('change',()=>{if(data)render();});
+ Promise.all(['data/naver_etf/latest.json','data/naver_etf/status.json'].map(async u=>{const r=await fetch(u,{cache:'no-store'});if(!r.ok)throw Error();return r.json();})).then(([d,s])=>{if(d.schema!=='NAVER_ETF_DAILY_V1'||!Array.isArray(d.flows))throw Error();data=d;attempt=s;render();}).catch(()=>{el('naverStatus').textContent='완전 수집본 미확보 또는 연결 실패 · 자동 수집 상태 확인 필요';});
+})();

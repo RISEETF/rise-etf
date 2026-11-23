@@ -1,0 +1,48 @@
+name: Collect Naver ETF observations
+on:
+  push:
+    branches: [main]
+    paths: ['scripts/collect_naver_etf.py', '.github/workflows/naver_etf.yml']
+  schedule:
+    - cron: '20 9 * * 1-5'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: rise-data-writer-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest tests.test_naver_etf -v
+      - name: Collect
+        id: capture
+        continue-on-error: true
+        run: python scripts/collect_naver_etf.py
+      - name: Preserve daily history
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/naver_etf/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Capture Naver ETF observations'
+            git pull --rebase origin main
+            git push
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: naver-etf-database
+          path: var/naver_etf.sqlite
+          retention-days: 30
+      - if: steps.capture.outcome == 'failure'
+        run: exit 1
