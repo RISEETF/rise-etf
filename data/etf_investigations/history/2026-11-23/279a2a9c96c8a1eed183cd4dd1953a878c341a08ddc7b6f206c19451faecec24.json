@@ -1,0 +1,168 @@
+{
+  "schema": "ETF_INVESTIGATION_QUEUE_V1",
+  "rules": {
+    "version": "ETF_TRIAGE_RESEARCH_V1",
+    "price_abs_pct": 5,
+    "nav_gap_abs_pct": 2,
+    "volume_multiple": 3,
+    "baseline_sessions": 20,
+    "daily_limit": 5,
+    "status": "UNCALIBRATED_RESEARCH_ONLY"
+  },
+  "source": "KRX_OPEN_API_ETF_DAILY",
+  "observation_date": "2026-11-23",
+  "source_retrieved_at": "2026-11-24T06:48:13.102647+00:00",
+  "source_raw_sha256": "75eefcc220f75dc42102572ef32264371a6008d975452582ed408cc0d9c9d199",
+  "screened_count": 1190,
+  "metric_coverage": {
+    "price": 1190,
+    "nav_gap": 1190,
+    "volume": 1176
+  },
+  "candidate_count": 360,
+  "deferred_count": 355,
+  "items": [
+    {
+      "ticker": "291130",
+      "name": "ACE MSCI멕시코(합성)",
+      "observation_date": "2026-11-23",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 6.7263,
+          "unit": "%",
+          "prior_date": "2026-11-20"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": 3.5431,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 5.0203,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "291130",
+        "requested_date": "2026-11-23",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "483570",
+      "name": "KCGI 미국S&P500 TOP10",
+      "observation_date": "2026-11-23",
+      "signals": [
+        {
+          "kind": "NAV_GAP",
+          "value": 3.7964,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 21.8865,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "483570",
+        "requested_date": "2026-11-23",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "423920",
+      "name": "TIGER 미국필라델피아반도체레버리지(합성)",
+      "observation_date": "2026-11-23",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": -10.4621,
+          "unit": "%",
+          "prior_date": "2026-11-20"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": 8.1946,
+          "unit": "%"
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "423920",
+        "requested_date": "2026-11-23",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "0048K0",
+      "name": "KODEX 차이나휴머노이드로봇",
+      "observation_date": "2026-11-23",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 7.8387,
+          "unit": "%",
+          "prior_date": "2026-11-20"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": 7.8707,
+          "unit": "%"
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "0048K0",
+        "requested_date": "2026-11-23",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "473640",
+      "name": "HANARO 글로벌금채굴기업",
+      "observation_date": "2026-11-23",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 5.7018,
+          "unit": "%",
+          "prior_date": "2026-11-20"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": 5.2927,
+          "unit": "%"
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "473640",
+        "requested_date": "2026-11-23",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    }
+  ],
+  "limitations": [
+    "조사 우선순위용 임시 기준이며 검증된 매매신호가 아닙니다.",
+    "가격은 비조정 종가입니다. 분배·분할·병합·레버리지 및 시장 전체 변동을 먼저 확인하세요.",
+    "해외자산 NAV와 국내 종가의 시차는 괴리의 원인이 될 수 있습니다.",
+    "거래량 증가를 투자자 순유입으로 해석하지 않습니다. PDF 확보 전 구성자산 원인은 미확인입니다."
+  ]
+}
