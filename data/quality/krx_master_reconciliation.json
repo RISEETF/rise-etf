@@ -4,7 +4,7 @@
   "source_role": "PRIMARY_EXCHANGE_OBSERVATION",
   "source_url": "https://data-dbg.krx.co.kr/svc/apis/etp/etf_bydd_trd",
   "observed_on": "2026-11-23",
-  "retrieved_at": "2026-11-24T06:48:13.102647+00:00",
+  "retrieved_at": "2026-11-24T20:15:21.926812+00:00",
   "raw_sha256": "75eefcc220f75dc42102572ef32264371a6008d975452582ed408cc0d9c9d199",
   "krx_market_count": 1190,
   "issuer_effective_date": "2026-10-04",
@@ -1474,10 +1474,10 @@
   "note": "Presence is an exchange observation. Absence is not delisting. Name-only codes require identity review.",
   "lifecycle_notices": {
     "status": "SUCCESS",
-    "attempted_at": "2026-11-24T06:48:16.219921+00:00",
-    "last_success_at": "2026-11-24T06:48:16.219921+00:00",
-    "window_start": "2026-10-25",
-    "window_end": "2026-11-24",
+    "attempted_at": "2026-11-24T20:15:25.080336+00:00",
+    "last_success_at": "2026-11-24T20:15:25.080336+00:00",
+    "window_start": "2026-10-26",
+    "window_end": "2026-11-25",
     "scope": "RISE_TITLE_SEARCH_ROLLING_30_DAYS_NOT_FULL_LIFECYCLE",
     "current_legal_status": "NOT_AUTOMATICALLY_ASSIGNED",
     "search_sources": [
@@ -1488,8 +1488,8 @@
           "forward": "disclosurebystocktype_etf_sub",
           "currentPageSize": "100",
           "pageIndex": "1",
-          "fromDate": "2026-10-25",
-          "toDate": "2026-11-24",
+          "fromDate": "2026-10-26",
+          "toDate": "2026-11-25",
           "etfIsuSrtNm": "RISE",
           "reportNm": "신규상장",
           "orderMode": "",
@@ -1504,14 +1504,14 @@
           "forward": "disclosurebystocktype_etf_sub",
           "currentPageSize": "100",
           "pageIndex": "1",
-          "fromDate": "2026-10-25",
-          "toDate": "2026-11-24",
+          "fromDate": "2026-10-26",
+          "toDate": "2026-11-25",
           "etfIsuSrtNm": "RISE",
           "reportNm": "상장폐지",
           "orderMode": "",
           "orderStat": ""
         },
-        "sha256": "fab9a6d21ff5ff6740ecb69be4ac0ec53bc730d4e6bf5523deb26f3b1f52fd13"
+        "sha256": "e3aa6d9b0975fc668aae34fc65a165f0092e6ca938fe7ee5a93b7b0fa9edbfca"
       }
     ],
     "events": [
@@ -1523,7 +1523,7 @@
         "title": "상장폐지",
         "publisher": "유가증권시장본부",
         "kind": "DELISTING_REVIEW",
-        "search_sha256": "fab9a6d21ff5ff6740ecb69be4ac0ec53bc730d4e6bf5523deb26f3b1f52fd13",
+        "search_sha256": "e3aa6d9b0975fc668aae34fc65a165f0092e6ca938fe7ee5a93b7b0fa9edbfca",
         "event_id": "20261123000339:0122W",
         "code": "0122W0",
         "effective_date": null,
@@ -1547,7 +1547,7 @@
           }
         ],
         "first_seen_at": "2026-11-23T21:35:03.051044+00:00",
-        "last_checked_at": "2026-11-24T06:48:16.219921+00:00",
+        "last_checked_at": "2026-11-24T20:15:25.080336+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1559,7 +1559,7 @@
         "title": "ETF 상장폐지 사유 발생(운용사 공시)",
         "publisher": "KB자산운용",
         "kind": "DELISTING_REVIEW",
-        "search_sha256": "fab9a6d21ff5ff6740ecb69be4ac0ec53bc730d4e6bf5523deb26f3b1f52fd13",
+        "search_sha256": "e3aa6d9b0975fc668aae34fc65a165f0092e6ca938fe7ee5a93b7b0fa9edbfca",
         "event_id": "20261120000153:0122W",
         "code": "0122W0",
         "effective_date": null,
@@ -1583,7 +1583,7 @@
           }
         ],
         "first_seen_at": "2026-11-20T03:53:10.339285+00:00",
-        "last_checked_at": "2026-11-24T06:48:16.219921+00:00",
+        "last_checked_at": "2026-11-24T20:15:25.080336+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1619,7 +1619,7 @@
           }
         ],
         "first_seen_at": "2026-11-13T17:17:44.902332+00:00",
-        "last_checked_at": "2026-11-24T06:48:16.219921+00:00",
+        "last_checked_at": "2026-11-24T20:15:25.080336+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1655,7 +1655,7 @@
           }
         ],
         "first_seen_at": "2026-11-13T17:17:44.902332+00:00",
-        "last_checked_at": "2026-11-24T06:48:16.219921+00:00",
+        "last_checked_at": "2026-11-24T20:15:25.080336+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1667,7 +1667,7 @@
         "title": "ETF 상장폐지 사유 발생(운용사 공시)",
         "publisher": "KB자산운용",
         "kind": "DELISTING_REVIEW",
-        "search_sha256": "fab9a6d21ff5ff6740ecb69be4ac0ec53bc730d4e6bf5523deb26f3b1f52fd13",
+        "search_sha256": "e3aa6d9b0975fc668aae34fc65a165f0092e6ca938fe7ee5a93b7b0fa9edbfca",
         "event_id": "20261113000147:0122W",
         "code": "0122W0",
         "effective_date": null,
@@ -1691,7 +1691,7 @@
           }
         ],
         "first_seen_at": "2026-11-13T17:17:44.902332+00:00",
-        "last_checked_at": "2026-11-24T06:48:16.219921+00:00",
+        "last_checked_at": "2026-11-24T20:15:25.080336+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1703,7 +1703,7 @@
         "title": "ETF 상장폐지 사유 발생(운용사 공시)",
         "publisher": "KB자산운용",
         "kind": "DELISTING_REVIEW",
-        "search_sha256": "fab9a6d21ff5ff6740ecb69be4ac0ec53bc730d4e6bf5523deb26f3b1f52fd13",
+        "search_sha256": "e3aa6d9b0975fc668aae34fc65a165f0092e6ca938fe7ee5a93b7b0fa9edbfca",
         "event_id": "20261106000096:0122W",
         "code": "0122W0",
         "effective_date": null,
@@ -1727,7 +1727,7 @@
           }
         ],
         "first_seen_at": "2026-11-06T07:52:39.968951+00:00",
-        "last_checked_at": "2026-11-24T06:48:16.219921+00:00",
+        "last_checked_at": "2026-11-24T20:15:25.080336+00:00",
         "versions": [],
         "in_latest_search": true
       },
@@ -1739,7 +1739,7 @@
         "title": "ETF 상장폐지 사유 발생(운용사 공시)",
         "publisher": "KB자산운용",
         "kind": "DELISTING_REVIEW",
-        "search_sha256": "fab9a6d21ff5ff6740ecb69be4ac0ec53bc730d4e6bf5523deb26f3b1f52fd13",
+        "search_sha256": "e3aa6d9b0975fc668aae34fc65a165f0092e6ca938fe7ee5a93b7b0fa9edbfca",
         "event_id": "20261030000166:0122W",
         "code": "0122W0",
         "effective_date": null,
@@ -1763,7 +1763,7 @@
           }
         ],
         "first_seen_at": "2026-10-30T16:05:44.046214+00:00",
-        "last_checked_at": "2026-11-24T06:48:16.219921+00:00",
+        "last_checked_at": "2026-11-24T20:15:25.080336+00:00",
         "versions": [],
         "in_latest_search": true
       },
