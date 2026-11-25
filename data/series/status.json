@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-11-24T19:29:21.476359+00:00",
+  "built_at": "2026-11-25T05:27:21.642018+00:00",
   "storage": "REBUILDABLE_SQLITE_FROM_GIT_CAPTURES",
   "rs_status": "BLOCKED",
   "ranking": null,
@@ -10,11 +10,11 @@
       "currency": "KRW",
       "market": "XKRX",
       "exposure_candidate": "KR_LARGE_CAP",
-      "observations": 345,
+      "observations": 346,
       "first_date": "2025-06-27",
-      "last_date": "2026-11-24",
+      "last_date": "2026-11-25",
       "last_attempt_status": "CAPTURED",
-      "retrieved_at": "2026-11-24T19:28:53.514310+00:00",
+      "retrieved_at": "2026-11-25T05:26:57.066247+00:00",
       "error": null,
       "rs_eligible": false,
       "blockers": [
@@ -32,11 +32,11 @@
       "currency": "KRW",
       "market": "XKRX",
       "exposure_candidate": "US_LARGE_CAP",
-      "observations": 345,
+      "observations": 346,
       "first_date": "2025-06-27",
-      "last_date": "2026-11-24",
+      "last_date": "2026-11-25",
       "last_attempt_status": "CAPTURED",
-      "retrieved_at": "2026-11-24T19:28:54.611702+00:00",
+      "retrieved_at": "2026-11-25T05:26:58.214155+00:00",
       "error": null,
       "rs_eligible": false,
       "blockers": [
@@ -54,11 +54,11 @@
       "currency": "KRW",
       "market": "XKRX",
       "exposure_candidate": "KR_GOVERNMENT_BOND_3Y",
-      "observations": 345,
+      "observations": 346,
       "first_date": "2025-06-27",
-      "last_date": "2026-11-24",
+      "last_date": "2026-11-25",
       "last_attempt_status": "CAPTURED",
-      "retrieved_at": "2026-11-24T19:28:55.284780+00:00",
+      "retrieved_at": "2026-11-25T05:26:59.047475+00:00",
       "error": null,
       "rs_eligible": false,
       "blockers": [
@@ -80,9 +80,9 @@
       "observations": 551,
       "first_date": "2024-09-16",
       "last_date": "2026-11-24",
-      "last_attempt_status": "CAPTURED",
-      "retrieved_at": "2026-11-24T19:28:56.912675+00:00",
-      "error": null,
+      "last_attempt_status": "FAILED",
+      "retrieved_at": "2026-11-25T05:27:00.530489+00:00",
+      "error": "HTTPError: HTTP Error 429: Too Many Requests",
       "rs_eligible": false,
       "blockers": [
         "PROVIDER_ADJUSTMENT_NOT_INDEPENDENTLY_VERIFIED",
@@ -91,96 +91,7 @@
         "CROSS_MARKET_ALIGNMENT_UNRESOLVED",
         "PROVISIONAL_INSTRUMENT_IDENTITY"
       ],
-      "adjustment_audit": {
-        "status": "PROVIDER_INTERNAL_CHECK_ONLY",
-        "rs_eligible": false,
-        "split_count": 0,
-        "cash_event_count": 8,
-        "events_without_price_date": [],
-        "factor_changes": [
-          {
-            "date": "2024-12-20",
-            "factor_ratio": 0.9966455376523241,
-            "event_kinds": [
-              "DIVIDEND"
-            ],
-            "cash_factor_candidate": 0.9966456234739909,
-            "cash_residual": -8.582166677317815e-08,
-            "requires_review": false
-          },
-          {
-            "date": "2025-03-21",
-            "factor_ratio": 0.9970008905740653,
-            "event_kinds": [
-              "DIVIDEND"
-            ],
-            "cash_factor_candidate": 0.9970008310858038,
-            "cash_residual": 5.94882614279868e-08,
-            "requires_review": false
-          },
-          {
-            "date": "2025-06-20",
-            "factor_ratio": 0.9970524820383022,
-            "event_kinds": [
-              "DIVIDEND"
-            ],
-            "cash_factor_candidate": 0.997052423686389,
-            "cash_residual": 5.8351913190257676e-08,
-            "requires_review": false
-          },
-          {
-            "date": "2025-09-19",
-            "factor_ratio": 0.99723532596814,
-            "event_kinds": [
-              "DIVIDEND"
-            ],
-            "cash_factor_candidate": 0.9972352248769362,
-            "cash_residual": 1.0109120385237702e-07,
-            "requires_review": false
-          },
-          {
-            "date": "2025-12-19",
-            "factor_ratio": 0.9970537404687233,
-            "event_kinds": [
-              "DIVIDEND"
-            ],
-            "cash_factor_candidate": 0.9970538233974695,
-            "cash_residual": -8.29287462034145e-08,
-            "requires_review": false
-          },
-          {
-            "date": "2026-03-20",
-            "factor_ratio": 0.9972765439918134,
-            "event_kinds": [
-              "DIVIDEND"
-            ],
-            "cash_factor_candidate": 0.9972764473579168,
-            "cash_residual": 9.66338966623681e-08,
-            "requires_review": false
-          },
-          {
-            "date": "2026-06-18",
-            "factor_ratio": 0.9974303843645864,
-            "event_kinds": [
-              "DIVIDEND"
-            ],
-            "cash_factor_candidate": 0.9974303606894593,
-            "cash_residual": 2.367512708101316e-08,
-            "requires_review": false
-          },
-          {
-            "date": "2026-09-18",
-            "factor_ratio": 0.9975229778242126,
-            "event_kinds": [
-              "DIVIDEND"
-            ],
-            "cash_factor_candidate": 0.9975229477308223,
-            "cash_residual": 3.009339033521741e-08,
-            "requires_review": false
-          }
-        ],
-        "note": "Close and adjusted close are preserved as received. Never apply a split again to already adjusted prices. Cash-factor comparison is diagnostic, not a total-return certification."
-      },
+      "adjustment_audit": null,
       "missing_dates": []
     },
     {
@@ -577,31 +488,31 @@
     "first_date": "2026-06-18",
     "last_date": "2026-11-24",
     "last_attempt_status": "CAPTURED",
-    "retrieved_at": "2026-11-24T19:28:55.982175+00:00",
+    "retrieved_at": "2026-11-25T05:26:59.717060+00:00",
     "kind": "ECB_DERIVED_REFERENCE_ONLY",
     "rs_eligible": false,
     "error": null
   },
-  "capture_count": 1104,
+  "capture_count": 1110,
   "hana_fx": {
     "source_id": "HANA_FINAL_NOTICE",
     "last_attempt_status": "CAPTURED",
-    "retrieved_at": "2026-11-24T19:29:08.054396+00:00",
+    "retrieved_at": "2026-11-25T05:27:13.393902+00:00",
     "error": null,
-    "observations": 67,
+    "observations": 68,
     "first_date": "2026-08-14",
-    "last_date": "2026-11-23",
+    "last_date": "2026-11-24",
     "latest_notice": {
-      "date": "2026-11-23",
+      "date": "2026-11-24",
       "base": "USD",
       "quote": "KRW",
       "rate": 1342.5,
       "kind": "HANA_FINAL_NOTICE",
-      "base_date": "2026-11-23",
-      "notice_at": "2026-11-24T06:59:46+09:00",
-      "notice_sequence": 1437,
-      "requested_date": "2026-11-23",
-      "retrieved_at": "2026-11-24T19:29:07.753346+00:00"
+      "base_date": "2026-11-24",
+      "notice_at": "2026-11-25T06:34:50+09:00",
+      "notice_sequence": 1236,
+      "requested_date": "2026-11-24",
+      "retrieved_at": "2026-11-25T05:27:13.093242+00:00"
     },
     "rs_eligible": false
   }

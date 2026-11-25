@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "status": "EXPLORATORY_PRICE_RS",
-  "decision_time_utc": "2026-11-24T19:29:24.076317+00:00",
+  "decision_time_utc": "2026-11-25T05:27:24.141002+00:00",
   "benchmark": "US_LISTED:SPY",
   "price_field": "close",
   "fx_basis": "HANA_FINAL_NOTICE_MIDPOINT",
@@ -22,8 +22,7 @@
         "missing_sources": [
           "US_LISTED:SPY",
           "US_LISTED:IEF",
-          "US_LISTED:AAPL",
-          "FX:USD/KRW"
+          "US_LISTED:AAPL"
         ]
       }
     ],
@@ -32,6 +31,27 @@
   "session_finality": {
     "rule": "PRICE_DATE_STRICTLY_BEFORE_CAPTURE_LOCAL_DATE",
     "excluded_observations": [
+      {
+        "instrument_id": "XKRX:148020",
+        "observation_date": "2026-11-25",
+        "capture_local_date": "2026-11-25",
+        "timezone": "Asia/Seoul",
+        "reason": "NOT_BEFORE_CAPTURE_LOCAL_DATE"
+      },
+      {
+        "instrument_id": "XKRX:379780",
+        "observation_date": "2026-11-25",
+        "capture_local_date": "2026-11-25",
+        "timezone": "Asia/Seoul",
+        "reason": "NOT_BEFORE_CAPTURE_LOCAL_DATE"
+      },
+      {
+        "instrument_id": "XKRX:114100",
+        "observation_date": "2026-11-25",
+        "capture_local_date": "2026-11-25",
+        "timezone": "Asia/Seoul",
+        "reason": "NOT_BEFORE_CAPTURE_LOCAL_DATE"
+      },
       {
         "instrument_id": "US_LISTED:SPY",
         "observation_date": "2026-11-24",
@@ -56,18 +76,18 @@
     ],
     "note": "Conservative full-calendar-day buffer, including after-close captures. Not independent confirmation of official close or exchange calendar."
   },
-  "source_age_calendar_days": 1,
+  "source_age_calendar_days": 2,
   "sources": [
     {
       "instrument_id": "XKRX:148020",
       "name": "RISE 200",
       "currency": "KRW",
       "capture": {
-        "capture_id": "20261124T192853514310Z-NAVER_CHART_CANDIDATE-148020",
+        "capture_id": "20261125T052657066247Z-NAVER_CHART_CANDIDATE-148020",
         "source_id": "NAVER_CHART_CANDIDATE",
         "source_url": "https://fchart.stock.naver.com/sise.nhn?symbol=148020&timeframe=day&count=300&requestType=0",
-        "retrieved_at": "2026-11-24T19:28:53.514310+00:00",
-        "source_sha256": "d1bf4eec91bbc63da2d7ab9395608aece3f2adda8ac1cd8423472242ab6c587b",
+        "retrieved_at": "2026-11-25T05:26:57.066247+00:00",
+        "source_sha256": "b3cd0e056a95634330eed1ace720537bca4d6242404aca1fe8563fdced8cb9ea",
         "kind": "PRICE",
         "status": "CAPTURED",
         "quality": "QUARANTINED",
@@ -80,11 +100,11 @@
       "name": "RISE 미국S&P500",
       "currency": "KRW",
       "capture": {
-        "capture_id": "20261124T192854611702Z-NAVER_CHART_CANDIDATE-379780",
+        "capture_id": "20261125T052658214155Z-NAVER_CHART_CANDIDATE-379780",
         "source_id": "NAVER_CHART_CANDIDATE",
         "source_url": "https://fchart.stock.naver.com/sise.nhn?symbol=379780&timeframe=day&count=300&requestType=0",
-        "retrieved_at": "2026-11-24T19:28:54.611702+00:00",
-        "source_sha256": "321787450cb6f385c968bc8e78e0f30ea1c05212cfcd7a9ab1eb14c628216592",
+        "retrieved_at": "2026-11-25T05:26:58.214155+00:00",
+        "source_sha256": "8ab07c10817b720e5634be7444b2b3423a6bd10621baf85c175a4bd7fc15853a",
         "kind": "PRICE",
         "status": "CAPTURED",
         "quality": "QUARANTINED",
@@ -97,11 +117,11 @@
       "name": "RISE 국고채3년",
       "currency": "KRW",
       "capture": {
-        "capture_id": "20261124T192855284780Z-NAVER_CHART_CANDIDATE-114100",
+        "capture_id": "20261125T052659047475Z-NAVER_CHART_CANDIDATE-114100",
         "source_id": "NAVER_CHART_CANDIDATE",
         "source_url": "https://fchart.stock.naver.com/sise.nhn?symbol=114100&timeframe=day&count=300&requestType=0",
-        "retrieved_at": "2026-11-24T19:28:55.284780+00:00",
-        "source_sha256": "e71166a0c3c1835936db8a77c1f1e24de8556032b3c9e3ce83a46b79192c4877",
+        "retrieved_at": "2026-11-25T05:26:59.047475+00:00",
+        "source_sha256": "064d7bb7722d29f2e6903c3ed80a3d1fceeb2a72cd1731747a382d973442e7aa",
         "kind": "PRICE",
         "status": "CAPTURED",
         "quality": "QUARANTINED",
@@ -162,11 +182,11 @@
     }
   ],
   "fx_capture": {
-    "capture_id": "20261124T192857600870Z-HANA_FINAL_NOTICE",
+    "capture_id": "20261125T052700800412Z-HANA_FINAL_NOTICE",
     "source_id": "HANA_FINAL_NOTICE",
     "source_url": "https://www.kebhana.com/cms/rate/wpfxd651_01i_01.do",
-    "retrieved_at": "2026-11-24T19:29:08.054396+00:00",
-    "source_sha256": "489308fe552bb2e9947f0711fa684133b3c256d675e5ac115f77a8913c9d8ff0",
+    "retrieved_at": "2026-11-25T05:27:13.393902+00:00",
+    "source_sha256": "7b81e16b2f9b5b302e1aac3599f052a22c7684ffca9f643dc46ec343a53bb8f4",
     "kind": "FX",
     "status": "CAPTURED",
     "quality": "REFERENCE_ONLY",
@@ -939,7 +959,7 @@
       "notice_at": "2026-11-19T05:41:29+09:00",
       "notice_sequence": 647,
       "requested_date": "2026-11-18",
-      "retrieved_at": "2026-11-24T19:29:01.255069+00:00"
+      "retrieved_at": "2026-11-25T05:27:03.379778+00:00"
     },
     {
       "date": "2026-11-19",
@@ -951,7 +971,7 @@
       "notice_at": "2026-11-20T07:20:12+09:00",
       "notice_sequence": 770,
       "requested_date": "2026-11-19",
-      "retrieved_at": "2026-11-24T19:29:02.638147+00:00"
+      "retrieved_at": "2026-11-25T05:27:04.961854+00:00"
     },
     {
       "date": "2026-11-20",
@@ -963,7 +983,7 @@
       "notice_at": "2026-11-23T07:58:12+09:00",
       "notice_sequence": 1011,
       "requested_date": "2026-11-22",
-      "retrieved_at": "2026-11-24T19:29:06.412639+00:00"
+      "retrieved_at": "2026-11-25T05:27:09.988436+00:00"
     },
     {
       "date": "2026-11-23",
@@ -975,7 +995,19 @@
       "notice_at": "2026-11-24T06:59:46+09:00",
       "notice_sequence": 1437,
       "requested_date": "2026-11-23",
-      "retrieved_at": "2026-11-24T19:29:07.753346+00:00"
+      "retrieved_at": "2026-11-25T05:27:11.564608+00:00"
+    },
+    {
+      "date": "2026-11-24",
+      "base": "USD",
+      "quote": "KRW",
+      "rate": 1342.5,
+      "kind": "HANA_FINAL_NOTICE",
+      "base_date": "2026-11-24",
+      "notice_at": "2026-11-25T06:34:50+09:00",
+      "notice_sequence": 1236,
+      "requested_date": "2026-11-24",
+      "retrieved_at": "2026-11-25T05:27:13.093242+00:00"
     }
   ],
   "windows": [
