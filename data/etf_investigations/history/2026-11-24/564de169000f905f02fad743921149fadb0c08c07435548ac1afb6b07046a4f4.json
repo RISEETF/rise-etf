@@ -1,0 +1,187 @@
+{
+  "schema": "ETF_INVESTIGATION_QUEUE_V1",
+  "rules": {
+    "version": "ETF_TRIAGE_RESEARCH_V1",
+    "price_abs_pct": 5,
+    "nav_gap_abs_pct": 2,
+    "volume_multiple": 3,
+    "baseline_sessions": 20,
+    "daily_limit": 5,
+    "status": "UNCALIBRATED_RESEARCH_ONLY"
+  },
+  "source": "KRX_OPEN_API_ETF_DAILY",
+  "observation_date": "2026-11-24",
+  "source_retrieved_at": "2026-11-25T19:29:16.360438+00:00",
+  "source_raw_sha256": "606ec5575f69f1c3f33605c029ac9a70f001b6c6702f291a7f9f782ee467bfa7",
+  "screened_count": 1192,
+  "metric_coverage": {
+    "price": 1190,
+    "nav_gap": 1192,
+    "volume": 1179
+  },
+  "candidate_count": 468,
+  "deferred_count": 463,
+  "items": [
+    {
+      "ticker": "449690",
+      "name": "TIGER 한중반도체(합성)",
+      "observation_date": "2026-11-24",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 6.1218,
+          "unit": "%",
+          "prior_date": "2026-11-23"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": 4.5963,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 19.2931,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "449690",
+        "requested_date": "2026-11-24",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "453950",
+      "name": "TIGER TSMC파운드리밸류체인",
+      "observation_date": "2026-11-24",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 10.5581,
+          "unit": "%",
+          "prior_date": "2026-11-23"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": 6.0587,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 3.6869,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "453950",
+        "requested_date": "2026-11-24",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "225060",
+      "name": "TIGER 이머징마켓MSCI레버리지(합성 H)",
+      "observation_date": "2026-11-24",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 7.5115,
+          "unit": "%",
+          "prior_date": "2026-11-23"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": 5.5441,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 3.1225,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "225060",
+        "requested_date": "2026-11-24",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "446690",
+      "name": "KODEX 아시아AI반도체exChina액티브",
+      "observation_date": "2026-11-24",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 6.8853,
+          "unit": "%",
+          "prior_date": "2026-11-23"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": 4.4652,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 3.5799,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "446690",
+        "requested_date": "2026-11-24",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "310970",
+      "name": "TIGER MSCI Korea TR",
+      "observation_date": "2026-11-24",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 6.6483,
+          "unit": "%",
+          "prior_date": "2026-11-23"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 1263.0811,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "310970",
+        "requested_date": "2026-11-24",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    }
+  ],
+  "limitations": [
+    "조사 우선순위용 임시 기준이며 검증된 매매신호가 아닙니다.",
+    "가격은 비조정 종가입니다. 분배·분할·병합·레버리지 및 시장 전체 변동을 먼저 확인하세요.",
+    "해외자산 NAV와 국내 종가의 시차는 괴리의 원인이 될 수 있습니다.",
+    "거래량 증가를 투자자 순유입으로 해석하지 않습니다. PDF 확보 전 구성자산 원인은 미확인입니다."
+  ]
+}
