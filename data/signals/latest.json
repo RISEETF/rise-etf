@@ -1,7 +1,7 @@
 {
   "schema_version": "0.7",
-  "built_at_utc": "2026-11-24T05:46:43.678539+00:00",
-  "source_gclri_built_at_utc": "2026-11-24T05:46:25.705047+00:00",
+  "built_at_utc": "2026-11-25T04:49:12.546682+00:00",
+  "source_gclri_built_at_utc": "2026-11-25T04:48:49.212831+00:00",
   "production_eligible": false,
   "regime_change_authorized": false,
   "signals": [
@@ -9,20 +9,20 @@
       "signal_id": "SIG-RATE-001",
       "name": "US Treasury Long Yield Shock",
       "status": "SHADOW_READY",
-      "signal_state": "ACTIVE_CANDIDATE",
+      "signal_state": "WATCH",
       "direction": "DOWN",
       "strongest_series": "DGS10",
-      "strongest_zscore": -2.0632873674564767,
+      "strongest_zscore": -1.7556035153581577,
       "confidence": "MODERATE",
       "confirmation_count": 0,
       "details": [
         {
           "series_id": "DGS10",
-          "observation_date": "2026-11-20",
+          "observation_date": "2026-11-23",
           "latest_value": 4.92,
           "horizon_observations": 5,
-          "horizon_move": -0.23000000000000043,
-          "zscore": -2.0632873674564767,
+          "horizon_move": -0.20000000000000018,
+          "zscore": -1.7556035153581577,
           "data_state": "CURRENT"
         }
       ],
@@ -32,38 +32,38 @@
       "signal_id": "SIG-RATE-002",
       "name": "Yield Curve Regime Shift",
       "status": "SHADOW",
-      "signal_state": "ACTIVE_CANDIDATE",
+      "signal_state": "WATCH",
       "direction": "DOWN",
-      "strongest_series": "DGS2",
-      "strongest_zscore": -2.2057179259663853,
+      "strongest_series": "DGS10",
+      "strongest_zscore": -1.7556035153581577,
       "confidence": "HIGH",
       "confirmation_count": 0,
       "details": [
         {
           "series_id": "T10Y2Y",
-          "observation_date": "2026-11-23",
-          "latest_value": 0.29,
+          "observation_date": "2026-11-24",
+          "latest_value": 0.28,
           "horizon_observations": 5,
-          "horizon_move": 0.0,
-          "zscore": 0.2035726660126723,
+          "horizon_move": -0.019999999999999962,
+          "zscore": -0.04880038520906715,
           "data_state": "CURRENT"
         },
         {
           "series_id": "DGS10",
-          "observation_date": "2026-11-20",
+          "observation_date": "2026-11-23",
           "latest_value": 4.92,
           "horizon_observations": 5,
-          "horizon_move": -0.23000000000000043,
-          "zscore": -2.0632873674564767,
+          "horizon_move": -0.20000000000000018,
+          "zscore": -1.7556035153581577,
           "data_state": "CURRENT"
         },
         {
           "series_id": "DGS2",
-          "observation_date": "2026-11-20",
+          "observation_date": "2026-11-23",
           "latest_value": 4.63,
           "horizon_observations": 5,
-          "horizon_move": -0.25,
-          "zscore": -2.2057179259663853,
+          "horizon_move": -0.20000000000000018,
+          "zscore": -1.7453724199055352,
           "data_state": "CURRENT"
         }
       ],
@@ -73,29 +73,29 @@
       "signal_id": "SIG-CREDIT-001",
       "name": "Credit Spread Widening Impulse",
       "status": "CANDIDATE",
-      "signal_state": "ACTIVE_CANDIDATE",
+      "signal_state": "WATCH",
       "direction": "UP",
-      "strongest_series": "BAMLH0A0HYM2",
-      "strongest_zscore": 3.2320412736305575,
+      "strongest_series": "BAMLC0A0CM",
+      "strongest_zscore": 1.827005663177976,
       "confidence": "HIGH",
       "confirmation_count": 2,
       "details": [
         {
           "series_id": "BAMLC0A0CM",
-          "observation_date": "2026-11-20",
-          "latest_value": 0.98,
+          "observation_date": "2026-11-23",
+          "latest_value": 0.97,
           "horizon_observations": 5,
-          "horizon_move": 0.08999999999999997,
-          "zscore": 2.6223915667490427,
+          "horizon_move": 0.06999999999999995,
+          "zscore": 1.827005663177976,
           "data_state": "CURRENT"
         },
         {
           "series_id": "BAMLH0A0HYM2",
-          "observation_date": "2026-11-20",
-          "latest_value": 3.76,
+          "observation_date": "2026-11-23",
+          "latest_value": 3.63,
           "horizon_observations": 5,
-          "horizon_move": 0.5299999999999998,
-          "zscore": 3.2320412736305575,
+          "horizon_move": 0.29000000000000004,
+          "zscore": 1.4083419082869633,
           "data_state": "CURRENT"
         }
       ],
@@ -107,18 +107,18 @@
       "status": "CANDIDATE",
       "signal_state": "NORMAL",
       "direction": "DOWN",
-      "strongest_series": "WRESBAL",
-      "strongest_zscore": -0.21514525788970223,
+      "strongest_series": "SOFR",
+      "strongest_zscore": -0.466031085810937,
       "confidence": "HIGH",
-      "confirmation_count": 1,
+      "confirmation_count": 0,
       "details": [
         {
           "series_id": "SOFR",
-          "observation_date": "2026-11-20",
+          "observation_date": "2026-11-23",
           "latest_value": 3.92,
           "horizon_observations": 5,
-          "horizon_move": 0.020000000000000018,
-          "zscore": -0.0378403947076475,
+          "horizon_move": -0.010000000000000231,
+          "zscore": -0.466031085810937,
           "data_state": "CURRENT"
         },
         {
@@ -164,7 +164,7 @@
       "direction": "UP",
       "strongest_series": "DCOILBRENTEU",
       "strongest_zscore": 0.25428973871062927,
-      "confidence": "HIGH",
+      "confidence": "LOW",
       "confirmation_count": 1,
       "details": [
         {
@@ -174,7 +174,7 @@
           "horizon_observations": 5,
           "horizon_move": 0.030834072759538644,
           "zscore": 0.25428973871062927,
-          "data_state": "CURRENT"
+          "data_state": "STALE"
         },
         {
           "series_id": "DCOILWTICO",
@@ -183,7 +183,7 @@
           "horizon_observations": 5,
           "horizon_move": -0.0010042401249721333,
           "zscore": -0.09095325562740662,
-          "data_state": "CURRENT"
+          "data_state": "STALE"
         }
       ],
       "production_eligible": false
@@ -192,20 +192,20 @@
       "signal_id": "SIG-MKT-001",
       "name": "Equity Volatility Shock",
       "status": "CANDIDATE",
-      "signal_state": "ACTIVE_CANDIDATE",
+      "signal_state": "NORMAL",
       "direction": "UP",
       "strongest_series": "VIXCLS",
-      "strongest_zscore": 4.889162514975841,
+      "strongest_zscore": 0.49426602389310004,
       "confidence": "MODERATE",
       "confirmation_count": 1,
       "details": [
         {
           "series_id": "VIXCLS",
-          "observation_date": "2026-11-20",
-          "latest_value": 35.89,
+          "observation_date": "2026-11-23",
+          "latest_value": 26.62,
           "horizon_observations": 5,
-          "horizon_move": 0.8595854922279793,
-          "zscore": 4.889162514975841,
+          "horizon_move": 0.1619380183326058,
+          "zscore": 0.49426602389310004,
           "data_state": "CURRENT"
         }
       ],
