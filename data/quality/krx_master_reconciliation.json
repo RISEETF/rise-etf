@@ -4,7 +4,7 @@
   "source_role": "PRIMARY_EXCHANGE_OBSERVATION",
   "source_url": "https://data-dbg.krx.co.kr/svc/apis/etp/etf_bydd_trd",
   "observed_on": "2026-11-24",
-  "retrieved_at": "2026-11-25T05:15:36.369149+00:00",
+  "retrieved_at": "2026-11-25T19:29:16.360438+00:00",
   "raw_sha256": "606ec5575f69f1c3f33605c029ac9a70f001b6c6702f291a7f9f782ee467bfa7",
   "krx_market_count": 1192,
   "issuer_effective_date": "2026-10-04",
@@ -1473,8 +1473,8 @@
   "legal_lifecycle_status": "NOTICE_MONITORING_ONLY_CURRENT_STATUS_NOT_ASSIGNED",
   "note": "Presence is an exchange observation. Absence is not delisting. Name-only codes require identity review.",
   "lifecycle_notices": {
-    "status": "SUCCESS",
-    "attempted_at": "2026-11-25T05:15:40.468428+00:00",
+    "status": "FAILED",
+    "attempted_at": "2026-11-25T19:29:18.928803+00:00",
     "last_success_at": "2026-11-25T05:15:40.468428+00:00",
     "window_start": "2026-10-26",
     "window_end": "2026-11-25",
@@ -1911,6 +1911,7 @@
         "versions": [],
         "in_latest_search": false
       }
-    ]
+    ],
+    "reason": "HTTPError"
   }
 }
