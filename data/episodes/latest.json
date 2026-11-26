@@ -1,11 +1,11 @@
 {
   "schema_version": "0.8",
-  "built_at_utc": "2026-11-25T04:49:12.588694+00:00",
-  "source_signal_built_at_utc": "2026-11-25T04:49:12.546682+00:00",
+  "built_at_utc": "2026-11-26T04:00:39.397584+00:00",
+  "source_signal_built_at_utc": "2026-11-26T04:00:39.345246+00:00",
   "production_eligible": false,
   "regime_change_authorized": false,
-  "active_episode_count": 4,
-  "confirmation_eligible_episode_count": 3,
+  "active_episode_count": 3,
+  "confirmation_eligible_episode_count": 2,
   "episodes": [
     {
       "episode_id": "SIG-RATE-001::2026-09-24::UP",
@@ -1287,7 +1287,7 @@
       "signal_id": "SIG-MKT-001",
       "signal_name": "Equity Volatility Shock",
       "signal_governance_status": "CANDIDATE",
-      "episode_status": "WEAKENING",
+      "episode_status": "CLOSED",
       "initial_trigger_date": "2026-11-16",
       "initial_observation_date": "2026-11-12",
       "initial_direction": "DOWN",
@@ -1297,18 +1297,18 @@
       "peak_magnitude_date": "2026-11-20",
       "peak_abs_zscore": 4.889162514975841,
       "peak_signed_zscore": 4.889162514975841,
-      "cumulative_episode_move": 0.42352941176470593,
-      "persistence_runs": 8,
-      "normal_confirmation_runs": 1,
+      "cumulative_episode_move": 0.4096256684491979,
+      "persistence_runs": 9,
+      "normal_confirmation_runs": 2,
       "stress_scope": "UNRESOLVED",
       "policy_intervention_effect": "UNRESOLVED",
       "confirmation_eligible": false,
       "confidence": "MODERATE",
       "latest_signal_state": "NORMAL",
       "latest_direction": "UP",
-      "latest_observation_date": "2026-11-23",
-      "latest_zscore": 0.49426602389310004,
-      "falsification_status": "NOT_TESTED",
+      "latest_observation_date": "2026-11-24",
+      "latest_zscore": -0.17512967015703962,
+      "falsification_status": "NOT_FALSIFIED",
       "evidence": [
         {
           "date": "2026-11-12",
@@ -1357,11 +1357,17 @@
           "evidence_role": "CONTRADICTION",
           "signal_state": "NORMAL",
           "zscore": 0.49426602389310004
+        },
+        {
+          "date": "2026-11-24",
+          "evidence_role": "CONTRADICTION",
+          "signal_state": "NORMAL",
+          "zscore": -0.17512967015703962
         }
       ],
       "opened_at_utc": "2026-11-16T01:38:33.386055+00:00",
-      "last_updated_utc": "2026-11-25T04:49:12.546682+00:00",
-      "closed_at_utc": null
+      "last_updated_utc": "2026-11-26T04:00:39.345246+00:00",
+      "closed_at_utc": "2026-11-26T04:00:39.345246+00:00"
     },
     {
       "episode_id": "SIG-CREDIT-001::2026-11-13::DOWN",
@@ -1429,17 +1435,17 @@
       "peak_magnitude_date": "2026-11-20",
       "peak_abs_zscore": 3.2320412736305575,
       "peak_signed_zscore": 3.2320412736305575,
-      "cumulative_episode_move": 0.10999999999999988,
-      "persistence_runs": 3,
-      "normal_confirmation_runs": 0,
+      "cumulative_episode_move": 0.20000000000000018,
+      "persistence_runs": 4,
+      "normal_confirmation_runs": 1,
       "stress_scope": "UNRESOLVED",
       "policy_intervention_effect": "UNRESOLVED",
-      "confirmation_eligible": true,
+      "confirmation_eligible": false,
       "confidence": "HIGH",
-      "latest_signal_state": "WATCH",
+      "latest_signal_state": "NORMAL",
       "latest_direction": "UP",
-      "latest_observation_date": "2026-11-23",
-      "latest_zscore": 1.827005663177976,
+      "latest_observation_date": "2026-11-24",
+      "latest_zscore": 1.4417679486166781,
       "falsification_status": "NOT_TESTED",
       "evidence": [
         {
@@ -1459,10 +1465,16 @@
           "evidence_role": "CONFIRMATION",
           "signal_state": "WATCH",
           "zscore": 1.827005663177976
+        },
+        {
+          "date": "2026-11-24",
+          "evidence_role": "CONTRADICTION",
+          "signal_state": "NORMAL",
+          "zscore": 1.4417679486166781
         }
       ],
       "opened_at_utc": "2026-11-23T02:22:51.540294+00:00",
-      "last_updated_utc": "2026-11-25T04:49:12.546682+00:00",
+      "last_updated_utc": "2026-11-26T04:00:39.345246+00:00",
       "closed_at_utc": null
     },
     {
@@ -1480,8 +1492,8 @@
       "peak_magnitude_date": "2026-11-20",
       "peak_abs_zscore": 2.0632873674564767,
       "peak_signed_zscore": -2.0632873674564767,
-      "cumulative_episode_move": 0.0,
-      "persistence_runs": 2,
+      "cumulative_episode_move": -0.009999999999999787,
+      "persistence_runs": 3,
       "normal_confirmation_runs": 0,
       "stress_scope": "UNRESOLVED",
       "policy_intervention_effect": "UNRESOLVED",
@@ -1489,8 +1501,8 @@
       "confidence": "MODERATE",
       "latest_signal_state": "WATCH",
       "latest_direction": "DOWN",
-      "latest_observation_date": "2026-11-23",
-      "latest_zscore": -1.7556035153581577,
+      "latest_observation_date": "2026-11-24",
+      "latest_zscore": -1.612755253492762,
       "falsification_status": "NOT_TESTED",
       "evidence": [
         {
@@ -1504,10 +1516,16 @@
           "evidence_role": "CONFIRMATION",
           "signal_state": "WATCH",
           "zscore": -1.7556035153581577
+        },
+        {
+          "date": "2026-11-24",
+          "evidence_role": "CONFIRMATION",
+          "signal_state": "WATCH",
+          "zscore": -1.612755253492762
         }
       ],
       "opened_at_utc": "2026-11-24T05:46:43.678539+00:00",
-      "last_updated_utc": "2026-11-25T04:49:12.546682+00:00",
+      "last_updated_utc": "2026-11-26T04:00:39.345246+00:00",
       "closed_at_utc": null
     },
     {
@@ -1526,7 +1544,7 @@
       "peak_abs_zscore": 2.2057179259663853,
       "peak_signed_zscore": -2.2057179259663853,
       "cumulative_episode_move": 0.0,
-      "persistence_runs": 2,
+      "persistence_runs": 3,
       "normal_confirmation_runs": 0,
       "stress_scope": "UNRESOLVED",
       "policy_intervention_effect": "UNRESOLVED",
@@ -1534,8 +1552,8 @@
       "confidence": "HIGH",
       "latest_signal_state": "WATCH",
       "latest_direction": "DOWN",
-      "latest_observation_date": "2026-11-24",
-      "latest_zscore": -1.7556035153581577,
+      "latest_observation_date": "2026-11-25",
+      "latest_zscore": -1.612755253492762,
       "falsification_status": "NOT_TESTED",
       "evidence": [
         {
@@ -1549,10 +1567,16 @@
           "evidence_role": "CONFIRMATION",
           "signal_state": "WATCH",
           "zscore": -1.7556035153581577
+        },
+        {
+          "date": "2026-11-25",
+          "evidence_role": "CONFIRMATION",
+          "signal_state": "WATCH",
+          "zscore": -1.612755253492762
         }
       ],
       "opened_at_utc": "2026-11-24T05:46:43.678539+00:00",
-      "last_updated_utc": "2026-11-25T04:49:12.546682+00:00",
+      "last_updated_utc": "2026-11-26T04:00:39.345246+00:00",
       "closed_at_utc": null
     }
   ],
