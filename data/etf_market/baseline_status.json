@@ -1,16 +1,16 @@
 {
   "status": "SUCCESS",
-  "attempted_at": "2026-11-25T19:29:39.686921+00:00",
-  "current_observation_date": "2026-11-24",
+  "attempted_at": "2026-11-26T04:44:22.140526+00:00",
+  "current_observation_date": "2026-11-25",
   "items": [
     {
       "period": "1W",
-      "target_date": "2026-11-17",
+      "target_date": "2026-11-18",
       "status": "ALREADY_CAPTURED"
     },
     {
       "period": "1M",
-      "target_date": "2026-10-24",
+      "target_date": "2026-10-25",
       "status": "SUCCESS",
       "observation_date": "2026-10-23",
       "raw_sha256": "a5284287e43578b9d883b8dca18fc27ad7e7824beddab4446a253bab6b45f763",
@@ -19,21 +19,21 @@
         "new": 0,
         "revisions": 0,
         "unchanged": 8281,
-        "total": 442886
+        "total": 451223
       }
     },
     {
       "period": "3M",
-      "target_date": "2026-08-24",
+      "target_date": "2026-08-25",
       "status": "SUCCESS",
-      "observation_date": "2026-08-24",
-      "raw_sha256": "ab64a22aa9746e9ac3f938387e27380ee245b1a29d1222cdcfec5b0636d47c62",
-      "record_count": 1161,
+      "observation_date": "2026-08-25",
+      "raw_sha256": "09528c260dcd28db7be64af54e53efd61aee0d739ce1fa1fa85ce361c5517898",
+      "record_count": 1164,
       "delta": {
-        "new": 8127,
+        "new": 8148,
         "revisions": 0,
         "unchanged": 0,
-        "total": 451013
+        "total": 459371
       }
     },
     {
