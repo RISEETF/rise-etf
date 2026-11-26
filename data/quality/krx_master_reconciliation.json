@@ -3,16 +3,17 @@
   "status": "KRX_DAILY_IDENTITY_COMPARISON",
   "source_role": "PRIMARY_EXCHANGE_OBSERVATION",
   "source_url": "https://data-dbg.krx.co.kr/svc/apis/etp/etf_bydd_trd",
-  "observed_on": "2026-11-24",
-  "retrieved_at": "2026-11-25T19:29:16.360438+00:00",
-  "raw_sha256": "606ec5575f69f1c3f33605c029ac9a70f001b6c6702f291a7f9f782ee467bfa7",
-  "krx_market_count": 1192,
+  "observed_on": "2026-11-25",
+  "retrieved_at": "2026-11-26T04:43:51.887385+00:00",
+  "raw_sha256": "fab678c3ced83acf06694bb53789ba14257cb4652df954b43bd71b9886439a84",
+  "krx_market_count": 1191,
   "issuer_effective_date": "2026-10-04",
   "issuer_source_sha256": "03b85088a26600243470440c642fdd5f275c2e69468fff99af721ec6034e29c3",
   "issuer_product_count": 144,
   "counts": {
-    "MATCHED_CODE_NAME": 142,
-    "NAME_DIFFERENCE": 2
+    "MATCHED_CODE_NAME": 141,
+    "NAME_DIFFERENCE": 2,
+    "NOT_OBSERVED": 1
   },
   "rows": [
     {
@@ -1270,10 +1271,10 @@
       "issuer_code": "0122W0",
       "issuer_name": "RISE 26-11 회사채(AA-이상)액티브",
       "issuer_listed_on": "2025-11-18",
-      "krx_code": "0122W0",
-      "krx_name": "RISE 26-11 회사채(AA-이상)액티브",
+      "krx_code": null,
+      "krx_name": null,
       "candidate_codes": [],
-      "status": "MATCHED_CODE_NAME"
+      "status": "NOT_OBSERVED"
     },
     {
       "detail_id": "44J5",
@@ -1474,7 +1475,7 @@
   "note": "Presence is an exchange observation. Absence is not delisting. Name-only codes require identity review.",
   "lifecycle_notices": {
     "status": "FAILED",
-    "attempted_at": "2026-11-25T19:29:18.928803+00:00",
+    "attempted_at": "2026-11-26T04:43:54.593089+00:00",
     "last_success_at": "2026-11-25T05:15:40.468428+00:00",
     "window_start": "2026-10-26",
     "window_end": "2026-11-25",
