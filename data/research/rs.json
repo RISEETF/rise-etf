@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "status": "EXPLORATORY_PRICE_RS",
-  "decision_time_utc": "2026-11-27T14:58:58.501768+00:00",
+  "decision_time_utc": "2026-11-27T18:09:47.203123+00:00",
   "benchmark": "US_LISTED:SPY",
   "price_field": "close",
   "fx_basis": "HANA_FINAL_NOTICE_MIDPOINT",
@@ -13,10 +13,19 @@
     "rule": "OBSERVED_DATE_UNION_NOT_TRADING_CALENDAR",
     "common_date_count": 66,
     "first_common_date": "2026-08-19",
-    "latest_available_date": "2026-11-26",
+    "latest_available_date": "2026-11-27",
     "latest_common_date": "2026-11-25",
     "recent_dates_checked": 30,
     "excluded_recent_dates": [
+      {
+        "date": "2026-11-27",
+        "missing_sources": [
+          "US_LISTED:SPY",
+          "US_LISTED:IEF",
+          "US_LISTED:AAPL",
+          "FX:USD/KRW"
+        ]
+      },
       {
         "date": "2026-11-26",
         "missing_sources": [
@@ -31,27 +40,6 @@
   "session_finality": {
     "rule": "PRICE_DATE_STRICTLY_BEFORE_CAPTURE_LOCAL_DATE",
     "excluded_observations": [
-      {
-        "instrument_id": "XKRX:148020",
-        "observation_date": "2026-11-27",
-        "capture_local_date": "2026-11-27",
-        "timezone": "Asia/Seoul",
-        "reason": "NOT_BEFORE_CAPTURE_LOCAL_DATE"
-      },
-      {
-        "instrument_id": "XKRX:379780",
-        "observation_date": "2026-11-27",
-        "capture_local_date": "2026-11-27",
-        "timezone": "Asia/Seoul",
-        "reason": "NOT_BEFORE_CAPTURE_LOCAL_DATE"
-      },
-      {
-        "instrument_id": "XKRX:114100",
-        "observation_date": "2026-11-27",
-        "capture_local_date": "2026-11-27",
-        "timezone": "Asia/Seoul",
-        "reason": "NOT_BEFORE_CAPTURE_LOCAL_DATE"
-      },
       {
         "instrument_id": "US_LISTED:SPY",
         "observation_date": "2026-11-27",
@@ -83,62 +71,62 @@
       "name": "RISE 200",
       "currency": "KRW",
       "capture": {
-        "capture_id": "20261127T145834131016Z-NAVER_CHART_CANDIDATE-148020",
+        "capture_id": "20261127T180919077246Z-NAVER_CHART_CANDIDATE-148020",
         "source_id": "NAVER_CHART_CANDIDATE",
         "source_url": "https://fchart.stock.naver.com/sise.nhn?symbol=148020&timeframe=day&count=300&requestType=0",
-        "retrieved_at": "2026-11-27T14:58:34.131016+00:00",
+        "retrieved_at": "2026-11-27T18:09:19.077246+00:00",
         "source_sha256": "d40591ff2674e9a7cf4eab906893d973e67dfb245a2b9217fed89974a4710053",
         "kind": "PRICE",
         "status": "CAPTURED",
         "quality": "QUARANTINED",
         "error": null
       },
-      "latest_price_date": "2026-11-26"
+      "latest_price_date": "2026-11-27"
     },
     {
       "instrument_id": "XKRX:379780",
       "name": "RISE 미국S&P500",
       "currency": "KRW",
       "capture": {
-        "capture_id": "20261127T145835201922Z-NAVER_CHART_CANDIDATE-379780",
+        "capture_id": "20261127T180920332569Z-NAVER_CHART_CANDIDATE-379780",
         "source_id": "NAVER_CHART_CANDIDATE",
         "source_url": "https://fchart.stock.naver.com/sise.nhn?symbol=379780&timeframe=day&count=300&requestType=0",
-        "retrieved_at": "2026-11-27T14:58:35.201922+00:00",
+        "retrieved_at": "2026-11-27T18:09:20.332569+00:00",
         "source_sha256": "dc7900fb3640e13feef53d78e29491e005399e727a38713e41f5223fd370168b",
         "kind": "PRICE",
         "status": "CAPTURED",
         "quality": "QUARANTINED",
         "error": null
       },
-      "latest_price_date": "2026-11-26"
+      "latest_price_date": "2026-11-27"
     },
     {
       "instrument_id": "XKRX:114100",
       "name": "RISE 국고채3년",
       "currency": "KRW",
       "capture": {
-        "capture_id": "20261127T145835838073Z-NAVER_CHART_CANDIDATE-114100",
+        "capture_id": "20261127T180921222228Z-NAVER_CHART_CANDIDATE-114100",
         "source_id": "NAVER_CHART_CANDIDATE",
         "source_url": "https://fchart.stock.naver.com/sise.nhn?symbol=114100&timeframe=day&count=300&requestType=0",
-        "retrieved_at": "2026-11-27T14:58:35.838073+00:00",
+        "retrieved_at": "2026-11-27T18:09:21.222228+00:00",
         "source_sha256": "a50ac4d1df272656c4255600a455394778c626d1af7de7d707471449fe991764",
         "kind": "PRICE",
         "status": "CAPTURED",
         "quality": "QUARANTINED",
         "error": null
       },
-      "latest_price_date": "2026-11-26"
+      "latest_price_date": "2026-11-27"
     },
     {
       "instrument_id": "US_LISTED:SPY",
       "name": "SPY · 미국 주식시장 ETF 시범",
       "currency": "USD",
       "capture": {
-        "capture_id": "20261127T145837643008Z-YAHOO_CHART_CANDIDATE-SPY",
+        "capture_id": "20261127T180922564808Z-YAHOO_CHART_CANDIDATE-SPY",
         "source_id": "YAHOO_CHART_CANDIDATE",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPY?range=2y&interval=1d&events=div%2Csplits%2CcapitalGains&includeAdjustedClose=true",
-        "retrieved_at": "2026-11-27T14:58:37.643008+00:00",
-        "source_sha256": "63787efcb0e145a6b2d13c2ad1fc291478e5b7cba4115973a0711bd746ae1522",
+        "retrieved_at": "2026-11-27T18:09:22.564808+00:00",
+        "source_sha256": "bf49828b54f629957a090ebdc5367f35c9bc8d55f3ba7ae79bbf39f0415b3a38",
         "kind": "US_PRICE",
         "status": "CAPTURED",
         "quality": "QUARANTINED",
@@ -151,11 +139,11 @@
       "name": "IEF · 미국 국채 ETF 시범",
       "currency": "USD",
       "capture": {
-        "capture_id": "20261127T145837759819Z-YAHOO_CHART_CANDIDATE-IEF",
+        "capture_id": "20261127T180922739512Z-YAHOO_CHART_CANDIDATE-IEF",
         "source_id": "YAHOO_CHART_CANDIDATE",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/IEF?range=2y&interval=1d&events=div%2Csplits%2CcapitalGains&includeAdjustedClose=true",
-        "retrieved_at": "2026-11-27T14:58:37.759819+00:00",
-        "source_sha256": "139eab19cacba7243b855b335efb4c981e0267bc8387249867ed7024a7ac216a",
+        "retrieved_at": "2026-11-27T18:09:22.739512+00:00",
+        "source_sha256": "7a947c26cb9a88ed32d443782e6550d4988dd9a215323248fc9eafb1a12c86c9",
         "kind": "US_PRICE",
         "status": "CAPTURED",
         "quality": "QUARANTINED",
@@ -168,11 +156,11 @@
       "name": "AAPL · 해외 개별주식 시범",
       "currency": "USD",
       "capture": {
-        "capture_id": "20261127T145837860557Z-YAHOO_CHART_CANDIDATE-AAPL",
+        "capture_id": "20261127T180922871616Z-YAHOO_CHART_CANDIDATE-AAPL",
         "source_id": "YAHOO_CHART_CANDIDATE",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AAPL?range=2y&interval=1d&events=div%2Csplits%2CcapitalGains&includeAdjustedClose=true",
-        "retrieved_at": "2026-11-27T14:58:37.860557+00:00",
-        "source_sha256": "e7b8a0ca6c4d6c2518a9644eceeef92fa2dc5c00102206a0a28d2c54c493a80e",
+        "retrieved_at": "2026-11-27T18:09:22.871616+00:00",
+        "source_sha256": "6ab9773cd26ceb5e8ad573d85387d5c8e3945dd2d4694beab4c941e161c07ab3",
         "kind": "US_PRICE",
         "status": "CAPTURED",
         "quality": "QUARANTINED",
@@ -182,11 +170,11 @@
     }
   ],
   "fx_capture": {
-    "capture_id": "20261127T145838030337Z-HANA_FINAL_NOTICE",
+    "capture_id": "20261127T180923055080Z-HANA_FINAL_NOTICE",
     "source_id": "HANA_FINAL_NOTICE",
     "source_url": "https://www.kebhana.com/cms/rate/wpfxd651_01i_01.do",
-    "retrieved_at": "2026-11-27T14:58:46.760588+00:00",
-    "source_sha256": "d11b105b3c9f5539caba831ce743d560de19f66dbd206e78d8886d74b8270b94",
+    "retrieved_at": "2026-11-27T18:09:36.180942+00:00",
+    "source_sha256": "63b94a6cc3bda71f278c7f6ca91ead9541c3ef32637f0bd318c4624a6c65ece7",
     "kind": "FX",
     "status": "CAPTURED",
     "quality": "REFERENCE_ONLY",
@@ -959,7 +947,7 @@
       "notice_at": "2026-11-23T07:58:12+09:00",
       "notice_sequence": 1011,
       "requested_date": "2026-11-22",
-      "retrieved_at": "2026-11-27T14:58:41.728026+00:00"
+      "retrieved_at": "2026-11-27T18:09:29.577833+00:00"
     },
     {
       "date": "2026-11-23",
@@ -971,7 +959,7 @@
       "notice_at": "2026-11-24T06:59:46+09:00",
       "notice_sequence": 1437,
       "requested_date": "2026-11-23",
-      "retrieved_at": "2026-11-27T14:58:43.089896+00:00"
+      "retrieved_at": "2026-11-27T18:09:31.243555+00:00"
     },
     {
       "date": "2026-11-24",
@@ -983,7 +971,7 @@
       "notice_at": "2026-11-25T06:34:50+09:00",
       "notice_sequence": 1236,
       "requested_date": "2026-11-24",
-      "retrieved_at": "2026-11-27T14:58:44.130285+00:00"
+      "retrieved_at": "2026-11-27T18:09:32.935835+00:00"
     },
     {
       "date": "2026-11-25",
@@ -995,7 +983,7 @@
       "notice_at": "2026-11-26T07:44:36+09:00",
       "notice_sequence": 1247,
       "requested_date": "2026-11-25",
-      "retrieved_at": "2026-11-27T14:58:45.569812+00:00"
+      "retrieved_at": "2026-11-27T18:09:34.231387+00:00"
     },
     {
       "date": "2026-11-26",
@@ -1007,7 +995,7 @@
       "notice_at": "2026-11-27T08:13:34+09:00",
       "notice_sequence": 964,
       "requested_date": "2026-11-26",
-      "retrieved_at": "2026-11-27T14:58:46.459923+00:00"
+      "retrieved_at": "2026-11-27T18:09:35.880273+00:00"
     }
   ],
   "windows": [
