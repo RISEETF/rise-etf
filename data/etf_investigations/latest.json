@@ -10,37 +10,31 @@
     "status": "UNCALIBRATED_RESEARCH_ONLY"
   },
   "source": "KRX_OPEN_API_ETF_DAILY",
-  "observation_date": "2026-11-25",
-  "source_retrieved_at": "2026-11-26T19:10:46.590342+00:00",
-  "source_raw_sha256": "fab678c3ced83acf06694bb53789ba14257cb4652df954b43bd71b9886439a84",
+  "observation_date": "2026-11-26",
+  "source_retrieved_at": "2026-11-27T04:50:00.055435+00:00",
+  "source_raw_sha256": "4da09618b961a823de44ee9183c7a2eeaaa28c6896a220b0884fbe8098ae66e2",
   "screened_count": 1191,
   "metric_coverage": {
     "price": 1191,
     "nav_gap": 1191,
     "volume": 1178
   },
-  "candidate_count": 424,
-  "deferred_count": 419,
+  "candidate_count": 143,
+  "deferred_count": 138,
   "items": [
     {
-      "ticker": "453950",
-      "name": "TIGER TSMC파운드리밸류체인",
-      "observation_date": "2026-11-25",
+      "ticker": "272910",
+      "name": "ACE 중장기국공채액티브",
+      "observation_date": "2026-11-26",
       "signals": [
         {
-          "kind": "PRICE_MOVE",
-          "value": -8.9471,
-          "unit": "%",
-          "prior_date": "2026-11-24"
-        },
-        {
           "kind": "NAV_GAP",
-          "value": -4.8379,
+          "value": 4.0615,
           "unit": "%"
         },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 4.2471,
+          "value": 15.4997,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -48,31 +42,26 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "453950",
-        "requested_date": "2026-11-25",
+        "ticker": "272910",
+        "requested_date": "2026-11-26",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
     },
     {
-      "ticker": "277540",
-      "name": "ACE 아시아TOP50",
-      "observation_date": "2026-11-25",
+      "ticker": "0207G0",
+      "name": "SOL 우주항공밸류체인",
+      "observation_date": "2026-11-26",
       "signals": [
         {
           "kind": "PRICE_MOVE",
-          "value": -5.3467,
+          "value": 10.0346,
           "unit": "%",
-          "prior_date": "2026-11-24"
-        },
-        {
-          "kind": "NAV_GAP",
-          "value": -3.7559,
-          "unit": "%"
+          "prior_date": "2026-11-25"
         },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 4.0098,
+          "value": 4.3567,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -80,52 +69,25 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "277540",
-        "requested_date": "2026-11-25",
+        "ticker": "0207G0",
+        "requested_date": "2026-11-26",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
     },
     {
-      "ticker": "465660",
-      "name": "TIGER 일본반도체FACTSET",
-      "observation_date": "2026-11-25",
+      "ticker": "220130",
+      "name": "SOL 차이나강소기업CSI500(합성 H)",
+      "observation_date": "2026-11-26",
       "signals": [
-        {
-          "kind": "PRICE_MOVE",
-          "value": -9.0093,
-          "unit": "%",
-          "prior_date": "2026-11-24"
-        },
         {
           "kind": "NAV_GAP",
-          "value": -12.0115,
+          "value": -2.2561,
           "unit": "%"
-        }
-      ],
-      "state": "PDF_PENDING",
-      "holdings_verified": false,
-      "pdf_request": {
-        "ticker": "465660",
-        "requested_date": "2026-11-25",
-        "source": "KRX",
-        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
-      }
-    },
-    {
-      "ticker": "310970",
-      "name": "TIGER MSCI Korea TR",
-      "observation_date": "2026-11-25",
-      "signals": [
-        {
-          "kind": "PRICE_MOVE",
-          "value": -7.151,
-          "unit": "%",
-          "prior_date": "2026-11-24"
         },
         {
           "kind": "VOLUME_SPIKE",
-          "value": 14.4545,
+          "value": 5.9723,
           "unit": "x",
           "baseline_sessions": 20
         }
@@ -133,34 +95,60 @@
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "310970",
-        "requested_date": "2026-11-25",
+        "ticker": "220130",
+        "requested_date": "2026-11-26",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
     },
     {
-      "ticker": "0255E0",
-      "name": "TIGER 글로벌MLCC&기판",
-      "observation_date": "2026-11-25",
+      "ticker": "334700",
+      "name": "RISE 팔라듐선물인버스(H)",
+      "observation_date": "2026-11-26",
+      "signals": [
+        {
+          "kind": "NAV_GAP",
+          "value": -3.9681,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 4.2856,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "334700",
+        "requested_date": "2026-11-26",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "456680",
+      "name": "TIGER 차이나전기차레버리지(합성)",
+      "observation_date": "2026-11-26",
       "signals": [
         {
           "kind": "PRICE_MOVE",
-          "value": -10.9527,
+          "value": -5.2632,
           "unit": "%",
-          "prior_date": "2026-11-24"
+          "prior_date": "2026-11-25"
         },
         {
           "kind": "NAV_GAP",
-          "value": -9.4866,
+          "value": -3.9341,
           "unit": "%"
         }
       ],
       "state": "PDF_PENDING",
       "holdings_verified": false,
       "pdf_request": {
-        "ticker": "0255E0",
-        "requested_date": "2026-11-25",
+        "ticker": "456680",
+        "requested_date": "2026-11-26",
         "source": "KRX",
         "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
       }
