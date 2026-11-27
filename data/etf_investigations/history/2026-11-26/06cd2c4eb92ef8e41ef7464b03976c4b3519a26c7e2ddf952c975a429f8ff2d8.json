@@ -1,0 +1,163 @@
+{
+  "schema": "ETF_INVESTIGATION_QUEUE_V1",
+  "rules": {
+    "version": "ETF_TRIAGE_RESEARCH_V1",
+    "price_abs_pct": 5,
+    "nav_gap_abs_pct": 2,
+    "volume_multiple": 3,
+    "baseline_sessions": 20,
+    "daily_limit": 5,
+    "status": "UNCALIBRATED_RESEARCH_ONLY"
+  },
+  "source": "KRX_OPEN_API_ETF_DAILY",
+  "observation_date": "2026-11-26",
+  "source_retrieved_at": "2026-11-27T19:05:31.349886+00:00",
+  "source_raw_sha256": "4da09618b961a823de44ee9183c7a2eeaaa28c6896a220b0884fbe8098ae66e2",
+  "screened_count": 1191,
+  "metric_coverage": {
+    "price": 1191,
+    "nav_gap": 1191,
+    "volume": 1178
+  },
+  "candidate_count": 143,
+  "deferred_count": 138,
+  "items": [
+    {
+      "ticker": "272910",
+      "name": "ACE 중장기국공채액티브",
+      "observation_date": "2026-11-26",
+      "signals": [
+        {
+          "kind": "NAV_GAP",
+          "value": 4.0615,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 15.4997,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "272910",
+        "requested_date": "2026-11-26",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "0207G0",
+      "name": "SOL 우주항공밸류체인",
+      "observation_date": "2026-11-26",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": 10.0346,
+          "unit": "%",
+          "prior_date": "2026-11-25"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 4.3567,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "0207G0",
+        "requested_date": "2026-11-26",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "220130",
+      "name": "SOL 차이나강소기업CSI500(합성 H)",
+      "observation_date": "2026-11-26",
+      "signals": [
+        {
+          "kind": "NAV_GAP",
+          "value": -2.2561,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 5.9723,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "220130",
+        "requested_date": "2026-11-26",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "334700",
+      "name": "RISE 팔라듐선물인버스(H)",
+      "observation_date": "2026-11-26",
+      "signals": [
+        {
+          "kind": "NAV_GAP",
+          "value": -3.9681,
+          "unit": "%"
+        },
+        {
+          "kind": "VOLUME_SPIKE",
+          "value": 4.2856,
+          "unit": "x",
+          "baseline_sessions": 20
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "334700",
+        "requested_date": "2026-11-26",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    },
+    {
+      "ticker": "456680",
+      "name": "TIGER 차이나전기차레버리지(합성)",
+      "observation_date": "2026-11-26",
+      "signals": [
+        {
+          "kind": "PRICE_MOVE",
+          "value": -5.2632,
+          "unit": "%",
+          "prior_date": "2026-11-25"
+        },
+        {
+          "kind": "NAV_GAP",
+          "value": -3.9341,
+          "unit": "%"
+        }
+      ],
+      "state": "PDF_PENDING",
+      "holdings_verified": false,
+      "pdf_request": {
+        "ticker": "456680",
+        "requested_date": "2026-11-26",
+        "source": "KRX",
+        "instruction": "KRX 로그인 → ETF PDF → 종목코드·기준일 선택 → 다운로드"
+      }
+    }
+  ],
+  "limitations": [
+    "조사 우선순위용 임시 기준이며 검증된 매매신호가 아닙니다.",
+    "가격은 비조정 종가입니다. 분배·분할·병합·레버리지 및 시장 전체 변동을 먼저 확인하세요.",
+    "해외자산 NAV와 국내 종가의 시차는 괴리의 원인이 될 수 있습니다.",
+    "거래량 증가를 투자자 순유입으로 해석하지 않습니다. PDF 확보 전 구성자산 원인은 미확인입니다."
+  ]
+}
