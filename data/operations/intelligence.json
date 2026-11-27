@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "started_at_utc": "2026-11-26T04:00:39.310910+00:00",
-  "run_id": "45752435840",
+  "started_at_utc": "2026-11-27T03:58:52.265095+00:00",
+  "run_id": "45937211492",
   "run_attempt": "1",
   "status": "PUBLISHED",
   "stages": {
@@ -16,8 +16,8 @@
   "note": "Checkout execution only. Git push and Pages deployment are separate outcomes.",
   "research_draft": {
     "status": "RESEARCH_DRAFT",
-    "path": "data/intelligence/research/2026-11-26/8b781bc6f88573b3114e24102bd4dcee74240d8d0429d04e3a9678019f507bd5",
-    "sha256": "8b781bc6f88573b3114e24102bd4dcee74240d8d0429d04e3a9678019f507bd5"
+    "path": "data/intelligence/research/2026-11-27/b280cab35bf43cdd8f16171829050f56764088d98151abd7b02411440a2893dd",
+    "sha256": "b280cab35bf43cdd8f16171829050f56764088d98151abd7b02411440a2893dd"
   },
   "dated_context": [
     {
@@ -26,13 +26,13 @@
       "reason": "기준일 관측 수준·과거 변화 설명에 사용; 오늘의 신호·동시점 교차확인에는 미사용"
     }
   ],
-  "generated_package": "data/intelligence/generated/2026-11-26/3a4464485dff1b5804f4e77872e93d99976e1a8ce81d72c42290e1aae09dd6fb",
+  "generated_package": "data/intelligence/generated/2026-11-27/60a1b776f7af9f5695cc6acff85436a4a8d90493490f5cf1b97fa06e26e188e5",
   "blockers": [],
   "publication": {
     "status": "SUCCESS",
-    "asof_date": "2026-11-26",
-    "archive_count": 41,
+    "asof_date": "2026-11-27",
+    "archive_count": 42,
     "content_changed": true
   },
-  "finished_at_utc": "2026-11-26T04:00:39.584898+00:00"
+  "finished_at_utc": "2026-11-27T03:58:52.440225+00:00"
 }
